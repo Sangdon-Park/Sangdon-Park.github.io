@@ -3,73 +3,133 @@
  * Main JavaScript file for handling site functionality
  */
 
+// 전역 오류 핸들러 설정
+window.onerror = function(message, source, lineno, colno, error) {
+    showErrorMessage('JavaScript 오류가 발생했습니다: ' + message);
+    console.error('Global error:', message, source, lineno, colno, error);
+    return true; // 오류 처리를 중단하지 않음
+};
+
+// 오류 메시지를 화면에 표시하는 함수
+function showErrorMessage(message) {
+    // 이미 오류 메시지가 있는지 확인
+    if (document.getElementById('error-message')) return;
+    
+    // 오류 메시지 컨테이너 생성
+    var errorDiv = document.createElement('div');
+    errorDiv.id = 'error-message';
+    errorDiv.style.position = 'fixed';
+    errorDiv.style.top = '0';
+    errorDiv.style.left = '0';
+    errorDiv.style.right = '0';
+    errorDiv.style.padding = '10px';
+    errorDiv.style.backgroundColor = '#f44336';
+    errorDiv.style.color = 'white';
+    errorDiv.style.textAlign = 'center';
+    errorDiv.style.zIndex = '9999';
+    errorDiv.innerHTML = message + ' <button onclick="this.parentNode.style.display=\'none\'">닫기</button>';
+    
+    document.body.insertBefore(errorDiv, document.body.firstChild);
+}
+
+// 로컬 스토리지 사용 가능 여부 확인
+function isLocalStorageAvailable() {
+    try {
+        const test = 'test';
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 // 페이지 로드가 완료되면 실행
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize navigation
-    initNavigation();
-    
-    // Handle language switching
-    initLanguageSwitcher();
-    
-    // Load publications data
-    loadPublications();
-    
-    // Handle publication filters
-    initPublicationFilters();
-    
-    // Handle smooth scrolling
-    initSmoothScroll();
-    
-    // Handle header scroll effect
-    initHeaderScroll();
-    
-    // 프로필 이미지가 없을 경우 플레이스홀더 표시
-    const profileImage = document.getElementById('profile-placeholder');
-    
-    if (profileImage) {
-        profileImage.onerror = function() {
-            this.src = ''; // 이미지 로드 실패 시 소스 비우기
-            this.style.backgroundColor = '#f4f4f4';
-            this.style.display = 'flex';
-            this.style.alignItems = 'center';
-            this.style.justifyContent = 'center';
+    try {
+        // 기본 언어를 영어로 설정 (안전 모드)
+        try {
+            document.body.classList.remove('ko');
+        } catch (e) {
+            console.error('Error removing ko class:', e);
+        }
+        
+        // Initialize navigation
+        initNavigation();
+        
+        // Load publications data
+        loadPublications();
+        
+        // Handle publication filters
+        initPublicationFilters();
+        
+        // Handle smooth scrolling
+        initSmoothScroll();
+        
+        // Handle header scroll effect
+        initHeaderScroll();
+        
+        // 마지막으로 언어 스위처 초기화 (문제가 있어도 다른 기능은 작동하도록)
+        setTimeout(function() {
+            try {
+                initLanguageSwitcher();
+            } catch (e) {
+                console.error('Error initializing language switcher:', e);
+                showErrorMessage('언어 전환 기능에 문제가 발생했습니다.');
+            }
+        }, 500);
+        
+        // 프로필 이미지가 없을 경우 플레이스홀더 표시
+        const profileImage = document.getElementById('profile-placeholder');
+        
+        if (profileImage) {
+            profileImage.onerror = function() {
+                this.src = ''; // 이미지 로드 실패 시 소스 비우기
+                this.style.backgroundColor = '#f4f4f4';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                
+                // 이니셜 또는 아이콘 추가
+                const initial = document.createElement('span');
+                initial.textContent = 'SP'; // 박상돈의 이니셜
+                initial.style.fontSize = '3rem';
+                initial.style.color = '#999';
+                this.appendChild(initial);
+            };
+        }
+        
+        // 내비게이션에서 클릭하면 해당 섹션으로 스무스 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 스크롤 시 헤더에 그림자 효과 추가
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
             
-            // 이니셜 또는 아이콘 추가
-            const initial = document.createElement('span');
-            initial.textContent = 'SP'; // 박상돈의 이니셜
-            initial.style.fontSize = '3rem';
-            initial.style.color = '#999';
-            this.appendChild(initial);
-        };
-    }
-    
-    // 내비게이션에서 클릭하면 해당 섹션으로 스무스 스크롤
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
             }
         });
-    });
-    
-    // 스크롤 시 헤더에 그림자 효과 추가
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    });
+    } catch (error) {
+        console.error('Error during page initialization:', error);
+        showErrorMessage('페이지 초기화 중 오류가 발생했습니다: ' + error.message);
+    }
 });
 
 /**
@@ -122,46 +182,78 @@ function initNavigation() {
  * Initialize language switcher
  */
 function initLanguageSwitcher() {
-    const langEn = document.getElementById('lang-en');
-    const langKo = document.getElementById('lang-ko');
-    
-    if (langEn && langKo) {
+    try {
+        const langEn = document.getElementById('lang-en');
+        const langKo = document.getElementById('lang-ko');
+        
+        if (!langEn || !langKo) {
+            console.error('Language switcher buttons not found');
+            return;
+        }
+        
+        // 영어 버튼 클릭 처리
         langEn.addEventListener('click', function(e) {
             e.preventDefault();
             try {
+                // 한국어 클래스 제거
                 document.body.classList.remove('ko');
+                
+                // 버튼 활성화 상태 업데이트
                 langEn.classList.add('active');
                 langKo.classList.remove('active');
-                localStorage.setItem('language', 'en');
+                
+                // 로컬 스토리지에 저장 시도
+                if (isLocalStorageAvailable()) {
+                    localStorage.setItem('language', 'en');
+                }
             } catch (error) {
                 console.error('Error switching to English:', error);
+                showErrorMessage('영어로 전환 중 오류가 발생했습니다.');
             }
         });
         
+        // 한국어 버튼 클릭 처리
         langKo.addEventListener('click', function(e) {
             e.preventDefault();
             try {
+                // 한국어 클래스 추가
                 document.body.classList.add('ko');
+                
+                // 버튼 활성화 상태 업데이트
                 langKo.classList.add('active');
                 langEn.classList.remove('active');
-                localStorage.setItem('language', 'ko');
+                
+                // 로컬 스토리지에 저장 시도
+                if (isLocalStorageAvailable()) {
+                    localStorage.setItem('language', 'ko');
+                }
             } catch (error) {
                 console.error('Error switching to Korean:', error);
+                showErrorMessage('한국어로 전환 중 오류가 발생했습니다.');
             }
         });
         
-        // Check for saved language preference
+        // 저장된 언어 설정 불러오기
         try {
-            const savedLanguage = localStorage.getItem('language');
-            if (savedLanguage === 'ko') {
-                // 페이지 로드 후 약간의 지연을 주어 안정적인 언어 전환을 보장
-                setTimeout(() => {
-                    langKo.click();
-                }, 100);
+            if (isLocalStorageAvailable()) {
+                const savedLanguage = localStorage.getItem('language');
+                if (savedLanguage === 'ko') {
+                    // 직접 클래스 조작 (클릭 이벤트 발생시키지 않음)
+                    document.body.classList.add('ko');
+                    langKo.classList.add('active');
+                    langEn.classList.remove('active');
+                }
             }
         } catch (error) {
             console.error('Error loading language preference:', error);
+            // 오류 발생 시 기본값으로 영어 사용
+            document.body.classList.remove('ko');
+            langEn.classList.add('active');
+            langKo.classList.remove('active');
         }
+    } catch (error) {
+        console.error('Critical error in language switcher:', error);
+        showErrorMessage('언어 전환 기능 초기화 중 심각한 오류가 발생했습니다.');
     }
 }
 
@@ -206,50 +298,87 @@ function initHeaderScroll() {
  * Initialize publication filters
  */
 function initPublicationFilters() {
-    const filterButtons = document.querySelectorAll('.pub-nav-btn');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            const filter = this.getAttribute('data-filter');
-            filterPublications(filter);
+    try {
+        const filterButtons = document.querySelectorAll('.pub-nav-btn');
+        
+        if (!filterButtons.length) {
+            console.warn('Publication filter buttons not found');
+            return;
+        }
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                try {
+                    // 모든 버튼에서 active 클래스 제거
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // 클릭한 버튼에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 필터 속성 가져오기
+                    const filter = this.getAttribute('data-filter') || 'all';
+                    
+                    // 필터링 실행
+                    filterPublications(filter);
+                } catch (error) {
+                    console.error('Error in filter button click:', error);
+                    showErrorMessage('발행물 필터링 중 오류가 발생했습니다.');
+                }
+            });
         });
-    });
+    } catch (error) {
+        console.error('Error initializing publication filters:', error);
+        showErrorMessage('발행물 필터 초기화 중 오류가 발생했습니다.');
+    }
 }
 
 /**
  * Filter publications by type
  */
 function filterPublications(filter) {
-    const publications = document.querySelectorAll('.publication-item');
-    
-    if (!publications.length) return;
-    
-    publications.forEach(pub => {
-        if (filter === 'all' || pub.classList.contains(filter)) {
-            pub.style.display = 'block';
-        } else {
-            pub.style.display = 'none';
+    try {
+        const publications = document.querySelectorAll('.publication-item');
+        
+        if (!publications.length) {
+            console.warn('No publications to filter');
+            return;
         }
-    });
+        
+        // 필터가 없으면 'all'로 설정
+        const safeFilter = filter || 'all';
+        
+        publications.forEach(pub => {
+            if (safeFilter === 'all' || pub.classList.contains(safeFilter)) {
+                pub.style.display = 'block';
+            } else {
+                pub.style.display = 'none';
+            }
+        });
+    } catch (error) {
+        console.error('Error filtering publications:', error);
+        showErrorMessage('발행물 필터링 중 오류가 발생했습니다.');
+    }
 }
 
 /**
  * Load and parse publications from the markdown file
  */
 function loadPublications() {
-    const publicationsContainer = document.getElementById('publications-list');
-    
-    if (!publicationsContainer) return;
-    
     try {
-        // Remove loading message
-        publicationsContainer.innerHTML = '';
+        const publicationsContainer = document.getElementById('publications-list');
         
-        // Parsed publications data structure from publications.md
+        if (!publicationsContainer) {
+            console.warn('Publications container not found');
+            return;
+        }
+        
+        // 로딩 메시지 표시
+        publicationsContainer.innerHTML = `
+            <p class="loading-text en">Loading publications...</p>
+            <p class="loading-text ko" style="display: none;">논문 로딩 중...</p>
+        `;
+        
+        // 발행물 데이터 로드 (출처: publications.md)
         const publicationsData = [
             // Journals
             {
@@ -498,29 +627,72 @@ function loadPublications() {
             }
         ];
         
-        // Add publications to the container
-        publicationsData.forEach(pub => {
-            const pubElement = document.createElement('div');
-            pubElement.className = `publication-item ${pub.type}`;
-            
-            pubElement.innerHTML = `
-                <h3>${pub.title}</h3>
-                <p class="publication-authors">${pub.authors}</p>
-                <p class="publication-journal">${pub.journal}</p>
-                <a href="${pub.link}" class="publication-link" target="_blank">
-                    <span class="en">View Publication</span>
-                    <span class="ko">논문 보기</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
+        // 컨테이너 비우기
+        publicationsContainer.innerHTML = '';
+        
+        // 발행물 항목 없을 경우 메시지 표시
+        if (publicationsData.length === 0) {
+            publicationsContainer.innerHTML = `
+                <p class="loading-text en">No publications found.</p>
+                <p class="loading-text ko" style="display: none;">논문이 없습니다.</p>
             `;
-            
-            publicationsContainer.appendChild(pubElement);
+            return;
+        }
+        
+        // 각 발행물을 DOM에 추가
+        publicationsData.forEach(pub => {
+            try {
+                const pubElement = document.createElement('div');
+                pubElement.className = `publication-item ${pub.type || 'other'}`;
+                
+                // HTML 콘텐츠 생성
+                pubElement.innerHTML = `
+                    <h3>${pub.title || '제목 없음'}</h3>
+                    <p class="publication-authors">${pub.authors || '저자 정보 없음'}</p>
+                    <p class="publication-journal">${pub.journal || '출처 정보 없음'}</p>
+                    <a href="${pub.link || '#'}" class="publication-link" target="_blank">
+                        <span class="en">View Publication</span>
+                        <span class="ko" style="display: none;">논문 보기</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                `;
+                
+                publicationsContainer.appendChild(pubElement);
+            } catch (itemError) {
+                console.error('Error creating publication item:', itemError, pub);
+            }
         });
+        
+        // 현재 언어 설정에 맞게 표시 조정
+        if (document.body.classList.contains('ko')) {
+            const enElements = publicationsContainer.querySelectorAll('.en');
+            const koElements = publicationsContainer.querySelectorAll('.ko');
+            
+            enElements.forEach(el => { el.style.display = 'none'; });
+            koElements.forEach(el => { el.style.display = 'inline-block'; });
+        }
+        
     } catch (error) {
         console.error('Error loading publications:', error);
-        publicationsContainer.innerHTML = `
-            <p class="loading-text en">Error loading publications. Please try again later.</p>
-            <p class="loading-text ko">논문 로드 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>
-        `;
+        
+        // 에러 메시지 표시
+        const container = document.getElementById('publications-list');
+        if (container) {
+            container.innerHTML = `
+                <p class="loading-text en">Error loading publications. Please try again later.</p>
+                <p class="loading-text ko" style="display: none;">논문 로드 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>
+            `;
+            
+            // 현재 언어 설정에 맞게 표시 조정
+            if (document.body.classList.contains('ko')) {
+                const enElements = container.querySelectorAll('.en');
+                const koElements = container.querySelectorAll('.ko');
+                
+                enElements.forEach(el => { el.style.display = 'none'; });
+                koElements.forEach(el => { el.style.display = 'block'; });
+            }
+        }
+        
+        showErrorMessage('발행물을 로드하는 중 오류가 발생했습니다.');
     }
 }
