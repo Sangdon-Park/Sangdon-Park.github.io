@@ -1,0 +1,329 @@
+/* 전역 스타일 */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --dark-gray: #ccc;
+    --white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', '맑은 고딕', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* 헤더 스타일 */
+header {
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header .title {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+/* 섹션 스타일 */
+.section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+/* 프로필 섹션 */
+.profile-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-image {
+    flex: 0 0 250px;
+}
+
+.profile-image img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#profile-placeholder {
+    background-color: var(--light-gray);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-gray);
+    font-size: 3rem;
+}
+
+.profile-text {
+    flex: 1;
+}
+
+.profile-text h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.profile-text h2::after {
+    left: 0;
+    transform: none;
+}
+
+.contact-info {
+    margin-top: 20px;
+    background-color: var(--light-gray);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/* 연구 분야 섹션 */
+.research-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.research-item {
+    flex: 0 0 calc(33.33% - 20px);
+    min-width: 300px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.research-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.research-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.research-item h3 {
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+/* 논문 섹션 */
+.publications-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.publication {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.publication:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.publication h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.pub-authors {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.pub-journal {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.pub-link {
+    display: inline-block;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.pub-link i {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+/* 학력 및 경력 섹션 */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 120px;
+    height: 100%;
+    width: 2px;
+    background-color: var(--primary-color);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-date {
+    width: 120px;
+    text-align: right;
+    padding-right: 30px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.timeline-content {
+    flex: 1;
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+}
+
+.timeline-content h3 {
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-image {
+        margin-bottom: 30px;
+    }
+    
+    .profile-text h2 {
+        text-align: center;
+    }
+    
+    .profile-text h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline-date {
+        width: 100%;
+        text-align: left;
+        padding-left: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .timeline-content::before {
+        left: -26px;
+    }
+}
