@@ -126,24 +126,41 @@ function initLanguageSwitcher() {
     const langKo = document.getElementById('lang-ko');
     
     if (langEn && langKo) {
-        langEn.addEventListener('click', function() {
-            document.body.classList.remove('ko');
-            langEn.classList.add('active');
-            langKo.classList.remove('active');
-            localStorage.setItem('language', 'en');
+        langEn.addEventListener('click', function(e) {
+            e.preventDefault();
+            try {
+                document.body.classList.remove('ko');
+                langEn.classList.add('active');
+                langKo.classList.remove('active');
+                localStorage.setItem('language', 'en');
+            } catch (error) {
+                console.error('Error switching to English:', error);
+            }
         });
         
-        langKo.addEventListener('click', function() {
-            document.body.classList.add('ko');
-            langKo.classList.add('active');
-            langEn.classList.remove('active');
-            localStorage.setItem('language', 'ko');
+        langKo.addEventListener('click', function(e) {
+            e.preventDefault();
+            try {
+                document.body.classList.add('ko');
+                langKo.classList.add('active');
+                langEn.classList.remove('active');
+                localStorage.setItem('language', 'ko');
+            } catch (error) {
+                console.error('Error switching to Korean:', error);
+            }
         });
         
         // Check for saved language preference
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage === 'ko') {
-            langKo.click();
+        try {
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage === 'ko') {
+                // 페이지 로드 후 약간의 지연을 주어 안정적인 언어 전환을 보장
+                setTimeout(() => {
+                    langKo.click();
+                }, 100);
+            }
+        } catch (error) {
+            console.error('Error loading language preference:', error);
         }
     }
 }
@@ -490,13 +507,20 @@ function loadPublications() {
                 <h3>${pub.title}</h3>
                 <p class="publication-authors">${pub.authors}</p>
                 <p class="publication-journal">${pub.journal}</p>
-                <a href="${pub.link}" class="publication-link" target="_blank">View Publication <i class="fas fa-external-link-alt"></i></a>
+                <a href="${pub.link}" class="publication-link" target="_blank">
+                    <span class="en">View Publication</span>
+                    <span class="ko">논문 보기</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             `;
             
             publicationsContainer.appendChild(pubElement);
         });
     } catch (error) {
         console.error('Error loading publications:', error);
-        publicationsContainer.innerHTML = '<p class="loading-text">Error loading publications. Please try again later.</p>';
+        publicationsContainer.innerHTML = `
+            <p class="loading-text en">Error loading publications. Please try again later.</p>
+            <p class="loading-text ko">논문 로드 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>
+        `;
     }
 }
