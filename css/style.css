@@ -280,6 +280,56 @@ header .title {
     color: var(--secondary-color);
 }
 
+/* Experience Section */
+.experience-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.experience-item {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.experience-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.experience-company {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.experience-duration {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.experience-details {
+    padding-left: 20px;
+}
+
+.experience-details li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.experience-details li::before {
+    content: '•';
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+}
+
 /* 푸터 스타일 */
 footer {
     background-color: var(--secondary-color);
