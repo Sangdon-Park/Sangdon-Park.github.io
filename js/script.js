@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize navigation
     initNavigation();
     
-    // Handle language switching
-    initLanguageSwitcher();
-    
     // Load publications data
     loadPublications();
     
@@ -26,20 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // 프로필 이미지가 없을 경우 플레이스홀더 표시
     const profileImage = document.getElementById('profile-placeholder');
     
-    profileImage.onerror = function() {
-        this.src = ''; // 이미지 로드 실패 시 소스 비우기
-        this.style.backgroundColor = '#f4f4f4';
-        this.style.display = 'flex';
-        this.style.alignItems = 'center';
-        this.style.justifyContent = 'center';
-        
-        // 이니셜 또는 아이콘 추가
-        const initial = document.createElement('span');
-        initial.textContent = 'SP'; // 박상돈의 이니셜
-        initial.style.fontSize = '3rem';
-        initial.style.color = '#999';
-        this.appendChild(initial);
-    };
+    if (profileImage) {
+        profileImage.onerror = function() {
+            this.src = ''; // 이미지 로드 실패 시 소스 비우기
+            this.style.backgroundColor = '#f4f4f4';
+            this.style.display = 'flex';
+            this.style.alignItems = 'center';
+            this.style.justifyContent = 'center';
+            
+            // 이니셜 또는 아이콘 추가
+            const initial = document.createElement('span');
+            initial.textContent = 'SP'; // 박상돈의 이니셜
+            initial.style.fontSize = '3rem';
+            initial.style.color = '#999';
+            this.appendChild(initial);
+        };
+    }
     
     // 내비게이션에서 클릭하면 해당 섹션으로 스무스 스크롤
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -114,36 +113,6 @@ function initNavigation() {
             }
         });
     });
-}
-
-/**
- * Initialize language switcher
- */
-function initLanguageSwitcher() {
-    const langEn = document.getElementById('lang-en');
-    const langKo = document.getElementById('lang-ko');
-    
-    if (langEn && langKo) {
-        langEn.addEventListener('click', function() {
-            document.body.classList.remove('ko');
-            langEn.classList.add('active');
-            langKo.classList.remove('active');
-            localStorage.setItem('language', 'en');
-        });
-        
-        langKo.addEventListener('click', function() {
-            document.body.classList.add('ko');
-            langKo.classList.add('active');
-            langEn.classList.remove('active');
-            localStorage.setItem('language', 'ko');
-        });
-        
-        // Check for saved language preference
-        const savedLanguage = localStorage.getItem('language');
-        if (savedLanguage === 'ko') {
-            langKo.click();
-        }
-    }
 }
 
 /**
