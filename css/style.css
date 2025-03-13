@@ -72,28 +72,73 @@ img {
 }
 
 /* Language Switcher */
+/* 기본적으로 한국어 요소는 숨김 */
 .ko {
-    display: none;
+    display: none !important;
 }
 
+/* 한국어 모드일 때 영어 요소 숨김 */
 body.ko .en {
-    display: none;
+    display: none !important;
 }
 
+/* 한국어 모드일 때 한국어 요소 표시 */
 body.ko .ko {
-    display: block;
+    display: block !important;
 }
 
-span.ko {
-    display: none;
+/* 인라인 요소에 대한 처리 */
+span.ko, a.ko, button.ko {
+    display: none !important;
 }
 
-body.ko span.en {
-    display: none;
+body.ko span.en, body.ko a.en, body.ko button.en {
+    display: none !important;
 }
 
-body.ko span.ko {
-    display: inline;
+body.ko span.ko, body.ko a.ko, body.ko button.ko {
+    display: inline !important;
+}
+
+/* 특별히 publication-link 안의 span 요소에 대한 처리 */
+.publication-link span.en, .publication-link span.ko {
+    display: inline !important;
+}
+
+body.ko .publication-link span.en {
+    display: none !important;
+}
+
+body.ko .publication-link span.ko {
+    display: inline !important;
+}
+
+/* 에러 메시지 스타일 */
+#error-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#error-message button {
+    margin-left: 15px;
+    padding: 5px 10px;
+    background-color: white;
+    color: #f44336;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#error-message button:hover {
+    background-color: #eeeeee;
 }
 
 /* Container */
