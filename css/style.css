@@ -23,7 +23,8 @@
 }
 
 /* Dark Theme Variables */
-body[data-theme="dark"] {
+/* Apply dark theme variables directly to html element */
+html[data-theme="dark"] {
     --primary-color: #3b82f6;         /* Blue 500 */
     --primary-dark: #60a5fa;          /* Blue 400 */
     --secondary-color: #f8fafc;       /* Slate 50 (becomes primary text) */
@@ -328,13 +329,14 @@ body.ko span.ko {
 }
 
 /* Dark Mode Specific Button Adjustments */
-body[data-theme="dark"] .primary-btn {
+/* Use html selector */
+html[data-theme="dark"] .primary-btn {
     color: #0f172a; /* Dark text on light blue button */
 }
-body[data-theme="dark"] .primary-btn:hover {
+html[data-theme="dark"] .primary-btn:hover {
     color: #0f172a;
 }
-body[data-theme="dark"] .view-more-btn:hover {
+html[data-theme="dark"] .view-more-btn:hover {
     color: #0f172a; /* Dark text on light blue button */
 }
 
@@ -813,21 +815,22 @@ hr.section-divider {
 }
 
 /* Dark mode adjustments for footer */
-body[data-theme="dark"] .footer {
+/* Use html selector */
+html[data-theme="dark"] .footer {
     background-color: #020617; /* Even darker slate for footer */
     color: #cbd5e1; /* Slightly lighter text */
 }
 
-body[data-theme="dark"] .footer-text p {
+html[data-theme="dark"] .footer-text p {
     opacity: 0.6;
 }
 
-body[data-theme="dark"] .social-links a {
+html[data-theme="dark"] .social-links a {
     background-color: #1e293b; /* Slate 800 */
     color: #e2e8f0; /* Slate 200 */
 }
 
-body[data-theme="dark"] .social-links a:hover {
+html[data-theme="dark"] .social-links a:hover {
     background-color: var(--primary-color);
     color: #0f172a;
 }
@@ -1142,6 +1145,13 @@ body[data-theme="dark"] .social-links a:hover {
 .article-page {
     padding-top: 120px; /* Adjust for fixed header */
     padding-bottom: 100px;
+    background-color: var(--bg-color); /* Ensure background matches theme */
+}
+
+/* Ensure dark mode applies correctly to article content */
+html[data-theme="dark"] .article-content {
+    background-color: var(--bg-color); /* Explicitly set dark background */
+    border-color: var(--border-color); /* Explicitly set dark border */
 }
 
 .article-content {
@@ -1151,6 +1161,7 @@ body[data-theme="dark"] .social-links a:hover {
     padding: 40px 50px; /* Padding inside article box */
     border-radius: 8px;
     border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Add transition */
 }
 
 .article-header {
@@ -1270,11 +1281,12 @@ body[data-theme="dark"] .social-links a:hover {
 }
 
 /* Dark mode specific code block */
-body[data-theme="dark"] .article-body pre {
+/* Use html selector */
+html[data-theme="dark"] .article-body pre {
     background-color: #1e293b; /* Slightly lighter dark background */
     color: #e2e8f0;
 }
-body[data-theme="dark"] .article-body pre code {
+html[data-theme="dark"] .article-body pre code {
     color: #e2e8f0;
 }
 
