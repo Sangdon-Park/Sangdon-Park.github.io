@@ -293,11 +293,11 @@ body.ko span.ko {
 
 /* Section Styles */
 .section {
-    padding: 100px 0;
+    padding: 110px 0;
 }
 
 .bg-light {
-    background-color: var(--bg-light);
+    /* background-color: var(--bg-light); Removed background color */
 }
 
 .section-title {
