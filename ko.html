@@ -1,58 +1,30 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박상돈 박사 - AI 시스템 설계 및 개발</title>
+    <title>박상돈 - AI 시스템 설계 및 개발</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* 글자 크기 조정을 위한 스타일 */
-        .research-card p {
-            font-size: 1rem !important;
-            line-height: 1.6 !important;
-        }
-        .timeline-details, .timeline-details li {
-            font-size: 1rem !important;
-            line-height: 1.5 !important;
-        }
-        .article-meta {
-            font-size: 0.95rem !important;
-            line-height: 1.5 !important;
-        }
-        .footer-text p {
-            font-size: 1rem !important;
-        }
-        .about-text p {
-            font-size: 1.05rem !important;
-            line-height: 1.6 !important;
-        }
-        p.timeline-details {
-            font-size: 1rem !important;
-        }
-        .article-title {
-            font-size: 1.15rem !important;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <h2>박상돈 박사</h2>
+                    <h2>박상돈</h2>
                 </div>
                 <nav class="nav">
                     <ul class="nav-links">
                         <li><a href="#home" class="active">홈</a></li>
                         <li><a href="#about">소개</a></li>
                         <li><a href="#writings">인사이트</a></li>
-                        <li><a href="#research">연구 및 개발</a></li>
+                        <li><a href="#research">연구</a></li>
                         <li><a href="#publications">대표 논문</a></li>
-                        <li><a href="#seminar">AI 강연</a></li>
+                        <li><a href="#seminar">AI 세미나</a></li>
                         <li><a href="#experience">경력</a></li>
                         <li><a href="#education">학력</a></li>
                         <li><a href="#contact">연락처</a></li>
@@ -62,10 +34,6 @@
                     <a href="en.html" class="lang-btn">EN</a>
                     <a href="ko.html" class="lang-btn active">KO</a>
                 </div>
-                <!-- Theme Toggle Button -->
-                <button class="theme-toggle-btn" id="theme-toggle" aria-label="테마 전환">
-                    <i class="fas fa-sun"></i> <!-- Default: sun icon -->
-                </button>
                 <div class="nav-toggle" id="nav-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -77,11 +45,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>박상돈 박사</h1>
+                    <h1>박상돈</h1>
                     <p class="identity">AI 시스템 설계 및 개발 | LLM 응용 연구</p>
                     <p class="title">현) KAIST 박사후연구원 (2024년 5월 <a href="https://sayberrygames.com/" target="_blank" rel="noopener noreferrer">세이베리게임즈</a> 합류 예정)</p>
                     <div class="hero-contact-links">
-                        <a href="mailto:sangdon.park@kaist.ac.kr" class="icon-link" aria-label="Email">
+                        <a href="mailto:chaos@sayberrygames.com" class="icon-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                         <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
@@ -96,7 +64,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="images/Sangdon.jpg" alt="박상돈 박사">
+                    <img src="images/Sangdon.jpg" alt="박상돈">
                 </div>
             </div>
         </div>
@@ -104,13 +72,13 @@
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">소개: AI 시스템 연구 및 개발 경험</h2>
+            <h2 class="section-title">소개: AI 시스템 연구 경험</h2>
             <div class="about-content-single">
                 <div class="about-text">
                     <p>최근 수개월간 저는 AI Large Language Model(LLM)의 활용 가능성을 집중적으로 연구해 왔습니다. ChatGPT, Claude, Gemini 등 최신 모델들을 활용하여 연구, 기획, 개발의 전 과정에 적용하며 실질적인 효용과 한계점을 체계적으로 분석했습니다.</p>
                     <p>이러한 집중적인 연구 결과, 4년간 목표로 했던 <a href="https://youtu.be/VbP7meO7nZI" target="_blank" rel="noopener noreferrer"><strong>엣지 컴퓨팅 GUI 시뮬레이터</strong></a>를 성공적으로 구현할 수 있었고, 개인적인 동기로 시작했던 <strong>AI 캐릭터와의 대화 프로젝트</strong>는 기대 이상의 성과를 보여주었습니다. 이 프로젝트는 단순 대화를 넘어서 자연스러운 캐릭터 상호작용 구현을 가능하게 하며, 게임 개발이라는 새로운 응용 분야를 탐색하는 계기가 되었습니다.</p>
                     <p>AI 코딩 도구(Cursor 등)를 효과적으로 활용하여 개발 생산성을 대폭 향상시켰으며, 아이디어를 신속하게 프로토타입으로 구현할 수 있었습니다. 이러한 경험을 바탕으로 <a href="https://sayberrygames.com/" target="_blank" rel="noopener noreferrer"><strong>세이베리게임즈</strong></a>에 합류하여 AI 기반 인터랙티브 경험 연구 개발에 참여할 예정이며, <a href="https://www.kocca.kr/kocca/bbs/view/B0000137/2008268.do?searchCnd=1&searchWrd=&cateTp1=07&cateTp2=&useYn=&menuNo=204802&" target="_blank" rel="noopener noreferrer"><strong>8개월 3억 규모의 AI 게임 개발 과제</strong></a>를 성공적으로 제안하기도 했습니다.</p>
-                    <p>이러한 실질적인 경험과 전문 지식을 더 넓은 커뮤니티와 공유하고자 합니다. (자세한 내용은 아래 'AI 강연' 섹션을 참고해주세요.)</p>
+                    <p>이러한 실질적인 경험과 전문 지식을 더 넓은 커뮤니티와 공유하고자 합니다. (자세한 내용은 아래 <a href="#seminar"><strong>AI 세미나</strong></a> 섹션을 참고해주세요.)</p>
                 </div>
             </div>
         </div>
@@ -123,13 +91,13 @@
                 <div class="article-grid">
                     <div class="article-item">
                         <a href="articles/ai-llm-passion.html" class="article-link">
-                            <h4 class="article-title">AI LLM 서비스에 미쳐있던 5개월</h4>
+                            <h4 class="article-title">AI LLM 서비스 집중 연구 경험 5개월</h4>
                             <p class="article-meta">AI 활용 경험과 성찰 | 2024년 X월</p>
                         </a>
                     </div>
                     <div class="article-item">
                         <a href="articles/ai-coding-frenzy.html" class="article-link">
-                            <h4 class="article-title">AI LLM API 코딩에 인생 갈아넣은 3개월</h4>
+                            <h4 class="article-title">AI LLM API 코딩 집중 개발 3개월</h4>
                             <p class="article-meta">AI 캐릭터 프로젝트와 생산성 경험 | 2024년 X월</p>
                         </a>
                     </div>
@@ -155,7 +123,7 @@
 
     <section id="research" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">주요 연구 및 개발 분야</h2>
+            <h2 class="section-title">주요 연구 분야</h2>
             <div class="research-grid">
                 <div class="research-card">
                     <div class="research-icon"><i class="fas fa-brain"></i></div>
@@ -200,13 +168,28 @@
 
     <section id="seminar" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">AI 강연 및 세미나</h2>
+            <h2 class="section-title">AI 세미나</h2>
             <div class="about-content-single">
-                <div class="about-text text-center">
-                    <p>지난 8개월간 AI LLM에 영혼을 갈아넣으며 얻은 생생한 경험과 노하우를 공유합니다. ChatGPT, Claude, Gemini 등 최신 AI 서비스를 실제 연구와 개발에 깊이 있게 적용하며 깨달은 실질적인 활용법과 가능성에 대해 이야기합니다.</p>
-                    <p>AI와의 효과적인 협업, 생산성 극대화, LLM 기반 서비스 개발 등에 관심 있는 개인 및 조직을 대상으로 강연 및 세미나를 진행합니다. 아래 이메일로 편하게 문의해주세요.</p>
+                <div class="about-text">
+                    <p>지난 8개월간 LLM과 AI 도구들을 현장에서 직접 활용하며 얻은 경험을 바탕으로 다양한 강연과 세미나를 진행하고 있습니다. 제가 전하는 내용은 이론이 아닌 실전에서 검증된 방법론과 노하우입니다.</p>
+                    
+                    <p>연구 논문을 더 빠르고 효율적으로 작성할 수 있는 AI 활용법을 공유하고, LLM API를 실제 서비스에 연동하는 과정에서 마주한 도전과 해결책을 전달합니다. 특히 RAG 기술을 활용해 AI 캐릭터에 인간다운 개성과 일관성을 부여하는 방법에 대한 강연은 게임과 콘텐츠 업계에서 큰 호응을 얻고 있습니다.</p>
+                    
+                    <p>더불어 동대표 업무와 같은 일상적인 일이나 계약서 검토 같은 법률적 업무에 LLM을 효과적으로 활용하는 방법을 실용적인 시각에서 접근합니다. 각기 다른 상황에서 ChatGPT, Claude, Gemini 등의 도구를 어떻게 선택하고 최적화하는지, 그리고 각각의 강점을 어떻게 활용할 수 있는지에 대한 비교 분석도 제공합니다.</p>
+                    
+                    <p>이러한 강연은 개인 사용자부터 기업, 연구기관까지 다양한 대상에게 맞춤형으로 구성됩니다. 학술적 이론보다는 내일 당장 적용할 수 있는 실용적인 접근법과 실제 사례를 중심으로 전달하며, 참석자들이 AI 시대에 경쟁력을 갖출 수 있도록 돕고 있습니다.</p>
+                    
+                    <p><strong>주요 강연 주제:</strong></p>
+                    <ul class="timeline-details">
+                        <li><strong>LLM API 실전 활용법</strong> - ChatGPT, Claude, Gemini API 연동 및 최적화 전략</li>
+                        <li><strong>연구 생산성 향상 기법</strong> - AI를 활용한 논문 검색, 분석 및 작성 효율화</li>
+                        <li><strong>RAG 기반 AI 캐릭터 개발</strong> - 자연스러운 AI 인격 구현과 상호작용 설계</li>
+                        <li><strong>일상 및 법률 업무 자동화</strong> - 동대표 업무, 계약서 검토 등 실무 최적화</li>
+                        <li><strong>AI 도구 비교 및 활용 전략</strong> - 상황별 최적 AI 도구 선택과 효과적인 프롬프트 작성법</li>
+                    </ul>
+                    
                     <p class="contact-highlight">
-                        <i class="fas fa-envelope"></i> <a href="mailto:sangdon.park@kaist.ac.kr">sangdon.park@kaist.ac.kr</a>
+                        <i class="fas fa-envelope"></i> <a href="mailto:chaos@sayberrygames.com">chaos@sayberrygames.com</a>
                     </p>
                 </div>
             </div>
@@ -288,7 +271,7 @@
                         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-details">
                             <h3>이메일</h3>
-                            <p><a href="mailto:sangdon.park@kaist.ac.kr">sangdon.park@kaist.ac.kr</a></p>
+                            <p><a href="mailto:chaos@sayberrygames.com">chaos@sayberrygames.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -314,10 +297,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2024 박상돈 박사. 모든 권리 보유.</p>
+                    <p>&copy; 2024 박상돈. 모든 권리 보유.</p>
                 </div>
                 <div class="social-links">
-                     <a href="mailto:sangdon.park@kaist.ac.kr" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                     <a href="mailto:chaos@sayberrygames.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -327,6 +310,5 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/theme-toggle.js"></script>
 </body>
 </html> 

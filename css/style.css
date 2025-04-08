@@ -20,6 +20,7 @@
     --container-width: 1140px;
     --container-width-lg: 1200px;
     --primary-rgb: 37, 99, 235; /* For RGBA */
+    --base-font-size: 16px;     /* 기본 폰트 크기 정의 */
 }
 
 /* Dark Theme Variables */
@@ -81,7 +82,7 @@ a:hover {
 p {
     margin-bottom: 1rem;
     color: var(--text-light);
-    font-size: 1.05rem;
+    font-size: 1.1rem;        /* 1.05rem에서 1.1rem으로 기본 글자 크기 증가 */
 }
 
 ul {
@@ -415,8 +416,8 @@ html[data-theme="dark"] .view-more-btn:hover {
 }
 
 .about-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: var(--text-color);
 }
 
@@ -468,9 +469,10 @@ html[data-theme="dark"] .view-more-btn:hover {
 }
 
 .research-card p {
-    font-size: 1.05rem !important; /* Force size */
+    color: var(--text-color);
+    font-size: 1.1rem;
     line-height: 1.6;
-    color: var(--text-light);
+    margin-bottom: 1rem;
 }
 
 /* Publications Section */
@@ -686,16 +688,18 @@ hr.section-divider {
 }
 
 .timeline-details {
-    padding-left: 0;
-    border-left: none;
-    font-size: 1.05rem !important; /* Force size */
     color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
 }
 
 .timeline-details li {
-    margin-bottom: 5px;
+    color: var(--text-light);
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
     position: relative;
-    padding-left: 18px;
 }
 
 .timeline-details li::before {
@@ -788,8 +792,8 @@ hr.section-divider {
 
 .footer-text p {
     margin-bottom: 0;
-    opacity: 0.7;
-    font-size: 1rem !important; /* Force size */
+    color: var(--text-light);
+    font-size: 1.05rem;
 }
 
 .social-links {
@@ -823,7 +827,8 @@ html[data-theme="dark"] .footer {
 }
 
 html[data-theme="dark"] .footer-text p {
-    opacity: 0.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.05rem;
 }
 
 html[data-theme="dark"] .social-links a {
@@ -1041,8 +1046,8 @@ html[data-theme="dark"] .social-links a:hover {
 
 /* Seminar Section */
 #seminar .about-text p {
-    /* max-width: 700px; Removed max-width for centering */
-    /* Text alignment is handled by text-center class */
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .text-center {
@@ -1125,17 +1130,17 @@ html[data-theme="dark"] .social-links a:hover {
 }
 
 .article-title {
-    font-size: 1.15rem; /* Slightly adjust title size */
-    font-weight: 600;
-    margin-bottom: 0.8rem; /* More space below title */
-    flex-grow: 1; /* Allow title to take available space */
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
 }
 
 .article-meta {
-    font-size: 0.95rem !important; /* Force size */
     color: var(--text-light);
-    margin-bottom: 0;
-    margin-top: auto; /* Push meta to the bottom */
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+    display: block;
 }
 
 /* Responsive adjustments for article grid */
