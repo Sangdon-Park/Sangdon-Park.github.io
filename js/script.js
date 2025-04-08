@@ -210,13 +210,14 @@ function filterPublications(filter) {
  */
 function loadPublications() {
     const publicationsContainer = document.getElementById('publications-list');
+    const selectedPublicationsContainer = document.getElementById('selected-publications-list'); // New container for selected pubs
 
-    if (!publicationsContainer) {
-        console.error("Publications container not found!");
+    if (!publicationsContainer || !selectedPublicationsContainer) { // Check both containers
+        console.error("Publications container(s) not found!");
         return;
     }
 
-    // Helper function to parse author string
+    // Helper function to parse author string (ensure it's defined before use)
     function parseAuthors(authorString, role) {
         if (!authorString) return '';
         const authors = authorString.split('; ').map(part => {
@@ -238,7 +239,7 @@ function loadPublications() {
                 name = 'Sangdon Park'; // Standardize the name
             }
 
-            // Specific correction based on file data (example, add others if needed)
+            // Specific correction based on file data
             if (part.startsWith('김성환') && name === 'Kim, Seong-Hwan') name = 'Seong-Hwan Kim';
             if (part.startsWith('An, S') && name === 'An, Sanghong') name = 'Sanghong An';
             if (part.startsWith('Jang, B') && name === 'Jang, Busik') name = 'Busik Jang';
@@ -255,11 +256,10 @@ function loadPublications() {
             if (part.startsWith('Seo, H') && name === 'Seo, Hyeonseok') name = 'Hyeonseok Seo';
             if (part.startsWith('Mohammed, A') && name === 'Mohammed, Alaelddin F. Y.') name = 'Alaelddin F. Y. Mohammed';
 
-
             // Attempt to reverse names like 'Lee, Joohyung' -> 'Joohyung Lee' if not already handled
             if (name.includes(', ')) {
                 const nameParts = name.split(', ');
-                if (nameParts.length === 2 && !isTargetAuthor) { // Avoid reversing the already standardized 'Sangdon Park'
+                if (nameParts.length === 2 && !isTargetAuthor) {
                      name = `${nameParts[1]} ${nameParts[0]}`;
                 }
             }
@@ -276,56 +276,46 @@ function loadPublications() {
             }
 
             return name; // Return the processed name
-        }).filter(name => name && name.trim() !== '').join(', '); // Filter out empty names and join
+        }).filter(name => name && name.trim() !== '').join(', ');
 
-        // The marker is now applied directly to the author, so no need to append here.
         return authors;
     }
 
-    // Helper function to format journal info string
+    // Helper function to format journal info string (ensure it's defined before use)
     function formatJournalInfo(name, year, vol, no, startPage, endPage) {
         let rawName = name ? name.trim() : '';
         let formattedName = '';
-
-        // Apply Title Case to Journal Name
         if (rawName) {
-            formattedName = rawName.toLowerCase().split(' ').map((word, index, arr) => {
-                // Keep specific acronyms like IEEE, IFIP, ACM, ITU-T uppercase
-                if (['ieee', 'ifip', 'acm', 'itu-t'].includes(word)) {
-                    return word.toUpperCase();
-                }
-                // Keep specific terms like '5g' as is or handle specific cases
-                if (word === '5g') {
+             formattedName = rawName.toLowerCase().split(' ').map((word, index, arr) => {
+                 if (['ieee', 'ifip', 'acm', 'itu-t'].includes(word)) {
+                     return word.toUpperCase();
+                 }
+                 if (word === '5g') {
                     return '5G';
-                }
-                // Capitalize first letter, handle short words
-                const shortWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'via', 'with'];
-                if (index === 0 || index === arr.length - 1 || !shortWords.includes(word)) {
-                    // Handle '&' case - capitalize letter after '&'
-                    if (word.includes('&')) {
-                        return word.split('&').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('&');
-                    }
-                    // Standard capitalization
-                    return word.charAt(0).toUpperCase() + word.slice(1);
-                }
-                return word;
-            }).join(' ');
-            // Fix case like 'Systems-the' -> 'Systems-The'
+                 }
+                 const shortWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'via', 'with'];
+                  if (index === 0 || index === arr.length - 1 || !shortWords.includes(word)) {
+                      if (word.includes('&')) {
+                          return word.split('&').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('&');
+                      }
+                      return word.charAt(0).toUpperCase() + word.slice(1);
+                  }
+                  return word;
+             }).join(' ');
             formattedName = formattedName.replace(/-([a-z])/g, (match, char) => `-${char.toUpperCase()}`);
         }
-
 
         let info = formattedName;
         if (vol) {
             info += `, Vol. ${vol.trim()}`;
-            if (no && no.trim() !== '') { // Check if 'no' is not empty
+            if (no && no.trim() !== '') {
                 info += `(${no.trim()})`;
             }
         }
         if (startPage && startPage.trim() !== '' && endPage && endPage.trim() !== '') {
             info += `, pp. ${startPage.trim()}-${endPage.trim()}`;
         } else if (startPage && startPage.trim() !== '') {
-            info += `, p. ${startPage.trim()}`; // Handle single page case if needed
+            info += `, p. ${startPage.trim()}`;
         }
         if (year) {
             info += `, ${year.trim()}`;
@@ -333,236 +323,187 @@ function loadPublications() {
         return info;
     }
 
-    // Publications data strictly based on my_journal.txt
+    // Publications data strictly based on my_journal.txt (Parsed in previous step)
     const publicationsData = [
       {
         title: "Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning",
-        authors: parseAuthors("Mohammed, A[Mohammed, Alaelddin F. Y.]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]", "교신저자"),
-        journalInfo: formatJournalInfo("SENSORS", "2024", "24", "15", "", ""),
-        link: "https://doi.org/10.3390/s24155000",
-        type: "journal",
-        citations: 0 // SCOPUS TC: 0
+        rawAuthors: "Mohammed, A[Mohammed, Alaelddin F. Y.]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]", role: "교신저자",
+        journal: "SENSORS", year: "2024", vol: "24", no: "15", startPage: "", endPage: "",
+        link: "https://doi.org/10.3390/s24155000", type: "journal", citations: 0
       },
       {
         title: "Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective",
-        authors: parseAuthors("Park, SD[Park, Sangdon]; Bae, S[Bae, Sohee]; Lee, J[Lee, Joohyung]; Sung, Y[Sung, Youngchul]", "제1저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2024", "12", "", "134754", "134769"),
-        link: "https://doi.org/10.1109/ACCESS.2024.3462499",
-        type: "journal",
-        citations: 0 // SCOPUS TC: 0
+        rawAuthors: "Park, SD[Park, Sangdon]; Bae, S[Bae, Sohee]; Lee, J[Lee, Joohyung]; Sung, Y[Sung, Youngchul]", role: "제1저자",
+        journal: "IEEE ACCESS", year: "2024", vol: "12", no: "", startPage: "134754", endPage: "134769",
+        link: "https://doi.org/10.1109/ACCESS.2024.3462499", type: "journal", citations: 0
       },
       {
         title: "Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System",
-        authors: parseAuthors("Seo, H[Seo, Hyeonseok]; Oh, H[Oh, Hyeontaek]; Choi, JK[Choi, Jun Kyun]; Park, S[Park, Sangdon]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE INTERNET OF THINGS JOURNAL", "2022", "9", "19", "19116", "19131"),
-        link: "https://doi.org/10.1109/JIOT.2022.3163820",
-        type: "journal",
-        citations: 21 // SCOPUS TC: 21
+        rawAuthors: "Seo, H[Seo, Hyeonseok]; Oh, H[Oh, Hyeontaek]; Choi, JK[Choi, Jun Kyun]; Park, S[Park, Sangdon]", role: "교신저자",
+        journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2022", vol: "9", no: "19", startPage: "19116", endPage: "19131",
+        link: "https://doi.org/10.1109/JIOT.2022.3163820", type: "journal", citations: 21
       },
       {
         title: "Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment",
-        authors: parseAuthors("Han, J[Han, Jaeseob]; Lee, GH[Lee, Gyeong Ho]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE INTERNET OF THINGS JOURNAL", "2022", "9", "16", "15039", "15052"),
-        link: "https://doi.org/10.1109/JIOT.2021.3103768",
-        type: "journal",
-        citations: 27 // SCOPUS TC: 27
+        rawAuthors: "Han, J[Han, Jaeseob]; Lee, GH[Lee, Gyeong Ho]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
+        journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2022", vol: "9", no: "16", startPage: "15039", endPage: "15052",
+        link: "https://doi.org/10.1109/JIOT.2021.3103768", type: "journal", citations: 27
       },
       {
         title: "A Novel Cooperative Transmission Scheme in UAV-Assisted Wireless Sensor Networks",
-        authors: parseAuthors("Zang, Y[Zang, Yue]; Peng, YY[Peng, Yuyang]; Park, S[Park, Sangdon]; Hai, H[Hai, Han]; AL-Hazemi, F[AL-Hazemi, Fawaz]; Mirza, MM[Mirza, Mohammad Meraj]", "공동저자"),
-        journalInfo: formatJournalInfo("ELECTRONICS", "2022", "11", "4", "", ""),
-        link: "https://doi.org/10.3390/electronics11040600",
-        type: "journal",
-        citations: 2 // SCOPUS TC: 2
+        rawAuthors: "Zang, Y[Zang, Yue]; Peng, YY[Peng, Yuyang]; Park, S[Park, Sangdon]; Hai, H[Hai, Han]; AL-Hazemi, F[AL-Hazemi, Fawaz]; Mirza, MM[Mirza, Mohammad Meraj]", role: "공동저자",
+        journal: "ELECTRONICS", year: "2022", vol: "11", no: "4", startPage: "", endPage: "",
+        link: "https://doi.org/10.3390/electronics11040600", type: "journal", citations: 2
       },
       {
         title: "Power Scheduling Scheme for a Charging Facility Considering the Satisfaction of Electric Vehicle Users",
-        authors: parseAuthors("Kim, J[Kim, Jangkyum]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", "공동저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2022", "10", "", "25153", "25164"),
-        link: "https://doi.org/10.1109/ACCESS.2022.3151355",
-        type: "journal",
-        citations: 14 // SCOPUS TC: 14
+        rawAuthors: "Kim, J[Kim, Jangkyum]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", role: "공동저자",
+        journal: "IEEE ACCESS", year: "2022", vol: "10", no: "", startPage: "25153", endPage: "25164",
+        link: "https://doi.org/10.1109/ACCESS.2022.3151355", type: "journal", citations: 14
       },
       {
         title: "A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks",
-        authors: parseAuthors("Han, J[Han, Jaeseob]; Lee, GH[Lee, Gyeong Ho]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE INTERNET OF THINGS JOURNAL", "2022", "9", "1", "419", "436"),
-        link: "https://doi.org/10.1109/JIOT.2021.3124673",
-        type: "journal",
-        citations: 24 // SCOPUS TC: 24
+        rawAuthors: "Han, J[Han, Jaeseob]; Lee, GH[Lee, Gyeong Ho]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
+        journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2022", vol: "9", no: "1", startPage: "419", endPage: "436",
+        link: "https://doi.org/10.1109/JIOT.2021.3124673", type: "journal", citations: 24
       },
       {
         title: "Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments",
-        authors: parseAuthors("Jeon, J[Jeon, Jinhwan]; Hwang, Y[Hwang, Yoonjin]; Jeong, Y[Jeong, Yongseop]; Park, S[Park, Sangdon]; Kweon, IS[Kweon, In So]; Choi, SB[Choi, Seibum B.]", "공동저자"),
-        journalInfo: formatJournalInfo("SENSORS", "2021", "21", "20", "", ""),
-        link: "https://doi.org/10.3390/s21206805",
-        type: "journal",
-        citations: 7 // SCOPUS TC: 7
+        rawAuthors: "Jeon, J[Jeon, Jinhwan]; Hwang, Y[Hwang, Yoonjin]; Jeong, Y[Jeong, Yongseop]; Park, S[Park, Sangdon]; Kweon, IS[Kweon, In So]; Choi, SB[Choi, Seibum B.]", role: "공동저자",
+        journal: "SENSORS", year: "2021", vol: "21", no: "20", startPage: "", endPage: "", // 6805 is article number
+        link: "https://doi.org/10.3390/s21206805", type: "journal", citations: 7
       },
        {
         title: "Cost optimization of distributed data centers via computing workload distribution for next generation network systems",
-        authors: parseAuthors("Peng, YY[Peng, Yuyang]; Li, J[Li, Jun]; Hai, H[Hai, Han]; Jiang, XQ[Jiang, Xue-Qin]; Al-Hazemi, F[Al-Hazemi, Fawaz]; Park, S[Park, Sangdon]", "공동저자"),
-        journalInfo: formatJournalInfo("PHYSICAL COMMUNICATION", "2021", "46", "", "", ""), // Page numbers seem missing (101340 looks like article number)
-        link: "https://doi.org/10.1016/j.phycom.2021.101340",
-        type: "journal",
-        citations: 4 // SCOPUS TC: 4
+        rawAuthors: "Peng, YY[Peng, Yuyang]; Li, J[Li, Jun]; Hai, H[Hai, Han]; Jiang, XQ[Jiang, Xue-Qin]; Al-Hazemi, F[Al-Hazemi, Fawaz]; Park, S[Park, Sangdon]", role: "공동저자",
+        journal: "PHYSICAL COMMUNICATION", year: "2021", vol: "46", no: "", startPage: "", endPage: "", // 101340 is article number
+        link: "https://doi.org/10.1016/j.phycom.2021.101340", type: "journal", citations: 4
       },
       {
         title: "Deposit Decision Model for Data Brokers in Distributed Personal Data Markets Using Blockchain",
-        authors: parseAuthors("Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]; Noh, S[Noh, Sungkee]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2021", "9", "", "114715", "114726"),
-        link: "https://doi.org/10.1109/ACCESS.2021.3104870",
-        type: "journal",
-        citations: 5 // SCOPUS TC: 5
+        rawAuthors: "Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]; Noh, S[Noh, Sungkee]", role: "교신저자",
+        journal: "IEEE ACCESS", year: "2021", vol: "9", no: "", startPage: "114715", endPage: "114726",
+        link: "https://doi.org/10.1109/ACCESS.2021.3104870", type: "journal", citations: 5
       },
       {
         title: "Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment",
-        authors: parseAuthors("Baek, B[Baek, Beomhan]; Lee, J[Lee, Joohyung]; Peng, YY[Peng, Yuyang]; Park, S[Park, Sangdon]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE INTERNET OF THINGS JOURNAL", "2020", "7", "5", "4292", "4303"),
-        link: "https://doi.org/10.1109/JIOT.2020.2966627",
-        type: "journal",
-        citations: 81 // SCOPUS TC: 81
+        rawAuthors: "Baek, B[Baek, Beomhan]; Lee, J[Lee, Joohyung]; Peng, YY[Peng, Yuyang]; Park, S[Park, Sangdon]", role: "교신저자",
+        journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2020", vol: "7", no: "5", startPage: "4292", endPage: "4303",
+        link: "https://doi.org/10.1109/JIOT.2020.2966627", type: "journal", citations: 81
       },
       {
         title: "Competitive Data Trading Model With Privacy Valuation for Multiple Stakeholders in IoT Data Markets",
-        authors: parseAuthors("Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Lee, GM[Lee, Gyu Myoung]; Choi, JK[Choi, Jun Kyun]; Noh, S[Noh, Sungkee]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE INTERNET OF THINGS JOURNAL", "2020", "7", "4", "3623", "3639"),
-        link: "https://doi.org/10.1109/JIOT.2020.2973662",
-        type: "journal",
-        citations: 58 // SCOPUS TC: 58
+        rawAuthors: "Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Lee, GM[Lee, Gyu Myoung]; Choi, JK[Choi, Jun Kyun]; Noh, S[Noh, Sungkee]", role: "교신저자",
+        journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2020", vol: "7", no: "4", startPage: "3623", endPage: "3639",
+        link: "https://doi.org/10.1109/JIOT.2020.2973662", type: "journal", citations: 58
       },
       {
         title: "Time Series Forecasting Based Day-Ahead Energy Trading in Microgrids: Mathematical Analysis and Simulation",
-        authors: parseAuthors("Jeong, G[Jeong, Gyohun]; Park, S[Park, Sangdon]; Hwang, G[Hwang, Ganguk]", "공동저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2020", "8", "", "63885", "63900"),
-        link: "https://doi.org/10.1109/ACCESS.2020.2985258",
-        type: "journal",
-        citations: 6 // SCOPUS TC: 6
+        rawAuthors: "Jeong, G[Jeong, Gyohun]; Park, S[Park, Sangdon]; Hwang, G[Hwang, Ganguk]", role: "공동저자",
+        journal: "IEEE ACCESS", year: "2020", vol: "8", no: "", startPage: "63885", endPage: "63900",
+        link: "https://doi.org/10.1109/ACCESS.2020.2985258", type: "journal", citations: 6
       },
        {
         title: "Battery-Wear-Model-Based Energy Trading in Electric Vehicles: A Naive Auction Model and a Market Analysis",
-        authors: parseAuthors("Kim, J[Kim, Jangkyum]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", "공동저자"),
-        journalInfo: formatJournalInfo("IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS", "2019", "15", "7", "4140", "4151"),
-        link: "https://doi.org/10.1109/TII.2018.2883655",
-        type: "journal",
-        citations: 36 // SCOPUS TC: 36
+        rawAuthors: "Kim, J[Kim, Jangkyum]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]", role: "공동저자",
+        journal: "IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS", year: "2019", vol: "15", no: "7", startPage: "4140", endPage: "4151",
+        link: "https://doi.org/10.1109/TII.2018.2883655", type: "journal", citations: 36
       },
       {
         title: "Optimal throughput analysis of multiple channel access in cognitive radio networks",
-        authors: parseAuthors("Park, S[Park, Sangdon]; Hwang, G[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", "제1저자"),
-        journalInfo: formatJournalInfo("ANNALS OF OPERATIONS RESEARCH", "2019", "277", "2", "345", "370"),
-        link: "https://doi.org/10.1007/s10479-017-2648-3",
-        type: "journal",
-        citations: 3 // SCOPUS TC: 3
+        rawAuthors: "Park, S[Park, Sangdon]; Hwang, G[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", role: "제1저자",
+        journal: "ANNALS OF OPERATIONS RESEARCH", year: "2019", vol: "277", no: "2", startPage: "345", endPage: "370",
+        link: "https://doi.org/10.1007/s10479-017-2648-3", type: "journal", citations: 3
       },
       {
         title: "Energy-efficient cooperative transmission for intelligent transportation systems",
-        authors: parseAuthors("Peng, YY[Peng, Yuyang]; Li, J[Li, Jun]; Park, S[Park, Sangdon]; Zhu, KL[Zhu, Konglin]; Hassan, MM[Hassan, Mohammad Mehedi]; Alsanad, A[Alsanad, Ahmed]", "공동저자"),
-        journalInfo: formatJournalInfo("FUTURE GENERATION COMPUTER SYSTEMS-THE INTERNATIONAL JOURNAL OF ESCIENCE", "2019", "94", "", "634", "640"),
-        link: "https://doi.org/10.1016/j.future.2018.11.053",
-        type: "journal",
-        citations: 22 // SCOPUS TC: 22
+        rawAuthors: "Peng, YY[Peng, Yuyang]; Li, J[Li, Jun]; Park, S[Park, Sangdon]; Zhu, KL[Zhu, Konglin]; Hassan, MM[Hassan, Mohammad Mehedi]; Alsanad, A[Alsanad, Ahmed]", role: "공동저자",
+        journal: "FUTURE GENERATION COMPUTER SYSTEMS-THE INTERNATIONAL JOURNAL OF ESCIENCE", year: "2019", vol: "94", no: "", startPage: "634", endPage: "640",
+        link: "https://doi.org/10.1016/j.future.2018.11.053", type: "journal", citations: 22
       },
       {
         title: "Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment",
-        authors: parseAuthors("Ahn, J[Ahn, Jaewon]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Park, HS[Park, Hong-Shik]", "공동저자"),
-        journalInfo: formatJournalInfo("MOBILE NETWORKS & APPLICATIONS", "2019", "24", "2", "643", "652"),
-        link: "https://doi.org/10.1007/s11036-018-1164-2",
-        type: "journal",
-        citations: 14 // SCOPUS TC: 14
+        rawAuthors: "Ahn, J[Ahn, Jaewon]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Park, HS[Park, Hong-Shik]", role: "공동저자",
+        journal: "MOBILE NETWORKS & APPLICATIONS", year: "2019", vol: "24", no: "2", startPage: "643", endPage: "652",
+        link: "https://doi.org/10.1007/s11036-018-1164-2", type: "journal", citations: 14
       },
        {
         title: "Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces",
-        authors: parseAuthors("Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Lee, GM[Lee, Gyu Myoung]; Heo, H[Heo, Hwanjo]; Choi, JK[Choi, Jun Kyun]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2019", "7", "", "40120", "40132"),
-        link: "https://doi.org/10.1109/ACCESS.2019.2904248",
-        type: "journal",
-        citations: 56 // SCOPUS TC: 56
+        rawAuthors: "Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Lee, GM[Lee, Gyu Myoung]; Heo, H[Heo, Hwanjo]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
+        journal: "IEEE ACCESS", year: "2019", vol: "7", no: "", startPage: "40120", endPage: "40132",
+        link: "https://doi.org/10.1109/ACCESS.2019.2904248", type: "journal", citations: 56
       },
       {
         title: "Comparison Between Seller and Buyer Pricing Systems for Energy Trading in Microgrids",
-        authors: parseAuthors("Bae, S[Bae, Sohee]; Park, S[Park, Sangdon]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2019", "7", "", "54084", "54096"),
-        link: "https://doi.org/10.1109/ACCESS.2019.2912758",
-        type: "journal",
-        citations: 2 // SCOPUS TC: 2
+        rawAuthors: "Bae, S[Bae, Sohee]; Park, S[Park, Sangdon]", role: "교신저자",
+        journal: "IEEE ACCESS", year: "2019", vol: "7", no: "", startPage: "54084", endPage: "54096",
+        link: "https://doi.org/10.1109/ACCESS.2019.2912758", type: "journal", citations: 2
       },
        {
         title: "Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance",
-        authors: parseAuthors("Kim, N[Kim, Nakyoung]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", "교신저자"),
-        journalInfo: formatJournalInfo("ENERGIES", "2018", "11", "9", "", ""), // Page numbers seem missing (2397 looks like article number)
-        link: "https://doi.org/10.3390/en11092397",
-        type: "journal",
-        citations: 14 // SCOPUS TC: 14
+        rawAuthors: "Kim, N[Kim, Nakyoung]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
+        journal: "ENERGIES", year: "2018", vol: "11", no: "9", startPage: "", endPage: "", // 2397 is article number
+        link: "https://doi.org/10.3390/en11092397", type: "journal", citations: 14
       },
       {
         title: "An Optimal Pricing Scheme for the Energy-Efficient Mobile Edge Computation Offloading With OFDMA",
-        authors: parseAuthors("김성환[Kim, Seong-Hwan]; Park, S[Park, Sangdon]; Chen, M[Chen, Min]; Youn, CH[Youn, Chan-Hyun]", "교신저자"), // Corrected author parsing for Korean name
-        journalInfo: formatJournalInfo("IEEE COMMUNICATIONS LETTERS", "2018", "22", "9", "1922", "1925"),
-        link: "https://doi.org/10.1109/LCOMM.2018.2849401",
-        type: "journal",
-        citations: 59 // SCOPUS TC: 59
+        rawAuthors: "김성환[Kim, Seong-Hwan]; Park, S[Park, Sangdon]; Chen, M[Chen, Min]; Youn, CH[Youn, Chan-Hyun]", role: "교신저자",
+        journal: "IEEE COMMUNICATIONS LETTERS", year: "2018", vol: "22", no: "9", startPage: "1922", endPage: "1925",
+        link: "https://doi.org/10.1109/LCOMM.2018.2849401", type: "journal", citations: 59
       },
       {
         title: "Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things",
-        authors: parseAuthors("Jang, B[Jang, Busik]; Park, SD[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hahn, SG[Hahn, Sang-Geun]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2018", "6", "", "31269", "31280"),
-        link: "https://doi.org/10.1109/ACCESS.2018.2845105",
-        type: "journal",
-        citations: 25 // SCOPUS TC: 25
+        rawAuthors: "Jang, B[Jang, Busik]; Park, SD[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hahn, SG[Hahn, Sang-Geun]", role: "교신저자",
+        journal: "IEEE ACCESS", year: "2018", vol: "6", no: "", startPage: "31269", endPage: "31280",
+        link: "https://doi.org/10.1109/ACCESS.2018.2845105", type: "journal", citations: 25
       },
        {
         title: "Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing",
-        authors: parseAuthors("An, S[An, Sanghong]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Newaz, SHS[Newaz, S. H. Shah]; Choi, JK[Choi, Jun Kyun]", "교신저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2018", "6", "", "899", "912"),
-        link: "https://doi.org/10.1109/ACCESS.2017.2776323",
-        type: "journal",
-        citations: 30 // SCOPUS TC: 30
+        rawAuthors: "An, S[An, Sanghong]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Newaz, SHS[Newaz, S. H. Shah]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
+        journal: "IEEE ACCESS", year: "2018", vol: "6", no: "", startPage: "899", endPage: "912",
+        link: "https://doi.org/10.1109/ACCESS.2017.2776323", type: "journal", citations: 30
       },
        {
         title: "Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach",
-        authors: parseAuthors("Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hwang, G[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", "제1저자"),
-        journalInfo: formatJournalInfo("IEEE ACCESS", "2017", "5", "", "26291", "26302"),
-        link: "https://doi.org/10.1109/ACCESS.2017.2766233",
-        type: "journal",
-        citations: 40 // SCOPUS TC: 40
+        rawAuthors: "Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hwang, G[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", role: "제1저자",
+        journal: "IEEE ACCESS", year: "2017", vol: "5", no: "", startPage: "26291", endPage: "26302",
+        link: "https://doi.org/10.1109/ACCESS.2017.2766233", type: "journal", citations: 40
       },
       {
         title: "Learning-Based Adaptive Imputation Method with kNN Algorithm for Missing Power Data",
-        authors: parseAuthors("Kim, M[Kim, Minkyung]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Joo, Y[Joo, Yongjae]; Choi, JK[Choi, Jun Kyun]", "공동저자"),
-        journalInfo: formatJournalInfo("ENERGIES", "2017", "10", "10", "", ""), // Page numbers seem missing (1668 looks like article number)
-        link: "https://doi.org/10.3390/en10101668",
-        type: "journal",
-        citations: 60 // SCOPUS TC: 60
+        rawAuthors: "Kim, M[Kim, Minkyung]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Joo, Y[Joo, Yongjae]; Choi, JK[Choi, Jun Kyun]", role: "공동저자",
+        journal: "ENERGIES", year: "2017", vol: "10", no: "10", startPage: "", endPage: "", // 1668 is article number
+        link: "https://doi.org/10.3390/en10101668", type: "journal", citations: 60
       },
       {
         title: "Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach",
-        authors: parseAuthors("Park, SD[Park, Sangdon]; Lee, J[Lee, Joohyung]; Bae, S[Bae, Sohee]; Hwang, GU[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", "제1저자"),
-        journalInfo: formatJournalInfo("IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS", "2016", "63", "7", "4255", "4265"),
-        link: "https://doi.org/10.1109/TIE.2016.2532842",
-        type: "journal",
-        citations: 175 // SCOPUS TC: 175
+        rawAuthors: "Park, SD[Park, Sangdon]; Lee, J[Lee, Joohyung]; Bae, S[Bae, Sohee]; Hwang, GU[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", role: "제1저자",
+        journal: "IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS", year: "2016", vol: "63", no: "7", startPage: "4255", endPage: "4265",
+        link: "https://doi.org/10.1109/TIE.2016.2532842", type: "journal", citations: 175
       }
+      // Note: The data structure now holds raw author strings and role, parsing happens during display
     ];
 
-    // Remove loading message
-    publicationsContainer.innerHTML = ''; // Clear existing content or loading message
-
-    // Check if there are publications to display
-    if (publicationsData.length === 0) {
-        publicationsContainer.innerHTML = '<p>게재된 논문이 없습니다.</p>'; // Show a message if no publications
-        return;
-    }
-
-    // Add publications to the container
-    publicationsData.forEach(pub => {
+    // Function to generate HTML for a single publication item
+    function createPublicationElement(pub) {
         const pubElement = document.createElement('div');
-        pubElement.className = `publication-item ${pub.type || 'unknown'}`;
+        // Determine type for CSS class (handle missing type)
+        let pubType = 'unknown';
+        if (pub.type === 'journal' || pub.type === 'Journal Classification' || pub.journalClassification === '국제전문학술지') { // Check multiple possible fields for type
+            pubType = 'journal';
+        } else if (pub.type === 'conference') {
+             pubType = 'conference';
+        } // Add other types like preprint if needed
+        pubElement.className = `publication-item ${pubType}`;
+
+        // Parse authors and format journal info here
+        const authors = parseAuthors(pub.rawAuthors, pub.role);
+        const journalInfo = formatJournalInfo(pub.journal, pub.year, pub.vol, pub.no, pub.startPage, pub.endPage);
 
         pubElement.innerHTML = `
             <h3>${pub.title}</h3>
-            <p class="publication-authors">${pub.authors}</p>
-            <p class="publication-journal">${pub.journalInfo}</p>
+            <p class="publication-authors">${authors}</p>
+            <p class="publication-journal">${journalInfo}</p>
             <div class="publication-footer">
                  <a href="${pub.link || '#'}" class="publication-link" target="_blank" rel="noopener noreferrer">
                     ${pub.link && pub.link !== '#' ? 'DOI 링크' : '링크 없음'} <i class="fas fa-external-link-alt"></i>
@@ -572,13 +513,37 @@ function loadPublications() {
                  }
             </div>
         `;
+        return pubElement;
+    }
 
-        publicationsContainer.appendChild(pubElement);
+    // --- Populate Selected Publications --- 
+    selectedPublicationsContainer.innerHTML = ''; // Clear loading message
+    const selectedPubs = publicationsData
+        .filter(pub => pub.role === '교신저자' || pub.role === '제1저자') // Filter for Corresponding or First author
+        .sort((a, b) => parseInt(b.year) - parseInt(a.year) || publicationsData.indexOf(a) - publicationsData.indexOf(b)) // Sort by year desc, then original order
+        .slice(0, 5); // Take the top 5
+
+    if (selectedPubs.length > 0) {
+         selectedPubs.forEach(pub => {
+             selectedPublicationsContainer.appendChild(createPublicationElement(pub));
+         });
+    } else {
+        selectedPublicationsContainer.innerHTML = '<p>대표 논문이 없습니다.</p>';
+    }
+
+    // --- Populate All Publications --- 
+    publicationsContainer.innerHTML = ''; // Clear loading message
+    if (publicationsData.length === 0) {
+        publicationsContainer.innerHTML = '<p>게재된 논문이 없습니다.</p>';
+        return;
+    }
+
+    publicationsData.forEach(pub => {
+         publicationsContainer.appendChild(createPublicationElement(pub));
     });
 
     // After loading, trigger the filter to show 'all' initially
     filterPublications('all');
-    // Ensure the 'all' button is marked as active
     const allButton = document.querySelector('.pub-nav-btn[data-filter="all"]');
     if(allButton) {
         document.querySelectorAll('.pub-nav-btn').forEach(btn => btn.classList.remove('active'));
