@@ -7,22 +7,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize navigation
     initNavigation();
-
+    
     // Load publications data
     loadPublications();
-
+    
     // Handle publication filters
     initPublicationFilters();
-
+    
     // Handle smooth scrolling
     initSmoothScroll();
-
+    
     // Handle header scroll effect
     initHeaderScroll();
-
+    
     // 프로필 이미지가 없을 경우 플레이스홀더 표시
     const profileImage = document.getElementById('profile-placeholder');
-
+    
     if (profileImage) {
         profileImage.onerror = function() {
             this.src = ''; // 이미지 로드 실패 시 소스 비우기
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.display = 'flex';
             this.style.alignItems = 'center';
             this.style.justifyContent = 'center';
-
+            
             // 이니셜 또는 아이콘 추가
             const initial = document.createElement('span');
             initial.textContent = 'SP'; // 박상돈의 이니셜
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.appendChild(initial);
         };
     }
-
+    
     // 내비게이션에서 클릭하면 해당 섹션으로 스무스 스크롤 (initSmoothScroll에서 처리하므로 중복 제거 가능)
     // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     //     anchor.addEventListener('click', function(e) {
@@ -72,37 +72,37 @@ document.addEventListener('DOMContentLoaded', function() {
 function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-
+    
     if (navToggle && navLinks) { // 요소 존재 여부 확인 추가
         navToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
         });
     }
-
+    
     // Close mobile nav when clicking on a link
     const links = document.querySelectorAll('.nav-links a');
     links.forEach(link => {
         link.addEventListener('click', function() {
             if (navLinks) { // 요소 존재 여부 확인 추가
-              navLinks.classList.remove('active');
+            navLinks.classList.remove('active');
             }
-
+            
             // Update active link
             links.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
         });
     });
-
+    
     // Set active nav link based on scroll position
     window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         const sections = document.querySelectorAll('section[id]'); // ID가 있는 섹션만 선택
-
+        
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100; // 헤더 높이 등을 고려하여 offset 조정
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-
+            
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 links.forEach(link => {
                     link.classList.remove('active');
@@ -129,21 +129,21 @@ function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
+            
             const targetId = this.getAttribute('href');
             if (targetId === '#' || !targetId.startsWith('#')) return; // 유효한 ID인지 확인
-
+            
             try {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
                     const headerOffset = document.querySelector('.header')?.offsetHeight || 80; // 헤더 높이 동적 계산
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                    window.scrollTo({
+                window.scrollTo({
                         top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    behavior: 'smooth'
+                });
                 }
             } catch (error) {
                 console.error("Error finding element for smooth scroll:", targetId, error);
@@ -159,7 +159,7 @@ function initSmoothScroll() {
 function initHeaderScroll() {
     const header = document.querySelector('.header');
     if (!header) return; // 헤더 요소 확인
-
+    
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -175,13 +175,13 @@ function initHeaderScroll() {
 function initPublicationFilters() {
     const filterButtons = document.querySelectorAll('.pub-nav-btn');
     if (filterButtons.length === 0) return; // 버튼 존재 여부 확인
-
+    
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Update active button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-
+            
             const filter = this.getAttribute('data-filter');
             filterPublications(filter);
         });
@@ -193,7 +193,7 @@ function initPublicationFilters() {
  */
 function filterPublications(filter) {
     const publications = document.querySelectorAll('.publication-item');
-
+    
     publications.forEach(pub => {
         // 'all' 이거나 해당 filter 클래스를 포함하면 보이게 함
         if (filter === 'all' || pub.classList.contains(filter)) {
@@ -381,9 +381,9 @@ function loadPublications() {
         rawAuthors: "Han, J[Han, Jaeseob]; Lee, GH[Lee, Gyeong Ho]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
         journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2022", vol: "9", no: "1", startPage: "419", endPage: "436",
         link: "https://doi.org/10.1109/JIOT.2021.3124673", type: "journal", citations: 24
-      },
-      {
-        title: "Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments",
+        },
+        {
+            title: "Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments",
         rawAuthors: "Jeon, J[Jeon, Jinhwan]; Hwang, Y[Hwang, Yoonjin]; Jeong, Y[Jeong, Yongseop]; Park, S[Park, Sangdon]; Kweon, IS[Kweon, In So]; Choi, SB[Choi, Seibum B.]", role: "공동저자",
         journal: "SENSORS", year: "2021", vol: "21", no: "20", startPage: "", endPage: "", // 6805 is article number
         link: "https://doi.org/10.3390/s21206805", type: "journal", citations: 7
@@ -399,9 +399,9 @@ function loadPublications() {
         rawAuthors: "Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Choi, JK[Choi, Jun Kyun]; Noh, S[Noh, Sungkee]", role: "교신저자",
         journal: "IEEE ACCESS", year: "2021", vol: "9", no: "", startPage: "114715", endPage: "114726",
         link: "https://doi.org/10.1109/ACCESS.2021.3104870", type: "journal", citations: 5
-      },
-      {
-        title: "Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment",
+        },
+        {
+            title: "Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment",
         rawAuthors: "Baek, B[Baek, Beomhan]; Lee, J[Lee, Joohyung]; Peng, YY[Peng, Yuyang]; Park, S[Park, Sangdon]", role: "교신저자",
         journal: "IEEE INTERNET OF THINGS JOURNAL", year: "2020", vol: "7", no: "5", startPage: "4292", endPage: "4303",
         link: "https://doi.org/10.1109/JIOT.2020.2966627", type: "journal", citations: 81
@@ -435,15 +435,15 @@ function loadPublications() {
         rawAuthors: "Peng, YY[Peng, Yuyang]; Li, J[Li, Jun]; Park, S[Park, Sangdon]; Zhu, KL[Zhu, Konglin]; Hassan, MM[Hassan, Mohammad Mehedi]; Alsanad, A[Alsanad, Ahmed]", role: "공동저자",
         journal: "FUTURE GENERATION COMPUTER SYSTEMS-THE INTERNATIONAL JOURNAL OF ESCIENCE", year: "2019", vol: "94", no: "", startPage: "634", endPage: "640",
         link: "https://doi.org/10.1016/j.future.2018.11.053", type: "journal", citations: 22
-      },
-      {
-        title: "Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment",
+        },
+        {
+            title: "Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment",
         rawAuthors: "Ahn, J[Ahn, Jaewon]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Park, HS[Park, Hong-Shik]", role: "공동저자",
         journal: "MOBILE NETWORKS & APPLICATIONS", year: "2019", vol: "24", no: "2", startPage: "643", endPage: "652",
         link: "https://doi.org/10.1007/s11036-018-1164-2", type: "journal", citations: 14
-      },
-       {
-        title: "Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces",
+        },
+        {
+            title: "Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces",
         rawAuthors: "Oh, H[Oh, Hyeontaek]; Park, S[Park, Sangdon]; Lee, GM[Lee, Gyu Myoung]; Heo, H[Heo, Hwanjo]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
         journal: "IEEE ACCESS", year: "2019", vol: "7", no: "", startPage: "40120", endPage: "40132",
         link: "https://doi.org/10.1109/ACCESS.2019.2904248", type: "journal", citations: 56
@@ -453,9 +453,9 @@ function loadPublications() {
         rawAuthors: "Bae, S[Bae, Sohee]; Park, S[Park, Sangdon]", role: "교신저자",
         journal: "IEEE ACCESS", year: "2019", vol: "7", no: "", startPage: "54084", endPage: "54096",
         link: "https://doi.org/10.1109/ACCESS.2019.2912758", type: "journal", citations: 2
-      },
-       {
-        title: "Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance",
+        },
+        {
+            title: "Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance",
         rawAuthors: "Kim, N[Kim, Nakyoung]; Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
         journal: "ENERGIES", year: "2018", vol: "11", no: "9", startPage: "", endPage: "", // 2397 is article number
         link: "https://doi.org/10.3390/en11092397", type: "journal", citations: 14
@@ -471,15 +471,15 @@ function loadPublications() {
         rawAuthors: "Jang, B[Jang, Busik]; Park, SD[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hahn, SG[Hahn, Sang-Geun]", role: "교신저자",
         journal: "IEEE ACCESS", year: "2018", vol: "6", no: "", startPage: "31269", endPage: "31280",
         link: "https://doi.org/10.1109/ACCESS.2018.2845105", type: "journal", citations: 25
-      },
-       {
-        title: "Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing",
+        },
+        {
+            title: "Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing",
         rawAuthors: "An, S[An, Sanghong]; Lee, J[Lee, Joohyung]; Park, S[Park, Sangdon]; Newaz, SHS[Newaz, S. H. Shah]; Choi, JK[Choi, Jun Kyun]", role: "교신저자",
         journal: "IEEE ACCESS", year: "2018", vol: "6", no: "", startPage: "899", endPage: "912",
         link: "https://doi.org/10.1109/ACCESS.2017.2776323", type: "journal", citations: 30
-      },
-       {
-        title: "Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach",
+        },
+        {
+            title: "Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach",
         rawAuthors: "Park, S[Park, Sangdon]; Lee, J[Lee, Joohyung]; Hwang, G[Hwang, Ganguk]; Choi, JK[Choi, Jun Kyun]", role: "제1저자",
         journal: "IEEE ACCESS", year: "2017", vol: "5", no: "", startPage: "26291", endPage: "26302",
         link: "https://doi.org/10.1109/ACCESS.2017.2766233", type: "journal", citations: 40
@@ -514,7 +514,7 @@ function loadPublications() {
         // Parse authors and format journal info here
         const authors = parseAuthors(pub.rawAuthors, pub.role);
         const journalInfo = formatJournalInfo(pub.journal, pub.year, pub.vol, pub.no, pub.startPage, pub.endPage);
-
+        
         pubElement.innerHTML = `
             <h3>${pub.title}</h3>
             <p class="publication-authors">${authors}</p>

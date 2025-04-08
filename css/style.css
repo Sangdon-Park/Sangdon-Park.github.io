@@ -81,6 +81,7 @@ a:hover {
 p {
     margin-bottom: 1rem;
     color: var(--text-light);
+    font-size: 1.05rem;
 }
 
 ul {
@@ -467,7 +468,7 @@ html[data-theme="dark"] .view-more-btn:hover {
 }
 
 .research-card p {
-    font-size: 0.95rem;
+    font-size: 1.05rem !important; /* Force size */
     line-height: 1.6;
     color: var(--text-light);
 }
@@ -547,7 +548,7 @@ hr.section-divider {
     font-weight: 400;
     color: var(--text-color);
     margin-bottom: 8px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
 }
 
 .publication-authors em {
@@ -560,7 +561,7 @@ hr.section-divider {
     font-style: normal;
     color: var(--text-light);
     margin-bottom: 12px;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     line-height: 1.5;
 }
 
@@ -579,7 +580,7 @@ hr.section-divider {
     gap: 5px;
     color: var(--primary-color);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: 0;
 }
 
@@ -588,7 +589,7 @@ hr.section-divider {
 }
 
 .publication-citations {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-light);
     display: inline-flex;
     align-items: center;
@@ -656,7 +657,7 @@ hr.section-divider {
 }
 
 .timeline-date p {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--text-light);
     margin-bottom: 0;
@@ -687,7 +688,7 @@ hr.section-divider {
 .timeline-details {
     padding-left: 0;
     border-left: none;
-    font-size: 0.95rem;
+    font-size: 1.05rem !important; /* Force size */
     color: var(--text-light);
 }
 
@@ -760,7 +761,7 @@ hr.section-divider {
 
 .contact-details p {
     margin-bottom: 0;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-color);
 }
 
@@ -788,7 +789,7 @@ hr.section-divider {
 .footer-text p {
     margin-bottom: 0;
     opacity: 0.7;
-    font-size: 0.9rem;
+    font-size: 1rem !important; /* Force size */
 }
 
 .social-links {
@@ -1013,7 +1014,7 @@ html[data-theme="dark"] .social-links a:hover {
 
 #selected-publications-list .publication-authors,
 #selected-publications-list .publication-journal {
-    font-size: 0.9rem; /* Smaller text for cards */
+    font-size: 1rem; /* Smaller text for cards */
 }
 
 #selected-publications-list .publication-footer {
@@ -1131,7 +1132,7 @@ html[data-theme="dark"] .social-links a:hover {
 }
 
 .article-meta {
-    font-size: 0.85rem; /* Slightly smaller meta text */
+    font-size: 0.95rem !important; /* Force size */
     color: var(--text-light);
     margin-bottom: 0;
     margin-top: auto; /* Push meta to the bottom */
@@ -1189,7 +1190,7 @@ html[data-theme="dark"] .article-content {
 }
 
 .article-date {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--text-light);
     margin-bottom: 0;
 }
@@ -1213,7 +1214,7 @@ html[data-theme="dark"] .article-content {
 }
 
 .article-body p {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     margin-bottom: 1.2rem;
     color: var(--text-color);
