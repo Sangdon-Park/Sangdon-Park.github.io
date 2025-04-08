@@ -898,8 +898,7 @@ html[data-theme="dark"] .social-links a:hover {
     }
     
     .hero-image {
-        flex: 0 0 250px;
-        margin: 0 auto;
+        flex: 0 0 220px; /* Slightly adjusted for medium screens */
     }
     
     .hero-buttons {
@@ -972,6 +971,16 @@ html[data-theme="dark"] .social-links a:hover {
         overflow-x: auto;
         padding-bottom: 10px;
         justify-content: flex-start;
+    }
+    
+    .hero-image {
+        max-width: 180px; /* Significantly reduce image size on small screens */
+        flex-basis: 180px; /* Ensure flex basis matches max-width */
+        /* margin: 0 auto; should be inherited or already set */
+    }
+
+    .hero-image img {
+        border-width: 3px; /* Reduce border thickness for smaller image */
     }
 }
 
