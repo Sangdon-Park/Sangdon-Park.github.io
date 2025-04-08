@@ -216,124 +216,121 @@ function loadPublications() {
         return;
     }
 
-    // Parsed publications data structure - Updated from Google Scholar
+    // Publications data based *directly* on the user-provided screenshot
     const publicationsData = [
-        // Extracted from Google Scholar (Sorted by Year Descending)
         {
             title: "Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective",
-            authors: "<em>Sangdon Park</em>, S Bae, J Lee, Y Sung",
+            authors: "<em>S Park</em>, S Bae, J Lee, Y Sung",
             journal: "IEEE Access, 2024",
-            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&oe=KSC&user=JZFDtsgAAAAJ&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:GnPB-g6toBAC",
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:GnPB-g6toBAC", // Link from previous attempt, might need verification
             type: "journal",
-            citations: null // No citation count yet
+            citations: null
         },
         {
             title: "Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning",
-            authors: "AFY Mohammed, J Lee, <em>Sangdon Park</em>",
+            authors: "AFY Mohammed, J Lee, <em>S Park</em>",
             journal: "Sensors 24 (15), 5000, 2024",
-            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&oe=KSC&user=JZFDtsgAAAAJ&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:O3NaXMp0MMsC",
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:O3NaXMp0MMsC", // Link from previous attempt, might need verification
             type: "journal",
-            citations: null // No citation count yet
+            citations: 1
         },
         {
-            title: "A Multivariate Time Series Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks",
-            authors: "J Han, GH Lee, <em>Sangdon Park*(co-corresponding)</em>, J Lee*, JK Choi", // Corrected authors from previous attempt
-            journal: "IEEE Internet of Things Journal, vol. 9, no. 16, pp. 15039-15052, 2021", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=16950320800261137117",
+            title: "Power and Frequency Band Allocation Mechanisms for WPT System with Logarithmic-Based Nonlinear Energy Harvesting Model",
+            authors: "J Han, SH Jeon, GH Lee, <em>S Park</em>, JK Choi",
+            journal: "Sustainability 15 (13), 10567, 2023",
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:blknAaTinKkC", // Link from previous attempt, might need verification
+            type: "journal",
+            citations: 2
+        },
+        {
+            title: "Differential pricing-based task offloading for delay-sensitive IoT applications in mobile edge computing system",
+            authors: "H Seo, H Oh, JK Choi, <em>S Park</em>",
+            journal: "IEEE Internet of Things Journal 9 (19), 19116-19131, 2022", // Updated year and details
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:f2QrCMpGgIoC", // Link needs verification
+            type: "journal",
+            citations: 26
+        },
+        {
+            title: "A novel cooperative transmission scheme in uav-assisted wireless sensor networks",
+            authors: "Y Zang, Y Peng, <em>S Park</em>, H Hai, F AL-Hazemi, MM Mirza",
+            journal: "Electronics 11 (4), 600, 2022",
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:w3qpzs8FPPMC", // Link needs verification
+            type: "journal",
+            citations: 4
+        },
+        {
+            title: "Power scheduling scheme for a charging facility considering the satisfaction of electric vehicle users",
+            authors: "J Kim, J Lee, <em>S Park</em>, JK Choi",
+            journal: "IEEE Access 10, 25153-25164, 2022", // Updated year and details
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:krvO53dp5BIC", // Link needs verification
+            type: "journal",
+            citations: 15
+        },
+        {
+            title: "A multivariate-time-series-prediction-based adaptive data transmission period control algorithm for IoT networks",
+            authors: "J Han, GH Lee, <em>S Park</em>, J Lee, JK Choi", // Corrected authors from screenshot
+            journal: "IEEE Internet of Things Journal 9 (1), 419-436, 2021", // Corrected journal details
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:4JMBOYKVnBMC", // Link from previous attempt, might need verification
+            type: "journal",
+            citations: 33
+        },
+        {
+            title: "Lane detection aided online dead reckoning for GNSS denied environments",
+            authors: "J Jeon, Y Hwang, Y Jeong, <em>S Park</em>, IS Kweon, SB Choi", // Corrected authors from screenshot
+            journal: "Sensors 21 (20), 6805, 2021",
+            link: "https://scholar.google.co.kr/citations?view_op=view_citation&hl=ko&user=JZFDtsgAAAAJ&cstart=0&pagesize=20&sortby=pubdate&citation_for_view=JZFDtsgAAAAJ:RHpTSmoSYBkC", // Link from previous attempt, might need verification
+            type: "journal",
+            citations: 7
+        },
+        {
+            title: "Joint subcarrier and transmission power allocation in OFDMA-based WPT system for mobile-edge computing in IoT environment",
+            authors: "J Han, GH Lee, <em>S Park</em>, JK Choi", // Corrected authors from screenshot
+            journal: "IEEE Internet of Things Journal 9 (16), 15039-15052, 2021",
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=16950320800261137117", // Link from previous attempt, might need verification
             type: "journal",
             citations: 29
         },
         {
             title: "Deposit decision model for data brokers in distributed personal data markets using blockchain",
-            authors: "H Oh, <em>Sangdon Park</em>, JK Choi, S Noh",
-            journal: "IEEE Access, vol. 9, pp. 114715-114726, 2021", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=1564781450865954405",
+            authors: "H Oh, <em>S Park</em>, JK Choi, S Noh",
+            journal: "IEEE Access 9, 114715-114726, 2021",
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=1564781450865954405", // Link from previous attempt, might need verification
             type: "journal",
             citations: 6
         },
         {
             title: "Driver identification for different road shapes using vehicle IoT sensing data",
-            authors: "J Lee, M Kim, <em>Sangdon Park</em>, JK Choi, Y Hwang",
-            journal: "2021 IEEE International Conference on Consumer Electronics (ICCE), pp. 1-5, 2021", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=14014748762594553516",
+            authors: "J Lee, M Kim, <em>S Park</em>, JK Choi, Y Hwang",
+            journal: "2021 IEEE International Conference on Consumer Electronics (ICCE), 1-5", // Removed year duplication
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=14014748762594553516", // Link from previous attempt, might need verification
             type: "conference",
             citations: 7
         },
         {
             title: "Time series forecasting based day-ahead energy trading in microgrids: Mathematical analysis and simulation",
-            authors: "G Jeong, <em>Sangdon Park</em>, G Hwang",
-            journal: "IEEE Access, vol. 8, pp. 63885-63900, 2020", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=8413206982064977640",
+            authors: "G Jeong, <em>S Park</em>, G Hwang",
+            journal: "IEEE Access 8, 63885-63900, 2020",
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=8413206982064977640", // Link from previous attempt, might need verification
             type: "journal",
             citations: 9
         },
         {
             title: "Joint orthogonal band and power allocation for energy fairness in WPT system with nonlinear logarithmic energy harvesting model",
-            authors: "J Han, GH Lee, <em>Sangdon Park</em>, JK Choi",
+            authors: "J Han, GH Lee, <em>S Park</em>, JK Choi",
             journal: "arXiv preprint arXiv:2003.13255, 2020",
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=11502258953705690655",
-            type: "preprint", // Corrected type to preprint
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=11502258953705690655", // Link from previous attempt, might need verification
+            type: "preprint",
             citations: 3
         },
         {
             title: "Competitive data trading model with privacy valuation for multiple stakeholders in IoT data markets",
-            authors: "H Oh, <em>Sangdon Park*</em>, GM Lee, JK Choi, S Noh", // Added asterisk based on scholar data
-            journal: "IEEE Internet of Things Journal, vol. 7, no. 4, pp. 3623-3639, 2020", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=15429006798919669428",
+            authors: "H Oh, <em>S Park</em>, GM Lee, JK Choi, S Noh",
+            journal: "IEEE Internet of Things Journal 7 (4), 3623-3639, 2020",
+            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=15429006798919669428", // Link from previous attempt, might need verification
             type: "journal",
             citations: 77
-        },
-        {
-            title: "Three dynamic pricing schemes for resource allocation of edge computing for IoT environment",
-            authors: "B Baek, J Lee, Y Peng, <em>Sangdon Park*</em>", // Added asterisk based on scholar data
-            journal: "IEEE Internet of Things Journal, vol. 7, no. 5, pp. 4292-4303, 2020", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=15810284601439457046",
-            type: "journal",
-            citations: 89
-        },
-        {
-            title: "Optimal throughput analysis of multiple channel access in cognitive radio networks",
-            authors: "<em>Sangdon Park</em>, G Hwang, JK Choi",
-            journal: "Annals of Operations Research, vol. 277, pp. 345-370, 2019", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=12387393657209961378",
-            type: "journal",
-            citations: 4
-        },
-        {
-            title: "Energy-efficient cooperative transmission for intelligent transportation systems",
-            authors: "Y Peng, J Li, <em>Sangdon Park</em>, K Zhu, MM Hassan, A Alsanad",
-            journal: "Future Generation Computer Systems, vol. 94, pp. 634-640, 2019", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=6085474703542720849",
-            type: "journal",
-            citations: 25
-        },
-        {
-            title: "Comparison between seller and buyer pricing systems for energy trading in microgrids",
-            authors: "S Bae, <em>Sangdon Park*</em>", // Added asterisk based on scholar data
-            journal: "IEEE Access, vol. 7, pp. 54084-54096, 2019", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=6594263427470208202",
-            type: "journal",
-            citations: 4
-        },
-        {
-            title: "Power efficient clustering scheme for 5G mobile edge computing environment",
-            authors: "J Ahn, J Lee*, <em>Sangdon Park</em>, HS Park", // Added asterisk based on scholar data
-            journal: "Mobile Networks and Applications, vol. 24, pp. 643-652, 2019", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=11532741248871506496",
-            type: "journal",
-            citations: 19
-        },
-        {
-            title: "Personal data trading scheme for data brokers in IoT data marketplaces",
-            authors: "H Oh, <em>Sangdon Park*</em>, GM Lee, H Heo, JK Choi", // Added asterisk based on scholar data
-            journal: "IEEE Access, vol. 7, pp. 40120-40132, 2019", // More specific journal info
-            link: "https://scholar.google.co.kr/scholar?oi=bibs&hl=ko&oe=KSC&cites=9308949128559573161",
-            type: "journal",
-            citations: 90
         }
-        // Add older publications here if needed, following the same structure.
-        // Remember to assign the correct 'type' (journal, conference, preprint, patent, standard, etc.)
-        // Add 'citations: count' if available, otherwise use 'citations: null' or omit it.
+        // Older publications from the screenshot can be added here if needed.
     ];
 
     // Remove loading message
@@ -353,6 +350,7 @@ function loadPublications() {
 
         // Build HTML structure for the publication item
         // Using template literals for better readability
+        // Ensure links have rel="noopener noreferrer" for security
         pubElement.innerHTML = `
             <h3>${pub.title}</h3>
             <p class="publication-authors">${pub.authors}</p>
