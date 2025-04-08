@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Sangdon Park - Academic Profile</title>
+    <title>Dr. Sangdon Park - AI System Design & Development</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -22,8 +22,9 @@
                         <li><a href="#home" class="active">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#writings">Insights</a></li>
-                        <li><a href="#research">Research</a></li>
+                        <li><a href="#research">Research & Dev</a></li>
                         <li><a href="#publications">Publications</a></li>
+                        <li><a href="#seminar">Seminars</a></li>
                         <li><a href="#experience">Experience</a></li>
                         <li><a href="#education">Education</a></li>
                         <li><a href="#contact">Contact</a></li>
@@ -33,9 +34,8 @@
                     <a href="en.html" class="lang-btn active">EN</a>
                     <a href="ko.html" class="lang-btn">KO</a>
                 </div>
-                <!-- Theme Toggle Button -->
                 <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-sun"></i> <!-- Default: sun icon -->
+                    <i class="fas fa-sun"></i>
                 </button>
                 <div class="nav-toggle" id="nav-toggle">
                     <i class="fas fa-bars"></i>
@@ -49,14 +49,20 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Dr. Sangdon Park</h1>
-                    <p class="title">Post Doctoral Researcher</p>
-                    <p class="subtitle">Information and Electronics Research Institute, KAIST</p>
-                    <div class="hero-buttons">
-                        <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" class="btn primary-btn" target="_blank">
-                            <i class="fas fa-graduation-cap"></i> Google Scholar
+                    <p class="identity">AI System Design & Development | LLM Application Research</p>
+                    <p class="title">Current) Postdoctoral Researcher at KAIST (Joining <a href="https://sayberry.games/" target="_blank" rel="noopener noreferrer">Sayberry Games</a> in May 2024)</p>
+                    <div class="hero-contact-links">
+                        <a href="mailto:sangdon.park@kaist.ac.kr" class="icon-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="#" class="btn secondary-btn" target="_blank">
-                            <i class="fas fa-file-pdf"></i> CV
+                        <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://github.com/Sangdon-Park" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sangdon/" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
                         </a>
                     </div>
                 </div>
@@ -69,56 +75,41 @@
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am a Post Doctoral Researcher at KAIST Information and Electronics Research Institute, specializing in artificial intelligence and computational frameworks. My research focuses on the intersection of AI, natural language processing, and interactive systems, developing innovative solutions that enhance human-AI interaction.</p>
-                    <p>With a strong foundation in both theoretical and applied AI, I explore cutting-edge approaches to create intelligent systems that can understand context, adapt to user behaviors, and generate meaningful responses. My interdisciplinary background in electrical engineering and mathematical sciences provides me with unique perspectives when addressing complex AI challenges.</p>
-                    <p>I am particularly interested in how AI technologies can revolutionize various domains, from energy management systems to interactive digital experiences. My work aims to bridge the gap between theoretical AI research and practical applications that make a positive impact on society.</p>
-                </div>
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> <span>sangdon.park@kaist.ac.kr</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>291 Daehak-ro, Yuseong-gu, Daejeon 34141, Republic of Korea</span></li>
-                        <li><i class="fas fa-phone"></i> <span>+82-10-2523-3824</span></li>
-                    </ul>
+            <h2 class="section-title">About: Immersed in AI</h2>
+            <div class="about-content-single">
+                <div class="about-text text-center">
+                    <p>For the past few months, I have been deeply immersed in the possibilities of AI Large Language Models (LLMs). Utilizing cutting-edge models like ChatGPT, Claude, and Gemini, I explored their limitations and potential across the entire process of research, planning, and development. It was the most intense period of focus in my life, where I pushed myself to maximize AI's potential, even sacrificing sleep.</p>
+                    <p>As a result, I was able to complete the <a href="https://github.com/Sangdon/EdgeSim" target="_blank" class="text-link">Edge Computing GUI Simulator</a>, a project I had desired for four years. Additionally, the <strong>AI Character Conversation Project</strong>, started as a promise to my daughter, revealed unexpected fun and potential, opening up a new path in game development through interactions with characters that felt alive, going beyond simple chatting.</p>
+                    <p>Actively using AI coding assistants like Cursor, I experienced astonishing productivity, sometimes amidst confusion. The speed at which ideas turned into reality was incomparable. With this conviction, I am scheduled to join <a href="https://sayberry.games/" target="_blank" rel="noopener noreferrer" class="text-link">Sayberry Games</a> soon, dedicating myself to R&D for creating new AI-based interactive experiences. This 3-month immersion brought growth equivalent to the past 10 years, leading to the successful proposal of an <a href="https://www.kocca.kr/kocca/bbs/view/B0000137/2008268.do?searchCnd=1&searchWrd=&cateTp1=07&cateTp2=&useYn=&menuNo=204802&" target="_blank" rel="noopener noreferrer" class="text-link">8-month, ~$220K (300M KRW) AI game development project</a>.</p>
+                    <p>I wish to share this valuable experience and know-how with more people, rather than keeping it to myself. (Please refer to the 'AI Seminars & Talks' section below for more details).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="ai" class="section">
+    <section id="writings" class="section">
         <div class="container">
-            <h2 class="section-title">AI Research</h2>
-            <div class="research-grid">
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-brain"></i>
+            <h2 class="section-title">Insights / Thoughts</h2>
+            <div class="article-list-container">
+                <div class="article-grid">
+                    <div class="article-item">
+                        <a href="#" class="article-link">
+                            <h4 class="article-title">My 5-Month Deep Dive into AI LLM Services</h4>
+                            <p class="article-meta">AI Utilization & Reflections | Month 2024 (TBD)</p>
+                        </a>
                     </div>
-                    <h3>Large Language Models</h3>
-                    <p>Exploring the capabilities of large language models to understand context, generate coherent responses, and adapt to specific domains through fine-tuning and prompt engineering techniques.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-comments"></i>
+                    <div class="article-item">
+                        <a href="#" class="article-link">
+                            <h4 class="article-title">3 Months All-In on AI LLM API Coding</h4>
+                            <p class="article-meta">AI Character Project & Productivity | Month 2024 (TBD)</p>
+                        </a>
                     </div>
-                    <h3>Conversational AI</h3>
-                    <p>Developing modular dialogue management systems with advanced context-tracking mechanisms and sophisticated natural language understanding components for more natural human-AI interactions.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-user-cog"></i>
+                    <div class="article-item">
+                        <a href="#" class="article-link">
+                            <h4 class="article-title">Edge Computing Simulator Dev Log (Upcoming)</h4>
+                            <p class="article-meta">Solving a 4-Year Challenge with AI | Month 2024 (TBD)</p>
+                        </a>
                     </div>
-                    <h3>Personalized AI Systems</h3>
-                    <p>Designing adaptive AI systems that learn from user interactions, recognize patterns in behavior, and customize responses based on individual preferences and interaction history.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <h3>Multimodal AI Integration</h3>
-                    <p>Investigating the integration of text, voice, and visual data processing in AI systems to create more comprehensive understanding and responsive interaction models.</p>
                 </div>
             </div>
         </div>
@@ -126,35 +117,27 @@
 
     <section id="research" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">Research Interests</h2>
+            <h2 class="section-title">Research & Development Areas</h2>
             <div class="research-grid">
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI-Driven Interactive Systems</h3>
-                    <p>Developing modular dialogue management systems that generate contextually appropriate responses and adapt to user behavior.</p>
+                    <div class="research-icon"><i class="fas fa-brain"></i></div>
+                    <h3>LLM-Based System Design</h3>
+                    <p>Designing and developing service architectures utilizing Large Language Models at their core. Optimizing LLM performance through prompt engineering, fine-tuning, RAG, etc.</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-chart-network"></i>
-                    </div>
-                    <h3>Energy Trading Systems</h3>
-                    <p>Designing innovative energy trading mechanisms for smart grids and microgrids using game theory and optimization techniques.</p>
+                    <div class="research-icon"><i class="fas fa-comments"></i></div>
+                    <h3>AI Characters & Interactive Systems</h3>
+                    <p>Developing AI characters and conversational systems using LLMs for natural and meaningful user interaction. Applications in various fields like gaming and education.</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <h3>Mobile Edge Computing</h3>
-                    <p>Optimizing resource allocation and task offloading in mobile edge computing environments for IoT applications.</p>
+                    <div class="research-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>AI-Based Simulation & Optimization</h3>
+                    <p>Research on applying AI/LLM technologies for simulation and resource optimization in complex systems, such as edge computing environments.</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Data Trading and Privacy</h3>
-                    <p>Creating competitive data trading models with privacy valuation for IoT data markets.</p>
+                    <div class="research-icon"><i class="fas fa-terminal"></i></div>
+                    <h3>AI-Driven Development Productivity</h3>
+                    <p>Researching and applying methods to enhance development process efficiency and code quality using AI coding tools (e.g., Cursor).</p>
                 </div>
             </div>
         </div>
@@ -162,61 +145,61 @@
 
     <section id="publications" class="section">
         <div class="container">
-            <h2 class="section-title">Publications</h2>
-            
-            <div class="publications-nav">
-                <button class="pub-nav-btn active" data-filter="all">All</button>
-                <button class="pub-nav-btn" data-filter="journal">Journals</button>
-                <button class="pub-nav-btn" data-filter="conference">Conferences</button>
-                <button class="pub-nav-btn" data-filter="standard">Standards</button>
-                <button class="pub-nav-btn" data-filter="patent">Patents</button>
+            <h2 class="section-title">Selected Publications</h2>
+            <div class="publications-container" id="selected-publications-list">
+                <p class="loading-text">Loading selected publications...</p>
             </div>
-            
-            <div class="publications-container" id="publications-list">
-                <!-- Publications will be loaded from JavaScript -->
-                <p class="loading-text">Loading publications...</p>
-            </div>
-            
             <div class="view-more-container">
-                <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" class="btn view-more-btn" target="_blank">
-                    View All on Google Scholar
+                <a href="publications.html" class="btn secondary-btn">
+                    View All Publications <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" class="btn view-more-btn" target="_blank" rel="noopener noreferrer">
+                    Google Scholar <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="section bg-light">
+    <section id="seminar" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">Research Experience</h2>
+            <h2 class="section-title">AI Seminars & Talks</h2>
+            <div class="about-content-single">
+                <div class="about-text text-center">
+                    <p>Sharing vivid experiences and know-how gained from pouring my soul into AI LLMs over the past 8 months. Discussing practical applications and possibilities realized through deeply applying cutting-edge AI services like ChatGPT, Claude, and Gemini in actual research and development.</p>
+                    <p>Available for talks and seminars for individuals and organizations interested in effective AI collaboration, maximizing productivity, and developing LLM-based services. Please feel free to inquire via email below.</p>
+                    <p class="contact-highlight">
+                        <i class="fas fa-envelope"></i> <a href="mailto:sangdon.park@kaist.ac.kr">sangdon.park@kaist.ac.kr</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
             <div class="experience-timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>Current</p>
-                    </div>
+                    <div class="timeline-date"><p>May 2024 (Expected)</p></div>
                     <div class="timeline-content">
-                        <h3>AI Research & Development</h3>
-                        <p class="timeline-subtitle">KAIST, Information and Electronics Research Institute</p>
+                        <h3>AI Researcher / Developer (Expected)</h3>
+                        <p class="timeline-subtitle"><a href="https://sayberry.games/" target="_blank" rel="noopener noreferrer">Sayberry Games</a></p>
                         <ul class="timeline-details">
-                            <li>Leading research on modular AI architectures for interactive systems</li>
-                            <li>Developing dynamic memory frameworks for context-aware AI responses</li>
-                            <li>Creating computational models for adaptive AI behavior in complex environments</li>
+                            <li>R&D on LLM-based AI characters and interactive game systems</li>
+                            <li>Innovating game content creation processes using AI technology</li>
                         </ul>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>2017-2020</p>
-                    </div>
+                    <div class="timeline-date"><p>Sep 2017 - Present</p></div>
                     <div class="timeline-content">
-                        <h3>Data Restoration Algorithms</h3>
-                        <p class="timeline-subtitle">Korea Electric Power Corporation</p>
+                        <h3>Postdoctoral Researcher</h3>
+                        <p class="timeline-subtitle">KAIST, Information and Electronics Research Institute</p>
                         <ul class="timeline-details">
-                            <li>Led research on data restoration for Advanced Metering Infrastructure</li>
-                            <li>Developed anomaly detection frameworks for critical infrastructure monitoring</li>
-                            <li>Published in IEEE Transactions on Industrial Electronics</li>
+                            <li>Research on edge computing, energy trading, data market optimization</li>
+                            <li>Exploration and application of AI/LLM technologies (e.g., Edge Computing Simulator development)</li>
                         </ul>
                     </div>
                 </div>
@@ -224,89 +207,64 @@
         </div>
     </section>
 
-    <section id="education" class="section">
+    <section id="education" class="section bg-light">
         <div class="container">
             <h2 class="section-title">Education</h2>
             <div class="education-timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>2017.09 - Present</p>
-                    </div>
+                    <div class="timeline-date"><p>Mar 2013 - Aug 2017</p></div>
                     <div class="timeline-content">
-                        <h3>KAIST, Information and Electronics Research Institute</h3>
-                        <p class="timeline-subtitle">Post Doctoral Researcher</p>
+                        <h3>Ph.D. in Electrical Engineering</h3>
+                        <p class="timeline-subtitle">KAIST</p>
+                        <p class="timeline-details">Dissertation: Dynamic Energy Trading Schemes for Future Smart Grids</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>2013.03 - 2017.08</p>
-                    </div>
+                    <div class="timeline-date"><p>Mar 2011 - Feb 2013</p></div>
                     <div class="timeline-content">
-                        <h3>KAIST, School of Electrical Engineering</h3>
-                        <p class="timeline-subtitle">Ph.D. in Electrical Engineering</p>
-                        <p class="timeline-details">Thesis: Dynamic Energy Trading Scheme for Future Smart Grid</p>
+                        <h3>M.S. in Mathematical Sciences</h3>
+                        <p class="timeline-subtitle">KAIST</p>
+                        <p class="timeline-details">Thesis: Throughput Performance Analysis of Optimal Random Access Policy for Cognitive Radio Networks</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>2011.03 - 2013.02</p>
-                    </div>
+                    <div class="timeline-date"><p>Mar 2006 - Feb 2011</p></div>
                     <div class="timeline-content">
-                        <h3>KAIST, Department of Mathematical Sciences</h3>
-                        <p class="timeline-subtitle">M.S. in Mathematical Sciences</p>
-                        <p class="timeline-details">Thesis: Throughput Performance Analysis of Optimal Random Access Policies for Cognitive Radio Networks</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <p>2006.03 - 2011.02</p>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>KAIST, Department of Mathematical Sciences</h3>
-                        <p class="timeline-subtitle">B.S. in Mathematical Sciences</p>
+                        <h3>B.S. in Mathematical Sciences</h3>
+                        <p class="timeline-subtitle">KAIST</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section bg-light">
+    <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Contact Me</h2>
+            <h2 class="section-title">Contact</h2>
             <div class="contact-container">
                 <div class="contact-info-large">
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-details">
                             <h3>Email</h3>
-                            <p>sangdon.park@kaist.ac.kr</p>
+                            <p><a href="mailto:sangdon.park@kaist.ac.kr">sangdon.park@kaist.ac.kr</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                         <div class="contact-details">
-                            <h3>Address</h3>
-                            <p>291 Daehak-ro, Yuseong-gu, Daejeon 34141, Republic of Korea</p>
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sangdon-park</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
                         <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+82-10-2523-3824</p>
+                            <h3>GitHub</h3>
+                            <p><a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer">github.com/Sangdon-Park</a></p>
                         </div>
                     </div>
                 </div>
@@ -318,18 +276,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2023 Dr. Sangdon Park. All rights reserved.</p>
+                    <p>&copy; 2024 Dr. Sangdon Park. All rights reserved.</p>
                 </div>
                 <div class="social-links">
-                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" target="_blank">
-                        <i class="fas fa-graduation-cap"></i>
-                    </a>
-                    <a href="https://github.com/Sangdon-Park" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sangdon-park/" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                    <a href="mailto:sangdon.park@kaist.ac.kr" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>

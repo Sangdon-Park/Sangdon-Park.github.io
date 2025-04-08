@@ -3,12 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박상돈 박사 - AI 연구 및 개발</title>
+    <title>박상돈 박사 - AI 시스템 설계 및 개발</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 글자 크기 조정을 위한 스타일 */
+        .research-card p {
+            font-size: 1rem !important;
+            line-height: 1.6 !important;
+        }
+        .timeline-details, .timeline-details li {
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+        }
+        .article-meta {
+            font-size: 0.95rem !important;
+            line-height: 1.5 !important;
+        }
+        .footer-text p {
+            font-size: 1rem !important;
+        }
+        .about-text p {
+            font-size: 1.05rem !important;
+            line-height: 1.6 !important;
+        }
+        p.timeline-details {
+            font-size: 1rem !important;
+        }
+        .article-title {
+            font-size: 1.15rem !important;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -22,8 +50,9 @@
                         <li><a href="#home" class="active">홈</a></li>
                         <li><a href="#about">소개</a></li>
                         <li><a href="#writings">인사이트</a></li>
-                        <li><a href="#research">연구 분야</a></li>
-                        <li><a href="#publications">논문</a></li>
+                        <li><a href="#research">연구 및 개발</a></li>
+                        <li><a href="#publications">대표 논문</a></li>
+                        <li><a href="#seminar">AI 강연</a></li>
                         <li><a href="#experience">경력</a></li>
                         <li><a href="#education">학력</a></li>
                         <li><a href="#contact">연락처</a></li>
@@ -33,8 +62,9 @@
                     <a href="en.html" class="lang-btn">EN</a>
                     <a href="ko.html" class="lang-btn active">KO</a>
                 </div>
+                <!-- Theme Toggle Button -->
                 <button class="theme-toggle-btn" id="theme-toggle" aria-label="테마 전환">
-                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-sun"></i> <!-- Default: sun icon -->
                 </button>
                 <div class="nav-toggle" id="nav-toggle">
                     <i class="fas fa-bars"></i>
@@ -48,8 +78,8 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>박상돈 박사</h1>
-                    <p class="title">박사후 연구원</p>
-                    <p class="subtitle">KAIST 정보전자연구소</p>
+                    <p class="identity">AI 시스템 설계 및 개발 | LLM 응용 연구</p>
+                    <p class="title">현) KAIST 박사후연구원 (2024년 5월 <a href="https://sayberrygames.com/" target="_blank" rel="noopener noreferrer">세이베리게임즈</a> 합류 예정)</p>
                     <div class="hero-contact-links">
                         <a href="mailto:sangdon.park@kaist.ac.kr" class="icon-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
@@ -60,11 +90,8 @@
                         <a href="https://github.com/Sangdon-Park" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/sangdon-park/" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/sangdon/" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="icon-link" aria-label="CV Download" style="font-size: 1.6rem;">
-                            <i class="fas fa-file-pdf"></i>
                         </a>
                     </div>
                 </div>
@@ -77,42 +104,32 @@
 
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">소개</h2>
-            <div class="about-content">
+            <h2 class="section-title">소개: AI 시스템 연구 및 개발 경험</h2>
+            <div class="about-content-single">
                 <div class="about-text">
-                    <p>저는 KAIST 정보전자연구소의 박사후 연구원으로, 인공지능과 계산 프레임워크를 전문으로 연구하고 있습니다. 제 연구는 AI, 자연어 처리, 인터랙티브 시스템의 교차점에 초점을 맞추어 인간과 AI 간의 상호작용을 향상시키는 혁신적인 솔루션을 개발하는 데 중점을 둡니다.</p>
-                    <p>이론 및 응용 AI 모두에 대한 탄탄한 기반을 바탕으로, 문맥을 이해하고 사용자 행동에 적응하며 의미 있는 응답을 생성할 수 있는 지능형 시스템을 만들기 위한 최첨단 접근 방식을 탐구합니다. 전기 공학 및 수리 과학 분야의 학제적 배경은 복잡한 AI 문제를 해결하는 데 있어 독특한 관점을 제공합니다.</p>
-                    <p>저는 특히 에너지 관리 시스템에서부터 인터랙티브 디지털 경험에 이르기까지 다양한 영역에서 AI 기술이 어떻게 혁신을 일으킬 수 있는지에 깊은 관심을 가지고 있습니다. 제 연구는 이론적인 AI 연구와 사회에 긍정적인 영향을 미치는 실용적인 응용 사이의 간극을 메우는 것을 목표로 합니다.</p>
-                </div>
-                <div class="contact-info">
-                    <h3>연락 정보</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> <span>sangdon.park@kaist.ac.kr</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>대한민국 대전광역시 유성구 대학로 291 (34141)</span></li>
-                        <li><i class="fas fa-phone"></i> <span>+82-10-2523-3824</span></li>
-                    </ul>
+                    <p>최근 수개월간 저는 AI Large Language Model(LLM)의 활용 가능성을 집중적으로 연구해 왔습니다. ChatGPT, Claude, Gemini 등 최신 모델들을 활용하여 연구, 기획, 개발의 전 과정에 적용하며 실질적인 효용과 한계점을 체계적으로 분석했습니다.</p>
+                    <p>이러한 집중적인 연구 결과, 4년간 목표로 했던 <a href="https://youtu.be/VbP7meO7nZI" target="_blank" rel="noopener noreferrer"><strong>엣지 컴퓨팅 GUI 시뮬레이터</strong></a>를 성공적으로 구현할 수 있었고, 개인적인 동기로 시작했던 <strong>AI 캐릭터와의 대화 프로젝트</strong>는 기대 이상의 성과를 보여주었습니다. 이 프로젝트는 단순 대화를 넘어서 자연스러운 캐릭터 상호작용 구현을 가능하게 하며, 게임 개발이라는 새로운 응용 분야를 탐색하는 계기가 되었습니다.</p>
+                    <p>AI 코딩 도구(Cursor 등)를 효과적으로 활용하여 개발 생산성을 대폭 향상시켰으며, 아이디어를 신속하게 프로토타입으로 구현할 수 있었습니다. 이러한 경험을 바탕으로 <a href="https://sayberrygames.com/" target="_blank" rel="noopener noreferrer"><strong>세이베리게임즈</strong></a>에 합류하여 AI 기반 인터랙티브 경험 연구 개발에 참여할 예정이며, <a href="https://www.kocca.kr/kocca/bbs/view/B0000137/2008268.do?searchCnd=1&searchWrd=&cateTp1=07&cateTp2=&useYn=&menuNo=204802&" target="_blank" rel="noopener noreferrer"><strong>8개월 3억 규모의 AI 게임 개발 과제</strong></a>를 성공적으로 제안하기도 했습니다.</p>
+                    <p>이러한 실질적인 경험과 전문 지식을 더 넓은 커뮤니티와 공유하고자 합니다. (자세한 내용은 아래 'AI 강연' 섹션을 참고해주세요.)</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="writings" class="section bg-light">
+    <section id="writings" class="section">
         <div class="container">
             <h2 class="section-title">인사이트 / 생각 공유</h2>
-            <div class="about-content-single" style="margin-bottom: 3rem; text-align:center;">
-                <p>최근 몇 달간 LLM의 가능성에 깊이 매료되어 연구와 개발에 매진했습니다. 그 과정에서 얻은 경험과 통찰을 공유합니다.</p>
-            </div>
             <div class="article-list-container">
                 <div class="article-grid">
                     <div class="article-item">
                         <a href="articles/ai-llm-passion.html" class="article-link">
-                            <h4 class="article-title">AI LLM 서비스 몰입기 (5개월)</h4>
+                            <h4 class="article-title">AI LLM 서비스에 미쳐있던 5개월</h4>
                             <p class="article-meta">AI 활용 경험과 성찰 | 2024년 X월</p>
                         </a>
                     </div>
                     <div class="article-item">
                         <a href="articles/ai-coding-frenzy.html" class="article-link">
-                            <h4 class="article-title">AI LLM API 코딩 몰입기 (3개월)</h4>
+                            <h4 class="article-title">AI LLM API 코딩에 인생 갈아넣은 3개월</h4>
                             <p class="article-meta">AI 캐릭터 프로젝트와 생산성 경험 | 2024년 X월</p>
                         </a>
                     </div>
@@ -122,52 +139,76 @@
                             <p class="article-meta">AI와 함께 4년 숙원 사업 해결 | 2024년 X월</p>
                         </a>
                     </div>
+                    <!-- Add more articles here as they are written -->
                 </div>
+                 <!-- Optional: Add a link to a dedicated blog page if many articles accumulate -->
+                <!--
+                <div class="view-more-container" style="margin-top: 2rem;">
+                    <a href="blog.html" class="btn secondary-btn">
+                        모든 글 보기 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                 -->
             </div>
         </div>
     </section>
 
-    <section id="research" class="section">
+    <section id="research" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">주요 연구 분야</h2>
+            <h2 class="section-title">주요 연구 및 개발 분야</h2>
             <div class="research-grid">
                 <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-robot"></i></div>
-                    <h3>AI 기반 인터랙티브 시스템</h3>
-                    <p>문맥에 맞는 응답을 생성하고 사용자 행동에 적응하는 모듈식 대화 관리 시스템 개발.</p>
+                    <div class="research-icon"><i class="fas fa-brain"></i></div>
+                    <h3>LLM 기반 시스템 설계</h3>
+                    <p>대규모 언어 모델을 핵심으로 활용하는 서비스 아키텍처 설계 및 개발. 프롬프트 엔지니어링, 파인튜닝, RAG 등을 통한 LLM 성능 최적화.</p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon"><i class="fas fa-comments"></i></div>
-                    <h3>LLM 응용 및 최적화</h3>
-                    <p>프롬프트 엔지니어링, RAG, 파인튜닝 등을 통한 LLM 성능 최적화 및 다양한 서비스 아키텍처 설계.</p>
+                    <h3>AI 캐릭터 & 인터랙티브 시스템</h3>
+                    <p>LLM을 활용하여 사용자와 자연스럽고 의미 있는 상호작용을 하는 AI 캐릭터 및 대화형 시스템 개발. 게임, 교육 등 다양한 분야 응용.</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>에너지 거래 시스템</h3>
-                    <p>게임 이론 및 최적화 기법을 활용한 스마트 그리드 및 마이크로그리드용 혁신적인 에너지 거래 메커니즘 설계.</p>
+                    <div class="research-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>AI 기반 시뮬레이션 및 최적화</h3>
+                    <p>엣지 컴퓨팅 환경 등 복잡한 시스템의 시뮬레이션 및 자원 최적화를 위한 AI/LLM 기술 적용 연구.</p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon"><i class="fas fa-microchip"></i></div>
-                    <h3>모바일 엣지 컴퓨팅</h3>
-                    <p>IoT 애플리케이션을 위한 모바일 엣지 컴퓨팅 환경에서의 자원 할당 및 작업 오프로딩 최적화.</p>
+                    <div class="research-icon"><i class="fas fa-terminal"></i></div>
+                    <h3>AI 기반 개발 생산성 향상</h3>
+                    <p>AI 코딩 도구(Cursor 등)를 활용한 개발 프로세스 효율화 및 코드 품질 개선 방안 연구 및 적용.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="publications" class="section bg-light">
+    <section id="publications" class="section">
         <div class="container">
-            <h2 class="section-title">논문</h2>
-            <div class="publications-container" id="selected-publications-list" style="margin-bottom: 2.5rem;">
+            <h2 class="section-title">대표 논문</h2>
+            <div class="publications-container" id="selected-publications-list">
                 <p class="loading-text">대표 논문 목록 로딩 중...</p>
             </div>
             <div class="view-more-container">
-                 <a href="publications.html" class="btn secondary-btn">
+                <a href="publications.html" class="btn secondary-btn">
                     전체 논문 목록 보기 <i class="fas fa-arrow-right"></i>
                 </a>
                 <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="btn view-more-btn" target="_blank" rel="noopener noreferrer">
                     Google Scholar <i class="fas fa-external-link-alt"></i>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="seminar" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">AI 강연 및 세미나</h2>
+            <div class="about-content-single">
+                <div class="about-text text-center">
+                    <p>지난 8개월간 AI LLM에 영혼을 갈아넣으며 얻은 생생한 경험과 노하우를 공유합니다. ChatGPT, Claude, Gemini 등 최신 AI 서비스를 실제 연구와 개발에 깊이 있게 적용하며 깨달은 실질적인 활용법과 가능성에 대해 이야기합니다.</p>
+                    <p>AI와의 효과적인 협업, 생산성 극대화, LLM 기반 서비스 개발 등에 관심 있는 개인 및 조직을 대상으로 강연 및 세미나를 진행합니다. 아래 이메일로 편하게 문의해주세요.</p>
+                    <p class="contact-highlight">
+                        <i class="fas fa-envelope"></i> <a href="mailto:sangdon.park@kaist.ac.kr">sangdon.park@kaist.ac.kr</a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -181,7 +222,7 @@
                     <div class="timeline-date"><p>2024.05 (예정)</p></div>
                     <div class="timeline-content">
                         <h3>AI 연구원 / 개발자 (예정)</h3>
-                        <p class="timeline-subtitle"><a href="https://sayberry.games/" target="_blank" rel="noopener noreferrer">Sayberry Games</a></p>
+                        <p class="timeline-subtitle"><a href="https://sayberrygames.com/" target="_blank" rel="noopener noreferrer">세이베리게임즈</a></p>
                         <ul class="timeline-details">
                             <li>LLM 기반 AI 캐릭터 및 인터랙티브 게임 시스템 연구 개발</li>
                             <li>AI 기술을 활용한 게임 콘텐츠 제작 프로세스 혁신</li>
@@ -193,10 +234,10 @@
                     <div class="timeline-date"><p>2017.09 - 현재</p></div>
                     <div class="timeline-content">
                         <h3>박사후 연구원</h3>
-                        <p class="timeline-subtitle">KAIST, 정보전자연구소</p>
+                        <p class="timeline-subtitle">한국과학기술원(KAIST), 정보전자연구소</p>
                         <ul class="timeline-details">
                             <li>엣지 컴퓨팅, 에너지 거래, 데이터 시장 최적화 연구</li>
-                            <li>AI/LLM 기술 탐구 및 응용 (인터랙티브 시스템, 시뮬레이터 개발 등)</li>
+                            <li>AI/LLM 기술 탐구 및 응용 (엣지 컴퓨팅 시뮬레이터 개발 등)</li>
                         </ul>
                     </div>
                 </div>
@@ -212,8 +253,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-date"><p>2013.03 - 2017.08</p></div>
                     <div class="timeline-content">
-                        <h3>전기및전자공학부 박사</h3>
-                        <p class="timeline-subtitle">KAIST</p>
+                        <h3>전기 및 전자공학 박사</h3>
+                        <p class="timeline-subtitle">한국과학기술원</p>
                         <p class="timeline-details">논문: 미래 스마트 그리드를 위한 동적 에너지 거래 스킴</p>
                     </div>
                 </div>
@@ -221,8 +262,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-date"><p>2011.03 - 2013.02</p></div>
                     <div class="timeline-content">
-                        <h3>수리과학과 석사</h3>
-                        <p class="timeline-subtitle">KAIST</p>
+                        <h3>수리과학 석사</h3>
+                        <p class="timeline-subtitle">한국과학기술원</p>
                         <p class="timeline-details">논문: 인지 무선 네트워크를 위한 최적 랜덤 액세스 정책의 처리량 성능 분석</p>
                     </div>
                 </div>
@@ -230,8 +271,8 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-date"><p>2006.03 - 2011.02</p></div>
                     <div class="timeline-content">
-                        <h3>수리과학과 학사</h3>
-                        <p class="timeline-subtitle">KAIST</p>
+                        <h3>수리과학 학사</h3>
+                        <p class="timeline-subtitle">한국과학기술원</p>
                     </div>
                 </div>
             </div>
@@ -254,7 +295,7 @@
                         <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                         <div class="contact-details">
                             <h3>링크드인</h3>
-                            <p><a href="https://www.linkedin.com/in/sangdon-park/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sangdon-park</a></p>
+                            <p><a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sangdon-park</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -279,7 +320,7 @@
                      <a href="mailto:sangdon.park@kaist.ac.kr" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sangdon-park/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
@@ -287,6 +328,5 @@
 
     <script src="js/script.js"></script>
     <script src="js/theme-toggle.js"></script>
-    <script src="js/publications.js"></script>
 </body>
 </html> 
