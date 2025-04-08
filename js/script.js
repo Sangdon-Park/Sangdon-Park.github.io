@@ -223,52 +223,62 @@ function loadPublications() {
             part = part.trim();
             const matchFull = part.match(/^.*\[([^\]]+)\]$/);
             let name = '';
+            let isTargetAuthor = false;
+
             if (matchFull) {
                 name = matchFull[1].trim(); // Extract full name from brackets
             } else {
-                 // Fallback if no brackets - use the part before the first comma if possible
                  const commaIndex = part.indexOf(',');
                  name = commaIndex !== -1 ? part.substring(0, commaIndex).trim() : part;
-                 // This fallback might need more refinement depending on data consistency
             }
 
-            // Highlight 'Sangdon Park'
+            // Check if this is the target author (Sangdon Park)
             if (name.toLowerCase() === 'park, sangdon' || name.toLowerCase() === 'sangdon park' || part.toLowerCase().startsWith('park, s')) {
-                return `<em>Sangdon Park</em>`;
-            }
-            // Specific correction based on file data
-            if (part.startsWith('김성환') && name === 'Kim, Seong-Hwan') return 'Seong-Hwan Kim';
-            if (part.startsWith('An, S') && name === 'An, Sanghong') return 'Sanghong An';
-            if (part.startsWith('Jang, B') && name === 'Jang, Busik') return 'Busik Jang';
-            if (part.startsWith('Kim, M') && name === 'Kim, Minkyung') return 'Minkyung Kim';
-            if (part.startsWith('Kim, N') && name === 'Kim, Nakyoung') return 'Nakyoung Kim';
-            if (part.startsWith('Jeong, G') && name === 'Jeong, Gyohun') return 'Gyohun Jeong';
-            if (part.startsWith('Ahn, J') && name === 'Ahn, Jaewon') return 'Jaewon Ahn';
-            if (part.startsWith('Peng, YY') && name === 'Peng, Yuyang') return 'Yuyang Peng';
-            if (part.startsWith('Bae, S') && name === 'Bae, Sohee') return 'Sohee Bae';
-            if (part.startsWith('Oh, H') && name === 'Oh, Hyeontaek') return 'Hyeontaek Oh';
-            if (part.startsWith('Jeon, J') && name === 'Jeon, Jinhwan') return 'Jinhwan Jeon';
-            if (part.startsWith('Han, J') && name === 'Han, Jaeseob') return 'Jaeseob Han';
-            if (part.startsWith('Kim, J') && name === 'Kim, Jangkyum') return 'Jangkyum Kim';
-            if (part.startsWith('Seo, H') && name === 'Seo, Hyeonseok') return 'Hyeonseok Seo';
-            if (part.startsWith('Mohammed, A') && name === 'Mohammed, Alaelddin F. Y.') return 'Alaelddin F. Y. Mohammed';
-            // Add other known mappings if necessary...
-
-            // Attempt to reverse names like 'Lee, Joohyung' -> 'Joohyung Lee'
-            const nameParts = name.split(', ');
-            if (nameParts.length === 2) {
-                return `${nameParts[1]} ${nameParts[0]}`;
+                isTargetAuthor = true;
+                name = 'Sangdon Park'; // Standardize the name
             }
 
-            return name; // Return the extracted name or fallback
-        }).filter(name => name).join(', ');
+            // Specific correction based on file data (example, add others if needed)
+            if (part.startsWith('김성환') && name === 'Kim, Seong-Hwan') name = 'Seong-Hwan Kim';
+            if (part.startsWith('An, S') && name === 'An, Sanghong') name = 'Sanghong An';
+            if (part.startsWith('Jang, B') && name === 'Jang, Busik') name = 'Busik Jang';
+            if (part.startsWith('Kim, M') && name === 'Kim, Minkyung') name = 'Minkyung Kim';
+            if (part.startsWith('Kim, N') && name === 'Kim, Nakyoung') name = 'Nakyoung Kim';
+            if (part.startsWith('Jeong, G') && name === 'Jeong, Gyohun') name = 'Gyohun Jeong';
+            if (part.startsWith('Ahn, J') && name === 'Ahn, Jaewon') name = 'Jaewon Ahn';
+            if (part.startsWith('Peng, YY') && name === 'Peng, Yuyang') name = 'Yuyang Peng';
+            if (part.startsWith('Bae, S') && name === 'Bae, Sohee') name = 'Sohee Bae';
+            if (part.startsWith('Oh, H') && name === 'Oh, Hyeontaek') name = 'Hyeontaek Oh';
+            if (part.startsWith('Jeon, J') && name === 'Jeon, Jinhwan') name = 'Jinhwan Jeon';
+            if (part.startsWith('Han, J') && name === 'Han, Jaeseob') name = 'Jaeseob Han';
+            if (part.startsWith('Kim, J') && name === 'Kim, Jangkyum') name = 'Jangkyum Kim';
+            if (part.startsWith('Seo, H') && name === 'Seo, Hyeonseok') name = 'Hyeonseok Seo';
+            if (part.startsWith('Mohammed, A') && name === 'Mohammed, Alaelddin F. Y.') name = 'Alaelddin F. Y. Mohammed';
 
-        // Add role marker
-        if (role === '교신저자') {
-            return authors + '*';
-        } else if (role === '제1저자') {
-            return authors + '†';
-        }
+
+            // Attempt to reverse names like 'Lee, Joohyung' -> 'Joohyung Lee' if not already handled
+            if (name.includes(', ')) {
+                const nameParts = name.split(', ');
+                if (nameParts.length === 2 && !isTargetAuthor) { // Avoid reversing the already standardized 'Sangdon Park'
+                     name = `${nameParts[1]} ${nameParts[0]}`;
+                }
+            }
+
+            // Apply marker *directly* to the target author
+            if (isTargetAuthor) {
+                let marker = '';
+                if (role === '교신저자') {
+                    marker = '*';
+                } else if (role === '제1저자') {
+                    marker = '†';
+                }
+                return `<em>${name}${marker}</em>`; // Add marker inside <em>
+            }
+
+            return name; // Return the processed name
+        }).filter(name => name && name.trim() !== '').join(', '); // Filter out empty names and join
+
+        // The marker is now applied directly to the author, so no need to append here.
         return authors;
     }
 
@@ -549,7 +559,6 @@ function loadPublications() {
         const pubElement = document.createElement('div');
         pubElement.className = `publication-item ${pub.type || 'unknown'}`;
 
-        // Use journalInfo for the main publication details line
         pubElement.innerHTML = `
             <h3>${pub.title}</h3>
             <p class="publication-authors">${pub.authors}</p>
