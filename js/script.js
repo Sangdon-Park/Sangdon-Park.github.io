@@ -274,7 +274,38 @@ function loadPublications() {
 
     // Helper function to format journal info string
     function formatJournalInfo(name, year, vol, no, startPage, endPage) {
-        let info = name ? name.trim() : '';
+        let rawName = name ? name.trim() : '';
+        let formattedName = '';
+
+        // Apply Title Case to Journal Name
+        if (rawName) {
+            formattedName = rawName.toLowerCase().split(' ').map((word, index, arr) => {
+                // Keep specific acronyms like IEEE, IFIP, ACM, ITU-T uppercase
+                if (['ieee', 'ifip', 'acm', 'itu-t'].includes(word)) {
+                    return word.toUpperCase();
+                }
+                // Keep specific terms like '5g' as is or handle specific cases
+                if (word === '5g') {
+                    return '5G';
+                }
+                // Capitalize first letter, handle short words
+                const shortWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'via', 'with'];
+                if (index === 0 || index === arr.length - 1 || !shortWords.includes(word)) {
+                    // Handle '&' case - capitalize letter after '&'
+                    if (word.includes('&')) {
+                        return word.split('&').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('&');
+                    }
+                    // Standard capitalization
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }
+                return word;
+            }).join(' ');
+            // Fix case like 'Systems-the' -> 'Systems-The'
+            formattedName = formattedName.replace(/-([a-z])/g, (match, char) => `-${char.toUpperCase()}`);
+        }
+
+
+        let info = formattedName;
         if (vol) {
             info += `, Vol. ${vol.trim()}`;
             if (no && no.trim() !== '') { // Check if 'no' is not empty
@@ -284,7 +315,7 @@ function loadPublications() {
         if (startPage && startPage.trim() !== '' && endPage && endPage.trim() !== '') {
             info += `, pp. ${startPage.trim()}-${endPage.trim()}`;
         } else if (startPage && startPage.trim() !== '') {
-            info += `, p. ${startPage.trim()}`;
+            info += `, p. ${startPage.trim()}`; // Handle single page case if needed
         }
         if (year) {
             info += `, ${year.trim()}`;
@@ -544,24 +575,4 @@ function loadPublications() {
         document.querySelectorAll('.pub-nav-btn').forEach(btn => btn.classList.remove('active'));
         allButton.classList.add('active');
     }
-}
-
-// Function to format journal info string
-function formatJournalInfo(name, year, vol, no, startPage, endPage) {
-    let info = name ? name.trim() : '';
-    if (vol) {
-        info += `, Vol. ${vol.trim()}`;
-        if (no && no.trim() !== '') { // Check if 'no' is not empty
-            info += `(${no.trim()})`;
-        }
-    }
-    if (startPage && startPage.trim() !== '' && endPage && endPage.trim() !== '') {
-        info += `, pp. ${startPage.trim()}-${endPage.trim()}`;
-    } else if (startPage && startPage.trim() !== '') {
-        info += `, p. ${startPage.trim()}`;
-    }
-    if (year) {
-        info += `, ${year.trim()}`;
-    }
-    return info;
 }
