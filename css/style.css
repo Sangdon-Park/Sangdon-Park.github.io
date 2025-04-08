@@ -716,13 +716,14 @@ hr.section-divider {
 }
 
 .contact-container {
-    max-width: 900px;
+    max-width: var(--container-width-lg); /* 900px에서 --container-width-lg (1200px)로 변경 */
     margin: 0 auto;
 }
 
 .contact-info-large {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 에서 아래와 같이 변경 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
