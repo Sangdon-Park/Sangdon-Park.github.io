@@ -209,12 +209,27 @@ function filterPublications(filter) {
  * Load and parse publications from the data structure
  */
 function loadPublications() {
-    const publicationsContainer = document.getElementById('publications-list');
-    const selectedPublicationsContainer = document.getElementById('selected-publications-list'); // New container for selected pubs
+    // Determine the current page to decide which lists to populate
+    const currentPage = window.location.pathname.split('/').pop(); // e.g., "ko.html", "publications.html"
+    const isMainPage = currentPage === 'ko.html' || currentPage === 'en.html' || currentPage === ''; // Index might resolve to empty
+    const isPublicationsPage = currentPage === 'publications.html';
 
-    if (!publicationsContainer || !selectedPublicationsContainer) { // Check both containers
-        console.error("Publications container(s) not found!");
-        return;
+    const allPublicationsContainer = document.getElementById('publications-list');
+    const selectedPublicationsContainer = document.getElementById('selected-publications-list');
+
+    // Ensure required containers exist based on the page
+    if (isMainPage && !selectedPublicationsContainer) {
+        console.error("Selected publications container not found on main page!");
+        // Optional: Don't stop execution, just skip this part
+    }
+    if (isPublicationsPage && !allPublicationsContainer) {
+        console.error("All publications container not found on publications page!");
+        return; // Stop if the main container for this page is missing
+    }
+    // If neither container exists on a page where it's expected, log error
+    if (!allPublicationsContainer && !selectedPublicationsContainer) {
+         console.error("Publication containers not found!");
+         return;
     }
 
     // Helper function to parse author string (ensure it's defined before use)
@@ -516,37 +531,112 @@ function loadPublications() {
         return pubElement;
     }
 
-    // --- Populate Selected Publications --- 
-    selectedPublicationsContainer.innerHTML = ''; // Clear loading message
-    const selectedPubs = publicationsData
-        .filter(pub => pub.role === '교신저자' || pub.role === '제1저자') // Filter for Corresponding or First author
-        .sort((a, b) => parseInt(b.year) - parseInt(a.year) || publicationsData.indexOf(a) - publicationsData.indexOf(b)) // Sort by year desc, then original order
-        .slice(0, 5); // Take the top 5
+    // --- Populate lists based on the current page ---
 
-    if (selectedPubs.length > 0) {
-         selectedPubs.forEach(pub => {
-             selectedPublicationsContainer.appendChild(createPublicationElement(pub));
-         });
-    } else {
-        selectedPublicationsContainer.innerHTML = '<p>대표 논문이 없습니다.</p>';
+    if (isMainPage && selectedPublicationsContainer) {
+        selectedPublicationsContainer.innerHTML = ''; // Clear loading message
+
+        const tiePaperTitle = "Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach";
+
+        // 1. Filter by base criteria: Role (Corr/First) AND Citations >= 10
+        let baseSelectedPubs = publicationsData.filter(pub => {
+            const isEligibleRole = pub.role === '교신저자' || pub.role === '제1저자';
+            const hasEnoughCitations = pub.citations >= 10;
+            return isEligibleRole && hasEnoughCitations;
+        });
+
+        // 2. Find the specific TIE 2016 paper
+        const tiePaper = publicationsData.find(pub => pub.title === tiePaperTitle);
+
+        // 3. Ensure TIE paper is included if it exists and meets the role criteria (even if citations < 10 for some reason, as per user request feel)
+        let combinedList = [...baseSelectedPubs];
+        if (tiePaper && (tiePaper.role === '교신저자' || tiePaper.role === '제1저자')) {
+            const isTieAlreadyIncluded = baseSelectedPubs.some(pub => pub.title === tiePaperTitle);
+            if (!isTieAlreadyIncluded) {
+                combinedList.push(tiePaper); // Add TIE paper if not already in the citation-filtered list
+            }
+        }
+
+        // 4. Sort the combined list by citations descending
+        combinedList.sort((a, b) => b.citations - a.citations);
+
+        // 5. Take the top 6
+        const finalSelectedPubs = combinedList.slice(0, 6);
+
+        // 6. Display the final 6 papers
+        if (finalSelectedPubs.length > 0) {
+             finalSelectedPubs.forEach(pub => {
+                 selectedPublicationsContainer.appendChild(createPublicationElement(pub));
+             });
+        } else {
+            selectedPublicationsContainer.innerHTML = '<p>선별된 대표 논문이 없습니다. 전체 목록을 확인해주세요.</p>';
+        }
     }
 
-    // --- Populate All Publications --- 
-    publicationsContainer.innerHTML = ''; // Clear loading message
-    if (publicationsData.length === 0) {
-        publicationsContainer.innerHTML = '<p>게재된 논문이 없습니다.</p>';
-        return;
+    if (isPublicationsPage && allPublicationsContainer) {
+        allPublicationsContainer.innerHTML = ''; // Clear loading message
+        if (publicationsData.length === 0) {
+            allPublicationsContainer.innerHTML = '<p>게재된 논문이 없습니다.</p>';
+        } else {
+            // Add filters if needed on this page
+            const publicationsNav = document.querySelector('.publications-nav'); // Find filters on this page
+             if(publicationsNav) initPublicationFilters(); // Initialize filters if they exist
+
+            publicationsData.forEach(pub => {
+                 allPublicationsContainer.appendChild(createPublicationElement(pub));
+            });
+             // Apply initial filter if filters exist
+             if(publicationsNav) filterPublications('all');
+        }
     }
 
-    publicationsData.forEach(pub => {
-         publicationsContainer.appendChild(createPublicationElement(pub));
-    });
-
-    // After loading, trigger the filter to show 'all' initially
-    filterPublications('all');
-    const allButton = document.querySelector('.pub-nav-btn[data-filter="all"]');
-    if(allButton) {
-        document.querySelectorAll('.pub-nav-btn').forEach(btn => btn.classList.remove('active'));
-        allButton.classList.add('active');
-    }
+    // Initialize filters only if they exist on the current page (relevant for publications.html)
+    // Moved filter initialization inside the condition for publications page
+    // const publicationsNav = document.querySelector('.publications-nav');
+    // if (publicationsNav) {
+    //     initPublicationFilters();
+    //     filterPublications('all'); // Apply 'all' filter initially
+    // }
 }
+
+// Ensure filter functions are defined globally or passed correctly if needed elsewhere
+function initPublicationFilters() {
+    const filterButtons = document.querySelectorAll('.pub-nav-btn');
+    if (filterButtons.length === 0) return;
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.getAttribute('data-filter');
+            filterPublications(filter);
+        });
+    });
+}
+
+function filterPublications(filter) {
+    const publications = document.querySelectorAll('#publications-list .publication-item'); // Target only items in the full list
+     if (!publications || publications.length === 0) return;
+    publications.forEach(pub => {
+        let type = 'unknown';
+        if (pub.classList.contains('journal')) type = 'journal';
+        else if (pub.classList.contains('conference')) type = 'conference';
+        // Add other type checks if needed
+
+        if (filter === 'all' || type === filter) {
+            pub.style.display = 'block';
+        } else {
+            pub.style.display = 'none';
+        }
+    });
+}
+
+// Make sure the DOMContentLoaded listener calls loadPublications
+document.addEventListener('DOMContentLoaded', function() {
+    initNavigation(); // Keep other initializations
+    loadPublications(); // This now handles page-specific loading
+    initSmoothScroll();
+    initHeaderScroll();
+    // Filters are now initialized within loadPublications if needed
+});
+
+// ... other functions like initNavigation, initSmoothScroll, initHeaderScroll ...
