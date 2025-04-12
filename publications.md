@@ -72,7 +72,7 @@ Papers (Dagger (†) denotes first authors and asterisk (*) denotes correspondin
 
 ## ITU-T Standards
 
-ITU-T SG13 Rapporteurs meeting (Geneva, 17 – 28 February 2014)
+### ITU-T SG13 Rapporteurs meeting (Geneva, 17 – 28 February 2014)
 
 **Sangdon Park**, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)," SG13RGM-C-94, February 2014.
 
@@ -84,7 +84,7 @@ ITU-T SG13 meeting (Kampala, 4 – 15 November 2013)
 
 **Sangdon Park**, Gyu Myoung Lee, Jun Kyun Choi, "Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment)," COM13-C401-E, November 2013.
 
-ITU-T SG13 Rapporteurs meeting (Geneva, 17-27 June 2013)
+### ITU-T SG13 Rapporteurs meeting (Geneva, 17-27 June 2013)
 
 **Sangdon Park**, Seung Hyun Jeon, Jun Kyun Choi and Jeong Yun Kim. "Consideration of classification of sleep mode control on network equipment," SG13RGM-C-06, June 2013.
 
