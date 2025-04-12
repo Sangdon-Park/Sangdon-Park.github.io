@@ -4,53 +4,54 @@ Publications
 
 Papers (Dagger (†) denotes first authors and asterisk (*) denotes corresponding authors.)
 
-International Journals
- 
-[23] Alaelddin F. Y. Mohammed, Joohyung Lee, **Sangdon Park**\*, "[Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning](https://doi.org/10.3390/s24155000)," *Sensors*, vol. 24, no. 15, pp. 5000, Aug., 2024. (Impact Factor 3.4)
+## International Journals
+(총 23편: 제1저자 4편, 교신저자 12편)
 
-[22] **Sangdon Park**†, Sohee Bae, Joohyung Lee, Youngchul Sung\*, "[Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective](https://doi.org/10.1109/ACCESS.2024.3462499)," *IEEE Access*, vol. 12, pp. 134754-134769, 2024. (Impact Factor 3.4)
+[23] Alaelddin F. Y. Mohammed, Joohyung Lee, **Sangdon Park**\*, "[Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning](https://doi.org/10.3390/s24155000)," *Sensors*, vol. 24, no. 15, pp. 5000, Aug., 2024.
 
-[21] Hyeonseok Seo, Hyeontaek Oh, Jun Kyun Choi, **Sangdon Park**\*, "[Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System](https://doi.org/10.1109/JIOT.2022.3163820)," *IEEE Internet of Things Journal*, vol. 9, no. 19, pp. 19116-19131, Oct., 2022. (Impact Factor 10.6)
+[22] **Sangdon Park**†, Sohee Bae, Joohyung Lee, Youngchul Sung\*, "[Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective](https://doi.org/10.1109/ACCESS.2024.3462499)," *IEEE Access*, vol. 12, pp. 134754-134769, 2024.
 
-[20] Jangkyum Kim, Joohyung Lee\*, **Sangdon Park**, Jun Kyun Choi, "[Power Scheduling Scheme for a Charging Facility Considering the Satisfaction of Electric Vehicle Users](https://doi.org/10.1109/ACCESS.2022.3151355)," *IEEE Access*, vol. 10, pp. 25153-25164, Feb., 2022. (Impact Factor 3.9)
+[21] Hyeonseok Seo, Hyeontaek Oh, Jun Kyun Choi, **Sangdon Park**\*, "[Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System](https://doi.org/10.1109/JIOT.2022.3163820)," *IEEE Internet of Things Journal*, vol. 9, no. 19, pp. 19116-19131, Oct., 2022.
 
-[19] Jinhwan Jeon, Yoonjin Hwang, Yongseop Jeong, **Sangdon Park**, In So Kweon, Seibum Choi\*, "[Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments](https://doi.org/10.3390/s21206805)," *Sensors*, vol. 21, no. 20, pp. 6805, Oct., 2021. (Impact Factor 3.847)
+[20] Jangkyum Kim, Joohyung Lee\*, **Sangdon Park**, Jun Kyun Choi, "[Power Scheduling Scheme for a Charging Facility Considering the Satisfaction of Electric Vehicle Users](https://doi.org/10.1109/ACCESS.2022.3151355)," *IEEE Access*, vol. 10, pp. 25153-25164, Feb., 2022.
 
-[18] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park**\*, Joohyung Lee\*, Jun Kyun Choi, "[A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks](https://doi.org/10.1109/JIOT.2021.3124673)", *IEEE Internet of Things Journal*, vol. 9, no. 1, pp. 419-436, Jan., 2022. (Impact Factor 10.6)
+[19] Jinhwan Jeon, Yoonjin Hwang, Yongseop Jeong, **Sangdon Park**, In So Kweon, Seibum Choi\*, "[Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments](https://doi.org/10.3390/s21206805)," *Sensors*, vol. 21, no. 20, pp. 6805, Oct., 2021.
 
-[17] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park**\*, Jun Kyun Choi, "[Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment](https://doi.org/10.1109/JIOT.2021.3103768)", *IEEE Internet of Things Journal*, vol. 9, no. 16, pp. 15039-15052, Aug., 2022. (Impact Factor 10.6)
+[18] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park**\*, Joohyung Lee\*, Jun Kyun Choi, "[A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks](https://doi.org/10.1109/JIOT.2021.3124673)", *IEEE Internet of Things Journal*, vol. 9, no. 1, pp. 419-436, Jan., 2022.
 
-[16] Beomhan Baek, Joohyung Lee, Yuyang Peng, **Sangdon Park**\*, "[Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment](https://doi.org/10.1109/JIOT.2020.2966627)", *IEEE Internet of Things Journal,* vol. 7, no. 5, pp. 4292-4303, May, 2020. (Impact Factor 9.471)
+[17] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park**\*, Jun Kyun Choi, "[Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment](https://doi.org/10.1109/JIOT.2021.3103768)", *IEEE Internet of Things Journal*, vol. 9, no. 16, pp. 15039-15052, Aug., 2022.
 
-[15] Hyeontaek Oh, **Sangdon Park**\*, Gyu Myoung Lee, Jun Kyun Choi, and Sungkee Noh, "[Competitive Data Trading Model With Privacy Valuation for Multiple Stakeholders in IoT Data Markets](https://doi.org/10.1109/JIOT.2020.2973662)", *IEEE Internet of Things Journal*, vol. 7, no. 4, pp. 3623-3639 , April, 2020. (Impact Factor 9.471)
+[16] Beomhan Baek, Joohyung Lee, Yuyang Peng, **Sangdon Park**\*, "[Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment](https://doi.org/10.1109/JIOT.2020.2966627)", *IEEE Internet of Things Journal,* vol. 7, no. 5, pp. 4292-4303, May, 2020.
 
-[14] Jangkyum Kim, Joohyung Lee\*, **Sangdon Park**, and Jun Kyun Choi, "[Battery-Wear-Model-Based Energy Trading in Electric Vehicles: A Naive Auction Model and a Market Analysis](https://doi.org/10.1109/TII.2018.2883655)," *IEEE Transactions on Industrial Informatics,* vol. 15, no. 7, pp. 4140-4151, July, 2019. (Impact Factor 9.112)
+[15] Hyeontaek Oh, **Sangdon Park**\*, Gyu Myoung Lee, Jun Kyun Choi, and Sungkee Noh, "[Competitive Data Trading Model With Privacy Valuation for Multiple Stakeholders in IoT Data Markets](https://doi.org/10.1109/JIOT.2020.2973662)", *IEEE Internet of Things Journal*, vol. 7, no. 4, pp. 3623-3639 , April, 2020.
 
-[13] **Sangdon Park**†, Ganguk Hwang\*, and Jun Kyun Choi, "[Optimal throughput analysis of multiple channel access in cognitive radio networks](https://doi.org/10.1007/s10479-017-2648-3)," *Annals of Operations Research,* vol. 277, no. 2, pp. 345-370, June, 2019. (Impact Factor 2.583) [[PDF download](https://drive.google.com/file/d/19AJ6t-UA6iuAftGkMzHUr1H17mt9TWPU/view?usp=sharing)]
+[14] Jangkyum Kim, Joohyung Lee\*, **Sangdon Park**, and Jun Kyun Choi, "[Battery-Wear-Model-Based Energy Trading in Electric Vehicles: A Naive Auction Model and a Market Analysis](https://doi.org/10.1109/TII.2018.2883655)," *IEEE Transactions on Industrial Informatics,* vol. 15, no. 7, pp. 4140-4151, July, 2019.
 
-[12] Yuyang Peng, Jun Li\*, **Sangdon Park**, Konglin Zhu, Mohammad Mehedi Hassan, and Ahmed Alsanad, "[Energy-efficient cooperative transmission for intelligent transportation systems](https://doi.org/10.1016/j.future.2018.11.053)," *Future Generation Computer Systems*, vol. 94, pp. 634-640, May, 2019. (Impact Factor 6.125)
+[13] **Sangdon Park**†, Ganguk Hwang\*, and Jun Kyun Choi, "[Optimal throughput analysis of multiple channel access in cognitive radio networks](https://doi.org/10.1007/s10479-017-2648-3)," *Annals of Operations Research,* vol. 277, no. 2, pp. 345-370, June, 2019. [[PDF download](https://drive.google.com/file/d/19AJ6t-UA6iuAftGkMzHUr1H17mt9TWPU/view?usp=sharing)]
 
-[11] Sohee Bae, and **Sangdon Park**\*, "[Comparison Between Seller and Buyer Pricing Systems for Energy Trading in Microgrids](https://doi.org/10.1109/ACCESS.2019.2912758)," *IEEE Access*, vol. 7, pp. 54084-54096, 2019. (Impact Factor 3.745)
+[12] Yuyang Peng, Jun Li\*, **Sangdon Park**, Konglin Zhu, Mohammad Mehedi Hassan, and Ahmed Alsanad, "[Energy-efficient cooperative transmission for intelligent transportation systems](https://doi.org/10.1016/j.future.2018.11.053)," *Future Generation Computer Systems*, vol. 94, pp. 634-640, May, 2019.
 
-[10] Jaewon Ahn, Joohyung Lee\*, **Sangdon Park**, and Hong-sik Park, "[Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment](https://doi.org/10.1007/s11036-018-1164-2)," *Mobile Networks & Applications,* vol. 24, no. 2, pp 643–652, April, 2019. (Impact Factor 2.602)
+[11] Sohee Bae, and **Sangdon Park**\*, "[Comparison Between Seller and Buyer Pricing Systems for Energy Trading in Microgrids](https://doi.org/10.1109/ACCESS.2019.2912758)," *IEEE Access*, vol. 7, pp. 54084-54096, 2019.
 
-[9] Hyeontaek Oh, **Sangdon Park**\*, Gyu Myoung Lee, Hwanjo Heo, and Jun Kyun Choi, ["Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces](https://doi.org/10.1109/ACCESS.2019.2904248)," *IEEE Access,* vol. 7, pp. 40120-40132, 2019. (Impact Factor 3.745)
+[10] Jaewon Ahn, Joohyung Lee\*, **Sangdon Park**, and Hong-sik Park, "[Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment](https://doi.org/10.1007/s11036-018-1164-2)," *Mobile Networks & Applications,* vol. 24, no. 2, pp 643–652, April, 2019.
 
-[8] Nakyoung Kim, **Sangdon Park**\*, Joohyung Lee, and Jun Kyun Choi, "[Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance](https://doi.org/10.3390/en11092397)," *Energies,* vol. 11, no. 9, pp. 2397, Sept., 2018. (Impact Factor 2.707) [[PDF download](https://www.google.com/url?q=https%3A%2F%2Fwww.mdpi.com%2F1996-1073%2F11%2F9%2F2397%2Fpdf&sa=D&sntz=1&usg=AOvVaw0tgDgtT-DSUvOfnNZg1u7e)]
+[9] Hyeontaek Oh, **Sangdon Park**\*, Gyu Myoung Lee, Hwanjo Heo, and Jun Kyun Choi, ["Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces](https://doi.org/10.1109/ACCESS.2019.2904248)," *IEEE Access,* vol. 7, pp. 40120-40132, 2019.
 
-[7] Gyohun Jeong, **Sangdon Park**, Ganguk Hwang\*, "[Time Series Forecasting Based Day-Ahead Energy Trading in Microgrids: Mathematical Analysis and Simulation](https://doi.org/10.1109/ACCESS.2020.2985258)," *IEEE Access*, vol. 8, pp. 63885-63900, April, 2020. (Impact Factor 3.367)
+[8] Nakyoung Kim, **Sangdon Park**\*, Joohyung Lee, and Jun Kyun Choi, "[Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance](https://doi.org/10.3390/en11092397)," *Energies,* vol. 11, no. 9, pp. 2397, Sept., 2018. [[PDF download](https://www.google.com/url?q=https%3A%2F%2Fwww.mdpi.com%2F1996-1073%2F11%2F9%2F2397%2Fpdf&sa=D&sntz=1&usg=AOvVaw0tgDgtT-DSUvOfnNZg1u7e)]
 
-[6] Sunghwan Kim, **Sangdon Park**\*, Min Chen, and Chan-hyun Youn, "[An Optimal Pricing Scheme for the Energy-Efficient Mobile Edge Computation Offloading With OFDMA](https://doi.org/10.1109/LCOMM.2018.2849401)," *IEEE Communications Letters,* vol. 22, no. 9, pp. 1922-1925, Sept., 2018. (Impact Factor 3.457) [[PDF download](https://drive.google.com/file/d/14TzvWoSxWSZ2BIZMsXNZzBf_E32iKhb4/view?usp=sharing)]
+[7] Gyohun Jeong, **Sangdon Park**, Ganguk Hwang\*, "[Time Series Forecasting Based Day-Ahead Energy Trading in Microgrids: Mathematical Analysis and Simulation](https://doi.org/10.1109/ACCESS.2020.2985258)," *IEEE Access*, vol. 8, pp. 63885-63900, April, 2020.
 
-[5] Busik Jang, **Sangdon Park**\*, Joohyung Lee\*, and Sang Geun Hahn, "[Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things](https://doi.org/10.1109/ACCESS.2018.2845105)," *IEEE Access,* vol. 6, pp. 31269-31280, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1gQJHWWGS-KSZcEjXhKvMN5k57ZBmSvGG/view?usp=sharing)]
+[6] Sunghwan Kim, **Sangdon Park**\*, Min Chen, and Chan-hyun Youn, "[An Optimal Pricing Scheme for the Energy-Efficient Mobile Edge Computation Offloading With OFDMA](https://doi.org/10.1109/LCOMM.2018.2849401)," *IEEE Communications Letters,* vol. 22, no. 9, pp. 1922-1925, Sept., 2018. [[PDF download](https://drive.google.com/file/d/14TzvWoSxWSZ2BIZMsXNZzBf_E32iKhb4/view?usp=sharing)]
 
-[4] Sanghong Ahn, Joohyung Lee\*, **Sangdon Park**\*, S.H. Shah Newaz and Jun Kyun Choi, "[Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing](https://doi.org/10.1109/ACCESS.2017.2776323)," *IEEE Access,* vol. 6, pp. 899-912, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1cfCxMCZ5GtbWDiQK12jCvpebF_VTruuW/view?usp=sharing)]
+[5] Busik Jang, **Sangdon Park**\*, Joohyung Lee\*, and Sang Geun Hahn, "[Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things](https://doi.org/10.1109/ACCESS.2018.2845105)," *IEEE Access,* vol. 6, pp. 31269-31280, 2018. [[PDF download](https://drive.google.com/file/d/1gQJHWWGS-KSZcEjXhKvMN5k57ZBmSvGG/view?usp=sharing)]
 
-[3] **Sangdon Park**†, Joohyung Lee\*, Ganguk Hwang, and Jun Kyun Choi, "[Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach](https://doi.org/10.1109/ACCESS.2017.2766233)," *IEEE Access,* vol. 5, pp. 26291-26302, 2017. (Impact Factor 3.557) [[PDF download](https://drive.google.com/file/d/1MUhkMimt7jvHrFaGEp5Dz-or9Ic-JQmX/view?usp=sharing)]
+[4] Sanghong Ahn, Joohyung Lee\*, **Sangdon Park**\*, S.H. Shah Newaz and Jun Kyun Choi, "[Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing](https://doi.org/10.1109/ACCESS.2017.2776323)," *IEEE Access,* vol. 6, pp. 899-912, 2018. [[PDF download](https://drive.google.com/file/d/1cfCxMCZ5GtbWDiQK12jCvpebF_VTruuW/view?usp=sharing)]
 
-[2] Minkyung Kim, **Sangdon Park**, Joohyung Lee\*, Yongjae Joo, and Jun Kyun Choi, "[Learning-Based Adaptive Imputation Method With kNN Algorithm for Missing Power Data](https://doi.org/10.3390/en10101668)," *Energies,* vol. 10, no. 10, pp. 1668, Oct., 2017. (Impact Factor 2.676) [[PDF download](https://drive.google.com/file/d/1-xc_eyQsH_OTd7mMeCxMqVraoqP9wX-0/view?usp=sharing)]
+[3] **Sangdon Park**†, Joohyung Lee\*, Ganguk Hwang, and Jun Kyun Choi, "[Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach](https://doi.org/10.1109/ACCESS.2017.2766233)," *IEEE Access,* vol. 5, pp. 26291-26302, 2017. [[PDF download](https://drive.google.com/file/d/1MUhkMimt7jvHrFaGEp5Dz-or9Ic-JQmX/view?usp=sharing)]
 
-[1] **Sangdon Park**†, Joohyung Lee\*, Sohee Bae, Ganguk Hwang, and Jun Kyun Choi. "[Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach](https://doi.org/10.1109/TIE.2016.2532842)," *IEEE Transactions on Industrial Electronics,* vol. 63, no. 7, pp. 4255-4265, July 2016 . (Impact Factor 7.168, [**Selected journal by IEEE ITeN in 2016**](http://www.google.com/url?q=http%3A%2F%2Fies-iten.com%2F&sa=D&sntz=1&usg=AFQjCNFMgiyWt1qetyH1pAsyihwDQdRYkg)) [[PDF download](https://drive.google.com/file/d/14yxUtU3zkIkaFiR9zCZEZcSVpdDPjSnw/view?usp=sharing)]
+[2] Minkyung Kim, **Sangdon Park**, Joohyung Lee\*, Yongjae Joo, and Jun Kyun Choi, "[Learning-Based Adaptive Imputation Method With kNN Algorithm for Missing Power Data](https://doi.org/10.3390/en10101668)," *Energies,* vol. 10, no. 10, pp. 1668, Oct., 2017. [[PDF download](https://drive.google.com/file/d/1-xc_eyQsH_OTd7mMeCxMqVraoqP9wX-0/view?usp=sharing)]
+
+[1] **Sangdon Park**†, Joohyung Lee\*, Sohee Bae, Ganguk Hwang, and Jun Kyun Choi. "[Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach](https://doi.org/10.1109/TIE.2016.2532842)," *IEEE Transactions on Industrial Electronics,* vol. 63, no. 7, pp. 4255-4265, July 2016 . [**Selected journal by IEEE ITeN in 2016**](http://www.google.com/url?q=http%3A%2F%2Fies-iten.com%2F&sa=D&sntz=1&usg=AFQjCNFMgiyWt1qetyH1pAsyihwDQdRYkg)) [[PDF download](https://drive.google.com/file/d/14yxUtU3zkIkaFiR9zCZEZcSVpdDPjSnw/view?usp=sharing)]
 
 International Conferences
 
