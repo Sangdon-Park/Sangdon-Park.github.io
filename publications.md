@@ -80,7 +80,7 @@ Papers (Dagger (†) denotes first authors and asterisk (*) denotes correspondin
 
 **Sangdon Park**, Jun Kyun Choi, Gyu Myoung Lee "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)," SG13RGM-C-75, February 2014.
 
-ITU-T SG13 meeting (Kampala, 4 – 15 November 2013)
+### ITU-T SG13 meeting (Kampala, 4 – 15 November 2013)
 
 **Sangdon Park**, Gyu Myoung Lee, Jun Kyun Choi, "Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment)," COM13-C401-E, November 2013.
 
