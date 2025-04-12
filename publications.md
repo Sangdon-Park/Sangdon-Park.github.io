@@ -53,9 +53,8 @@ Papers (Dagger (†) denotes first authors and asterisk (*) denotes correspondin
 
 [1] **Sangdon Park**†, Joohyung Lee\*, Sohee Bae, Ganguk Hwang, and Jun Kyun Choi. "[Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach](https://doi.org/10.1109/TIE.2016.2532842)," *IEEE Transactions on Industrial Electronics,* vol. 63, no. 7, pp. 4255-4265, July 2016 . [**Selected journal by IEEE ITeN in 2016**](http://www.google.com/url?q=http%3A%2F%2Fies-iten.com%2F&sa=D&sntz=1&usg=AFQjCNFMgiyWt1qetyH1pAsyihwDQdRYkg)) [[PDF download](https://drive.google.com/file/d/14yxUtU3zkIkaFiR9zCZEZcSVpdDPjSnw/view?usp=sharing)]
 
-International Conferences
-
-[8]
+## International Conferences
+(Total 7 papers: 2 first-authored, 2 corresponding-authored)
 
 [7] Minkyung Kim, **Sangdon Park**\*, Kireem Han, Nakyoung Kim and Junkyung Choi, "[Dynamics of Electricity Consumers for Classifying Power Consumption Data using PCA](https://www.google.com/url?q=https%3A%2F%2Fieeexplore.ieee.org%2Fdocument%2F8367209%2F&sa=D&sntz=1&usg=AOvVaw1Mvsq6jgK5d0t-Vr-R0d_h) ," *IEEE International Conference on Big Data and Smart Computing (BigComp)*, Shanghai, China, January 15-18, 2018. [[PDF download](https://drive.google.com/file/d/1afURD7bxoagbzDxGWS-bLF8hmFSUVCKP/view?usp=sharing)]
 
@@ -71,7 +70,7 @@ International Conferences
 
 [1] Seonghwa Yun, Kyeongmin Lee, **Sangdon Park** and Jun Kyun Choi\*, "[Energy efficient relay selection scheme with DRX mechanism in 3GPP LTE network](http://www.google.com/url?q=http%3A%2F%2Fieeexplore.ieee.org%2Fabstract%2Fdocument%2F6675296%2F&sa=D&sntz=1&usg=AOvVaw3Rgjc839rJliaDFQv8Cf08)," *IEEE International Conference on ICT Convergence (ICTC),* Jeju Island, South Korea, October 14-16, 2013.
 
-ITU-T Standards
+## ITU-T Standards
 
 ITU-T SG13 Rapporteurs meeting (Geneva, 17 – 28 February 2014)
 
@@ -93,7 +92,7 @@ Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, "Revised draft Recommendation 
 
 Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, Jeong Yun Kim, "Consideration of classification for CPU power consumption on network equipment," SG13RGM-C-05, June 2013.
 
-Domestic Patents
+## Domestic Patents
 
 최준균, 오현택, 이주형, **박상돈**, 와이파이 무선 접근 지점의 에너지 절약을 위한 슬립 방법 및 장치, 2015년 7월 31일, 등록번호: 10-1537895
 
