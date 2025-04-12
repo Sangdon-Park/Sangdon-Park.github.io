@@ -5,7 +5,7 @@ Publications
 Papers (Dagger (†) denotes first authors and asterisk (*) denotes corresponding authors.)
 
 ## International Journals
-(총 23편: 제1저자 4편, 교신저자 12편)
+(Total 23 papers: 4 first-authored, 12 corresponding-authored)
 
 [23] Alaelddin F. Y. Mohammed, Joohyung Lee, **Sangdon Park**\*, "[Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning](https://doi.org/10.3390/s24155000)," *Sensors*, vol. 24, no. 15, pp. 5000, Aug., 2024.
 
