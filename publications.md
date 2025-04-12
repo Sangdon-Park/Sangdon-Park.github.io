@@ -16,7 +16,7 @@ International Journals
 
 [19] Jinhwan Jeon, Yoonjin Hwang, Yongseop Jeong, **Sangdon Park**, In So Kweon, Seibum Choi*, "[Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments](https://doi.org/10.3390/s21206805)," *Sensors*, vol. 21, no. 20, pp. 6805, Oct., 2021. (Impact Factor 3.847)
 
-[18] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park*(co-corresponding)**, Joohyung Lee*, Jun Kyun Choi, "[A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks](https://doi.org/10.1109/JIOT.2021.3124673)", *IEEE Internet of Things Journal*, vol. 9, no. 1, pp. 419-436, Jan., 2022. (Impact Factor 10.6)
+[18] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park***, Joohyung Lee*, Jun Kyun Choi, "[A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks](https://doi.org/10.1109/JIOT.2021.3124673)", *IEEE Internet of Things Journal*, vol. 9, no. 1, pp. 419-436, Jan., 2022. (Impact Factor 10.6)
 
 [17] Jaeseob Han, Gyeong Ho Lee, **Sangdon Park***, Jun Kyun Choi, "[Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment](https://doi.org/10.1109/JIOT.2021.3103768)", *IEEE Internet of Things Journal*, vol. 9, no. 16, pp. 15039-15052, Aug., 2022. (Impact Factor 10.6)
 
@@ -42,9 +42,9 @@ International Journals
 
 [6] Sunghwan Kim, **Sangdon Park***, Min Chen, and Chan-hyun Youn, "[An Optimal Pricing Scheme for the Energy-Efficient Mobile Edge Computation Offloading With OFDMA](https://doi.org/10.1109/LCOMM.2018.2849401)," *IEEE Communications Letters,* vol. 22, no. 9, pp. 1922-1925, Sept., 2018. (Impact Factor 3.457) [[PDF download](https://drive.google.com/file/d/14TzvWoSxWSZ2BIZMsXNZzBf_E32iKhb4/view?usp=sharing)]
 
-[5] Busik Jang, **Sangdon Park*(co-corresponding)**, Joohyung Lee*, and Sang Geun Hahn, "[Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things](https://doi.org/10.1109/ACCESS.2018.2845105)," *IEEE Access,* vol. 6, pp. 31269-31280, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1gQJHWWGS-KSZcEjXhKvMN5k57ZBmSvGG/view?usp=sharing)]
+[5] Busik Jang, **Sangdon Park***, Joohyung Lee*, and Sang Geun Hahn, "[Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things](https://doi.org/10.1109/ACCESS.2018.2845105)," *IEEE Access,* vol. 6, pp. 31269-31280, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1gQJHWWGS-KSZcEjXhKvMN5k57ZBmSvGG/view?usp=sharing)]
 
-[4] Sanghong Ahn, Joohyung Lee*, **Sangdon Park*(co-corresponding)**, S.H. Shah Newaz and Jun Kyun Choi, "[Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing](https://doi.org/10.1109/ACCESS.2017.2776323)," *IEEE Access,* vol. 6, pp. 899-912, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1cfCxMCZ5GtbWDiQK12jCvpebF_VTruuW/view?usp=sharing)]
+[4] Sanghong Ahn, Joohyung Lee*, **Sangdon Park***, S.H. Shah Newaz and Jun Kyun Choi, "[Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing](https://doi.org/10.1109/ACCESS.2017.2776323)," *IEEE Access,* vol. 6, pp. 899-912, 2018. (Impact Factor 4.098) [[PDF download](https://drive.google.com/file/d/1cfCxMCZ5GtbWDiQK12jCvpebF_VTruuW/view?usp=sharing)]
 
 [3] **Sangdon Park**, Joohyung Lee*, Ganguk Hwang, and Jun Kyun Choi, "[Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach](https://doi.org/10.1109/ACCESS.2017.2766233)," *IEEE Access,* vol. 5, pp. 26291-26302, 2017. (Impact Factor 3.557) [[PDF download](https://drive.google.com/file/d/1MUhkMimt7jvHrFaGEp5Dz-or9Ic-JQmX/view?usp=sharing)]
 
