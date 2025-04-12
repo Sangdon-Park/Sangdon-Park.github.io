@@ -6,6 +6,10 @@ Papers (Asterisks denotes corresponding authors.)
 
 International Journals
 
+[23] Alaelddin F. Y. Mohammed, Joohyung Lee, **Sangdon Park***, "Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning," Sensors, vol. 24, no. 15, pp. 5000, 2024. (Impact Factor 3.847, 21.094% for 2023 JCR Ranking)
+
+[22] **Sangdon Park**, Sohee Bae, Joohyung Lee, Youngchul Sung*, "Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective," IEEE Access, vol. 12, pp. 134754-134769, 2024. (Impact Factor 3.9, 34.249% for 2023 JCR Ranking)
+
 [21] Hyeonseok Seo, Hyeontaek Oh, Jun Kyun Choi, **Sangdon Park***, "Differential Pricing-based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System," accepted to IEEE Internet of Things Journal, 2022. (Impact Factor 9.471, 3.416% for 2020 JCR Ranking)
 
 [20] Jangkyum Kim, Joohyung Lee*, **Sangdon Park**, Jun Kyun Choi, "Energy scheduling scheme for a charging facility considering the satisfaction of electric vehicle users," accepted to IEEE ACCESS, 2021. (Impact Factor 3.367, 34.249% for 2020 JCR Ranking)
@@ -70,23 +74,23 @@ ITU-T Standards
 
 ITU-T SG13 Rapporteurs meeting (Geneva, 17 – 28 February 2014)
 
-**Sangdon Park**, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, “A proposal for definitions of energy efficiency class of network equipment (Y.energyECN),” SG13RGM-C-94, February 2014.
+**Sangdon Park**, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)," SG13RGM-C-94, February 2014.
 
-**Sangdon Park**, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, “Revised texts for a main chapter of draft recommendation Y.energyECN,” SG13RGM-C-75, February 2014.
+**Sangdon Park**, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, "Revised texts for a main chapter of draft recommendation Y.energyECN," SG13RGM-C-75, February 2014.
 
-**Sangdon Park**, Jun Kyun Choi, Gyu Myoung Lee “A proposal for definitions of energy efficiency class of network equipment (Y.energyECN),” SG13RGM-C-75, February 2014.
+**Sangdon Park**, Jun Kyun Choi, Gyu Myoung Lee "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)," SG13RGM-C-75, February 2014.
 
 ITU-T SG13 meeting (Kampala, 4 – 15 November 2013)
 
-**Sangdon Park**, Gyu Myoung Lee, Jun Kyun Choi, “Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment),” COM13-C401-E, November 2013.
+**Sangdon Park**, Gyu Myoung Lee, Jun Kyun Choi, "Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment)," COM13-C401-E, November 2013.
 
 ITU-T SG13 Rapporteurs meeting (Geneva, 17-27 June 2013)
 
-**Sangdon Park**, Seung Hyun Jeon, Jun Kyun Choi and Jeong Yun Kim. “Consideration of classification of sleep mode control on network equipment,” SG13RGM-C-06, June 2013.
+**Sangdon Park**, Seung Hyun Jeon, Jun Kyun Choi and Jeong Yun Kim. "Consideration of classification of sleep mode control on network equipment," SG13RGM-C-06, June 2013.
 
-Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, “Revised draft Recommendation Y.energyMRM for requesting the consent,” SG13RGM-C-04, June 2013.
+Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, "Revised draft Recommendation Y.energyMRM for requesting the consent," SG13RGM-C-04, June 2013.
 
-Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, Jeong Yun Kim, “Consideration of classification for CPU power consumption on network equipment,” SG13RGM-C-05, June 2013.
+Seung Hyun Jeon, **Sangdon Park**, Jun Kyun Choi, Jeong Yun Kim, "Consideration of classification for CPU power consumption on network equipment," SG13RGM-C-05, June 2013.
 
 Domestic Patents
 
