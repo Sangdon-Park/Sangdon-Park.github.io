@@ -5,7 +5,7 @@ Publications
 Papers (Asterisks denotes corresponding authors.)
 
 International Journals
-
+ 
 [23] Alaelddin F. Y. Mohammed, Joohyung Lee, **Sangdon Park***, "[Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning](https://doi.org/10.3390/s24155000)," *Sensors*, vol. 24, no. 15, pp. 5000, Aug., 2024. (Impact Factor 3.4)
 
 [22] **Sangdon Park**, Sohee Bae, Joohyung Lee, Youngchul Sung*, "[Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective](https://doi.org/10.1109/ACCESS.2024.3462499)," *IEEE Access*, vol. 12, pp. 134754-134769, 2024. (Impact Factor 3.4)
