@@ -1,58 +1,90 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 없이는 불가능했던 동대표 활동 - 박상돈</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>AI 없이는 불가능했던 동대표 활동 - Sangdon Park</title>
+    <link rel="stylesheet" href="../css/article.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <h2><a href="../ko.html#home" style="color: inherit; text-decoration: none;">박상돈</a></h2>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="profile-section">
+                <img src="../images/Sangdon.jpg" alt="Sangdon Park" class="profile-avatar">
+                <h1 class="profile-name">Sangdon Park</h1>
+                <p class="profile-title">AI System Designer & Developer</p>
+                <div class="profile-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Seoul, Korea</span>
                 </div>
-                <nav class="nav">
-                     <ul class="nav-links">
-                        <li><a href="../ko.html#home">홈</a></li>
-                        <li><a href="../ko.html#about">소개</a></li>
-                        <li><a href="../ko.html#writings" class="active">인사이트</a></li>
-                        <li><a href="../ko.html#research">연구</a></li>
-                        <li><a href="../ko.html#publications">대표 논문</a></li>
-                        <li><a href="../ko.html#seminar">AI 세미나</a></li>
-                        <li><a href="../ko.html#experience">경력</a></li>
-                        <li><a href="../ko.html#education">학력</a></li>
-                        <li><a href="../ko.html#contact">연락처</a></li>
-                    </ul>
-                </nav>
-                 <div class="language-toggle">
-                    <a href="../en.html" class="lang-btn">EN</a>
-                    <a href="../ko.html" class="lang-btn active">KO</a>
-                </div>
-                <div class="nav-toggle" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
+                
+                <div class="social-links">
+                    <a href="mailto:chaos@sayberrygames.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Sangdon-Park" class="social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sangdon/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="social-link" target="_blank" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </header>
+            
+            <nav class="nav-section">
+                <div class="nav-title">Navigation</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../ko.html#posts" class="nav-link">
+                            <i class="fas fa-home"></i> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../ko.html#category" class="nav-link">
+                            <i class="fas fa-folder"></i> Category
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../ko.html#tags" class="nav-link">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
 
-    <main>
-        <section class="section article-page">
-            <div class="container">
-                 <div class="article-content">
-                    <div class="article-header">
-                        <h2 class="article-main-title">AI 없이는 불가능했던 동대표 활동</h2>
-                         <p class="article-date">AI와 동대표 활동 | 2025년 4월 8일</p>
-                         <div class="breadcrumb">
-                             <a href="../ko.html#writings">인사이트</a> / <span>AI 활용 사례</span> 
-                        </div>
+        <!-- Main Content -->
+        <main class="article-main">
+            <a href="../ko.html#posts" class="back-to-posts">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Posts</span>
+            </a>
+            
+            <article class="article-wrapper">
+                <header class="article-header">
+                    <span class="article-category">AI</span>
+                    <h1 class="article-title">AI 없이는 불가능했던 동대표 활동</h1>
+                    <div class="article-meta">
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> 2025년 4월 8일
+                        </span>
+                        <span class="article-reading-time">
+                            <i class="far fa-clock"></i> 10 min read
+                        </span>
                     </div>
-                    <div class="article-body">
+                </header>
+                
+                <div class="article-content">
                         <p class="lead-paragraph">지난해 9월부터, 저는 본업과 육아 외에도 아파트 동대표 활동을 병행하고 있습니다. 처음에는 단순히 우리 아파트의 문제를 해결하고 싶은 마음으로 시작했지만, 생각보다 복잡하고 때로는 비상식적인 상황들이 이어지면서 쉽지 않은 도전에 많이 맞닥뜨렸었습니다.</p>
                         <p>다행히 AI 기술이 저를 아주 많이 도와주었고, 최근에는 동대표로서 제안한 '유성매직 마을공동체 활성화 공모사업'에 제안서가 선정되는 기쁜 소식도 있었습니다. 400만원 규모의 이 사업을 앞으로 6개월간 수행하게 되어 기쁜 마음과 함께, 안그래도 많은 기존 업무에 더해 이 활동까지 해낼 수 있을까 하는 부담도 있긴 합니다. 그럼에도 불구하고 지난 8개월간 AI LLM을 활용하면서 얻은 경험들이 너무나 값진 배움이었기에, 일상 속에서 AI를 어떻게 효과적으로 활용할 수 있는지에 대한 인사이트를 여러분과 나누고 싶어 글을 작성해봅니다.</p>
 
@@ -82,22 +114,30 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2024 박상돈. 모든 권리 보유.</p>
                 </div>
-                <div class="social-links">
-                     <a href="mailto:chaos@sayberrygames.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/script.js"></script>
+                
+                <footer class="article-footer">
+                    <div class="article-tags">
+                        <a href="#" class="article-tag">AI 활용</a>
+                        <a href="#" class="article-tag">생산성</a>
+                        <a href="#" class="article-tag">실무 경험</a>
+                        <a href="#" class="article-tag">동대표</a>
+                    </div>
+                </footer>
+            </article>
+        </main>
+    </div>
+    
+    <script>
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (mobileToggle && sidebar) {
+            mobileToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
+    </script>
 </body>
 </html> 
