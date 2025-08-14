@@ -151,6 +151,30 @@
                 </div>
             </section>
             
+            <!-- Category Section -->
+            <section id="category" class="posts-section" style="display: none;">
+                <div class="posts-list">
+                    <!-- Posts will be shown here with category filter -->
+                </div>
+            </section>
+            
+            <!-- Tags Section -->
+            <section id="tags" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Popular Tags</h2>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Claude Code</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">MCP</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">AI Tools</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">AI 활용</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">생산성</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Edge Computing</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Machine Learning</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Computer Vision</a>
+                </div>
+            </section>
+            
             <!-- Experience Section -->
             <section id="experience" class="posts-section" style="display: none;">
                 <div class="section-header">
@@ -357,24 +381,68 @@
                     targetSection.style.display = 'block';
                 }
                 
-                // Show/hide category tabs based on section
-                const categoryTabs = document.querySelector('.category-tabs');
+                // Show/hide category tabs and page header based on section
+                const categoryTabsDiv = document.querySelector('.category-tabs');
+                const pageHeader = document.querySelector('.page-header');
+                
                 if (target === 'posts') {
-                    categoryTabs.style.display = 'flex';
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Recent Posts';
+                        pageHeader.querySelector('.page-subtitle').textContent = 'AI, 시스템 설계, 그리고 개발 이야기';
+                    }
+                } else if (target === 'category') {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Posts by Category';
+                        pageHeader.querySelector('.page-subtitle').textContent = '카테고리별 글 모음';
+                    }
+                    // Copy posts to category section
+                    const categorySection = document.getElementById('category');
+                    const postsSection = document.getElementById('posts');
+                    if (categorySection && postsSection) {
+                        categorySection.querySelector('.posts-list').innerHTML = postsSection.querySelector('.posts-list').innerHTML;
+                    }
+                } else if (target === 'tags') {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Posts by Tags';
+                        pageHeader.querySelector('.page-subtitle').textContent = '태그별 글 모음';
+                    }
                 } else {
-                    categoryTabs.style.display = 'none';
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
+                    if (pageHeader) pageHeader.style.display = 'none';
                 }
             });
         });
         
         // Category Tabs
         const categoryTabs = document.querySelectorAll('.category-tab');
+        const postCards = document.querySelectorAll('.post-card');
         
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', (e) => {
                 e.preventDefault();
                 categoryTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
+                
+                const category = tab.getAttribute('href').substring(1);
+                
+                postCards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const postCategory = card.querySelector('.post-category');
+                        if (postCategory && postCategory.textContent.toLowerCase() === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
             });
         });
         
