@@ -169,6 +169,39 @@ class InsightsLoader {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const loader = new InsightsLoader();
-    const insights = await loader.loadInsightsList();
-    loader.renderInsightsList(insights, 'insights-container');
+    const container = document.getElementById('insights-container');
+    
+    if (container) {
+        try {
+            const insights = await loader.loadInsightsList();
+            if (insights.length > 0) {
+                loader.renderInsightsList(insights, 'insights-container');
+            } else {
+                // Fallback to static HTML if dynamic loading fails
+                container.innerHTML = `
+                    <div class="article-grid">
+                        <div class="article-item">
+                            <a href="articles/ai-apt-representative.html" class="article-link">
+                                <h4 class="article-title">AI 없이는 불가능했던 동대표 활동</h4>
+                                <p class="article-meta">AI와 동대표 활동 | 2024년 4월</p>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading insights:', error);
+            // Fallback to static HTML
+            container.innerHTML = `
+                <div class="article-grid">
+                    <div class="article-item">
+                        <a href="articles/ai-apt-representative.html" class="article-link">
+                            <h4 class="article-title">AI 없이는 불가능했던 동대표 활동</h4>
+                            <p class="article-meta">AI와 동대표 활동 | 2024년 4월</p>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+    }
 });
