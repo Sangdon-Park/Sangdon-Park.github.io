@@ -213,3 +213,41 @@ Serena MCP는 강력한 도구이나, 설치 과정에서 웹 대시보드 설�
 ---
 **작성일:** 2025년 1월 14일  
 **참고 자료:** [hansdev.kr - Serena MCP 설치 가이드](https://hansdev.kr/tech/serena-mcp/)
+
+<script>
+// Markdown content for copy/download
+const markdownContent = `# Serena MCP 개요와 설치, Claude Code 통합
+
+## 💡 Claude와 함께 문제 해결하기
+
+Serena 설치 중 "Failed to connect" 오류가 계속 발생한다면:
+1. 이 글 전체를 복사하여 \`.md\` 파일로 저장
+2. Claude에게 해당 파일을 제공하며 "이 가이드를 참고해서 Serena MCP 설치를 도와줘"라고 요청
+3. Claude가 가이드를 읽고 단계별로 문제를 해결해 줄 것입니다
+
+[... 전체 내용 ...]
+`;
+
+// Copy button functionality
+document.getElementById('copyContent')?.addEventListener('click', function() {
+    navigator.clipboard.writeText(markdownContent).then(function() {
+        document.getElementById('copyStatus').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('copyStatus').style.display = 'none';
+        }, 3000);
+    });
+});
+
+// Download button functionality
+document.getElementById('downloadMd')?.addEventListener('click', function() {
+    const blob = new Blob([markdownContent], { type: 'text/markdown;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'serena-mcp-installation-guide.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+});
+</script>

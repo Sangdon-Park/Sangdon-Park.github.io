@@ -23,7 +23,7 @@ exclude:
 collections:
   posts:
     output: true
-    permalink: /articles/:name
+    permalink: /articles/:name.html
 
 # Defaults
 defaults:
