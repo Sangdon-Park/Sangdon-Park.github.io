@@ -109,7 +109,7 @@
             </div>
             
             <!-- Posts Section -->
-            <section class="posts-section">
+            <section id="posts" class="posts-section">
                 <div class="posts-list">
                     <!-- Post 1 -->
                     <a href="articles/serena-mcp-guide.html" class="post-card">
@@ -233,6 +233,65 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Publications Section -->
+            <section id="publications" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Publications</h2>
+                </div>
+                <div class="posts-list">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">Conference</span>
+                            <span class="post-date">2023</span>
+                        </div>
+                        <h3 class="post-title">EdgeSim: A Simulation Framework for Edge Computing Environments</h3>
+                        <p class="post-excerpt">
+                            S. Park, J. Kim, and H. Lee. IEEE International Conference on Cloud Computing (CLOUD), 2023.
+                            A comprehensive simulation framework for modeling and evaluating edge computing scenarios with realistic network conditions.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Edge Computing</span>
+                            <span class="tag">Simulation</span>
+                            <span class="tag">IEEE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">Journal</span>
+                            <span class="post-date">2022</span>
+                        </div>
+                        <h3 class="post-title">Real-time Solar Panel Defect Detection using Deep Learning</h3>
+                        <p class="post-excerpt">
+                            S. Park, M. Choi. Journal of Renewable Energy Systems, Vol. 15, No. 3, pp. 234-248, 2022.
+                            Novel approach for detecting defects in solar panels using drone imagery and convolutional neural networks.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Renewable Energy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">Conference</span>
+                            <span class="post-date">2021</span>
+                        </div>
+                        <h3 class="post-title">Distributed Task Scheduling in Mobile Edge Computing</h3>
+                        <p class="post-excerpt">
+                            S. Park, K. Jung. ACM International Conference on Mobile Computing and Networking (MobiCom), 2021.
+                            Efficient task scheduling algorithm for mobile edge computing environments with energy constraints.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Mobile Computing</span>
+                            <span class="tag">Task Scheduling</span>
+                            <span class="tag">ACM</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
         
         <!-- Back to Top Button -->
@@ -263,15 +322,25 @@
                 navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
                 
-                // Show/hide sections
-                const target = link.getAttribute('href').substring(1);
+                // Hide all sections first
                 sections.forEach(section => {
-                    if (section.id === target) {
-                        section.style.display = 'block';
-                    } else if (section.id) {
-                        section.style.display = 'none';
-                    }
+                    section.style.display = 'none';
                 });
+                
+                // Show target section
+                const target = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(target);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+                
+                // Show/hide category tabs based on section
+                const categoryTabs = document.querySelector('.category-tabs');
+                if (target === 'posts') {
+                    categoryTabs.style.display = 'flex';
+                } else {
+                    categoryTabs.style.display = 'none';
+                }
             });
         });
         
