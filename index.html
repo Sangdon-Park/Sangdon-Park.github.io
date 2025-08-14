@@ -1,35 +1,306 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;URL='ko.html'" />
-    <title>Dr. Sangdon Park - Academic Profile</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-        p {
-            margin: 20px;
-        }
-        a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Sangdon Park - AI System Designer & Developer</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Dr. Sangdon Park - Academic Profile</h1>
-    <p>자동으로 이동하지 않는 경우, 아래 링크를 클릭해주세요:</p>
-    <p>If you are not redirected automatically, please click one of the following links:</p>
-    <p><a href="ko.html">한국어 버전 (Korean)</a> | <a href="en.html">English Version</a></p>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="profile-section">
+                <img src="images/Sangdon.jpg" alt="Sangdon Park" class="profile-avatar">
+                <h1 class="profile-name">Sangdon Park</h1>
+                <p class="profile-title">AI System Designer & Developer</p>
+                <div class="profile-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Seoul, Korea</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="mailto:chaos@sayberrygames.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Sangdon-Park" class="social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sangdon/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="social-link" target="_blank" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="nav-section">
+                <div class="nav-title">Navigation</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#posts" class="nav-link active">
+                            <i class="fas fa-home"></i> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#category" class="nav-link">
+                            <i class="fas fa-folder"></i> Category
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tags" class="nav-link">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <nav class="nav-section">
+                <div class="nav-title">About</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link">
+                            <i class="fas fa-briefcase"></i> Experience
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">
+                            <i class="fas fa-project-diagram"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#publications" class="nav-link">
+                            <i class="fas fa-book"></i> Publications
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <header class="page-header">
+                <h1 class="page-title">Recent Posts</h1>
+                <p class="page-subtitle">AI, 시스템 설계, 그리고 개발 이야기</p>
+            </header>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <a href="#all" class="category-tab active">
+                    <span>All</span>
+                    <span class="category-count">2</span>
+                </a>
+                <a href="#tech" class="category-tab">
+                    <span>Tech</span>
+                    <span class="category-count">1</span>
+                </a>
+                <a href="#ai" class="category-tab">
+                    <span>AI</span>
+                    <span class="category-count">1</span>
+                </a>
+            </div>
+            
+            <!-- Posts Section -->
+            <section class="posts-section">
+                <div class="posts-list">
+                    <!-- Post 1 -->
+                    <a href="articles/serena-mcp-guide.html" class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">Tech</span>
+                            <span class="post-date">2025년 8월 14일</span>
+                        </div>
+                        <h2 class="post-title">Serena MCP 개요와 설치, Claude Code 통합</h2>
+                        <p class="post-excerpt">
+                            LLM(Large Language Model)이 코딩 어시스턴트로 급부상하면서, 개발자들은 더 나은 도구를 갈망하고 있습니다. 
+                            ChatGPT, Claude, Gemini 같은 AI들이 코드를 이해하고 생성할 수는 있지만, 실제 프로젝트의 복잡한 구조와 
+                            의존성을 완벽히 파악하기에는 한계가 있습니다. Serena MCP는 이러한 문제를 해결하기 위해 등장한 고급 코딩 도구입니다.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Claude Code</span>
+                            <span class="tag">MCP</span>
+                            <span class="tag">AI Tools</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Post 2 -->
+                    <a href="articles/ai-apt-representative.html" class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">AI</span>
+                            <span class="post-date">2025년 4월 8일</span>
+                        </div>
+                        <h2 class="post-title">AI 없이는 불가능했던 동대표 활동</h2>
+                        <p class="post-excerpt">
+                            지난해 9월부터 아파트 동대표 활동을 병행하며 AI 기술을 적극 활용했습니다. 
+                            복잡한 보고서 분석, 데이터 기반 의사결정, 공모사업 제안서 작성 등 다양한 업무에 
+                            AI를 활용한 경험을 공유합니다. 일상 속에서 AI를 효과적으로 활용하는 방법에 대한 실제 사례들을 소개합니다.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">AI 활용</span>
+                            <span class="tag">생산성</span>
+                            <span class="tag">실무 경험</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- Experience Section -->
+            <section id="experience" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Experience</h2>
+                </div>
+                <div class="posts-list">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-date">2019 - 현재</span>
+                        </div>
+                        <h3 class="post-title">Co-Founder & CTO - Sayberry Games</h3>
+                        <p class="post-excerpt">
+                            AI 기반 게임 개발 및 시스템 아키텍처 설계. Unity 엔진을 활용한 멀티플랫폼 게임 개발 주도.
+                            실시간 멀티플레이어 시스템 구축 및 클라우드 인프라 관리.
+                        </p>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-date">2020 - 2023</span>
+                        </div>
+                        <h3 class="post-title">Research Fellow - 한국전자통신연구원 (ETRI)</h3>
+                        <p class="post-excerpt">
+                            빅데이터 처리 프레임워크 개발 및 실시간 스트림 처리 시스템 연구. 
+                            Apache Spark 기반 분산 처리 시스템 최적화 및 머신러닝 파이프라인 구축.
+                        </p>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-date">2016 - 2018</span>
+                        </div>
+                        <h3 class="post-title">Senior Software Engineer - Marvrus Inc.</h3>
+                        <p class="post-excerpt">
+                            모바일 게임 백엔드 시스템 개발 및 실시간 멀티플레이어 아키텍처 설계.
+                            대규모 사용자 트래픽 처리를 위한 서버 최적화 및 데이터베이스 설계.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Projects Section -->
+            <section id="projects" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <div class="posts-list">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">AI</span>
+                            <span class="post-date">2024 - 현재</span>
+                        </div>
+                        <h3 class="post-title">솔라패널 오염감지 AI 시스템</h3>
+                        <p class="post-excerpt">
+                            드론과 AI를 활용한 대규모 태양광 발전소 유지보수 자동화 시스템 개발.
+                            실시간 이미지 분석을 통한 오염 및 결함 감지, 예측 유지보수 알고리즘 구현.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Edge Computing</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">System</span>
+                            <span class="post-date">2023 - 2024</span>
+                        </div>
+                        <h3 class="post-title">Edge Computing Simulator</h3>
+                        <p class="post-excerpt">
+                            분산 엣지 컴퓨팅 환경을 시뮬레이션하는 플랫폼 개발.
+                            네트워크 지연, 리소스 할당, 태스크 스케줄링 알고리즘 연구 및 구현.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Distributed Systems</span>
+                            <span class="tag">Simulation</span>
+                            <span class="tag">C++</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Back to Top Button -->
+        <a href="#" class="back-to-top" id="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+            <span>BACK TO TOP</span>
+        </a>
+    </div>
+    
+    <script>
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.posts-section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Show/hide sections
+                const target = link.getAttribute('href').substring(1);
+                sections.forEach(section => {
+                    if (section.id === target) {
+                        section.style.display = 'block';
+                    } else if (section.id) {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Category Tabs
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+        
+        // Back to Top
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
