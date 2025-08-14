@@ -1,94 +1,126 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serena MCP 설치 가이드 - 박상돈</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Serena MCP 설치 가이드 - Sangdon Park</title>
+    <link rel="stylesheet" href="../css/article.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <h2><a href="../ko.html#home" style="color: inherit; text-decoration: none;">박상돈</a></h2>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="profile-section">
+                <img src="../images/Sangdon.jpg" alt="Sangdon Park" class="profile-avatar">
+                <h1 class="profile-name">Sangdon Park</h1>
+                <p class="profile-title">AI System Designer & Developer</p>
+                <div class="profile-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Seoul, Korea</span>
                 </div>
-                <nav class="nav">
-                     <ul class="nav-links">
-                        <li><a href="../ko.html#home">홈</a></li>
-                        <li><a href="../ko.html#about">소개</a></li>
-                        <li><a href="../ko.html#writings" class="active">인사이트</a></li>
-                        <li><a href="../ko.html#research">연구</a></li>
-                        <li><a href="../ko.html#publications">대표 논문</a></li>
-                        <li><a href="../ko.html#seminar">AI 세미나</a></li>
-                        <li><a href="../ko.html#experience">경력</a></li>
-                        <li><a href="../ko.html#education">학력</a></li>
-                        <li><a href="../ko.html#contact">연락처</a></li>
-                    </ul>
-                </nav>
-                 <div class="language-toggle">
-                    <a href="../en.html" class="lang-btn">EN</a>
-                    <a href="../ko.html" class="lang-btn active">KO</a>
-                </div>
-                <div class="nav-toggle" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
+                
+                <div class="social-links">
+                    <a href="mailto:chaos@sayberrygames.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Sangdon-Park" class="social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sangdon/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="social-link" target="_blank" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </header>
+            
+            <nav class="nav-section">
+                <div class="nav-title">Navigation</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html#posts" class="nav-link">
+                            <i class="fas fa-home"></i> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html#category" class="nav-link">
+                            <i class="fas fa-folder"></i> Category
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html#tags" class="nav-link">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
 
-    <main>
-        <section class="section article-page">
-            <div class="container">
-                 <div class="article-content">
-                    <div class="article-header">
-                        <h2 class="article-main-title">Serena MCP 설치 가이드 - 완전한 문제 해결 방법</h2>
-                         <p class="article-date">Claude Code와 함께 사용하는 고급 코딩 도구 | 2025년 8월 14일</p>
-                         <div class="breadcrumb">
-                             <a href="../ko.html#writings">인사이트</a> / <span>기술 가이드</span> 
-                        </div>
+        <!-- Main Content -->
+        <main class="article-main">
+            <a href="../index.html#posts" class="back-to-posts">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Posts</span>
+            </a>
+            
+            <article class="article-wrapper">
+                <header class="article-header">
+                    <span class="article-category">Tech</span>
+                    <h1 class="article-title">Serena MCP 개요와 설치, Claude Code 통합</h1>
+                    <div class="article-meta">
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> 2025년 8월 14일
+                        </span>
+                        <span class="article-reading-time">
+                            <i class="far fa-clock"></i> 15 min read
+                        </span>
                     </div>
-                    <div class="article-body">
-                        <div style="background: #1e293b; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-                            <h4 style="color: #60a5fa; margin-top: 0;">💡 Claude와 함께 문제 해결하기</h4>
-                            <p style="color: #cbd5e1; margin: 10px 0;">Serena 설치 중 "Failed to connect" 오류가 계속 발생한다면:</p>
-                            <ol style="color: #cbd5e1;">
-                                <li>이 글 전체를 복사하여 <code>.md</code> 파일로 저장</li>
-                                <li>Claude에게 해당 파일을 제공하며 "이 가이드를 참고해서 Serena MCP 설치를 도와줘"라고 요청</li>
-                                <li>Claude가 가이드를 읽고 단계별로 문제를 해결해 줄 것입니다</li>
-                            </ol>
-                        </div>
-
-                        <h3>개요</h3>
-                        <p>본 문서는 Serena MCP 설치 과정에서 발생하는 모든 알려진 문제와 해결 방법을 다룹니다. 5시간의 트러블슈팅 결과와 <a href="https://hansdev.kr/tech/serena-mcp/" target="_blank" rel="noopener noreferrer">hansdev님의 블로그 글</a>을 참고하여 작성되었습니다.</p>
-
-                        <h3>주요 요구사항</h3>
+                </header>
+                
+                <div class="article-content">
+                    <div class="tip-box">
+                        <h4>💡 Claude와 함께 문제 해결하기</h4>
+                        <p>Serena 설치 중 "Failed to connect" 오류가 계속 발생한다면:</p>
                         <ol>
-                            <li><strong>web_dashboard: false</strong> - 이 설정이 누락되면 설치가 실패합니다.</li>
-                            <li><strong>uv sync</strong> - 의존성 설치가 반드시 필요합니다.</li>
-                            <li><strong>글로벌 ~/.claude.json</strong> - 프로젝트별 설정이 아닌 글로벌 설정을 사용해야 합니다.</li>
+                            <li>이 글 전체를 복사하여 <code>.md</code> 파일로 저장</li>
+                            <li>Claude에게 해당 파일을 제공하며 "이 가이드를 참고해서 Serena MCP 설치를 도와줘"라고 요청</li>
+                            <li>Claude가 가이드를 읽고 단계별로 문제를 해결해 줄 것입니다</li>
                         </ol>
+                    </div>
 
-                        <h3>Serena MCP 소개</h3>
-                        <p>Serena MCP는 LLM을 위한 고급 코딩 도구입니다. 주요 기능:</p>
-                        <ul>
-                            <li><strong>심볼 단위 코드 분석</strong>: 함수, 클래스, 변수를 정확하게 식별</li>
-                            <li><strong>프로젝트 구조 분석</strong>: 파일 간 의존성 및 관계 파악</li>
-                            <li><strong>효율적인 코드 수정</strong>: 토큰 사용량을 최소화하며 필요한 부분만 수정</li>
-                            <li><strong>다중 언어 지원</strong>: Python, TypeScript, JavaScript, Go, Rust, Ruby, Swift</li>
-                        </ul>
+                    <h2>개요</h2>
+                    <p>본 문서는 Serena MCP 설치 과정에서 발생하는 모든 알려진 문제와 해결 방법을 다룹니다. 5시간의 트러블슈팅 결과와 <a href="https://hansdev.kr/tech/serena-mcp/" target="_blank" rel="noopener noreferrer">hansdev.kr 블로그</a>를 참고하여 작성되었습니다.</p>
 
-                        <h3>MCP(Model Context Protocol)</h3>
-                        <p>Anthropic에서 개발한 프로토콜로, AI 모델이 외부 도구와 통신할 수 있도록 지원합니다. Claude Code의 파일 시스템 접근, 웹 검색 등이 MCP를 통해 구현됩니다.</p>
+                    <h2>주요 요구사항</h2>
+                    <ol>
+                        <li><strong>web_dashboard: false</strong> - 이 설정이 누락되면 설치가 실패합니다.</li>
+                        <li><strong>uv sync</strong> - 의존성 설치가 반드시 필요합니다.</li>
+                        <li><strong>글로벌 ~/.claude.json</strong> - 프로젝트별 설정이 아닌 글로벌 설정을 사용해야 합니다.</li>
+                    </ol>
 
-                        <h3>정확한 설치 절차</h3>
-                        
-                        <h4>사전 요구사항</h4>
-                        <pre><code># Python 3.8+ 확인
+                    <h2>Serena MCP 소개</h2>
+                    <p>Serena MCP는 LLM을 위한 고급 코딩 도구입니다. 주요 기능:</p>
+                    <ul>
+                        <li><strong>심볼 단위 코드 분석</strong>: 함수, 클래스, 변수를 정확하게 식별</li>
+                        <li><strong>프로젝트 구조 분석</strong>: 파일 간 의존성 및 관계 파악</li>
+                        <li><strong>효율적인 코드 수정</strong>: 토큰 사용량을 최소화하며 필요한 부분만 수정</li>
+                        <li><strong>다중 언어 지원</strong>: Python, TypeScript, JavaScript, Go, Rust, Ruby, Swift</li>
+                    </ul>
+
+                    <h3>MCP(Model Context Protocol)</h3>
+                    <p>Anthropic에서 개발한 프로토콜로, AI 모델이 외부 도구와 통신할 수 있도록 지원합니다. Claude Code의 파일 시스템 접근, 웹 검색 등이 MCP를 통해 구현됩니다.</p>
+
+                    <h2>정확한 설치 절차</h2>
+                    
+                    <h3>사전 요구사항</h3>
+                    <pre><code># Python 3.8+ 확인
 python3 --version
 
 # Git 확인
@@ -104,8 +136,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # 설치 확인
 uv --version</code></pre>
 
-                        <h4>1단계: 기존 설치 제거</h4>
-                        <pre><code># 실행 중인 프로세스 확인 및 종료
+                    <h3>1단계: 기존 설치 제거</h3>
+                    <pre><code># 실행 중인 프로세스 확인 및 종료
 ps aux | grep serena
 # kill [PID]
 
@@ -125,8 +157,8 @@ find ~/.local/share/uv -name "*serena*" -exec rm -rf {} + 2>/dev/null
 # 기존 클론 삭제
 rm -rf ~/work/serena</code></pre>
 
-                        <h4>2단계: 로컬 설치</h4>
-                        <pre><code># 작업 디렉토리 생성
+                    <h3>2단계: 로컬 설치</h3>
+                    <pre><code># 작업 디렉토리 생성
 mkdir -p ~/work
 cd ~/work
 
@@ -140,8 +172,8 @@ uv sync
 # 성공 메시지 확인 (55개 패키지 설치)
 # Installed 55 packages in XXXms</code></pre>
 
-                        <h4>3단계: 설정 파일 구성</h4>
-                        <pre><code># 설정 디렉토리 생성
+                    <h3>3단계: 설정 파일 구성</h3>
+                    <pre><code># 설정 디렉토리 생성
 mkdir -p ~/.serena
 
 # 템플릿 복사
@@ -155,11 +187,11 @@ sed -i 's/web_dashboard_open_on_launch: True/web_dashboard_open_on_launch: false
 # web_dashboard: false
 # web_dashboard_open_on_launch: false</code></pre>
 
-                        <h4>4단계: Claude 설정</h4>
-                        <p>Python 스크립트를 작성하여 Claude 설정을 자동화할 수 있습니다. 글로벌 설정에 Serena를 추가하고 프로젝트별 중복을 제거합니다.</p>
+                    <h3>4단계: Claude 설정</h3>
+                    <p>Python 스크립트를 작성하여 Claude 설정을 자동화할 수 있습니다. 글로벌 설정에 Serena를 추가하고 프로젝트별 중복을 제거합니다.</p>
 
-                        <h4>5단계: 검증 및 Claude 재시작</h4>
-                        <pre><code># 설정 확인
+                    <h3>5단계: 검증 및 Claude 재시작</h3>
+                    <pre><code># 설정 확인
 grep -A 10 '"serena"' ~/.claude.json
 
 # JSON-RPC 테스트
@@ -175,68 +207,70 @@ claude --resume
 /mcp
 # serena: Connected 표시 확인</code></pre>
 
-                        <h3>핵심 지침</h3>
-                        
-                        <h4>금지 사항</h4>
-                        <ol>
-                            <li><code>uvx --from serena-agent</code> 사용 금지</li>
-                            <li><code>serena start-mcp-server</code> 사용 금지 (웹 대시보드 시작)</li>
-                            <li>PyPI 패키지 사용 금지 (구버전)</li>
-                            <li>프로젝트별 .claude.json 설정 금지</li>
-                            <li><code>web_dashboard: True</code> 설정 금지</li>
-                            <li><code>uv sync</code> 생략 금지</li>
-                        </ol>
+                    <h2>핵심 지침</h2>
+                    
+                    <h3>금지 사항</h3>
+                    <ol>
+                        <li><code>uvx --from serena-agent</code> 사용 금지</li>
+                        <li><code>serena start-mcp-server</code> 사용 금지 (웹 대시보드 시작)</li>
+                        <li>PyPI 패키지 사용 금지 (구버전)</li>
+                        <li>프로젝트별 .claude.json 설정 금지</li>
+                        <li><code>web_dashboard: True</code> 설정 금지</li>
+                        <li><code>uv sync</code> 생략 금지</li>
+                    </ol>
 
-                        <h4>필수 사항</h4>
-                        <ol>
-                            <li>GitHub에서 직접 클론</li>
-                            <li><code>uv sync</code>로 의존성 설치</li>
-                            <li><code>web_dashboard: false</code> 설정</li>
-                            <li><code>uv run --directory</code> 사용</li>
-                            <li>글로벌 ~/.claude.json 설정</li>
-                            <li>중복 설정 제거</li>
-                        </ol>
+                    <h3>필수 사항</h3>
+                    <ol>
+                        <li>GitHub에서 직접 클론</li>
+                        <li><code>uv sync</code>로 의존성 설치</li>
+                        <li><code>web_dashboard: false</code> 설정</li>
+                        <li><code>uv run --directory</code> 사용</li>
+                        <li>글로벌 ~/.claude.json 설정</li>
+                        <li>중복 설정 제거</li>
+                    </ol>
 
-                        <h3>결론</h3>
-                        <p>Serena MCP는 강력한 도구이나, 설치 과정에서 웹 대시보드 설정과 의존성 설치가 핵심입니다.</p>
-                        
-                        <p><strong>필수 확인 사항:</strong></p>
-                        <ol>
-                            <li><code>web_dashboard: false</code></li>
-                            <li><code>uv sync</code> 실행</li>
-                            <li>글로벌 설정 사용</li>
-                        </ol>
-                        
-                        <p>본 가이드를 정확히 따르면 설치에 성공할 수 있습니다.</p>
-
-                        <div class="article-footer">
-                            <hr>
-                            <p><strong>Keywords</strong>: Serena MCP, Claude Code, Model Context Protocol, AI coding assistant, installation guide, web_dashboard, uv sync</p>
-                            <p><strong>작성일</strong>: 2025년 8월 14일<br>
-                            <strong>참고 자료</strong>: <a href="https://hansdev.kr/tech/serena-mcp/" target="_blank" rel="noopener noreferrer">hansdev.kr - Serena MCP 설치 가이드</a></p>
-                        </div>
+                    <h2>결론</h2>
+                    <p>Serena MCP는 강력한 도구이나, 설치 과정에서 웹 대시보드 설정과 의존성 설치가 핵심입니다.</p>
+                    
+                    <p><strong>필수 확인 사항:</strong></p>
+                    <ol>
+                        <li><code>web_dashboard: false</code></li>
+                        <li><code>uv sync</code> 실행</li>
+                        <li>글로벌 설정 사용</li>
+                    </ol>
+                    
+                    <p>본 가이드를 정확히 따르면 설치에 성공할 수 있습니다.</p>
+                </div>
+                
+                <footer class="article-footer">
+                    <div class="article-tags">
+                        <a href="#" class="article-tag">Claude Code</a>
+                        <a href="#" class="article-tag">MCP</a>
+                        <a href="#" class="article-tag">AI Tools</a>
+                        <a href="#" class="article-tag">Installation Guide</a>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2024 박상돈. 모든 권리 보유.</p>
-                </div>
-                <div class="social-links">
-                    <a href="mailto:chaos@sayberrygames.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://github.com/Sangdon-Park" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sangdon/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/script.js"></script>
+                    
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border);">
+                        <p style="color: var(--text-secondary); font-size: 14px;">
+                            <strong>작성일:</strong> 2025년 8월 14일<br>
+                            <strong>참고 자료:</strong> <a href="https://hansdev.kr/tech/serena-mcp/" target="_blank" rel="noopener noreferrer">hansdev.kr - Serena MCP 설치 가이드</a>
+                        </p>
+                    </div>
+                </footer>
+            </article>
+        </main>
+    </div>
+    
+    <script>
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (mobileToggle && sidebar) {
+            mobileToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
+    </script>
 </body>
 </html>
