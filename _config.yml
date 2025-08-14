@@ -1,0 +1,51 @@
+# Jekyll 설정
+title: Sangdon Park
+description: Principal Researcher @ Sayberry Games Inc.
+url: "https://sangdon-park.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .git
+  - .gitignore
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /articles/:name
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Site settings
+author:
+  name: Sangdon Park
+  email: chaos@sayberrygames.com
+  github: Sangdon-Park
+  linkedin: sangdon
+  scholar: JZFDtsgAAAAJ
+  location: Daejeon, Korea
+
+# Google Analytics
+google_analytics: G-1K1LDRRVD1
+gtm_id: GTM-NKT8SV46
