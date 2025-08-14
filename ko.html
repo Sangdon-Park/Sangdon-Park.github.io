@@ -45,11 +45,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#category" class="nav-link">
-                            <i class="fas fa-folder"></i> Category
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#tags" class="nav-link">
                             <i class="fas fa-tags"></i> Tags
                         </a>
@@ -108,13 +103,21 @@
                     <span>All</span>
                     <span class="category-count">3</span>
                 </a>
-                <a href="#tech" class="category-tab">
-                    <span>Tech</span>
-                    <span class="category-count">1</span>
+                <a href="#research" class="category-tab">
+                    <span>Research</span>
+                    <span class="category-count">0</span>
                 </a>
                 <a href="#ai" class="category-tab">
                     <span>AI</span>
-                    <span class="category-count">2</span>
+                    <span class="category-count">3</span>
+                </a>
+                <a href="#insight" class="category-tab">
+                    <span>Insight</span>
+                    <span class="category-count">0</span>
+                </a>
+                <a href="#others" class="category-tab">
+                    <span>Others</span>
+                    <span class="category-count">0</span>
                 </a>
             </div>
             
@@ -124,7 +127,7 @@
                     <!-- Post 1 -->
                     <a href="articles/serena-mcp-guide.html" class="post-card">
                         <div class="post-header">
-                            <span class="post-category">Tech</span>
+                            <span class="post-category">AI</span>
                             <span class="post-date">2025년 8월 14일</span>
                         </div>
                         <h2 class="post-title">Serena MCP 개요와 설치, Claude Code 통합</h2>
@@ -180,12 +183,6 @@
                 </div>
             </section>
             
-            <!-- Category Section -->
-            <section id="category" class="posts-section" style="display: none;">
-                <div class="posts-list">
-                    <!-- Posts will be shown here with category filter -->
-                </div>
-            </section>
             
             <!-- Tags Section -->
             <section id="tags" class="posts-section" style="display: none;">
@@ -470,40 +467,27 @@
                     targetSection.style.display = 'block';
                 }
                 
-                // Show/hide category tabs and page header based on section
-                const categoryTabsDiv = document.querySelector('.category-tabs');
+                // Show/hide page header based on section
                 const pageHeader = document.querySelector('.page-header');
                 
                 if (target === 'posts') {
-                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
                     if (pageHeader) {
                         pageHeader.style.display = 'block';
                         pageHeader.querySelector('.page-title').textContent = 'Recent Posts';
                         pageHeader.querySelector('.page-subtitle').textContent = 'AI, 시스템 설계, 그리고 개발 이야기';
                     }
-                } else if (target === 'category') {
+                    const categoryTabsDiv = document.querySelector('.category-tabs');
                     if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
-                    if (pageHeader) {
-                        pageHeader.style.display = 'block';
-                        pageHeader.querySelector('.page-title').textContent = 'Posts by Category';
-                        pageHeader.querySelector('.page-subtitle').textContent = '카테고리별 글 모음';
-                    }
-                    // Copy posts to category section
-                    const categorySection = document.getElementById('category');
-                    const postsSection = document.getElementById('posts');
-                    if (categorySection && postsSection) {
-                        categorySection.querySelector('.posts-list').innerHTML = postsSection.querySelector('.posts-list').innerHTML;
-                    }
                 } else if (target === 'tags') {
-                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
                     if (pageHeader) {
                         pageHeader.style.display = 'block';
                         pageHeader.querySelector('.page-title').textContent = 'Posts by Tags';
                         pageHeader.querySelector('.page-subtitle').textContent = '태그별 글 모음';
                     }
                 } else {
-                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
                     if (pageHeader) pageHeader.style.display = 'none';
+                    const categoryTabsDiv = document.querySelector('.category-tabs');
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
                 }
             });
         });
@@ -525,7 +509,7 @@
                         card.style.display = 'block';
                     } else {
                         const postCategory = card.querySelector('.post-category');
-                        if (postCategory && postCategory.textContent.toLowerCase() === category) {
+                        if (postCategory && postCategory.textContent.toLowerCase() === category.toLowerCase()) {
                             card.style.display = 'block';
                         } else {
                             card.style.display = 'none';
