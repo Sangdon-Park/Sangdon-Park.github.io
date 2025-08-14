@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Sangdon Park - AI System Design & Development</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/insights-modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,28 +88,10 @@
     <section id="writings" class="section">
         <div class="container">
             <h2 class="section-title">Insights / Thoughts Sharing</h2>
-            <div class="article-list-container">
-                <div class="article-grid">
-                    <div class="article-item">
-                        <a href="articles/ai-llm-passion_en.html" class="article-link">
-                            <h4 class="article-title">5 Months of Intensive Research Experience with AI LLM Services</h4>
-                            <p class="article-meta">AI Utilization Experience and Reflections | Month Year (TBD)</p>
-                        </a>
-                    </div>
-                    <div class="article-item">
-                        <a href="articles/ai-coding-frenzy_en.html" class="article-link">
-                            <h4 class="article-title">3 Months of Intensive Development with AI LLM API Coding</h4>
-                            <p class="article-meta">AI Character Project and Productivity Experience | Month Year (TBD)</p>
-                        </a>
-                    </div>
-                     <div class="article-item">
-                        <a href="#" class="article-link">
-                            <h4 class="article-title">Edge Computing Simulator Development Story (Upcoming)</h4>
-                            <p class="article-meta">Solving a 4-Year Project with AI | Month Year (TBD)</p>
-                        </a>
-                    </div>
-                    <!-- Add more articles here as they are written -->
-                </div>
+            <div class="article-list-container" id="insights-container">
+                <!-- Insights will be loaded dynamically here -->
+                <div class="loading">Loading insights...</div>
+            </div>
                  <!-- Optional: Add a link to a dedicated blog page if many articles accumulate -->
                 <!--
                 <div class="view-more-container" style="margin-top: 2rem;">
@@ -312,5 +295,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/insights-loader-en.js"></script>
 </body>
 </html> 
