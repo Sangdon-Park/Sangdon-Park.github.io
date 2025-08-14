@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Sangdon Park</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="profile-section">
+                <img src="images/Sangdon.jpg" alt="Sangdon Park" class="profile-avatar">
+                <h1 class="profile-name">Sangdon Park</h1>
+                <p class="profile-title">Principal Researcher @ Sayberry Games Inc.</p>
+                <div class="profile-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Daejeon, Korea</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="mailto:chaos@sayberrygames.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Sangdon-Park" class="social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sangdon/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=ko" class="social-link" target="_blank" aria-label="Google Scholar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="nav-section">
+                <div class="nav-title">Navigation</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="ko.html#posts" class="nav-link">
+                            <i class="fas fa-home"></i> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ko.html#tags" class="nav-link">
+                            <i class="fas fa-tags"></i> Tags
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <nav class="nav-section">
+                <div class="nav-title">About</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="ko.html#research" class="nav-link">
+                            <i class="fas fa-flask"></i> Research
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ko.html#experience" class="nav-link">
+                            <i class="fas fa-briefcase"></i> Experience
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ko.html#projects" class="nav-link">
+                            <i class="fas fa-project-diagram"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-book"></i> Publications
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="ko.html#education" class="nav-link">
+                            <i class="fas fa-graduation-cap"></i> Education
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <header class="page-header">
+                <h1 class="page-title">Publications</h1>
+                <p class="page-subtitle">
+                    <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" target="_blank" style="color: var(--accent);">
+                        <i class="fas fa-graduation-cap"></i> View on Google Scholar
+                    </a>
+                </p>
+                <p style="margin-top: 10px; color: var(--text-secondary);">
+                    Papers (Dagger (†) denotes first authors and asterisk (*) denotes corresponding authors.)
+                </p>
+            </header>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <a href="#journals" class="category-tab active">
+                    <span>International Journals</span>
+                    <span class="category-count">25</span>
+                </a>
+                <a href="#conferences" class="category-tab">
+                    <span>International Conferences</span>
+                    <span class="category-count">10</span>
+                </a>
+                <a href="#standards" class="category-tab">
+                    <span>ITU-T Standards</span>
+                    <span class="category-count">8</span>
+                </a>
+                <a href="#patents" class="category-tab">
+                    <span>Patents</span>
+                    <span class="category-count">2</span>
+                </a>
+            </div>
+            
+            <!-- Journals Section -->
+            <section id="journals" class="posts-section">
+                <div class="section-header">
+                    <h2 class="section-title">International Journals</h2>
+                    <p style="color: var(--text-secondary);">Total 25 papers: 4 first-authored, 13 corresponding-authored</p>
+                </div>
+                <div class="posts-list" style="max-width: 1200px; margin: 0 auto;">
+                    <!-- Papers will be dynamically loaded here -->
+                </div>
+            </section>
+            
+            <!-- Conferences Section -->
+            <section id="conferences" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">International Conferences</h2>
+                    <p style="color: var(--text-secondary);">Total 10 papers: 3 first-authored, 2 corresponding-authored</p>
+                </div>
+                <div class="posts-list" style="max-width: 1200px; margin: 0 auto;">
+                    <!-- Papers will be dynamically loaded here -->
+                </div>
+            </section>
+            
+            <!-- Standards Section -->
+            <section id="standards" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">ITU-T Standards</h2>
+                </div>
+                <div class="posts-list" style="max-width: 1200px; margin: 0 auto;">
+                    <!-- Standards will be dynamically loaded here -->
+                </div>
+            </section>
+            
+            <!-- Patents Section -->
+            <section id="patents" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Domestic Patents</h2>
+                </div>
+                <div class="posts-list" style="max-width: 1200px; margin: 0 auto;">
+                    <!-- Patents will be dynamically loaded here -->
+                </div>
+            </section>
+        </main>
+        
+        <!-- Back to Top Button -->
+        <a href="#" class="back-to-top" id="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+            <span>BACK TO TOP</span>
+        </a>
+    </div>
+    
+    <script>
+        // Mobile Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        
+        // Category Tabs
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const sections = document.querySelectorAll('.posts-section');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show target section
+                const target = tab.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(target);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            });
+        });
+        
+        // Back to Top
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Load Publications Data
+        const publicationsData = {
+            journals: [
+                {
+                    number: 1,
+                    authors: '<strong>Sangdon Park</strong>†, Sohee Bae, Joohyung Lee, Youngchul Sung*',
+                    title: 'Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective',
+                    journal: 'IEEE Access',
+                    details: 'vol. 12, pp. 134754-134769, 2024',
+                    link: 'https://doi.org/10.1109/ACCESS.2024.3462499'
+                },
+                {
+                    number: 2,
+                    authors: 'Alaelddin F. Y. Mohammed, Joohyung Lee, <strong>Sangdon Park</strong>*',
+                    title: 'Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning',
+                    journal: 'Sensors',
+                    details: 'vol. 24, no. 15, pp. 5000, Aug., 2024',
+                    link: 'https://doi.org/10.3390/s24155000'
+                },
+                {
+                    number: 3,
+                    authors: 'Hyeonseok Seo, Hyeontaek Oh, Jun Kyun Choi, <strong>Sangdon Park</strong>*',
+                    title: 'Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System',
+                    journal: 'IEEE Internet of Things Journal',
+                    details: 'vol. 9, no. 19, pp. 19116-19131, Oct., 2022',
+                    link: 'https://doi.org/10.1109/JIOT.2022.3163820'
+                },
+                // Add more journals...
+            ],
+            conferences: [
+                {
+                    number: 1,
+                    authors: 'Joohyung Lee, Minkyung Kim, <strong>Sangdon Park</strong>, Jun Kyun Choi, Yoonjin Hwang',
+                    title: 'Driver Identification for Different Road Shapes Using Vehicle IoT Sensing Data',
+                    conference: '2021 IEEE International Conference on Consumer Electronics (ICCE)',
+                    location: 'Las Vegas, NV, USA, January 10-12, 2021'
+                },
+                {
+                    number: 7,
+                    authors: '<strong>Sangdon Park</strong>†, Ganguk Hwang*, Jun Kyun Choi',
+                    title: 'Optimal Throughput Analysis of Random Access Policies for Cognitive Radio Networks with Multiple Channel Access',
+                    conference: '11th International Conference on Queueing Theory and Network Applications (QTNA)',
+                    location: 'Wellington, New Zealand, December 23-15, 2016',
+                    award: '🏆 Best Student Paper Award'
+                },
+                // Add more conferences...
+            ]
+        };
+        
+        // Render publications
+        function renderPublications() {
+            // Render Journals
+            const journalsContainer = document.querySelector('#journals .posts-list');
+            journalsContainer.innerHTML = publicationsData.journals.map(paper => `
+                <div class="post-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: start;">
+                        <span style="color: var(--text-secondary); font-weight: 600;">[${paper.number}]</span>
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 18px; margin-bottom: 8px;">
+                                ${paper.link ? `<a href="${paper.link}" target="_blank" style="color: var(--text); text-decoration: none;">${paper.title}</a>` : paper.title}
+                            </h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 5px;">${paper.authors}</p>
+                            <p style="color: var(--text-secondary); font-style: italic;"><em>${paper.journal}</em>, ${paper.details}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Render Conferences
+            const conferencesContainer = document.querySelector('#conferences .posts-list');
+            conferencesContainer.innerHTML = publicationsData.conferences.map(paper => `
+                <div class="post-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: start;">
+                        <span style="color: var(--text-secondary); font-weight: 600;">[${paper.number}]</span>
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 18px; margin-bottom: 8px;">
+                                ${paper.title}
+                                ${paper.award ? `<span style="color: var(--success); margin-left: 10px;">${paper.award}</span>` : ''}
+                            </h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 5px;">${paper.authors}</p>
+                            <p style="color: var(--text-secondary); font-style: italic;">${paper.conference}, ${paper.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Load publications on page load
+        document.addEventListener('DOMContentLoaded', renderPublications);
+    </script>
+</body>
+</html>
