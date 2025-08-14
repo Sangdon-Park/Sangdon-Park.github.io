@@ -109,7 +109,7 @@
             </div>
             
             <!-- Posts Section -->
-            <section class="posts-section">
+            <section id="posts" class="posts-section">
                 <div class="posts-list">
                     <!-- Post 1 -->
                     <a href="articles/serena-mcp-guide.html" class="post-card">
@@ -148,6 +148,30 @@
                             <span class="tag">실무 경험</span>
                         </div>
                     </a>
+                </div>
+            </section>
+            
+            <!-- Category Section -->
+            <section id="category" class="posts-section" style="display: none;">
+                <div class="posts-list">
+                    <!-- Posts will be shown here with category filter -->
+                </div>
+            </section>
+            
+            <!-- Tags Section -->
+            <section id="tags" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Popular Tags</h2>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Claude Code</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">MCP</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">AI Tools</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">AI 활용</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">생산성</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Edge Computing</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Machine Learning</a>
+                    <a href="#" class="tag" style="padding: 8px 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; color: var(--text); text-decoration: none; transition: all 0.3s;">Computer Vision</a>
                 </div>
             </section>
             
@@ -233,6 +257,88 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Publications Section -->
+            <section id="publications" class="posts-section" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Selected Publications</h2>
+                    <p style="margin-top: 10px;">
+                        <a href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ&hl=en" target="_blank" style="color: var(--accent);">
+                            <i class="fas fa-graduation-cap"></i> View Full List on Google Scholar (25 Journals, 10 Conferences)
+                        </a>
+                    </p>
+                </div>
+                <div class="posts-list">
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">IEEE Access</span>
+                            <span class="post-date">2024</span>
+                        </div>
+                        <h3 class="post-title">Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective</h3>
+                        <p class="post-excerpt">
+                            <strong>Sangdon Park</strong>†, Sohee Bae, Joohyung Lee, Youngchul Sung*, IEEE Access, vol. 12, pp. 134754-134769, 2024.
+                            First-authored paper on market-based pricing mechanisms for edge computing resource allocation.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Edge Computing</span>
+                            <span class="tag">Dynamic Pricing</span>
+                            <span class="tag">First Author</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">IEEE TIE</span>
+                            <span class="post-date">2016</span>
+                        </div>
+                        <h3 class="post-title">Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid</h3>
+                        <p class="post-excerpt">
+                            <strong>Sangdon Park</strong>†, Joohyung Lee*, Sohee Bae, Ganguk Hwang, Jun Kyun Choi. 
+                            IEEE Transactions on Industrial Electronics, vol. 63, no. 7, pp. 4255-4265.
+                            <strong style="color: var(--accent);">Selected journal by IEEE ITeN in 2016</strong>
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Microgrids</span>
+                            <span class="tag">Game Theory</span>
+                            <span class="tag">Award Paper</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">ICCPS</span>
+                            <span class="post-date">2017</span>
+                        </div>
+                        <h3 class="post-title">Resilient Linear Classification: An Approach to Deal with Attacks on Training Data</h3>
+                        <p class="post-excerpt">
+                            <strong>Sangdon Park</strong>†, Justin Weimer, Insup Lee, in Proceedings of the 8th ACM/IEEE International Conference on Cyber-Physical Systems, Pittsburgh, PA, USA.
+                            Addressing adversarial attacks on machine learning training data in cyber-physical systems.
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Security</span>
+                            <span class="tag">CPS</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-header">
+                            <span class="post-category">QTNA</span>
+                            <span class="post-date">2016</span>
+                        </div>
+                        <h3 class="post-title">Optimal Throughput Analysis of Random Access Policies for Cognitive Radio Networks</h3>
+                        <p class="post-excerpt">
+                            <strong>Sangdon Park</strong>†, Ganguk Hwang*, Jun Kyun Choi, 11th International Conference on Queueing Theory and Network Applications, Wellington, New Zealand.
+                            <strong style="color: var(--success);">🏆 Best Student Paper Award</strong>
+                        </p>
+                        <div class="post-tags">
+                            <span class="tag">Cognitive Radio</span>
+                            <span class="tag">Best Paper</span>
+                            <span class="tag">Queueing Theory</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
         
         <!-- Back to Top Button -->
@@ -263,26 +369,80 @@
                 navLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
                 
-                // Show/hide sections
-                const target = link.getAttribute('href').substring(1);
+                // Hide all sections first
                 sections.forEach(section => {
-                    if (section.id === target) {
-                        section.style.display = 'block';
-                    } else if (section.id) {
-                        section.style.display = 'none';
-                    }
+                    section.style.display = 'none';
                 });
+                
+                // Show target section
+                const target = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(target);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+                
+                // Show/hide category tabs and page header based on section
+                const categoryTabsDiv = document.querySelector('.category-tabs');
+                const pageHeader = document.querySelector('.page-header');
+                
+                if (target === 'posts') {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Recent Posts';
+                        pageHeader.querySelector('.page-subtitle').textContent = 'AI, 시스템 설계, 그리고 개발 이야기';
+                    }
+                } else if (target === 'category') {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Posts by Category';
+                        pageHeader.querySelector('.page-subtitle').textContent = '카테고리별 글 모음';
+                    }
+                    // Copy posts to category section
+                    const categorySection = document.getElementById('category');
+                    const postsSection = document.getElementById('posts');
+                    if (categorySection && postsSection) {
+                        categorySection.querySelector('.posts-list').innerHTML = postsSection.querySelector('.posts-list').innerHTML;
+                    }
+                } else if (target === 'tags') {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
+                    if (pageHeader) {
+                        pageHeader.style.display = 'block';
+                        pageHeader.querySelector('.page-title').textContent = 'Posts by Tags';
+                        pageHeader.querySelector('.page-subtitle').textContent = '태그별 글 모음';
+                    }
+                } else {
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
+                    if (pageHeader) pageHeader.style.display = 'none';
+                }
             });
         });
         
         // Category Tabs
         const categoryTabs = document.querySelectorAll('.category-tab');
+        const postCards = document.querySelectorAll('.post-card');
         
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', (e) => {
                 e.preventDefault();
                 categoryTabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
+                
+                const category = tab.getAttribute('href').substring(1);
+                
+                postCards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const postCategory = card.querySelector('.post-category');
+                        if (postCategory && postCategory.textContent.toLowerCase() === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
             });
         });
         
