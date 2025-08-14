@@ -71,10 +71,10 @@ show_back_to_top: true
     </div>
 </section>
 
-<!-- Experience & Education Section -->
+<!-- Experience Section -->
 <section id="experience" class="posts-section" style="display: none;">
     <div class="section-header">
-        <h2 class="section-title">Experience & Education</h2>
+        <h2 class="section-title">Experience</h2>
     </div>
     
     <div class="timeline">

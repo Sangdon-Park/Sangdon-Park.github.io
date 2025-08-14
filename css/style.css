@@ -614,7 +614,7 @@ hr.section-divider {
     margin-top: 40px;
 }
 
-/* Experience & Education Timeline */
+/* Experience Timeline */
 .experience-timeline,
 .education-timeline {
     margin: 0 auto;
@@ -1066,7 +1066,7 @@ html[data-theme="dark"] .social-links a:hover {
     color: var(--primary-color);
 }
 
-/* Experience & Education Adjustments */
+/* Experience Adjustments */
 #experience,
 #education {
     /* Optional: Adjust padding if needed */
