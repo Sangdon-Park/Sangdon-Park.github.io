@@ -275,6 +275,22 @@
 [10] Seonghwa Yun, Kyeongmin Lee, <strong>Sangdon Park</strong> and Jun Kyun Choi*, "Energy efficient relay selection scheme with DRX mechanism in 3GPP LTE network", IEEE International Conference on ICT Convergence (ICTC), Jeju Island, South Korea, October 14-16, 2013.
 `;
 
+        const standardsPapers = `
+[1] <strong>Sangdon Park</strong>, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)", SG13RGM-C-94, ITU-T SG13 Rapporteurs meeting, Geneva, February 2014.
+[2] <strong>Sangdon Park</strong>, Jaewon Ahn, Jun Kyun Choi, Gyu Myoung Lee, "Revised texts for a main chapter of draft recommendation Y.energyECN", SG13RGM-C-75, ITU-T SG13 Rapporteurs meeting, Geneva, February 2014.
+[3] <strong>Sangdon Park</strong>, Jun Kyun Choi, Gyu Myoung Lee "A proposal for definitions of energy efficiency class of network equipment (Y.energyECN)", SG13RGM-C-75, ITU-T SG13 Rapporteurs meeting, Geneva, February 2014.
+[4] <strong>Sangdon Park</strong>, Gyu Myoung Lee, Jun Kyun Choi, "Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment)", COM13-C401-E, ITU-T SG13 meeting, Kampala, November 2013.
+[5] <strong>Sangdon Park</strong>, Seung Hyun Jeon, Jun Kyun Choi and Jeong Yun Kim. "Consideration of classification of sleep mode control on network equipment", SG13RGM-C-06, ITU-T SG13 Rapporteurs meeting, Geneva, June 2013.
+[6] Seung Hyun Jeon, <strong>Sangdon Park</strong>, Jun Kyun Choi, "Revised draft Recommendation Y.energyMRM for requesting the consent", SG13RGM-C-04, ITU-T SG13 Rapporteurs meeting, Geneva, June 2013.
+[7] Seung Hyun Jeon, <strong>Sangdon Park</strong>, Jun Kyun Choi, Jeong Yun Kim, "Consideration of classification for CPU power consumption on network equipment", SG13RGM-C-05, ITU-T SG13 Rapporteurs meeting, Geneva, June 2013.
+[8] <strong>Sangdon Park</strong> (contributor), "ITU-T Y.3074: Energy efficiency requirements and reference framework for cloud computing", International Telecommunication Union, 2020.
+`;
+
+        const patents = `
+[1] 최준균, 오현택, 이주형, <strong>박상돈</strong>, "와이파이 무선 접근 지점의 에너지 절약을 위한 슬립 방법 및 장치", 등록번호: 10-1537895, 2015년 7월 31일.
+[2] 최준균, <strong>박상돈</strong>, 전승현, 박만선, 김준산, "에너지 효율 등급을 제공하는 방법 및 그 시스템", 출원번호: 10-2015-0001326, 2015년 1월 6일.
+`;
+
         // Parse and populate data
         journalPapers.trim().split('\n').forEach(line => {
             const parts = line.split('|');
@@ -297,6 +313,26 @@
                     number: match[1],
                     content: match[2],
                     award: parts[1]
+                });
+            }
+        });
+
+        standardsPapers.trim().split('\n').forEach(line => {
+            const match = line.match(/\[(\d+)\]\s*(.*)/);
+            if (match) {
+                publicationsData.standards.push({
+                    number: match[1],
+                    content: match[2]
+                });
+            }
+        });
+
+        patents.trim().split('\n').forEach(line => {
+            const match = line.match(/\[(\d+)\]\s*(.*)/);
+            if (match) {
+                publicationsData.patents.push({
+                    number: match[1],
+                    content: match[2]
                 });
             }
         });
@@ -343,6 +379,46 @@
                                 ${paper.award ? `<span style="color: var(--success); margin-left: 10px;">${paper.award}</span>` : ''}
                             </h3>
                             <p style="color: var(--text-secondary); margin-bottom: 5px;">${contentWithoutTitle.replace(title, '')}</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+            
+            // Render Standards
+            const standardsContainer = document.querySelector('#standards .posts-list');
+            standardsContainer.innerHTML = publicationsData.standards.map(paper => {
+                const titleMatch = paper.content.match(/"([^"]+)"/);
+                const title = titleMatch ? titleMatch[1] : '';
+                const contentWithoutTitle = paper.content.replace(/"[^"]+",?/, '').trim();
+                
+                return `
+                <div class="post-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: start;">
+                        <span style="color: var(--text-secondary); font-weight: 600;">[${paper.number}]</span>
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 18px; margin-bottom: 8px;">${title}</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 5px;">${contentWithoutTitle}</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+            
+            // Render Patents
+            const patentsContainer = document.querySelector('#patents .posts-list');
+            patentsContainer.innerHTML = publicationsData.patents.map(paper => {
+                const titleMatch = paper.content.match(/"([^"]+)"/);
+                const title = titleMatch ? titleMatch[1] : '';
+                const contentWithoutTitle = paper.content.replace(/"[^"]+",?/, '').trim();
+                
+                return `
+                <div class="post-card" style="margin-bottom: 20px;">
+                    <div style="display: flex; gap: 15px; align-items: start;">
+                        <span style="color: var(--text-secondary); font-weight: 600;">[${paper.number}]</span>
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 18px; margin-bottom: 8px;">${title}</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 5px;">${contentWithoutTitle}</p>
                         </div>
                     </div>
                 </div>
