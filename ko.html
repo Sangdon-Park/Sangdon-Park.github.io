@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>박상돈 - AI 시스템 설계 및 개발</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/insights-modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,28 +99,10 @@
     <section id="writings" class="section">
         <div class="container">
             <h2 class="section-title">인사이트 / 생각 공유</h2>
-            <div class="article-list-container">
-                <div class="article-grid">
-                    <div class="article-item">
-                        <a href="articles/ai-llm-passion.html" class="article-link">
-                            <h4 class="article-title">AI LLM 서비스 집중 연구 경험 5개월</h4>
-                            <p class="article-meta">AI 활용 경험과 성찰 | 2024년 X월</p>
-                        </a>
-                    </div>
-                    <div class="article-item">
-                        <a href="articles/ai-coding-frenzy.html" class="article-link">
-                            <h4 class="article-title">AI LLM API 코딩 집중 개발 3개월</h4>
-                            <p class="article-meta">AI 캐릭터 프로젝트와 생산성 경험 | 2024년 X월</p>
-                        </a>
-                    </div>
-                     <div class="article-item">
-                        <a href="articles/ai-apt-representative.html" class="article-link">
-                            <h4 class="article-title">AI 없이는 불가능했던 동대표 활동</h4>
-                            <p class="article-meta">AI와 동대표 활동 | 2024년 4월</p>
-                        </a>
-                    </div>
-                    <!-- Add more articles here as they are written -->
-                </div>
+            <div class="article-list-container" id="insights-container">
+                <!-- Insights will be loaded dynamically here -->
+                <div class="loading">인사이트를 불러오는 중...</div>
+            </div>
                  <!-- Optional: Add a link to a dedicated blog page if many articles accumulate -->
                 <!--
                 <div class="view-more-container" style="margin-top: 2rem;">
@@ -366,5 +349,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/insights-loader.js"></script>
 </body>
 </html> 

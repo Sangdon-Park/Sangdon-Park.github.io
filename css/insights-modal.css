@@ -1,0 +1,196 @@
+/* Insight Modal Styles */
+.insight-modal {
+    display: block;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.insight-modal-content {
+    background-color: var(--bg-color);
+    margin: 40px auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.insight-modal-header {
+    padding: 30px 40px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.insight-modal-header h2 {
+    color: var(--secondary-color);
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+}
+
+.insight-modal-meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.insight-modal-body {
+    padding: 40px;
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+.insight-modal-body h1 {
+    font-size: 1.5rem;
+    margin: 30px 0 20px;
+    color: var(--secondary-color);
+}
+
+.insight-modal-body h2 {
+    font-size: 1.3rem;
+    margin: 25px 0 15px;
+    color: var(--secondary-color);
+}
+
+.insight-modal-body h3 {
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+    color: var(--secondary-color);
+}
+
+.insight-modal-body p {
+    margin: 15px 0;
+}
+
+.insight-modal-body ul {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.insight-modal-body li {
+    margin: 8px 0;
+}
+
+.insight-modal-body strong {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.insight-modal-body a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.insight-modal-body a:hover {
+    text-decoration: underline;
+}
+
+.insight-modal-body pre {
+    background: var(--bg-light);
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+}
+
+.insight-modal-body code {
+    background: var(--bg-light);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.insight-modal-close {
+    color: var(--text-light);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 30px 0 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.insight-modal-close:hover,
+.insight-modal-close:focus {
+    color: var(--text-color);
+}
+
+/* Article preview in list */
+.article-preview {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 8px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 1.1rem;
+}
+
+/* Dark theme adjustments */
+html[data-theme="dark"] .insight-modal-content {
+    background-color: var(--bg-color);
+}
+
+html[data-theme="dark"] .insight-modal-body pre {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+html[data-theme="dark"] .insight-modal-body code {
+    background: #1a1a1a;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .insight-modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+    
+    .insight-modal-header {
+        padding: 20px 25px 15px;
+    }
+    
+    .insight-modal-body {
+        padding: 25px;
+    }
+    
+    .insight-modal-header h2 {
+        font-size: 1.5rem;
+    }
+}
