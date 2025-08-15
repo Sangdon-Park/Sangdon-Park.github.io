@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Test Page</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKT8SV46');</script>
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKT8SV46"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="container">
+        <h1>Google Analytics Test Page</h1>
+        
+        <div class="status info">
+            <strong>GTM Container ID:</strong> GTM-NKT8SV46
+        </div>
+        
+        <div id="gtm-status" class="status">
+            Checking GTM status...
+        </div>
+        
+        <h2>Test Events</h2>
+        <p>Click these buttons to send test events to Google Analytics:</p>
+        
+        <button onclick="sendTestEvent('button_click', 'test_button_1')">Test Button 1</button>
+        <button onclick="sendTestEvent('button_click', 'test_button_2')">Test Button 2</button>
+        <button onclick="sendTestPageview()">Send Test Pageview</button>
+        
+        <h2>DataLayer Contents</h2>
+        <pre id="datalayer-content">Loading...</pre>
+        
+        <h2>Debugging Instructions</h2>
+        <ol>
+            <li>Open Chrome DevTools (F12)</li>
+            <li>Go to Network tab</li>
+            <li>Filter by "gtm" or "analytics"</li>
+            <li>Reload the page</li>
+            <li>Check if GTM scripts are loading (should see gtm.js)</li>
+            <li>Install Google Tag Assistant Chrome extension for detailed debugging</li>
+            <li>Check Console for any JavaScript errors</li>
+        </ol>
+        
+        <h2>Common Issues</h2>
+        <ul>
+            <li><strong>Ad Blockers:</strong> Disable ad blockers as they may block Google Analytics</li>
+            <li><strong>Container Not Published:</strong> Make sure GTM container is published in GTM interface</li>
+            <li><strong>Wrong Container ID:</strong> Verify GTM-NKT8SV46 is correct</li>
+            <li><strong>No GA4 Tag:</strong> Ensure GA4 tag is configured in GTM container</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Check if dataLayer exists
+        window.dataLayer = window.dataLayer || [];
+        
+        // Function to send test events
+        function sendTestEvent(eventName, eventValue) {
+            window.dataLayer.push({
+                'event': eventName,
+                'value': eventValue,
+                'timestamp': new Date().toISOString()
+            });
+            alert('Event sent: ' + eventName + ' = ' + eventValue);
+            updateDataLayerDisplay();
+        }
+        
+        // Function to send test pageview
+        function sendTestPageview() {
+            window.dataLayer.push({
+                'event': 'test_pageview',
+                'page_path': '/test-page',
+                'page_title': 'Test Page',
+                'timestamp': new Date().toISOString()
+            });
+            alert('Test pageview sent');
+            updateDataLayerDisplay();
+        }
+        
+        // Function to update dataLayer display
+        function updateDataLayerDisplay() {
+            const content = JSON.stringify(window.dataLayer, null, 2);
+            document.getElementById('datalayer-content').textContent = content;
+        }
+        
+        // Check GTM status
+        function checkGTMStatus() {
+            const statusEl = document.getElementById('gtm-status');
+            
+            // Check if dataLayer exists
+            if (window.dataLayer && window.dataLayer.length > 0) {
+                // Check if GTM is loaded
+                if (window.google_tag_manager) {
+                    statusEl.className = 'status success';
+                    statusEl.innerHTML = '<strong>✓ GTM Loaded Successfully</strong><br>Container: GTM-NKT8SV46<br>DataLayer Items: ' + window.dataLayer.length;
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.innerHTML = '<strong>⚠ GTM Script Loading...</strong><br>DataLayer exists but GTM not fully loaded yet. Check Network tab.';
+                }
+            } else {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '<strong>✗ DataLayer Not Found</strong><br>GTM may not be properly initialized.';
+            }
+        }
+        
+        // Initial checks
+        setTimeout(function() {
+            checkGTMStatus();
+            updateDataLayerDisplay();
+        }, 2000);
+        
+        // Update every 5 seconds
+        setInterval(function() {
+            checkGTMStatus();
+        }, 5000);
+        
+        // Log to console
+        console.log('GTM Test Page Loaded');
+        console.log('DataLayer:', window.dataLayer);
+        console.log('GTM Object:', window.google_tag_manager);
+    </script>
+</body>
+</html>
