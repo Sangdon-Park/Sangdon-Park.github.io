@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM Debug - Sangdon Park</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NKT8SV46');</script>
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e2530;
+            color: #f0f0f0;
+        }
+        .debug-section {
+            background: #2a3241;
+            border: 1px solid #394150;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #10b981; color: white; }
+        .error { background: #ef4444; color: white; }
+        .warning { background: #f59e0b; color: white; }
+        .info { background: #3b82f6; color: white; }
+        code {
+            background: #1e2530;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        button {
+            background: #60a5fa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #3b82f6;
+        }
+        #results {
+            background: #1e2530;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKT8SV46"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <h1>🔍 GTM & Analytics Debug Tool</h1>
+    
+    <div class="debug-section">
+        <h2>1. GTM Container Status</h2>
+        <div id="gtm-status" class="status info">Checking...</div>
+        <p>Container ID: <code>GTM-NKT8SV46</code></p>
+    </div>
+    
+    <div class="debug-section">
+        <h2>2. DataLayer Events</h2>
+        <button onclick="testPageView()">Test Page View</button>
+        <button onclick="testCustomEvent()">Test Custom Event</button>
+        <button onclick="showDataLayer()">Show DataLayer</button>
+        <button onclick="clearResults()">Clear</button>
+        <div id="results"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>3. Debugging Steps</h2>
+        <ol>
+            <li><strong>GTM Preview Mode:</strong> 
+                <a href="https://tagmanager.google.com/#/container/accounts/6720514802/containers/209764022/workspaces/11" target="_blank" style="color: #60a5fa;">
+                    Open GTM Container →
+                </a>
+            </li>
+            <li><strong>Tag Assistant:</strong> 
+                <a href="https://tagassistant.google.com/" target="_blank" style="color: #60a5fa;">
+                    Open Tag Assistant →
+                </a>
+            </li>
+            <li><strong>GA4 DebugView:</strong> 
+                <a href="https://analytics.google.com/analytics/web/#/a307516295p435299646/admin/debugview" target="_blank" style="color: #60a5fa;">
+                    Open GA4 Debug →
+                </a>
+            </li>
+        </ol>
+    </div>
+    
+    <div class="debug-section">
+        <h2>4. Common Issues Checklist</h2>
+        <ul>
+            <li>✅ GTM Container Published? (가장 중요!)</li>
+            <li>✅ GA4 Configuration Tag 설정?</li>
+            <li>✅ GA4 측정 ID (G-XXXXXXXXX) 설정?</li>
+            <li>✅ 트리거 설정 (All Pages)?</li>
+            <li>✅ 광고 차단기 비활성화?</li>
+            <li>✅ 쿠키 동의 설정?</li>
+        </ul>
+    </div>
+    
+    <div class="debug-section">
+        <h2>5. Network Requests</h2>
+        <button onclick="checkNetworkRequests()">Check Analytics Requests</button>
+        <div id="network-status"></div>
+    </div>
+
+    <script>
+        // Initialize dataLayer if not exists
+        window.dataLayer = window.dataLayer || [];
+        
+        // Check GTM Status
+        function checkGTMStatus() {
+            const statusEl = document.getElementById('gtm-status');
+            
+            if (window.google_tag_manager) {
+                statusEl.className = 'status success';
+                statusEl.innerHTML = '✅ GTM Loaded Successfully<br>' +
+                    'Container: GTM-NKT8SV46<br>' +
+                    'DataLayer Items: ' + window.dataLayer.length;
+            } else {
+                statusEl.className = 'status error';
+                statusEl.innerHTML = '❌ GTM Not Loaded';
+            }
+        }
+        
+        // Test Page View
+        function testPageView() {
+            window.dataLayer.push({
+                'event': 'page_view_test',
+                'page_title': 'Debug Test Page',
+                'page_location': window.location.href,
+                'timestamp': new Date().toISOString()
+            });
+            appendResult('✅ Page View Event Pushed: ' + new Date().toISOString());
+        }
+        
+        // Test Custom Event
+        function testCustomEvent() {
+            window.dataLayer.push({
+                'event': 'custom_test_event',
+                'event_category': 'Debug',
+                'event_action': 'Test',
+                'event_label': 'GTM Debug Test',
+                'timestamp': new Date().toISOString()
+            });
+            appendResult('✅ Custom Event Pushed: custom_test_event');
+        }
+        
+        // Show DataLayer
+        function showDataLayer() {
+            const resultsEl = document.getElementById('results');
+            resultsEl.innerHTML = '📊 DataLayer Contents:\n' + 
+                JSON.stringify(window.dataLayer, null, 2);
+        }
+        
+        // Clear Results
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        // Append Result
+        function appendResult(text) {
+            const resultsEl = document.getElementById('results');
+            resultsEl.innerHTML += text + '\n';
+        }
+        
+        // Check Network Requests
+        function checkNetworkRequests() {
+            const statusEl = document.getElementById('network-status');
+            
+            // Create test image to check if analytics endpoint is reachable
+            const testImg = new Image();
+            testImg.onload = function() {
+                statusEl.innerHTML = '<div class="status success">✅ Google Analytics endpoint reachable</div>';
+            };
+            testImg.onerror = function() {
+                statusEl.innerHTML = '<div class="status warning">⚠️ Could not reach GA endpoint (may be blocked)</div>';
+            };
+            testImg.src = 'https://www.google-analytics.com/collect?v=1&t=pageview&tid=test&cid=test&dp=test';
+            
+            // Also check GTM endpoint
+            const gtmImg = new Image();
+            gtmImg.onload = function() {
+                statusEl.innerHTML += '<div class="status success">✅ GTM endpoint reachable</div>';
+            };
+            gtmImg.onerror = function() {
+                statusEl.innerHTML += '<div class="status warning">⚠️ Could not reach GTM endpoint</div>';
+            };
+            gtmImg.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-NKT8SV46';
+        }
+        
+        // Check on load
+        window.addEventListener('load', function() {
+            setTimeout(checkGTMStatus, 1000);
+            
+            // Log initial dataLayer
+            console.log('DataLayer:', window.dataLayer);
+            console.log('GTM:', window.google_tag_manager);
+        });
+        
+        // Monitor dataLayer pushes
+        const originalPush = window.dataLayer.push;
+        window.dataLayer.push = function() {
+            console.log('DataLayer Push:', arguments);
+            return originalPush.apply(window.dataLayer, arguments);
+        };
+    </script>
+</body>
+</html>
