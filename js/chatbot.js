@@ -23,14 +23,14 @@ class Chatbot {
                 
                 <div id="chatbot-window" class="chatbot-window" style="display:none;">
                     <div class="chatbot-header">
-                        <h3>AI Assistant</h3>
+                        <h3>박상돈과 대화하기</h3>
                         <span class="chatbot-status">● Online</span>
                     </div>
                     
                     <div id="chatbot-messages" class="chatbot-messages">
                         <div class="bot-message">
                             <div class="message-content">
-                                안녕하세요! 무엇을 도와드릴까요?
+                                안녕하세요! 저는 박상돈입니다. 제 홈페이지를 방문해주셔서 감사합니다. 연구, 프로젝트, 경력 등 궁금한 점이 있으시면 편하게 물어보세요!
                             </div>
                         </div>
                     </div>
