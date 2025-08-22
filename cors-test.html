@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>CORS 테스트</h1>
+    <button onclick="testCORS()">Test CORS</button>
+    <pre id="result"></pre>
+    
+    <script>
+        async function testCORS() {
+            const result = document.getElementById('result');
+            
+            // Test preflight
+            console.log('Testing OPTIONS request...');
+            try {
+                const optionsResponse = await fetch('https://sangdon-api.vercel.app/api/chat', {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                console.log('OPTIONS status:', optionsResponse.status);
+                console.log('OPTIONS headers:', [...optionsResponse.headers.entries()]);
+            } catch (e) {
+                console.error('OPTIONS failed:', e);
+            }
+            
+            // Test POST
+            console.log('\nTesting POST request...');
+            try {
+                const response = await fetch('https://sangdon-api.vercel.app/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        message: '안녕하세요' 
+                    })
+                });
+                
+                const headers = [...response.headers.entries()];
+                const data = await response.json();
+                
+                result.textContent = JSON.stringify({
+                    status: response.status,
+                    headers: headers,
+                    data: data
+                }, null, 2);
+                
+                console.log('POST Response:', {
+                    status: response.status,
+                    headers: headers,
+                    data: data
+                });
+                
+            } catch (error) {
+                console.error('POST Error:', error);
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        // Auto-run on load
+        window.onload = testCORS;
+    </script>
+</body>
+</html>
