@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Netlify API Test</title>
+</head>
+<body>
+    <h1>Netlify API 테스트</h1>
+    <button onclick="testAPI()">테스트</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testAPI() {
+            try {
+                console.log('Testing Netlify API...');
+                const response = await fetch('https://sangdon-chatbot.netlify.app/.netlify/functions/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        message: '안녕하세요! 당신은 누구신가요?' 
+                    })
+                });
+                
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response:', data);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>응답:</h3>
+                    <p>${data.reply || data.error}</p>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Auto test on load
+        window.onload = testAPI;
+    </script>
+</body>
+</html>
