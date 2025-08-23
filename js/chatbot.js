@@ -207,6 +207,19 @@ class Chatbot {
                     background: #f0f0f0;
                 }
                 
+                .action-message .message-content {
+                    background: linear-gradient(135deg, #e3f2fd 0%, #e8eaf6 100%);
+                    color: #1565c0;
+                    font-size: 0.9em;
+                    padding: 8px 12px;
+                    animation: pulse 1.5s infinite;
+                }
+                
+                @keyframes pulse {
+                    0%, 100% { opacity: 0.8; }
+                    50% { opacity: 1; }
+                }
+                
                 .search-results {
                     margin: 10px;
                     padding: 10px;
@@ -385,20 +398,35 @@ class Chatbot {
 
             this.hideTypingIndicator();
             
-            // Handle intelligent response
-            if (data.thinking) {
-                // Show thinking process briefly
-                this.addMessage(data.thinking, 'bot', 'thinking');
-                await new Promise(resolve => setTimeout(resolve, 500));
+            // Show action process step by step
+            if (data.action && data.action !== 'chat') {
+                // Step 1: Show what we're doing
+                const actionMessages = {
+                    'search': '🔍 사이트 내용을 검색하고 있습니다...',
+                    'count_publications': '📊 논문 목록을 분석하고 있습니다...',
+                    'analyze_collaborators': '👥 공동 연구자를 분석하고 있습니다...'
+                };
+                
+                if (actionMessages[data.action]) {
+                    this.addMessage(actionMessages[data.action], 'bot', 'action');
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                }
             }
             
-            // Add main reply
-            this.addMessage(data.reply, 'bot');
+            // Step 2: Show thinking process
+            if (data.thinking) {
+                this.addMessage(data.thinking, 'bot', 'thinking');
+                await new Promise(resolve => setTimeout(resolve, 600));
+            }
             
-            // Show search results if any
+            // Step 3: Show search results if any
             if (data.searchResults && data.searchResults.length > 0) {
                 this.showSearchResults(data.searchResults);
+                await new Promise(resolve => setTimeout(resolve, 400));
             }
+            
+            // Step 4: Add main reply
+            this.addMessage(data.reply, 'bot');
             
             this.conversationHistory.push({ role: 'assistant', content: data.reply });
 
@@ -416,6 +444,8 @@ class Chatbot {
         
         if (subtype === 'thinking') {
             messageDiv.classList.add('thinking-message');
+        } else if (subtype === 'action') {
+            messageDiv.classList.add('action-message');
         }
         
         const contentDiv = document.createElement('div');
