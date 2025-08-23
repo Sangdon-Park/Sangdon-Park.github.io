@@ -1,5 +1,6 @@
 // Gemini Chatbot Integration (Netlify)
-const CHATBOT_API = 'https://sangdon-chatbot.netlify.app/.netlify/functions/chat';
+// 배포 후 YOUR-SITE를 실제 Netlify 도메인으로 변경하세요
+const CHATBOT_API = 'https://YOUR-SITE.netlify.app/.netlify/functions/chat';
 
 class Chatbot {
     constructor() {
