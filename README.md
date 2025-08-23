@@ -2,7 +2,7 @@
 
 이 저장소는 박상돈님의 개인 학술 프로필 웹사이트의 소스 코드입니다. GitHub Pages를 통해 호스팅됩니다.
 
-[웹사이트 바로가기](https://sangdon-sayberry.github.io/) <!-- 실제 배포 주소 확인 필요 -->
+[웹사이트 바로가기](https://sangdon-park.github.io/)
 
 ## 웹사이트 소개
 
@@ -30,32 +30,29 @@
 
 *   **기본 정보 (소개, 경력, 학력, 연락처 등):** `ko.html` (한국어) 및 `en.html` (영어) 파일 내의 해당 섹션을 직접 수정합니다.
 *   **프로필 사진:** `images/Sangdon.jpg` 파일을 원하는 이미지로 교체합니다.
-*   **디자인:** `css/style.css` 파일에서 색상, 폰트, 레이아웃 등을 수정할 수 있습니다.
+*   **디자인:** `css/main.css` 파일에서 색상, 폰트, 레이아웃 등을 수정할 수 있습니다.
 
 ### 논문 목록 업데이트
 
-논문 목록은 `js/script.js` 파일 내의 `publicationsData` 배열에 JavaScript 객체 형태로 저장되어 있습니다.
+전체 논문 목록은 `publications.html` 파일 하단의 스크립트 내 문자열 데이터로 관리됩니다.
 
-1.  `js/script.js` 파일을 엽니다.
-2.  `loadPublications` 함수 내의 `publicationsData` 배열을 찾습니다.
-3.  새 논문 정보를 다음 형식에 맞춰 추가하거나 기존 정보를 수정합니다:
-    ```javascript
-    {
-        title: "논문 제목",
-        authors: "저자 목록 (<em>본인 이름 강조</em>)",
-        journal: "저널 또는 학회 정보 (년도 포함)",
-        link: "논문 링크 (Google Scholar 또는 DOI)",
-        type: "논문 타입 ('journal', 'conference', 'preprint', 'patent', 'standard' 등)",
-        citations: 인용 수 (숫자, 없으면 null)
-    },
-    ```
-4.  파일을 저장하고 변경사항을 GitHub에 푸시합니다.
+1. `publications.html`을 열고 다음 상수들의 내용을 수정합니다:
+   - `journalPapers`, `conferencePapers`, `standardsPapers`, `patents`
+   - 각 라인은 `|` 구분자로 링크/특이사항을 포함할 수 있습니다.
+2. 메인 페이지(`ko.html`, `en.html`)의 대표 논문 섹션 텍스트를 필요시 수동 업데이트합니다.
+3. 저장 후 `main` 브랜치에 푸시하면 자동 배포됩니다.
+
+참고: 레거시 스크립트 `js/script.js`는 현재 사용하지 않습니다.
 
 ## GitHub Pages 배포
 
 이 웹사이트는 GitHub Pages를 통해 자동으로 배포됩니다. `main` 브랜치에 변경사항을 푸시하면 잠시 후 웹사이트에 반영됩니다.
 
-웹사이트 주소: [https://sangdon-sayberry.github.io/](https://sangdon-sayberry.github.io/) <!-- 저장소 이름 기반 추정, 실제 주소 확인 -->
+웹사이트 주소: [https://sangdon-park.github.io/](https://sangdon-park.github.io/)
+
+## 챗봇 설정
+
+챗봇은 `ko.html`과 `en.html`에서 `js/chatbot.js`로 로드됩니다. 백엔드 엔드포인트를 변경하려면 `js/chatbot.js` 상단의 `CHATBOT_API` 값을 수정하세요.
 
 ## 라이센스
 
