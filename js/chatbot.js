@@ -1,5 +1,5 @@
 // Gemini Chatbot Integration (Netlify)
-const CHATBOT_API = 'https://sangdon-chatbot.netlify.app/.netlify/functions/chat-intelligent';
+const CHATBOT_API = 'https://sangdon-chatbot.netlify.app/.netlify/functions/chat-ai-driven';
 
 class Chatbot {
     constructor() {
@@ -379,55 +379,82 @@ class Chatbot {
         this.showTypingIndicator();
 
         try {
-            const response = await fetch(CHATBOT_API, {
+            // STEP 1: Ask AI what to do
+            const response1 = await fetch(CHATBOT_API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ 
                     message,
-                    history: this.conversationHistory.slice(-10) // Send last 10 messages for context
+                    history: this.conversationHistory.slice(-10),
+                    step: 1
                 })
             });
 
-            const data = await response.json();
+            const data1 = await response1.json();
             
-            // Debug logging
-            console.log('=== Chatbot Debug ===');
-            console.log('Response Status:', response.status);
-            console.log('Response Data:', data);
-            console.log('Action:', data.action);
-            console.log('Initial Response:', data.initialResponse);
-            console.log('Needs Second Step:', data.needsSecondStep);
-            console.log('Reply:', data.reply);
+            console.log('=== Step 1 Response ===');
+            console.log('Action:', data1.action);
+            console.log('Query:', data1.query);
+            console.log('Initial Message:', data1.initialMessage);
 
-            if (!response.ok) {
-                throw new Error(data.error || 'API 오류가 발생했습니다');
+            if (!response1.ok) {
+                throw new Error(data1.error || 'API 오류가 발생했습니다');
             }
 
             this.hideTypingIndicator();
             
-            // Step 1: Show initial response if needs analysis
-            if (data.needsSecondStep && data.initialResponse) {
-                this.addMessage(data.initialResponse, 'bot');
-                
-                // Show typing indicator again for second step
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                this.showTypingIndicator();
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                this.hideTypingIndicator();
+            // If it's just chat, we're done
+            if (!data1.needsSecondStep) {
+                // For simple chat, the reply is in initialMessage
+                const reply = data1.initialMessage || '답변을 생성할 수 없습니다.';
+                this.addMessage(reply, 'bot');
+                this.conversationHistory.push({ role: 'assistant', content: reply });
+                return;
             }
             
-            // Step 2: Show search results if any
-            if (data.searchResults && data.searchResults.length > 0) {
-                this.showSearchResults(data.searchResults);
-                await new Promise(resolve => setTimeout(resolve, 400));
+            // Show initial message
+            if (data1.initialMessage) {
+                this.addMessage(data1.initialMessage, 'bot');
             }
             
-            // Step 3: Add main reply
-            this.addMessage(data.reply, 'bot');
+            // STEP 2: Execute action and get final response
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            this.showTypingIndicator();
             
-            this.conversationHistory.push({ role: 'assistant', content: data.reply });
+            const response2 = await fetch(CHATBOT_API, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    message,
+                    action: data1.action,
+                    query: data1.query,
+                    step: 2
+                })
+            });
+
+            const data2 = await response2.json();
+            
+            console.log('=== Step 2 Response ===');
+            console.log('Reply:', data2.reply);
+            console.log('Search Results:', data2.searchResults);
+            
+            this.hideTypingIndicator();
+            
+            // Show search results if any
+            if (data2.searchResults && data2.searchResults.length > 0) {
+                this.showSearchResults(data2.searchResults.map(r => ({
+                    type: 'result',
+                    item: { title: r }
+                })));
+            }
+            
+            // Add final reply
+            this.addMessage(data2.reply, 'bot');
+            this.conversationHistory.push({ role: 'assistant', content: data2.reply });
 
         } catch (error) {
             console.error('Chatbot error:', error);
