@@ -393,7 +393,13 @@ class Chatbot {
             const data = await response.json();
             
             // Debug logging
-            console.log('Chatbot Response:', data);
+            console.log('=== Chatbot Debug ===');
+            console.log('Response Status:', response.status);
+            console.log('Response Data:', data);
+            console.log('Action:', data.action);
+            console.log('Initial Response:', data.initialResponse);
+            console.log('Needs Second Step:', data.needsSecondStep);
+            console.log('Reply:', data.reply);
 
             if (!response.ok) {
                 throw new Error(data.error || 'API 오류가 발생했습니다');
