@@ -470,12 +470,14 @@ class Chatbot {
             
             this.hideTypingIndicator();
             
-            // Show search results if any
+            // Show search results if any (strings or objects)
             if (data2.searchResults && data2.searchResults.length > 0) {
-                this.showSearchResults(data2.searchResults.map(r => ({
-                    type: 'result',
-                    item: { title: r }
-                })));
+                const normalized = data2.searchResults.map(r => {
+                    if (typeof r === 'string') return { type: 'result', item: { title: r } };
+                    if (r && r.item && (r.item.title || r.item.name)) return r; 
+                    return { type: 'result', item: { title: String(r) } };
+                });
+                this.showSearchResults(normalized);
             }
             
             // Add final reply
