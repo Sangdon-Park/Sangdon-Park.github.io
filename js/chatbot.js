@@ -80,8 +80,8 @@ class Chatbot {
                     position: absolute;
                     bottom: 80px;
                     right: 0;
-                    width: 350px;
-                    height: 500px;
+                    width: 450px;
+                    height: 650px;
                     background: white;
                     border-radius: 12px;
                     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -220,8 +220,9 @@ class Chatbot {
                 @media (max-width: 768px) {
                     .chatbot-window {
                         width: 90vw;
-                        height: 70vh;
+                        height: 80vh;
                         right: 5vw;
+                        bottom: 70px;
                     }
                 }
             </style>
