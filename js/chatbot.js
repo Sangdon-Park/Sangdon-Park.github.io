@@ -137,6 +137,63 @@ class Chatbot {
                     background: white;
                     color: #333;
                     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    line-height: 1.6;
+                }
+
+                .bot-message .message-content h2,
+                .bot-message .message-content h3,
+                .bot-message .message-content h4 {
+                    margin: 0.5em 0 0.3em 0;
+                    color: #667eea;
+                }
+
+                .bot-message .message-content h2 { font-size: 1.2em; }
+                .bot-message .message-content h3 { font-size: 1.1em; }
+                .bot-message .message-content h4 { font-size: 1em; }
+
+                .bot-message .message-content p {
+                    margin: 0.5em 0;
+                }
+
+                .bot-message .message-content ul,
+                .bot-message .message-content ol {
+                    margin: 0.5em 0;
+                    padding-left: 1.5em;
+                }
+
+                .bot-message .message-content li {
+                    margin: 0.2em 0;
+                }
+
+                .bot-message .message-content code {
+                    background: #f4f4f4;
+                    padding: 2px 4px;
+                    border-radius: 3px;
+                    font-family: monospace;
+                    font-size: 0.9em;
+                }
+
+                .bot-message .message-content pre {
+                    background: #f4f4f4;
+                    padding: 8px;
+                    border-radius: 4px;
+                    overflow-x: auto;
+                    margin: 0.5em 0;
+                }
+
+                .bot-message .message-content pre code {
+                    background: none;
+                    padding: 0;
+                }
+
+                .bot-message .message-content a {
+                    color: #667eea;
+                    text-decoration: underline;
+                }
+
+                .bot-message .message-content strong {
+                    font-weight: 600;
+                    color: #222;
                 }
 
                 .user-message .message-content {
@@ -309,11 +366,62 @@ class Chatbot {
         
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
-        contentDiv.textContent = content;
+        
+        // Convert markdown to HTML
+        const htmlContent = this.parseMarkdown(content);
+        contentDiv.innerHTML = htmlContent;
         
         messageDiv.appendChild(contentDiv);
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    parseMarkdown(text) {
+        // Escape HTML to prevent XSS
+        const escapeHtml = (str) => {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        };
+        
+        // First escape HTML
+        let html = escapeHtml(text);
+        
+        // Then apply markdown parsing
+        html = html
+            // Code blocks first (to avoid parsing markdown inside them)
+            .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            // Headers
+            .replace(/^### (.*$)/gim, '<h4>$1</h4>')
+            .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+            .replace(/^# (.*$)/gim, '<h2>$1</h2>')
+            // Bold (must come before italic to handle **text**)
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+            // Italic
+            .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+            .replace(/_([^_\n]+)_/g, '<em>$1</em>')
+            // Links
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+            // Line breaks
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>')
+            // Lists
+            .replace(/^[\*\-] (.+)$/gim, '<li>$1</li>')
+            .replace(/^\d+\. (.+)$/gim, '<li>$1</li>');
+        
+        // Wrap consecutive list items in ul tags
+        html = html.replace(/(<li>.*?<\/li>(\s*<li>.*?<\/li>)*)/gs, (match) => {
+            return '<ul>' + match + '</ul>';
+        });
+        
+        // Wrap in paragraph tags if not already wrapped
+        if (!html.match(/^<[hpul]/)) {
+            html = '<p>' + html + '</p>';
+        }
+        
+        return html;
     }
 
     showTypingIndicator() {
