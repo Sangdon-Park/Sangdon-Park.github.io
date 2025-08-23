@@ -1,5 +1,5 @@
 // Gemini Chatbot Integration (Netlify)
-const CHATBOT_API = 'https://sangdon-chatbot.netlify.app/.netlify/functions/chat';
+const CHATBOT_API = 'https://sangdon-chatbot.netlify.app/.netlify/functions/chat-intelligent';
 
 class Chatbot {
     constructor() {
@@ -200,6 +200,41 @@ class Chatbot {
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                     color: white;
                 }
+                
+                .thinking-message .message-content {
+                    font-style: italic;
+                    opacity: 0.8;
+                    background: #f0f0f0;
+                }
+                
+                .search-results {
+                    margin: 10px;
+                    padding: 10px;
+                    background: #f9f9f9;
+                    border-radius: 8px;
+                    border-left: 3px solid #667eea;
+                }
+                
+                .search-results-header {
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                    color: #667eea;
+                }
+                
+                .search-result-item {
+                    padding: 4px 0;
+                    font-size: 0.9em;
+                }
+                
+                .result-type {
+                    color: #999;
+                    font-size: 0.85em;
+                    margin-right: 5px;
+                }
+                
+                .result-title {
+                    color: #333;
+                }
 
                 .chatbot-input-area {
                     padding: 15px;
@@ -349,7 +384,22 @@ class Chatbot {
             }
 
             this.hideTypingIndicator();
+            
+            // Handle intelligent response
+            if (data.thinking) {
+                // Show thinking process briefly
+                this.addMessage(data.thinking, 'bot', 'thinking');
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            // Add main reply
             this.addMessage(data.reply, 'bot');
+            
+            // Show search results if any
+            if (data.searchResults && data.searchResults.length > 0) {
+                this.showSearchResults(data.searchResults);
+            }
+            
             this.conversationHistory.push({ role: 'assistant', content: data.reply });
 
         } catch (error) {
@@ -359,10 +409,14 @@ class Chatbot {
         }
     }
 
-    addMessage(content, type) {
+    addMessage(content, type, subtype = '') {
         const messagesContainer = document.getElementById('chatbot-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = type === 'user' ? 'user-message' : 'bot-message';
+        
+        if (subtype === 'thinking') {
+            messageDiv.classList.add('thinking-message');
+        }
         
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
@@ -373,6 +427,23 @@ class Chatbot {
         
         messageDiv.appendChild(contentDiv);
         messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    showSearchResults(results) {
+        const messagesContainer = document.getElementById('chatbot-messages');
+        const resultsDiv = document.createElement('div');
+        resultsDiv.className = 'search-results';
+        resultsDiv.innerHTML = `
+            <div class="search-results-header">📚 관련 자료</div>
+            ${results.map(r => `
+                <div class="search-result-item">
+                    <span class="result-type">[${r.type}]</span>
+                    <span class="result-title">${r.item.title || r.item.name}</span>
+                </div>
+            `).join('')}
+        `;
+        messagesContainer.appendChild(resultsDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
