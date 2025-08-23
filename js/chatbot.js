@@ -391,6 +391,9 @@ class Chatbot {
             });
 
             const data = await response.json();
+            
+            // Debug logging
+            console.log('Chatbot Response:', data);
 
             if (!response.ok) {
                 throw new Error(data.error || 'API 오류가 발생했습니다');
@@ -398,34 +401,24 @@ class Chatbot {
 
             this.hideTypingIndicator();
             
-            // Show action process step by step
-            if (data.action && data.action !== 'chat') {
-                // Step 1: Show what we're doing
-                const actionMessages = {
-                    'search': '🔍 사이트 내용을 검색하고 있습니다...',
-                    'count_publications': '📊 논문 목록을 분석하고 있습니다...',
-                    'analyze_collaborators': '👥 공동 연구자를 분석하고 있습니다...'
-                };
+            // Step 1: Show initial response if needs analysis
+            if (data.needsSecondStep && data.initialResponse) {
+                this.addMessage(data.initialResponse, 'bot');
                 
-                if (actionMessages[data.action]) {
-                    this.addMessage(actionMessages[data.action], 'bot', 'action');
-                    await new Promise(resolve => setTimeout(resolve, 800));
-                }
+                // Show typing indicator again for second step
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                this.showTypingIndicator();
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                this.hideTypingIndicator();
             }
             
-            // Step 2: Show thinking process
-            if (data.thinking) {
-                this.addMessage(data.thinking, 'bot', 'thinking');
-                await new Promise(resolve => setTimeout(resolve, 600));
-            }
-            
-            // Step 3: Show search results if any
+            // Step 2: Show search results if any
             if (data.searchResults && data.searchResults.length > 0) {
                 this.showSearchResults(data.searchResults);
                 await new Promise(resolve => setTimeout(resolve, 400));
             }
             
-            // Step 4: Add main reply
+            // Step 3: Add main reply
             this.addMessage(data.reply, 'bot');
             
             this.conversationHistory.push({ role: 'assistant', content: data.reply });
