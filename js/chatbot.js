@@ -405,12 +405,38 @@ class Chatbot {
 
             this.hideTypingIndicator();
             
-            // If it's just chat, we're done
+            // If it's just chat, prefer initialMessage; otherwise fallback to step 2
             if (!data1.needsSecondStep) {
-                // For simple chat, the reply is in initialMessage
-                const reply = data1.initialMessage || '답변을 생성할 수 없습니다.';
-                this.addMessage(reply, 'bot');
-                this.conversationHistory.push({ role: 'assistant', content: reply });
+                const initial = (data1.initialMessage || '').trim();
+                if (initial) {
+                    this.addMessage(initial, 'bot');
+                    this.conversationHistory.push({ role: 'assistant', content: initial });
+                    return;
+                }
+                // Fallback: proceed to step 2 to generate an answer
+                await new Promise(resolve => setTimeout(resolve, 500));
+                this.showTypingIndicator();
+                const response2 = await fetch(CHATBOT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message,
+                        action: data1.action || 'CHAT',
+                        query: data1.query || '',
+                        step: 2
+                    })
+                });
+                const data2 = await response2.json();
+                this.hideTypingIndicator();
+                if (!response2.ok) {
+                    throw new Error(data2.error || 'API 오류가 발생했습니다');
+                }
+                if (data2.searchResults && data2.searchResults.length > 0) {
+                    this.showSearchResults(data2.searchResults.map(r => ({ type: 'result', item: { title: r } })));
+                }
+                const reply2 = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
+                this.addMessage(reply2, 'bot');
+                this.conversationHistory.push({ role: 'assistant', content: reply2 });
                 return;
             }
             
