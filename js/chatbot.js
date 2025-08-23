@@ -5,6 +5,7 @@ class Chatbot {
     constructor() {
         this.isOpen = false;
         this.messages = [];
+        this.conversationHistory = [];
         this.init();
     }
 
@@ -266,6 +267,7 @@ class Chatbot {
 
         // Add user message
         this.addMessage(message, 'user');
+        this.conversationHistory.push({ role: 'user', content: message });
         input.value = '';
 
         // Show typing indicator
@@ -277,7 +279,10 @@ class Chatbot {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message })
+                body: JSON.stringify({ 
+                    message,
+                    history: this.conversationHistory.slice(-10) // Send last 10 messages for context
+                })
             });
 
             const data = await response.json();
@@ -288,6 +293,7 @@ class Chatbot {
 
             this.hideTypingIndicator();
             this.addMessage(data.reply, 'bot');
+            this.conversationHistory.push({ role: 'assistant', content: data.reply });
 
         } catch (error) {
             console.error('Chatbot error:', error);
