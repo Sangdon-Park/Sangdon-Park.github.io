@@ -77,14 +77,14 @@ BEGIN
     SELECT 1 FROM pg_policies
     WHERE schemaname='public' AND tablename='chat_logs' AND policyname='service_role_full_access'
   ) THEN
-    EXECUTE $$
+    EXECUTE $pol$
       CREATE POLICY service_role_full_access
       ON public.chat_logs
       FOR ALL
       TO service_role
       USING (true)
-      WITH CHECK (true)
-    $$;
+      WITH CHECK (true);
+    $pol$;
   END IF;
 END $$;
 
