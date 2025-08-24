@@ -421,6 +421,7 @@ class Chatbot {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message,
+                        history: this.conversationHistory,
                         action: data1.action || 'CHAT',
                         query: data1.query || '',
                         step: 2
