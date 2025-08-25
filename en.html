@@ -58,7 +58,12 @@
                 <div class="nav-title">Navigation</div>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#posts" class="nav-link active">
+                        <a href="#home" class="nav-link active">
+                            <i class="fas fa-house"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#posts" class="nav-link">
                             <i class="fas fa-home"></i> Posts
                         </a>
                     </li>
@@ -110,14 +115,27 @@
         
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="posts-section" style="display: block;">
+                <div class="section-header">
+                    <h2 class="section-title">Sangdon Park's Home</h2>
+                </div>
+                <div class="posts-list">
+                    <div class="post-card">
+                        <h3 class="post-title">Welcome</h3>
+                        <p class="post-excerpt">Explore research, projects, talks, and publications. Use the navigation on the left.</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Page Header -->
-            <header class="page-header">
+            <header class="page-header" style="display: none;">
                 <h1 class="page-title">Recent Posts</h1>
                 <p class="page-subtitle">AI, System Design, and Research Stories</p>
             </header>
             
             <!-- Category Tabs -->
-            <div class="category-tabs">
+            <div class="category-tabs" style="display: none;">
                 <a href="#all" class="category-tab active">
                     <span>All</span>
                     <span class="category-count">3</span>
@@ -141,7 +159,7 @@
             </div>
             
             <!-- Posts Section -->
-            <section id="posts" class="posts-section">
+            <section id="posts" class="posts-section" style="display: none;">
                 <div class="posts-list">
                     <!-- Post 1 -->
                     <a href="articles/serena-mcp-guide-en.html" class="post-card">
@@ -710,6 +728,10 @@
                     }
                     const categoryTabsDiv = document.querySelector('.category-tabs');
                     if (categoryTabsDiv) categoryTabsDiv.style.display = 'flex';
+                } else if (target === 'home') {
+                    if (pageHeader) pageHeader.style.display = 'none';
+                    const categoryTabsDiv = document.querySelector('.category-tabs');
+                    if (categoryTabsDiv) categoryTabsDiv.style.display = 'none';
                 } else {
                     if (pageHeader) pageHeader.style.display = 'none';
                     const categoryTabsDiv = document.querySelector('.category-tabs');
