@@ -416,23 +416,25 @@ class Chatbot {
                 // Fallback: proceed to step 2 to generate an answer
                 await new Promise(resolve => setTimeout(resolve, 500));
                 this.showTypingIndicator();
-                const response2 = await fetch(CHATBOT_API, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        message,
-                        history: this.conversationHistory,
-                        action: data1.action || 'CHAT',
-                        query: data1.query || '',
-                        step: 2
-                    })
-                });
+            const response2 = await fetch(CHATBOT_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    history: this.conversationHistory,
+                    action: data1.action || 'CHAT',
+                    query: data1.query || '',
+                    step: 2
+                })
+            });
                 const data2 = await response2.json();
                 this.hideTypingIndicator();
                 if (!response2.ok) {
                     throw new Error(data2.error || 'API 오류가 발생했습니다');
                 }
-                if (data2.searchResults && data2.searchResults.length > 0) {
+                if (Array.isArray(data2.searchResultsDetailed) && data2.searchResultsDetailed.length > 0) {
+                    this.showSearchResults(data2.searchResultsDetailed);
+                } else if (Array.isArray(data2.searchResults) && data2.searchResults.length > 0) {
                     this.showSearchResults(data2.searchResults.map(r => ({ type: 'result', item: { title: r } })));
                 }
                 const reply2 = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
@@ -457,6 +459,7 @@ class Chatbot {
                 },
                 body: JSON.stringify({ 
                     message,
+                    history: this.conversationHistory.slice(-10),
                     action: data1.action,
                     query: data1.query,
                     step: 2
@@ -472,12 +475,10 @@ class Chatbot {
             this.hideTypingIndicator();
             
             // Show search results if any (strings or objects)
-            if (data2.searchResults && data2.searchResults.length > 0) {
-                const normalized = data2.searchResults.map(r => {
-                    if (typeof r === 'string') return { type: 'result', item: { title: r } };
-                    if (r && r.item && (r.item.title || r.item.name)) return r; 
-                    return { type: 'result', item: { title: String(r) } };
-                });
+            if ((data2.searchResultsDetailed && data2.searchResultsDetailed.length > 0) || (data2.searchResults && data2.searchResults.length > 0)) {
+                const normalized = (data2.searchResultsDetailed && data2.searchResultsDetailed.length > 0)
+                    ? data2.searchResultsDetailed
+                    : data2.searchResults.map(r => ({ type: 'result', item: { title: r } }));
                 this.showSearchResults(normalized);
             }
             
@@ -521,12 +522,18 @@ class Chatbot {
         resultsDiv.className = 'search-results';
         resultsDiv.innerHTML = `
             <div class="search-results-header">📚 관련 자료</div>
-            ${results.map(r => `
+            ${results.map(r => {
+                const title = r.item?.title || r.item?.name || String(r);
+                const url = r.item?.url;
+                const score = r.item?.score;
+                const content = url ? `<a href="${url}" target="_blank">${title}</a>` : title;
+                const scoreHtml = (typeof score === 'number') ? ` <span style="color:#999; font-size:0.85em;">(${score})</span>` : '';
+                return `
                 <div class="search-result-item">
-                    <span class="result-type">[${r.type}]</span>
-                    <span class="result-title">${r.item.title || r.item.name}</span>
-                </div>
-            `).join('')}
+                    <span class="result-type">[${r.type || 'result'}]</span>
+                    <span class="result-title">${content}${scoreHtml}</span>
+                </div>`;
+            }).join('')}
         `;
         messagesContainer.appendChild(resultsDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
