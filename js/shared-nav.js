@@ -4,7 +4,7 @@
       items: [
         {
           key: "home",
-          label: "\uD648",
+          label: "Home",
           icon: "fas fa-house",
           localHref: "#home",
           globalHref: "/ko.html#home"
