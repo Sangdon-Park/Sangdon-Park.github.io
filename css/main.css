@@ -398,9 +398,10 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 20px;
+  max-width: var(--max-width);
+  margin: 0 auto 20px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding: 0 0 6px;
 }
 
 .category-tab {
