@@ -80,7 +80,8 @@
             </div>
             <div class="callout-box">
               <strong>Textbook:</strong> Kim Yeonhui, "IT CookBook: Introduction to Databases", 3rd ed., Hanbit Academy<br>
-              Lecture slides are self-contained; textbook purchase is optional.
+              Lecture slides are self-contained; textbook purchase is optional.<br>
+              <strong>Sync baseline:</strong> <span class="inline-code">data/DB시스템</span> (2026-02-28)
             </div>
             <div class="course-links">
               <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> Materials</a>
@@ -96,6 +97,11 @@
           <p class="section-subtitle">Notices</p>
         </div>
         <div class="notice-list">
+          <article class="notice-item">
+            <div class="notice-date">2026-02-28</div>
+            <h3 class="notice-title">Material Sync Update</h3>
+            <p class="notice-text">Preview/Ch1-3 slides, lecture scripts (Ch0/1), and support PDF links were synchronized from the data folder.</p>
+          </article>
           <article class="notice-item">
             <div class="notice-date">2026-03-02</div>
             <h3 class="notice-title">Course Policy</h3>
@@ -124,15 +130,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>1</td><td>Ch 0 Preview — Course Introduction</td><td><a href="../data/DB시스템/0장_데이터베이스시스템_Preview.pptx">Slides</a></td></tr>
-              <tr><td>2</td><td>Ch 1 Database Fundamentals</td><td><a href="../data/DB시스템/1장_데이터베이스_기본개념.pptx">Slides</a> · <a href="../data/DB시스템/1장_연습문제_풀이.pptx">Exercises</a></td></tr>
+              <tr><td>1</td><td>Ch 0 Preview — Course Introduction</td><td><a href="../data/DB시스템/0장_데이터베이스시스템_Preview.pptx">Slides</a> · <a href="../data/DB시스템/0장_Preview_강의스크립트.md">Lecture Script</a></td></tr>
+              <tr><td>2</td><td>Ch 1 Database Fundamentals</td><td><a href="../data/DB시스템/1장_데이터베이스_기본개념.pptx">Slides</a> · <a href="../data/DB시스템/1장_데이터베이스_기본개념_강의스크립트.md">Lecture Script</a> · <a href="../data/DB시스템/1장_연습문제_풀이.pptx">Exercises</a></td></tr>
               <tr><td>3</td><td>Ch 2 Database Management Systems (DBMS)</td><td><a href="../data/DB시스템/2장_데이터베이스_관리시스템.pptx">Slides</a> · <a href="../data/DB시스템/2장_연습문제_풀이.pptx">Exercises</a></td></tr>
-              <tr><td>4</td><td>Ch 3 Database Systems (Three-Schema Architecture)</td><td><a href="../data/DB시스템/3장_데이터베이스시스템_박상돈.pptx">Slides</a></td></tr>
-              <tr><td>5</td><td>Ch 4 Data Modeling (ER Model)</td><td>TBD</td></tr>
-              <tr><td>6</td><td>Ch 5 Relational Data Model</td><td>TBD</td></tr>
-              <tr><td>7</td><td>Ch 6 Relational Algebra</td><td>TBD</td></tr>
+              <tr><td>4</td><td>Ch 3 Database Systems (Three-Schema Architecture)</td><td><a href="../data/DB시스템/3장_데이터베이스시스템_박상돈.pptx">Slides</a> · <a href="../data/DB시스템/answer_4577.pdf">Support PDF</a></td></tr>
+              <tr><td>5</td><td>Ch 4 Data Modeling (ER Model)</td><td>Planned (posted 3 days before class)</td></tr>
+              <tr><td>6</td><td>Ch 5 Relational Data Model</td><td>Planned (posted 3 days before class)</td></tr>
+              <tr><td>7</td><td>Ch 6 Relational Algebra</td><td>Planned (posted 3 days before class)</td></tr>
               <tr><td>8</td><td>Midterm (Ch 1–6)</td><td>—</td></tr>
-              <tr><td>9–10</td><td>Ch 7 SQL (DDL, DML, SELECT)</td><td>TBD</td></tr>
+              <tr><td>9–10</td><td>Ch 7 SQL (DDL, DML, SELECT)</td><td>Planned (with SQL lab examples)</td></tr>
               <tr><td>11</td><td>Ch 8 Database Design</td><td>TBD</td></tr>
               <tr><td>12</td><td>Ch 9 Normalization (1NF – BCNF)</td><td>TBD</td></tr>
               <tr><td>13</td><td>Ch 10 Transactions, Recovery, Concurrency</td><td>TBD</td></tr>
@@ -146,11 +152,49 @@
       <section id="assignments" class="posts-section">
         <div class="section-header">
           <h2 class="section-title">Assignments</h2>
-          <p class="section-subtitle">Homework</p>
+          <p class="section-subtitle">Evaluation Plan</p>
         </div>
-        <div class="notice-list">
+        <div class="table-wrap">
+          <table class="course-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Weight</th>
+                <th>Details</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quizzes & Homework</td>
+                <td>30%</td>
+                <td>Periodic quizzes + SQL practice tasks</td>
+                <td><span class="status-pill status-open">Active</span></td>
+              </tr>
+              <tr>
+                <td>Midterm</td>
+                <td>30%</td>
+                <td>Coverage: Chapters 1–6 (written)</td>
+                <td><span class="status-pill status-soon">Planned</span></td>
+              </tr>
+              <tr>
+                <td>Final</td>
+                <td>30%</td>
+                <td>Coverage: Chapters 7–12 (written)</td>
+                <td><span class="status-pill status-soon">Planned</span></td>
+              </tr>
+              <tr>
+                <td>Attendance</td>
+                <td>10%</td>
+                <td>3 late arrivals = 1 absence; more than 1/3 absence leads to F</td>
+                <td><span class="status-pill status-open">Applied</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="notice-list" style="margin-top: 12px;">
           <article class="notice-item">
-            <p class="notice-text">Quizzes and assignments are released periodically. SQL practice assignments are included. Submission details will be announced per assignment.</p>
+            <p class="notice-text">Detailed task schedules will be posted progressively. Files are uploaded to <span class="inline-code">data/DB시스템</span> first, then linked here.</p>
           </article>
         </div>
       </section>
@@ -165,7 +209,7 @@
             <p class="post-excerpt">
               Office: Convergence Science Bldg. 2F, Room 24221 (Ext. 2561)<br>
               Email: <a href="mailto:sangdon.park@dju.kr">sangdon.park@dju.kr</a><br>
-              Office Hours: Mon/Tue 11:00–12:00, Wed 14:00–15:00 (appointment recommended)<br>
+              Office Hours: Mon/Tue 11:00–12:00, Thu 12:00–13:00 (appointment recommended)<br>
               Email subject format: <span class="inline-code">[DB][Student ID] Topic</span>
             </p>
           </article>

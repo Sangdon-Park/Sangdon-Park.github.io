@@ -80,7 +80,8 @@
             </div>
             <div class="callout-box">
               <strong>교재:</strong> 박해선, 「혼자 공부하는 머신러닝+딥러닝」 개정판, 한빛미디어<br>
-              실습 코드는 Jupyter Notebook으로 제공하며 Google Colab에서도 실행할 수 있습니다.
+              실습 코드는 Jupyter Notebook으로 제공하며 Google Colab에서도 실행할 수 있습니다.<br>
+              <strong>동기화 기준:</strong> <span class="inline-code">data/인공지능</span> (2026-02-28)
             </div>
             <div class="course-links">
               <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> 강의자료</a>
@@ -96,6 +97,11 @@
           <p class="section-subtitle">Announcements</p>
         </div>
         <div class="notice-list">
+          <article class="notice-item">
+            <div class="notice-date">2026-02-28</div>
+            <h3 class="notice-title">자료 동기화 업데이트</h3>
+            <p class="notice-text">CH0~10 슬라이드, 노트북, HW1 패키지, CH1-2 퀴즈 파일을 data 폴더 기준으로 연결했습니다.</p>
+          </article>
           <article class="notice-item">
             <div class="notice-date">2026-03-03</div>
             <h3 class="notice-title">수업 운영 안내</h3>
@@ -185,6 +191,11 @@
                 <td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER10.pptx">슬라이드</a></td>
               </tr>
               <tr>
+                <td>공통</td>
+                <td>퀴즈 / 정답 / 참고 코드</td>
+                <td><a href="../data/인공지능/CH01-02_객관식퀴즈.docx">CH1-2 퀴즈</a> · <a href="../data/인공지능/answer/혼자 공부하는 머신러닝+딥러닝_정답지.pdf">정답지</a> · <a href="../data/인공지능/source/최신 코드 안내.txt">최신 코드 안내</a></td>
+              </tr>
+              <tr>
                 <td>13–14</td>
                 <td>프로젝트 / 복습</td>
                 <td>—</td>
@@ -210,6 +221,7 @@
               <tr>
                 <th>No.</th>
                 <th>제목</th>
+                <th>자료</th>
                 <th>제출</th>
                 <th>상태</th>
               </tr>
@@ -218,17 +230,31 @@
               <tr>
                 <td>HW1</td>
                 <td>K-최근접 이웃으로 과일 분류하기 (100점, 5문제)</td>
+                <td><a href="../data/인공지능/HW/HW1/assignment.ipynb">assignment.ipynb</a> · <a href="../data/인공지능/HW/HW1/README.md">README</a> · <a href="../data/인공지능/HW/HW1/tests/test_assignment.py">test 파일</a></td>
                 <td>GitHub Classroom (자동 채점)</td>
                 <td><span class="status-pill status-open">진행중</span></td>
               </tr>
               <tr>
                 <td>퀴즈</td>
                 <td>Ch1–2 객관식 퀴즈</td>
+                <td><a href="../data/인공지능/CH01-02_객관식퀴즈.docx">문제지</a></td>
                 <td>수업 시간</td>
                 <td><span class="status-pill status-soon">예정</span></td>
               </tr>
+              <tr>
+                <td>참고</td>
+                <td>실습 원본 코드 저장소</td>
+                <td><a href="https://github.com/rickiepark/hg-mldl" target="_blank">github.com/rickiepark/hg-mldl</a></td>
+                <td>자율 학습</td>
+                <td><span class="status-pill status-open">상시</span></td>
+              </tr>
             </tbody>
           </table>
+        </div>
+        <div class="notice-list" style="margin-top: 12px;">
+          <article class="notice-item">
+            <p class="notice-text">HW1 로컬 점검: <span class="inline-code">pytest tests/test_assignment.py -v</span>. 채점 기준은 README의 변수명/파일 구조를 그대로 따릅니다.</p>
+          </article>
         </div>
       </section>
 

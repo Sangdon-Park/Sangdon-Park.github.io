@@ -75,7 +75,8 @@
             <h2>2026 Spring Course Portal</h2>
             <p>
               This semester I teach <strong>Database Systems</strong>, <strong>Artificial Intelligence</strong>, and
-              <strong>Capstone Design</strong>. Each course page includes announcements, lecture materials, and assignments.
+              <strong>Capstone Design</strong>. Each course page is synchronized with files in the
+              <strong>data folder</strong>.
             </p>
             <div class="course-meta-grid">
               <div class="meta-item"><span class="meta-label">Semester</span><span class="meta-value">2026 Spring</span></div>
@@ -84,8 +85,9 @@
               <div class="meta-item"><span class="meta-label">Contact</span><span class="meta-value">sangdon.park@dju.kr</span></div>
             </div>
             <div class="callout-box">
-              To upload files later, update the <span class="inline-code">Materials</span> and
-              <span class="inline-code">Assignments</span> tables in each course page.
+              <strong>Sync baseline:</strong> 2026-02-28.<br>
+              After adding files to <span class="inline-code">data/</span>, update the
+              <span class="inline-code">Materials</span> and <span class="inline-code">Assignments</span> tables in each course page.
             </div>
           </div>
         </header>
@@ -100,7 +102,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">DB Systems</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">Database Systems</h3>
-            <p class="post-excerpt">Data modeling, SQL, transactions, indexing, and query optimization.</p>
+            <p class="post-excerpt">Weeks 1-4 real files, lecture scripts, and support PDF are linked.</p>
+            <div class="post-tags">
+              <span class="tag">Synced: data/DB시스템</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/database-systems-2026-spring-en.html"><i class="fas fa-arrow-right"></i> Open</a>
             </div>
@@ -109,7 +114,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">Artificial Intelligence</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">Artificial Intelligence</h3>
-            <p class="post-excerpt">Search, reasoning, machine learning basics, and modern AI applications.</p>
+            <p class="post-excerpt">Slides, notebooks, HW1 package, and quiz file are all connected.</p>
+            <div class="post-tags">
+              <span class="tag">Synced: data/인공지능</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/artificial-intelligence-2026-spring-en.html"><i class="fas fa-arrow-right"></i> Open</a>
             </div>
@@ -118,7 +126,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">Capstone Design</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">Capstone Design</h3>
-            <p class="post-excerpt">Team-based design, implementation, validation, and final demonstration.</p>
+            <p class="post-excerpt">Detailed schedule and deliverables published; upload slots are prepared.</p>
+            <div class="post-tags">
+              <span class="tag">Waiting data folder</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/capstone-design-2026-spring-en.html"><i class="fas fa-arrow-right"></i> Open</a>
             </div>
@@ -128,18 +139,43 @@
 
       <section id="policy" class="posts-section">
         <div class="section-header">
-          <h2 class="section-title">Operation Policy</h2>
-          <p class="section-subtitle">Materials & Homework</p>
+          <h2 class="section-title">Sync Policy</h2>
+          <p class="section-subtitle">Data-to-Page Mapping</p>
         </div>
-        <div class="posts-list grid-2">
-          <article class="post-card">
-            <h3 class="post-title">Materials Upload</h3>
-            <p class="post-excerpt">Weekly slides/labs will be posted in each course's <span class="inline-code">Materials</span> section.</p>
-          </article>
-          <article class="post-card">
-            <h3 class="post-title">Assignments</h3>
-            <p class="post-excerpt">Each assignment includes release date, deadline, and submission channel (email, LMS, GitHub).</p>
-          </article>
+        <div class="callout-box">
+          Upload files to <span class="inline-code">data/course-name</span> first, then map the same item in the course page table.
+        </div>
+        <div class="table-wrap" style="margin-top: 12px;">
+          <table class="course-table">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Data Folder</th>
+                <th>Status</th>
+                <th>Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Database Systems</td>
+                <td><span class="inline-code">data/DB시스템</span></td>
+                <td><span class="status-pill status-open">Synced</span></td>
+                <td>Weeks 1-4 files + scripts + support PDF linked</td>
+              </tr>
+              <tr>
+                <td>Artificial Intelligence</td>
+                <td><span class="inline-code">data/인공지능</span></td>
+                <td><span class="status-pill status-open">Synced</span></td>
+                <td>Slides, notebooks, HW1, and quiz links reflected</td>
+              </tr>
+              <tr>
+                <td>Capstone Design</td>
+                <td><span class="inline-code">data/캡스톤디자인</span> (not created)</td>
+                <td><span class="status-pill status-soon">Pending</span></td>
+                <td>Operational plan is ready; file links will be attached on upload</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
