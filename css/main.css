@@ -1,29 +1,29 @@
-﻿﻿/* Academic Profile Theme */
+﻿/* Unified Dark Theme */
 :root {
-  --bg-primary: #f3f6fb;
-  --bg-secondary: #ffffff;
-  --bg-card: #ffffff;
-  --card-bg: #ffffff;
-  --bg-hover: #eef4ff;
-  --text-primary: #122033;
-  --text: #122033;
-  --text-secondary: #3f526b;
-  --text-muted: #6c7f98;
-  --bg: #f3f6fb;
-  --accent: #0b63ce;
-  --accent-hover: #0a52aa;
-  --accent-soft: #dceaff;
-  --border: #d8e1ee;
-  --border-strong: #c2d1e4;
-  --success: #12845a;
-  --warning: #a96400;
-  --danger: #9f2c2c;
-  --info: #0b63ce;
+  --bg-primary: #070c15;
+  --bg-secondary: #0f1728;
+  --bg-card: #121d31;
+  --card-bg: #121d31;
+  --bg-hover: #172641;
+  --text-primary: #eaf1ff;
+  --text: #eaf1ff;
+  --text-secondary: #bfd0ef;
+  --text-muted: #90a4ca;
+  --bg: #070c15;
+  --accent: #6fb2ff;
+  --accent-hover: #93c5ff;
+  --accent-soft: #163358;
+  --border: #254066;
+  --border-strong: #396094;
+  --success: #54cc92;
+  --warning: #ffc46e;
+  --danger: #ff8787;
+  --info: #6fb2ff;
   --sidebar-width: 320px;
   --max-width: 1120px;
   --radius: 14px;
-  --shadow-sm: 0 2px 8px rgba(14, 33, 62, 0.06);
-  --shadow-md: 0 12px 30px rgba(14, 33, 62, 0.09);
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.36);
+  --shadow-md: 0 22px 44px rgba(0, 0, 0, 0.48);
 }
 
 * {
@@ -38,7 +38,7 @@ html {
 
 body {
   font-family: "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
-  background: radial-gradient(circle at top right, #e7f0ff 0%, var(--bg-primary) 42%, var(--bg-primary) 100%);
+  background: radial-gradient(circle at top right, #163258 0%, #0e1d35 38%, var(--bg-primary) 100%);
   color: var(--text-primary);
   line-height: 1.68;
   min-height: 100vh;
@@ -65,9 +65,9 @@ a:hover {
   width: var(--sidebar-width);
   height: 100vh;
   overflow-y: auto;
-  background: linear-gradient(180deg, #0d223f 0%, #132f56 55%, #1c4478 100%);
-  color: #eaf2ff;
-  border-right: 1px solid #1f4374;
+  background: linear-gradient(180deg, #0b1630 0%, #10213f 55%, #12305a 100%);
+  color: #e8f1ff;
+  border-right: 1px solid #1f3f6b;
   padding: 28px 24px;
   z-index: 30;
 }
@@ -83,7 +83,7 @@ a:hover {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 10px 28px rgba(2, 10, 24, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
   margin-bottom: 16px;
 }
 
@@ -97,7 +97,7 @@ a:hover {
 
 .profile-title {
   font-size: 14px;
-  color: #d5e4ff;
+  color: #d2e2ff;
   line-height: 1.5;
 }
 
@@ -136,7 +136,7 @@ a:hover {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.3px;
-  color: #a8c2e8;
+  color: #9dbbe8;
   margin-bottom: 10px;
 }
 
@@ -153,13 +153,13 @@ a:hover {
   font-size: 14px;
   padding: 8px 10px;
   border-radius: 8px;
-  color: #e5efff;
+  color: #dce9ff;
   transition: all 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
 }
 
@@ -183,9 +183,9 @@ a:hover {
 }
 
 .lang-btn.active {
-  background: #ffffff;
-  color: #10305c;
-  border-color: #ffffff;
+  background: #dbe9ff;
+  color: #11315f;
+  border-color: #dbe9ff;
   font-weight: 700;
 }
 
@@ -220,9 +220,10 @@ a:hover {
 .hero-banner {
   padding: 24px;
   border-radius: var(--radius);
-  background: linear-gradient(120deg, #0b63ce 0%, #2a7ee0 50%, #4994ec 100%);
+  background: linear-gradient(128deg, #153865 0%, #1f4f87 52%, #2e6db0 100%);
   color: #ffffff;
   box-shadow: var(--shadow-md);
+  border: 1px solid #3d6ea8;
 }
 
 .hero-banner h2 {
@@ -232,7 +233,7 @@ a:hover {
 }
 
 .hero-banner p {
-  color: #edf5ff;
+  color: #eaf3ff;
 }
 
 .hero-banner .meta {
@@ -248,8 +249,8 @@ a:hover {
   gap: 6px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.17);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   font-size: 12px;
 }
 
@@ -292,7 +293,7 @@ a:hover {
 }
 
 .post-card {
-  background: var(--bg-card);
+  background: linear-gradient(180deg, #132038 0%, #101b30 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px;
@@ -316,9 +317,9 @@ a:hover {
   align-items: center;
   padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid #b7cff1;
+  border: 1px solid #2f5f95;
   background: var(--accent-soft);
-  color: #0a4f9f;
+  color: #d2e7ff;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -350,9 +351,9 @@ a:hover {
 
 .tag {
   font-size: 12px;
-  color: #184c87;
-  border: 1px solid #c8daf3;
-  background: #f3f8ff;
+  color: #bdd8ff;
+  border: 1px solid #2f5789;
+  background: #112845;
   border-radius: 999px;
   padding: 3px 10px;
 }
@@ -374,12 +375,13 @@ a:hover {
   font-size: 14px;
   font-weight: 600;
   color: var(--accent);
-  background: #ffffff;
+  background: #0f2039;
 }
 
 .btn.primary {
   background: var(--accent);
-  color: #ffffff;
+  color: #062242;
+  border-color: var(--accent);
 }
 
 .btn:hover {
@@ -389,7 +391,7 @@ a:hover {
 
 .btn.primary:hover {
   background: var(--accent-hover);
-  color: #ffffff;
+  color: #03162d;
 }
 
 .category-tabs {
@@ -409,14 +411,14 @@ a:hover {
   border-radius: 999px;
   padding: 8px 14px;
   color: var(--text-secondary);
-  background: #ffffff;
+  background: #101f36;
   white-space: nowrap;
 }
 
 .category-tab.active {
   border-color: var(--accent);
-  color: var(--accent);
-  background: #eef5ff;
+  color: #d8ebff;
+  background: #16345a;
 }
 
 .category-count {
@@ -433,8 +435,8 @@ a:hover {
   gap: 8px;
   padding: 10px 14px;
   border-radius: 10px;
-  background: #0f2748;
-  border: 1px solid #18365e;
+  background: #102744;
+  border: 1px solid #1f446f;
   color: #f7fbff;
   opacity: 0;
   visibility: hidden;
@@ -448,7 +450,7 @@ a:hover {
 }
 
 .back-to-top:hover {
-  background: #16325a;
+  background: #173661;
   color: #ffffff;
 }
 
@@ -461,8 +463,8 @@ a:hover {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  border: 1px solid #235087;
-  background: #183a67;
+  border: 1px solid #26518a;
+  background: #163864;
   color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
@@ -523,15 +525,14 @@ a:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: #e9f0fa;
+  background: #0b182d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #bdd0ea;
+  background: #2d507f;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ab5d8;
+  background: #3b659c;
 }
-
