@@ -71,16 +71,20 @@
         <header class="page-header">
           <div class="course-hero">
             <h2>데이터베이스시스템</h2>
-            <p>관계형 데이터베이스의 설계, SQL, 트랜잭션, 인덱싱, 쿼리 최적화의 핵심 개념을 이론과 실습으로 학습합니다.</p>
+            <p>데이터베이스의 기초 이론과 필요성부터 데이터 모델링, SQL, 정규화, 트랜잭션 관리까지 체계적으로 학습합니다.</p>
             <div class="course-meta-grid">
               <div class="meta-item"><span class="meta-label">학기</span><span class="meta-value">2026년 1학기</span></div>
-              <div class="meta-item"><span class="meta-label">수업형태</span><span class="meta-value">이론 + 실습</span></div>
-              <div class="meta-item"><span class="meta-label">평가방식</span><span class="meta-value">과제/시험/출석</span></div>
+              <div class="meta-item"><span class="meta-label">수업형태</span><span class="meta-value">이론 (주 3시간)</span></div>
+              <div class="meta-item"><span class="meta-label">대상</span><span class="meta-value">컴퓨터공학과 3학년</span></div>
               <div class="meta-item"><span class="meta-label">담당교수</span><span class="meta-value">박상돈</span></div>
             </div>
+            <div class="callout-box">
+              <strong>교재:</strong> 김연희, 「IT CookBook, 데이터베이스 개론」 3판, 한빛아카데미<br>
+              교재 미구매 시에도 강의 슬라이드만으로 학습할 수 있도록 자료를 제공합니다.
+            </div>
             <div class="course-links">
-              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> 강의자료로 이동</a>
-              <a class="btn primary" href="#assignments"><i class="fas fa-list-check"></i> 과제로 이동</a>
+              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> 강의자료</a>
+              <a class="btn primary" href="#materials"><i class="fas fa-calendar"></i> 주차별 계획</a>
             </div>
           </div>
         </header>
@@ -94,13 +98,13 @@
         <div class="notice-list">
           <article class="notice-item">
             <div class="notice-date">2026-03-02</div>
-            <h3 class="notice-title">강의계획서 및 평가 기준 안내</h3>
-            <p class="notice-text">출석, 과제, 중간/기말 평가 비율과 실습 환경 설정 안내를 첫 주차에 공지합니다.</p>
+            <h3 class="notice-title">강의 운영 안내</h3>
+            <p class="notice-text">수업 목표, 주차별 커리큘럼, 평가 기준, Office Hour를 첫 시간에 안내합니다. 0장 Preview 슬라이드를 참고하세요.</p>
           </article>
           <article class="notice-item">
-            <div class="notice-date">2026-03-09</div>
-            <h3 class="notice-title">과제 1 배포 예정</h3>
-            <p class="notice-text">기본 SQL 질의 작성 과제가 배포되며, 제출 방식은 LMS 또는 GitHub Classroom로 안내합니다.</p>
+            <div class="notice-date">2026-03-02</div>
+            <h3 class="notice-title">평가 기준</h3>
+            <p class="notice-text">퀴즈/과제 30% · 중간고사 30% (1~6장) · 기말고사 30% (7~12장) · 출석 10%. 전체 수업의 1/3 이상 결석 시 F 처리.</p>
           </article>
         </div>
       </section>
@@ -117,33 +121,78 @@
                 <th>주차</th>
                 <th>주제</th>
                 <th>자료</th>
-                <th>업로드</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Week 1</td>
-                <td>오리엔테이션 / 데이터베이스 개요</td>
-                <td>업로드 예정</td>
-                <td>2026-03-02</td>
+                <td>1</td>
+                <td>0장 Preview — 강의 소개</td>
+                <td><a href="../data/DB시스템/0장_데이터베이스시스템_Preview.pptx">슬라이드</a></td>
               </tr>
               <tr>
-                <td>Week 2</td>
-                <td>ER 모델링과 관계 스키마 변환</td>
-                <td>업로드 예정</td>
-                <td>-</td>
+                <td>2</td>
+                <td>1장 데이터베이스 기본 개념</td>
+                <td><a href="../data/DB시스템/1장_데이터베이스_기본개념.pptx">슬라이드</a> · <a href="../data/DB시스템/1장_연습문제_풀이.pptx">연습문제 풀이</a></td>
               </tr>
               <tr>
-                <td>Week 3</td>
-                <td>SQL 기초 (SELECT, JOIN, GROUP BY)</td>
-                <td>업로드 예정</td>
-                <td>-</td>
+                <td>3</td>
+                <td>2장 데이터베이스 관리 시스템 (DBMS)</td>
+                <td><a href="../data/DB시스템/2장_데이터베이스_관리시스템.pptx">슬라이드</a> · <a href="../data/DB시스템/2장_연습문제_풀이.pptx">연습문제 풀이</a></td>
               </tr>
               <tr>
-                <td>Week 4</td>
-                <td>트랜잭션/동시성 제어</td>
+                <td>4</td>
+                <td>3장 데이터베이스 시스템 (3단계 스키마)</td>
+                <td><a href="../data/DB시스템/3장_데이터베이스시스템_박상돈.pptx">슬라이드</a></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>4장 데이터 모델링 (ER 모델)</td>
                 <td>업로드 예정</td>
-                <td>-</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>5장 관계 데이터 모델</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>6장 관계 데이터 연산</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>중간고사 (1~6장)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>9–10</td>
+                <td>7장 SQL (DDL, DML, SELECT)</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>8장 데이터베이스 설계</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>9장 정규화 (1NF ~ BCNF)</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>10장 트랜잭션, 회복, 병행 제어</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>11–12장 보안 · 빅데이터 · 데이터 과학</td>
+                <td>업로드 예정</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>기말고사 (7~12장)</td>
+                <td>—</td>
               </tr>
             </tbody>
           </table>
@@ -155,45 +204,10 @@
           <h2 class="section-title">과제</h2>
           <p class="section-subtitle">Homework</p>
         </div>
-        <div class="table-wrap">
-          <table class="course-table">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>제목</th>
-                <th>배포일</th>
-                <th>마감일</th>
-                <th>제출</th>
-                <th>상태</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>HW1</td>
-                <td>SQL 기본 질의 작성</td>
-                <td>2026-03-09</td>
-                <td>2026-03-16 23:59</td>
-                <td>LMS / GitHub Classroom</td>
-                <td><span class="status-pill status-soon">예정</span></td>
-              </tr>
-              <tr>
-                <td>HW2</td>
-                <td>정규화 및 스키마 설계</td>
-                <td>2026-03-23</td>
-                <td>2026-03-30 23:59</td>
-                <td>LMS</td>
-                <td><span class="status-pill status-soon">예정</span></td>
-              </tr>
-              <tr>
-                <td>Mini Project</td>
-                <td>인덱스/쿼리 성능 비교 실험</td>
-                <td>2026-04-20</td>
-                <td>2026-05-04 23:59</td>
-                <td>보고서 + 코드</td>
-                <td><span class="status-pill status-soon">예정</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="notice-list">
+          <article class="notice-item">
+            <p class="notice-text">퀴즈와 과제는 주기적으로 배포됩니다. SQL 실습 과제를 포함하며, 제출은 LMS 또는 별도 안내에 따릅니다.</p>
+          </article>
         </div>
       </section>
 
@@ -205,8 +219,10 @@
         <div class="posts-list">
           <article class="post-card">
             <p class="post-excerpt">
+              연구실: 융합과학관 2층 24221호 (내선 2561)<br>
               이메일: <a href="mailto:sangdon.park@dju.kr">sangdon.park@dju.kr</a><br>
-              제목 형식: <span class="inline-code">[데이터베이스시스템][학번] 문의 내용</span>
+              Office Hour: 월·화 11:00–12:00, 수 14:00–15:00 (사전 예약 권장)<br>
+              이메일 제목 형식: <span class="inline-code">[DB수업][학번] 문의 내용</span>
             </p>
           </article>
         </div>

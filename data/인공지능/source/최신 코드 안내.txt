@@ -1,0 +1,3 @@
+최신 코드는 도서의 깃허브에서 확인해주세요.
+
+https://github.com/rickiepark/hg-mldl

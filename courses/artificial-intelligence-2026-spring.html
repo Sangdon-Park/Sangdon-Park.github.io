@@ -71,16 +71,20 @@
         <header class="page-header">
           <div class="course-hero">
             <h2>인공지능</h2>
-            <p>탐색/추론/지식표현부터 기계학습 기초와 최신 AI 응용까지, 핵심 개념을 문제 중심으로 학습합니다.</p>
+            <p>머신러닝의 기초부터 딥러닝(CNN, RNN)까지 Python 실습과 함께 학습합니다.</p>
             <div class="course-meta-grid">
               <div class="meta-item"><span class="meta-label">학기</span><span class="meta-value">2026년 1학기</span></div>
-              <div class="meta-item"><span class="meta-label">수업형태</span><span class="meta-value">이론 + 실습</span></div>
-              <div class="meta-item"><span class="meta-label">평가방식</span><span class="meta-value">퀴즈/과제/프로젝트</span></div>
+              <div class="meta-item"><span class="meta-label">수업형태</span><span class="meta-value">이론 + Python 실습</span></div>
+              <div class="meta-item"><span class="meta-label">평가방식</span><span class="meta-value">퀴즈/과제/시험</span></div>
               <div class="meta-item"><span class="meta-label">담당교수</span><span class="meta-value">박상돈</span></div>
             </div>
+            <div class="callout-box">
+              <strong>교재:</strong> 박해선, 「혼자 공부하는 머신러닝+딥러닝」 개정판, 한빛미디어<br>
+              실습 코드는 Jupyter Notebook으로 제공하며 Google Colab에서도 실행할 수 있습니다.
+            </div>
             <div class="course-links">
-              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> 강의자료로 이동</a>
-              <a class="btn primary" href="#assignments"><i class="fas fa-list-check"></i> 과제로 이동</a>
+              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> 강의자료</a>
+              <a class="btn primary" href="#assignments"><i class="fas fa-list-check"></i> 과제</a>
             </div>
           </div>
         </header>
@@ -94,13 +98,13 @@
         <div class="notice-list">
           <article class="notice-item">
             <div class="notice-date">2026-03-03</div>
-            <h3 class="notice-title">수업 운영 및 참고 교재 공지</h3>
-            <p class="notice-text">수업 운영 방식, 추천 교재, 실습 환경(Python) 안내를 공지합니다.</p>
+            <h3 class="notice-title">수업 운영 안내</h3>
+            <p class="notice-text">교재, 주차별 계획, 평가 기준을 첫 시간에 안내합니다. Python 환경(Anaconda 또는 Google Colab) 설치를 미리 준비하세요.</p>
           </article>
           <article class="notice-item">
-            <div class="notice-date">2026-03-10</div>
-            <h3 class="notice-title">과제 1 배포 예정</h3>
-            <p class="notice-text">탐색 알고리즘/휴리스틱 기반 문제 해결 과제를 배포할 예정입니다.</p>
+            <div class="notice-date">2026-03-03</div>
+            <h3 class="notice-title">HW1 배포 — K-최근접 이웃으로 과일 분류하기</h3>
+            <p class="notice-text">GitHub Classroom을 통해 배포됩니다. assignment.ipynb를 완성 후 commit &amp; push하면 자동 채점됩니다. 총 100점, 5문제.</p>
           </article>
         </div>
       </section>
@@ -117,33 +121,78 @@
                 <th>주차</th>
                 <th>주제</th>
                 <th>자료</th>
-                <th>업로드</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Week 1</td>
-                <td>오리엔테이션 / AI 개요</td>
-                <td>업로드 예정</td>
-                <td>2026-03-03</td>
+                <td>1</td>
+                <td>과목 소개 (Preview)</td>
+                <td><a href="../data/인공지능/00 - preview.pptx">슬라이드</a></td>
               </tr>
               <tr>
-                <td>Week 2</td>
-                <td>문제 해결과 탐색</td>
-                <td>업로드 예정</td>
-                <td>-</td>
+                <td>2</td>
+                <td>Ch1 인공지능 개요 — 마켓과 머신러닝</td>
+                <td><a href="../data/인공지능/01 - 인공지능개요.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/1-3.ipynb">Notebook</a></td>
               </tr>
               <tr>
-                <td>Week 3</td>
-                <td>지식표현과 추론</td>
-                <td>업로드 예정</td>
-                <td>-</td>
+                <td>3</td>
+                <td>Ch2 데이터 다루기 — 훈련/테스트 세트, 전처리</td>
+                <td><a href="../data/인공지능/02 - 데이터다루기.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/2-1.ipynb">2-1</a> · <a href="../data/인공지능/hg-mldl-master/2-2.ipynb">2-2</a></td>
               </tr>
               <tr>
-                <td>Week 4</td>
-                <td>기계학습 기초</td>
-                <td>업로드 예정</td>
-                <td>-</td>
+                <td>4</td>
+                <td>Ch3 회귀 알고리즘과 모델 규제</td>
+                <td><a href="../data/인공지능/03 - 회귀 알고리즘과 모델 규제.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/3-1.ipynb">3-1</a> · <a href="../data/인공지능/hg-mldl-master/3-2.ipynb">3-2</a> · <a href="../data/인공지능/hg-mldl-master/3-3.ipynb">3-3</a></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Ch4 다양한 분류 알고리즘 — 로지스틱 회귀, SGD</td>
+                <td><a href="../data/인공지능/04 - 다양한 분류 알고리즘.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/4-1.ipynb">4-1</a> · <a href="../data/인공지능/hg-mldl-master/4-2.ipynb">4-2</a></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Ch5 트리 알고리즘 — 결정 트리, 교차 검증, 앙상블</td>
+                <td><a href="../data/인공지능/05 - 트리 알고리즘.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/5-1.ipynb">5-1</a> · <a href="../data/인공지능/hg-mldl-master/5-2.ipynb">5-2</a> · <a href="../data/인공지능/hg-mldl-master/5-3.ipynb">5-3</a></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Ch6 비지도 학습 — 군집, k-평균, PCA</td>
+                <td><a href="../data/인공지능/06 - 비지도 학습.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/6-1.ipynb">6-1</a> · <a href="../data/인공지능/hg-mldl-master/6-2.ipynb">6-2</a> · <a href="../data/인공지능/hg-mldl-master/6-3.ipynb">6-3</a></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>중간고사</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Ch7 딥러닝 — 인공 신경망, 심층 신경망</td>
+                <td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER07.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/7-1.ipynb">7-1</a> · <a href="../data/인공지능/hg-mldl-master/7-2.ipynb">7-2</a> · <a href="../data/인공지능/hg-mldl-master/7-3.ipynb">7-3</a></td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Ch8 합성곱 신경망 (CNN)</td>
+                <td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER08.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/8-2.ipynb">8-2</a> · <a href="../data/인공지능/hg-mldl-master/8-3.ipynb">8-3</a></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Ch9 순환 신경망 (RNN, LSTM, GRU)</td>
+                <td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER09.pptx">슬라이드</a> · <a href="../data/인공지능/hg-mldl-master/9-2.ipynb">9-2</a> · <a href="../data/인공지능/hg-mldl-master/9-3.ipynb">9-3</a></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Ch10 AI 응용 및 최신 동향</td>
+                <td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER10.pptx">슬라이드</a></td>
+              </tr>
+              <tr>
+                <td>13–14</td>
+                <td>프로젝트 / 복습</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>기말고사</td>
+                <td>—</td>
               </tr>
             </tbody>
           </table>
@@ -161,8 +210,6 @@
               <tr>
                 <th>No.</th>
                 <th>제목</th>
-                <th>배포일</th>
-                <th>마감일</th>
                 <th>제출</th>
                 <th>상태</th>
               </tr>
@@ -170,26 +217,14 @@
             <tbody>
               <tr>
                 <td>HW1</td>
-                <td>탐색 알고리즘 구현</td>
-                <td>2026-03-10</td>
-                <td>2026-03-17 23:59</td>
-                <td>LMS / GitHub</td>
-                <td><span class="status-pill status-soon">예정</span></td>
+                <td>K-최근접 이웃으로 과일 분류하기 (100점, 5문제)</td>
+                <td>GitHub Classroom (자동 채점)</td>
+                <td><span class="status-pill status-open">진행중</span></td>
               </tr>
               <tr>
-                <td>HW2</td>
-                <td>분류 모델 실험 리포트</td>
-                <td>2026-03-31</td>
-                <td>2026-04-07 23:59</td>
-                <td>LMS</td>
-                <td><span class="status-pill status-soon">예정</span></td>
-              </tr>
-              <tr>
-                <td>Mini Project</td>
-                <td>AI 응용 문제 해결 프로젝트</td>
-                <td>2026-04-28</td>
-                <td>2026-05-19 23:59</td>
-                <td>보고서 + 코드</td>
+                <td>퀴즈</td>
+                <td>Ch1–2 객관식 퀴즈</td>
+                <td>수업 시간</td>
                 <td><span class="status-pill status-soon">예정</span></td>
               </tr>
             </tbody>
@@ -206,7 +241,7 @@
           <article class="post-card">
             <p class="post-excerpt">
               이메일: <a href="mailto:sangdon.park@dju.kr">sangdon.park@dju.kr</a><br>
-              제목 형식: <span class="inline-code">[인공지능][학번] 문의 내용</span>
+              이메일 제목 형식: <span class="inline-code">[인공지능][학번] 문의 내용</span>
             </p>
           </article>
         </div>
