@@ -74,7 +74,8 @@
             <h2>2026년 1학기 과목 페이지</h2>
             <p>
               이번 학기 담당 과목은 <strong>데이터베이스시스템</strong>, <strong>인공지능</strong>, <strong>캡스톤디자인</strong>입니다.
-              과목별 공지, 강의자료, 과제 안내를 각 전용 페이지에서 업데이트합니다.
+              과목별 공지, 강의자료, 과제 안내를 전용 페이지에서 운영하며
+              <strong>data 폴더 실파일 기준으로 동기화</strong>합니다.
             </p>
             <div class="course-meta-grid">
               <div class="meta-item"><span class="meta-label">학기</span><span class="meta-value">2026 Spring</span></div>
@@ -83,7 +84,8 @@
               <div class="meta-item"><span class="meta-label">연락</span><span class="meta-value">sangdon.park@dju.kr</span></div>
             </div>
             <div class="callout-box">
-              자료 파일을 올릴 때는 과목별 페이지의 <span class="inline-code">강의자료</span>, <span class="inline-code">과제</span> 표 행을 추가/수정하면 됩니다.
+              <strong>동기화 기준일:</strong> 2026-02-28<br>
+              자료 파일을 추가하면 과목별 페이지의 <span class="inline-code">강의자료</span>/<span class="inline-code">과제</span> 표를 함께 갱신합니다.
             </div>
           </div>
         </header>
@@ -98,7 +100,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">DB Systems</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">데이터베이스시스템</h3>
-            <p class="post-excerpt">데이터 모델링, SQL, 트랜잭션, 인덱싱/쿼리 최적화 중심의 시스템 과목</p>
+            <p class="post-excerpt">주차 1~4 실자료 링크 + 스크립트/정답 자료까지 연결 완료</p>
+            <div class="post-tags">
+              <span class="tag">data/DB시스템 동기화</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/database-systems-2026-spring.html"><i class="fas fa-arrow-right"></i> 과목 페이지</a>
             </div>
@@ -107,7 +112,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">Artificial Intelligence</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">인공지능</h3>
-            <p class="post-excerpt">탐색, 지식표현, 기계학습 기초와 최신 AI 응용 사례를 다루는 핵심 과목</p>
+            <p class="post-excerpt">슬라이드/노트북/HW1/퀴즈 파일까지 data 폴더 기준 반영 완료</p>
+            <div class="post-tags">
+              <span class="tag">data/인공지능 동기화</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/artificial-intelligence-2026-spring.html"><i class="fas fa-arrow-right"></i> 과목 페이지</a>
             </div>
@@ -116,7 +124,10 @@
           <article class="post-card">
             <div class="post-header"><span class="post-category">Capstone Design</span><span class="post-date">2026-1</span></div>
             <h3 class="post-title">캡스톤디자인</h3>
-            <p class="post-excerpt">문제정의부터 구현/검증/발표까지 팀 프로젝트 기반의 실전 설계 과목</p>
+            <p class="post-excerpt">주차별 운영안/산출물 일정 공개. 파일 업로드 슬롯은 미리 구성</p>
+            <div class="post-tags">
+              <span class="tag">data 폴더 생성 대기</span>
+            </div>
             <div class="inline-actions">
               <a class="btn primary" href="courses/capstone-design-2026-spring.html"><i class="fas fa-arrow-right"></i> 과목 페이지</a>
             </div>
@@ -127,23 +138,42 @@
       <section id="policy" class="posts-section">
         <div class="section-header">
           <h2 class="section-title">운영 정책</h2>
-          <p class="section-subtitle">Materials & Homework Policy</p>
+          <p class="section-subtitle">Sync Status</p>
         </div>
-        <div class="posts-list grid-2">
-          <article class="post-card">
-            <h3 class="post-title">강의자료 업로드</h3>
-            <p class="post-excerpt">
-              주차별 슬라이드/실습자료는 각 과목 페이지의 <span class="inline-code">강의자료</span> 섹션에 업로드합니다.
-              수정 이력은 공지 섹션 날짜와 함께 안내합니다.
-            </p>
-          </article>
-          <article class="post-card">
-            <h3 class="post-title">과제 공지 및 제출</h3>
-            <p class="post-excerpt">
-              과제는 번호 단위로 공지하고, 배포일/마감일/제출방식(이메일, LMS, GitHub)을 명시합니다.
-              지각 제출 및 재제출 규정은 과목별 공지를 우선합니다.
-            </p>
-          </article>
+        <div class="callout-box">
+          파일은 <span class="inline-code">data/과목명</span> 폴더에 우선 업로드한 뒤, 동일 항목을 과목 페이지 표에 연결합니다.
+        </div>
+        <div class="table-wrap" style="margin-top: 12px;">
+          <table class="course-table">
+            <thead>
+              <tr>
+                <th>과목</th>
+                <th>데이터 폴더</th>
+                <th>동기화 상태</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>데이터베이스시스템</td>
+                <td><span class="inline-code">data/DB시스템</span></td>
+                <td><span class="status-pill status-open">완료</span></td>
+                <td>주차 1~4 실파일 + 강의 스크립트 + 보조 PDF 연결</td>
+              </tr>
+              <tr>
+                <td>인공지능</td>
+                <td><span class="inline-code">data/인공지능</span></td>
+                <td><span class="status-pill status-open">완료</span></td>
+                <td>슬라이드, 노트북, HW1, 퀴즈 파일 링크 반영</td>
+              </tr>
+              <tr>
+                <td>캡스톤디자인</td>
+                <td><span class="inline-code">data/캡스톤디자인</span> (미생성)</td>
+                <td><span class="status-pill status-soon">준비중</span></td>
+                <td>운영안/산출물 일정 공개, 파일 슬롯만 선구성</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
