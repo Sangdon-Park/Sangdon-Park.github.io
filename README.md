@@ -1,59 +1,67 @@
-# 박상돈 개인 학술 프로필 웹사이트
+﻿# Sangdon Park Faculty Homepage
 
-이 저장소는 박상돈님의 개인 학술 프로필 웹사이트의 소스 코드입니다. GitHub Pages를 통해 호스팅됩니다.
+This repository contains the source code for the official academic homepage of **Sangdon Park**,
+Assistant Professor in the **Department of Computer Engineering, School of SW Convergence, Daejeon University**.
 
-[웹사이트 바로가기](https://sangdon-park.github.io/)
+- Site: https://sangdon-park.github.io/
+- Korean page: `ko.html`
+- English page: `en.html`
+- Publications page: `publications.html`
 
-## 웹사이트 소개
+## Project Structure
 
-이 웹사이트는 박상돈님의 연구 활동과 학술적 성과를 소개합니다. 포함된 주요 내용은 다음과 같습니다:
+- `ko.html`, `en.html`: main faculty profile pages
+- `publications.html`: detailed publication list and category tabs
+- `articles/`: article pages (`*-en.html` for English counterparts)
+- `css/main.css`: global design/theme
+- `css/article.css`: article-specific styles
+- `js/chatbot.js`: optional chatbot integration script
+- `_config.yml`, `Gemfile`: Jekyll/GitHub Pages configuration
 
-*   **소개:** 연구 관심사 및 경력 요약
-*   **AI 연구:** 주요 AI 연구 분야 소개 (대규모 언어 모델, 대화형 AI 등)
-*   **연구 분야:** 세부 연구 주제 (에너지 거래 시스템, 모바일 엣지 컴퓨팅 등)
-*   **논문:** 최신 논문 목록 및 Google Scholar 링크 (인용 수 포함)
-*   **연구 경력:** 주요 연구 프로젝트 및 경력
-*   **학력:** 학사, 석사, 박사 학위 정보
-*   **연락처:** 이메일, 주소, 전화번호
+## Local Development
 
-웹사이트는 한국어와 영어 버전을 제공합니다.
+```bash
+bundle install
+bundle exec jekyll serve --livereload
+```
 
-## 기술 스택
+Default local URL:
 
-*   HTML
-*   CSS
-*   JavaScript
+- http://127.0.0.1:4000
 
-## 웹사이트 업데이트 방법
+Production build:
 
-### 개인 정보 및 내용 수정
+```bash
+JEKYLL_ENV=production bundle exec jekyll build
+```
 
-*   **기본 정보 (소개, 경력, 학력, 연락처 등):** `ko.html` (한국어) 및 `en.html` (영어) 파일 내의 해당 섹션을 직접 수정합니다.
-*   **프로필 사진:** `images/Sangdon.jpg` 파일을 원하는 이미지로 교체합니다.
-*   **디자인:** `css/main.css` 파일에서 색상, 폰트, 레이아웃 등을 수정할 수 있습니다.
+Health check:
 
-### 논문 목록 업데이트
+```bash
+bundle exec jekyll doctor
+```
 
-전체 논문 목록은 `publications.html` 파일 하단의 스크립트 내 문자열 데이터로 관리됩니다.
+## Content Update Guide
 
-1. `publications.html`을 열고 다음 상수들의 내용을 수정합니다:
-   - `journalPapers`, `conferencePapers`, `standardsPapers`, `patents`
-   - 각 라인은 `|` 구분자로 링크/특이사항을 포함할 수 있습니다.
-2. 메인 페이지(`ko.html`, `en.html`)의 대표 논문 섹션 텍스트를 필요시 수동 업데이트합니다.
-3. 저장 후 `main` 브랜치에 푸시하면 자동 배포됩니다.
+1. **Profile / About / Teaching / Contact updates**
+   - Edit `ko.html` and `en.html`.
+2. **Publication updates**
+   - Edit constants in `publications.html`:
+     - `journalPapers`
+     - `conferencePapers`
+     - `standardsPapers`
+     - `patents`
+3. **Article updates**
+   - Keep Korean and English article pairs synchronized.
+4. **Images / CV files**
+   - Replace `images/Sangdon.jpg`, `CV-ko.pdf`, `CV.pdf` as needed.
 
-참고: 레거시 스크립트 `js/script.js`는 현재 사용하지 않습니다.
+## Deployment
 
-## GitHub Pages 배포
+The site is deployed via **GitHub Pages** from the `main` branch.
+Pushing to `main` triggers automatic deployment.
 
-이 웹사이트는 GitHub Pages를 통해 자동으로 배포됩니다. `main` 브랜치에 변경사항을 푸시하면 잠시 후 웹사이트에 반영됩니다.
+## Notes
 
-웹사이트 주소: [https://sangdon-park.github.io/](https://sangdon-park.github.io/)
-
-## 챗봇 설정
-
-챗봇은 `ko.html`과 `en.html`에서 `js/chatbot.js`로 로드됩니다. 백엔드 엔드포인트를 변경하려면 `js/chatbot.js` 상단의 `CHATBOT_API` 값을 수정하세요.
-
-## 라이센스
-
-이 웹사이트의 코드는 자유롭게 참고할 수 있습니다.
+- Do not commit secrets or API tokens.
+- If changing chatbot backend endpoints, verify CORS for site origin.
