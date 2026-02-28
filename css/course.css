@@ -1,95 +1,97 @@
-﻿/* Course Page Extensions */
-
 .course-hero {
-  padding: 24px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: linear-gradient(132deg, #142f54 0%, #1a416f 56%, #20558d 100%);
-  box-shadow: var(--shadow-md);
+  padding: 24px 28px;
+  border-radius: 6px;
+  border: 1px solid #e7e5e4;
+  background: #f8f7f6;
+  border-left: 4px solid var(--accent);
 }
 
 .course-hero h2 {
-  font-size: 30px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 6px;
+  color: #1c1917;
 }
 
 .course-hero p {
-  color: #e8f2ff;
+  color: #57534e;
 }
 
 .course-meta-grid {
-  margin-top: 16px;
+  margin-top: 14px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .meta-item {
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #e7e5e4;
+  border-radius: 4px;
+  background: #fff;
   padding: 10px 12px;
 }
 
 .meta-label {
   display: block;
-  font-size: 12px;
-  color: #d4e6ff;
-  margin-bottom: 3px;
+  font-size: 11px;
+  color: #a8a29e;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
 }
 
 .meta-value {
-  font-size: 15px;
-  color: #ffffff;
+  font-size: 14px;
+  color: #1c1917;
   font-weight: 600;
 }
 
 .callout-box {
   margin-top: 14px;
-  border: 1px solid #2f588c;
-  border-left: 5px solid var(--accent);
-  border-radius: 12px;
-  background: #10253f;
-  padding: 14px;
-  color: var(--text-secondary);
+  border: 1px solid #e7e5e4;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  background: #fafaf9;
+  padding: 12px 14px;
+  color: #57534e;
+  font-size: 14px;
 }
 
 .course-links {
   margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #101d33;
+  border: 1px solid #e7e5e4;
+  border-radius: 4px;
 }
 
 .course-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 760px;
+  min-width: 700px;
 }
 
 .course-table th,
 .course-table td {
   text-align: left;
-  padding: 12px 14px;
-  border-bottom: 1px solid #213a5d;
-  color: var(--text-secondary);
+  padding: 10px 14px;
+  border-bottom: 1px solid #e7e5e4;
+  color: #44403c;
   font-size: 14px;
   vertical-align: top;
 }
 
 .course-table th {
-  font-size: 13px;
-  color: #d5e8ff;
+  font-size: 12px;
+  color: #57534e;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background: #132440;
+  background: #fafaf9;
+  font-weight: 600;
 }
 
 .course-table tr:last-child td {
@@ -97,31 +99,27 @@
 }
 
 .status-pill {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px 10px;
+  display: inline-block;
   font-size: 12px;
+  font-weight: 500;
+  padding: 1px 8px;
+  border-radius: 3px;
   white-space: nowrap;
 }
 
 .status-open {
-  color: #9fe6bf;
-  border-color: #2c8458;
-  background: #112c23;
+  color: #059669;
+  background: #ecfdf5;
 }
 
 .status-soon {
-  color: #ffd59a;
-  border-color: #926219;
-  background: #2b210f;
+  color: #d97706;
+  background: #fffbeb;
 }
 
 .status-closed {
-  color: #ffc1c1;
-  border-color: #8a2f2f;
-  background: #2a1418;
+  color: #dc2626;
+  background: #fef2f2;
 }
 
 .notice-list {
@@ -130,38 +128,39 @@
 }
 
 .notice-item {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: #101d33;
+  border: 1px solid #e7e5e4;
+  border-radius: 4px;
+  padding: 12px 14px;
+  background: #fff;
 }
 
 .notice-date {
-  color: var(--text-muted);
+  color: #a8a29e;
   font-size: 13px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .notice-title {
-  color: var(--text-primary);
-  font-size: 16px;
-  margin-bottom: 4px;
+  color: #1c1917;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
 .notice-text {
-  color: var(--text-secondary);
+  color: #57534e;
   font-size: 14px;
 }
 
 .inline-code {
-  display: inline-block;
-  background: #132746;
-  border: 1px solid #2d547f;
-  color: #d4e8ff;
-  border-radius: 6px;
-  padding: 2px 7px;
-  font-size: 12px;
-  font-family: Consolas, Monaco, monospace;
+  display: inline;
+  background: #f5f5f4;
+  border: 1px solid #e7e5e4;
+  color: #1c1917;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 13px;
+  font-family: Consolas, "SFMono-Regular", monospace;
 }
 
 @media (max-width: 1000px) {
@@ -176,7 +175,7 @@
   }
 
   .course-hero h2 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .course-meta-grid {
