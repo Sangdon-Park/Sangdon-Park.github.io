@@ -1,4 +1,4 @@
-﻿/* Academic Profile Theme */
+﻿﻿/* Academic Profile Theme */
 :root {
   --bg-primary: #f3f6fb;
   --bg-secondary: #ffffff;
@@ -534,3 +534,4 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: #9ab5d8;
 }
+
