@@ -1,4 +1,4 @@
-# Jekyll 설정
+﻿# Jekyll ?ㅼ젙
 title: Sangdon Park
 description: Assistant Professor, Department of Computer Engineering, Daejeon University
 url: "https://sangdon-park.github.io"
@@ -40,7 +40,7 @@ defaults:
 # Site settings
 author:
   name: Sangdon Park
-  email: chaos@sayberrygames.com
+  email: sangdon.park@dju.kr
   github: Sangdon-Park
   linkedin: sangdon
   scholar: JZFDtsgAAAAJ
@@ -49,3 +49,4 @@ author:
 # Google Analytics
 google_analytics: G-1K1LDRRVD1
 gtm_id: GTM-NKT8SV46
+
