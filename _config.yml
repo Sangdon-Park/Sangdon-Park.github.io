@@ -1,6 +1,6 @@
 # Jekyll 설정
 title: Sangdon Park
-description: Principal Researcher @ Sayberry Games Inc.
+description: Assistant Professor, Department of Computer Engineering, Daejeon University
 url: "https://sangdon-park.github.io"
 baseurl: ""
 
@@ -44,7 +44,7 @@ author:
   github: Sangdon-Park
   linkedin: sangdon
   scholar: JZFDtsgAAAAJ
-  location: Daejeon, Korea
+  location: Daejeon, South Korea
 
 # Google Analytics
 google_analytics: G-1K1LDRRVD1
