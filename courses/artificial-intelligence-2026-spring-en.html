@@ -71,16 +71,20 @@
         <header class="page-header">
           <div class="course-hero">
             <h2>Artificial Intelligence</h2>
-            <p>The course covers search, reasoning, knowledge representation, machine learning basics, and practical AI applications.</p>
+            <p>From machine learning fundamentals to deep learning (CNN, RNN), with hands-on Python labs throughout.</p>
             <div class="course-meta-grid">
               <div class="meta-item"><span class="meta-label">Semester</span><span class="meta-value">2026 Spring</span></div>
-              <div class="meta-item"><span class="meta-label">Format</span><span class="meta-value">Lecture + Practice</span></div>
-              <div class="meta-item"><span class="meta-label">Evaluation</span><span class="meta-value">Quizzes / HW / Project</span></div>
+              <div class="meta-item"><span class="meta-label">Format</span><span class="meta-value">Lecture + Python Lab</span></div>
+              <div class="meta-item"><span class="meta-label">Evaluation</span><span class="meta-value">Quizzes / HW / Exams</span></div>
               <div class="meta-item"><span class="meta-label">Instructor</span><span class="meta-value">Sangdon Park</span></div>
             </div>
+            <div class="callout-box">
+              <strong>Textbook:</strong> Park Haesun, "Self-Study Machine Learning + Deep Learning" (Revised), Hanbit Media<br>
+              Lab code is provided as Jupyter Notebooks, also runnable on Google Colab.
+            </div>
             <div class="course-links">
-              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> Go to Materials</a>
-              <a class="btn primary" href="#assignments"><i class="fas fa-list-check"></i> Go to Assignments</a>
+              <a class="btn" href="#materials"><i class="fas fa-file-lines"></i> Materials</a>
+              <a class="btn primary" href="#assignments"><i class="fas fa-list-check"></i> Assignments</a>
             </div>
           </div>
         </header>
@@ -94,13 +98,13 @@
         <div class="notice-list">
           <article class="notice-item">
             <div class="notice-date">2026-03-03</div>
-            <h3 class="notice-title">Course Policy and Reference Texts</h3>
-            <p class="notice-text">Class policy, recommended references, and Python setup guidance will be posted in week 1.</p>
+            <h3 class="notice-title">Course Policy</h3>
+            <p class="notice-text">Textbook, weekly plan, and grading criteria will be announced in the first session. Please set up Python (Anaconda or Google Colab) in advance.</p>
           </article>
           <article class="notice-item">
-            <div class="notice-date">2026-03-10</div>
-            <h3 class="notice-title">Assignment 1 Release</h3>
-            <p class="notice-text">Assignment 1 on search algorithms and heuristic problem solving will be released.</p>
+            <div class="notice-date">2026-03-03</div>
+            <h3 class="notice-title">HW1 Released — Fruit Classification with KNN</h3>
+            <p class="notice-text">Distributed via GitHub Classroom. Complete assignment.ipynb, then commit &amp; push for auto-grading. 100 points, 5 problems.</p>
           </article>
         </div>
       </section>
@@ -108,7 +112,7 @@
       <section id="materials" class="posts-section">
         <div class="section-header">
           <h2 class="section-title">Lecture Materials</h2>
-          <p class="section-subtitle">Slides & Labs</p>
+          <p class="section-subtitle">Slides &amp; Notebooks</p>
         </div>
         <div class="table-wrap">
           <table class="course-table">
@@ -117,34 +121,23 @@
                 <th>Week</th>
                 <th>Topic</th>
                 <th>Material</th>
-                <th>Uploaded</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Week 1</td>
-                <td>Orientation / AI Overview</td>
-                <td>To be uploaded</td>
-                <td>2026-03-03</td>
-              </tr>
-              <tr>
-                <td>Week 2</td>
-                <td>Problem Solving and Search</td>
-                <td>To be uploaded</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>Week 3</td>
-                <td>Knowledge Representation and Reasoning</td>
-                <td>To be uploaded</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>Week 4</td>
-                <td>Machine Learning Basics</td>
-                <td>To be uploaded</td>
-                <td>-</td>
-              </tr>
+              <tr><td>1</td><td>Course Introduction (Preview)</td><td><a href="../data/인공지능/00 - preview.pptx">Slides</a></td></tr>
+              <tr><td>2</td><td>Ch 1 AI Overview — Markets and ML</td><td><a href="../data/인공지능/01 - 인공지능개요.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/1-3.ipynb">Notebook</a></td></tr>
+              <tr><td>3</td><td>Ch 2 Working with Data — Train/Test, Preprocessing</td><td><a href="../data/인공지능/02 - 데이터다루기.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/2-1.ipynb">2-1</a> · <a href="../data/인공지능/hg-mldl-master/2-2.ipynb">2-2</a></td></tr>
+              <tr><td>4</td><td>Ch 3 Regression and Regularization</td><td><a href="../data/인공지능/03 - 회귀 알고리즘과 모델 규제.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/3-1.ipynb">3-1</a> · <a href="../data/인공지능/hg-mldl-master/3-2.ipynb">3-2</a> · <a href="../data/인공지능/hg-mldl-master/3-3.ipynb">3-3</a></td></tr>
+              <tr><td>5</td><td>Ch 4 Classification — Logistic Regression, SGD</td><td><a href="../data/인공지능/04 - 다양한 분류 알고리즘.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/4-1.ipynb">4-1</a> · <a href="../data/인공지능/hg-mldl-master/4-2.ipynb">4-2</a></td></tr>
+              <tr><td>6</td><td>Ch 5 Trees — Decision Tree, CV, Ensembles</td><td><a href="../data/인공지능/05 - 트리 알고리즘.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/5-1.ipynb">5-1</a> · <a href="../data/인공지능/hg-mldl-master/5-2.ipynb">5-2</a> · <a href="../data/인공지능/hg-mldl-master/5-3.ipynb">5-3</a></td></tr>
+              <tr><td>7</td><td>Ch 6 Unsupervised Learning — Clustering, k-Means, PCA</td><td><a href="../data/인공지능/06 - 비지도 학습.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/6-1.ipynb">6-1</a> · <a href="../data/인공지능/hg-mldl-master/6-2.ipynb">6-2</a> · <a href="../data/인공지능/hg-mldl-master/6-3.ipynb">6-3</a></td></tr>
+              <tr><td>8</td><td>Midterm</td><td>—</td></tr>
+              <tr><td>9</td><td>Ch 7 Deep Learning — ANN, DNN</td><td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER07.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/7-1.ipynb">7-1</a> · <a href="../data/인공지능/hg-mldl-master/7-2.ipynb">7-2</a> · <a href="../data/인공지능/hg-mldl-master/7-3.ipynb">7-3</a></td></tr>
+              <tr><td>10</td><td>Ch 8 Convolutional Neural Networks (CNN)</td><td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER08.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/8-2.ipynb">8-2</a> · <a href="../data/인공지능/hg-mldl-master/8-3.ipynb">8-3</a></td></tr>
+              <tr><td>11</td><td>Ch 9 Recurrent Neural Networks (RNN, LSTM, GRU)</td><td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER09.pptx">Slides</a> · <a href="../data/인공지능/hg-mldl-master/9-2.ipynb">9-2</a> · <a href="../data/인공지능/hg-mldl-master/9-3.ipynb">9-3</a></td></tr>
+              <tr><td>12</td><td>Ch 10 AI Applications and Trends</td><td><a href="../data/인공지능/혼자 공부하는 머신러닝+딥러닝(개정판)_CHAPTER10.pptx">Slides</a></td></tr>
+              <tr><td>13–14</td><td>Project / Review</td><td>—</td></tr>
+              <tr><td>15</td><td>Final Exam</td><td>—</td></tr>
             </tbody>
           </table>
         </div>
@@ -161,8 +154,6 @@
               <tr>
                 <th>No.</th>
                 <th>Title</th>
-                <th>Release</th>
-                <th>Due</th>
                 <th>Submission</th>
                 <th>Status</th>
               </tr>
@@ -170,26 +161,14 @@
             <tbody>
               <tr>
                 <td>HW1</td>
-                <td>Search Algorithm Implementation</td>
-                <td>2026-03-10</td>
-                <td>2026-03-17 23:59</td>
-                <td>LMS / GitHub</td>
-                <td><span class="status-pill status-soon">Planned</span></td>
+                <td>Fruit Classification with KNN (100 pts, 5 problems)</td>
+                <td>GitHub Classroom (auto-graded)</td>
+                <td><span class="status-pill status-open">Active</span></td>
               </tr>
               <tr>
-                <td>HW2</td>
-                <td>Classification Model Report</td>
-                <td>2026-03-31</td>
-                <td>2026-04-07 23:59</td>
-                <td>LMS</td>
-                <td><span class="status-pill status-soon">Planned</span></td>
-              </tr>
-              <tr>
-                <td>Mini Project</td>
-                <td>Applied AI Problem-Solving Project</td>
-                <td>2026-04-28</td>
-                <td>2026-05-19 23:59</td>
-                <td>Report + Code</td>
+                <td>Quiz</td>
+                <td>Ch 1–2 Multiple-Choice Quiz</td>
+                <td>In-class</td>
                 <td><span class="status-pill status-soon">Planned</span></td>
               </tr>
             </tbody>
@@ -206,7 +185,7 @@
           <article class="post-card">
             <p class="post-excerpt">
               Email: <a href="mailto:sangdon.park@dju.kr">sangdon.park@dju.kr</a><br>
-              Suggested subject: <span class="inline-code">[Artificial Intelligence][Student ID] Topic</span>
+              Email subject format: <span class="inline-code">[AI][Student ID] Topic</span>
             </p>
           </article>
         </div>

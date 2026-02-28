@@ -1,0 +1,83 @@
+{
+  "tests": [
+    {
+      "name": "Q0 weight list",
+      "setup": "pip install scikit-learn nbformat nbconvert pytest -q",
+      "run": "pytest tests/test_assignment.py::TestQ0DataPrep::test_weight_list -v",
+      "timeout": 60,
+      "points": 2
+    },
+    {
+      "name": "Q0 sugar list",
+      "run": "pytest tests/test_assignment.py::TestQ0DataPrep::test_sugar_list -v",
+      "timeout": 60,
+      "points": 2
+    },
+    {
+      "name": "Q0 fruit_data",
+      "run": "pytest tests/test_assignment.py::TestQ0DataPrep::test_fruit_data -v",
+      "timeout": 60,
+      "points": 3
+    },
+    {
+      "name": "Q0 fruit_target",
+      "run": "pytest tests/test_assignment.py::TestQ0DataPrep::test_fruit_target -v",
+      "timeout": 60,
+      "points": 3
+    },
+    {
+      "name": "Q1 KNN model",
+      "run": "pytest tests/test_assignment.py::TestQ1KNNTrain::test_kn_exists -v",
+      "timeout": 60,
+      "points": 10
+    },
+    {
+      "name": "Q1 train score",
+      "run": "pytest tests/test_assignment.py::TestQ1KNNTrain::test_train_score -v",
+      "timeout": 60,
+      "points": 10
+    },
+    {
+      "name": "Q2 predict apple",
+      "run": "pytest tests/test_assignment.py::TestQ2Predict::test_pred_apple -v",
+      "timeout": 60,
+      "points": 10
+    },
+    {
+      "name": "Q2 predict mandarin",
+      "run": "pytest tests/test_assignment.py::TestQ2Predict::test_pred_mandarin -v",
+      "timeout": 60,
+      "points": 10
+    },
+    {
+      "name": "Q3 kn50 model",
+      "run": "pytest tests/test_assignment.py::TestQ3N50::test_kn50_exists -v",
+      "timeout": 60,
+      "points": 8
+    },
+    {
+      "name": "Q3 score_50",
+      "run": "pytest tests/test_assignment.py::TestQ3N50::test_score_50 -v",
+      "timeout": 60,
+      "points": 9
+    },
+    {
+      "name": "Q3 expected_score",
+      "run": "pytest tests/test_assignment.py::TestQ3N50::test_expected_score -v",
+      "timeout": 60,
+      "points": 8
+    },
+    {
+      "name": "Q4 first_drop_n",
+      "run": "pytest tests/test_assignment.py::TestQ4OptimalK::test_first_drop_n -v",
+      "timeout": 60,
+      "points": 13
+    },
+    {
+      "name": "Q4 first_drop_score",
+      "run": "pytest tests/test_assignment.py::TestQ4OptimalK::test_first_drop_score -v",
+      "timeout": 60,
+      "points": 12
+    }
+  ]
+}

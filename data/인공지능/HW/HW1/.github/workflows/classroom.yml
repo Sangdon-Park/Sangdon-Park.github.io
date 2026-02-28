@@ -1,0 +1,158 @@
+name: Autograding Tests
+'on':
+  - push
+  - workflow_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install scikit-learn matplotlib nbformat nbconvert pytest ipykernel jupyter_client
+
+    - name: 문제 0 - weight 리스트
+      id: test-q0-weight
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q0 weight list'
+        command: pytest tests/test_assignment.py::TestQ0DataPrep::test_weight_list -v
+        timeout: 60
+        max-score: 2
+
+    - name: 문제 0 - sugar 리스트
+      id: test-q0-sugar
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q0 sugar list'
+        command: pytest tests/test_assignment.py::TestQ0DataPrep::test_sugar_list -v
+        timeout: 60
+        max-score: 2
+
+    - name: 문제 0 - fruit_data
+      id: test-q0-fruitdata
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q0 fruit_data'
+        command: pytest tests/test_assignment.py::TestQ0DataPrep::test_fruit_data -v
+        timeout: 60
+        max-score: 3
+
+    - name: 문제 0 - fruit_target
+      id: test-q0-fruittarget
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q0 fruit_target'
+        command: pytest tests/test_assignment.py::TestQ0DataPrep::test_fruit_target -v
+        timeout: 60
+        max-score: 3
+
+    - name: 문제 1 - KNN 객체 생성
+      id: test-q1-kn
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q1 KNN model'
+        command: pytest tests/test_assignment.py::TestQ1KNNTrain::test_kn_exists -v
+        timeout: 60
+        max-score: 10
+
+    - name: 문제 1 - 훈련 정확도
+      id: test-q1-score
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q1 train score'
+        command: pytest tests/test_assignment.py::TestQ1KNNTrain::test_train_score -v
+        timeout: 60
+        max-score: 10
+
+    - name: 문제 2 - 사과 예측
+      id: test-q2-apple
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q2 predict apple'
+        command: pytest tests/test_assignment.py::TestQ2Predict::test_pred_apple -v
+        timeout: 60
+        max-score: 10
+
+    - name: 문제 2 - 귤 예측
+      id: test-q2-mandarin
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q2 predict mandarin'
+        command: pytest tests/test_assignment.py::TestQ2Predict::test_pred_mandarin -v
+        timeout: 60
+        max-score: 10
+
+    - name: 문제 3 - n50 모델 생성
+      id: test-q3-model
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q3 kn50 model'
+        command: pytest tests/test_assignment.py::TestQ3N50::test_kn50_exists -v
+        timeout: 60
+        max-score: 8
+
+    - name: 문제 3 - n50 정확도
+      id: test-q3-score
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q3 score_50'
+        command: pytest tests/test_assignment.py::TestQ3N50::test_score_50 -v
+        timeout: 60
+        max-score: 9
+
+    - name: 문제 3 - 예상 정확도 계산
+      id: test-q3-expected
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q3 expected_score'
+        command: pytest tests/test_assignment.py::TestQ3N50::test_expected_score -v
+        timeout: 60
+        max-score: 8
+
+    - name: 문제 4 - first_drop_n
+      id: test-q4-n
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q4 first_drop_n'
+        command: pytest tests/test_assignment.py::TestQ4OptimalK::test_first_drop_n -v
+        timeout: 60
+        max-score: 13
+
+    - name: 문제 4 - first_drop_score
+      id: test-q4-score
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'Q4 first_drop_score'
+        command: pytest tests/test_assignment.py::TestQ4OptimalK::test_first_drop_score -v
+        timeout: 60
+        max-score: 12
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TEST-Q0-WEIGHT_RESULTS: "${{steps.test-q0-weight.outputs.result}}"
+        TEST-Q0-SUGAR_RESULTS: "${{steps.test-q0-sugar.outputs.result}}"
+        TEST-Q0-FRUITDATA_RESULTS: "${{steps.test-q0-fruitdata.outputs.result}}"
+        TEST-Q0-FRUITTARGET_RESULTS: "${{steps.test-q0-fruittarget.outputs.result}}"
+        TEST-Q1-KN_RESULTS: "${{steps.test-q1-kn.outputs.result}}"
+        TEST-Q1-SCORE_RESULTS: "${{steps.test-q1-score.outputs.result}}"
+        TEST-Q2-APPLE_RESULTS: "${{steps.test-q2-apple.outputs.result}}"
+        TEST-Q2-MANDARIN_RESULTS: "${{steps.test-q2-mandarin.outputs.result}}"
+        TEST-Q3-MODEL_RESULTS: "${{steps.test-q3-model.outputs.result}}"
+        TEST-Q3-SCORE_RESULTS: "${{steps.test-q3-score.outputs.result}}"
+        TEST-Q3-EXPECTED_RESULTS: "${{steps.test-q3-expected.outputs.result}}"
+        TEST-Q4-N_RESULTS: "${{steps.test-q4-n.outputs.result}}"
+        TEST-Q4-SCORE_RESULTS: "${{steps.test-q4-score.outputs.result}}"
+      if: always()
