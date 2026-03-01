@@ -5,13 +5,70 @@ class Chatbot {
     constructor() {
         this.isOpen = false;
         this.messages = [];
-        this.conversationHistory = [];
+        this.historyStorageKey = 'axgs_chat_history_v1';
+        this.sessionIdStorageKey = 'axgs_chat_session_id_v1';
+        this.debugRetrieval = new URLSearchParams(window.location.search).get('debug') === '1';
+        this.conversationHistory = this.loadHistory();
+        this.sessionId = this.loadSessionId();
         this.init();
     }
 
     init() {
         this.createChatbotHTML();
         this.attachEventListeners();
+    }
+
+    loadHistory() {
+        try {
+            const raw = sessionStorage.getItem(this.historyStorageKey);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) return [];
+            return parsed
+                .filter((item) => item && typeof item.role === 'string' && typeof item.content === 'string')
+                .slice(-20);
+        } catch (error) {
+            console.warn('Failed to load chatbot history from sessionStorage:', error);
+            return [];
+        }
+    }
+
+    saveHistory() {
+        try {
+            sessionStorage.setItem(this.historyStorageKey, JSON.stringify(this.conversationHistory.slice(-20)));
+        } catch (error) {
+            console.warn('Failed to save chatbot history to sessionStorage:', error);
+        }
+    }
+
+    pushHistory(role, content) {
+        this.conversationHistory.push({ role, content });
+        this.conversationHistory = this.conversationHistory.slice(-20);
+        this.saveHistory();
+    }
+
+    loadSessionId() {
+        try {
+            const existing = sessionStorage.getItem(this.sessionIdStorageKey);
+            if (existing) return existing;
+
+            const created = (window.crypto && typeof window.crypto.randomUUID === 'function')
+                ? window.crypto.randomUUID()
+                : `axgs-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+            sessionStorage.setItem(this.sessionIdStorageKey, created);
+            return created;
+        } catch (error) {
+            console.warn('Failed to initialize chatbot session id:', error);
+            return `axgs-fallback-${Date.now()}`;
+        }
+    }
+
+    buildRequestPayload(base = {}) {
+        return {
+            ...base,
+            history: this.conversationHistory.slice(-12),
+            sessionId: this.sessionId
+        };
     }
 
     createChatbotHTML() {
@@ -372,7 +429,7 @@ class Chatbot {
 
         // Add user message
         this.addMessage(message, 'user');
-        this.conversationHistory.push({ role: 'user', content: message });
+        this.pushHistory('user', message);
         input.value = '';
 
         // Show typing indicator
@@ -385,11 +442,10 @@ class Chatbot {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify(this.buildRequestPayload({
                     message,
-                    history: this.conversationHistory.slice(-10),
                     step: 1
-                })
+                }))
             });
 
             const data1 = await response1.json();
@@ -409,11 +465,12 @@ class Chatbot {
             if (!data1.needsSecondStep) {
                 const initial = (data1.initialMessage || '').trim();
                 const isUserGreeting = this.isGreetingLikeMessage(message);
-                const shouldForceSecondStep = this.isGenericGreeting(initial) && !isUserGreeting && this.shouldEscalateToSecondStep(message);
+                const shouldForceSecondStep = this.isInterimActionMessage(initial)
+                    || (this.isGenericGreeting(initial) && !isUserGreeting && this.shouldEscalateToSecondStep(message));
 
                 if (initial && !shouldForceSecondStep) {
                     this.addMessage(initial, 'bot');
-                    this.conversationHistory.push({ role: 'assistant', content: initial });
+                    this.pushHistory('assistant', initial);
                     return;
                 }
 
@@ -423,13 +480,12 @@ class Chatbot {
                 const response2 = await fetch(CHATBOT_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
+                    body: JSON.stringify(this.buildRequestPayload({
                         message,
-                        history: this.conversationHistory,
                         action: data1.action || 'CHAT',
                         query: data1.query || '',
                         step: 2
-                    })
+                    }))
                 });
 
                 const data2 = await response2.json();
@@ -440,7 +496,7 @@ class Chatbot {
                 }
 
                 const normalizedResults = this.normalizeSearchResults(data2);
-                if (normalizedResults.length > 0) {
+                if (this.debugRetrieval && normalizedResults.length > 0) {
                     this.showSearchResults(normalizedResults);
                 }
 
@@ -450,7 +506,7 @@ class Chatbot {
                 }
 
                 this.addMessage(reply2, 'bot');
-                this.conversationHistory.push({ role: 'assistant', content: reply2 });
+                this.pushHistory('assistant', reply2);
                 return;
             }
             
@@ -463,13 +519,12 @@ class Chatbot {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify(this.buildRequestPayload({
                     message,
-                    history: this.conversationHistory.slice(-10),
                     action: data1.action,
                     query: data1.query,
                     step: 2
-                })
+                }))
             });
 
             const data2 = await response2.json();
@@ -482,7 +537,7 @@ class Chatbot {
             
             // Show search results if any (strings or objects)
             const normalized = this.normalizeSearchResults(data2);
-            if (normalized.length > 0) {
+            if (this.debugRetrieval && normalized.length > 0) {
                 this.showSearchResults(normalized);
             }
             
@@ -493,12 +548,14 @@ class Chatbot {
             }
 
             this.addMessage(finalReply, 'bot');
-            this.conversationHistory.push({ role: 'assistant', content: finalReply });
+            this.pushHistory('assistant', finalReply);
 
         } catch (error) {
             console.error('Chatbot error:', error);
             this.hideTypingIndicator();
-            this.addMessage(this.buildContextualFallback(message, []), 'bot');
+            const fallback = this.buildContextualFallback(message, []);
+            this.addMessage(fallback, 'bot');
+            this.pushHistory('assistant', fallback);
         }
     }
 
@@ -520,6 +577,18 @@ class Chatbot {
             normalized.includes('무엇을 도와드릴까요') ||
             normalized.includes('편하게 물어보세요') ||
             normalized.includes('how can i help')
+        );
+    }
+
+    isInterimActionMessage(text = '') {
+        const normalized = String(text).replace(/\s+/g, ' ').trim().toLowerCase();
+        if (!normalized) return false;
+
+        return (
+            normalized.includes('got it. i will look up relevant information.') ||
+            normalized.includes('i will look up relevant information') ||
+            normalized.includes('\uC9C8\uBB38 \uD655\uC778') ||
+            normalized.includes('\uAD00\uB828 \uC815\uBCF4\uB97C \uCC3E\uC544\uBCF4\uACA0\uC2B5\uB2C8\uB2E4')
         );
     }
 
