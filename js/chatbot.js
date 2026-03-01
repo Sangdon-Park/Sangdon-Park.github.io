@@ -408,43 +408,54 @@ class Chatbot {
             // If it's just chat, prefer initialMessage; otherwise fallback to step 2
             if (!data1.needsSecondStep) {
                 const initial = (data1.initialMessage || '').trim();
-                if (initial) {
+                const isUserGreeting = this.isGreetingLikeMessage(message);
+                const shouldForceSecondStep = this.isGenericGreeting(initial) && !isUserGreeting;
+
+                if (initial && !shouldForceSecondStep) {
                     this.addMessage(initial, 'bot');
                     this.conversationHistory.push({ role: 'assistant', content: initial });
                     return;
                 }
-                // Fallback: proceed to step 2 to generate an answer
+
+                // Fallback: proceed to step 2 when the first-step message is generic
                 await new Promise(resolve => setTimeout(resolve, 500));
                 this.showTypingIndicator();
-            const response2 = await fetch(CHATBOT_API, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message,
-                    history: this.conversationHistory,
-                    action: data1.action || 'CHAT',
-                    query: data1.query || '',
-                    step: 2
-                })
-            });
+                const response2 = await fetch(CHATBOT_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message,
+                        history: this.conversationHistory,
+                        action: data1.action || 'CHAT',
+                        query: data1.query || '',
+                        step: 2
+                    })
+                });
+
                 const data2 = await response2.json();
                 this.hideTypingIndicator();
+
                 if (!response2.ok) {
                     throw new Error(data2.error || 'API 오류가 발생했습니다');
                 }
-                if (Array.isArray(data2.searchResultsDetailed) && data2.searchResultsDetailed.length > 0) {
-                    this.showSearchResults(data2.searchResultsDetailed);
-                } else if (Array.isArray(data2.searchResults) && data2.searchResults.length > 0) {
-                    this.showSearchResults(data2.searchResults.map(r => ({ type: 'result', item: { title: r } })));
+
+                const normalizedResults = this.normalizeSearchResults(data2);
+                if (normalizedResults.length > 0) {
+                    this.showSearchResults(normalizedResults);
                 }
-                const reply2 = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
+
+                let reply2 = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
+                if (this.isGenericGreeting(reply2) && !isUserGreeting) {
+                    reply2 = this.buildContextualFallback(message, normalizedResults);
+                }
+
                 this.addMessage(reply2, 'bot');
                 this.conversationHistory.push({ role: 'assistant', content: reply2 });
                 return;
             }
             
             // Show initial message
-            if (data1.initialMessage) {
+            if (data1.initialMessage && !(this.isGenericGreeting(data1.initialMessage) && !this.isGreetingLikeMessage(message))) {
                 this.addMessage(data1.initialMessage, 'bot');
             }
             
@@ -475,22 +486,91 @@ class Chatbot {
             this.hideTypingIndicator();
             
             // Show search results if any (strings or objects)
-            if ((data2.searchResultsDetailed && data2.searchResultsDetailed.length > 0) || (data2.searchResults && data2.searchResults.length > 0)) {
-                const normalized = (data2.searchResultsDetailed && data2.searchResultsDetailed.length > 0)
-                    ? data2.searchResultsDetailed
-                    : data2.searchResults.map(r => ({ type: 'result', item: { title: r } }));
+            const normalized = this.normalizeSearchResults(data2);
+            if (normalized.length > 0) {
                 this.showSearchResults(normalized);
             }
             
             // Add final reply
-            this.addMessage(data2.reply, 'bot');
-            this.conversationHistory.push({ role: 'assistant', content: data2.reply });
+            let finalReply = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
+            if (this.isGenericGreeting(finalReply) && !this.isGreetingLikeMessage(message)) {
+                finalReply = this.buildContextualFallback(message, normalized);
+            }
+
+            this.addMessage(finalReply, 'bot');
+            this.conversationHistory.push({ role: 'assistant', content: finalReply });
 
         } catch (error) {
             console.error('Chatbot error:', error);
             this.hideTypingIndicator();
-            this.addMessage('죄송합니다. 일시적인 오류가 발생했습니다.', 'bot');
+            this.addMessage(this.buildContextualFallback(message, []), 'bot');
         }
+    }
+
+    normalizeSearchResults(data) {
+        if (Array.isArray(data?.searchResultsDetailed) && data.searchResultsDetailed.length > 0) {
+            return data.searchResultsDetailed;
+        }
+        if (Array.isArray(data?.searchResults) && data.searchResults.length > 0) {
+            return data.searchResults.map(r => ({ type: 'result', item: { title: r } }));
+        }
+        return [];
+    }
+
+    isGenericGreeting(text = '') {
+        const normalized = String(text).replace(/\s+/g, ' ').trim().toLowerCase();
+        if (!normalized) return false;
+
+        return (
+            normalized.includes('무엇을 도와드릴까요') ||
+            normalized.includes('편하게 물어보세요') ||
+            normalized.includes('how can i help')
+        );
+    }
+
+    isGreetingLikeMessage(message = '') {
+        const normalized = String(message).trim().toLowerCase();
+        if (!normalized) return false;
+
+        const greetingPatterns = [
+            /^안녕+$/,
+            /^안녕하세요+$/,
+            /^ㅎ+$/,
+            /^하이$/,
+            /^hello$/,
+            /^hi$/,
+            /^hey$/,
+            /^반가/,
+            /^good (morning|afternoon|evening)$/,
+            /^g2$/,
+            /^h2$/,
+            /^ㅎ2$/
+        ];
+
+        return greetingPatterns.some((pattern) => pattern.test(normalized));
+    }
+
+    buildContextualFallback(userMessage = '', results = []) {
+        if (results.length > 0) {
+            const topTitle = results[0]?.item?.title || results[0]?.item?.name || '대표 자료';
+            return `관련 자료를 찾았습니다. 우선 "${topTitle}"부터 확인해 보세요. 이어서 "이 논문 요약해줘"처럼 질문하면 더 자세히 답변할 수 있습니다.`;
+        }
+
+        const msg = String(userMessage).toLowerCase();
+
+        if (msg.includes('무슨') || msg.includes('뭐') || msg.includes('어떤') || msg.includes('소개') || msg.includes('연구')) {
+            return '저는 대전대학교 컴퓨터공학과 조교수로 재직 중이며, AxGS Lab에서 AI x Games Systems, Trustworthy AI, 최적화 기반 의사결정 연구를 하고 있습니다.';
+        }
+
+        if (msg.includes('수업') || msg.includes('과목') || msg.includes('강의')) {
+            return '이번 학기 담당 과목은 데이터베이스시스템, 인공지능, 캡스톤디자인입니다. 자세한 자료는 과목 페이지에서 확인할 수 있습니다.';
+        }
+
+        if (msg.includes('연락') || msg.includes('이메일') || msg.includes('문의')) {
+            return '문의는 sangdon.park@dju.kr 로 보내주시면 됩니다. 학생 문의는 [과목명][학번] 형식을 권장합니다.';
+        }
+
+        return '질문은 확인했지만 AI 응답 서버가 현재 불안정합니다. 질문을 조금 더 구체적으로 한 문장으로 다시 보내주세요.';
     }
 
     addMessage(content, type, subtype = '') {
