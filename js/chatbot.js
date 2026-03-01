@@ -409,7 +409,7 @@ class Chatbot {
             if (!data1.needsSecondStep) {
                 const initial = (data1.initialMessage || '').trim();
                 const isUserGreeting = this.isGreetingLikeMessage(message);
-                const shouldForceSecondStep = this.isGenericGreeting(initial) && !isUserGreeting;
+                const shouldForceSecondStep = this.isGenericGreeting(initial) && !isUserGreeting && this.shouldEscalateToSecondStep(message);
 
                 if (initial && !shouldForceSecondStep) {
                     this.addMessage(initial, 'bot');
@@ -532,22 +532,14 @@ class Chatbot {
         const normalized = String(message).trim().toLowerCase();
         if (!normalized) return false;
 
-        const greetingPatterns = [
-            /^안녕+$/,
-            /^안녕하세요+$/,
-            /^ㅎ+$/,
-            /^하이$/,
-            /^hello$/,
-            /^hi$/,
-            /^hey$/,
-            /^반가/,
-            /^good (morning|afternoon|evening)$/,
-            /^g2$/,
-            /^h2$/,
-            /^ㅎ2$/
-        ];
+        const compact = normalized.replace(/\s+/g, '');
 
-        return greetingPatterns.some((pattern) => pattern.test(normalized));
+        if (/^(hello|hi|hey|goodmorning|goodafternoon|goodevening)$/i.test(compact)) return true;
+        if (/^(g2|h2|yo|yoo|hii+)$/i.test(compact)) return true;
+        if (/^(\uC548\uB155|\uC548\uB155\uD558\uC138\uC694|\u314E\u3147|\uD558\uC774|\uD5EC\uB85C)$/u.test(compact)) return true;
+        if (/^\u314E+[0-9a-z]*$/u.test(compact)) return true;
+
+        return false;
     }
 
     buildContextualFallback(userMessage = '', results = []) {
