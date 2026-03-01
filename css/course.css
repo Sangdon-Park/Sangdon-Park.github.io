@@ -98,6 +98,36 @@
   border-bottom: none;
 }
 
+#materials .course-table td a {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  margin: 0 2px 4px 0;
+  border: 1px solid #d6d3d1;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+#materials .course-table td a::before {
+  content: "[";
+  margin-right: 1px;
+}
+
+#materials .course-table td a::after {
+  content: "]";
+  margin-left: 1px;
+}
+
+#materials .course-table td a:hover {
+  background: #eef2f7;
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
 .status-pill {
   display: inline-block;
   font-size: 12px;
