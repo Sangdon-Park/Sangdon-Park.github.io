@@ -5,6 +5,7 @@ class Chatbot {
     constructor() {
         this.isOpen = false;
         this.messages = [];
+        this.sourceChipLimit = 3;
         this.historyStorageKey = 'axgs_chat_history_v1';
         this.sessionIdStorageKey = 'axgs_chat_session_id_v1';
         this.debugRetrieval = new URLSearchParams(window.location.search).get('debug') === '1';
@@ -306,6 +307,46 @@ class Chatbot {
                     color: #333;
                 }
 
+                .source-chips {
+                    margin-top: 8px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 6px;
+                }
+
+                .source-chip {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 5px;
+                    padding: 2px 8px;
+                    border-radius: 999px;
+                    border: 1px solid #d6d3d1;
+                    background: #fafafa;
+                    color: #444;
+                    font-size: 12px;
+                    line-height: 1.4;
+                    text-decoration: none;
+                    max-width: 100%;
+                }
+
+                .source-chip:hover {
+                    border-color: #667eea;
+                    color: #667eea;
+                    background: #f4f6ff;
+                }
+
+                .source-chip-label {
+                    color: #667eea;
+                    font-weight: 600;
+                }
+
+                .source-chip-title {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 220px;
+                }
+
                 .chatbot-input-area {
                     padding: 15px;
                     background: white;
@@ -504,8 +545,9 @@ class Chatbot {
                 if (this.isGenericGreeting(reply2) && !isUserGreeting) {
                     reply2 = this.buildContextualFallback(message, normalizedResults);
                 }
+                reply2 = this.standardizeNoDataReply(reply2, message, normalizedResults);
 
-                this.addMessage(reply2, 'bot');
+                this.addMessage(reply2, 'bot', '', { sources: this.extractSourceChips(normalizedResults) });
                 this.pushHistory('assistant', reply2);
                 return;
             }
@@ -547,13 +589,14 @@ class Chatbot {
                 finalReply = this.buildContextualFallback(message, normalized);
             }
 
-            this.addMessage(finalReply, 'bot');
+            finalReply = this.standardizeNoDataReply(finalReply, message, normalized);
+            this.addMessage(finalReply, 'bot', '', { sources: this.extractSourceChips(normalized) });
             this.pushHistory('assistant', finalReply);
 
         } catch (error) {
             console.error('Chatbot error:', error);
             this.hideTypingIndicator();
-            const fallback = this.buildContextualFallback(message, []);
+            const fallback = this.standardizeNoDataReply(this.buildContextualFallback(message, []), message, []);
             this.addMessage(fallback, 'bot');
             this.pushHistory('assistant', fallback);
         }
@@ -590,6 +633,50 @@ class Chatbot {
             normalized.includes('\uC9C8\uBB38 \uD655\uC778') ||
             normalized.includes('\uAD00\uB828 \uC815\uBCF4\uB97C \uCC3E\uC544\uBCF4\uACA0\uC2B5\uB2C8\uB2E4')
         );
+    }
+
+    containsHangul(text = '') {
+        return /[\u3131-\uD79D]/u.test(String(text));
+    }
+
+    isNoDataReply(reply = '') {
+        const text = String(reply || '').trim();
+        if (!text) return true;
+
+        return (
+            /제공된 자료에는|수집된 자료|명시적으로 확인되지 않습니다|확인되지 않습니다|정보가 없습니다/i.test(text) ||
+            /not explicitly|not currently confirmed|cannot confirm|could not confirm|not found in provided/i.test(text)
+        );
+    }
+
+    standardizeNoDataReply(reply = '', userMessage = '', results = []) {
+        if (!this.isNoDataReply(reply)) {
+            return reply;
+        }
+
+        const isKo = this.containsHangul(userMessage) || this.containsHangul(reply);
+        const sourceChips = this.extractSourceChips(results);
+        const sourceText = sourceChips.length > 0
+            ? sourceChips.map((item) => item.url || item.title).join(' | ')
+            : (isKo
+                ? '소개: https://sangdon-park.github.io/about.html | 과목: https://sangdon-park.github.io/courses-2026-spring.html'
+                : 'About: https://sangdon-park.github.io/about-en.html | Courses: https://sangdon-park.github.io/courses-2026-spring-en.html');
+
+        if (isKo) {
+            return [
+                '현재 수집된 페이지 기준으로 이 질문에 대한 확정 정보를 찾지 못했습니다.',
+                `확인한 범위: ${userMessage || '질문 원문'}`,
+                `관련 페이지: ${sourceText}`,
+                '정확도를 높이려면 과목명/기간/키워드를 한 문장으로 같이 보내주세요.'
+            ].join('\n');
+        }
+
+        return [
+            'I could not confirm this from the currently indexed pages.',
+            `Checked scope: ${userMessage || 'original query'}`,
+            `Related pages: ${sourceText}`,
+            'For a precise answer, include course name, time range, and one concrete keyword in one sentence.'
+        ].join('\n');
     }
 
     isGreetingLikeMessage(message = '') {
@@ -640,7 +727,7 @@ class Chatbot {
         return normalized.length >= 12;
     }
 
-    addMessage(content, type, subtype = '') {
+    addMessage(content, type, subtype = '', options = {}) {
         const messagesContainer = document.getElementById('chatbot-messages');
         const messageDiv = document.createElement('div');
         messageDiv.className = type === 'user' ? 'user-message' : 'bot-message';
@@ -659,8 +746,60 @@ class Chatbot {
         contentDiv.innerHTML = htmlContent;
         
         messageDiv.appendChild(contentDiv);
+
+        if (type === 'bot' && Array.isArray(options.sources) && options.sources.length > 0) {
+            messageDiv.appendChild(this.renderSourceChips(options.sources));
+        }
+
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    extractSourceChips(results = []) {
+        if (!Array.isArray(results) || results.length === 0) {
+            return [];
+        }
+
+        const dedup = new Map();
+        for (const result of results) {
+            const title = result?.item?.title || result?.item?.name || '';
+            const url = result?.item?.url || '';
+            const key = (url || title || '').trim().toLowerCase();
+            if (!key || dedup.has(key)) continue;
+            dedup.set(key, { title: title || url, url });
+            if (dedup.size >= this.sourceChipLimit) break;
+        }
+
+        return [...dedup.values()];
+    }
+
+    renderSourceChips(sources = []) {
+        const wrap = document.createElement('div');
+        wrap.className = 'source-chips';
+
+        sources.forEach((source) => {
+            const chip = document.createElement(source.url ? 'a' : 'span');
+            chip.className = 'source-chip';
+            if (source.url) {
+                chip.href = source.url;
+                chip.target = '_blank';
+                chip.rel = 'noopener noreferrer';
+            }
+
+            const label = document.createElement('span');
+            label.className = 'source-chip-label';
+            label.textContent = 'Source';
+
+            const title = document.createElement('span');
+            title.className = 'source-chip-title';
+            title.textContent = source.title;
+
+            chip.appendChild(label);
+            chip.appendChild(title);
+            wrap.appendChild(chip);
+        });
+
+        return wrap;
     }
     
     showSearchResults(results) {
