@@ -56,6 +56,39 @@
   font-size: 14px;
 }
 
+.textbook-box {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.textbook-media {
+  flex: 0 0 118px;
+}
+
+.textbook-media img {
+  display: block;
+  width: 100%;
+  border: 1px solid #d6d3d1;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.textbook-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.textbook-source {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #78716c;
+}
+
+.textbook-source a {
+  color: var(--accent);
+}
+
 .course-links {
   margin-top: 14px;
   display: flex;
@@ -202,6 +235,15 @@
 @media (max-width: 860px) {
   .course-hero {
     padding: 18px;
+  }
+
+  .textbook-box {
+    display: block;
+  }
+
+  .textbook-media {
+    max-width: 120px;
+    margin: 0 0 10px;
   }
 
   .course-hero h2 {
