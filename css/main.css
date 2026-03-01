@@ -336,6 +336,124 @@ a:hover {
   line-height: 1.65;
 }
 
+.kv-list {
+  display: grid;
+  gap: 8px;
+}
+
+.kv-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e7e5e4;
+}
+
+.kv-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.kv-term {
+  font-size: 13px;
+  color: #78716c;
+  font-weight: 600;
+}
+
+.kv-desc {
+  font-size: 14px;
+  color: #44403c;
+}
+
+.bullet-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 14px;
+  color: #44403c;
+}
+
+.bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #1e3a5f;
+}
+
+.timeline-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 152px 1fr;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0efed;
+}
+
+.timeline-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline-date {
+  font-size: 13px;
+  color: #78716c;
+  font-weight: 600;
+}
+
+.timeline-body {
+  font-size: 14px;
+  color: #44403c;
+}
+
+.feature-media {
+  margin-top: 14px;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.feature-media img {
+  width: 100%;
+  display: block;
+}
+
+.screenshot-grid {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.screenshot-item {
+  display: block;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.screenshot-item:hover {
+  border-color: #a8a29e;
+}
+
+.screenshot-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -504,11 +622,31 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .screenshot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .post-title {
     font-size: 16px;
   }
 
   .back-to-top span {
     display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .kv-item {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .screenshot-grid {
+    grid-template-columns: 1fr;
   }
 }
