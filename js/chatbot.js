@@ -9,6 +9,7 @@ class Chatbot {
         this.historyStorageKey = 'axgs_chat_history_v1';
         this.sessionIdStorageKey = 'axgs_chat_session_id_v1';
         this.debugRetrieval = new URLSearchParams(window.location.search).get('debug') === '1';
+        this.showSourceChips = new URLSearchParams(window.location.search).get('sources') === '1';
         this.conversationHistory = this.loadHistory();
         this.sessionId = this.loadSessionId();
         this.init();
@@ -139,8 +140,8 @@ class Chatbot {
                     position: absolute;
                     bottom: 80px;
                     right: 0;
-                    width: 450px;
-                    height: 650px;
+                    width: min(640px, calc(100vw - 40px));
+                    height: min(720px, calc(100vh - 120px));
                     background: white;
                     border-radius: 12px;
                     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -185,7 +186,7 @@ class Chatbot {
                 }
 
                 .message-content {
-                    max-width: 80%;
+                    max-width: 90%;
                     padding: 10px 14px;
                     border-radius: 18px;
                     word-wrap: break-word;
@@ -747,7 +748,7 @@ class Chatbot {
         
         messageDiv.appendChild(contentDiv);
 
-        if (type === 'bot' && Array.isArray(options.sources) && options.sources.length > 0) {
+        if (this.showSourceChips && type === 'bot' && Array.isArray(options.sources) && options.sources.length > 0) {
             messageDiv.appendChild(this.renderSourceChips(options.sources));
         }
 
