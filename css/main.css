@@ -437,6 +437,7 @@ a:hover {
   font-size: 14px;
   color: #44403c;
   vertical-align: middle;
+  text-align: center;
 }
 
 .schedule-table th {
