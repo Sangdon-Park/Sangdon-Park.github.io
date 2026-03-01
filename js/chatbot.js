@@ -454,13 +454,8 @@ class Chatbot {
                 return;
             }
             
-            // Show initial message
-            if (data1.initialMessage && !(this.isGenericGreeting(data1.initialMessage) && !this.isGreetingLikeMessage(message))) {
-                this.addMessage(data1.initialMessage, 'bot');
-            }
-            
             // STEP 2: Execute action and get final response
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 120));
             this.showTypingIndicator();
             
             const response2 = await fetch(CHATBOT_API, {
