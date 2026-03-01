@@ -76,12 +76,13 @@ a:hover {
 }
 
 .profile-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 138px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
   border: 3px solid #d6d3d1;
   margin-bottom: 14px;
+  background: #fff;
 }
 
 .profile-name {
@@ -414,6 +415,64 @@ a:hover {
 .timeline-body {
   font-size: 14px;
   color: #44403c;
+}
+
+.schedule-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+}
+
+.schedule-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e7e5e4;
+  font-size: 14px;
+  color: #44403c;
+  vertical-align: middle;
+}
+
+.schedule-table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #57534e;
+  background: #fafaf9;
+  font-weight: 600;
+}
+
+.schedule-table th:not(:last-child),
+.schedule-table td:not(:last-child) {
+  border-right: 1px solid #f0efed;
+}
+
+.schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-table td.period {
+  width: 56px;
+  text-align: center;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.schedule-table td.time {
+  width: 104px;
+  white-space: nowrap;
+  color: #57534e;
+}
+
+.schedule-table td.slot {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .feature-media {
