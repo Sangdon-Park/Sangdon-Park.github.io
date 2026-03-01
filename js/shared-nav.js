@@ -13,7 +13,7 @@
           key: "about",
           label: "\uC18C\uAC1C",
           icon: "fas fa-user",
-          localHref: "/about.html",
+          localHref: "#about",
           globalHref: "/about.html"
         },
         {
@@ -66,7 +66,7 @@
           key: "about",
           label: "About",
           icon: "fas fa-user",
-          localHref: "/about-en.html",
+          localHref: "#about",
           globalHref: "/about-en.html"
         },
         {

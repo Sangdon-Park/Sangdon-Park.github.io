@@ -122,6 +122,9 @@
             </p>
           </article>
         </div>
+        <div class="inline-actions">
+          <a class="btn primary" href="about-en.html"><i class="fas fa-circle-info"></i> View Full Profile</a>
+        </div>
       </section>
 
       <section id="research" class="posts-section">
@@ -300,10 +303,12 @@
     });
 
     navLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        const targetId = link.getAttribute('href');
-        const target = document.querySelector(targetId);
+        const target = document.querySelector(href);
         if (!target) return;
 
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -327,7 +332,10 @@
       });
 
       navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === activeId);
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          link.classList.toggle('active', href === activeId);
+        }
       });
 
       if (window.scrollY > 400) {
