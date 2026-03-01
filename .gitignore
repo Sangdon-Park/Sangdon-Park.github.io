@@ -1,3 +1,10 @@
 # Microsoft Office temporary lock files
 ~$*
 
+# Python cache files
+**/__pycache__/
+**/.pytest_cache/
+*.pyc
+
+# Temporary extracted assignment folders
+data/*/HW/week*-assignment/
