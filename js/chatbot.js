@@ -562,7 +562,18 @@ class Chatbot {
             return '문의는 sangdon.park@dju.kr 로 보내주시면 됩니다. 학생 문의는 [과목명][학번] 형식을 권장합니다.';
         }
 
-        return '질문은 확인했지만 AI 응답 서버가 현재 불안정합니다. 질문을 조금 더 구체적으로 한 문장으로 다시 보내주세요.';
+        return '질문을 조금 더 구체적으로 한 문장으로 보내주시면 정확히 안내해드리겠습니다.';
+    }
+
+    shouldEscalateToSecondStep(message = '') {
+        const normalized = String(message).trim().toLowerCase();
+        if (!normalized) return false;
+        if (this.isGreetingLikeMessage(normalized)) return false;
+
+        const infoIntentPattern = /(paper|publication|journal|scholar|course|class|lecture|email|contact|profile|about|research|project|steam|hexagon|doi|ieee|who are you|누구|논문|강의|과목|이메일|연락|소개|연구|프로젝트|학력|경력)/i;
+        if (infoIntentPattern.test(message)) return true;
+
+        return normalized.length >= 12;
     }
 
     addMessage(content, type, subtype = '') {
