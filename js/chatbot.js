@@ -9,7 +9,7 @@ class Chatbot {
         this.historyStorageKey = 'axgs_chat_history_v1';
         this.sessionIdStorageKey = 'axgs_chat_session_id_v1';
         this.debugRetrieval = new URLSearchParams(window.location.search).get('debug') === '1';
-        this.showSourceChips = new URLSearchParams(window.location.search).get('sources') === '1';
+        this.showSourceChips = new URLSearchParams(window.location.search).get('sources') !== '0';
         this.conversationHistory = this.loadHistory();
         this.sessionId = this.loadSessionId();
         this.init();
@@ -181,6 +181,11 @@ class Chatbot {
                     display: flex;
                 }
 
+                .bot-message {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
                 .user-message {
                     justify-content: flex-end;
                 }
@@ -310,9 +315,9 @@ class Chatbot {
 
                 .source-chips {
                     margin-top: 8px;
-                    display: flex;
-                    flex-wrap: wrap;
+                    display: grid;
                     gap: 6px;
+                    width: min(100%, 520px);
                 }
 
                 .source-chip {
@@ -342,10 +347,10 @@ class Chatbot {
                 }
 
                 .source-chip-title {
-                    white-space: nowrap;
+                    white-space: normal;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    max-width: 220px;
+                    max-width: 420px;
                 }
 
                 .chatbot-input-area {
