@@ -714,6 +714,12 @@ class Chatbot {
             .replace(/_([^_\n]+)_/g, '<em>$1</em>')
             // Links
             .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+            // Auto-link plain URLs (e.g., https://sangdon-park.github.io/about.html)
+            .replace(/(^|[\s(])(https?:\/\/[^\s<]+)/gim, (match, prefix, rawUrl) => {
+                const cleanUrl = rawUrl.replace(/[),.;!?]+$/g, '');
+                const trailing = rawUrl.slice(cleanUrl.length);
+                return `${prefix}<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${cleanUrl}</a>${trailing}`;
+            })
             // Line breaks
             .replace(/\n\n/g, '</p><p>')
             .replace(/\n/g, '<br>')
