@@ -1,97 +1,306 @@
-﻿\documentclass[11pt,a4paper]{article}
+
+\documentclass[11pt,a4paper]{article}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{fontawesome5}
 \usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{enumitem}
+\usepackage{caption}
+\usepackage{setspace}
 \usepackage{tabularx}
 
+% line spacing
+\linespread{1}
+
 \hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  urlcolor=blue
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
 }
 
-\titleformat{\section}{\Large\bfseries}{}{0em}{}[\titlerule]
-\setlist[itemize]{leftmargin=*, itemsep=0.25em}
+\titleformat{\section}
+  {\Large\bfseries}
+  {}{0em}
+  {}
+  [\titlerule]
+
+\titleformat{\subsection}
+  {\large\bfseries}
+  {}{0em}
+  {}
+
+\setlist[itemize]{leftmargin=*, label=--, itemsep=0.3em}
 
 \begin{document}
 
-\begin{minipage}[t]{0.70\textwidth}
-{\huge\bfseries Curriculum Vitae}\\[0.5cm]
-{\Large\bfseries Sangdon Park}\\[0.2cm]
-Assistant Professor, Department of Computer Engineering\\
-School of SW Convergence, Daejeon University\\
-(Appointed: 2026.03.01)\\[0.25cm]
-\href{mailto:sangdon.park@dju.kr}{sangdon.park@dju.kr}\\
-\href{https://sangdon-park.github.io}{https://sangdon-park.github.io}\\
-\href{https://scholar.google.com/citations?user=JZFDtsgAAAAJ}{Google Scholar} \quad
-\href{https://github.com/Sangdon-Park}{GitHub} \quad
-\href{https://www.linkedin.com/in/sangdon/}{LinkedIn}
+\begin{minipage}[t]{0.69\textwidth}
+{\huge\bfseries Curriculum Vitae}\\[0.8cm]
+{\Large\bfseries Dr. Sangdon Park}
+
+\vspace{0.3cm}
+Assistant Professor, Daejeon University\\
+Department of Computer Engineering, School of SW Convergence\\
+\vspace{0.3cm}\\
+\faEnvelope\ \href{mailto:sangdon.park@dju.kr}{sangdon.park@dju.kr} \hfill \faPhone\ +82-10-2523-3824 \\[0.2cm]
+\faGlobe\ \href{https://sangdon-park.github.io/}{sangdon-park.github.io} \hfill \faLinkedin\ \href{https://www.linkedin.com/in/sangdon/}{linkedin.com/in/sangdon}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.27\textwidth}
+\begin{minipage}[t]{0.3\textwidth}
+\vspace{-0.3cm}
 \begin{flushright}
-\IfFileExists{images/Sangdon.jpg}{
-  \includegraphics[width=0.8\textwidth]{images/Sangdon.jpg}
-}{
-  \IfFileExists{../images/Sangdon.jpg}{
-    \includegraphics[width=0.8\textwidth]{../images/Sangdon.jpg}
-  }{}
-}
+\includegraphics[width=0.7\textwidth]{Sangdon.jpg}
 \end{flushright}
 \end{minipage}
 
-\section{Research Profile}
+\vspace{0.3cm}
+\linespread{1}
+\section{WORK EXPERIENCE}
+
+\subsection*{Assistant Professor, Department of Computer Engineering, Daejeon University}
+\textit{March 2026 -- Present}
+
 \begin{itemize}
-  \item AI x Games Systems
-  \item Edge/network resource optimization and dynamic pricing
-  \item AI/LLM systems (RAG, tool-use, agent evaluation)
-  \item Interactive AI applications and game development
+    \item Faculty member in School of SW Convergence, teaching and advising in AI and systems
+    \item Current teaching: Database Systems, Artificial Intelligence, Capstone Design (2026 Spring)
 \end{itemize}
 
-\section{Appointments}
-\begin{tabularx}{\textwidth}{Xr}
-\textbf{Assistant Professor}, Department of Computer Engineering, School of SW Convergence, Daejeon University & 2026.03.01 -- Present \\
-\textbf{Game Developer}, Sayberry Games & 2025.05 -- 2026.02.28 \\
-\textbf{Postdoctoral Researcher}, KAIST Institute for Information Electronics Research (IIER) & 2017.09 -- 2025.04 \\
-\end{tabularx}
+\subsection*{AI Research Engineer, Sayberry Games Inc.}
+\textit{May 2025 -- February 2026}
 
-\section{Education}
-\begin{tabularx}{\textwidth}{Xr}
-\textbf{Ph.D.}, School of Electrical Engineering, KAIST \newline
-Advisor: Prof. Jun Kyun Choi & 2017.08 \\
-\textbf{M.S.}, Department of Mathematical Sciences, KAIST \newline
-Advisor: Prof. Ganguk Hwang & 2013.02 \\
-\textbf{B.S.}, Department of Mathematical Sciences, KAIST & 2011.02 \\
-\end{tabularx}
-
-\section{Teaching (2026 Spring)}
 \begin{itemize}
-  \item Database Systems
-  \item Artificial Intelligence
-  \item Capstone Design
+    \item Research and development of LLM-based AI characters and interactive game systems
+    \item Innovation in game content creation processes using AI technologies
 \end{itemize}
 
-\section{Projects}
+\subsection*{Post-Doctoral Researcher, Information \& Electronics Research Institute, KAIST}
+\textit{September 2017 -- April 2025} \hfill \textit{Advisor: Jun Kyun Choi}
+
 \begin{itemize}
-  \item \textbf{Hexagon Soup} (solo development, in progress): \href{https://store.steampowered.com/app/4256880/Hexagon_Soup/}{Steam Page}
+    \item Research on edge computing, energy trading, and data market optimization
+    \item Exploration and application of AI/LLM technologies
 \end{itemize}
 
-\section{Publications}
-International Journals: 27 papers (4 first-authored, 13 corresponding-authored)\\
-International Conferences: 10 papers (3 first-authored, 2 corresponding-authored)\\[0.2cm]
+\section{PROFESSIONAL SUMMARY}
+Dr. Sangdon Park is an AI and systems researcher whose work connects optimization theory, distributed systems, and practical LLM engineering.
+His core interests are edge/network resource optimization, dynamic pricing, and reliable AI deployment in real services.
+The current focus is \textbf{AI x Games Systems}, where model quality, latency, cost, and operational stability are optimized together.
 
-\textbf{Selected IEEE Journal Papers}
-\begin{enumerate}[leftmargin=*]
-  \item Sangdon Park, Sohee Bae, Joohyung Lee, Youngchul Sung, ``Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective,'' \textit{IEEE Access}, 2024.
-  \item Hyeonseok Seo, Hyeontaek Oh, Jun Kyun Choi, Sangdon Park, ``Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System,'' \textit{IEEE Internet of Things Journal}, 2022.
-  \item Jaeseob Han, Gyeong Ho Lee, Sangdon Park, Jun Kyun Choi, ``Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment,'' \textit{IEEE Internet of Things Journal}, 2022.
-  \item Beomhan Baek, Joohyung Lee, Yuyang Peng, Sangdon Park, ``Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment,'' \textit{IEEE Internet of Things Journal}, 2020.
-  \item Sangdon Park, Joohyung Lee, Sohee Bae, Ganguk Hwang, Jun Kyun Choi, ``Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach,'' \textit{IEEE Transactions on Industrial Electronics}, 2016.
+He received his Ph.D. from KAIST (2017.08) and then worked as a post-doctoral researcher at KAIST IIER (2017.09--2025.04), conducting research on edge computing, IoT systems, smart-grid optimization, and market-based resource allocation.
+During this period, he published journal and conference papers spanning IEEE IoT Journal, IEEE Access, IEEE Transactions on Industrial Electronics, and related venues, with continued emphasis on mathematically grounded system design.
+
+From 2025.05 to 2026.02, he worked at Sayberry Games and expanded his research into interactive AI and production-oriented LLM applications.
+Since 2026.03.01, he has served as Assistant Professor at Daejeon University, where he teaches Database Systems, Artificial Intelligence, and Capstone Design while continuing research on RAG, tool-use, agent evaluation, and deployable AI systems.
+
+\section{EDUCATION}
+
+\begin{tabular}{p{14.5cm}r}
+\textbf{Ph.D. in School of Electrical Engineering, KAIST} & 2017.08 \\
+\\
+\textit{Thesis:} Dynamic Energy Trading Scheme for Future Smart Grid & \\
+\textit{Advisor:} Prof. Jun Kyun Choi (Media Network Lab.) & \\
+\textit{Focus:} Wireless Communications, Smart Grid, Optimization, Game Theory& \\
+\\
+\textbf{M.S. in Department of Mathematical Sciences, KAIST} & 2013.02 \\
+\\
+\textit{Thesis:} Throughput Performance Analysis of Optimal Random Access Policies for & \\
+Cognitive Radio Networks & \\
+\textit{Advisor:} Prof. Ganguk Hwang (Next Generation Communication Networks Lab.) & \\
+\textit{Focus:} Queueing Theory, Probability Theory, Wireless Communications & \\
+\\
+\textbf{B.S. in Department of Mathematical Sciences, KAIST} & 2011.02 \\
+\end{tabular}
+
+\section{INVITED TALKS \& SEMINARS}
+
+\begin{tabular}{p{13cm}r}
+\textbf{AI/LLM Seminar, Daejeon Local Tax Accountants Association} & September 12, 2025 \\
+\\
+\textbf{AI/LLM Seminar, Department of Information and Statistics, Gyeongsang National University} & August 25, 2025 \\
+\\
+\textbf{AI/LLM Seminar, BIEN 2025 IT Scientific Session, ICC Hotel Daejeon} & August 21, 2025 \\
+\textit{``Bringing Game Characters to Life: Implementing Next-Gen AI NPCs with LLM and RAG Technology''} & \\
+\\
+\textbf{AI/LLM Seminar, Yuseong-gu Office, Daejeon} & August 11, 2025 \\
+\\
+\textbf{AI/LLM Seminar, Department of Chemical and Biological Engineering, Korea University} & July 31 \& Aug. 6, 2025 \\
+\\
+\textbf{AI/LLM Seminar, School of Electronic and Information Communication Engineering, Pukyong National University} & May 14, 2025 \\
+\\
+\textbf{AI/LLM Seminar, KAIST AI Semiconductor Department Executive Course} & May 7, 2025 \\
+\\
+\textbf{AI/LLM Seminar, Korea Science Academy of KAIST} & April 30, 2025 \\
+\\
+\textbf{AI/LLM Seminar, Kyungpook National University} & April 24, 2025 \\
+\\
+\textbf{AI/LLM Seminar, School of Computer Science and Engineering, Chungnam National University} & April 14, 2025 \\
+\\
+\textbf{AI/LLM Seminar, School of Electrical Engineering, KAIST} & December 18, 2024 \\
+\\
+\textbf{AI/LLM Seminar, Information and Electronic New Materials Engineering, Kyung Hee University (International Campus)} & November 29, 2024 \\
+\\
+\textbf{AI/LLM Seminar, School of Electrical Engineering, KAIST} & November 28, 2024 \\
+\\
+\textbf{AI/LLM Seminar, JIANT-IT Human Resource Development Center, Jeonbuk National University} & June 1, 2023 \\
+\end{tabular}
+
+\section{GRANTS}
+
+\begin{tabular}{p{14cm}r}
+\textbf{Sejong Science Fellowship (Domestic Track), National Research Foundation of Korea} & 2022--Present \\
+??20,000,000 (Korean Won) per year $\approx$ \$100,000 (US Dollars) per year for 3+2 years, Currently in the 4st year of the fellowship & \\
+\\
+\textbf{Basic Science Research Program, National Research Foundation of Korea} & 2018--2022 \\
+??0,000,000 (Korean Won) per year $\approx$ \$200,000 (US Dollars), for 4 years & \\
+``Learning-based Energy Trading Blockchain Technology using Smart Contract'' & \\
+This grant usually supports young professors, and this is a highly exceptional case & \\
+\\
+\textbf{Brain Korea 21 Plus Program, National Research Foundation of Korea} & 2017--2019 \\
+??5,000,000 (Korean Won) total $\approx$ \$45,000 (US Dollars) for 1.5 years & \\
+\end{tabular}
+
+\section{PUBLICATIONS}
+
+\subsection{International Journals (* denotes corresponding author, ??denotes first author)}
+(Total 25 papers: 4 first-authored, 13 corresponding-authored)
+
+\begin{enumerate}[label={[{\arabic*}]}, leftmargin=*, itemsep=0.3em]
+
+% 2024
+\item \textbf{Sangdon Park}; Sohee Bae; Joohyung Lee; Youngchul Sung, ``Real-Time Dynamic Pricing for Edge Computing Services: A Market Perspective,'' \textit{IEEE Access}, vol. 12, pp. 134754--134769, 2024.
+
+\item Mohammed, A.; Lee, J.; \textbf{Sangdon Park*}, ``Dynamic Bandwidth Slicing in Passive Optical Networks to Empower Federated Learning,'' \textit{Sensors}, vol. 24, no. 15, 2024.
+
+% 2022
+\item Hyeonseok Seo; Hyeontaek Oh; Jun Kyun Choi; \textbf{Sangdon Park*}, ``Differential Pricing-Based Task Offloading for Delay-Sensitive IoT Applications in Mobile Edge Computing System,'' \textit{IEEE Internet of Things Journal}, vol. 9, no. 19, pp. 19116--19131, 2022.
+
+\item Jaeseob Han; Gyeong Ho Lee; \textbf{Sangdon Park*}; Jun Kyun Choi, ``Joint Subcarrier and Transmission Power Allocation in OFDMA-Based WPT System for Mobile-Edge Computing in IoT Environment,'' \textit{IEEE Internet of Things Journal}, vol. 9, no. 16, pp. 15039--15052, 2022.
+
+\item Yue Zang; Yuyang Peng; \textbf{Sangdon Park}; Han Hai; Fawaz Al-Hazemi; Mohammad Meraj Mirza, ``A Novel Cooperative Transmission Scheme in UAV-Assisted Wireless Sensor Networks,'' \textit{Electronics}, vol. 11, no. 4, 2022.
+
+\item Jangkyum Kim; Joohyung Lee; \textbf{Sangdon Park}; Jun Kyun Choi, ``Power Scheduling Scheme for a Charging Facility Considering the Satisfaction of Electric Vehicle Users,'' \textit{IEEE Access}, vol. 10, pp. 25153--25164, 2022.
+
+% 2021
+\item Jaeseob Han; Gyeong Ho Lee; \textbf{Sangdon Park*}; Joohyung Lee; Jun Kyun Choi, ``A Multivariate-Time-Series-Prediction-Based Adaptive Data Transmission Period Control Algorithm for IoT Networks,'' \textit{IEEE Internet of Things Journal}, vol. 9, no. 1, pp. 419--436, 2021.
+
+\item Jinhwan Jeon; Yoonjin Hwang; Yongseop Jeong; \textbf{Sangdon Park}; In So Kweon; Seibum B. Choi, ``Lane Detection Aided Online Dead Reckoning for GNSS Denied Environments,'' \textit{Sensors}, vol. 21, no. 20, 2021.
+
+\item Hyeontaek Oh; \textbf{Sangdon Park*}; Jun Kyun Choi; Sungkee Noh, ``Deposit Decision Model for Data Brokers in Distributed Personal Data Markets Using Blockchain,'' \textit{IEEE Access}, vol. 9, pp. 114715--114726, 2021.
+
+% 2020
+\item Beomhan Baek; Joohyung Lee; Yuyang Peng; \textbf{Sangdon Park*}, ``Three Dynamic Pricing Schemes for Resource Allocation of Edge Computing for IoT Environment,'' \textit{IEEE Internet of Things Journal}, vol. 7, no. 5, pp. 4292--4303, 2020.
+
+\item Hyeontaek Oh; \textbf{Sangdon Park*}; Gyu Myoung Lee; Jun Kyun Choi; Sungkee Noh, ``Competitive Data Trading Model with Privacy Valuation for Multiple Stakeholders in IoT Data Markets,'' \textit{IEEE Internet of Things Journal}, vol. 7, no. 4, pp. 3623--3639, 2020.
+
+\item Gyohun Jeong; \textbf{Sangdon Park*}; Ganguk Hwang, ``Time Series Forecasting Based Day-Ahead Energy Trading in Microgrids: Mathematical Analysis and Simulation,'' \textit{IEEE Access}, vol. 8, pp. 63885--63900, 2020.
+
+% 2019
+\item Jangkyum Kim; Joohyung Lee; \textbf{Sangdon Park}; Jun Kyun Choi, ``Battery-Wear-Model-Based Energy Trading in Electric Vehicles: A Naive Auction Model and a Market Analysis,'' \textit{IEEE Transactions on Industrial Informatics}, vol. 15, no. 7, pp. 4140--4151, 2019.
+
+\item \textbf{Sangdon Park}; Ganguk Hwang; Jun Kyun Choi, ``Optimal Throughput Analysis of Multiple Channel Access in Cognitive Radio Networks,'' \textit{Annals of Operations Research}, vol. 277, no. 2, pp. 345--370, 2019.
+
+\item Yuyang Peng; Jun Li; \textbf{Sangdon Park*}; Konglin Zhu; Mohammad Mehedi Hassan; Ahmed Alsanad, ``Energy-Efficient Cooperative Transmission for Intelligent Transportation Systems,'' \textit{Future Generation Computer Systems}, vol. 94, pp. 634--640, 2019.
+
+\item Jaewon Ahn; Joohyung Lee; \textbf{Sangdon Park}; Hong-Shik Park, ``Power Efficient Clustering Scheme for 5G Mobile Edge Computing Environment,'' \textit{Mobile Networks and Applications}, vol. 24, no. 2, pp. 643--652, 2019.
+
+\item Hyeontaek Oh; \textbf{Sangdon Park*}; Gyu Myoung Lee; Hwanjo Heo; Jun Kyun Choi, ``Personal Data Trading Scheme for Data Brokers in IoT Data Marketplaces,'' \textit{IEEE Access}, vol. 7, pp. 40120--40132, 2019.
+
+\item Sohee Bae; \textbf{Sangdon Park*}, ``Comparison Between Seller and Buyer Pricing Systems for Energy Trading in Microgrids,'' \textit{IEEE Access}, vol. 7, pp. 54084--54096, 2019.
+
+% 2018
+\item Nakyoung Kim; \textbf{Sangdon Park*}; Joohyung Lee; Jun Kyun Choi, ``Load Profile Extraction by Mean-Shift Clustering with Sample Pearson Correlation Coefficient Distance,'' \textit{Energies}, vol. 11, no. 9, 2018.
+
+\item Seong-Hwan Kim; \textbf{Sangdon Park*}; Min Chen; Chan-Hyun Youn, ``An Optimal Pricing Scheme for the Energy-Efficient Mobile Edge Computation Offloading with OFDMA,'' \textit{IEEE Communications Letters}, vol. 22, no. 9, pp. 1922--1925, 2018.
+
+\item Busik Jang; \textbf{Sangdon Park*}; Joohyung Lee; Sang-Geun Hahn, ``Three Hierarchical Levels of Big-Data Market Model Over Multiple Data Sources for Internet of Things,'' \textit{IEEE Access}, vol. 6, pp. 31269--31280, 2018.
+
+\item Sanghong Ahn; Joohyung Lee; \textbf{Sangdon Park*}; S.H. Shah Newaz; Jun Kyun Choi, ``Competitive Partial Computation Offloading for Maximizing Energy Efficiency in Mobile Cloud Computing,'' \textit{IEEE Access}, vol. 6, pp. 899--912, 2018.
+
+% 2017
+\item \textbf{Sangdon Park}; Joohyung Lee; Ganguk Hwang; Jun Kyun Choi, ``Event-Driven Energy Trading System in Microgrids: Aperiodic Market Model Analysis with a Game Theoretic Approach,'' \textit{IEEE Access}, vol. 5, pp. 26291--26302, 2017.
+
+\item Minkyung Kim; \textbf{Sangdon Park}; Joohyung Lee; Yongjae Joo; Jun Kyun Choi, ``Learning-Based Adaptive Imputation Method with kNN Algorithm for Missing Power Data,'' \textit{Energies}, vol. 10, no. 10, 2017.
+
+% 2016
+\item \textbf{Sangdon Park}; Joohyung Lee; Sohee Bae; Ganguk Hwang; Jun Kyun Choi, ``Contribution-Based Energy-Trading Mechanism in Microgrids for Future Smart Grid: A Game Theoretic Approach,'' \textit{IEEE Transactions on Industrial Electronics}, vol. 63, no. 7, pp. 4255--4265, 2016.
 \end{enumerate}
 
-Full publication list: \href{https://sangdon-park.github.io/publications.html}{https://sangdon-park.github.io/publications.html}
+\subsection{International Conferences}
+
+\begin{enumerate}[label={[{\arabic*}]}, leftmargin=*, itemsep=0.3em]
+
+% 2025
+\item M Kim; J Kim; H Bae; W Yang; \textbf{S Park}; S Bae, ``State-Inference-Based Prompting for Natural Language Trading with Game NPCs,'' in \textit{KDD 2025 Workshop [TO BE CONFIRMED]}, 2025. \textit{arXiv:2507.07203}.
+
+% 2021
+\item J Lee; M Kim; \textbf{Sangdon Park}; J.K. Choi; Y Hwang, ``Driver Identification for Different Road Shapes Using Vehicle IoT Sensing Data,'' in \textit{Proceedings of the 2021 IEEE International Conference on Consumer Electronics (ICCE)}, Las Vegas, NV, USA, January 10--12, 2021.
+
+% 2018
+\item J Han; \textbf{Sangdon Park}; G.H. Lee; M Kim; H Seo; J.K. Choi, ``Energy Trading in Wireless Power Transmission System Considering Nonlinear Rectifier,'' in \textit{Proceedings of the 2018 IEEE 7th Global Conference on Consumer Electronics (GCCE)}, Nara, Japan, October 9--12, 2018.
+
+\item Eunju Yang; Seong Hwan Kim; TaeWoo Kim; Min Su Jeon; \textbf{Sangdon Park}; Chan-Hyun Youn, ``An Adaptive Batch-Orchestration Algorithm for the Heterogeneous GPU Cluster Environment in Distributed Deep Learning System,'' in \textit{Proceedings of the 2018 IEEE International Conference on Big Data and Smart Computing (BigComp)}, Shanghai, China, January 15--17, 2018.
+
+\item Minkyung Kim; \textbf{Sangdon Park}; Kireem Han; Nakyoung Kim; Jun Kyun Choi, ``Dynamics of Electricity Consumers for Classifying Power Consumption Data Using PCA,'' in \textit{Proceedings of the 2018 IEEE International Conference on Big Data and Smart Computing (BigComp)}, Shanghai, China, January 15--17, 2018.
+
+% 2017
+\item \textbf{Sangdon Park}; Justin Weimer; Insup Lee, ``Resilient Linear Classification: An Approach to Deal with Attacks on Training Data,'' in \textit{Proceedings of the 8th ACM/IEEE International Conference on Cyber-Physical Systems (ICCPS)}, Pittsburgh, PA, USA, April 18--21, 2017.
+
+% 2016
+\item \textbf{Sangdon Park}; Jae Deok Kim; Ganguk Hwang; Jun Kyun Choi, ``Joint Optimal Access and Sensing Policy on Distributed Cognitive Radio Networks with Channel Aggregation,'' in \textit{Proceedings of the 2016 Eighth International Conference on Ubiquitous and Future Networks (ICUFN)}, Vienna, Austria, July 5--8, 2016.
+
+\item Hyeontaek Oh; S.H. Shah Newaz; \textbf{Sangdon Park}; Jun Kyun Choi, ``Maximizing Energy Efficiency in Off-Peak Hours: A Novel Sleep Scheme for WLAN Access Points,'' in \textit{Proceedings of the 2016 IEEE/IFIP Network Operations and Management Symposium (NOMS)}, Istanbul, Turkey, April 25--29, 2016.
+
+\item \textbf{Sangdon Park}; Ganguk Hwang; Jun Kyun Choi, ``Optimal Throughput Analysis of Random Access Policies for Cognitive Radio Networks with Multiple Channel Access,'' in \textit{Proceedings of the 11th International Conference on Queueing Theory and Network Applications (QTNA)}, Wellington, New Zealand, December 13--15, 2016.
+
+% 2013
+\item Seonghwa Yun; Kyeongmin Lee; \textbf{Sangdon Park}; Jun Kyun Choi, ``Energy Efficient Relay Selection Scheme with DRX Mechanism in 3GPP LTE Network,'' in \textit{Proceedings of the 2013 International Conference on ICT Convergence (ICTC)}, Jeju Island, South Korea, October 14--16, 2013.
+\end{enumerate}
+
+\section{STANDARD ACTIVITIES}
+
+\begin{tabularx}{\textwidth}{X}
+\textbf{International Telecommunication Union Telecommunication (ITU-T) Standards} \\[0.2cm]
+Representative of South Korea, ITU-T SG13 \& SG5 \hfill \textit{June 2013 -- November 2014}\\
+\\[0.3cm]
+\textbf{ITU-T SG13 Rapporteurs Meeting} \hfill \textit{June 2013, Geneva, Switzerland}
+\\[0.2cm]
+\textbf{Sangdon Park}; Seung Hyun Jeon; Jun Kyun Choi; Jeong Yun Kim, ``Consideration of classification of sleep mode control on network equipment,'' SG13RGM-C-06 \\[-0.2cm]
+\\
+Seung Hyun Jeon; \textbf{Sangdon Park}; Jun Kyun Choi, ``Revised draft Recommendation Y.energyMRM for requesting the consent,'' SG13RGM-C-04 \\[-0.2cm]
+\\
+Seung Hyun Jeon; \textbf{Sangdon Park}; Jun Kyun Choi; Jeong Yun Kim, ``Consideration of classification for CPU power consumption on network equipment,'' SG13RGM-C-05 \\
+\\[0.3cm]
+\textbf{ITU-T SG13 Meeting} \hfill \textit{November 2013, Kampala, Uganda} \\[0.2cm]
+\textbf{Sangdon Park}; Gyu Myoung Lee; Jun Kyun Choi, ``Proposal of the new draft recommendation Y.energyECN (Energy efficiency class of network equipment),'' COM13-C401-E \\
+\\[0.3cm]
+\textbf{ITU-T SG13 Rapporteurs Meeting} \hfill \textit{February 2014, Geneva, Switzerland} \\[0.2cm]
+\textbf{Sangdon Park}; Jaewon Ahn; Jun Kyun Choi; Gyu Myoung Lee, ``A proposal for definitions of energy efficiency class of network equipment,'' SG13RGM-C-94 \\[-0.2cm]
+\\
+\textbf{Sangdon Park}; Jaewon Ahn; Jun Kyun Choi; Gyu Myoung Lee, ``Revised texts for a main chapter of draft recommendation,'' SG13RGM-C-75 \\[-0.2cm]
+\\
+\textbf{Sangdon Park}; Jun Kyun Choi; Gyu Myoung Lee, ``A proposal for definitions of energy efficiency class of network equipment,'' SG13RGM-C-75 \\
+\end{tabularx}
+
+\section{TEACHING ACTIVITIES}
+
+\begin{tabular}{p{14cm}r}
+\textbf{Design Assistant} & Spring 2014 \\
+``Introduction to Electronics Design Lab.'', School of Electrical Engineering at KAIST & \\
+\\
+\textbf{Counseling Assistant} & Fall 2013 \\
+School of Electrical Engineering at KAIST & \\
+\\
+\textbf{Teaching Assistant} & Fall 2012 \\
+Calculus II, Department of Mathematical Sciences at KAIST & \\
+\\
+\textbf{Teaching Assistant} & Spring 2012 \\
+Calculus I, Department of Mathematical Sciences at KAIST & \\
+\\
+\textbf{Teaching Assistant} & Fall 2011 \\
+Introduction to Linear Algebra, Department of Mathematical Sciences at KAIST & \\
+Probability and Statistics, Department of Mathematical Sciences at KAIST & \\
+\end{tabular}
 
 \end{document}
