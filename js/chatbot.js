@@ -508,21 +508,17 @@ class Chatbot {
 
             this.hideTypingIndicator();
             
-            // If it's just chat, prefer initialMessage; otherwise fallback to step 2
+            // If step 1 already produced a reply, return it directly.
             if (!data1.needsSecondStep) {
                 const initial = (data1.initialMessage || '').trim();
-                const isUserGreeting = this.isGreetingLikeMessage(message);
-                const shouldForceSecondStep = this.isInterimActionMessage(initial)
-                    || (this.isGenericGreeting(initial) && !isUserGreeting && this.shouldEscalateToSecondStep(message));
-
-                if (initial && !shouldForceSecondStep) {
+                if (initial) {
                     this.addMessage(initial, 'bot');
                     this.pushHistory('assistant', initial);
                     return;
                 }
 
-                // Fallback: proceed to step 2 when the first-step message is generic
-                await new Promise(resolve => setTimeout(resolve, 500));
+                // Fallback to step 2 only when step 1 did not return usable text.
+                await new Promise(resolve => setTimeout(resolve, 120));
                 this.showTypingIndicator();
                 const response2 = await fetch(CHATBOT_API, {
                     method: 'POST',
@@ -547,11 +543,7 @@ class Chatbot {
                     this.showSearchResults(normalizedResults);
                 }
 
-                let reply2 = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
-                if (this.isGenericGreeting(reply2) && !isUserGreeting) {
-                    reply2 = this.buildContextualFallback(message, normalizedResults);
-                }
-                reply2 = this.standardizeNoDataReply(reply2, message, normalizedResults);
+                const reply2 = (data2.reply || '').trim() || '응답을 생성하지 못했습니다. 같은 질문을 한 번 더 보내주세요.';
 
                 this.addMessage(reply2, 'bot', '', { sources: this.extractSourceChips(normalizedResults) });
                 this.pushHistory('assistant', reply2);
@@ -590,19 +582,14 @@ class Chatbot {
             }
             
             // Add final reply
-            let finalReply = data2.reply || '죄송합니다. 일시적인 오류가 발생했습니다.';
-            if (this.isGenericGreeting(finalReply) && !this.isGreetingLikeMessage(message)) {
-                finalReply = this.buildContextualFallback(message, normalized);
-            }
-
-            finalReply = this.standardizeNoDataReply(finalReply, message, normalized);
+            const finalReply = (data2.reply || '').trim() || '응답을 생성하지 못했습니다. 같은 질문을 한 번 더 보내주세요.';
             this.addMessage(finalReply, 'bot', '', { sources: this.extractSourceChips(normalized) });
             this.pushHistory('assistant', finalReply);
 
         } catch (error) {
             console.error('Chatbot error:', error);
             this.hideTypingIndicator();
-            const fallback = this.standardizeNoDataReply(this.buildContextualFallback(message, []), message, []);
+            const fallback = '질문은 확인했지만 AI 응답 서버가 현재 불안정합니다. 잠시 후 다시 시도해 주세요.';
             this.addMessage(fallback, 'bot');
             this.pushHistory('assistant', fallback);
         }
@@ -616,121 +603,6 @@ class Chatbot {
             return data.searchResults.map(r => ({ type: 'result', item: { title: r } }));
         }
         return [];
-    }
-
-    isGenericGreeting(text = '') {
-        const normalized = String(text).replace(/\s+/g, ' ').trim().toLowerCase();
-        if (!normalized) return false;
-
-        return (
-            normalized.includes('무엇을 도와드릴까요') ||
-            normalized.includes('편하게 물어보세요') ||
-            normalized.includes('how can i help')
-        );
-    }
-
-    isInterimActionMessage(text = '') {
-        const normalized = String(text).replace(/\s+/g, ' ').trim().toLowerCase();
-        if (!normalized) return false;
-
-        return (
-            normalized.includes('got it. i will look up relevant information.') ||
-            normalized.includes('i will look up relevant information') ||
-            normalized.includes('\uC9C8\uBB38 \uD655\uC778') ||
-            normalized.includes('\uAD00\uB828 \uC815\uBCF4\uB97C \uCC3E\uC544\uBCF4\uACA0\uC2B5\uB2C8\uB2E4')
-        );
-    }
-
-    containsHangul(text = '') {
-        return /[\u3131-\uD79D]/u.test(String(text));
-    }
-
-    isNoDataReply(reply = '') {
-        const text = String(reply || '').trim();
-        if (!text) return true;
-
-        return (
-            /제공된 자료에는|수집된 자료|명시적으로 확인되지 않습니다|확인되지 않습니다|정보가 없습니다/i.test(text) ||
-            /not explicitly|not currently confirmed|cannot confirm|could not confirm|not found in provided/i.test(text)
-        );
-    }
-
-    standardizeNoDataReply(reply = '', userMessage = '', results = []) {
-        if (!this.isNoDataReply(reply)) {
-            return reply;
-        }
-
-        const isKo = this.containsHangul(userMessage) || this.containsHangul(reply);
-        const sourceChips = this.extractSourceChips(results);
-        const sourceText = sourceChips.length > 0
-            ? sourceChips.map((item) => item.url || item.title).join(' | ')
-            : (isKo
-                ? '소개: https://sangdon-park.github.io/about.html | 과목: https://sangdon-park.github.io/courses-2026-spring.html'
-                : 'About: https://sangdon-park.github.io/about-en.html | Courses: https://sangdon-park.github.io/courses-2026-spring-en.html');
-
-        if (isKo) {
-            return [
-                '현재 수집된 페이지 기준으로 이 질문에 대한 확정 정보를 찾지 못했습니다.',
-                `확인한 범위: ${userMessage || '질문 원문'}`,
-                `관련 페이지: ${sourceText}`,
-                '정확도를 높이려면 과목명/기간/키워드를 한 문장으로 같이 보내주세요.'
-            ].join('\n');
-        }
-
-        return [
-            'I could not confirm this from the currently indexed pages.',
-            `Checked scope: ${userMessage || 'original query'}`,
-            `Related pages: ${sourceText}`,
-            'For a precise answer, include course name, time range, and one concrete keyword in one sentence.'
-        ].join('\n');
-    }
-
-    isGreetingLikeMessage(message = '') {
-        const normalized = String(message).trim().toLowerCase();
-        if (!normalized) return false;
-
-        const compact = normalized.replace(/\s+/g, '');
-
-        if (/^(hello|hi|hey|goodmorning|goodafternoon|goodevening)$/i.test(compact)) return true;
-        if (/^(g2|h2|yo|yoo|hii+)$/i.test(compact)) return true;
-        if (/^(\uC548\uB155|\uC548\uB155\uD558\uC138\uC694|\u314E\u3147|\uD558\uC774|\uD5EC\uB85C)$/u.test(compact)) return true;
-        if (/^\u314E+[0-9a-z]*$/u.test(compact)) return true;
-
-        return false;
-    }
-
-    buildContextualFallback(userMessage = '', results = []) {
-        if (results.length > 0) {
-            const topTitle = results[0]?.item?.title || results[0]?.item?.name || '대표 자료';
-            return `관련 자료를 찾았습니다. 우선 "${topTitle}"부터 확인해 보세요. 이어서 "이 논문 요약해줘"처럼 질문하면 더 자세히 답변할 수 있습니다.`;
-        }
-
-        const msg = String(userMessage).toLowerCase();
-
-        if (msg.includes('무슨') || msg.includes('뭐') || msg.includes('어떤') || msg.includes('소개') || msg.includes('연구')) {
-            return '저는 대전대학교 컴퓨터공학과 조교수로 재직 중이며, AxGS Lab에서 AI x Games Systems, Trustworthy AI, 최적화 기반 의사결정 연구를 하고 있습니다.';
-        }
-
-        if (msg.includes('수업') || msg.includes('과목') || msg.includes('강의')) {
-            return '이번 학기 담당 과목은 데이터베이스시스템, 인공지능, 캡스톤디자인입니다. 자세한 자료는 과목 페이지에서 확인할 수 있습니다.';
-        }
-
-        if (msg.includes('연락') || msg.includes('이메일') || msg.includes('문의')) {
-            return '문의는 sangdon.park@dju.kr 로 보내주시면 됩니다. 학생 문의는 [과목명][학번] 형식을 권장합니다.';
-        }
-
-        return '질문을 조금 더 구체적으로 한 문장으로 보내주시면 정확히 안내해드리겠습니다.';
-    }
-
-    shouldEscalateToSecondStep(message = '') {
-        const normalized = String(message).trim().toLowerCase();
-        if (!normalized) return false;
-        if (this.isGreetingLikeMessage(normalized)) return false;
-
-        const infoIntentPattern = /(paper|publication|journal|scholar|course|class|lecture|email|contact|profile|about|research|project|steam|hexagon|doi|ieee|who are you|누구|논문|강의|과목|이메일|연락|소개|연구|프로젝트|학력|경력)/i;
-        if (infoIntentPattern.test(message)) return true;
-
-        return normalized.length >= 12;
     }
 
     addMessage(content, type, subtype = '', options = {}) {
