@@ -61,6 +61,20 @@ bundle exec jekyll doctor
 The site is deployed via **GitHub Pages** from the `main` branch.
 Pushing to `main` triggers automatic deployment.
 
+## GitHub Traffic Sync
+
+Repository traffic is collected automatically and versioned in this repo:
+
+- Workflow: `.github/workflows/github-traffic-sync.yml`
+- Collector script: `scripts/update_github_traffic.py`
+- Outputs:
+  - `data/github-traffic-summary.md`
+  - `data/github-traffic-latest.json`
+  - `data/github-traffic-history.json`
+
+The workflow runs daily and can also be started manually from
+`Actions > Sync GitHub Traffic > Run workflow`.
+
 ## Notes
 
 - Do not commit secrets or API tokens.
