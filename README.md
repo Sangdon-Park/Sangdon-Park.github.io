@@ -75,6 +75,12 @@ Repository traffic is collected automatically and versioned in this repo:
 The workflow runs daily and can also be started manually from
 `Actions > Sync GitHub Traffic > Run workflow`.
 
+If the run fails at `Collect traffic metrics`, add a repository secret:
+
+- Name: `GH_TRAFFIC_TOKEN`
+- Type: classic PAT (`repo` scope) or fine-grained PAT with this repo access
+  and permissions including `Administration: Read` and `Contents: Read/Write`.
+
 ## Notes
 
 - Do not commit secrets or API tokens.
