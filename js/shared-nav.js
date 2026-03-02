@@ -130,4 +130,33 @@
       })
       .join("");
   });
+
+  const profileSections = document.querySelectorAll(".profile-section");
+  profileSections.forEach((section) => {
+    if (section.querySelector(".lab-logo-link")) return;
+
+    const isEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
+    const homeHref = isEn ? "/en.html#home" : "/ko.html#home";
+
+    const logoLink = document.createElement("a");
+    logoLink.className = "lab-logo-link";
+    logoLink.href = homeHref;
+    logoLink.setAttribute("aria-label", "AxGS Lab");
+
+    const logoImg = document.createElement("img");
+    logoImg.className = "lab-logo-image";
+    logoImg.src = "/images/AxGS-logo-960.png";
+    logoImg.alt = "AxGS Lab Logo";
+    logoImg.loading = "lazy";
+    logoImg.decoding = "async";
+
+    logoLink.appendChild(logoImg);
+
+    const socialLinks = section.querySelector(".social-links");
+    if (socialLinks) {
+      section.insertBefore(logoLink, socialLinks);
+    } else {
+      section.appendChild(logoLink);
+    }
+  });
 })();
