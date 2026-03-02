@@ -10,12 +10,18 @@
 
     const cfg = window.GISCUS_CONFIG || {};
     if (!cfg.repo || !cfg.repoId || !cfg.category || !cfg.categoryId) {
-      const notice = document.createElement("p");
+      const notice = document.createElement("div");
       notice.className = "giscus-pending";
-      notice.textContent =
-        getLang() === "ko"
-          ? "Comments are not enabled yet."
-          : "Comments are not enabled yet.";
+      notice.innerHTML = `
+        <p><strong>Comments are not enabled yet.</strong></p>
+        <p>To enable giscus:</p>
+        <ol>
+          <li>Enable <strong>Discussions</strong> in this repository settings.</li>
+          <li>Create a discussion category (for example, <code>General</code> or <code>Comments</code>).</li>
+          <li>Open <a href="https://giscus.app" target="_blank" rel="noopener">giscus.app</a> and copy <code>categoryId</code>.</li>
+          <li>Set <code>categoryId</code> in <code>/js/giscus-config.js</code>.</li>
+        </ol>
+      `;
       host.appendChild(notice);
       return;
     }

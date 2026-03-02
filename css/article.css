@@ -158,6 +158,15 @@
 .giscus-pending {
   font-size: 14px;
   color: #78716c;
+  line-height: 1.6;
+}
+
+.giscus-pending p {
+  margin-bottom: 8px;
+}
+
+.giscus-pending ol {
+  margin: 0 0 0 18px;
 }
 
 .article-tags {
