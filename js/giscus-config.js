@@ -5,9 +5,9 @@
       repo: "Sangdon-Park/Sangdon-Park.github.io",
       repoId: "R_kgDOOHzHWw",
 
-      // Set these after enabling GitHub Discussions
-      category: "General",
-      categoryId: "",
+      // Discussion category (from repository discussions settings)
+      category: "Announcements",
+      categoryId: "DIC_kwDOOHzHW84C3hZK",
 
       // Display behavior
       mapping: "pathname",
