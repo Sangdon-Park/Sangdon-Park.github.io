@@ -285,6 +285,43 @@ a:hover {
   color: #57534e;
 }
 
+.hero-traffic {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.traffic-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #44403c;
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.traffic-item strong {
+  color: #1c1917;
+}
+
+.traffic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--accent);
+  padding: 4px 2px;
+}
+
+.traffic-link:hover {
+  color: var(--accent-hover);
+}
+
 .section-header {
   display: flex;
   justify-content: space-between;
