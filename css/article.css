@@ -143,6 +143,23 @@
   border-top: 1px solid #e7e5e4;
 }
 
+.article-comments {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #e7e5e4;
+}
+
+.article-comments-title {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #1c1917;
+}
+
+.giscus-pending {
+  font-size: 14px;
+  color: #78716c;
+}
+
 .article-tags {
   display: flex;
   flex-wrap: wrap;
