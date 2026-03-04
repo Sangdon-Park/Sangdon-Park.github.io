@@ -1,19 +1,43 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-03T00:52:38Z",
+  "synced_at": "2026-03-04T00:50:06Z",
   "views": {
-    "count": 11,
+    "count": 41,
     "uniques": 1
   },
   "clones": {
-    "count": 817,
-    "uniques": 213
+    "count": 1064,
+    "uniques": 257
   },
   "top_paths": [
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml",
+      "title": "Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 13,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Sangdon-Park/Sangdon-Park.github.io",
-      "count": 7,
+      "count": 9,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions/1",
+      "title": "Welcome to Sangdon-Park.github.io Discussions! · Sangdon-Park/Sangdon-Park.gi...",
+      "count": 3,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 2,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/actions/runs/22572677214",
+      "title": "Sync GitHub Traffic · Sangdon-Park/Sangdon-Park.github.io@2591c49",
+      "count": 1,
       "uniques": 1
     },
     {
@@ -21,12 +45,35 @@
       "title": "Commits · Sangdon-Park/Sangdon-Park.github.io",
       "count": 1,
       "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions",
+      "title": "Sangdon-Park/Sangdon-Park.github.io · Discussions · GitHub",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions/2",
+      "title": "articles/serena-mcp-guide · Sangdon-Park/Sangdon-Park.github.io · Discussion #2",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions/new",
+      "title": "New Discussion · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 1,
+      "uniques": 1
     }
   ],
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 10,
+      "count": 15,
+      "uniques": 1
+    },
+    {
+      "referrer": "sangdon-park.github.io",
+      "count": 1,
       "uniques": 1
     }
   ]
