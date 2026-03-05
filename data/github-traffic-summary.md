@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-04T00:50:06Z`
+- Last Synced (UTC): `2026-03-05T00:52:09Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 41 | 1 |
-| Clones | 1064 | 257 |
+| Views | 55 | 3 |
+| Clones | 1085 | 262 |
 
 ## Daily Views
 
@@ -29,6 +29,7 @@
 | 2026-02-28 | 0 | 0 |
 | 2026-03-01 | 11 | 1 |
 | 2026-03-02 | 30 | 1 |
+| 2026-03-03 | 14 | 3 |
 
 ## Daily Clones
 
@@ -49,24 +50,26 @@
 | 2026-02-28 | 316 | 105 |
 | 2026-03-01 | 497 | 126 |
 | 2026-03-02 | 247 | 63 |
+| 2026-03-03 | 21 | 8 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
 | /Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml | Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io | 13 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 9 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 12 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io · G... | 3 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 3 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/discussions/1 | Welcome to Sangdon-Park.github.io Discussions! · Sangdon-Park/Sangdon-Park.gi... | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions/runs/22572677214 | Sync GitHub Traffic · Sangdon-Park/Sangdon-Park.github.io@2591c49 | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/commits/main | Commits · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/discussions | Sangdon-Park/Sangdon-Park.github.io · Discussions · GitHub | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/discussions/2 | articles/serena-mcp-guide · Sangdon-Park/Sangdon-Park.github.io · Discussion #2 | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/discussions/new | New Discussion · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/1장_연습문제_풀이.pdf | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.... | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 15 | 1 |
+| github.com | 29 | 3 |
 | sangdon-park.github.io | 1 | 1 |
