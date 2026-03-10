@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-09T00:52:24Z`
+- Last Synced (UTC): `2026-03-10T00:47:51Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 56 | 3 |
-| Clones | 1196 | 276 |
+| Views | 61 | 3 |
+| Clones | 1394 | 308 |
 
 ## Daily Views
 
@@ -34,6 +34,7 @@
 | 2026-03-05 | 0 | 0 |
 | 2026-03-06 | 0 | 0 |
 | 2026-03-07 | 0 | 0 |
+| 2026-03-08 | 5 | 1 |
 
 ## Daily Clones
 
@@ -59,17 +60,18 @@
 | 2026-03-05 | 17 | 7 |
 | 2026-03-06 | 54 | 7 |
 | 2026-03-07 | 17 | 6 |
+| 2026-03-08 | 199 | 41 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
+| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 15 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml | Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io | 13 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 12 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io · G... | 3 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 3 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/discussions/1 | Welcome to Sangdon-Park.github.io Discussions! · Sangdon-Park/Sangdon-Park.gi... | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions/runs/22572677214 | Sync GitHub Traffic · Sangdon-Park/Sangdon-Park.github.io@2591c49 | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
@@ -80,4 +82,4 @@
 | Referrer | Views | Unique |
 |---|---:|---:|
 | github.com | 29 | 3 |
-| sangdon-park.github.io | 2 | 1 |
+| sangdon-park.github.io | 3 | 1 |
