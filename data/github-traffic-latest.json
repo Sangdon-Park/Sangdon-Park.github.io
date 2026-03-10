@@ -1,15 +1,21 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-09T00:52:24Z",
+  "synced_at": "2026-03-10T00:47:51Z",
   "views": {
-    "count": 56,
+    "count": 61,
     "uniques": 3
   },
   "clones": {
-    "count": 1196,
-    "uniques": 276
+    "count": 1394,
+    "uniques": 308
   },
   "top_paths": [
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io",
+      "title": "Sangdon-Park/Sangdon-Park.github.io",
+      "count": 15,
+      "uniques": 3
+    },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml",
       "title": "Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io",
@@ -17,10 +23,10 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io",
-      "title": "Sangdon-Park/Sangdon-Park.github.io",
-      "count": 12,
-      "uniques": 3
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 5,
+      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
@@ -37,12 +43,6 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions/1",
       "title": "Welcome to Sangdon-Park.github.io Discussions! · Sangdon-Park/Sangdon-Park.gi...",
-      "count": 3,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
       "count": 3,
       "uniques": 1
     },
@@ -79,7 +79,7 @@
     },
     {
       "referrer": "sangdon-park.github.io",
-      "count": 2,
+      "count": 3,
       "uniques": 1
     }
   ]
