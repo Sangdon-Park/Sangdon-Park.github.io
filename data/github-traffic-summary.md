@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-12T00:45:14Z`
+- Last Synced (UTC): `2026-03-13T00:50:44Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 93 | 4 |
-| Clones | 1441 | 321 |
+| Views | 95 | 6 |
+| Clones | 1459 | 323 |
 
 ## Daily Views
 
@@ -37,6 +37,7 @@
 | 2026-03-08 | 5 | 1 |
 | 2026-03-09 | 23 | 2 |
 | 2026-03-10 | 9 | 1 |
+| 2026-03-11 | 2 | 2 |
 
 ## Daily Clones
 
@@ -65,12 +66,13 @@
 | 2026-03-08 | 199 | 41 |
 | 2026-03-09 | 25 | 13 |
 | 2026-03-10 | 22 | 9 |
+| 2026-03-11 | 18 | 7 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 21 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 23 | 6 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml | Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io | 13 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 9 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | Sangdon-Park/Sangdon-Park.github.io | 7 | 3 |
@@ -85,5 +87,5 @@
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 54 | 4 |
+| github.com | 56 | 6 |
 | sangdon-park.github.io | 4 | 1 |
