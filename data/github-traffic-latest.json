@@ -1,38 +1,32 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-17T00:50:29Z",
+  "synced_at": "2026-03-18T00:53:58Z",
   "views": {
-    "count": 85,
+    "count": 61,
     "uniques": 6
   },
   "clones": {
-    "count": 789,
-    "uniques": 160
+    "count": 619,
+    "uniques": 112
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Sangdon-Park/Sangdon-Park.github.io",
-      "count": 16,
+      "count": 15,
       "uniques": 6
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/actions/workflows/github-traffic-sync.yml",
-      "title": "Sync GitHub Traffic · Workflow runs · Sangdon-Park/Sangdon-Park.github.io",
-      "count": 13,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
-      "count": 10,
-      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
       "title": "Sangdon-Park/Sangdon-Park.github.io",
-      "count": 7,
+      "count": 8,
       "uniques": 3
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 8,
+      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
@@ -43,14 +37,8 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
       "title": "Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io",
-      "count": 5,
+      "count": 7,
       "uniques": 2
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/discussions/1",
-      "title": "Welcome to Sangdon-Park.github.io Discussions! · Sangdon-Park/Sangdon-Park.gi...",
-      "count": 3,
-      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pptx",
@@ -59,9 +47,9 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/actions/runs/22572677214",
-      "title": "Sync GitHub Traffic · Sangdon-Park/Sangdon-Park.github.io@2591c49",
-      "count": 1,
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/02-데이터다루기.pptx",
+      "title": "Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 2,
       "uniques": 1
     },
     {
@@ -69,17 +57,29 @@
       "title": "Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io",
       "count": 1,
       "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/1장_데이터베이스_기본개념.pptx",
+      "title": "Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/1장_연습문제_풀이.pdf",
+      "title": "Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github....",
+      "count": 1,
+      "uniques": 1
     }
   ],
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 46,
+      "count": 47,
       "uniques": 6
     },
     {
       "referrer": "sangdon-park.github.io",
-      "count": 5,
+      "count": 4,
       "uniques": 1
     }
   ]
