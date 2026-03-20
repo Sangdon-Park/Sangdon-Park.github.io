@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-03-19T00:53:58Z",
+  "updated_at": "2026-03-20T00:51:34Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -122,6 +122,10 @@
     "2026-03-17": {
       "count": 12,
       "uniques": 1
+    },
+    "2026-03-18": {
+      "count": 0,
+      "uniques": 0
     }
   },
   "clones_by_day": {
@@ -244,6 +248,10 @@
     "2026-03-17": {
       "count": 37,
       "uniques": 9
+    },
+    "2026-03-18": {
+      "count": 20,
+      "uniques": 5
     }
   },
   "snapshots": [
@@ -390,18 +398,26 @@
       "views_uniques": 4,
       "clones_count": 635,
       "clones_uniques": 110
+    },
+    {
+      "date": "2026-03-20",
+      "synced_at": "2026-03-20T00:51:34Z",
+      "views_count": 58,
+      "views_uniques": 4,
+      "clones_count": 632,
+      "clones_uniques": 105
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-03-19T00:53:58Z",
+    "synced_at": "2026-03-20T00:51:34Z",
     "views": {
-      "count": 59,
+      "count": 58,
       "uniques": 4
     },
     "clones": {
-      "count": 635,
-      "uniques": 110
+      "count": 632,
+      "uniques": 105
     },
     "top_paths": [
       {
@@ -413,7 +429,7 @@
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
         "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
-        "count": 8,
+        "count": 7,
         "uniques": 1
       },
       {
@@ -473,7 +489,7 @@
       },
       {
         "referrer": "sangdon-park.github.io",
-        "count": 4,
+        "count": 3,
         "uniques": 1
       }
     ]
