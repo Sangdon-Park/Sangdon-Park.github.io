@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-23T00:55:40Z`
+- Last Synced (UTC): `2026-03-24T00:48:47Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 58 | 4 |
-| Clones | 576 | 106 |
+| Views | 53 | 4 |
+| Clones | 384 | 75 |
 
 ## Daily Views
 
@@ -48,6 +48,7 @@
 | 2026-03-19 | 0 | 0 |
 | 2026-03-20 | 0 | 0 |
 | 2026-03-21 | 0 | 0 |
+| 2026-03-22 | 0 | 0 |
 
 ## Daily Clones
 
@@ -87,16 +88,17 @@
 | 2026-03-19 | 18 | 5 |
 | 2026-03-20 | 8 | 7 |
 | 2026-03-21 | 6 | 5 |
+| 2026-03-22 | 7 | 5 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 15 | 4 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 7 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 12 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | Sangdon-Park/Sangdon-Park.github.io | 7 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 6 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 6 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | Traffic · Sangdon-Park/Sangdon-Park.github.io | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/02-데이터다루기.pptx | Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/1장_데이터베이스_기본개념.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
@@ -108,4 +110,4 @@
 | Referrer | Views | Unique |
 |---|---:|---:|
 | github.com | 33 | 4 |
-| sangdon-park.github.io | 3 | 1 |
+| sangdon-park.github.io | 2 | 1 |

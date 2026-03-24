@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-03-23T00:55:40Z",
+  "updated_at": "2026-03-24T00:48:47Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -136,6 +136,10 @@
       "uniques": 0
     },
     "2026-03-21": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-03-22": {
       "count": 0,
       "uniques": 0
     }
@@ -275,6 +279,10 @@
     },
     "2026-03-21": {
       "count": 6,
+      "uniques": 5
+    },
+    "2026-03-22": {
+      "count": 7,
       "uniques": 5
     }
   },
@@ -454,31 +462,33 @@
       "views_uniques": 4,
       "clones_count": 576,
       "clones_uniques": 106
+    },
+    {
+      "date": "2026-03-24",
+      "synced_at": "2026-03-24T00:48:47Z",
+      "views_count": 53,
+      "views_uniques": 4,
+      "clones_count": 384,
+      "clones_uniques": 75
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-03-23T00:55:40Z",
+    "synced_at": "2026-03-24T00:48:47Z",
     "views": {
-      "count": 58,
+      "count": 53,
       "uniques": 4
     },
     "clones": {
-      "count": 576,
-      "uniques": 106
+      "count": 384,
+      "uniques": 75
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Sangdon-Park/Sangdon-Park.github.io",
-        "count": 15,
+        "count": 12,
         "uniques": 4
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-        "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
-        "count": 7,
-        "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
@@ -496,6 +506,12 @@
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
         "title": "Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io",
         "count": 6,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+        "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
+        "count": 5,
         "uniques": 1
       },
       {
@@ -537,7 +553,7 @@
       },
       {
         "referrer": "sangdon-park.github.io",
-        "count": 3,
+        "count": 2,
         "uniques": 1
       }
     ]
