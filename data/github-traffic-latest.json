@@ -1,26 +1,20 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-23T00:55:40Z",
+  "synced_at": "2026-03-24T00:48:47Z",
   "views": {
-    "count": 58,
+    "count": 53,
     "uniques": 4
   },
   "clones": {
-    "count": 576,
-    "uniques": 106
+    "count": 384,
+    "uniques": 75
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Sangdon-Park/Sangdon-Park.github.io",
-      "count": 15,
+      "count": 12,
       "uniques": 4
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
-      "count": 7,
-      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
@@ -38,6 +32,12 @@
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
       "title": "Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io",
       "count": 6,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "Traffic · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 5,
       "uniques": 1
     },
     {
@@ -79,7 +79,7 @@
     },
     {
       "referrer": "sangdon-park.github.io",
-      "count": 3,
+      "count": 2,
       "uniques": 1
     }
   ]
