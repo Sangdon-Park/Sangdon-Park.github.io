@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-26T00:56:44Z`
+- Last Synced (UTC): `2026-03-27T00:57:03Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 32 | 3 |
-| Clones | 425 | 84 |
+| Views | 33 | 1 |
+| Clones | 427 | 86 |
 
 ## Daily Views
 
@@ -51,6 +51,7 @@
 | 2026-03-22 | 0 | 0 |
 | 2026-03-23 | 4 | 1 |
 | 2026-03-24 | 7 | 1 |
+| 2026-03-25 | 3 | 1 |
 
 ## Daily Clones
 
@@ -93,12 +94,13 @@
 | 2026-03-22 | 7 | 5 |
 | 2026-03-23 | 33 | 7 |
 | 2026-03-24 | 55 | 23 |
+| 2026-03-25 | 20 | 9 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 8 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io | Sangdon-Park/Sangdon-Park.github.io | 9 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | Sangdon-Park/Sangdon-Park.github.io | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_데이터베이스시스템_박상돈.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
@@ -113,5 +115,5 @@
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 8 | 3 |
+| github.com | 9 | 1 |
 | sangdon-park.github.io | 1 | 1 |
