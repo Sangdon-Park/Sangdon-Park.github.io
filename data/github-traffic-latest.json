@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-28T00:52:22Z",
+  "synced_at": "2026-03-29T00:59:58Z",
   "views": {
-    "count": 33,
+    "count": 32,
     "uniques": 1
   },
   "clones": {
-    "count": 416,
-    "uniques": 88
+    "count": 383,
+    "uniques": 84
   },
   "top_paths": [
     {
@@ -75,11 +75,6 @@
     {
       "referrer": "github.com",
       "count": 9,
-      "uniques": 1
-    },
-    {
-      "referrer": "sangdon-park.github.io",
-      "count": 1,
       "uniques": 1
     }
   ]
