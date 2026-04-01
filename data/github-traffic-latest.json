@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-03-31T00:57:14Z",
+  "synced_at": "2026-04-01T01:03:43Z",
   "views": {
-    "count": 32,
+    "count": 31,
     "uniques": 1
   },
   "clones": {
-    "count": 408,
-    "uniques": 105
+    "count": 367,
+    "uniques": 111
   },
   "top_paths": [
     {
@@ -41,12 +41,6 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
-      "title": "Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io",
-      "count": 2,
-      "uniques": 1
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/2장_연습문제_풀이.pptx",
       "title": "Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io",
       "count": 1,
@@ -59,14 +53,20 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/02-데이터다루기.pptx",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx",
       "title": "Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io",
       "count": 1,
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/03-회귀 알고리즘과 모델 규제.pptx",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/softmax_crossentropy_beamer.pdf",
       "title": "Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
+      "title": "Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io",
       "count": 1,
       "uniques": 1
     }
@@ -74,7 +74,7 @@
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 9,
+      "count": 3,
       "uniques": 1
     }
   ]

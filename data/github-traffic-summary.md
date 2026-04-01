@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-03-31T00:57:14Z`
+- Last Synced (UTC): `2026-04-01T01:03:43Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 32 | 1 |
-| Clones | 408 | 105 |
+| Views | 31 | 1 |
+| Clones | 367 | 111 |
 
 ## Daily Views
 
@@ -56,6 +56,7 @@
 | 2026-03-27 | 0 | 0 |
 | 2026-03-28 | 0 | 0 |
 | 2026-03-29 | 0 | 0 |
+| 2026-03-30 | 5 | 1 |
 
 ## Daily Clones
 
@@ -103,6 +104,7 @@
 | 2026-03-27 | 17 | 6 |
 | 2026-03-28 | 74 | 32 |
 | 2026-03-29 | 27 | 15 |
+| 2026-03-30 | 36 | 17 |
 
 ## Top Paths
 
@@ -113,14 +115,14 @@
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_데이터베이스시스템_박상돈.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/2장_연습문제_풀이.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_연습문제_문제_정답.pptx | Sangdon-Park.github.io/data/DB시스템 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/02-데이터다루기.pptx | Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/03-회귀 알고리즘과 모델 규제.pptx | Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx | Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/softmax_crossentropy_beamer.pdf | Sangdon-Park.github.io/data/인공지능 at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | Sangdon-Park.github.io/data at main · Sangdon-Park/Sangdon-Park.github.io | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 9 | 1 |
+| github.com | 3 | 1 |
