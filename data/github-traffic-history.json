@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-04-07T00:58:07Z",
+  "updated_at": "2026-04-08T00:58:33Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -198,6 +198,10 @@
     "2026-04-05": {
       "count": 0,
       "uniques": 0
+    },
+    "2026-04-06": {
+      "count": 13,
+      "uniques": 1
     }
   },
   "clones_by_day": {
@@ -396,6 +400,10 @@
     "2026-04-05": {
       "count": 10,
       "uniques": 8
+    },
+    "2026-04-06": {
+      "count": 87,
+      "uniques": 25
     }
   },
   "snapshots": [
@@ -694,42 +702,74 @@
       "views_uniques": 1,
       "clones_count": 382,
       "clones_uniques": 123
+    },
+    {
+      "date": "2026-04-08",
+      "synced_at": "2026-04-08T00:58:33Z",
+      "views_count": 35,
+      "views_uniques": 1,
+      "clones_count": 436,
+      "clones_uniques": 137
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-04-07T00:58:07Z",
+    "synced_at": "2026-04-08T00:58:33Z",
     "views": {
-      "count": 26,
+      "count": 35,
       "uniques": 1
     },
     "clones": {
-      "count": 382,
-      "uniques": 123
+      "count": 436,
+      "uniques": 137
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Overview",
-        "count": 7,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-        "title": "/tree/main/data",
-        "count": 4,
+        "count": 8,
         "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
         "title": "/tree/main/data/DB시스템",
-        "count": 4,
+        "count": 6,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+        "title": "/tree/main/data",
+        "count": 5,
         "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx",
         "title": "/blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx",
-        "count": 3,
+        "count": 2,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx",
+        "title": "/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx",
+        "count": 2,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx",
+        "title": "/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx",
+        "count": 2,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+        "title": "/graphs/traffic",
+        "count": 2,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
+        "title": "/tree/main/data/인공지능",
+        "count": 2,
         "uniques": 1
       },
       {
@@ -741,30 +781,6 @@
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_연습문제_문제_정답.pptx",
         "title": "/blob/main/data/DB시스템/3장_연습문제_문제_정답.pptx",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_연습문제_문제_정답.pptx",
-        "title": "/blob/main/data/DB시스템/4장_연습문제_문제_정답.pptx",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx",
-        "title": "/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx",
-        "title": "/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx",
-        "title": "/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx",
         "count": 1,
         "uniques": 1
       }
