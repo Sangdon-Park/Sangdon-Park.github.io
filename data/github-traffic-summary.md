@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-04-08T00:58:33Z`
+- Last Synced (UTC): `2026-04-09T00:49:56Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 35 | 1 |
-| Clones | 436 | 137 |
+| Views | 44 | 2 |
+| Clones | 403 | 129 |
 
 ## Daily Views
 
@@ -64,6 +64,7 @@
 | 2026-04-04 | 0 | 0 |
 | 2026-04-05 | 0 | 0 |
 | 2026-04-06 | 13 | 1 |
+| 2026-04-07 | 16 | 2 |
 
 ## Daily Clones
 
@@ -119,24 +120,25 @@
 | 2026-04-04 | 20 | 8 |
 | 2026-04-05 | 10 | 8 |
 | 2026-04-06 | 87 | 25 |
+| 2026-04-07 | 22 | 14 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 8 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 5 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx | /blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 11 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 9 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 8 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | /blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx | /blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | /blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/5장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/5장_연습문제_문제_정답.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | /tree/main/data/인공지능 | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_데이터베이스시스템_박상돈.pptx | /blob/main/data/DB시스템/3장_데이터베이스시스템_박상돈.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/3장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/3장_연습문제_문제_정답.pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx | /blob/main/data/DB시스템/4장_데이터_모델링_박상돈.pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/4장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/4장_연습문제_문제_정답.pptx | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 3 | 1 |
+| github.com | 6 | 2 |
