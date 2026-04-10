@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-04-09T00:49:56Z`
+- Last Synced (UTC): `2026-04-10T00:58:15Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 44 | 2 |
-| Clones | 403 | 129 |
+| Views | 41 | 2 |
+| Clones | 408 | 131 |
 
 ## Daily Views
 
@@ -65,6 +65,7 @@
 | 2026-04-05 | 0 | 0 |
 | 2026-04-06 | 13 | 1 |
 | 2026-04-07 | 16 | 2 |
+| 2026-04-08 | 0 | 0 |
 
 ## Daily Clones
 
@@ -121,13 +122,14 @@
 | 2026-04-05 | 10 | 8 |
 | 2026-04-06 | 87 | 25 |
 | 2026-04-07 | 22 | 14 |
+| 2026-04-08 | 25 | 11 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 11 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 9 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 8 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 8 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | /blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx | /blob/main/data/DB시스템/5장_관계_데이터_모델_박상돈.pptx | 2 | 1 |
@@ -141,4 +143,4 @@
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 6 | 2 |
+| github.com | 3 | 1 |
