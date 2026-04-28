@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-04-27T01:07:54Z`
+- Last Synced (UTC): `2026-04-28T01:09:46Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 46 | 4 |
-| Clones | 514 | 170 |
+| Views | 34 | 4 |
+| Clones | 529 | 182 |
 
 ## Daily Views
 
@@ -82,6 +82,8 @@
 | 2026-04-22 | 0 | 0 |
 | 2026-04-23 | 0 | 0 |
 | 2026-04-24 | 0 | 0 |
+| 2026-04-25 | 0 | 0 |
+| 2026-04-26 | 1 | 1 |
 
 ## Daily Clones
 
@@ -155,18 +157,20 @@
 | 2026-04-22 | 33 | 10 |
 | 2026-04-23 | 63 | 18 |
 | 2026-04-24 | 86 | 48 |
+| 2026-04-25 | 53 | 35 |
+| 2026-04-26 | 38 | 12 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 10 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 10 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 8 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | /tree/main/data/인공지능 | 4 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | 4 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx | /blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 9 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 7 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | /tree/main/data/인공지능 | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/answer_4577.pdf | /blob/main/data/DB시스템/answer_4577.pdf | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx | /blob/main/data/인공지능/04-다양한 분류 알고리즘.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | /blob/main/data/DB시스템/6장_관계_데이터_연산_박상돈.pptx | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 1 | 1 |
