@@ -1,36 +1,36 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-04-30T01:09:48Z",
+  "synced_at": "2026-05-01T01:15:03Z",
   "views": {
-    "count": 27,
-    "uniques": 3
+    "count": 20,
+    "uniques": 4
   },
   "clones": {
-    "count": 537,
-    "uniques": 184
+    "count": 524,
+    "uniques": 189
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
-      "count": 8,
+      "count": 6,
       "uniques": 3
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
       "count": 5,
-      "uniques": 3
+      "uniques": 4
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
       "title": "/tree/main/data",
-      "count": 5,
+      "count": 3,
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx",
-      "title": "/blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx",
+      "title": "/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx",
       "count": 2,
       "uniques": 1
     },
@@ -41,26 +41,14 @@
       "uniques": 1
     },
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx",
+      "title": "/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx",
+      "count": 1,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
       "title": "/graphs/traffic",
-      "count": 2,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf",
-      "title": "/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx",
-      "title": "/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
-      "title": "/tree/main/data/인공지능",
       "count": 1,
       "uniques": 1
     }
@@ -68,8 +56,8 @@
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 1,
-      "uniques": 1
+      "count": 2,
+      "uniques": 2
     }
   ]
 }

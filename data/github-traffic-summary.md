@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-04-30T01:09:48Z`
+- Last Synced (UTC): `2026-05-01T01:15:03Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 27 | 3 |
-| Clones | 537 | 184 |
+| Views | 20 | 4 |
+| Clones | 524 | 189 |
 
 ## Daily Views
 
@@ -85,6 +85,8 @@
 | 2026-04-25 | 0 | 0 |
 | 2026-04-26 | 1 | 1 |
 | 2026-04-27 | 1 | 1 |
+| 2026-04-28 | 12 | 2 |
+| 2026-04-29 | 0 | 0 |
 
 ## Daily Clones
 
@@ -161,23 +163,23 @@
 | 2026-04-25 | 53 | 35 |
 | 2026-04-26 | 38 | 12 |
 | 2026-04-27 | 27 | 10 |
+| 2026-04-28 | 28 | 10 |
+| 2026-04-29 | 47 | 21 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 8 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 5 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | /blob/main/data/DB시스템/6장_연습문제_문제_정답.pptx | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/answer_4577.pdf | /blob/main/data/DB시스템/answer_4577.pdf | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pdf | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | /tree/main/data/인공지능 | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 1 | 1 |
+| github.com | 2 | 2 |
