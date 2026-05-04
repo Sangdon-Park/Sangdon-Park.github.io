@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-05-03T01:13:40Z`
+- Last Synced (UTC): `2026-05-04T01:10:57Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 20 | 4 |
-| Clones | 555 | 196 |
+| Views | 21 | 5 |
+| Clones | 567 | 201 |
 
 ## Daily Views
 
@@ -89,6 +89,7 @@
 | 2026-04-29 | 0 | 0 |
 | 2026-04-30 | 0 | 0 |
 | 2026-05-01 | 0 | 0 |
+| 2026-05-02 | 1 | 1 |
 
 ## Daily Clones
 
@@ -169,13 +170,14 @@
 | 2026-04-29 | 47 | 21 |
 | 2026-04-30 | 39 | 12 |
 | 2026-05-01 | 48 | 15 |
+| 2026-05-02 | 38 | 15 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 6 | 5 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/answer_4577.pdf | /blob/main/data/DB시스템/answer_4577.pdf | 2 | 1 |
@@ -186,4 +188,4 @@
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 2 | 2 |
+| github.com | 3 | 3 |
