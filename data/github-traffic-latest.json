@@ -1,31 +1,25 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-05T01:05:06Z",
+  "synced_at": "2026-05-06T01:06:12Z",
   "views": {
-    "count": 21,
-    "uniques": 5
+    "count": 15,
+    "uniques": 4
   },
   "clones": {
-    "count": 584,
-    "uniques": 203
+    "count": 604,
+    "uniques": 204
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 6,
-      "uniques": 5
+      "count": 5,
+      "uniques": 4
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
-      "count": 6,
-      "uniques": 3
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
-      "count": 3,
+      "count": 4,
       "uniques": 2
     },
     {
@@ -35,8 +29,8 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/answer_4577.pdf",
-      "title": "/blob/main/data/DB시스템/answer_4577.pdf",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+      "title": "/tree/main/data",
       "count": 2,
       "uniques": 1
     },

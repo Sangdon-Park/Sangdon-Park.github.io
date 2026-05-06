@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-05-05T01:05:06Z`
+- Last Synced (UTC): `2026-05-06T01:06:12Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 21 | 5 |
-| Clones | 584 | 203 |
+| Views | 15 | 4 |
+| Clones | 604 | 204 |
 
 ## Daily Views
 
@@ -91,6 +91,7 @@
 | 2026-05-01 | 0 | 0 |
 | 2026-05-02 | 1 | 1 |
 | 2026-05-03 | 0 | 0 |
+| 2026-05-04 | 0 | 0 |
 
 ## Daily Clones
 
@@ -173,16 +174,16 @@
 | 2026-05-01 | 48 | 15 |
 | 2026-05-02 | 38 | 15 |
 | 2026-05-03 | 29 | 12 |
+| 2026-05-04 | 29 | 11 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 6 | 5 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 4 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/answer_4577.pdf | /blob/main/data/DB시스템/answer_4577.pdf | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 1 | 1 |
 
