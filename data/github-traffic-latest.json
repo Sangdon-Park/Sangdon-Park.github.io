@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-10T01:16:19Z",
+  "synced_at": "2026-05-11T01:15:59Z",
   "views": {
-    "count": 15,
+    "count": 17,
     "uniques": 4
   },
   "clones": {
-    "count": 488,
-    "uniques": 145
+    "count": 463,
+    "uniques": 120
   },
   "top_paths": [
     {
@@ -21,6 +21,12 @@
       "title": "/tree/main/data/DB시스템",
       "count": 4,
       "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "/graphs/traffic",
+      "count": 3,
+      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx",
@@ -39,12 +45,6 @@
       "title": "/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx",
       "count": 1,
       "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "/graphs/traffic",
-      "count": 1,
-      "uniques": 1
     }
   ],
   "top_referrers": [
@@ -52,6 +52,11 @@
       "referrer": "github.com",
       "count": 3,
       "uniques": 3
+    },
+    {
+      "referrer": "sangdon-park.github.io",
+      "count": 2,
+      "uniques": 1
     }
   ]
 }
