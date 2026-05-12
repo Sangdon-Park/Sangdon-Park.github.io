@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-11T01:15:59Z",
+  "synced_at": "2026-05-12T01:09:28Z",
   "views": {
-    "count": 17,
+    "count": 16,
     "uniques": 4
   },
   "clones": {
-    "count": 463,
-    "uniques": 120
+    "count": 449,
+    "uniques": 121
   },
   "top_paths": [
     {
@@ -17,14 +17,14 @@
       "uniques": 4
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
-      "title": "/tree/main/data/DB시스템",
-      "count": 4,
-      "uniques": 2
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
       "title": "/graphs/traffic",
+      "count": 3,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
+      "title": "/tree/main/data/DB시스템",
       "count": 3,
       "uniques": 1
     },
