@@ -1,30 +1,30 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-12T01:09:28Z",
+  "synced_at": "2026-05-13T01:14:27Z",
   "views": {
-    "count": 16,
+    "count": 18,
     "uniques": 4
   },
   "clones": {
-    "count": 449,
-    "uniques": 121
+    "count": 432,
+    "uniques": 119
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 5,
-      "uniques": 4
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "/graphs/traffic",
-      "count": 3,
-      "uniques": 1
+      "count": 4,
+      "uniques": 3
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
+      "count": 4,
+      "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "/graphs/traffic",
       "count": 3,
       "uniques": 1
     },
@@ -41,6 +41,18 @@
       "uniques": 1
     },
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
+      "title": "/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
+      "title": "/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
+      "count": 1,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx",
       "title": "/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx",
       "count": 1,
@@ -50,7 +62,7 @@
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 3,
+      "count": 5,
       "uniques": 3
     },
     {
