@@ -24,6 +24,7 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> 
                     "team": result["team"],
                     "score": result["score"],
                     "raw_score": result["raw_score"],
+                    "component_scores": result.get("component_scores", []),
                     "rows": result["rows"],
                     "submission_file": str(path).replace("\\", "/"),
                     "scored_at": result["scored_at"],
@@ -47,7 +48,8 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> 
     return {
         "competition_name": config.get("competition_name", "Hackathon"),
         "updated_at": utc_now(),
-        "metric": config["metric"],
+        "metric": config.get("aggregate_metric", config["metric"]),
+        "base_metric": config["metric"],
         "higher_is_better": reverse,
         "entries": entries,
         "invalid": invalid,
@@ -57,7 +59,7 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build hackerton/data/leaderboard.json from accepted submissions.")
     parser.add_argument("--submissions", default=None, help="Glob for submission CSV files.")
-    parser.add_argument("--answers", default="hackerton_admin/answers/private_solution.csv")
+    parser.add_argument("--answers", default="hackerton_admin/runtime/grader.csv")
     parser.add_argument("--config", default="hackerton_admin/competition/config.json")
     parser.add_argument("--out", default="hackerton/data/leaderboard.json")
     args = parser.parse_args()

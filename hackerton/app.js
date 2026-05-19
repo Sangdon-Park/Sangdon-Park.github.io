@@ -1,22 +1,17 @@
-const state = {
-  datasets: [],
-  filter: "all"
-};
-
-const formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("ko-KR", {
   maximumFractionDigits: 6
 });
 
 async function loadJson(url) {
   const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) {
-    throw new Error(`Could not load ${url}`);
+    throw new Error(`${url} 파일을 불러오지 못했습니다.`);
   }
   return response.json();
 }
 
 function formatDate(value) {
-  if (!value) return "Not published";
+  if (!value) return "아직 없음";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleString("ko-KR", {
@@ -28,20 +23,23 @@ function formatDate(value) {
   });
 }
 
+function componentScore(entry, datasetId) {
+  const item = (entry.component_scores || []).find((candidate) => candidate.dataset === datasetId);
+  return item ? formatter.format(item.score) : "-";
+}
+
 function renderStatus(leaderboard, config) {
-  document.getElementById("metric").textContent = leaderboard.metric || config.metric || "roc_auc";
-  document.getElementById("submission-count").textContent = String((leaderboard.entries || []).length);
+  document.getElementById("metric").textContent = "두 ROC AUC 평균";
+  document.getElementById("dataset-count").textContent = `${(config.datasets || []).length}종`;
+  document.getElementById("daily-limit").textContent = `하루 ${config.daily_submission_limit || 3}회`;
   document.getElementById("updated-at").textContent = formatDate(leaderboard.updated_at);
-  document.getElementById("daily-limit").textContent = `${config.daily_submission_limit || 3} / team`;
 }
 
 function renderLeaderboard(data) {
-  document.getElementById("submission-count").textContent = String((data.entries || []).length);
-
   const body = document.getElementById("leaderboard-body");
   const entries = data.entries || [];
   if (!entries.length) {
-    body.innerHTML = '<tr><td colspan="5">No accepted submissions yet.</td></tr>';
+    body.innerHTML = '<tr><td colspan="6">아직 반영된 제출이 없습니다.</td></tr>';
     return;
   }
 
@@ -49,71 +47,45 @@ function renderLeaderboard(data) {
     <tr>
       <td><span class="rank">${entry.rank}</span></td>
       <td><strong>${entry.team}</strong></td>
-      <td>${formatter.format(entry.score)}</td>
+      <td class="score">${formatter.format(entry.score)}</td>
+      <td>${componentScore(entry, "conversion")}</td>
+      <td>${componentScore(entry, "credit")}</td>
       <td>${entry.rows}</td>
-      <td><code>${entry.submission_file}</code></td>
     </tr>
   `).join("");
 }
 
-function matchesFilter(item) {
-  if (state.filter === "all") return true;
-  if (state.filter === "recommended") return item.recommended;
-  return item.task.includes(state.filter);
-}
-
-function renderDatasets() {
+function renderDatasets(catalog) {
   const grid = document.getElementById("dataset-grid");
-  const items = state.datasets.filter(matchesFilter);
-  grid.innerHTML = items.map((item) => `
+  grid.innerHTML = (catalog.datasets || []).map((item) => `
     <article class="dataset-card">
       <div>
-        <div class="meta-row">
-          <span class="tag">${item.source}</span>
-          <span class="tag">${item.task}</span>
-          ${item.recommended ? '<span class="tag hot">Recommended</span>' : ""}
-        </div>
+        <span class="dataset-id">${item.id}</span>
         <h3>${item.name}</h3>
-        <p>${item.why}</p>
+        <p>${item.notice}</p>
       </div>
-      <div>
-        <div class="meta-row">
-          <span class="tag">${item.rows} rows</span>
-          <span class="tag">${item.features} features</span>
-          <span class="tag">${item.metric}</span>
-        </div>
-        <p class="body-copy"><a href="${item.url}" target="_blank" rel="noreferrer">Open source page</a></p>
-      </div>
+      <dl>
+        <div><dt>비중</dt><dd>${Math.round(item.weight * 100)}%</dd></div>
+        <div><dt>지표</dt><dd>${item.metric}</dd></div>
+        <div><dt>규모</dt><dd>${item.rows}</dd></div>
+        <div><dt>Feature</dt><dd>${item.features}</dd></div>
+      </dl>
     </article>
   `).join("");
 }
 
-function bindFilters() {
-  document.querySelectorAll("[data-filter]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.filter = button.dataset.filter;
-      document.querySelectorAll("[data-filter]").forEach((candidate) => {
-        candidate.classList.toggle("active", candidate === button);
-      });
-      renderDatasets();
-    });
-  });
-}
-
 async function init() {
-  bindFilters();
   const [leaderboard, catalog, config] = await Promise.all([
     loadJson("data/leaderboard.json"),
     loadJson("data/datasets.json"),
     loadJson("data/config.json")
   ]);
-  state.datasets = catalog.datasets || [];
   renderStatus(leaderboard, config);
   renderLeaderboard(leaderboard);
-  renderDatasets();
+  renderDatasets(catalog);
 }
 
 init().catch((error) => {
   console.error(error);
-  document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="5">${error.message}</td></tr>`;
+  document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="6">${error.message}</td></tr>`;
 });

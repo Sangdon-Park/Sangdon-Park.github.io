@@ -28,7 +28,7 @@ def write_config(metric: str, task_type: str, target_column: str, positive_label
     config_path.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     site_config_path = REPO_ROOT / "hackerton" / "data" / "config.json"
-    site_config = {key: value for key, value in config.items() if key not in {"private_answer_file"}}
+    site_config = dict(config)
     site_config_path.write_text(json.dumps(site_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
@@ -49,7 +49,7 @@ def encode_target_if_needed(y: pd.Series, task_type: str, metric: str) -> tuple[
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Prepare a train/test/private-answer split from OpenML.")
+    parser = argparse.ArgumentParser(description="Prepare a train/test/evaluation split from OpenML.")
     parser.add_argument("--data-id", required=True, type=int)
     parser.add_argument("--test-size", type=float, default=0.3)
     parser.add_argument("--random-state", type=int, default=42)
@@ -86,7 +86,7 @@ def main() -> int:
 
     train_path = REPO_ROOT / "hackerton" / "data" / "train.csv"
     test_path = REPO_ROOT / "hackerton" / "data" / "test.csv"
-    answers_path = ADMIN_ROOT / "answers" / "private_solution.csv"
+    answers_path = ADMIN_ROOT / "runtime" / "grader.csv"
     sample_path = REPO_ROOT / "hackerton" / "data" / "sample_submission.csv"
 
     train_path.parent.mkdir(parents=True, exist_ok=True)
@@ -108,7 +108,7 @@ def main() -> int:
     print(f"Prepared OpenML data_id={args.data_id}")
     print(f"Train: {train_path} ({len(train)} rows)")
     print(f"Test: {test_path} ({len(test_public)} rows)")
-    print(f"Private answers: {answers_path}")
+    print(f"Grader payload: {answers_path}")
     print(f"Sample submission: {sample_path}")
     return 0
 

@@ -19,7 +19,7 @@ def api_get(url: str, token: str) -> dict | list:
         headers={
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",
-            "User-Agent": "xgboost-hackathon-grader",
+            "User-Agent": "tabular-challenge-grader",
             "X-GitHub-Api-Version": "2022-11-28",
         },
     )

@@ -17,7 +17,7 @@ from score_submission import load_config, utc_now
 API_ROOT = "https://api.github.com"
 LEDGER_TITLE = "Submission Ledger: automated grading attempts"
 LEDGER_LABEL = "grader-ledger"
-MARKER_PREFIX = "<!-- xgboost-hackathon-submission:"
+MARKER_PREFIX = "<!-- tabular-challenge-submission:"
 MARKER_SUFFIX = "-->"
 
 
@@ -31,7 +31,7 @@ class GitHubClient:
         headers = {
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {self.token}",
-            "User-Agent": "xgboost-hackathon-grader",
+            "User-Agent": "tabular-challenge-grader",
             "X-GitHub-Api-Version": "2022-11-28",
         }
         if payload is not None:

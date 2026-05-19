@@ -3,65 +3,80 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>XGBoost Tabular Hackathon</title>
+    <title>Tabular ML Challenge</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="topbar">
+    <header class="site-header">
       <div>
-        <p class="eyebrow">Tabular ML Competition</p>
-        <h1>XGBoost Tabular Hackathon</h1>
+        <p class="eyebrow">2026 Student Data Challenge</p>
+        <h1>Tabular ML Challenge</h1>
+        <p class="lead">알고리즘은 자유입니다. 두 개의 예측 과제를 모두 제출하고, 평가셋 ROC AUC 평균으로 최종 순위를 정합니다.</p>
       </div>
-      <nav class="nav" aria-label="site navigation">
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#submit">Submit</a>
-        <a href="#datasets">Datasets</a>
-        <a href="#workflow">Ops</a>
+      <nav class="nav" aria-label="페이지 이동">
+        <a href="#notice">공지</a>
+        <a href="#leaderboard">순위표</a>
+        <a href="#submit">제출</a>
+        <a href="#datasets">데이터</a>
       </nav>
     </header>
 
     <main>
-      <section class="status-strip" aria-label="competition status">
+      <section id="notice" class="notice">
         <div>
-          <span class="label">Metric</span>
-          <strong id="metric">Loading</strong>
+          <p class="eyebrow">대회 공지</p>
+          <h2>두 데이터셋 합산 점수로 평가합니다</h2>
+        </div>
+        <ul>
+          <li>모델은 자유 선택입니다. tree model, linear model, neural network, ensemble 모두 허용합니다.</li>
+          <li>제출 파일은 <code>dataset,id,prediction</code> 세 컬럼을 포함해야 합니다.</li>
+          <li>최종 점수는 <strong>고객 전환 예측 ROC AUC 50%</strong>와 <strong>신용 위험 예측 ROC AUC 50%</strong>의 평균입니다.</li>
+          <li>팀별 제출은 한국 시간 기준 하루 3회까지만 채점합니다.</li>
+        </ul>
+      </section>
+
+      <section class="status-strip" aria-label="대회 상태">
+        <div>
+          <span class="label">평가 지표</span>
+          <strong id="metric">로딩 중</strong>
         </div>
         <div>
-          <span class="label">Submissions</span>
-          <strong id="submission-count">0</strong>
+          <span class="label">데이터셋</span>
+          <strong id="dataset-count">2종</strong>
         </div>
         <div>
-          <span class="label">Updated</span>
-          <strong id="updated-at">Not published</strong>
+          <span class="label">제출 제한</span>
+          <strong id="daily-limit">하루 3회</strong>
         </div>
         <div>
-          <span class="label">Daily Limit</span>
-          <strong id="daily-limit">3 / team</strong>
+          <span class="label">업데이트</span>
+          <strong id="updated-at">대기 중</strong>
         </div>
       </section>
 
       <section id="leaderboard" class="panel">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Private Score</p>
-            <h2>Leaderboard</h2>
+            <p class="eyebrow">Leaderboard</p>
+            <h2>순위표</h2>
           </div>
-          <a class="button" href="data/sample_submission.csv" download>Sample CSV</a>
+          <a class="button" href="data/sample_submission.csv" download>샘플 제출 파일</a>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Rank</th>
-                <th>Team</th>
-                <th>Score</th>
-                <th>Rows</th>
-                <th>File</th>
+                <th>순위</th>
+                <th>팀</th>
+                <th>최종 점수</th>
+                <th>고객 전환</th>
+                <th>신용 위험</th>
+                <th>행 수</th>
               </tr>
             </thead>
             <tbody id="leaderboard-body">
               <tr>
-                <td colspan="5">No accepted submissions yet.</td>
+                <td colspan="6">아직 반영된 제출이 없습니다.</td>
               </tr>
             </tbody>
           </table>
@@ -70,67 +85,51 @@
 
       <section id="submit" class="grid two">
         <div class="panel">
-          <p class="eyebrow">Submit</p>
-          <h2>CSV Contract</h2>
-          <pre><code>id,prediction
-row_000001,0.7312
-row_000002,0.1844</code></pre>
-          <p class="body-copy">PR에 <code>hackerton/submissions/&lt;team-slug&gt;.csv</code> 파일 하나만 추가하면 자동 채점됩니다. 팀별 제출은 한국 시간 기준 하루 3회로 제한됩니다.</p>
+          <p class="eyebrow">Submission</p>
+          <h2>제출 파일 형식</h2>
+          <pre><code>dataset,id,prediction
+conversion,conversion_00101,0.7312
+credit,credit_00108,0.1844</code></pre>
+          <p class="body-copy">예측값은 0과 1 사이의 양성 클래스 확률이어야 합니다. 한 CSV 안에 두 데이터셋의 test row가 모두 들어가야 합니다.</p>
         </div>
-        <div class="panel accent">
+        <div class="panel file-panel">
           <p class="eyebrow">Files</p>
-          <h2>Participant Pack</h2>
+          <h2>참가자 파일</h2>
           <div class="action-row">
-            <a class="button" href="data/train.csv" download>Train CSV</a>
-            <a class="button" href="data/test.csv" download>Test IDs</a>
-            <a class="button secondary" href="data/sample_submission.csv" download>Sample Submission</a>
+            <a class="button" href="data/train.csv" download>train.csv</a>
+            <a class="button secondary" href="data/test.csv" download>test.csv</a>
+            <a class="button quiet" href="data/sample_submission.csv" download>sample_submission.csv</a>
           </div>
-          <p class="body-copy">학습 데이터와 test ID는 공개하고, private 정답은 GitHub Secret에만 보관합니다.</p>
+          <p class="body-copy">PR에는 <code>hackerton/submissions/&lt;team-slug&gt;.csv</code> 파일 하나만 추가하세요.</p>
         </div>
       </section>
 
       <section id="datasets" class="panel">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Shortlist</p>
-            <h2>Dataset Candidates</h2>
+            <p class="eyebrow">Tasks</p>
+            <h2>대회 데이터 2종</h2>
           </div>
-          <div class="filter-row" role="group" aria-label="dataset filter">
-            <button class="chip active" data-filter="all">All</button>
-            <button class="chip" data-filter="recommended">Recommended</button>
-            <button class="chip" data-filter="Binary classification">Classification</button>
-            <button class="chip" data-filter="Regression">Regression</button>
-          </div>
+          <span class="score-rule">최종점수 = 0.5 × 전환 + 0.5 × 신용</span>
         </div>
         <div id="dataset-grid" class="dataset-grid"></div>
       </section>
 
-      <section id="workflow" class="grid two">
-        <div class="panel">
-          <p class="eyebrow">Automation</p>
-          <h2>GitHub Actions Flow</h2>
-          <ol class="steps">
-            <li>학생이 <code>hackerton/submissions/team.csv</code>로 PR 생성</li>
-            <li>Action이 PR CSV만 다운로드</li>
-            <li>Secret의 private 정답으로 score 계산</li>
-            <li>PR 댓글로 결과 게시</li>
-            <li>Merge 후 Pages leaderboard 갱신</li>
-          </ol>
-        </div>
-        <div class="panel">
-          <p class="eyebrow">Admin</p>
-          <h2>Private Answer Secret</h2>
-          <pre><code>$b64 = [Convert]::ToBase64String(
-  [IO.File]::ReadAllBytes("hackerton_admin/answers/private_solution.csv")
-)</code></pre>
-          <p class="body-copy">GitHub Actions secret 이름은 <code>PRIVATE_ANSWERS_CSV_B64</code>입니다.</p>
-        </div>
+      <section class="panel compact">
+        <p class="eyebrow">운영 방식</p>
+        <h2>자동 채점 흐름</h2>
+        <ol class="steps">
+          <li>팀이 <code>hackerton/submissions/team.csv</code> 파일로 PR을 생성합니다.</li>
+          <li>자동 채점기가 두 데이터셋 점수를 계산합니다.</li>
+          <li>PR 댓글에 최종 점수와 데이터셋별 점수가 표시됩니다.</li>
+          <li>운영자가 PR을 merge하면 순위표가 자동으로 갱신됩니다.</li>
+        </ol>
       </section>
     </main>
 
     <footer>
-      <span>Built for GitHub Pages and GitHub Actions.</span>
-      <a href="data/datasets.json">Dataset catalog JSON</a>
+      <span>Tabular ML Challenge · GitHub Pages 자동 리더보드</span>
+      <a href="data/datasets.json">dataset metadata</a>
     </footer>
 
     <script src="app.js"></script>

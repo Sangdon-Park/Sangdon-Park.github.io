@@ -7,9 +7,9 @@ from pathlib import Path
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Write private answer CSV from PRIVATE_ANSWERS_CSV_B64.")
-    parser.add_argument("--output", default="hackerton_admin/answers/private_solution.csv")
-    parser.add_argument("--env", default="PRIVATE_ANSWERS_CSV_B64")
+    parser = argparse.ArgumentParser(description="Write grader data from a base64 encoded environment variable.")
+    parser.add_argument("--output", default="hackerton_admin/runtime/grader.csv")
+    parser.add_argument("--env", default="GRADER_DATA_B64")
     args = parser.parse_args()
 
     value = os.environ.get(args.env)
@@ -24,7 +24,7 @@ def main() -> int:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(content)
-    print(f"Wrote private answers to {output}")
+    print(f"Wrote grader payload to {output}")
     return 0
 
 

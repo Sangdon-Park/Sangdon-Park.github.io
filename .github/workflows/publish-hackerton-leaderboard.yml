@@ -28,15 +28,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r hackerton_admin/requirements.txt
 
-      - name: Restore private answers
+      - name: Restore grader payload
         env:
-          PRIVATE_ANSWERS_CSV_B64: ${{ secrets.PRIVATE_ANSWERS_CSV_B64 }}
-        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/answers/private_solution.csv
+          GRADER_DATA_B64: ${{ secrets.GRADER_DATA_B64 }}
+        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/runtime/grader.csv
 
       - name: Build leaderboard JSON
         run: >
           python hackerton_admin/scripts/build_leaderboard.py
-          --answers hackerton_admin/answers/private_solution.csv
+          --answers hackerton_admin/runtime/grader.csv
           --config hackerton_admin/competition/config.json
           --out hackerton/data/leaderboard.json
 
@@ -51,4 +51,3 @@ jobs:
           git add hackerton/data/leaderboard.json
           git commit -m "Update Hackerton leaderboard"
           git push
-

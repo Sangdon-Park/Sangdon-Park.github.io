@@ -23,18 +23,27 @@ def _load_team(meta_path: str | None, fallback: str) -> str:
 def _comment(result: dict) -> str:
     if result["status"] == "valid":
         direction = "higher is better" if result.get("higher_is_better", True) else "lower is better"
+        components = result.get("component_scores") or []
+        component_lines = ""
+        if components:
+            component_lines = "\n".join(
+                f"- {item['name']} (`{item['dataset']}`): `{item['score']}` / {item['rows']} rows"
+                for item in components
+            )
+            component_lines = "\n\n데이터셋별 점수:\n" + component_lines
         return (
-            "### Submission score\n\n"
+            "### 제출 점수\n\n"
             f"- Team: `{result['team']}`\n"
             f"- Metric: `{result['metric']}` ({direction})\n"
-            f"- Private score: `{result['score']}`\n"
+            f"- Final score: `{result['score']}`\n"
             f"- Rows checked: `{result['rows']}`\n"
-            f"- Scored at: `{result['scored_at']}`\n\n"
-            "This result was computed with the private answer file stored in GitHub Actions secrets."
+            f"- Scored at: `{result['scored_at']}`\n"
+            f"{component_lines}\n\n"
+            "채점이 완료되었습니다. 제출 제한은 한국 시간 기준으로 계산됩니다."
         )
 
     return (
-        "### Submission score\n\n"
+        "### 제출 점수\n\n"
         f"- Team: `{result['team']}`\n"
         "- Status: `invalid`\n"
         f"- Error: `{result['error']}`\n"

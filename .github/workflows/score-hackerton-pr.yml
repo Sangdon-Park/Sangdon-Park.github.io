@@ -57,11 +57,11 @@ jobs:
           --out-json hackerton_admin/incoming/limit.json
           --out-comment hackerton_admin/incoming/comment.md
 
-      - name: Restore private answers
+      - name: Restore grader payload
         if: steps.limit.outcome == 'success'
         env:
-          PRIVATE_ANSWERS_CSV_B64: ${{ secrets.PRIVATE_ANSWERS_CSV_B64 }}
-        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/answers/private_solution.csv
+          GRADER_DATA_B64: ${{ secrets.GRADER_DATA_B64 }}
+        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/runtime/grader.csv
 
       - name: Score submission
         if: steps.limit.outcome == 'success'
@@ -70,7 +70,7 @@ jobs:
         run: >
           python hackerton_admin/scripts/grade_submission_file.py
           --submission hackerton_admin/incoming/submission.csv
-          --answers hackerton_admin/answers/private_solution.csv
+          --answers hackerton_admin/runtime/grader.csv
           --config hackerton_admin/competition/config.json
           --meta hackerton_admin/incoming/meta.json
           --out-json hackerton_admin/incoming/score.json
@@ -110,4 +110,3 @@ jobs:
       - name: Fail limited or invalid submission
         if: steps.limit.outcome == 'failure' || steps.score.outcome == 'failure'
         run: exit 1
-
