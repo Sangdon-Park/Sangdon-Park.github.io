@@ -22,7 +22,7 @@ def _load_team(meta_path: str | None, fallback: str) -> str:
 
 def _comment(result: dict) -> str:
     if result["status"] == "valid":
-        direction = "higher is better" if result.get("higher_is_better", True) else "lower is better"
+        direction = "높을수록 좋음" if result.get("higher_is_better", True) else "낮을수록 좋음"
         components = result.get("component_scores") or []
         component_lines = ""
         if components:
@@ -35,8 +35,9 @@ def _comment(result: dict) -> str:
             "### 제출 점수\n\n"
             f"- Team: `{result['team']}`\n"
             f"- Metric: `{result['metric']}` ({direction})\n"
-            f"- Final score: `{result['score']}`\n"
-            f"- Rows checked: `{result['rows']}`\n"
+            f"- Score: `{result['score']}`\n"
+            f"- Score split: `{result.get('score_split', 'all')}`\n"
+            f"- Rows scored: `{result['rows']}` / submitted `{result.get('submitted_rows', result['rows'])}`\n"
             f"- Scored at: `{result['scored_at']}`\n"
             f"{component_lines}\n\n"
             "채점이 완료되었습니다. 제출 제한은 한국 시간 기준으로 계산됩니다."
@@ -59,6 +60,7 @@ def main() -> int:
     parser.add_argument("--config", default="hackerton_admin/competition/config.json")
     parser.add_argument("--team")
     parser.add_argument("--meta")
+    parser.add_argument("--score-split")
     parser.add_argument("--out-json", default="incoming/score.json")
     parser.add_argument("--out-comment", default="incoming/comment.md")
     parser.add_argument("--fail-on-invalid", action="store_true")
@@ -67,7 +69,7 @@ def main() -> int:
     team = args.team or _load_team(args.meta, Path(args.submission).stem)
     try:
         config = load_config(args.config)
-        result = score_submission(args.submission, args.answers, config, team)
+        result = score_submission(args.submission, args.answers, config, team, args.score_split)
         exit_code = 0
     except Exception as exc:
         result = {

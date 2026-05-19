@@ -224,22 +224,27 @@ def score_submission(
     answers_path: str | Path,
     config: dict[str, Any],
     team: str | None = None,
+    score_split: str | None = None,
 ) -> dict[str, Any]:
     id_column = config["id_column"]
     dataset_column = config.get("dataset_column")
+    split_column = config.get("answer_split_column")
     target_column = config["target_column"]
     prediction_column = config["prediction_column"]
     key_columns = [dataset_column, id_column] if dataset_column else [id_column]
     key_columns = [column for column in key_columns if column]
+    answer_dtype_columns = key_columns + ([split_column] if split_column else [])
+    selected_split = score_split or config.get("leaderboard_split") or config.get("feedback_split")
 
     _validate_size(submission_path, config.get("max_submission_bytes"))
 
-    answers = _read_csv(answers_path, key_columns)
+    answers = _read_csv(answers_path, answer_dtype_columns)
     submission = _read_csv(submission_path, key_columns)
-    _validate_columns(answers, key_columns + [target_column], "Answer file")
+    answer_columns = key_columns + [target_column] + ([split_column] if split_column else [])
+    _validate_columns(answers, answer_columns, "Answer file")
     _validate_columns(submission, key_columns + [prediction_column], "Submission")
 
-    answers = _normalize_keys(answers[key_columns + [target_column]], key_columns, "Answer file")
+    answers = _normalize_keys(answers[answer_columns], key_columns, "Answer file")
     submission = _normalize_keys(submission[key_columns + [prediction_column]], key_columns, "Submission")
     _check_submission_keys(answers, submission, key_columns)
 
@@ -247,12 +252,18 @@ def score_submission(
     if merged[prediction_column].isna().any():
         raise ValueError("Submission has empty prediction values")
 
+    scored = merged
+    if split_column and selected_split and selected_split != "all":
+        scored = merged[merged[split_column].astype(str) == str(selected_split)]
+        if scored.empty:
+            raise ValueError(f"No answer rows found for score split: {selected_split}")
+
     component_scores: list[dict[str, Any]] = []
     if dataset_column:
-        raw_score, component_scores = _score_components(merged, config, dataset_column)
+        raw_score, component_scores = _score_components(scored, config, dataset_column)
         metric = config.get("aggregate_metric", f"mean_{config['metric']}")
     else:
-        raw_score = _score_metric(merged[target_column], merged[prediction_column], config)
+        raw_score = _score_metric(scored[target_column], scored[prediction_column], config)
         metric = config["metric"]
 
     for component in component_scores:
@@ -265,8 +276,10 @@ def score_submission(
         "raw_score": float(raw_score),
         "metric": metric,
         "base_metric": config["metric"],
+        "score_split": selected_split or "all",
         "higher_is_better": bool(config.get("higher_is_better", True)),
-        "rows": int(len(merged)),
+        "rows": int(len(scored)),
+        "submitted_rows": int(len(merged)),
         "component_scores": component_scores,
         "submission_file": str(submission_path),
         "scored_at": utc_now(),
@@ -279,11 +292,12 @@ def main() -> int:
     parser.add_argument("--answers", required=True)
     parser.add_argument("--config", default="hackerton_admin/competition/config.json")
     parser.add_argument("--team")
+    parser.add_argument("--score-split")
     parser.add_argument("--out")
     args = parser.parse_args()
 
     config = load_config(args.config)
-    result = score_submission(args.submission, args.answers, config, args.team)
+    result = score_submission(args.submission, args.answers, config, args.team, args.score_split)
     payload = json.dumps(result, ensure_ascii=False, indent=2)
     if args.out:
         out_path = Path(args.out)

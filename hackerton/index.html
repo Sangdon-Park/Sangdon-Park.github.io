@@ -8,37 +8,60 @@
   </head>
   <body>
     <header class="site-header">
-      <div>
-        <p class="eyebrow">2026 Student Data Challenge</p>
+      <div class="hero-copy">
+        <p class="eyebrow">Student Data Challenge</p>
         <h1>Tabular ML Challenge</h1>
-        <p class="lead">알고리즘은 자유입니다. 두 개의 예측 과제를 모두 제출하고, 평가셋 ROC AUC 평균으로 최종 순위를 정합니다.</p>
+        <p class="lead">모델과 알고리즘은 자유입니다. 두 개의 tabular 예측 과제를 모두 풀고, 두 평가 ROC AUC의 평균으로 순위를 정합니다.</p>
       </div>
       <nav class="nav" aria-label="페이지 이동">
+        <a href="#downloads">데이터 받기</a>
         <a href="#notice">공지</a>
         <a href="#leaderboard">순위표</a>
-        <a href="#submit">제출</a>
-        <a href="#datasets">데이터</a>
+        <a href="#rules">규칙</a>
       </nav>
     </header>
 
     <main>
+      <section id="downloads" class="download-band">
+        <div>
+          <p class="eyebrow">Download First</p>
+          <h2>여기서 바로 시작하세요</h2>
+          <p>아래 세 파일을 받은 뒤 모델을 학습하고, sample 형식에 맞춰 예측값을 제출하면 됩니다.</p>
+        </div>
+        <div class="download-actions">
+          <a class="download-button primary" href="data/train.csv" download>
+            <span>train.csv</span>
+            <small>학습 feature + target</small>
+          </a>
+          <a class="download-button secondary" href="data/test.csv" download>
+            <span>test.csv</span>
+            <small>예측해야 할 평가 row</small>
+          </a>
+          <a class="download-button quiet" href="data/sample_submission.csv" download>
+            <span>sample_submission.csv</span>
+            <small>제출 형식 예시</small>
+          </a>
+        </div>
+      </section>
+
       <section id="notice" class="notice">
         <div>
-          <p class="eyebrow">대회 공지</p>
-          <h2>두 데이터셋 합산 점수로 평가합니다</h2>
+          <p class="eyebrow">필독 공지</p>
+          <h2>점수 튜닝보다 검증 설계가 중요한 대회입니다</h2>
         </div>
         <ul>
-          <li>모델은 자유 선택입니다. tree model, linear model, neural network, ensemble 모두 허용합니다.</li>
-          <li>제출 파일은 <code>dataset,id,prediction</code> 세 컬럼을 포함해야 합니다.</li>
-          <li>최종 점수는 <strong>고객 전환 예측 ROC AUC 50%</strong>와 <strong>신용 위험 예측 ROC AUC 50%</strong>의 평균입니다.</li>
-          <li>팀별 제출은 한국 시간 기준 하루 3회까지만 채점합니다.</li>
+          <li>제출은 팀별 한국 시간 기준 하루 3회까지만 채점됩니다.</li>
+          <li>공개 순위표는 중간 검증 구간 기준입니다. 최종 순위는 마감 후 별도 평가 구간으로 확정합니다.</li>
+          <li>두 데이터셋을 모두 제출해야 하며, 한쪽만 잘 맞추는 전략은 최종 점수에서 불리합니다.</li>
+          <li>데이터에는 누락값, 범주형 shift, 시점 변화, decoy feature가 포함되어 있습니다.</li>
+          <li>모델 종류는 제한하지 않습니다. 단, 제출 파일은 예측 CSV 하나만 받습니다.</li>
         </ul>
       </section>
 
       <section class="status-strip" aria-label="대회 상태">
         <div>
           <span class="label">평가 지표</span>
-          <strong id="metric">로딩 중</strong>
+          <strong id="metric">ROC AUC 평균</strong>
         </div>
         <div>
           <span class="label">데이터셋</span>
@@ -49,8 +72,8 @@
           <strong id="daily-limit">하루 3회</strong>
         </div>
         <div>
-          <span class="label">업데이트</span>
-          <strong id="updated-at">대기 중</strong>
+          <span class="label">리더보드</span>
+          <strong id="score-split">중간 검증</strong>
         </div>
       </section>
 
@@ -58,9 +81,10 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Leaderboard</p>
-            <h2>순위표</h2>
+            <h2>공개 순위표</h2>
+            <p class="section-copy">공개 순위표는 중간 검증 구간 기준입니다. 마감 후 최종 평가 구간으로 순위가 바뀔 수 있습니다.</p>
           </div>
-          <a class="button" href="data/sample_submission.csv" download>샘플 제출 파일</a>
+          <span class="updated">업데이트: <strong id="updated-at">대기 중</strong></span>
         </div>
         <div class="table-wrap">
           <table>
@@ -68,10 +92,10 @@
               <tr>
                 <th>순위</th>
                 <th>팀</th>
-                <th>최종 점수</th>
+                <th>공개 점수</th>
                 <th>고객 전환</th>
                 <th>신용 위험</th>
-                <th>행 수</th>
+                <th>채점 row</th>
               </tr>
             </thead>
             <tbody id="leaderboard-body">
@@ -83,24 +107,20 @@
         </div>
       </section>
 
-      <section id="submit" class="grid two">
-        <div class="panel">
+      <section class="grid two">
+        <div class="panel" id="submit">
           <p class="eyebrow">Submission</p>
           <h2>제출 파일 형식</h2>
           <pre><code>dataset,id,prediction
-conversion,conversion_00101,0.7312
-credit,credit_00108,0.1844</code></pre>
-          <p class="body-copy">예측값은 0과 1 사이의 양성 클래스 확률이어야 합니다. 한 CSV 안에 두 데이터셋의 test row가 모두 들어가야 합니다.</p>
+conversion,conversion_00901,0.7312
+credit,credit_00908,0.1844</code></pre>
+          <p class="body-copy">제출 경로는 <code>hackerton/submissions/&lt;team-slug&gt;.csv</code>입니다. 예측값은 0과 1 사이의 양성 클래스 확률이어야 합니다.</p>
         </div>
-        <div class="panel file-panel">
-          <p class="eyebrow">Files</p>
-          <h2>참가자 파일</h2>
-          <div class="action-row">
-            <a class="button" href="data/train.csv" download>train.csv</a>
-            <a class="button secondary" href="data/test.csv" download>test.csv</a>
-            <a class="button quiet" href="data/sample_submission.csv" download>sample_submission.csv</a>
-          </div>
-          <p class="body-copy">PR에는 <code>hackerton/submissions/&lt;team-slug&gt;.csv</code> 파일 하나만 추가하세요.</p>
+        <div class="panel score-card">
+          <p class="eyebrow">Scoring</p>
+          <h2>최종 점수 계산식</h2>
+          <div class="formula">0.5 × 고객 전환 ROC AUC + 0.5 × 신용 위험 ROC AUC</div>
+          <p class="body-copy">두 과제의 scale과 난이도가 다르기 때문에 단일 모델보다 데이터셋별 검증 전략과 calibration이 중요합니다.</p>
         </div>
       </section>
 
@@ -110,25 +130,55 @@ credit,credit_00108,0.1844</code></pre>
             <p class="eyebrow">Tasks</p>
             <h2>대회 데이터 2종</h2>
           </div>
-          <span class="score-rule">최종점수 = 0.5 × 전환 + 0.5 × 신용</span>
         </div>
         <div id="dataset-grid" class="dataset-grid"></div>
       </section>
 
-      <section class="panel compact">
-        <p class="eyebrow">운영 방식</p>
-        <h2>자동 채점 흐름</h2>
-        <ol class="steps">
-          <li>팀이 <code>hackerton/submissions/team.csv</code> 파일로 PR을 생성합니다.</li>
-          <li>자동 채점기가 두 데이터셋 점수를 계산합니다.</li>
-          <li>PR 댓글에 최종 점수와 데이터셋별 점수가 표시됩니다.</li>
-          <li>운영자가 PR을 merge하면 순위표가 자동으로 갱신됩니다.</li>
-        </ol>
+      <section id="rules" class="panel rules">
+        <p class="eyebrow">Rules</p>
+        <h2>운영 규칙</h2>
+        <div class="rule-grid">
+          <article>
+            <h3>허용</h3>
+            <p>전처리, feature engineering, AutoML, ensemble, 외부 오픈소스 라이브러리 사용을 허용합니다.</p>
+          </article>
+          <article>
+            <h3>제한</h3>
+            <p>팀별 하루 3회 제출 제한이 있습니다. 같은 팀은 하나의 파일명 slug를 유지해야 합니다.</p>
+          </article>
+          <article>
+            <h3>금지</h3>
+            <p>평가 row를 수작업으로 라벨링하거나, 다른 팀의 제출값을 복사하거나, 제출 제한을 우회하는 행위는 금지합니다.</p>
+          </article>
+          <article>
+            <h3>확정</h3>
+            <p>최종 순위는 마감 후 최종 평가 구간으로 재계산합니다. 공개 순위표는 중간 참고용입니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>자주 하는 실수</h2>
+        <dl>
+          <div>
+            <dt>test.csv에 target이 없어요.</dt>
+            <dd>정상입니다. test row의 <code>dataset</code>과 <code>id</code>에 맞춰 probability를 제출하세요.</dd>
+          </div>
+          <div>
+            <dt>한 데이터셋만 제출해도 되나요?</dt>
+            <dd>안 됩니다. sample_submission.csv의 모든 row를 포함해야 채점됩니다.</dd>
+          </div>
+          <div>
+            <dt>공개 점수가 올랐는데 최종에서 떨어질 수 있나요?</dt>
+            <dd>가능합니다. 공개 점수에만 맞춘 튜닝은 최종 평가 구간에서 흔들릴 수 있습니다.</dd>
+          </div>
+        </dl>
       </section>
     </main>
 
     <footer>
-      <span>Tabular ML Challenge · GitHub Pages 자동 리더보드</span>
+      <span>Tabular ML Challenge · 자동 채점 리더보드</span>
       <a href="data/datasets.json">dataset metadata</a>
     </footer>
 

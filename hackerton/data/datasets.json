@@ -1,17 +1,5 @@
 {
   "last_reviewed": "2026-05-19",
-  "sources": [
-    {
-      "name": "UCI Machine Learning Repository",
-      "url": "https://archive.ics.uci.edu/datasets",
-      "note": "Bank Marketing, Adult, Bike Sharing 등 tabular benchmark 검토"
-    },
-    {
-      "name": "OpenML",
-      "url": "https://docs.openml.org/data/use/",
-      "note": "German Credit, Phishing Websites 등 API로 재현 가능한 benchmark 검토"
-    }
-  ],
   "datasets": [
     {
       "id": "conversion",
@@ -19,9 +7,9 @@
       "task": "Binary classification",
       "metric": "ROC AUC",
       "weight": 0.5,
-      "rows": "train 95 / 평가 55",
-      "features": "행동 로그, 잔고, 세그먼트, 기기 점수",
-      "notice": "마케팅 응답 예측 문제입니다. 범주형 처리와 class probability calibration이 점수에 영향을 줍니다."
+      "rows": "train 900 / 평가 660",
+      "features": "방문 로그, 채널, 기기, 세그먼트, 할인율, 장바구니 금액, 지원 이력, 행동 점수",
+      "notice": "구매 전환 가능성을 예측합니다. 시점 변화와 채널별 반응 차이가 있고, 일부 feature는 중간 검증과 최종 평가에서 안정성이 다릅니다."
     },
     {
       "id": "credit",
@@ -29,9 +17,14 @@
       "task": "Binary classification",
       "metric": "ROC AUC",
       "weight": 0.5,
-      "rows": "train 105 / 평가 60",
-      "features": "소득, 대출액, 연체 이력, 한도 사용률, 근속 연수",
-      "notice": "대출 상환 위험 예측 문제입니다. 수치형 feature interaction과 이상치 처리 전략이 중요합니다."
+      "rows": "train 900 / 평가 660",
+      "features": "소득, 대출액, 한도 사용률, 연체 이력, bureau score, 근속 연수, 유입 채널, 거시 지표",
+      "notice": "상환 위험을 예측합니다. 누락 패턴 자체가 정보가 될 수 있고, 특정 채널과 기간에서 분포가 달라집니다."
     }
+  ],
+  "notes": [
+    "공개 순위표는 중간 검증 구간 기준입니다.",
+    "최종 순위는 마감 후 별도 평가 구간으로 재계산합니다.",
+    "단순 leaderboard fitting보다 robust validation이 중요합니다."
   ]
 }

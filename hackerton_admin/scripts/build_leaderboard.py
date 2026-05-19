@@ -8,7 +8,7 @@ from pathlib import Path
 from score_submission import load_config, score_submission, utc_now
 
 
-def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> dict:
+def build_leaderboard(submissions_glob: str, answers: str, config_path: str, score_split: str | None = None) -> dict:
     config = load_config(config_path)
     entries = []
     invalid = []
@@ -18,14 +18,16 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> 
         if path.name.startswith("."):
             continue
         try:
-            result = score_submission(path, answers, config, team=path.stem)
+            result = score_submission(path, answers, config, team=path.stem, score_split=score_split)
             entries.append(
                 {
                     "team": result["team"],
                     "score": result["score"],
                     "raw_score": result["raw_score"],
+                    "score_split": result.get("score_split", "all"),
                     "component_scores": result.get("component_scores", []),
                     "rows": result["rows"],
+                    "submitted_rows": result.get("submitted_rows", result["rows"]),
                     "submission_file": str(path).replace("\\", "/"),
                     "scored_at": result["scored_at"],
                 }
@@ -50,6 +52,7 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str) -> 
         "updated_at": utc_now(),
         "metric": config.get("aggregate_metric", config["metric"]),
         "base_metric": config["metric"],
+        "score_split": score_split or config.get("leaderboard_split") or config.get("feedback_split") or "all",
         "higher_is_better": reverse,
         "entries": entries,
         "invalid": invalid,
@@ -62,11 +65,12 @@ def main() -> int:
     parser.add_argument("--answers", default="hackerton_admin/runtime/grader.csv")
     parser.add_argument("--config", default="hackerton_admin/competition/config.json")
     parser.add_argument("--out", default="hackerton/data/leaderboard.json")
+    parser.add_argument("--score-split")
     args = parser.parse_args()
 
     config = load_config(args.config)
     submissions_glob = args.submissions or config.get("submission_glob", "hackerton/submissions/*.csv")
-    leaderboard = build_leaderboard(submissions_glob, args.answers, args.config)
+    leaderboard = build_leaderboard(submissions_glob, args.answers, args.config, args.score_split)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
