@@ -1,10 +1,37 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-05-19T12:49:58Z",
+  "updated_at": "2026-05-19T12:50:37Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
   "higher_is_better": true,
-  "entries": [],
+  "entries": [
+    {
+      "team": "박상돈",
+      "score": 0.5,
+      "score_split": "final",
+      "component_scores": [
+        {
+          "dataset": "conversion",
+          "name": "고객 전환 예측",
+          "score": 0.5,
+          "weight": 0.5,
+          "rows": 420
+        },
+        {
+          "dataset": "credit",
+          "name": "신용 위험 예측",
+          "score": 0.5,
+          "weight": 0.5,
+          "rows": 420
+        }
+      ],
+      "rows": 840,
+      "submitted_rows": 1320,
+      "submission_file": "hackathon/submissions/박상돈.csv",
+      "scored_at": "2026-05-19T12:50:37Z",
+      "rank": 1
+    }
+  ],
   "invalid": []
 }
