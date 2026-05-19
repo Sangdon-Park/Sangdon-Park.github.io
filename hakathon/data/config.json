@@ -2,23 +2,19 @@
   "competition_name": "Tabular ML Challenge",
   "description": "알고리즘 제한 없이 두 개의 tabular 예측 과제를 풀고, 두 평가셋 ROC AUC의 가중 평균으로 순위를 정합니다.",
   "dataset_column": "dataset",
-  "answer_split_column": "split",
   "id_column": "id",
   "target_column": "target",
   "prediction_column": "prediction",
   "task_type": "binary_classification",
   "metric": "roc_auc",
   "aggregate_metric": "weighted_mean_roc_auc",
-  "feedback_split": "feedback",
-  "leaderboard_split": "final",
-  "final_split": "final",
   "higher_is_better": true,
   "score_precision": 6,
-  "submission_glob": "hackerton/submissions/*.csv",
+  "submission_glob": "hakathon/submissions/*.csv",
   "max_submission_bytes": 5242880,
   "daily_submission_limit": 3,
   "submission_limit_timezone": "Asia/Seoul",
-  "submission_limit_scope": "team_per_day",
+  "submission_limit_scope": "participant_per_day",
   "datasets": [
     {
       "id": "conversion",
@@ -32,8 +28,10 @@
     }
   ],
   "public_files": {
-    "train": "hackerton/data/train.csv",
-    "test": "hackerton/data/test.csv",
-    "sample_submission": "hackerton/data/sample_submission.csv"
+    "conversion_train": "hakathon/data/conversion_train.csv",
+    "conversion_test": "hakathon/data/conversion_test.csv",
+    "credit_train": "hakathon/data/credit_train.csv",
+    "credit_test": "hakathon/data/credit_test.csv",
+    "sample_submission": "hakathon/data/sample_submission.csv"
   }
 }

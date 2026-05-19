@@ -144,7 +144,7 @@ main {
 
 .download-actions {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -159,6 +159,7 @@ main {
 .download-button span {
   font-size: 18px;
   font-weight: 850;
+  overflow-wrap: anywhere;
 }
 
 .download-button small {

@@ -4,6 +4,7 @@ import argparse
 import base64
 import json
 import os
+import re
 from pathlib import Path, PurePosixPath
 from urllib.error import HTTPError
 from urllib.parse import quote
@@ -11,6 +12,7 @@ from urllib.request import Request, urlopen
 
 
 API_ROOT = "https://api.github.com"
+KOREAN_NAME_RE = re.compile(r"^[가-힣]{2,10}$")
 
 
 def api_get(url: str, token: str) -> dict | list:
@@ -66,6 +68,12 @@ def main() -> int:
         raise SystemExit(f"Submit exactly one CSV file per PR. Found: {names}")
 
     filename = candidates[0]["filename"]
+    participant_name = PurePosixPath(filename).stem
+    if not KOREAN_NAME_RE.fullmatch(participant_name):
+        raise SystemExit(
+            "제출 파일명은 자기 이름 한글만 사용해야 합니다. "
+            "예: hakathon/submissions/박상돈.csv"
+        )
     encoded_path = quote(filename, safe="/")
     content_url = f"{API_ROOT}/repos/{args.repo}/contents/{encoded_path}?ref={args.head_sha}"
     payload = api_get(content_url, token)
@@ -84,7 +92,7 @@ def main() -> int:
     out.write_bytes(content)
 
     meta = {
-        "team": PurePosixPath(filename).stem,
+        "team": participant_name,
         "filename": filename,
         "head_sha": args.head_sha,
         "size": len(content),

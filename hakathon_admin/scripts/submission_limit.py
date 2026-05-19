@@ -146,9 +146,9 @@ def load_team(meta_path: str | None, fallback: str = "unknown") -> tuple[str, di
 def limit_comment(team: str, date: str, limit: int, used: int, timezone_name: str) -> str:
     return (
         "### Daily submission limit reached\n\n"
-        f"- Team: `{team}`\n"
+        f"- Participant: `{team}`\n"
         f"- Date: `{date}` ({timezone_name})\n"
-        f"- Limit: `{limit}` submissions per team per day\n"
+        f"- Limit: `{limit}` submissions per participant per day\n"
         f"- Already used: `{used}`\n\n"
         "This push was not scored. Try again after the daily limit resets."
     )
@@ -165,7 +165,7 @@ def ok_comment(team: str, date: str, limit: int, used: int, timezone_name: str) 
 def error_comment(team: str, message: str) -> str:
     return (
         "### Submission limit check failed\n\n"
-        f"- Team: `{team}`\n"
+        f"- Participant: `{team}`\n"
         f"- Error: `{message}`\n\n"
         "The submission was not scored because the grader could not verify the daily limit."
     )
@@ -266,7 +266,7 @@ def main() -> int:
 
     check_parser = subparsers.add_parser("check")
     check_parser.add_argument("--repo", required=True)
-    check_parser.add_argument("--config", default="hackerton_admin/competition/config.json")
+    check_parser.add_argument("--config", default="hakathon_admin/competition/config.json")
     check_parser.add_argument("--meta", required=True)
     check_parser.add_argument("--out-json", default="incoming/limit.json")
     check_parser.add_argument("--out-comment", default="incoming/comment.md")
@@ -275,7 +275,7 @@ def main() -> int:
     record_parser.add_argument("--repo", required=True)
     record_parser.add_argument("--pr", required=True, type=int)
     record_parser.add_argument("--head-sha", required=True)
-    record_parser.add_argument("--config", default="hackerton_admin/competition/config.json")
+    record_parser.add_argument("--config", default="hakathon_admin/competition/config.json")
     record_parser.add_argument("--meta", required=True)
     record_parser.add_argument("--score-json", default="incoming/score.json")
     record_parser.add_argument("--out-json", default="incoming/limit-record.json")

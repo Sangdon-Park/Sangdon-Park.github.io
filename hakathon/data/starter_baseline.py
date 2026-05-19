@@ -11,8 +11,17 @@ from sklearn.preprocessing import OneHotEncoder
 
 
 ROOT = Path(__file__).resolve().parent
-TRAIN_PATH = ROOT / "train.csv"
-TEST_PATH = ROOT / "test.csv"
+DATASETS = {
+    "conversion": {
+        "train": ROOT / "conversion_train.csv",
+        "test": ROOT / "conversion_test.csv",
+    },
+    "credit": {
+        "train": ROOT / "credit_train.csv",
+        "test": ROOT / "credit_test.csv",
+    },
+}
+SAMPLE_PATH = ROOT / "sample_submission.csv"
 OUTPUT_PATH = ROOT / "submission.csv"
 
 
@@ -87,21 +96,21 @@ def train_one_dataset(train: pd.DataFrame, test: pd.DataFrame, dataset_id: str) 
 
 
 def main() -> None:
-    train = pd.read_csv(TRAIN_PATH)
-    test = pd.read_csv(TEST_PATH)
-
     submissions = []
-    for dataset_id in sorted(test["dataset"].unique()):
+    for dataset_id, paths in DATASETS.items():
+        train = pd.read_csv(paths["train"])
+        test = pd.read_csv(paths["test"])
         submissions.append(train_one_dataset(train, test, dataset_id))
 
+    sample = pd.read_csv(SAMPLE_PATH)
     submission = pd.concat(submissions, ignore_index=True)
-    submission = test[["dataset", "id"]].merge(submission, on=["dataset", "id"], how="left")
+    submission = sample[["dataset", "id"]].merge(submission, on=["dataset", "id"], how="left")
     if submission["prediction"].isna().any():
         raise RuntimeError("Some test rows did not receive predictions.")
 
     submission.to_csv(OUTPUT_PATH, index=False)
     print(f"Wrote {OUTPUT_PATH}")
-    print("Upload this file to hackerton/submissions/<team-slug>.csv in your pull request.")
+    print("Upload this file to hakathon/submissions/홍길동.csv in your pull request.")
 
 
 if __name__ == "__main__":

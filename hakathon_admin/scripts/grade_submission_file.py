@@ -33,7 +33,7 @@ def _comment(result: dict) -> str:
             component_lines = "\n\n데이터셋별 점수:\n" + component_lines
         return (
             "### 제출 점수\n\n"
-            f"- Team: `{result['team']}`\n"
+            f"- Participant: `{result['team']}`\n"
             f"- Metric: `{result['metric']}` ({direction})\n"
             f"- Score: `{result['score']}`\n"
             f"- Score split: `{result.get('score_split', 'all')}`\n"
@@ -45,7 +45,7 @@ def _comment(result: dict) -> str:
 
     return (
         "### 제출 점수\n\n"
-        f"- Team: `{result['team']}`\n"
+        f"- Participant: `{result['team']}`\n"
         "- Status: `invalid`\n"
         f"- Error: `{result['error']}`\n"
         f"- Checked at: `{result['scored_at']}`\n\n"
@@ -57,7 +57,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Grade a submission and write a GitHub PR comment body.")
     parser.add_argument("--submission", required=True)
     parser.add_argument("--answers", required=True)
-    parser.add_argument("--config", default="hackerton_admin/competition/config.json")
+    parser.add_argument("--config", default="hakathon_admin/competition/config.json")
     parser.add_argument("--team")
     parser.add_argument("--meta")
     parser.add_argument("--score-split")

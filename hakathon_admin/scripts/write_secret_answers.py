@@ -26,7 +26,7 @@ def load_encoded_payload(base_env: str) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Write grader data from a base64 encoded environment variable.")
-    parser.add_argument("--output", default="hackerton_admin/runtime/grader.csv")
+    parser.add_argument("--output", default="hakathon_admin/runtime/grader.csv")
     parser.add_argument("--env", default="GRADER_DATA_B64")
     args = parser.parse_args()
 

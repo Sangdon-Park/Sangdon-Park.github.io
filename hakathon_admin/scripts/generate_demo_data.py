@@ -7,11 +7,13 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-TRAIN_PATH = REPO_ROOT / "hackerton" / "data" / "train.csv"
-TEST_PATH = REPO_ROOT / "hackerton" / "data" / "test.csv"
-SAMPLE_PATH = REPO_ROOT / "hackerton" / "data" / "sample_submission.csv"
-ANSWERS_PATH = REPO_ROOT / "hackerton_admin" / "runtime" / "grader.csv"
-BASELINE_PATH = REPO_ROOT / "hackerton" / "submissions" / "demo_baseline.csv"
+CONVERSION_TRAIN_PATH = REPO_ROOT / "hakathon" / "data" / "conversion_train.csv"
+CONVERSION_TEST_PATH = REPO_ROOT / "hakathon" / "data" / "conversion_test.csv"
+CREDIT_TRAIN_PATH = REPO_ROOT / "hakathon" / "data" / "credit_train.csv"
+CREDIT_TEST_PATH = REPO_ROOT / "hakathon" / "data" / "credit_test.csv"
+SAMPLE_PATH = REPO_ROOT / "hakathon" / "data" / "sample_submission.csv"
+ANSWERS_PATH = REPO_ROOT / "hakathon_admin" / "runtime" / "grader.csv"
+BASELINE_PATH = REPO_ROOT / "hakathon" / "submissions" / "demo_baseline.csv"
 
 
 FIELDS = [
@@ -268,14 +270,14 @@ def main() -> int:
     conversion_train, conversion_test = make_rows(conversion_row, rng, 900, 240, 420)
     credit_train, credit_test = make_rows(credit_row, rng, 900, 240, 420)
 
-    train_rows = conversion_train + credit_train
     test_rows = conversion_test + credit_test
-    rng.shuffle(train_rows)
     rng.shuffle(test_rows)
 
     public_fields = [field for field in FIELDS if field != "target"]
-    write_csv(TRAIN_PATH, train_rows, FIELDS)
-    write_csv(TEST_PATH, test_rows, public_fields)
+    write_csv(CONVERSION_TRAIN_PATH, conversion_train, FIELDS)
+    write_csv(CONVERSION_TEST_PATH, conversion_test, public_fields)
+    write_csv(CREDIT_TRAIN_PATH, credit_train, FIELDS)
+    write_csv(CREDIT_TEST_PATH, credit_test, public_fields)
     write_csv(ANSWERS_PATH, test_rows, ["dataset", "id", "split", "target"])
 
     sample_rows = [{"dataset": row["dataset"], "id": row["id"], "prediction": 0.5} for row in test_rows]
@@ -288,8 +290,10 @@ def main() -> int:
         baseline_rows.append({"dataset": row["dataset"], "id": row["id"], "prediction": round(noisy_probability, 6)})
     write_csv(BASELINE_PATH, baseline_rows, ["dataset", "id", "prediction"])
 
-    print(f"Wrote {TRAIN_PATH} ({len(train_rows)} rows)")
-    print(f"Wrote {TEST_PATH} ({len(test_rows)} rows)")
+    print(f"Wrote {CONVERSION_TRAIN_PATH} ({len(conversion_train)} rows)")
+    print(f"Wrote {CONVERSION_TEST_PATH} ({len(conversion_test)} rows)")
+    print(f"Wrote {CREDIT_TRAIN_PATH} ({len(credit_train)} rows)")
+    print(f"Wrote {CREDIT_TEST_PATH} ({len(credit_test)} rows)")
     print(f"Wrote {SAMPLE_PATH}")
     print(f"Wrote {ANSWERS_PATH}")
     print(f"Wrote {BASELINE_PATH}")

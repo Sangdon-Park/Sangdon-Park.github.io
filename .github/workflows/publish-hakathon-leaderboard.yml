@@ -1,14 +1,14 @@
-name: Publish Hackerton leaderboard
+name: Publish Hakathon leaderboard
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - "hackerton/submissions/*.csv"
-      - "hackerton_admin/competition/config.json"
-      - "hackerton_admin/scripts/**"
-      - ".github/workflows/publish-hackerton-leaderboard.yml"
+      - "hakathon/submissions/*.csv"
+      - "hakathon_admin/competition/config.json"
+      - "hakathon_admin/scripts/**"
+      - ".github/workflows/publish-hakathon-leaderboard.yml"
 
 permissions:
   contents: write
@@ -26,7 +26,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r hackerton_admin/requirements.txt
+        run: pip install -r hakathon_admin/requirements.txt
 
       - name: Restore grader payload
         env:
@@ -36,24 +36,24 @@ jobs:
           GRADER_DATA_B64_3: ${{ secrets.GRADER_DATA_B64_3 }}
           GRADER_DATA_B64_4: ${{ secrets.GRADER_DATA_B64_4 }}
           GRADER_DATA_B64_5: ${{ secrets.GRADER_DATA_B64_5 }}
-        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/runtime/grader.csv
+        run: python hakathon_admin/scripts/write_secret_answers.py --output hakathon_admin/runtime/grader.csv
 
       - name: Build leaderboard JSON
         run: >
-          python hackerton_admin/scripts/build_leaderboard.py
-          --answers hackerton_admin/runtime/grader.csv
-          --config hackerton_admin/competition/config.json
+          python hakathon_admin/scripts/build_leaderboard.py
+          --answers hakathon_admin/runtime/grader.csv
+          --config hakathon_admin/competition/config.json
           --score-split final
-          --out hackerton/data/leaderboard.json
+          --out hakathon/data/leaderboard.json
 
       - name: Commit leaderboard
         run: |
-          if git diff --quiet -- hackerton/data/leaderboard.json; then
+          if git diff --quiet -- hakathon/data/leaderboard.json; then
             echo "Leaderboard unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add hackerton/data/leaderboard.json
-          git commit -m "Update Hackerton leaderboard"
+          git add hakathon/data/leaderboard.json
+          git commit -m "Update Hakathon leaderboard"
           git push
