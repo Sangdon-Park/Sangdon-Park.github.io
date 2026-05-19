@@ -1,0 +1,21 @@
+{
+  "competition_name": "XGBoost Tabular Hackathon",
+  "description": "Tabular binary-classification hackathon template with private leaderboard scoring.",
+  "id_column": "id",
+  "target_column": "target",
+  "prediction_column": "prediction",
+  "task_type": "binary_classification",
+  "metric": "roc_auc",
+  "higher_is_better": true,
+  "score_precision": 6,
+  "submission_glob": "hackerton/submissions/*.csv",
+  "max_submission_bytes": 5242880,
+  "daily_submission_limit": 3,
+  "submission_limit_timezone": "Asia/Seoul",
+  "submission_limit_scope": "team_per_day",
+  "public_files": {
+    "train": "hackerton/data/train.csv",
+    "test": "hackerton/data/test.csv",
+    "sample_submission": "hackerton/data/sample_submission.csv"
+  }
+}

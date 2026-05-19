@@ -1,0 +1,150 @@
+{
+  "last_reviewed": "2026-05-19",
+  "sources": [
+    {
+      "name": "UCI Machine Learning Repository",
+      "url": "https://archive.ics.uci.edu/datasets",
+      "note": "Classic tabular classification and regression datasets with clear metadata."
+    },
+    {
+      "name": "OpenML",
+      "url": "https://docs.openml.org/data/use/",
+      "note": "Searchable dataset platform with API access and downloadable dataset metadata."
+    },
+    {
+      "name": "Kaggle Datasets",
+      "url": "https://www.kaggle.com/datasets?tags=16690-Tabular+Classification",
+      "note": "Large catalog, but many datasets require Kaggle account, API token, and license checks."
+    },
+    {
+      "name": "AI Hub",
+      "url": "https://www.aihub.or.kr/",
+      "note": "Korean public AI data portal. Many datasets require login and separate terms review."
+    }
+  ],
+  "datasets": [
+    {
+      "name": "Bank Marketing",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/222/bank+marketing",
+      "task": "Binary classification",
+      "rows": "45.2K",
+      "features": "17",
+      "metric": "ROC AUC",
+      "difficulty": "Intermediate",
+      "why": "Good for XGBoost because it mixes numeric and categorical features with realistic class imbalance.",
+      "recommended": true
+    },
+    {
+      "name": "Adult / Census Income",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/2/adult",
+      "task": "Binary classification",
+      "rows": "48.8K",
+      "features": "14",
+      "metric": "ROC AUC",
+      "difficulty": "Beginner",
+      "why": "Familiar income-prediction task with categorical preprocessing, missing-value handling, and fairness discussion points.",
+      "recommended": true
+    },
+    {
+      "name": "Online Shoppers Purchasing Intention",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset",
+      "task": "Binary classification",
+      "rows": "12.3K",
+      "features": "18",
+      "metric": "ROC AUC",
+      "difficulty": "Beginner",
+      "why": "Compact e-commerce conversion dataset that works well for a one-day student competition.",
+      "recommended": true
+    },
+    {
+      "name": "Bike Sharing",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset",
+      "task": "Regression",
+      "rows": "17.4K hourly rows",
+      "features": "16",
+      "metric": "RMSE",
+      "difficulty": "Intermediate",
+      "why": "Time and weather features make feature engineering meaningful without requiring deep learning.",
+      "recommended": true
+    },
+    {
+      "name": "Wine Quality",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/186/wine+quality",
+      "task": "Regression or classification",
+      "rows": "4.9K",
+      "features": "12",
+      "metric": "RMSE or macro F1",
+      "difficulty": "Beginner",
+      "why": "Small, clean, and fast. Good for teaching baselines before moving to a larger final dataset.",
+      "recommended": false
+    },
+    {
+      "name": "Student Performance",
+      "source": "UCI",
+      "url": "https://archive.ics.uci.edu/dataset/320/student+performance",
+      "task": "Regression or classification",
+      "rows": "649",
+      "features": "33",
+      "metric": "RMSE or macro F1",
+      "difficulty": "Beginner",
+      "why": "Useful for a short practice round, though too small for a serious final leaderboard.",
+      "recommended": false
+    },
+    {
+      "name": "German Credit",
+      "source": "OpenML",
+      "url": "https://www.openml.org/search?type=data&status=active&id=31",
+      "openml_data_id": 31,
+      "task": "Binary classification",
+      "rows": "1K",
+      "features": "20",
+      "metric": "ROC AUC",
+      "difficulty": "Beginner",
+      "why": "A compact credit-risk task for validating the grader before the main event.",
+      "recommended": false
+    },
+    {
+      "name": "Phishing Websites",
+      "source": "OpenML",
+      "url": "https://www.openml.org/search?type=data&status=active&id=4534",
+      "openml_data_id": 4534,
+      "task": "Binary classification",
+      "rows": "11K",
+      "features": "30",
+      "metric": "ROC AUC",
+      "difficulty": "Intermediate",
+      "why": "Balanced enough for quick experiments and large enough for tree-based model tuning.",
+      "recommended": true
+    },
+    {
+      "name": "Kaggle Tabular Classification catalog",
+      "source": "Kaggle",
+      "url": "https://www.kaggle.com/datasets?tags=16690-Tabular+Classification",
+      "task": "Mixed",
+      "rows": "Varies",
+      "features": "Varies",
+      "metric": "Depends on dataset",
+      "difficulty": "Mixed",
+      "why": "Good fallback catalog if you want a domain-specific problem, but verify license and API access first.",
+      "recommended": false
+    },
+    {
+      "name": "AI Hub Korean public datasets",
+      "source": "AI Hub",
+      "url": "https://www.aihub.or.kr/",
+      "task": "Mixed",
+      "rows": "Varies",
+      "features": "Varies",
+      "metric": "Depends on dataset",
+      "difficulty": "Mixed",
+      "why": "Best for a Korea-specific event. Budget time for account setup, terms, and preprocessing.",
+      "recommended": false
+    }
+  ]
+}
+

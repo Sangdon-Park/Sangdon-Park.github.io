@@ -6,5 +6,10 @@
 **/.pytest_cache/
 *.pyc
 
+# Hackerton private grader files
+hackerton_admin/answers/private_solution.csv
+hackerton_admin/incoming/
+hackerton_admin/score-output/
+
 # Temporary extracted assignment folders
 data/*/HW/week*-assignment/

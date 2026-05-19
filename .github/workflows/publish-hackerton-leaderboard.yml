@@ -1,0 +1,54 @@
+name: Publish Hackerton leaderboard
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "hackerton/submissions/*.csv"
+      - "hackerton_admin/competition/config.json"
+      - "hackerton_admin/scripts/**"
+      - ".github/workflows/publish-hackerton-leaderboard.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r hackerton_admin/requirements.txt
+
+      - name: Restore private answers
+        env:
+          PRIVATE_ANSWERS_CSV_B64: ${{ secrets.PRIVATE_ANSWERS_CSV_B64 }}
+        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/answers/private_solution.csv
+
+      - name: Build leaderboard JSON
+        run: >
+          python hackerton_admin/scripts/build_leaderboard.py
+          --answers hackerton_admin/answers/private_solution.csv
+          --config hackerton_admin/competition/config.json
+          --out hackerton/data/leaderboard.json
+
+      - name: Commit leaderboard
+        run: |
+          if git diff --quiet -- hackerton/data/leaderboard.json; then
+            echo "Leaderboard unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hackerton/data/leaderboard.json
+          git commit -m "Update Hackerton leaderboard"
+          git push
+

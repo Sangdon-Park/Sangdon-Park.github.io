@@ -1,0 +1,113 @@
+name: Score Hackerton submission PR
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "hackerton/submissions/*.csv"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: hackerton-submission-grader-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted grader
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r hackerton_admin/requirements.txt
+
+      - name: Download submitted CSV from PR head
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          python hackerton_admin/scripts/download_pr_submission.py
+          --repo "${{ github.repository }}"
+          --pr "${{ github.event.pull_request.number }}"
+          --head-sha "${{ github.event.pull_request.head.sha }}"
+          --submission-root hackerton/submissions
+          --out hackerton_admin/incoming/submission.csv
+          --meta-out hackerton_admin/incoming/meta.json
+
+      - name: Check daily submission limit
+        id: limit
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          python hackerton_admin/scripts/submission_limit.py check
+          --repo "${{ github.repository }}"
+          --config hackerton_admin/competition/config.json
+          --meta hackerton_admin/incoming/meta.json
+          --out-json hackerton_admin/incoming/limit.json
+          --out-comment hackerton_admin/incoming/comment.md
+
+      - name: Restore private answers
+        if: steps.limit.outcome == 'success'
+        env:
+          PRIVATE_ANSWERS_CSV_B64: ${{ secrets.PRIVATE_ANSWERS_CSV_B64 }}
+        run: python hackerton_admin/scripts/write_secret_answers.py --output hackerton_admin/answers/private_solution.csv
+
+      - name: Score submission
+        if: steps.limit.outcome == 'success'
+        id: score
+        continue-on-error: true
+        run: >
+          python hackerton_admin/scripts/grade_submission_file.py
+          --submission hackerton_admin/incoming/submission.csv
+          --answers hackerton_admin/answers/private_solution.csv
+          --config hackerton_admin/competition/config.json
+          --meta hackerton_admin/incoming/meta.json
+          --out-json hackerton_admin/incoming/score.json
+          --out-comment hackerton_admin/incoming/comment.md
+          --fail-on-invalid
+
+      - name: Record submission attempt
+        if: always() && steps.limit.outcome == 'success' && steps.score.outcome != 'skipped'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          python hackerton_admin/scripts/submission_limit.py record
+          --repo "${{ github.repository }}"
+          --pr "${{ github.event.pull_request.number }}"
+          --head-sha "${{ github.event.pull_request.head.sha }}"
+          --config hackerton_admin/competition/config.json
+          --meta hackerton_admin/incoming/meta.json
+          --score-json hackerton_admin/incoming/score.json
+          --out-json hackerton_admin/incoming/limit-record.json
+
+      - name: Comment on pull request
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const body = fs.existsSync("hackerton_admin/incoming/comment.md")
+              ? fs.readFileSync("hackerton_admin/incoming/comment.md", "utf8")
+              : "### Submission score\n\nThe grader could not read or score this submission. Check the workflow logs for details.";
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body
+            });
+
+      - name: Fail limited or invalid submission
+        if: steps.limit.outcome == 'failure' || steps.score.outcome == 'failure'
+        run: exit 1
+

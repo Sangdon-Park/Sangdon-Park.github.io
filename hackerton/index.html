@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XGBoost Tabular Hackathon</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Tabular ML Competition</p>
+        <h1>XGBoost Tabular Hackathon</h1>
+      </div>
+      <nav class="nav" aria-label="site navigation">
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#submit">Submit</a>
+        <a href="#datasets">Datasets</a>
+        <a href="#workflow">Ops</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="status-strip" aria-label="competition status">
+        <div>
+          <span class="label">Metric</span>
+          <strong id="metric">Loading</strong>
+        </div>
+        <div>
+          <span class="label">Submissions</span>
+          <strong id="submission-count">0</strong>
+        </div>
+        <div>
+          <span class="label">Updated</span>
+          <strong id="updated-at">Not published</strong>
+        </div>
+        <div>
+          <span class="label">Daily Limit</span>
+          <strong id="daily-limit">3 / team</strong>
+        </div>
+      </section>
+
+      <section id="leaderboard" class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Private Score</p>
+            <h2>Leaderboard</h2>
+          </div>
+          <a class="button" href="data/sample_submission.csv" download>Sample CSV</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Score</th>
+                <th>Rows</th>
+                <th>File</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr>
+                <td colspan="5">No accepted submissions yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="submit" class="grid two">
+        <div class="panel">
+          <p class="eyebrow">Submit</p>
+          <h2>CSV Contract</h2>
+          <pre><code>id,prediction
+row_000001,0.7312
+row_000002,0.1844</code></pre>
+          <p class="body-copy">PR에 <code>hackerton/submissions/&lt;team-slug&gt;.csv</code> 파일 하나만 추가하면 자동 채점됩니다. 팀별 제출은 한국 시간 기준 하루 3회로 제한됩니다.</p>
+        </div>
+        <div class="panel accent">
+          <p class="eyebrow">Files</p>
+          <h2>Participant Pack</h2>
+          <div class="action-row">
+            <a class="button" href="data/train.csv" download>Train CSV</a>
+            <a class="button" href="data/test.csv" download>Test IDs</a>
+            <a class="button secondary" href="data/sample_submission.csv" download>Sample Submission</a>
+          </div>
+          <p class="body-copy">학습 데이터와 test ID는 공개하고, private 정답은 GitHub Secret에만 보관합니다.</p>
+        </div>
+      </section>
+
+      <section id="datasets" class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Shortlist</p>
+            <h2>Dataset Candidates</h2>
+          </div>
+          <div class="filter-row" role="group" aria-label="dataset filter">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="recommended">Recommended</button>
+            <button class="chip" data-filter="Binary classification">Classification</button>
+            <button class="chip" data-filter="Regression">Regression</button>
+          </div>
+        </div>
+        <div id="dataset-grid" class="dataset-grid"></div>
+      </section>
+
+      <section id="workflow" class="grid two">
+        <div class="panel">
+          <p class="eyebrow">Automation</p>
+          <h2>GitHub Actions Flow</h2>
+          <ol class="steps">
+            <li>학생이 <code>hackerton/submissions/team.csv</code>로 PR 생성</li>
+            <li>Action이 PR CSV만 다운로드</li>
+            <li>Secret의 private 정답으로 score 계산</li>
+            <li>PR 댓글로 결과 게시</li>
+            <li>Merge 후 Pages leaderboard 갱신</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Admin</p>
+          <h2>Private Answer Secret</h2>
+          <pre><code>$b64 = [Convert]::ToBase64String(
+  [IO.File]::ReadAllBytes("hackerton_admin/answers/private_solution.csv")
+)</code></pre>
+          <p class="body-copy">GitHub Actions secret 이름은 <code>PRIVATE_ANSWERS_CSV_B64</code>입니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Built for GitHub Pages and GitHub Actions.</span>
+      <a href="data/datasets.json">Dataset catalog JSON</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
