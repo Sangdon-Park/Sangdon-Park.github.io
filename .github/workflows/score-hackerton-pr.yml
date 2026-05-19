@@ -78,7 +78,7 @@ jobs:
           --answers hackerton_admin/runtime/grader.csv
           --config hackerton_admin/competition/config.json
           --meta hackerton_admin/incoming/meta.json
-          --score-split feedback
+          --score-split final
           --out-json hackerton_admin/incoming/score.json
           --out-comment hackerton_admin/incoming/comment.md
           --fail-on-invalid

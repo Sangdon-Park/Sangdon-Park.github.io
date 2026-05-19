@@ -2,15 +2,6 @@ name: Publish Hackerton leaderboard
 
 on:
   workflow_dispatch:
-    inputs:
-      score_split:
-        description: "Leaderboard split to publish"
-        required: true
-        default: "feedback"
-        type: choice
-        options:
-          - feedback
-          - final
   push:
     branches: [main]
     paths:
@@ -52,7 +43,7 @@ jobs:
           python hackerton_admin/scripts/build_leaderboard.py
           --answers hackerton_admin/runtime/grader.csv
           --config hackerton_admin/competition/config.json
-          --score-split "${{ github.event.inputs.score_split || 'feedback' }}"
+          --score-split final
           --out hackerton/data/leaderboard.json
 
       - name: Commit leaderboard

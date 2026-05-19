@@ -10,7 +10,7 @@
   "metric": "roc_auc",
   "aggregate_metric": "weighted_mean_roc_auc",
   "feedback_split": "feedback",
-  "leaderboard_split": "feedback",
+  "leaderboard_split": "final",
   "final_split": "final",
   "higher_is_better": true,
   "score_precision": 6,
