@@ -14,7 +14,7 @@
   "final_split": "final",
   "higher_is_better": true,
   "score_precision": 6,
-  "submission_glob": "hakathon/submissions/*.csv",
+  "submission_glob": "hackathon/submissions/*.csv",
   "max_submission_bytes": 5242880,
   "daily_submission_limit": 3,
   "submission_limit_timezone": "Asia/Seoul",
@@ -32,10 +32,10 @@
     }
   ],
   "public_files": {
-    "conversion_train": "hakathon/data/conversion_train.csv",
-    "conversion_test": "hakathon/data/conversion_test.csv",
-    "credit_train": "hakathon/data/credit_train.csv",
-    "credit_test": "hakathon/data/credit_test.csv",
-    "sample_submission": "hakathon/data/sample_submission.csv"
+    "conversion_train": "hackathon/data/conversion_train.csv",
+    "conversion_test": "hackathon/data/conversion_test.csv",
+    "credit_train": "hackathon/data/credit_train.csv",
+    "credit_test": "hackathon/data/credit_test.csv",
+    "sample_submission": "hackathon/data/sample_submission.csv"
   }
 }

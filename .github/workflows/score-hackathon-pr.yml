@@ -1,10 +1,10 @@
-name: Score Hakathon submission PR
+name: Score Hackathon submission PR
 
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
     paths:
-      - "hakathon/submissions/*.csv"
+      - "hackathon/submissions/*.csv"
 
 permissions:
   contents: read
@@ -12,7 +12,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: hakathon-submission-grader-${{ github.repository }}
+  group: hackathon-submission-grader-${{ github.repository }}
   cancel-in-progress: false
 
 jobs:
@@ -30,19 +30,19 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r hakathon_admin/requirements.txt
+        run: pip install -r hackathon_admin/requirements.txt
 
       - name: Download submitted CSV from PR head
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
-          python hakathon_admin/scripts/download_pr_submission.py
+          python hackathon_admin/scripts/download_pr_submission.py
           --repo "${{ github.repository }}"
           --pr "${{ github.event.pull_request.number }}"
           --head-sha "${{ github.event.pull_request.head.sha }}"
-          --submission-root hakathon/submissions
-          --out hakathon_admin/incoming/submission.csv
-          --meta-out hakathon_admin/incoming/meta.json
+          --submission-root hackathon/submissions
+          --out hackathon_admin/incoming/submission.csv
+          --meta-out hackathon_admin/incoming/meta.json
 
       - name: Check daily submission limit
         id: limit
@@ -50,12 +50,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
-          python hakathon_admin/scripts/submission_limit.py check
+          python hackathon_admin/scripts/submission_limit.py check
           --repo "${{ github.repository }}"
-          --config hakathon_admin/competition/config.json
-          --meta hakathon_admin/incoming/meta.json
-          --out-json hakathon_admin/incoming/limit.json
-          --out-comment hakathon_admin/incoming/comment.md
+          --config hackathon_admin/competition/config.json
+          --meta hackathon_admin/incoming/meta.json
+          --out-json hackathon_admin/incoming/limit.json
+          --out-comment hackathon_admin/incoming/comment.md
 
       - name: Restore grader payload
         if: steps.limit.outcome == 'success'
@@ -66,21 +66,21 @@ jobs:
           GRADER_DATA_B64_3: ${{ secrets.GRADER_DATA_B64_3 }}
           GRADER_DATA_B64_4: ${{ secrets.GRADER_DATA_B64_4 }}
           GRADER_DATA_B64_5: ${{ secrets.GRADER_DATA_B64_5 }}
-        run: python hakathon_admin/scripts/write_secret_answers.py --output hakathon_admin/runtime/grader.csv
+        run: python hackathon_admin/scripts/write_secret_answers.py --output hackathon_admin/runtime/grader.csv
 
       - name: Score submission
         if: steps.limit.outcome == 'success'
         id: score
         continue-on-error: true
         run: >
-          python hakathon_admin/scripts/grade_submission_file.py
-          --submission hakathon_admin/incoming/submission.csv
-          --answers hakathon_admin/runtime/grader.csv
-          --config hakathon_admin/competition/config.json
-          --meta hakathon_admin/incoming/meta.json
+          python hackathon_admin/scripts/grade_submission_file.py
+          --submission hackathon_admin/incoming/submission.csv
+          --answers hackathon_admin/runtime/grader.csv
+          --config hackathon_admin/competition/config.json
+          --meta hackathon_admin/incoming/meta.json
           --score-split final
-          --out-json hakathon_admin/incoming/score.json
-          --out-comment hakathon_admin/incoming/comment.md
+          --out-json hackathon_admin/incoming/score.json
+          --out-comment hackathon_admin/incoming/comment.md
           --fail-on-invalid
 
       - name: Record submission attempt
@@ -88,14 +88,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
-          python hakathon_admin/scripts/submission_limit.py record
+          python hackathon_admin/scripts/submission_limit.py record
           --repo "${{ github.repository }}"
           --pr "${{ github.event.pull_request.number }}"
           --head-sha "${{ github.event.pull_request.head.sha }}"
-          --config hakathon_admin/competition/config.json
-          --meta hakathon_admin/incoming/meta.json
-          --score-json hakathon_admin/incoming/score.json
-          --out-json hakathon_admin/incoming/limit-record.json
+          --config hackathon_admin/competition/config.json
+          --meta hackathon_admin/incoming/meta.json
+          --score-json hackathon_admin/incoming/score.json
+          --out-json hackathon_admin/incoming/limit-record.json
 
       - name: Comment on pull request
         if: always()
@@ -103,8 +103,8 @@ jobs:
         with:
           script: |
             const fs = require("fs");
-            const body = fs.existsSync("hakathon_admin/incoming/comment.md")
-              ? fs.readFileSync("hakathon_admin/incoming/comment.md", "utf8")
+            const body = fs.existsSync("hackathon_admin/incoming/comment.md")
+              ? fs.readFileSync("hackathon_admin/incoming/comment.md", "utf8")
               : "### Submission score\n\nThe grader could not read or score this submission. Check the workflow logs for details.";
             await github.rest.issues.createComment({
               owner: context.repo.owner,

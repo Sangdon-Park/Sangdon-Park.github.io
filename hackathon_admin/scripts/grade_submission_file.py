@@ -57,7 +57,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Grade a submission and write a GitHub PR comment body.")
     parser.add_argument("--submission", required=True)
     parser.add_argument("--answers", required=True)
-    parser.add_argument("--config", default="hakathon_admin/competition/config.json")
+    parser.add_argument("--config", default="hackathon_admin/competition/config.json")
     parser.add_argument("--team")
     parser.add_argument("--meta")
     parser.add_argument("--score-split")

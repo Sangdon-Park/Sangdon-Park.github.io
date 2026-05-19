@@ -72,7 +72,7 @@ def main() -> int:
     if not KOREAN_NAME_RE.fullmatch(participant_name):
         raise SystemExit(
             "제출 파일명은 자기 이름 한글만 사용해야 합니다. "
-            "예: hakathon/submissions/박상돈.csv"
+            "예: hackathon/submissions/박상돈.csv"
         )
     encoded_path = quote(filename, safe="/")
     content_url = f"{API_ROOT}/repos/{args.repo}/contents/{encoded_path}?ref={args.head_sha}"

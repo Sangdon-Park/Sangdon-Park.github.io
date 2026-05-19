@@ -7,13 +7,13 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-CONVERSION_TRAIN_PATH = REPO_ROOT / "hakathon" / "data" / "conversion_train.csv"
-CONVERSION_TEST_PATH = REPO_ROOT / "hakathon" / "data" / "conversion_test.csv"
-CREDIT_TRAIN_PATH = REPO_ROOT / "hakathon" / "data" / "credit_train.csv"
-CREDIT_TEST_PATH = REPO_ROOT / "hakathon" / "data" / "credit_test.csv"
-SAMPLE_PATH = REPO_ROOT / "hakathon" / "data" / "sample_submission.csv"
-ANSWERS_PATH = REPO_ROOT / "hakathon_admin" / "runtime" / "grader.csv"
-BASELINE_PATH = REPO_ROOT / "hakathon" / "submissions" / "demo_baseline.csv"
+CONVERSION_TRAIN_PATH = REPO_ROOT / "hackathon" / "data" / "conversion_train.csv"
+CONVERSION_TEST_PATH = REPO_ROOT / "hackathon" / "data" / "conversion_test.csv"
+CREDIT_TRAIN_PATH = REPO_ROOT / "hackathon" / "data" / "credit_train.csv"
+CREDIT_TEST_PATH = REPO_ROOT / "hackathon" / "data" / "credit_test.csv"
+SAMPLE_PATH = REPO_ROOT / "hackathon" / "data" / "sample_submission.csv"
+ANSWERS_PATH = REPO_ROOT / "hackathon_admin" / "runtime" / "grader.csv"
+BASELINE_PATH = REPO_ROOT / "hackathon" / "submissions" / "demo_baseline.csv"
 
 
 FIELDS = [

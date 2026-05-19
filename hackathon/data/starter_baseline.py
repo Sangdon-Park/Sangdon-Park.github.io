@@ -110,7 +110,7 @@ def main() -> None:
 
     submission.to_csv(OUTPUT_PATH, index=False)
     print(f"Wrote {OUTPUT_PATH}")
-    print("Upload this file to hakathon/submissions/홍길동.csv in your pull request.")
+    print("Upload this file to hackathon/submissions/홍길동.csv in your pull request.")
 
 
 if __name__ == "__main__":

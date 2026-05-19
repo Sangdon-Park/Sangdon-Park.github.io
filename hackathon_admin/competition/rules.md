@@ -6,12 +6,12 @@ Build the best tabular prediction system for the two held-out evaluation splits.
 
 ## Submission
 
-- File path: `hakathon/submissions/자기이름.csv`
-- Example: `hakathon/submissions/박상돈.csv`
+- File path: `hackathon/submissions/자기이름.csv`
+- Example: `hackathon/submissions/박상돈.csv`
 - Columns: `dataset,id,prediction`
 - One file per participant per accepted leaderboard entry; the single file must include both `conversion` and `credit` rows.
 - Daily limit: 3 scored attempts per participant per day, measured in Asia/Seoul time
-- Final metric: configured in `hakathon_admin/competition/config.json`
+- Final metric: configured in `hackathon_admin/competition/config.json`
 
 ## Anti-leakage policy
 

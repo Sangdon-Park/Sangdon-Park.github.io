@@ -6,11 +6,11 @@
 **/.pytest_cache/
 *.pyc
 
-# Hakathon private grader files
-hakathon_admin/answers/private_solution.csv
-hakathon_admin/runtime/
-hakathon_admin/incoming/
-hakathon_admin/score-output/
+# Hackathon private grader files
+hackathon_admin/answers/private_solution.csv
+hackathon_admin/runtime/
+hackathon_admin/incoming/
+hackathon_admin/score-output/
 
 # Temporary extracted assignment folders
 data/*/HW/week*-assignment/

@@ -266,7 +266,7 @@ def main() -> int:
 
     check_parser = subparsers.add_parser("check")
     check_parser.add_argument("--repo", required=True)
-    check_parser.add_argument("--config", default="hakathon_admin/competition/config.json")
+    check_parser.add_argument("--config", default="hackathon_admin/competition/config.json")
     check_parser.add_argument("--meta", required=True)
     check_parser.add_argument("--out-json", default="incoming/limit.json")
     check_parser.add_argument("--out-comment", default="incoming/comment.md")
@@ -275,7 +275,7 @@ def main() -> int:
     record_parser.add_argument("--repo", required=True)
     record_parser.add_argument("--pr", required=True, type=int)
     record_parser.add_argument("--head-sha", required=True)
-    record_parser.add_argument("--config", default="hakathon_admin/competition/config.json")
+    record_parser.add_argument("--config", default="hackathon_admin/competition/config.json")
     record_parser.add_argument("--meta", required=True)
     record_parser.add_argument("--score-json", default="incoming/score.json")
     record_parser.add_argument("--out-json", default="incoming/limit-record.json")

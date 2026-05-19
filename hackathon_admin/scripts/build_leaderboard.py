@@ -60,16 +60,16 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str, sco
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build hakathon/data/leaderboard.json from accepted submissions.")
+    parser = argparse.ArgumentParser(description="Build hackathon/data/leaderboard.json from accepted submissions.")
     parser.add_argument("--submissions", default=None, help="Glob for submission CSV files.")
-    parser.add_argument("--answers", default="hakathon_admin/runtime/grader.csv")
-    parser.add_argument("--config", default="hakathon_admin/competition/config.json")
-    parser.add_argument("--out", default="hakathon/data/leaderboard.json")
+    parser.add_argument("--answers", default="hackathon_admin/runtime/grader.csv")
+    parser.add_argument("--config", default="hackathon_admin/competition/config.json")
+    parser.add_argument("--out", default="hackathon/data/leaderboard.json")
     parser.add_argument("--score-split")
     args = parser.parse_args()
 
     config = load_config(args.config)
-    submissions_glob = args.submissions or config.get("submission_glob", "hakathon/submissions/*.csv")
+    submissions_glob = args.submissions or config.get("submission_glob", "hackathon/submissions/*.csv")
     leaderboard = build_leaderboard(submissions_glob, args.answers, args.config, args.score_split)
 
     out_path = Path(args.out)
