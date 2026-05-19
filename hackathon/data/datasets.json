@@ -1,0 +1,30 @@
+{
+  "last_reviewed": "2026-05-19",
+  "datasets": [
+    {
+      "id": "conversion",
+      "name": "고객 전환 예측",
+      "task": "Binary classification",
+      "metric": "ROC AUC",
+      "weight": 0.5,
+      "rows": "train 900 / 평가 660",
+      "features": "방문 로그, 채널, 기기, 세그먼트, 할인율, 장바구니 금액, 지원 이력, 행동 점수",
+      "notice": "구매 전환 가능성을 예측합니다. 시점 변화와 채널별 반응 차이가 있고, 일부 feature는 평가 구간에서 안정성이 다릅니다."
+    },
+    {
+      "id": "credit",
+      "name": "신용 위험 예측",
+      "task": "Binary classification",
+      "metric": "ROC AUC",
+      "weight": 0.5,
+      "rows": "train 900 / 평가 660",
+      "features": "소득, 대출액, 한도 사용률, 연체 이력, bureau score, 근속 연수, 유입 채널, 거시 지표",
+      "notice": "상환 위험을 예측합니다. 누락 패턴 자체가 정보가 될 수 있고, 특정 채널과 기간에서 분포가 달라집니다."
+    }
+  ],
+  "notes": [
+    "순위표는 최종 평가 기준입니다.",
+    "두 test 파일에는 모든 제출 대상 row가 들어 있지만 평가 row 구분은 공개하지 않습니다.",
+    "하루 3회 제한이 있으므로 단순 반복 제출보다 robust validation이 중요합니다."
+  ]
+}

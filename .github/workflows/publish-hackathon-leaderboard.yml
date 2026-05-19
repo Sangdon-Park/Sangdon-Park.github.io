@@ -1,0 +1,59 @@
+name: Publish Hackathon leaderboard
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "hackathon/submissions/*.csv"
+      - "hackathon_admin/competition/config.json"
+      - "hackathon_admin/scripts/**"
+      - ".github/workflows/publish-hackathon-leaderboard.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r hackathon_admin/requirements.txt
+
+      - name: Restore grader payload
+        env:
+          GRADER_DATA_B64: ${{ secrets.GRADER_DATA_B64 }}
+          GRADER_DATA_B64_1: ${{ secrets.GRADER_DATA_B64_1 }}
+          GRADER_DATA_B64_2: ${{ secrets.GRADER_DATA_B64_2 }}
+          GRADER_DATA_B64_3: ${{ secrets.GRADER_DATA_B64_3 }}
+          GRADER_DATA_B64_4: ${{ secrets.GRADER_DATA_B64_4 }}
+          GRADER_DATA_B64_5: ${{ secrets.GRADER_DATA_B64_5 }}
+        run: python hackathon_admin/scripts/write_secret_answers.py --output hackathon_admin/runtime/grader.csv
+
+      - name: Build leaderboard JSON
+        run: >
+          python hackathon_admin/scripts/build_leaderboard.py
+          --answers hackathon_admin/runtime/grader.csv
+          --config hackathon_admin/competition/config.json
+          --score-split final
+          --out hackathon/data/leaderboard.json
+
+      - name: Commit leaderboard
+        run: |
+          if git diff --quiet -- hackathon/data/leaderboard.json; then
+            echo "Leaderboard unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hackathon/data/leaderboard.json
+          git commit -m "Update Hackathon leaderboard"
+          git push

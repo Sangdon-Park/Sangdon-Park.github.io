@@ -1,0 +1,41 @@
+{
+  "competition_name": "Tabular ML Challenge",
+  "description": "알고리즘 제한 없이 두 개의 tabular 예측 과제를 풀고, 두 평가셋 ROC AUC의 가중 평균으로 순위를 정합니다.",
+  "dataset_column": "dataset",
+  "answer_split_column": "split",
+  "id_column": "id",
+  "target_column": "target",
+  "prediction_column": "prediction",
+  "task_type": "binary_classification",
+  "metric": "roc_auc",
+  "aggregate_metric": "weighted_mean_roc_auc",
+  "feedback_split": "feedback",
+  "leaderboard_split": "final",
+  "final_split": "final",
+  "higher_is_better": true,
+  "score_precision": 6,
+  "submission_glob": "hackathon/submissions/*.csv",
+  "max_submission_bytes": 5242880,
+  "daily_submission_limit": 3,
+  "submission_limit_timezone": "Asia/Seoul",
+  "submission_limit_scope": "participant_per_day",
+  "datasets": [
+    {
+      "id": "conversion",
+      "name": "고객 전환 예측",
+      "weight": 0.5
+    },
+    {
+      "id": "credit",
+      "name": "신용 위험 예측",
+      "weight": 0.5
+    }
+  ],
+  "public_files": {
+    "conversion_train": "hackathon/data/conversion_train.csv",
+    "conversion_test": "hackathon/data/conversion_test.csv",
+    "credit_train": "hackathon/data/credit_train.csv",
+    "credit_test": "hackathon/data/credit_test.csv",
+    "sample_submission": "hackathon/data/sample_submission.csv"
+  }
+}
