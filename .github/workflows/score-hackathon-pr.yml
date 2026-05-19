@@ -118,10 +118,15 @@ jobs:
           shutil.copyfile("hackathon_admin/incoming/submission.csv", target)
           print(f"Prepared {target}")
           PY
-          git add hackathon/submissions
-          if git diff --cached --quiet -- hackathon/submissions; then
+          python hackathon_admin/scripts/build_leaderboard.py \
+            --answers hackathon_admin/runtime/grader.csv \
+            --config hackathon_admin/competition/config.json \
+            --score-split final \
+            --out hackathon/data/leaderboard.json
+          git add hackathon/submissions hackathon/data/leaderboard.json
+          if git diff --cached --quiet -- hackathon/submissions hackathon/data/leaderboard.json; then
             echo "" >> hackathon_admin/incoming/comment.md
-            echo "공개 순위표에는 이미 같은 제출 파일이 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
+            echo "공개 순위표에 이미 같은 제출 파일과 점수가 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
             exit 0
           fi
           TEAM="$(python -c "import json; print(json.load(open('hackathon_admin/incoming/meta.json', encoding='utf-8'))['team'])")"
@@ -130,7 +135,7 @@ jobs:
           git commit -m "Record Hackathon submission: ${TEAM}"
           git push origin HEAD:${{ github.event.pull_request.base.ref }}
           echo "" >> hackathon_admin/incoming/comment.md
-          echo "공개 순위표에 자동 반영되도록 제출 CSV를 기록했습니다. PR 전체를 merge하지 않고 검증된 CSV 하나만 반영했습니다." >> hackathon_admin/incoming/comment.md
+          echo "공개 순위표에 자동 반영되도록 제출 CSV와 순위표를 함께 갱신했습니다. PR 전체를 merge하지 않고 검증된 CSV 하나만 반영했습니다." >> hackathon_admin/incoming/comment.md
 
       - name: Comment on pull request
         if: always()
