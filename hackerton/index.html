@@ -15,6 +15,7 @@
       </div>
       <nav class="nav" aria-label="페이지 이동">
         <a href="#downloads">데이터 받기</a>
+        <a href="#route">참가 루트</a>
         <a href="#notice">공지</a>
         <a href="#leaderboard">순위표</a>
         <a href="#rules">규칙</a>
@@ -41,6 +42,72 @@
             <span>sample_submission.csv</span>
             <small>제출 형식 예시</small>
           </a>
+          <a class="download-button script" href="data/starter_baseline.py" download>
+            <span>starter_baseline.py</span>
+            <small>바로 실행 가능한 baseline</small>
+          </a>
+        </div>
+      </section>
+
+      <section id="route" class="panel route">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Start Route</p>
+            <h2>처음부터 제출까지 한 번에 따라 하기</h2>
+            <p class="section-copy">아래 순서대로 하면 데이터 다운로드, 모델 실행, 제출, 점수 확인까지 끝납니다.</p>
+          </div>
+          <a class="repo-link" href="https://github.com/Sangdon-Park/Sangdon-Park.github.io" target="_blank" rel="noreferrer">GitHub 저장소 열기</a>
+        </div>
+        <div class="route-grid">
+          <article>
+            <span class="step-no">1</span>
+            <h3>작업 폴더 만들기</h3>
+            <p>한 폴더에 <code>train.csv</code>, <code>test.csv</code>, <code>sample_submission.csv</code>, <code>starter_baseline.py</code>를 모두 저장합니다.</p>
+          </article>
+          <article>
+            <span class="step-no">2</span>
+            <h3>필요 패키지 설치</h3>
+            <pre><code>pip install pandas scikit-learn</code></pre>
+          </article>
+          <article>
+            <span class="step-no">3</span>
+            <h3>baseline 실행</h3>
+            <pre><code>python starter_baseline.py</code></pre>
+            <p>실행 후 같은 폴더에 <code>submission.csv</code>가 생성됩니다.</p>
+          </article>
+          <article>
+            <span class="step-no">4</span>
+            <h3>제출 파일 이름 바꾸기</h3>
+            <p><code>submission.csv</code>를 팀 slug로 바꿉니다. 예: <code>team-alpha.csv</code></p>
+          </article>
+          <article>
+            <span class="step-no">5</span>
+            <h3>GitHub에 업로드</h3>
+            <p>저장소에서 새 branch를 만들고 파일을 <code>hackerton/submissions/team-alpha.csv</code> 경로에 업로드합니다.</p>
+          </article>
+          <article>
+            <span class="step-no">6</span>
+            <h3>Pull Request 생성</h3>
+            <p><code>Sangdon-Park/Sangdon-Park.github.io</code>의 <code>main</code> 브랜치로 PR을 엽니다. 자동 채점 댓글이 달립니다.</p>
+          </article>
+        </div>
+        <div class="path-box">
+          <div>
+            <span>대회 페이지</span>
+            <code>https://sangdon-park.github.io/hackerton/</code>
+          </div>
+          <div>
+            <span>제출 저장소</span>
+            <code>github.com/Sangdon-Park/Sangdon-Park.github.io</code>
+          </div>
+          <div>
+            <span>업로드 경로</span>
+            <code>hackerton/submissions/&lt;team-slug&gt;.csv</code>
+          </div>
+          <div>
+            <span>PR 대상</span>
+            <code>main branch</code>
+          </div>
         </div>
       </section>
 
@@ -122,6 +189,19 @@ credit,credit_00908,0.1844</code></pre>
           <div class="formula">0.5 × 고객 전환 ROC AUC + 0.5 × 신용 위험 ROC AUC</div>
           <p class="body-copy">두 과제의 scale과 난이도가 다르기 때문에 단일 모델보다 데이터셋별 검증 전략과 calibration이 중요합니다.</p>
         </div>
+      </section>
+
+      <section class="panel checklist">
+        <p class="eyebrow">Submit Checklist</p>
+        <h2>PR 올리기 전 확인할 것</h2>
+        <ul>
+          <li>파일 경로가 정확한가: <code>hackerton/submissions/&lt;team-slug&gt;.csv</code></li>
+          <li>컬럼이 정확한가: <code>dataset,id,prediction</code></li>
+          <li><code>sample_submission.csv</code>와 row 수가 같은가</li>
+          <li><code>conversion</code>, <code>credit</code> 두 데이터셋이 모두 포함되어 있는가</li>
+          <li><code>prediction</code> 값이 모두 0 이상 1 이하인가</li>
+          <li>하루 3회 제한을 넘기지 않았는가</li>
+        </ul>
       </section>
 
       <section id="datasets" class="panel">
