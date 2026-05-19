@@ -23,5 +23,5 @@ Build the best tabular prediction system for the two held-out evaluation splits.
 ## 운영 원칙
 
 - 제출 제한과 최종 지표는 대회 시작 전에 고정합니다.
-- invalid 제출은 merge하지 않습니다.
+- invalid 제출은 기록하지 않습니다.
 - 최종 순위는 공식 리더보드 기준으로 확정합니다.

@@ -7,7 +7,7 @@ on:
       - "hackathon/submissions/*.csv"
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
 
@@ -22,7 +22,8 @@ jobs:
       - name: Checkout trusted grader
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -97,6 +98,40 @@ jobs:
           --score-json hackathon_admin/incoming/score.json
           --out-json hackathon_admin/incoming/limit-record.json
 
+      - name: Publish valid submission
+        if: steps.limit.outcome == 'success' && steps.score.outcome == 'success'
+        run: |
+          set -euo pipefail
+          git pull --ff-only origin "${{ github.event.pull_request.base.ref }}"
+          python - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path, PurePosixPath
+
+          meta = json.loads(Path("hackathon_admin/incoming/meta.json").read_text(encoding="utf-8"))
+          filename = PurePosixPath(meta["filename"])
+          if filename.parent != PurePosixPath("hackathon/submissions") or filename.suffix.lower() != ".csv":
+              raise SystemExit(f"Unexpected submission path: {filename}")
+
+          target = Path(*filename.parts)
+          target.parent.mkdir(parents=True, exist_ok=True)
+          shutil.copyfile("hackathon_admin/incoming/submission.csv", target)
+          print(f"Prepared {target}")
+          PY
+          if git diff --quiet -- hackathon/submissions; then
+            echo "" >> hackathon_admin/incoming/comment.md
+            echo "공개 순위표에는 이미 같은 제출 파일이 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
+            exit 0
+          fi
+          TEAM="$(python -c "import json; print(json.load(open('hackathon_admin/incoming/meta.json', encoding='utf-8'))['team'])")"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hackathon/submissions
+          git commit -m "Record Hackathon submission: ${TEAM}"
+          git push origin HEAD:${{ github.event.pull_request.base.ref }}
+          echo "" >> hackathon_admin/incoming/comment.md
+          echo "공개 순위표에 자동 반영되도록 제출 CSV를 기록했습니다. PR 전체를 merge하지 않고 검증된 CSV 하나만 반영했습니다." >> hackathon_admin/incoming/comment.md
+
       - name: Comment on pull request
         if: always()
         uses: actions/github-script@v7
@@ -111,6 +146,18 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
               body
+            });
+
+      - name: Close published pull request
+        if: steps.limit.outcome == 'success' && steps.score.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: "closed"
             });
 
       - name: Fail limited or invalid submission
