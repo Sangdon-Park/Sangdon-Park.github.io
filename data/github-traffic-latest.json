@@ -1,20 +1,26 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-19T01:19:13Z",
+  "synced_at": "2026-05-20T01:19:49Z",
   "views": {
-    "count": 17,
+    "count": 21,
     "uniques": 2
   },
   "clones": {
-    "count": 315,
+    "count": 304,
     "uniques": 96
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
-      "count": 4,
+      "count": 5,
       "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io",
+      "title": "Overview",
+      "count": 3,
+      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
@@ -23,9 +29,9 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io",
-      "title": "Overview",
-      "count": 2,
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+      "title": "/tree/main/data",
+      "count": 3,
       "uniques": 1
     },
     {
@@ -41,12 +47,6 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
-      "count": 2,
-      "uniques": 1
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
       "title": "/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
       "count": 1,
@@ -55,6 +55,12 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
       "title": "/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
+      "title": "/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
       "count": 1,
       "uniques": 1
     }
