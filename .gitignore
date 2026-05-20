@@ -7,6 +7,7 @@
 *.pyc
 
 # Hackathon private grader files
+hackathon/data/submission.csv
 hackathon_admin/answers/private_solution.csv
 hackathon_admin/runtime/
 hackathon_admin/incoming/

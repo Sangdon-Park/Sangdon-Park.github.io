@@ -27,7 +27,7 @@
         <div>
           <p class="eyebrow">Download First</p>
           <h2>여기서 바로 시작하세요</h2>
-          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 따로 받은 뒤, <code>박상돈.csv</code>처럼 자기 이름 파일 하나에 두 과제 예측을 모두 담아 제출합니다.</p>
+          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 받은 뒤, 숨겨진 정답 label 기준으로 실시간 리더보드 점수를 확인합니다.</p>
         </div>
         <div class="download-actions">
           <a class="download-button primary" href="data/conversion_train.csv" download>
@@ -126,7 +126,7 @@
         </div>
         <ul>
           <li>제출은 팀별 한국 시간 기준 하루 3회까지만 채점됩니다.</li>
-          <li>공개 순위표는 최종 평가 기준입니다. 매 제출마다 실제 순위 경쟁 점수가 바로 표시됩니다.</li>
+          <li>리더보드는 숨겨진 정답 label 기준으로 제출 직후 갱신됩니다.</li>
           <li>두 데이터셋을 모두 제출해야 하며, 한쪽만 잘 맞추는 전략은 최종 점수에서 불리합니다.</li>
           <li>데이터에는 누락값, 범주형 shift, 시점 변화, decoy feature가 포함되어 있습니다.</li>
           <li>모델 종류는 제한하지 않습니다. 단, 제출 파일은 예측 CSV 하나만 받습니다.</li>
@@ -148,7 +148,7 @@
         </div>
         <div>
           <span class="label">리더보드</span>
-          <strong id="score-split">최종 평가</strong>
+          <strong id="score-split">실시간 평가</strong>
         </div>
       </section>
 
@@ -157,7 +157,7 @@
           <div>
             <p class="eyebrow">Leaderboard</p>
             <h2>공개 순위표</h2>
-            <p class="section-copy">순위표는 최종 평가 기준입니다. 평가 row 구분은 공개하지 않으며, 참가자는 두 test 파일의 모든 row를 하나의 제출 CSV에 담아야 합니다.</p>
+            <p class="section-copy">순위표는 숨겨진 정답 label 기준입니다. test feature와 id는 공개하지만 target은 공개하지 않으며, 제출마다 점수가 자동 갱신됩니다.</p>
           </div>
           <span class="updated">업데이트: <strong id="updated-at">대기 중</strong></span>
         </div>
@@ -193,7 +193,7 @@ credit,credit_00908,0.1844</code></pre>
         </div>
         <div class="panel score-card">
           <p class="eyebrow">Scoring</p>
-          <h2>최종 점수 계산식</h2>
+          <h2>점수 계산식</h2>
           <div class="formula">0.5 × 고객 전환 ROC AUC + 0.5 × 신용 위험 ROC AUC</div>
           <p class="body-copy">두 과제의 scale과 난이도가 다르기 때문에 단일 모델보다 데이터셋별 검증 전략과 calibration이 중요합니다.</p>
         </div>
@@ -240,7 +240,7 @@ credit,credit_00908,0.1844</code></pre>
           </article>
           <article>
             <h3>확정</h3>
-            <p>공개 순위표가 최종 평가 기준입니다. 유효한 제출은 PR 승인 없이 자동 반영되며, 마감 후에는 제출 제한 위반, 형식 오류, 부정 제출 여부만 운영 검토합니다.</p>
+            <p>유효한 제출은 PR 승인 없이 자동 반영됩니다. 정답 label은 GitHub Actions secret에만 보관하고, 이 페이지에는 점수와 순위만 공개합니다.</p>
           </article>
         </div>
       </section>
@@ -262,8 +262,8 @@ credit,credit_00908,0.1844</code></pre>
             <dd>안 됩니다. sample_submission.csv의 모든 row를 포함해야 채점됩니다.</dd>
           </div>
           <div>
-            <dt>순위표 점수가 최종 평가 점수인가요?</dt>
-            <dd>네. 순위표는 최종 평가 기준으로 계산됩니다. 단, test 파일의 어떤 row가 평가에 쓰이는지는 공개하지 않습니다.</dd>
+            <dt>순위표 점수가 공식 점수인가요?</dt>
+            <dd>네. 숨겨진 정답 label로 계산한 실시간 공식 점수입니다. target 값 자체는 공개하지 않습니다.</dd>
           </div>
         </dl>
       </section>

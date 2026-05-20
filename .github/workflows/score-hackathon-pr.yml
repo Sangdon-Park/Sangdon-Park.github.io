@@ -126,7 +126,7 @@ jobs:
           git add hackathon/submissions hackathon/data/leaderboard.json
           if git diff --cached --quiet -- hackathon/submissions hackathon/data/leaderboard.json; then
             echo "" >> hackathon_admin/incoming/comment.md
-            echo "공개 순위표에 이미 같은 제출 파일과 점수가 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
+            echo "실시간 리더보드에 이미 같은 제출 파일과 점수가 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
             exit 0
           fi
           TEAM="$(python -c "import json; print(json.load(open('hackathon_admin/incoming/meta.json', encoding='utf-8'))['team'])")"
@@ -135,7 +135,7 @@ jobs:
           git commit -m "Record Hackathon submission: ${TEAM}"
           git push origin HEAD:${{ github.event.pull_request.base.ref }}
           echo "" >> hackathon_admin/incoming/comment.md
-          echo "공개 순위표에 자동 반영되도록 제출 CSV와 순위표를 함께 갱신했습니다. PR 전체를 merge하지 않고 검증된 CSV 하나만 반영했습니다." >> hackathon_admin/incoming/comment.md
+          echo "실시간 리더보드에 자동 반영되도록 제출 CSV와 순위표를 함께 갱신했습니다. 정답 label은 GitHub Actions secret에만 보관됩니다." >> hackathon_admin/incoming/comment.md
 
       - name: Comment on pull request
         if: always()
