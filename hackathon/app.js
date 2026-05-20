@@ -32,7 +32,7 @@ function renderStatus(leaderboard, config) {
   document.getElementById("metric").textContent = "두 ROC AUC 평균";
   document.getElementById("dataset-count").textContent = `${(config.datasets || []).length}종`;
   document.getElementById("daily-limit").textContent = `하루 ${config.daily_submission_limit || 3}회`;
-  document.getElementById("score-split").textContent = "최종 평가";
+  document.getElementById("score-split").textContent = "실시간 평가";
   document.getElementById("updated-at").textContent = formatDate(leaderboard.updated_at);
 }
 
