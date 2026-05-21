@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-05-20T01:19:49Z`
+- Last Synced (UTC): `2026-05-21T01:20:00Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 21 | 2 |
-| Clones | 304 | 96 |
+| Views | 42 | 2 |
+| Clones | 544 | 181 |
 
 ## Daily Views
 
@@ -106,6 +106,7 @@
 | 2026-05-16 | 0 | 0 |
 | 2026-05-17 | 0 | 0 |
 | 2026-05-18 | 4 | 1 |
+| 2026-05-19 | 21 | 1 |
 
 ## Daily Clones
 
@@ -203,24 +204,26 @@
 | 2026-05-16 | 13 | 8 |
 | 2026-05-17 | 28 | 12 |
 | 2026-05-18 | 18 | 11 |
+| 2026-05-19 | 277 | 96 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 5 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 11 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 7 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 5 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/traffic | /graphs/traffic | 4 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/pulls | /pulls | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션3_조인_뷰_삽입SQL_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션3_조인_뷰_삽입SQL_박상돈.pptx | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/contributors | /graphs/contributors | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md | /blob/main/data/DB시스템/0장_Preview_강의스크립트.md | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf | /blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 3 | 1 |
+| github.com | 6 | 2 |
 | sangdon-park.github.io | 2 | 1 |

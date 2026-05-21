@@ -1,36 +1,48 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-20T01:19:49Z",
+  "synced_at": "2026-05-21T01:20:00Z",
   "views": {
-    "count": 21,
+    "count": 42,
     "uniques": 2
   },
   "clones": {
-    "count": 304,
-    "uniques": 96
+    "count": 544,
+    "uniques": 181
   },
   "top_paths": [
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io",
+      "title": "Overview",
+      "count": 11,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
-      "count": 5,
+      "count": 7,
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io",
-      "title": "Overview",
-      "count": 3,
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+      "title": "/tree/main/data",
+      "count": 5,
       "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
       "title": "/graphs/traffic",
+      "count": 4,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
+      "title": "/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
       "count": 3,
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/pulls",
+      "title": "/pulls",
       "count": 3,
       "uniques": 1
     },
@@ -47,20 +59,14 @@
       "uniques": 1
     },
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/contributors",
+      "title": "/graphs/contributors",
+      "count": 2,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
       "title": "/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
-      "title": "/blob/main/data/DB시스템/0장_데이터베이스시스템_Preview.pdf",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
-      "title": "/blob/main/data/DB시스템/8장_데이터베이스설계.pptx",
       "count": 1,
       "uniques": 1
     }
@@ -68,8 +74,8 @@
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 3,
-      "uniques": 1
+      "count": 6,
+      "uniques": 2
     },
     {
       "referrer": "sangdon-park.github.io",
