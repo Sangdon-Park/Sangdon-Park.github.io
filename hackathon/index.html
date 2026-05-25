@@ -27,7 +27,7 @@
         <div>
           <p class="eyebrow">Download First</p>
           <h2>여기서 바로 시작하세요</h2>
-          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 받은 뒤, 지정된 비공개 제출 채널로 예측 CSV를 제출합니다.</p>
+          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 받은 뒤, 아래 제출 사이트로 예측 CSV를 제출합니다.</p>
         </div>
         <div class="download-actions">
           <a class="download-button primary" href="data/conversion_train.csv" download>
@@ -90,8 +90,9 @@
           </article>
           <article>
             <span class="step-no">5</span>
-            <h3>비공개 채널에 업로드</h3>
-            <p>예측 CSV는 공개 GitHub PR, 공개 issue, 공개 comment에 올리지 않습니다. 강의 공지에 안내된 비공개 제출 채널에 <code>박상돈.csv</code>처럼 한글 이름 파일명으로 업로드합니다.</p>
+            <h3>제출 사이트에 업로드</h3>
+            <p><a href="https://tabular-ml-challenge-submit.vercel.app" target="_blank" rel="noreferrer">https://tabular-ml-challenge-submit.vercel.app</a> 에 접속합니다. 이름 칸에는 자기 한글 이름을 입력하고, 제출 코드에는 <code>ML-7BEBD00E</code>를 입력한 뒤 <code>박상돈.csv</code>처럼 한글 이름 파일명으로 된 예측 CSV를 업로드합니다.</p>
+            <p>예측 CSV는 공개 GitHub PR, 공개 issue, 공개 comment에 올리지 않습니다. 정답 label 파일은 학생에게 배포하지 않으며, 제출 사이트는 예측 CSV만 받습니다.</p>
           </article>
           <article>
             <span class="step-no">6</span>
@@ -105,8 +106,12 @@
             <code>https://sangdon-park.github.io/hackathon/</code>
           </div>
           <div>
-            <span>제출 채널</span>
-            <code>강의 공지의 비공개 제출 채널</code>
+            <span>제출 사이트</span>
+            <code>https://tabular-ml-challenge-submit.vercel.app</code>
+          </div>
+          <div>
+            <span>제출 코드</span>
+            <code>ML-7BEBD00E</code>
           </div>
           <div>
             <span>파일명</span>
@@ -249,6 +254,14 @@ credit,credit_00908,0.1844</code></pre>
         <p class="eyebrow">FAQ</p>
         <h2>자주 하는 실수</h2>
         <dl>
+          <div>
+            <dt>어디에 제출하나요?</dt>
+            <dd><a href="https://tabular-ml-challenge-submit.vercel.app" target="_blank" rel="noreferrer">https://tabular-ml-challenge-submit.vercel.app</a> 에서 제출합니다. 이름은 자기 한글 이름, 제출 코드는 <code>ML-7BEBD00E</code>, 파일은 <code>자기이름.csv</code> 형식으로 올립니다.</dd>
+          </div>
+          <div>
+            <dt>정답 label 파일도 받아야 하나요?</dt>
+            <dd>아닙니다. 학생은 test의 target이나 정답 label 파일을 받지 않습니다. 학생은 <code>dataset,id,prediction</code>만 담긴 예측 CSV를 제출하고, 채점은 비공개 서버에서 숨겨진 정답 label로 처리됩니다.</dd>
+          </div>
           <div>
             <dt>문제 1, 문제 2를 파일 두 개로 제출하나요?</dt>
             <dd>아닙니다. <code>박상돈.csv</code> 하나만 제출합니다. 그 파일 안에 <code>conversion</code> row와 <code>credit</code> row를 모두 넣습니다.</dd>
