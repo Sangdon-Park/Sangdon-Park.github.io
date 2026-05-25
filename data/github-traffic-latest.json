@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-05-24T01:20:32Z",
+  "synced_at": "2026-05-25T01:21:55Z",
   "views": {
-    "count": 42,
+    "count": 40,
     "uniques": 2
   },
   "clones": {
-    "count": 590,
-    "uniques": 198
+    "count": 574,
+    "uniques": 197
   },
   "top_paths": [
     {
@@ -26,12 +26,6 @@
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
       "title": "/tree/main/data",
       "count": 5,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
-      "title": "/graphs/traffic",
-      "count": 4,
       "uniques": 1
     },
     {
@@ -65,6 +59,12 @@
       "uniques": 1
     },
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/graphs/traffic",
+      "title": "/graphs/traffic",
+      "count": 2,
+      "uniques": 1
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
       "title": "/blob/main/data/DB시스템/0장_Preview_강의스크립트.md",
       "count": 1,
@@ -76,11 +76,6 @@
       "referrer": "github.com",
       "count": 6,
       "uniques": 2
-    },
-    {
-      "referrer": "sangdon-park.github.io",
-      "count": 2,
-      "uniques": 1
     }
   ]
 }
