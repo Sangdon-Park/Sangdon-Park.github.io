@@ -8,7 +8,13 @@ from pathlib import Path
 from score_submission import load_config, score_submission, utc_now
 
 
-def build_leaderboard(submissions_glob: str, answers: str, config_path: str, score_split: str | None = None) -> dict:
+def build_leaderboard(
+    submissions_glob: str,
+    answers: str,
+    config_path: str,
+    score_split: str | None = None,
+    include_sensitive: bool = False,
+) -> dict:
     config = load_config(config_path)
     entries = []
     invalid = []
@@ -19,27 +25,25 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str, sco
             continue
         try:
             result = score_submission(path, answers, config, team=path.stem, score_split=score_split)
-            entries.append(
-                {
-                    "team": result["team"],
-                    "score": result["score"],
-                    "raw_score": result["raw_score"],
-                    "score_split": result.get("score_split", "all"),
-                    "component_scores": result.get("component_scores", []),
-                    "rows": result["rows"],
-                    "submitted_rows": result.get("submitted_rows", result["rows"]),
-                    "submission_file": str(path).replace("\\", "/"),
-                    "scored_at": result["scored_at"],
-                }
-            )
+            entry = {
+                "team": result["team"],
+                "participant_id": result["team"],
+                "score": result["score"],
+                "raw_score": result["raw_score"],
+                "score_split": result.get("score_split", "all"),
+                "rows": result["rows"],
+                "submitted_rows": result.get("submitted_rows", result["rows"]),
+                "scored_at": result["scored_at"],
+            }
+            if include_sensitive:
+                entry["component_scores"] = result.get("component_scores", [])
+                entry["submission_file"] = str(path).replace("\\", "/")
+            entries.append(entry)
         except Exception as exc:
-            invalid.append(
-                {
-                    "team": path.stem,
-                    "submission_file": str(path).replace("\\", "/"),
-                    "error": str(exc),
-                }
-            )
+            item = {"team": path.stem, "error": str(exc)}
+            if include_sensitive:
+                item["submission_file"] = str(path).replace("\\", "/")
+            invalid.append(item)
 
     reverse = bool(config.get("higher_is_better", True))
     entries.sort(key=lambda row: row["raw_score"], reverse=reverse)
@@ -61,16 +65,26 @@ def build_leaderboard(submissions_glob: str, answers: str, config_path: str, sco
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build hackathon/data/leaderboard.json from accepted submissions.")
-    parser.add_argument("--submissions", default=None, help="Glob for submission CSV files.")
+    parser.add_argument("--submissions", default=None, help="Glob for private submission CSV files.")
     parser.add_argument("--answers", default="hackathon_admin/runtime/grader.csv")
     parser.add_argument("--config", default="hackathon_admin/competition/config.json")
     parser.add_argument("--out", default="hackathon/data/leaderboard.json")
     parser.add_argument("--score-split")
+    parser.add_argument("--include-sensitive", action="store_true")
     args = parser.parse_args()
 
     config = load_config(args.config)
-    submissions_glob = args.submissions or config.get("submission_glob", "hackathon/submissions/*.csv")
-    leaderboard = build_leaderboard(submissions_glob, args.answers, args.config, args.score_split)
+    submissions_glob = args.submissions or config.get(
+        "submission_glob",
+        "hackathon_admin/private_submissions/*.csv",
+    )
+    leaderboard = build_leaderboard(
+        submissions_glob,
+        args.answers,
+        args.config,
+        args.score_split,
+        args.include_sensitive,
+    )
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)

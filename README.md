@@ -85,3 +85,10 @@ If the run fails at `Collect traffic metrics`, add a repository secret:
 
 - Do not commit secrets or API tokens.
 - If changing chatbot backend endpoints, verify CORS for site origin.
+
+## Hackathon Security Notes
+
+- Do not collect prediction CSVs through this public repository. Public pull requests, issues, and comments expose submitted predictions.
+- Accepted submissions should be handled only through a private submission channel or private repository.
+- The public leaderboard stores only rank, participant display name, aggregate score, and row counts. It must not store prediction CSVs, answer labels, or per-dataset component scores.
+- `hackathon_admin/private_submissions/*.csv`, `hackathon_admin/runtime/`, and `hackathon_admin/incoming/` are intentionally ignored.

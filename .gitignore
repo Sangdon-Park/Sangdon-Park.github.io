@@ -8,7 +8,11 @@
 
 # Hackathon private grader files
 hackathon/data/submission.csv
+hackathon/submissions/*.csv
+!hackathon/submissions/.gitkeep
 hackathon_admin/answers/private_solution.csv
+hackathon_admin/private_submissions/*.csv
+!hackathon_admin/private_submissions/.gitkeep
 hackathon_admin/runtime/
 hackathon_admin/incoming/
 hackathon_admin/score-output/

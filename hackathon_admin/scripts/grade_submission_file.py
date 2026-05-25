@@ -23,14 +23,6 @@ def _load_team(meta_path: str | None, fallback: str) -> str:
 def _comment(result: dict) -> str:
     if result["status"] == "valid":
         direction = "높을수록 좋음" if result.get("higher_is_better", True) else "낮을수록 좋음"
-        components = result.get("component_scores") or []
-        component_lines = ""
-        if components:
-            component_lines = "\n".join(
-                f"- {item['name']} (`{item['dataset']}`): `{item['score']}` / {item['rows']} rows"
-                for item in components
-            )
-            component_lines = "\n\n데이터셋별 점수:\n" + component_lines
         return (
             "### 제출 점수\n\n"
             f"- Participant: `{result['team']}`\n"
@@ -39,8 +31,8 @@ def _comment(result: dict) -> str:
             f"- Score split: `{result.get('score_split', 'all')}`\n"
             f"- Rows scored: `{result['rows']}` / submitted `{result.get('submitted_rows', result['rows'])}`\n"
             f"- Scored at: `{result['scored_at']}`\n"
-            f"{component_lines}\n\n"
-            "채점이 완료되었습니다. 제출 제한은 한국 시간 기준으로 계산됩니다."
+            "\n"
+            "채점이 완료되었습니다. 데이터셋별 세부 점수와 제출 CSV는 공개하지 않습니다. 제출 제한은 한국 시간 기준으로 계산됩니다."
         )
 
     return (

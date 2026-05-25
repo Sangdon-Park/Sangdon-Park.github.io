@@ -27,7 +27,7 @@
         <div>
           <p class="eyebrow">Download First</p>
           <h2>여기서 바로 시작하세요</h2>
-          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 받은 뒤, 숨겨진 정답 label 기준으로 실시간 리더보드 점수를 확인합니다.</p>
+          <p>대회 데이터는 두 과제입니다. 각 과제의 train/test를 받은 뒤, 지정된 비공개 제출 채널로 예측 CSV를 제출합니다.</p>
         </div>
         <div class="download-actions">
           <a class="download-button primary" href="data/conversion_train.csv" download>
@@ -62,7 +62,7 @@
           <div>
             <p class="eyebrow">Start Route</p>
             <h2>처음부터 제출까지 한 번에 따라 하기</h2>
-            <p class="section-copy">아래 순서대로 하면 데이터 다운로드, 모델 실행, 제출, 점수 확인까지 끝납니다.</p>
+            <p class="section-copy">아래 순서대로 하면 데이터 다운로드, 모델 실행, 비공개 제출, 점수 확인까지 끝납니다.</p>
           </div>
           <a class="repo-link" href="https://github.com/Sangdon-Park/Sangdon-Park.github.io" target="_blank" rel="noreferrer">GitHub 저장소 열기</a>
         </div>
@@ -90,13 +90,13 @@
           </article>
           <article>
             <span class="step-no">5</span>
-            <h3>GitHub에 업로드</h3>
-            <p>저장소에서 새 branch를 만들고 파일을 <code>hackathon/submissions/박상돈.csv</code> 경로에 업로드합니다.</p>
+            <h3>비공개 채널에 업로드</h3>
+            <p>예측 CSV는 공개 GitHub PR, 공개 issue, 공개 comment에 올리지 않습니다. 강의 공지에 안내된 비공개 제출 채널에 <code>박상돈.csv</code>처럼 한글 이름 파일명으로 업로드합니다.</p>
           </article>
           <article>
             <span class="step-no">6</span>
-            <h3>Pull Request 생성</h3>
-            <p><code>Sangdon-Park/Sangdon-Park.github.io</code>의 <code>main</code> 브랜치로 PR을 엽니다. 채점에 통과하면 제출 CSV만 자동 반영되고 순위표가 갱신됩니다.</p>
+            <h3>채점 결과 확인</h3>
+            <p>유효한 제출은 숨겨진 정답 label로 채점됩니다. 공개 리더보드에는 순위와 총점만 반영되며, 제출 CSV와 데이터셋별 세부 점수는 공개하지 않습니다.</p>
           </article>
         </div>
         <div class="path-box">
@@ -105,16 +105,16 @@
             <code>https://sangdon-park.github.io/hackathon/</code>
           </div>
           <div>
-            <span>제출 저장소</span>
-            <code>github.com/Sangdon-Park/Sangdon-Park.github.io</code>
+            <span>제출 채널</span>
+            <code>강의 공지의 비공개 제출 채널</code>
           </div>
           <div>
-            <span>업로드 경로</span>
-            <code>hackathon/submissions/박상돈.csv</code>
+            <span>파일명</span>
+            <code>박상돈.csv</code>
           </div>
           <div>
-            <span>PR 대상</span>
-            <code>main branch</code>
+            <span>공개 PR</span>
+            <code>사용하지 않음</code>
           </div>
         </div>
       </section>
@@ -125,8 +125,9 @@
           <h2>점수 튜닝보다 검증 설계가 중요한 대회입니다</h2>
         </div>
         <ul>
-          <li>제출은 팀별 한국 시간 기준 하루 3회까지만 채점됩니다.</li>
-          <li>리더보드는 숨겨진 정답 label 기준으로 제출 직후 갱신됩니다.</li>
+          <li>제출은 GitHub 계정 기준 한국 시간 하루 3회까지만 채점됩니다.</li>
+          <li>공개 GitHub PR은 예측값이 노출되므로 채점하지 않습니다.</li>
+          <li>리더보드는 숨겨진 정답 label 기준의 총점만 공개합니다.</li>
           <li>두 데이터셋을 모두 제출해야 하며, 한쪽만 잘 맞추는 전략은 최종 점수에서 불리합니다.</li>
           <li>데이터에는 누락값, 범주형 shift, 시점 변화, decoy feature가 포함되어 있습니다.</li>
           <li>모델 종류는 제한하지 않습니다. 단, 제출 파일은 예측 CSV 하나만 받습니다.</li>
@@ -148,7 +149,7 @@
         </div>
         <div>
           <span class="label">리더보드</span>
-          <strong id="score-split">실시간 평가</strong>
+          <strong id="score-split">비공개 제출 채점</strong>
         </div>
       </section>
 
@@ -157,7 +158,7 @@
           <div>
             <p class="eyebrow">Leaderboard</p>
             <h2>공개 순위표</h2>
-            <p class="section-copy">순위표는 숨겨진 정답 label 기준입니다. test feature와 id는 공개하지만 target은 공개하지 않으며, 제출마다 점수가 자동 갱신됩니다.</p>
+            <p class="section-copy">순위표는 숨겨진 정답 label 기준입니다. test feature와 id는 공개하지만 target, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다.</p>
           </div>
           <span class="updated">업데이트: <strong id="updated-at">대기 중</strong></span>
         </div>
@@ -168,14 +169,12 @@
                 <th>순위</th>
                 <th>참가자</th>
                 <th>공개 점수</th>
-                <th>고객 전환</th>
-                <th>신용 위험</th>
                 <th>채점 row</th>
               </tr>
             </thead>
             <tbody id="leaderboard-body">
               <tr>
-                <td colspan="6">아직 반영된 제출이 없습니다.</td>
+                <td colspan="4">아직 반영된 제출이 없습니다.</td>
               </tr>
             </tbody>
           </table>
@@ -189,7 +188,7 @@
           <pre><code>dataset,id,prediction
 conversion,conversion_00901,0.7312
 credit,credit_00908,0.1844</code></pre>
-          <p class="body-copy">제출 경로는 <code>hackathon/submissions/자기이름.csv</code>입니다. 예: <code>hackathon/submissions/박상돈.csv</code>. 하나의 CSV 안에 <code>conversion</code>과 <code>credit</code> 예측 row가 모두 들어가야 합니다.</p>
+          <p class="body-copy">제출 파일명은 <code>자기이름.csv</code>입니다. 예: <code>박상돈.csv</code>. 하나의 CSV 안에 <code>conversion</code>과 <code>credit</code> 예측 row가 모두 들어가야 합니다. 공개 저장소에는 업로드하지 않습니다.</p>
         </div>
         <div class="panel score-card">
           <p class="eyebrow">Scoring</p>
@@ -201,13 +200,14 @@ credit,credit_00908,0.1844</code></pre>
 
       <section class="panel checklist">
         <p class="eyebrow">Submit Checklist</p>
-        <h2>PR 올리기 전 확인할 것</h2>
+        <h2>제출 전 확인할 것</h2>
         <ul>
-          <li>파일 경로가 정확한가: <code>hackathon/submissions/자기이름.csv</code> 형식이며 파일명이 한글 이름인가</li>
+          <li>파일명이 정확한가: <code>자기이름.csv</code> 형식이며 파일명이 한글 이름인가</li>
           <li>컬럼이 정확한가: <code>dataset,id,prediction</code></li>
           <li><code>sample_submission.csv</code>와 row 수가 같은가</li>
           <li><code>conversion</code>, <code>credit</code> 두 데이터셋이 모두 포함되어 있는가</li>
           <li><code>prediction</code> 값이 모두 0 이상 1 이하인가</li>
+          <li>공개 GitHub PR, issue, comment에 예측 CSV를 올리지 않았는가</li>
           <li>하루 3회 제한을 넘기지 않았는가</li>
         </ul>
       </section>
@@ -232,15 +232,15 @@ credit,credit_00908,0.1844</code></pre>
           </article>
           <article>
             <h3>제한</h3>
-            <p>팀별 하루 3회 제출 제한이 있습니다. 같은 팀은 하나의 파일명 slug를 유지해야 합니다.</p>
+            <p>GitHub 계정 기준 하루 3회 제출 제한이 있습니다. 같은 참가자는 하나의 한글 이름 파일명을 유지해야 합니다.</p>
           </article>
           <article>
             <h3>금지</h3>
-            <p>평가 row를 수작업으로 라벨링하거나, 다른 팀의 제출값을 복사하거나, 제출 제한을 우회하는 행위는 금지합니다.</p>
+            <p>평가 row를 수작업으로 라벨링하거나, 다른 팀의 제출값을 복사하거나, 제출 제한을 우회하거나, 예측 CSV를 공개하는 행위는 금지합니다.</p>
           </article>
           <article>
             <h3>확정</h3>
-            <p>유효한 제출은 PR 승인 없이 자동 반영됩니다. 정답 label은 GitHub Actions secret에만 보관하고, 이 페이지에는 점수와 순위만 공개합니다.</p>
+            <p>유효한 제출은 비공개 채점 뒤 반영됩니다. 정답 label과 제출 CSV는 공개 저장소에 저장하지 않고, 이 페이지에는 총점과 순위만 공개합니다.</p>
           </article>
         </div>
       </section>
@@ -263,7 +263,7 @@ credit,credit_00908,0.1844</code></pre>
           </div>
           <div>
             <dt>순위표 점수가 공식 점수인가요?</dt>
-            <dd>네. 숨겨진 정답 label로 계산한 실시간 공식 점수입니다. target 값 자체는 공개하지 않습니다.</dd>
+            <dd>네. 숨겨진 정답 label로 계산한 공식 점수입니다. target 값, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다.</dd>
           </div>
         </dl>
       </section>

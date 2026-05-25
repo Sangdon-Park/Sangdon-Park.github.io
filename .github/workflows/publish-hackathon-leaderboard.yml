@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "hackathon/submissions/*.csv"
+      - "hackathon/data/leaderboard.json"
       - "hackathon_admin/competition/config.json"
       - "hackathon_admin/scripts/**"
       - ".github/workflows/publish-hackathon-leaderboard.yml"
@@ -28,22 +28,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r hackathon_admin/requirements.txt
 
-      - name: Restore grader payload
-        env:
-          GRADER_DATA_B64: ${{ secrets.GRADER_DATA_B64 }}
-          GRADER_DATA_B64_1: ${{ secrets.GRADER_DATA_B64_1 }}
-          GRADER_DATA_B64_2: ${{ secrets.GRADER_DATA_B64_2 }}
-          GRADER_DATA_B64_3: ${{ secrets.GRADER_DATA_B64_3 }}
-          GRADER_DATA_B64_4: ${{ secrets.GRADER_DATA_B64_4 }}
-          GRADER_DATA_B64_5: ${{ secrets.GRADER_DATA_B64_5 }}
-        run: python hackathon_admin/scripts/write_secret_answers.py --output hackathon_admin/runtime/grader.csv
-
-      - name: Build leaderboard JSON
+      - name: Normalize public leaderboard JSON
         run: >
-          python hackathon_admin/scripts/build_leaderboard.py
-          --answers hackathon_admin/runtime/grader.csv
+          python hackathon_admin/scripts/normalize_leaderboard.py
           --config hackathon_admin/competition/config.json
-          --score-split final
           --out hackathon/data/leaderboard.json
 
       - name: Commit leaderboard

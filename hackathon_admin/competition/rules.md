@@ -6,11 +6,13 @@ Build the best tabular prediction system for the two held-out evaluation splits.
 
 ## Submission
 
-- File path: `hackathon/submissions/자기이름.csv`
-- Example: `hackathon/submissions/박상돈.csv`
+- Submit only through the private submission channel announced by the organizer.
+- Do not open a public GitHub PR containing your prediction CSV. Public PR diffs expose predictions to other participants.
+- Filename: `자기이름.csv`
+- Example: `박상돈.csv`
 - Columns: `dataset,id,prediction`
 - One file per participant per accepted leaderboard entry; the single file must include both `conversion` and `credit` rows.
-- Daily limit: 3 scored attempts per participant per day, measured in Asia/Seoul time
+- Daily limit: 3 scored attempts per GitHub account per day, measured in Asia/Seoul time
 - Final metric: configured in `hackathon_admin/competition/config.json`
 
 ## Anti-leakage policy
@@ -18,6 +20,7 @@ Build the best tabular prediction system for the two held-out evaluation splits.
 - Do not manually label the test set.
 - Do not use target values from the evaluation split.
 - Do not submit predictions generated from another participant's result.
+- Do not publish your prediction CSV in this repository, public PRs, public issues, or public comments.
 - Public discussion of general modeling approaches is allowed; sharing exact submitted predictions is not.
 
 ## 운영 원칙

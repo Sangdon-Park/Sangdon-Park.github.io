@@ -25,15 +25,30 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
+      - name: Reject public repository submissions
+        if: github.event.repository.private != true
+        run: |
+          mkdir -p hackathon_admin/incoming
+          cat > hackathon_admin/incoming/comment.md <<'EOF'
+          ### 제출 방식 변경
+
+          이 공개 저장소에서는 제출 CSV를 채점하지 않습니다.
+
+          Public GitHub PR은 파일 diff가 공개되어 다른 참가자가 예측값을 볼 수 있습니다. 정답 secret도 public PR 채점 경로에서는 복원하지 않습니다. 강의 공지에 안내된 비공개 제출 채널로 CSV를 제출해 주세요.
+          EOF
+
       - name: Set up Python
+        if: github.event.repository.private == true
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install dependencies
+        if: github.event.repository.private == true
         run: pip install -r hackathon_admin/requirements.txt
 
       - name: Download submitted CSV from PR head
+        if: github.event.repository.private == true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
@@ -46,6 +61,7 @@ jobs:
           --meta-out hackathon_admin/incoming/meta.json
 
       - name: Check daily submission limit
+        if: github.event.repository.private == true
         id: limit
         continue-on-error: true
         env:
@@ -59,7 +75,7 @@ jobs:
           --out-comment hackathon_admin/incoming/comment.md
 
       - name: Restore grader payload
-        if: steps.limit.outcome == 'success'
+        if: github.event.repository.private == true && steps.limit.outcome == 'success'
         env:
           GRADER_DATA_B64: ${{ secrets.GRADER_DATA_B64 }}
           GRADER_DATA_B64_1: ${{ secrets.GRADER_DATA_B64_1 }}
@@ -70,7 +86,7 @@ jobs:
         run: python hackathon_admin/scripts/write_secret_answers.py --output hackathon_admin/runtime/grader.csv
 
       - name: Score submission
-        if: steps.limit.outcome == 'success'
+        if: github.event.repository.private == true && steps.limit.outcome == 'success'
         id: score
         continue-on-error: true
         run: >
@@ -85,7 +101,7 @@ jobs:
           --fail-on-invalid
 
       - name: Record submission attempt
-        if: always() && steps.limit.outcome == 'success' && steps.score.outcome != 'skipped'
+        if: always() && github.event.repository.private == true && steps.limit.outcome == 'success' && steps.score.outcome != 'skipped'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
@@ -99,43 +115,28 @@ jobs:
           --out-json hackathon_admin/incoming/limit-record.json
 
       - name: Publish valid submission
-        if: steps.limit.outcome == 'success' && steps.score.outcome == 'success'
+        if: github.event.repository.private == true && steps.limit.outcome == 'success' && steps.score.outcome == 'success'
         run: |
           set -euo pipefail
           git pull --ff-only origin "${{ github.event.pull_request.base.ref }}"
-          python - <<'PY'
-          import json
-          import shutil
-          from pathlib import Path, PurePosixPath
-
-          meta = json.loads(Path("hackathon_admin/incoming/meta.json").read_text(encoding="utf-8"))
-          filename = PurePosixPath(meta["filename"])
-          if filename.parent != PurePosixPath("hackathon/submissions") or filename.suffix.lower() != ".csv":
-              raise SystemExit(f"Unexpected submission path: {filename}")
-
-          target = Path(*filename.parts)
-          target.parent.mkdir(parents=True, exist_ok=True)
-          shutil.copyfile("hackathon_admin/incoming/submission.csv", target)
-          print(f"Prepared {target}")
-          PY
-          python hackathon_admin/scripts/build_leaderboard.py \
-            --answers hackathon_admin/runtime/grader.csv \
+          python hackathon_admin/scripts/update_leaderboard_entry.py \
+            --score-json hackathon_admin/incoming/score.json \
+            --meta hackathon_admin/incoming/meta.json \
             --config hackathon_admin/competition/config.json \
-            --score-split final \
             --out hackathon/data/leaderboard.json
-          git add hackathon/submissions hackathon/data/leaderboard.json
-          if git diff --cached --quiet -- hackathon/submissions hackathon/data/leaderboard.json; then
+          git add hackathon/data/leaderboard.json
+          if git diff --cached --quiet -- hackathon/data/leaderboard.json; then
             echo "" >> hackathon_admin/incoming/comment.md
-            echo "실시간 리더보드에 이미 같은 제출 파일과 점수가 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
+            echo "실시간 리더보드에 이미 같은 공개 점수가 반영되어 있습니다." >> hackathon_admin/incoming/comment.md
             exit 0
           fi
           TEAM="$(python -c "import json; print(json.load(open('hackathon_admin/incoming/meta.json', encoding='utf-8'))['team'])")"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Record Hackathon submission: ${TEAM}"
+          git commit -m "Record Hackathon score: ${TEAM}"
           git push origin HEAD:${{ github.event.pull_request.base.ref }}
           echo "" >> hackathon_admin/incoming/comment.md
-          echo "실시간 리더보드에 자동 반영되도록 제출 CSV와 순위표를 함께 갱신했습니다. 정답 label은 GitHub Actions secret에만 보관됩니다." >> hackathon_admin/incoming/comment.md
+          echo "실시간 리더보드에 점수만 반영했습니다. 제출 CSV와 정답 label은 공개 저장소에 저장하지 않습니다." >> hackathon_admin/incoming/comment.md
 
       - name: Comment on pull request
         if: always()
@@ -154,7 +155,19 @@ jobs:
             });
 
       - name: Close published pull request
-        if: steps.limit.outcome == 'success' && steps.score.outcome == 'success'
+        if: github.event.repository.private == true && steps.limit.outcome == 'success' && steps.score.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: "closed"
+            });
+
+      - name: Close rejected public pull request
+        if: github.event.repository.private != true
         uses: actions/github-script@v7
         with:
           script: |
@@ -166,5 +179,5 @@ jobs:
             });
 
       - name: Fail limited or invalid submission
-        if: steps.limit.outcome == 'failure' || steps.score.outcome == 'failure'
+        if: github.event.repository.private != true || steps.limit.outcome == 'failure' || steps.score.outcome == 'failure'
         run: exit 1

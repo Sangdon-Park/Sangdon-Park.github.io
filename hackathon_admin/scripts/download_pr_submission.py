@@ -7,7 +7,7 @@ import os
 import re
 from pathlib import Path, PurePosixPath
 from urllib.error import HTTPError
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
 
@@ -33,6 +33,21 @@ def api_get(url: str, token: str) -> dict | list:
         raise RuntimeError(f"GitHub API request failed: {exc.code} {body}") from exc
 
 
+def api_get_all(url: str, token: str, params: dict[str, str | int] | None = None) -> list[dict]:
+    rows: list[dict] = []
+    page = 1
+    while True:
+        query = dict(params or {})
+        query.update({"per_page": 100, "page": page})
+        payload = api_get(f"{url}?{urlencode(query)}", token)
+        if not isinstance(payload, list):
+            raise RuntimeError(f"Expected list response from {url}")
+        rows.extend(payload)
+        if len(payload) < 100:
+            return rows
+        page += 1
+
+
 def is_submission_path(filename: str, submission_root: str) -> bool:
     path = PurePosixPath(filename)
     return path.parent == PurePosixPath(submission_root) and path.suffix.lower() == ".csv"
@@ -53,8 +68,10 @@ def main() -> int:
     if not token:
         raise SystemExit("Missing GITHUB_TOKEN")
 
-    files_url = f"{API_ROOT}/repos/{args.repo}/pulls/{args.pr}/files?per_page=100"
-    files = api_get(files_url, token)
+    pr_url = f"{API_ROOT}/repos/{args.repo}/pulls/{args.pr}"
+    pr = api_get(pr_url, token)
+    files_url = f"{API_ROOT}/repos/{args.repo}/pulls/{args.pr}/files"
+    files = api_get_all(files_url, token)
     candidates = [
         item
         for item in files
@@ -72,7 +89,7 @@ def main() -> int:
     if not KOREAN_NAME_RE.fullmatch(participant_name):
         raise SystemExit(
             "제출 파일명은 자기 이름 한글만 사용해야 합니다. "
-            "예: hackathon/submissions/박상돈.csv"
+            "예: 박상돈.csv"
         )
     encoded_path = quote(filename, safe="/")
     content_url = f"{API_ROOT}/repos/{args.repo}/contents/{encoded_path}?ref={args.head_sha}"
@@ -93,6 +110,9 @@ def main() -> int:
 
     meta = {
         "team": participant_name,
+        "github_login": ((pr.get("user") or {}).get("login") if isinstance(pr, dict) else None),
+        "author_association": (pr.get("author_association") if isinstance(pr, dict) else None),
+        "head_repo": (((pr.get("head") or {}).get("repo") or {}).get("full_name") if isinstance(pr, dict) else None),
         "filename": filename,
         "head_sha": args.head_sha,
         "size": len(content),

@@ -123,7 +123,11 @@ def marker_payload(body: str) -> dict[str, Any] | None:
         return None
 
 
-def count_attempts(comments: list[dict[str, Any]], team: str, date: str) -> int:
+def participant_key(team: str, meta: dict[str, Any]) -> str:
+    return str(meta.get("github_login") or team)
+
+
+def count_attempts(comments: list[dict[str, Any]], key: str, date: str) -> int:
     count = 0
     for comment in comments:
         if comment.get("user", {}).get("login") != "github-actions[bot]":
@@ -131,7 +135,8 @@ def count_attempts(comments: list[dict[str, Any]], team: str, date: str) -> int:
         payload = marker_payload(str(comment.get("body") or ""))
         if not payload:
             continue
-        if payload.get("team") == team and payload.get("date") == date:
+        payload_key = str(payload.get("participant_key") or payload.get("team") or "")
+        if payload_key == key and payload.get("date") == date:
             count += 1
     return count
 
@@ -188,14 +193,16 @@ def check(args: argparse.Namespace) -> int:
         limit = int(config.get("daily_submission_limit", 3))
         timezone_name = str(config.get("submission_limit_timezone", "Asia/Seoul"))
         date = local_date(timezone_name)
+        key = participant_key(team, meta)
         token = os.environ["GITHUB_TOKEN"]
         client = GitHubClient(args.repo, token)
         ledger_issue = client.ensure_ledger_issue()
-        used = count_attempts(client.comments(ledger_issue), team, date)
+        used = count_attempts(client.comments(ledger_issue), key, date)
         allowed = used < limit
         result = {
             "status": "allowed" if allowed else "limited",
             "team": team,
+            "participant_key": key,
             "date": date,
             "timezone": timezone_name,
             "limit": limit,
@@ -226,6 +233,7 @@ def record(args: argparse.Namespace) -> int:
     config = load_config(args.config)
     timezone_name = str(config.get("submission_limit_timezone", "Asia/Seoul"))
     date = local_date(timezone_name)
+    key = participant_key(team, meta)
     token = os.environ["GITHUB_TOKEN"]
     client = GitHubClient(args.repo, token)
     ledger_issue = client.ensure_ledger_issue()
@@ -236,6 +244,8 @@ def record(args: argparse.Namespace) -> int:
 
     payload = {
         "team": team,
+        "participant_key": key,
+        "github_login": meta.get("github_login"),
         "date": date,
         "timezone": timezone_name,
         "pr": args.pr,

@@ -23,16 +23,11 @@ function formatDate(value) {
   });
 }
 
-function componentScore(entry, datasetId) {
-  const item = (entry.component_scores || []).find((candidate) => candidate.dataset === datasetId);
-  return item ? formatter.format(item.score) : "-";
-}
-
 function renderStatus(leaderboard, config) {
   document.getElementById("metric").textContent = "두 ROC AUC 평균";
   document.getElementById("dataset-count").textContent = `${(config.datasets || []).length}종`;
   document.getElementById("daily-limit").textContent = `하루 ${config.daily_submission_limit || 3}회`;
-  document.getElementById("score-split").textContent = "실시간 평가";
+  document.getElementById("score-split").textContent = "비공개 제출 채점";
   document.getElementById("updated-at").textContent = formatDate(leaderboard.updated_at);
 }
 
@@ -40,7 +35,7 @@ function renderLeaderboard(data) {
   const body = document.getElementById("leaderboard-body");
   const entries = data.entries || [];
   if (!entries.length) {
-    body.innerHTML = '<tr><td colspan="6">아직 반영된 제출이 없습니다.</td></tr>';
+    body.innerHTML = '<tr><td colspan="4">아직 반영된 제출이 없습니다.</td></tr>';
     return;
   }
 
@@ -49,8 +44,6 @@ function renderLeaderboard(data) {
       <td><span class="rank">${entry.rank}</span></td>
       <td><strong>${entry.team}</strong></td>
       <td class="score">${formatter.format(entry.score)}</td>
-      <td>${componentScore(entry, "conversion")}</td>
-      <td>${componentScore(entry, "credit")}</td>
       <td>${entry.rows}</td>
     </tr>
   `).join("");
@@ -88,5 +81,5 @@ async function init() {
 
 init().catch((error) => {
   console.error(error);
-  document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="6">${error.message}</td></tr>`;
+  document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="4">${error.message}</td></tr>`;
 });
