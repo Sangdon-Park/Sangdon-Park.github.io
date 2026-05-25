@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-05-25T07:44:56Z",
+  "updated_at": "2026-05-25T07:45:30Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -23,6 +23,15 @@
       "submitted_rows": 1320,
       "scored_at": "2026-05-25T07:42:20Z",
       "rank": 2
+    },
+    {
+      "team": "튜닝혼합일",
+      "score": 0.492882,
+      "score_split": "final",
+      "rows": 840,
+      "submitted_rows": 1320,
+      "scored_at": "2026-05-25T07:45:30Z",
+      "rank": 3
     }
   ],
   "invalid": []
