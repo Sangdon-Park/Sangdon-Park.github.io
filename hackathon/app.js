@@ -3,7 +3,8 @@ const formatter = new Intl.NumberFormat("ko-KR", {
 });
 
 async function loadJson(url) {
-  const response = await fetch(url, { cache: "no-store" });
+  const separator = url.includes("?") ? "&" : "?";
+  const response = await fetch(`${url}${separator}v=${Date.now()}`, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`${url} 파일을 불러오지 못했습니다.`);
   }
