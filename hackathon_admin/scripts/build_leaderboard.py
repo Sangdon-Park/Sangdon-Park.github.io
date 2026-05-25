@@ -27,7 +27,6 @@ def build_leaderboard(
             result = score_submission(path, answers, config, team=path.stem, score_split=score_split)
             entry = {
                 "team": result["team"],
-                "participant_id": result["team"],
                 "score": result["score"],
                 "raw_score": result["raw_score"],
                 "score_split": result.get("score_split", "all"),

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +11,7 @@ SENSITIVE_ENTRY_FIELDS = {
     "component_scores",
     "filename",
     "head_sha",
+    "participant_id",
     "raw_score",
     "submission_file",
 }
@@ -32,19 +32,10 @@ def read_json(path: str | Path, default: dict[str, Any] | None = None) -> dict[s
     return json.loads(source.read_text(encoding="utf-8"))
 
 
-def participant_id(team: str, meta: dict[str, Any]) -> str:
-    login = str(meta.get("github_login") or "").strip()
-    if login:
-        digest = hashlib.sha256(login.lower().encode("utf-8")).hexdigest()[:16]
-        return f"gh:{digest}"
-    return team
-
-
 def public_entry(score: dict[str, Any], meta: dict[str, Any]) -> dict[str, Any]:
     team = str(score["team"])
     return {
         "team": team,
-        "participant_id": participant_id(team, meta),
         "score": score["score"],
         "score_split": score.get("score_split", "all"),
         "rows": score["rows"],
@@ -54,16 +45,13 @@ def public_entry(score: dict[str, Any], meta: dict[str, Any]) -> dict[str, Any]:
 
 
 def sanitize_entry(entry: dict[str, Any]) -> dict[str, Any]:
-    clean = {key: value for key, value in entry.items() if key not in SENSITIVE_ENTRY_FIELDS}
-    if "participant_id" not in clean:
-        clean["participant_id"] = str(clean.get("team") or "")
-    return clean
+    return {key: value for key, value in entry.items() if key not in SENSITIVE_ENTRY_FIELDS}
 
 
 def same_participant(left: dict[str, Any], right: dict[str, Any]) -> bool:
     left_id = str(left.get("participant_id") or "")
     right_id = str(right.get("participant_id") or "")
-    if left_id and right_id:
+    if left_id and right_id and left_id == right_id:
         return left_id == right_id
     return str(left.get("team") or "") == str(right.get("team") or "")
 
