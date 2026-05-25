@@ -71,7 +71,7 @@ function renderDatasets(catalog) {
 
 async function init() {
   const [leaderboard, catalog, config] = await Promise.all([
-    loadJson("data/leaderboard.json"),
+    loadJson("data/leaderboard-public.json"),
     loadJson("data/datasets.json"),
     loadJson("data/config.json")
   ]);
