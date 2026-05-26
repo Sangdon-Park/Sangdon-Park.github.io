@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-05-26T01:54:45Z",
+  "updated_at": "2026-05-26T02:47:58Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -75,7 +75,7 @@
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
-      "scored_at": "2026-05-26T01:32:22Z",
+      "scored_at": "2026-05-26T02:47:58Z",
       "rank": 8
     },
     {
