@@ -97,7 +97,7 @@
           <article>
             <span class="step-no">6</span>
             <h3>채점 결과 확인</h3>
-            <p>유효한 제출은 숨겨진 정답 label로 채점됩니다. 공개 리더보드에는 순위와 총점만 반영되며, 제출 CSV와 데이터셋별 세부 점수는 공개하지 않습니다.</p>
+            <p>유효한 제출은 숨겨진 정답 label로 채점됩니다. 공개 리더보드에는 순위와 총점만 반영되며, 제출 CSV와 데이터셋별 세부 점수는 공개하지 않습니다. 동점이면 먼저 제출한 사람이 앞 순위입니다.</p>
           </article>
         </div>
         <div class="path-box">
@@ -132,7 +132,7 @@
         <ul>
           <li>제출은 GitHub 계정 기준 한국 시간 하루 3회까지만 채점됩니다.</li>
           <li>공개 GitHub PR은 예측값이 노출되므로 채점하지 않습니다.</li>
-          <li>리더보드는 숨겨진 정답 label 기준의 총점만 공개합니다.</li>
+          <li>리더보드는 숨겨진 정답 label 기준의 총점만 공개하며, 동점이면 먼저 제출한 사람이 앞 순위입니다.</li>
           <li>두 데이터셋을 모두 제출해야 하며, 한쪽만 잘 맞추는 전략은 최종 점수에서 불리합니다.</li>
           <li>데이터에는 누락값, 범주형 shift, 시점 변화, decoy feature가 포함되어 있습니다.</li>
           <li>모델 종류는 제한하지 않습니다. 단, 제출 파일은 예측 CSV 하나만 받습니다.</li>
@@ -163,7 +163,7 @@
           <div>
             <p class="eyebrow">Leaderboard</p>
             <h2>공개 순위표</h2>
-            <p class="section-copy">순위표는 숨겨진 정답 label 기준입니다. test feature와 id는 공개하지만 target, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다.</p>
+            <p class="section-copy">순위표는 숨겨진 정답 label 기준입니다. test feature와 id는 공개하지만 target, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다. 동점은 먼저 제출한 순서로 정렬합니다.</p>
           </div>
           <span class="updated">업데이트: <strong id="updated-at">대기 중</strong></span>
         </div>
@@ -276,7 +276,7 @@ credit,credit_00908,0.1844</code></pre>
           </div>
           <div>
             <dt>순위표 점수가 공식 점수인가요?</dt>
-            <dd>네. 숨겨진 정답 label로 계산한 공식 점수입니다. target 값, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다.</dd>
+            <dd>네. 숨겨진 정답 label로 계산한 공식 점수입니다. target 값, 제출 CSV, 데이터셋별 세부 점수는 공개하지 않습니다. 동점이면 먼저 제출한 사람이 앞 순위입니다.</dd>
           </div>
         </dl>
       </section>
