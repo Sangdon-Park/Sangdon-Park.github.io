@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-05-30T10:45:26Z",
+  "updated_at": "2026-05-30T10:59:44Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -44,11 +44,11 @@
     },
     {
       "team": "이평안",
-      "score": 0.625924,
+      "score": 0.627445,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
-      "scored_at": "2026-05-30T10:45:26Z",
+      "scored_at": "2026-05-30T10:59:44Z",
       "rank": 5
     },
     {
