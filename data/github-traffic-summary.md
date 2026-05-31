@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-05-30T01:16:26Z`
+- Last Synced (UTC): `2026-05-31T01:25:17Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 41 | 4 |
-| Clones | 1166 | 411 |
+| Views | 42 | 5 |
+| Clones | 1317 | 454 |
 
 ## Daily Views
 
@@ -116,6 +116,7 @@
 | 2026-05-26 | 10 | 3 |
 | 2026-05-27 | 0 | 0 |
 | 2026-05-28 | 3 | 1 |
+| 2026-05-29 | 1 | 1 |
 
 ## Daily Clones
 
@@ -223,12 +224,13 @@
 | 2026-05-26 | 332 | 136 |
 | 2026-05-27 | 53 | 26 |
 | 2026-05-28 | 54 | 30 |
+| 2026-05-29 | 168 | 54 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 18 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 19 | 5 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 5 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 4 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 3 | 1 |
