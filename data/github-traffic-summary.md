@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-05-31T01:25:17Z`
+- Last Synced (UTC): `2026-06-01T01:28:10Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 42 | 5 |
-| Clones | 1317 | 454 |
+| Views | 53 | 5 |
+| Clones | 1661 | 542 |
 
 ## Daily Views
 
@@ -117,6 +117,7 @@
 | 2026-05-27 | 0 | 0 |
 | 2026-05-28 | 3 | 1 |
 | 2026-05-29 | 1 | 1 |
+| 2026-05-30 | 11 | 1 |
 
 ## Daily Clones
 
@@ -225,21 +226,22 @@
 | 2026-05-27 | 53 | 26 |
 | 2026-05-28 | 54 | 30 |
 | 2026-05-29 | 168 | 54 |
+| 2026-05-30 | 357 | 99 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 19 | 5 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 24 | 5 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 5 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 4 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 4 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/graphs/contributors | /graphs/contributors | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/pulls | /pulls | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/contributors | /graphs/contributors | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/actions/runs/26685955977/job/78654091699 | /actions/runs/26685955977/job/78654091699 | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pdf | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pdf | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/9장_정규화.pptx | /blob/main/data/DB시스템/9장_정규화.pptx | 1 | 1 |
 
 ## Top Referrers
 
