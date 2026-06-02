@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-01T01:28:10Z`
+- Last Synced (UTC): `2026-06-02T01:26:32Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 53 | 5 |
-| Clones | 1661 | 542 |
+| Views | 60 | 6 |
+| Clones | 1771 | 565 |
 
 ## Daily Views
 
@@ -118,6 +118,7 @@
 | 2026-05-28 | 3 | 1 |
 | 2026-05-29 | 1 | 1 |
 | 2026-05-30 | 11 | 1 |
+| 2026-05-31 | 7 | 2 |
 
 ## Daily Clones
 
@@ -227,24 +228,25 @@
 | 2026-05-28 | 54 | 30 |
 | 2026-05-29 | 168 | 54 |
 | 2026-05-30 | 357 | 99 |
+| 2026-05-31 | 138 | 49 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 24 | 5 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 28 | 6 |
+| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 6 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 5 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 4 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 4 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/graphs/contributors | /graphs/contributors | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/pulls | /pulls | 3 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions/runs/26685955977/job/78654091699 | /actions/runs/26685955977/job/78654091699 | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/AGENTS.md | /blob/main/AGENTS.md | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pdf | /blob/main/data/DB시스템/7장_섹션2_데이터조작_기본_박상돈.pdf | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 11 | 1 |
+| github.com | 14 | 2 |
