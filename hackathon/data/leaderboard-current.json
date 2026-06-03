@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-03T13:44:36Z",
+  "updated_at": "2026-06-03T14:17:30Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -62,11 +62,11 @@
     },
     {
       "team": "나준희",
-      "score": 0.64246,
+      "score": 0.642743,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
-      "scored_at": "2026-06-03T13:14:11Z",
+      "scored_at": "2026-06-03T14:17:30Z",
       "rank": 7
     },
     {
