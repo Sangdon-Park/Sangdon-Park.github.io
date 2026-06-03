@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-03T15:03:01Z",
+  "updated_at": "2026-06-03T15:15:47Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -61,13 +61,22 @@
       "rank": 6
     },
     {
+      "team": "이평안",
+      "score": 0.65194,
+      "score_split": "final",
+      "rows": 840,
+      "submitted_rows": 1320,
+      "scored_at": "2026-06-03T15:15:47Z",
+      "rank": 7
+    },
+    {
       "team": "이민욱",
       "score": 0.645722,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-05-26T14:59:15Z",
-      "rank": 7
+      "rank": 8
     },
     {
       "team": "나준희",
@@ -76,7 +85,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-03T14:17:30Z",
-      "rank": 8
+      "rank": 9
     },
     {
       "team": "박상돈",
@@ -85,7 +94,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-05-31T01:43:54Z",
-      "rank": 9
+      "rank": 10
     },
     {
       "team": "임재민",
@@ -94,7 +103,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-02T06:22:36Z",
-      "rank": 10
+      "rank": 11
     },
     {
       "team": "황경민",
@@ -103,15 +112,6 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-02T00:27:27Z",
-      "rank": 11
-    },
-    {
-      "team": "이평안",
-      "score": 0.627445,
-      "score_split": "final",
-      "rows": 840,
-      "submitted_rows": 1320,
-      "scored_at": "2026-05-30T10:59:44Z",
       "rank": 12
     },
     {
