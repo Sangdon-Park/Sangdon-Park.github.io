@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-03T01:30:44Z`
+- Last Synced (UTC): `2026-06-04T01:31:56Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 61 | 6 |
-| Clones | 2091 | 636 |
+| Views | 85 | 9 |
+| Clones | 2311 | 657 |
 
 ## Daily Views
 
@@ -120,6 +120,7 @@
 | 2026-05-30 | 11 | 1 |
 | 2026-05-31 | 7 | 2 |
 | 2026-06-01 | 5 | 2 |
+| 2026-06-02 | 45 | 6 |
 
 ## Daily Clones
 
@@ -231,24 +232,25 @@
 | 2026-05-30 | 357 | 99 |
 | 2026-05-31 | 138 | 49 |
 | 2026-06-01 | 338 | 114 |
+| 2026-06-02 | 497 | 116 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 29 | 6 |
-| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 6 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 4 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 4 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/graphs/contributors | /graphs/contributors | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/pulls | /pulls | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/8장_데이터베이스설계.pptx | /blob/main/data/DB시스템/8장_데이터베이스설계.pptx | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/actions/runs/26685955977/job/78654091699 | /actions/runs/26685955977/job/78654091699 | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/AGENTS.md | /blob/main/AGENTS.md | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | /blob/main/data/DB시스템/7장_섹션1_SQL소개_데이터정의_박상돈.pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 33 | 8 |
+| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 10 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 5 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 4 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 4 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data | /tree/main/hackathon/data | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon_admin/private_submissions/.gitkeep | /blob/main/hackathon_admin/private_submissions/.gitkeep | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/answers | /tree/main/hackathon_admin/answers | 2 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 14 | 2 |
+| github.com | 12 | 3 |
