@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-04T16:02:02Z",
+  "updated_at": "2026-06-05T02:15:52Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -107,11 +107,11 @@
     },
     {
       "team": "임재민",
-      "score": 0.634808,
+      "score": 0.636408,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
-      "scored_at": "2026-06-03T17:48:55Z",
+      "scored_at": "2026-06-05T02:15:52Z",
       "rank": 12
     },
     {
