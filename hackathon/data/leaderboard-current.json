@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-05T02:53:17Z",
+  "updated_at": "2026-06-05T10:02:06Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -26,11 +26,11 @@
     },
     {
       "team": "임백균",
-      "score": 0.663304,
+      "score": 0.663656,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
-      "scored_at": "2026-06-05T02:35:55Z",
+      "scored_at": "2026-06-05T10:02:06Z",
       "rank": 3
     },
     {
