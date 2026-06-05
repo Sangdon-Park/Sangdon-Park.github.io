@@ -1,20 +1,20 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-06-04T01:31:56Z",
+  "synced_at": "2026-06-05T01:22:13Z",
   "views": {
-    "count": 85,
-    "uniques": 9
+    "count": 103,
+    "uniques": 12
   },
   "clones": {
-    "count": 2311,
-    "uniques": 657
+    "count": 2563,
+    "uniques": 707
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 33,
-      "uniques": 8
+      "count": 35,
+      "uniques": 10
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/commits/main",
@@ -25,8 +25,14 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
       "title": "/tree/main/hackathon_admin",
-      "count": 5,
-      "uniques": 1
+      "count": 6,
+      "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
+      "title": "/tree/main/hackathon",
+      "count": 4,
+      "uniques": 3
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
@@ -41,8 +47,8 @@
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
-      "title": "/tree/main/hackathon",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon",
+      "title": "/tree/main/hakathon",
       "count": 3,
       "uniques": 2
     },
@@ -59,14 +65,8 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
-      "count": 2,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/answers",
-      "title": "/tree/main/hackathon_admin/answers",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/pull/4",
+      "title": "/pull/4",
       "count": 2,
       "uniques": 1
     }
