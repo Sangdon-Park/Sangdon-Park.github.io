@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-08T01:57:25Z",
+  "updated_at": "2026-06-08T01:59:42Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -79,13 +79,22 @@
       "rank": 8
     },
     {
+      "team": "김지수",
+      "score": 0.663798,
+      "score_split": "final",
+      "rows": 840,
+      "submitted_rows": 1320,
+      "scored_at": "2026-06-08T01:59:42Z",
+      "rank": 9
+    },
+    {
       "team": "박동준",
       "score": 0.662629,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-06T04:38:44Z",
-      "rank": 9
+      "rank": 10
     },
     {
       "team": "김우빈",
@@ -94,15 +103,6 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-04T10:23:19Z",
-      "rank": 10
-    },
-    {
-      "team": "김지수",
-      "score": 0.662538,
-      "score_split": "final",
-      "rows": 840,
-      "submitted_rows": 1320,
-      "scored_at": "2026-06-07T13:53:32Z",
       "rank": 11
     },
     {
