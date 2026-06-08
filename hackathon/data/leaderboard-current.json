@@ -1,6 +1,6 @@
 {
   "competition_name": "Tabular ML Challenge",
-  "updated_at": "2026-06-08T02:17:37Z",
+  "updated_at": "2026-06-08T02:21:07Z",
   "metric": "weighted_mean_roc_auc",
   "base_metric": "roc_auc",
   "score_split": "final",
@@ -16,13 +16,22 @@
       "rank": 1
     },
     {
+      "team": "박유민",
+      "score": 0.668211,
+      "score_split": "final",
+      "rows": 840,
+      "submitted_rows": 1320,
+      "scored_at": "2026-06-08T02:21:07Z",
+      "rank": 2
+    },
+    {
       "team": "황경민",
       "score": 0.667372,
       "score_split": "final",
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-08T02:17:37Z",
-      "rank": 2
+      "rank": 3
     },
     {
       "team": "나준희",
@@ -31,7 +40,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-08T02:05:05Z",
-      "rank": 3
+      "rank": 4
     },
     {
       "team": "이민욱",
@@ -40,7 +49,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-06T16:01:48Z",
-      "rank": 4
+      "rank": 5
     },
     {
       "team": "이평안",
@@ -49,7 +58,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-08T02:01:52Z",
-      "rank": 5
+      "rank": 6
     },
     {
       "team": "정세희",
@@ -58,7 +67,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-05T15:53:14Z",
-      "rank": 6
+      "rank": 7
     },
     {
       "team": "임백균",
@@ -67,7 +76,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-08T01:13:18Z",
-      "rank": 7
+      "rank": 8
     },
     {
       "team": "육민호",
@@ -76,7 +85,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-06T14:41:13Z",
-      "rank": 8
+      "rank": 9
     },
     {
       "team": "김지수",
@@ -85,7 +94,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-08T02:05:37Z",
-      "rank": 9
+      "rank": 10
     },
     {
       "team": "박동준",
@@ -94,7 +103,7 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-06T04:38:44Z",
-      "rank": 10
+      "rank": 11
     },
     {
       "team": "김우빈",
@@ -103,15 +112,6 @@
       "rows": 840,
       "submitted_rows": 1320,
       "scored_at": "2026-06-04T10:23:19Z",
-      "rank": 11
-    },
-    {
-      "team": "박유민",
-      "score": 0.660916,
-      "score_split": "final",
-      "rows": 840,
-      "submitted_rows": 1320,
-      "scored_at": "2026-06-01T04:30:51Z",
       "rank": 12
     },
     {
