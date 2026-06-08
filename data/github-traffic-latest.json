@@ -1,20 +1,20 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-06-07T01:26:04Z",
+  "synced_at": "2026-06-08T01:26:39Z",
   "views": {
-    "count": 113,
-    "uniques": 14
+    "count": 127,
+    "uniques": 15
   },
   "clones": {
-    "count": 2880,
-    "uniques": 786
+    "count": 3204,
+    "uniques": 869
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 36,
-      "uniques": 11
+      "count": 39,
+      "uniques": 12
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/commits/main",
@@ -23,22 +23,22 @@
       "uniques": 1
     },
     {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
+      "title": "/tree/main/hackathon_admin",
+      "count": 8,
+      "uniques": 3
+    },
+    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
       "count": 6,
       "uniques": 3
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
-      "title": "/tree/main/hackathon_admin",
-      "count": 6,
-      "uniques": 2
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
       "title": "/tree/main/hackathon",
-      "count": 4,
-      "uniques": 3
+      "count": 5,
+      "uniques": 4
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
@@ -47,28 +47,28 @@
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon",
-      "title": "/tree/main/hakathon",
-      "count": 3,
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions",
+      "title": "/tree/main/hackathon_admin/private_submissions",
+      "count": 4,
       "uniques": 2
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data",
       "title": "/tree/main/hackathon/data",
-      "count": 2,
-      "uniques": 2
+      "count": 3,
+      "uniques": 3
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon_admin/private_submissions/.gitkeep",
       "title": "/blob/main/hackathon_admin/private_submissions/.gitkeep",
-      "count": 2,
-      "uniques": 1
+      "count": 3,
+      "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/pull/4",
-      "title": "/pull/4",
-      "count": 2,
-      "uniques": 1
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon",
+      "title": "/tree/main/hakathon",
+      "count": 3,
+      "uniques": 2
     }
   ],
   "top_referrers": [
