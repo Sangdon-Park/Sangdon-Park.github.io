@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-11T01:24:39Z`
+- Last Synced (UTC): `2026-06-12T01:27:37Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 127 | 15 |
-| Clones | 5617 | 967 |
+| Views | 126 | 15 |
+| Clones | 5335 | 863 |
 
 ## Daily Views
 
@@ -127,6 +127,8 @@
 | 2026-06-06 | 14 | 3 |
 | 2026-06-07 | 1 | 1 |
 | 2026-06-08 | 2 | 1 |
+| 2026-06-09 | 9 | 2 |
+| 2026-06-10 | 0 | 0 |
 
 ## Daily Clones
 
@@ -245,24 +247,26 @@
 | 2026-06-06 | 336 | 103 |
 | 2026-06-07 | 2229 | 108 |
 | 2026-06-08 | 425 | 101 |
+| 2026-06-09 | 22 | 14 |
+| 2026-06-10 | 81 | 25 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 37 | 12 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 35 | 11 |
 | /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 10 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 8 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 5 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 4 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 4 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data | /tree/main/hackathon/data | 3 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon_admin/private_submissions/.gitkeep | /blob/main/hackathon_admin/private_submissions/.gitkeep | 3 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon | /tree/main/hakathon | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 2 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 12 | 3 |
+| github.com | 7 | 3 |
