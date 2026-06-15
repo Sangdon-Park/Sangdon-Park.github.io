@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-14T01:28:49Z`
+- Last Synced (UTC): `2026-06-15T01:31:00Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 123 | 14 |
-| Clones | 5197 | 809 |
+| Views | 112 | 14 |
+| Clones | 4969 | 766 |
 
 ## Daily Views
 
@@ -131,6 +131,7 @@
 | 2026-06-10 | 0 | 0 |
 | 2026-06-11 | 1 | 1 |
 | 2026-06-12 | 0 | 0 |
+| 2026-06-13 | 0 | 0 |
 
 ## Daily Clones
 
@@ -253,15 +254,16 @@
 | 2026-06-10 | 81 | 25 |
 | 2026-06-11 | 57 | 17 |
 | 2026-06-12 | 27 | 8 |
+| 2026-06-13 | 129 | 39 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 31 | 10 |
-| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 10 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 26 | 10 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 8 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 7 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 6 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 5 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 4 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 4 | 2 |
