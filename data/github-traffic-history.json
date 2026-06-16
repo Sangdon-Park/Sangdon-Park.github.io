@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-06-15T01:31:00Z",
+  "updated_at": "2026-06-16T01:31:22Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -472,6 +472,10 @@
       "uniques": 0
     },
     "2026-06-13": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-06-14": {
       "count": 0,
       "uniques": 0
     }
@@ -948,6 +952,10 @@
     "2026-06-13": {
       "count": 129,
       "uniques": 39
+    },
+    "2026-06-14": {
+      "count": 213,
+      "uniques": 67
     }
   },
   "snapshots": [
@@ -1798,25 +1806,33 @@
       "views_uniques": 14,
       "clones_count": 4969,
       "clones_uniques": 766
+    },
+    {
+      "date": "2026-06-16",
+      "synced_at": "2026-06-16T01:31:22Z",
+      "views_count": 105,
+      "views_uniques": 13,
+      "clones_count": 5044,
+      "clones_uniques": 792
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-06-15T01:31:00Z",
+    "synced_at": "2026-06-16T01:31:22Z",
     "views": {
-      "count": 112,
-      "uniques": 14
+      "count": 105,
+      "uniques": 13
     },
     "clones": {
-      "count": 4969,
-      "uniques": 766
+      "count": 5044,
+      "uniques": 792
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Overview",
-        "count": 26,
-        "uniques": 10
+        "count": 22,
+        "uniques": 9
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
@@ -1829,12 +1845,6 @@
         "title": "/tree/main/data/DB시스템",
         "count": 7,
         "uniques": 4
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/commits/main",
-        "title": "/commits/main",
-        "count": 6,
-        "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
@@ -1853,6 +1863,12 @@
         "title": "/tree/main/hackathon_admin/private_submissions",
         "count": 4,
         "uniques": 2
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/commits/main",
+        "title": "/commits/main",
+        "count": 4,
+        "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data",
@@ -1876,8 +1892,8 @@
     "top_referrers": [
       {
         "referrer": "github.com",
-        "count": 7,
-        "uniques": 3
+        "count": 4,
+        "uniques": 2
       }
     ]
   }
