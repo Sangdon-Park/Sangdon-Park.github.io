@@ -1,56 +1,26 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-06-17T01:30:25Z",
+  "synced_at": "2026-06-18T01:27:01Z",
   "views": {
-    "count": 106,
-    "uniques": 14
+    "count": 61,
+    "uniques": 10
   },
   "clones": {
-    "count": 4828,
-    "uniques": 719
+    "count": 4429,
+    "uniques": 640
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 20,
-      "uniques": 9
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
-      "title": "/tree/main/data/DB시스템",
       "count": 8,
       "uniques": 5
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
-      "title": "/tree/main/hackathon_admin",
-      "count": 8,
-      "uniques": 3
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
-      "title": "/tree/main/hackathon",
-      "count": 5,
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
+      "title": "/tree/main/data/DB시스템",
+      "count": 6,
       "uniques": 4
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
-      "title": "/tree/main",
-      "count": 5,
-      "uniques": 3
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions",
-      "title": "/tree/main/hackathon_admin/private_submissions",
-      "count": 4,
-      "uniques": 2
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/commits/main",
-      "title": "/commits/main",
-      "count": 4,
-      "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
@@ -59,23 +29,53 @@
       "uniques": 3
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data",
-      "title": "/tree/main/hackathon/data",
-      "count": 3,
-      "uniques": 3
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon_admin/private_submissions/.gitkeep",
-      "title": "/blob/main/hackathon_admin/private_submissions/.gitkeep",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
+      "title": "/tree/main/hackathon_admin",
       "count": 3,
       "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon",
+      "title": "/tree/main/hakathon",
+      "count": 3,
+      "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
+      "title": "/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
+      "count": 2,
+      "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
+      "title": "/tree/main/hackathon",
+      "count": 2,
+      "uniques": 2
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/pull/4",
+      "title": "/pull/4",
+      "count": 2,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions",
+      "title": "/tree/main/hackathon_admin/private_submissions",
+      "count": 2,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html",
+      "title": "/blob/main/courses/artificial-intelligence-2026-spring.html",
+      "count": 1,
+      "uniques": 1
     }
   ],
   "top_referrers": [
     {
       "referrer": "github.com",
-      "count": 4,
-      "uniques": 2
+      "count": 3,
+      "uniques": 1
     }
   ]
 }

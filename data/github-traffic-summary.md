@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-17T01:30:25Z`
+- Last Synced (UTC): `2026-06-18T01:27:01Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 106 | 14 |
-| Clones | 4828 | 719 |
+| Views | 61 | 10 |
+| Clones | 4429 | 640 |
 
 ## Daily Views
 
@@ -134,6 +134,7 @@
 | 2026-06-13 | 0 | 0 |
 | 2026-06-14 | 0 | 0 |
 | 2026-06-15 | 6 | 1 |
+| 2026-06-16 | 0 | 0 |
 
 ## Daily Clones
 
@@ -259,24 +260,25 @@
 | 2026-06-13 | 129 | 39 |
 | 2026-06-14 | 213 | 67 |
 | 2026-06-15 | 122 | 35 |
+| 2026-06-16 | 98 | 29 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 20 | 9 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 8 | 5 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 8 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 5 | 4 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 5 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 4 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/commits/main | /commits/main | 4 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 8 | 5 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon/data | /tree/main/hackathon/data | 3 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon_admin/private_submissions/.gitkeep | /blob/main/hackathon_admin/private_submissions/.gitkeep | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon | /tree/main/hakathon | 3 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | /blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/pull/4 | /pull/4 | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html | /blob/main/courses/artificial-intelligence-2026-spring.html | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 4 | 2 |
+| github.com | 3 | 1 |
