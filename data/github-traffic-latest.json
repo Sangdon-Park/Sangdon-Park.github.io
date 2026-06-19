@@ -1,24 +1,24 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-06-18T01:27:01Z",
+  "synced_at": "2026-06-19T01:33:17Z",
   "views": {
-    "count": 61,
-    "uniques": 10
+    "count": 45,
+    "uniques": 8
   },
   "clones": {
-    "count": 4429,
-    "uniques": 640
+    "count": 4211,
+    "uniques": 585
   },
   "top_paths": [
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io",
-      "title": "Overview",
-      "count": 8,
-      "uniques": 5
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
       "title": "/tree/main/data/DB시스템",
+      "count": 7,
+      "uniques": 4
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io",
+      "title": "Overview",
       "count": 6,
       "uniques": 4
     },
@@ -29,32 +29,20 @@
       "uniques": 3
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
-      "title": "/tree/main/hackathon_admin",
-      "count": 3,
-      "uniques": 2
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon",
-      "title": "/tree/main/hakathon",
-      "count": 3,
-      "uniques": 2
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
       "title": "/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
       "count": 2,
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon",
-      "title": "/tree/main/hackathon",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
+      "title": "/tree/main",
       "count": 2,
       "uniques": 2
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/pull/4",
-      "title": "/pull/4",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin",
+      "title": "/tree/main/hackathon_admin",
       "count": 2,
       "uniques": 1
     },
@@ -67,6 +55,18 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html",
       "title": "/blob/main/courses/artificial-intelligence-2026-spring.html",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx",
+      "title": "/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon/data/config.json",
+      "title": "/blob/main/hackathon/data/config.json",
       "count": 1,
       "uniques": 1
     }

@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-18T01:27:01Z`
+- Last Synced (UTC): `2026-06-19T01:33:17Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 61 | 10 |
-| Clones | 4429 | 640 |
+| Views | 45 | 8 |
+| Clones | 4211 | 585 |
 
 ## Daily Views
 
@@ -135,6 +135,7 @@
 | 2026-06-14 | 0 | 0 |
 | 2026-06-15 | 6 | 1 |
 | 2026-06-16 | 0 | 0 |
+| 2026-06-17 | 2 | 1 |
 
 ## Daily Clones
 
@@ -261,21 +262,22 @@
 | 2026-06-14 | 213 | 67 |
 | 2026-06-15 | 122 | 35 |
 | 2026-06-16 | 98 | 29 |
+| 2026-06-17 | 79 | 27 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 8 | 5 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 7 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 6 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 3 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hakathon | /tree/main/hakathon | 3 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | /blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | 2 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon | /tree/main/hackathon | 2 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/pull/4 | /pull/4 | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html | /blob/main/courses/artificial-intelligence-2026-spring.html | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | /blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon/data/config.json | /blob/main/hackathon/data/config.json | 1 | 1 |
 
 ## Top Referrers
 
