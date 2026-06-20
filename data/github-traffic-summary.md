@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-19T01:33:17Z`
+- Last Synced (UTC): `2026-06-20T01:22:31Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 45 | 8 |
-| Clones | 4211 | 585 |
+| Views | 37 | 7 |
+| Clones | 4152 | 561 |
 
 ## Daily Views
 
@@ -136,6 +136,7 @@
 | 2026-06-15 | 6 | 1 |
 | 2026-06-16 | 0 | 0 |
 | 2026-06-17 | 2 | 1 |
+| 2026-06-18 | 0 | 0 |
 
 ## Daily Clones
 
@@ -263,13 +264,14 @@
 | 2026-06-15 | 122 | 35 |
 | 2026-06-16 | 98 | 29 |
 | 2026-06-17 | 79 | 27 |
+| 2026-06-18 | 85 | 31 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 7 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io | Overview | 6 | 4 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | /blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | 2 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 2 | 2 |
