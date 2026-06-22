@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-21T01:31:03Z`
+- Last Synced (UTC): `2026-06-22T01:30:47Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 36 | 7 |
-| Clones | 4089 | 551 |
+| Views | 22 | 5 |
+| Clones | 3796 | 480 |
 
 ## Daily Views
 
@@ -138,6 +138,7 @@
 | 2026-06-17 | 2 | 1 |
 | 2026-06-18 | 0 | 0 |
 | 2026-06-19 | 1 | 1 |
+| 2026-06-20 | 0 | 0 |
 
 ## Daily Clones
 
@@ -267,21 +268,22 @@
 | 2026-06-17 | 79 | 27 |
 | 2026-06-18 | 85 | 31 |
 | 2026-06-19 | 186 | 55 |
+| 2026-06-20 | 43 | 17 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 3 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | /blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | 2 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 2 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin | /tree/main/hackathon_admin | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/hackathon_admin/private_submissions | /tree/main/hackathon_admin/private_submissions | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html | /blob/main/courses/artificial-intelligence-2026-spring.html | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | /blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/hackathon/data/config.json | /blob/main/hackathon/data/config.json | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/commit/753e9d8df146d2e660c627754efe22f50eaa848c | /commit/753e9d8df146d2e660c627754efe22f50eaa848c | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/compare/main | /compare/main | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/courses | /tree/main/courses | 1 | 1 |
 
 ## Top Referrers
 
