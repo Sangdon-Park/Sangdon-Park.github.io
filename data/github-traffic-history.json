@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-06-22T01:30:47Z",
+  "updated_at": "2026-06-23T01:15:48Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -500,6 +500,10 @@
       "uniques": 1
     },
     "2026-06-20": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-06-21": {
       "count": 0,
       "uniques": 0
     }
@@ -1004,6 +1008,10 @@
     "2026-06-20": {
       "count": 43,
       "uniques": 17
+    },
+    "2026-06-21": {
+      "count": 27,
+      "uniques": 11
     }
   },
   "snapshots": [
@@ -1910,18 +1918,26 @@
       "views_uniques": 5,
       "clones_count": 3796,
       "clones_uniques": 480
+    },
+    {
+      "date": "2026-06-23",
+      "synced_at": "2026-06-23T01:15:48Z",
+      "views_count": 21,
+      "views_uniques": 5,
+      "clones_count": 1594,
+      "clones_uniques": 398
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-06-22T01:30:47Z",
+    "synced_at": "2026-06-23T01:15:48Z",
     "views": {
-      "count": 22,
+      "count": 21,
       "uniques": 5
     },
     "clones": {
-      "count": 3796,
-      "uniques": 480
+      "count": 1594,
+      "uniques": 398
     },
     "top_paths": [
       {
@@ -1951,7 +1967,7 @@
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Overview",
-        "count": 2,
+        "count": 1,
         "uniques": 1
       },
       {
