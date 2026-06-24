@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-06-23T01:15:48Z",
+  "updated_at": "2026-06-24T01:14:23Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -504,6 +504,10 @@
       "uniques": 0
     },
     "2026-06-21": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-06-22": {
       "count": 0,
       "uniques": 0
     }
@@ -1012,6 +1016,10 @@
     "2026-06-21": {
       "count": 27,
       "uniques": 11
+    },
+    "2026-06-22": {
+      "count": 15,
+      "uniques": 6
     }
   },
   "snapshots": [
@@ -1926,18 +1934,26 @@
       "views_uniques": 5,
       "clones_count": 1594,
       "clones_uniques": 398
+    },
+    {
+      "date": "2026-06-24",
+      "synced_at": "2026-06-24T01:14:23Z",
+      "views_count": 19,
+      "views_uniques": 4,
+      "clones_count": 1184,
+      "clones_uniques": 314
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-06-23T01:15:48Z",
+    "synced_at": "2026-06-24T01:14:23Z",
     "views": {
-      "count": 21,
-      "uniques": 5
+      "count": 19,
+      "uniques": 4
     },
     "clones": {
-      "count": 1594,
-      "uniques": 398
+      "count": 1184,
+      "uniques": 314
     },
     "top_paths": [
       {
@@ -1983,20 +1999,20 @@
         "uniques": 1
       },
       {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/commit/753e9d8df146d2e660c627754efe22f50eaa848c",
-        "title": "/commit/753e9d8df146d2e660c627754efe22f50eaa848c",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/compare/main",
-        "title": "/compare/main",
-        "count": 1,
-        "uniques": 1
-      },
-      {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/courses",
         "title": "/tree/main/courses",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
+        "title": "/tree/main/data/인공지능",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/sangdon-Park/Sangdon-Park.github.io",
+        "title": "Overview",
         "count": 1,
         "uniques": 1
       }

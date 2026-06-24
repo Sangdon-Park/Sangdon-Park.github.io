@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-06-23T01:15:48Z",
+  "synced_at": "2026-06-24T01:14:23Z",
   "views": {
-    "count": 21,
-    "uniques": 5
+    "count": 19,
+    "uniques": 4
   },
   "clones": {
-    "count": 1594,
-    "uniques": 398
+    "count": 1184,
+    "uniques": 314
   },
   "top_paths": [
     {
@@ -53,20 +53,20 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/commit/753e9d8df146d2e660c627754efe22f50eaa848c",
-      "title": "/commit/753e9d8df146d2e660c627754efe22f50eaa848c",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/compare/main",
-      "title": "/compare/main",
-      "count": 1,
-      "uniques": 1
-    },
-    {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/courses",
       "title": "/tree/main/courses",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
+      "title": "/tree/main/data/인공지능",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/sangdon-Park/Sangdon-Park.github.io",
+      "title": "Overview",
       "count": 1,
       "uniques": 1
     }
