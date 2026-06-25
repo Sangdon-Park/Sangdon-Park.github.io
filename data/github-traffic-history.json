@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-06-24T01:14:23Z",
+  "updated_at": "2026-06-25T01:18:39Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -508,6 +508,10 @@
       "uniques": 0
     },
     "2026-06-22": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-06-23": {
       "count": 0,
       "uniques": 0
     }
@@ -1020,6 +1024,10 @@
     "2026-06-22": {
       "count": 15,
       "uniques": 6
+    },
+    "2026-06-23": {
+      "count": 28,
+      "uniques": 10
     }
   },
   "snapshots": [
@@ -1942,36 +1950,32 @@
       "views_uniques": 4,
       "clones_count": 1184,
       "clones_uniques": 314
+    },
+    {
+      "date": "2026-06-25",
+      "synced_at": "2026-06-25T01:18:39Z",
+      "views_count": 10,
+      "views_uniques": 2,
+      "clones_count": 1190,
+      "clones_uniques": 312
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-06-24T01:14:23Z",
+    "synced_at": "2026-06-25T01:18:39Z",
     "views": {
-      "count": 19,
-      "uniques": 4
+      "count": 10,
+      "uniques": 2
     },
     "clones": {
-      "count": 1184,
-      "uniques": 314
+      "count": 1190,
+      "uniques": 312
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
         "title": "/tree/main/data/DB시스템",
-        "count": 6,
-        "uniques": 4
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-        "title": "/tree/main/data",
-        "count": 3,
-        "uniques": 3
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
-        "title": "/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx",
-        "count": 2,
+        "count": 4,
         "uniques": 2
       },
       {
@@ -1981,20 +1985,8 @@
         "uniques": 2
       },
       {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io",
-        "title": "Overview",
-        "count": 1,
-        "uniques": 1
-      },
-      {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html",
         "title": "/blob/main/courses/artificial-intelligence-2026-spring.html",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx",
-        "title": "/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx",
         "count": 1,
         "uniques": 1
       },
@@ -2005,24 +1997,18 @@
         "uniques": 1
       },
       {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
-        "title": "/tree/main/data/인공지능",
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+        "title": "/tree/main/data",
         "count": 1,
         "uniques": 1
       },
       {
-        "path": "/sangdon-Park/Sangdon-Park.github.io",
-        "title": "Overview",
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
+        "title": "/tree/main/data/인공지능",
         "count": 1,
         "uniques": 1
       }
     ],
-    "top_referrers": [
-      {
-        "referrer": "github.com",
-        "count": 3,
-        "uniques": 1
-      }
-    ]
+    "top_referrers": []
   }
 }

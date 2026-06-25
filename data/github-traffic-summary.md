@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-24T01:14:23Z`
+- Last Synced (UTC): `2026-06-25T01:18:39Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 19 | 4 |
-| Clones | 1184 | 314 |
+| Views | 10 | 2 |
+| Clones | 1190 | 312 |
 
 ## Daily Views
 
@@ -141,6 +141,7 @@
 | 2026-06-20 | 0 | 0 |
 | 2026-06-21 | 0 | 0 |
 | 2026-06-22 | 0 | 0 |
+| 2026-06-23 | 0 | 0 |
 
 ## Daily Clones
 
@@ -273,24 +274,15 @@
 | 2026-06-20 | 43 | 17 |
 | 2026-06-21 | 27 | 11 |
 | 2026-06-22 | 15 | 6 |
+| 2026-06-23 | 28 | 10 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 6 | 4 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | /blob/main/data/DB시스템/11장_보안과_권한관리_박상돈.pptx | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 4 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 2 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html | /blob/main/courses/artificial-intelligence-2026-spring.html | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | /blob/main/data/DB시스템/11장_데이터베이스보안_연습문제_풀이_박상돈.pptx | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/courses | /tree/main/courses | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능 | /tree/main/data/인공지능 | 1 | 1 |
-| /sangdon-Park/Sangdon-Park.github.io | Overview | 1 | 1 |
-
-## Top Referrers
-
-| Referrer | Views | Unique |
-|---|---:|---:|
-| github.com | 3 | 1 |
