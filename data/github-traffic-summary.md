@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-06-25T01:18:39Z`
+- Last Synced (UTC): `2026-06-26T01:21:33Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 10 | 2 |
-| Clones | 1190 | 312 |
+| Views | 11 | 2 |
+| Clones | 1151 | 307 |
 
 ## Daily Views
 
@@ -142,6 +142,7 @@
 | 2026-06-21 | 0 | 0 |
 | 2026-06-22 | 0 | 0 |
 | 2026-06-23 | 0 | 0 |
+| 2026-06-24 | 1 | 1 |
 
 ## Daily Clones
 
@@ -275,12 +276,13 @@
 | 2026-06-21 | 27 | 11 |
 | 2026-06-22 | 15 | 6 |
 | 2026-06-23 | 28 | 10 |
+| 2026-06-24 | 42 | 17 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 4 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 5 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 2 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html | /blob/main/courses/artificial-intelligence-2026-spring.html | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/courses | /tree/main/courses | 1 | 1 |
