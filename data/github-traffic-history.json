@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-06-30T01:18:42Z",
+  "updated_at": "2026-07-01T01:24:03Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -532,6 +532,10 @@
       "uniques": 0
     },
     "2026-06-28": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-06-29": {
       "count": 0,
       "uniques": 0
     }
@@ -1068,6 +1072,10 @@
     "2026-06-28": {
       "count": 27,
       "uniques": 9
+    },
+    "2026-06-29": {
+      "count": 11,
+      "uniques": 8
     }
   },
   "snapshots": [
@@ -2038,53 +2046,37 @@
       "views_uniques": 2,
       "clones_count": 798,
       "clones_uniques": 217
+    },
+    {
+      "date": "2026-07-01",
+      "synced_at": "2026-07-01T01:24:03Z",
+      "views_count": 4,
+      "views_uniques": 1,
+      "clones_count": 687,
+      "clones_uniques": 190
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-06-30T01:18:42Z",
+    "synced_at": "2026-07-01T01:24:03Z",
     "views": {
-      "count": 10,
-      "uniques": 2
+      "count": 4,
+      "uniques": 1
     },
     "clones": {
-      "count": 798,
-      "uniques": 217
+      "count": 687,
+      "uniques": 190
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템",
         "title": "/tree/main/data/DB시스템",
-        "count": 4,
-        "uniques": 2
+        "count": 3,
+        "uniques": 1
       },
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
         "title": "/tree/main",
-        "count": 2,
-        "uniques": 2
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/courses/artificial-intelligence-2026-spring.html",
-        "title": "/blob/main/courses/artificial-intelligence-2026-spring.html",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/courses",
-        "title": "/tree/main/courses",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-        "title": "/tree/main/data",
-        "count": 1,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/인공지능",
-        "title": "/tree/main/data/인공지능",
         "count": 1,
         "uniques": 1
       }
