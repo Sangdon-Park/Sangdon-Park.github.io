@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-07-09T04:14:24Z`
+- Last Synced (UTC): `2026-07-10T04:15:48Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 1 | 1 |
-| Clones | 270 | 87 |
+| Views | 0 | 0 |
+| Clones | 256 | 80 |
 
 ## Daily Views
 
@@ -156,6 +156,7 @@
 | 2026-07-05 | 0 | 0 |
 | 2026-07-06 | 0 | 0 |
 | 2026-07-07 | 0 | 0 |
+| 2026-07-08 | 0 | 0 |
 
 ## Daily Clones
 
@@ -303,9 +304,4 @@
 | 2026-07-05 | 18 | 10 |
 | 2026-07-06 | 31 | 16 |
 | 2026-07-07 | 32 | 11 |
-
-## Top Paths
-
-| Path | Title | Views | Unique |
-|---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/DB시스템 | /tree/main/data/DB시스템 | 1 | 1 |
+| 2026-07-08 | 28 | 10 |
