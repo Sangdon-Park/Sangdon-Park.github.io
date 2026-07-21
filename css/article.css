@@ -17,7 +17,7 @@
   gap: 8px;
   margin: 0 auto 18px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -41,7 +41,7 @@
   background: var(--accent-soft);
   border: 1px solid rgba(255, 106, 33, 0.28);
   border-radius: 999px;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -63,7 +63,7 @@
   flex-wrap: wrap;
   gap: 10px 18px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -75,14 +75,14 @@
 .article-content {
   color: #3f403c;
   font-family: var(--ko);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.9;
 }
 
 .article-content .lead-paragraph {
   margin-bottom: 30px;
   color: var(--ink);
-  font-size: clamp(18px, 2.2vw, 23px);
+  font-size: clamp(20px, 2.3vw, 25px);
   font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.7;
@@ -152,7 +152,7 @@
   border: 1px solid var(--line);
   border-radius: 0;
   font-family: Consolas, "SFMono-Regular", monospace;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .article-content pre code {
@@ -200,7 +200,7 @@
 
 .giscus-pending {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
 }
 
@@ -225,7 +225,7 @@
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 999px;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
 }
@@ -236,6 +236,6 @@
   }
 
   .article-content {
-    font-size: 15px;
+    font-size: 17px;
   }
 }

@@ -135,7 +135,7 @@ button {
   margin: 0;
   color: var(--ink);
   font-family: var(--ko);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.35;
 }
@@ -143,10 +143,10 @@ button {
 .profile-title {
   grid-column: 2;
   align-self: start;
-  max-height: 29px;
+  max-height: 54px;
   overflow: hidden;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.45;
   letter-spacing: 0.025em;
   text-transform: uppercase;
@@ -190,7 +190,7 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
   background: transparent;
   border: 1px solid var(--line);
   border-radius: 50%;
@@ -211,7 +211,7 @@ button {
 .nav-title {
   margin: 22px 0 8px;
   color: #99968d;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -234,10 +234,10 @@ button {
   display: grid;
   grid-template-columns: 22px 1fr;
   align-items: center;
-  min-height: 36px;
+  min-height: 40px;
   padding: 0;
   color: #85837c;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.025em;
   transition: color 160ms ease, transform 160ms ease;
@@ -246,7 +246,7 @@ button {
 .nav-link i {
   width: 13px;
   color: #aaa79f;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -291,7 +291,7 @@ button {
   background: transparent !important;
   border: 1px solid var(--line) !important;
   border-radius: 0 !important;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.08em;
@@ -340,7 +340,7 @@ button {
 .page-subtitle {
   color: var(--muted);
   font-family: var(--ko);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .hero-banner {
@@ -357,7 +357,7 @@ button {
   display: block;
   margin-bottom: 34px;
   color: var(--orange-deep);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.15em;
 }
@@ -389,7 +389,7 @@ button {
   max-width: 790px;
   color: var(--muted);
   font-family: var(--ko);
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.85;
 }
 
@@ -421,7 +421,7 @@ button {
   align-items: center;
   gap: 7px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -450,7 +450,7 @@ button {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .traffic-item strong {
@@ -487,7 +487,7 @@ button {
 
 .section-subtitle {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -553,7 +553,7 @@ button {
   background: var(--accent-soft);
   border: 1px solid rgba(255, 106, 33, 0.25);
   border-radius: 999px;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -561,7 +561,7 @@ button {
 
 .post-date {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -570,7 +570,7 @@ button {
   margin-bottom: 9px;
   color: var(--ink);
   font-family: var(--ko);
-  font-size: clamp(19px, 2vw, 27px);
+  font-size: clamp(22px, 2.2vw, 30px);
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.28;
@@ -580,7 +580,7 @@ button {
 .post-excerpt {
   color: var(--muted);
   font-family: var(--ko);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
@@ -610,7 +610,7 @@ button {
 
 .kv-term {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -620,7 +620,7 @@ button {
 .timeline-body {
   color: #4f4f4a;
   font-family: var(--ko);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .bullet-list,
@@ -635,7 +635,7 @@ button {
   padding: 9px 0 9px 18px;
   color: #4f4f4a;
   font-family: var(--ko);
-  font-size: 13px;
+  font-size: 15px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -649,7 +649,7 @@ button {
   top: 9px;
   left: 0;
   color: var(--orange);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .timeline-item {
@@ -666,7 +666,7 @@ button {
 
 .timeline-date {
   color: var(--orange-deep);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.055em;
 }
@@ -689,7 +689,7 @@ button {
 .schedule-table td {
   padding: 11px 13px;
   color: #4f4f4a;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   vertical-align: middle;
   border-right: 1px solid var(--line);
@@ -699,7 +699,7 @@ button {
 .schedule-table th {
   color: var(--ink);
   background: var(--paper-deep);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -794,14 +794,14 @@ button {
   background: var(--white);
   border: 1px solid var(--line-strong);
   border-radius: 0;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .btn::after {
   content: "↗";
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .btn:hover {
@@ -842,7 +842,7 @@ button {
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 0;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -857,7 +857,7 @@ button {
 .category-count {
   color: inherit;
   opacity: 0.65;
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .back-to-top {
@@ -875,7 +875,7 @@ button {
   border-radius: 0;
   opacity: 0;
   visibility: hidden;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   transition: opacity 160ms ease, transform 160ms ease;
 }
@@ -928,7 +928,7 @@ button {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: clamp(36px, 5vh, 60px);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -949,6 +949,16 @@ button {
 
 .home-hero-copy > p {
   margin-top: clamp(34px, 5vh, 56px);
+}
+
+.home-hero-copy .inline-actions {
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.home-hero-copy .btn {
+  padding-right: 11px;
+  padding-left: 11px;
 }
 
 .home-hero-games {
@@ -1020,14 +1030,14 @@ button {
   padding: 0 8px;
   border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 999px;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
 
 .home-game-index,
 .home-game-kicker {
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.11em;
 }
@@ -1088,7 +1098,7 @@ button {
 
 .home-hero-facts span {
   color: var(--muted);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1264,7 +1274,7 @@ button {
   }
 
   .home-eyebrow {
-    font-size: 8px;
+    font-size: 10px;
   }
 
   .home-hero-copy h1 {
@@ -1312,6 +1322,10 @@ button {
   .home-hero-copy {
     min-height: 545px;
     padding: 30px 20px;
+  }
+
+  .home-hero-copy .inline-actions {
+    flex-wrap: wrap;
   }
 
   .home-hero-copy h1 {
