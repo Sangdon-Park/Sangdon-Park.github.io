@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <!-- Google Tag Manager -->
@@ -96,7 +96,7 @@
                 실제로 작동하고, 플레이하고, 검증할 수 있는 시스템과 게임을 만듭니다.
               </p>
               <div class="inline-actions">
-                <a class="btn primary" href="#about"><i class="fas fa-gamepad"></i> 프로젝트 보기</a>
+                <a class="btn primary" href="games.html"><i class="fas fa-gamepad"></i> 게임 프로젝트 보기</a>
                 <a class="btn" href="collaboration.html"><i class="fas fa-user-plus"></i> 함께 연구하기</a>
               </div>
               <div class="hero-traffic" data-traffic-widget data-lang="ko">
@@ -106,12 +106,12 @@
               </div>
             </div>
             <div class="home-hero-games" aria-label="대표 게임 프로젝트">
-              <a class="home-game-feature" href="https://store.steampowered.com/app/4910030/Beasts_of_Ephesus/" target="_blank" rel="noopener">
+              <a class="home-game-feature" href="games.html#beasts-of-ephesus">
                 <img src="images/projects/beasts-of-ephesus/shot-01.jpg" alt="Beasts of Ephesus 검투 경기 화면" decoding="async" fetchpriority="high">
                 <div class="home-game-top"><span class="home-game-pill">FEATURED GAME</span><span class="home-game-index">01 / 02</span></div>
                 <div class="home-game-bottom"><div><span class="home-game-kicker">STRATEGY · SIMULATION · Q4 2026</span><h2>Beasts of Ephesus</h2></div><span class="home-game-arrow">↗</span></div>
               </a>
-              <a class="home-game-feature" href="https://store.steampowered.com/app/4256880/Hexagon_Soup/" target="_blank" rel="noopener">
+              <a class="home-game-feature" href="games.html#hexagon-soup">
                 <img src="images/projects/hexagon-soup/shot-03.jpg" alt="Hexagon Soup 게임 화면" loading="lazy" decoding="async">
                 <div class="home-game-top"><span class="home-game-pill">FEATURED GAME</span><span class="home-game-index">02 / 02</span></div>
                 <div class="home-game-bottom"><div><span class="home-game-kicker">SOLO DEVELOPMENT · IN PROGRESS</span><h2>Hexagon Soup</h2></div><span class="home-game-arrow">↗</span></div>
@@ -187,7 +187,7 @@
             <div class="inline-actions">
               <a class="btn primary" href="https://store.steampowered.com/app/4256880/Hexagon_Soup/" target="_blank" rel="noopener"><i class="fab fa-steam"></i> Steam 페이지</a>
               <a class="btn" href="hexagon-soup-updates.html"><i class="fas fa-bullhorn"></i> 패치노트/공지</a>
-              <a class="btn" href="about.html#project"><i class="fas fa-images"></i> 스크린샷 보기</a>
+              <a class="btn" href="games.html#hexagon-soup"><i class="fas fa-images"></i> 게임 상세 보기</a>
             </div>
             </div>
           </article>
@@ -304,8 +304,8 @@
 
       <section id="news" class="posts-section">
         <div class="section-header">
-          <h2 class="section-title">소식</h2>
-          <p class="section-subtitle">News & Updates</p>
+          <h2 class="section-title">글과 소식</h2>
+          <p class="section-subtitle">Writing & Updates</p>
         </div>
         <div class="posts-list">
           <article class="post-card">
@@ -370,6 +370,7 @@
             </p>
             <div class="inline-actions">
               <a class="btn primary" href="collaboration.html"><i class="fas fa-up-right-from-square"></i> 자세히 보기</a>
+              <a class="btn" href="chat.html"><i class="fas fa-comments"></i> AI 채팅 운영 상태</a>
             </div>
           </article>
         </div>
@@ -382,7 +383,7 @@
     </a>
   </div>
 
-  <script src="/js/shared-nav.js?v=20260301"></script>
+  <script src="/js/shared-nav.js?v=20260723"></script>
   <script src="/js/traffic-widget.js?v=20260302"></script>
 
   <script>
@@ -415,21 +416,29 @@
       });
     });
 
-    function updateActiveSection() {
+    function getActiveSectionId() {
       const scrollY = window.scrollY + 140;
-      let activeId = '#home';
+      let activeId = 'home';
 
       sections.forEach((section) => {
         if (scrollY >= section.offsetTop) {
-          activeId = '#' + section.id;
+          activeId = section.id;
         }
       });
 
+      const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 2;
+      if (isAtBottom && sections.length) {
+        activeId = sections[sections.length - 1].id;
+      }
+
+      return activeId;
+    }
+
+    function updateActiveSection() {
+      const activeId = getActiveSectionId();
+
       navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          link.classList.toggle('active', href === activeId);
-        }
+        link.classList.toggle('active', link.dataset.navKey === activeId);
       });
 
       if (window.scrollY > 400) {
@@ -441,6 +450,15 @@
 
     window.addEventListener('scroll', updateActiveSection);
     window.addEventListener('load', updateActiveSection);
+
+    document.querySelectorAll('.language-toggle a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const currentSectionId = getActiveSectionId();
+        if (currentSectionId !== 'home') {
+          link.href = link.getAttribute('href').split('#')[0] + '#' + currentSectionId;
+        }
+      });
+    });
 
     backToTop.addEventListener('click', (event) => {
       event.preventDefault();

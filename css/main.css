@@ -1186,8 +1186,7 @@ button {
   }
 
   .sidebar .lab-logo-link {
-    position: absolute;
-    left: 24px;
+    display: none;
   }
 
   .main-content {

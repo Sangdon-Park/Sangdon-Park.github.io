@@ -13,7 +13,7 @@
           key: "about",
           label: "\uC18C\uAC1C",
           icon: "fas fa-user",
-          localHref: "#about",
+          localHref: "/about.html",
           globalHref: "/about.html"
         },
         {
@@ -24,23 +24,30 @@
           globalHref: "/ko.html#research"
         },
         {
+          key: "games",
+          label: "\uAC8C\uC784",
+          icon: "fas fa-gamepad",
+          localHref: "/games.html",
+          globalHref: "/games.html"
+        },
+        {
           key: "publications",
           label: "\uB17C\uBB38",
           icon: "fas fa-book",
-          localHref: "#publications",
+          localHref: "/publications.html",
           globalHref: "/publications.html"
         },
         {
           key: "teaching",
           label: "\uAD50\uC721",
           icon: "fas fa-chalkboard-teacher",
-          localHref: "#teaching",
-          globalHref: "/ko.html#teaching"
+          localHref: "/courses-2026-spring.html",
+          globalHref: "/courses-2026-spring.html"
         },
         {
           key: "news",
-          label: "\uC18C\uC2DD",
-          icon: "fas fa-bullhorn",
+          label: "\uAE00",
+          icon: "fas fa-pen-nib",
           localHref: "#news",
           globalHref: "/ko.html#news"
         },
@@ -66,7 +73,7 @@
           key: "about",
           label: "About",
           icon: "fas fa-user",
-          localHref: "#about",
+          localHref: "/about-en.html",
           globalHref: "/about-en.html"
         },
         {
@@ -77,23 +84,30 @@
           globalHref: "/en.html#research"
         },
         {
+          key: "games",
+          label: "Games",
+          icon: "fas fa-gamepad",
+          localHref: "/games-en.html",
+          globalHref: "/games-en.html"
+        },
+        {
           key: "publications",
           label: "Publications",
           icon: "fas fa-book",
-          localHref: "#publications",
-          globalHref: "/publications.html"
+          localHref: "/publications-en.html",
+          globalHref: "/publications-en.html"
         },
         {
           key: "teaching",
           label: "Teaching",
           icon: "fas fa-chalkboard-teacher",
-          localHref: "#teaching",
-          globalHref: "/en.html#teaching"
+          localHref: "/courses-2026-spring-en.html",
+          globalHref: "/courses-2026-spring-en.html"
         },
         {
           key: "news",
-          label: "News",
-          icon: "fas fa-bullhorn",
+          label: "Writing",
+          icon: "fas fa-pen-nib",
           localHref: "#news",
           globalHref: "/en.html#news"
         },
@@ -124,7 +138,7 @@
         const activeClass = item.key === active ? " active" : "";
         return (
           `<li class="nav-item">` +
-          `<a href="${href}" class="nav-link${activeClass}">` +
+          `<a href="${href}" class="nav-link${activeClass}" data-nav-key="${item.key}">` +
           `<i class="${item.icon}"></i> ${item.label}</a></li>`
         );
       })
@@ -159,4 +173,44 @@
       section.appendChild(logoLink);
     }
   });
+
+  const sidebar = document.getElementById("sidebar");
+  const mobileToggle = document.getElementById("mobile-toggle");
+
+  if (sidebar && mobileToggle) {
+    const isEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
+    const openLabel = isEn ? "Open menu" : "\uBA54\uB274 \uC5F4\uAE30";
+    const closeLabel = isEn ? "Close menu" : "\uBA54\uB274 \uB2EB\uAE30";
+
+    mobileToggle.setAttribute("aria-controls", "sidebar");
+
+    const syncMobileMenuState = () => {
+      const isOpen = sidebar.classList.contains("open");
+      mobileToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileToggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
+    };
+
+    syncMobileMenuState();
+    new MutationObserver(syncMobileMenuState).observe(sidebar, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && sidebar.classList.contains("open")) {
+        sidebar.classList.remove("open");
+        mobileToggle.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(event.target) &&
+        !mobileToggle.contains(event.target)
+      ) {
+        sidebar.classList.remove("open");
+      }
+    });
+  }
 })();

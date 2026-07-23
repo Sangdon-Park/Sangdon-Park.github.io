@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
@@ -93,7 +93,7 @@
               <h1>We build<br><em>intelligence</em><br>you can play.</h1>
               <p>We do not leave AI research on paper.<br>We build systems and games that can be run, played, and tested in the real world.</p>
               <div class="inline-actions">
-                <a class="btn primary" href="#about"><i class="fas fa-gamepad"></i> View Projects</a>
+                <a class="btn primary" href="games-en.html"><i class="fas fa-gamepad"></i> View Game Projects</a>
                 <a class="btn" href="collaboration-en.html"><i class="fas fa-user-plus"></i> Work With Us</a>
               </div>
               <div class="hero-traffic" data-traffic-widget data-lang="en">
@@ -103,12 +103,12 @@
               </div>
             </div>
             <div class="home-hero-games" aria-label="Featured game projects">
-              <a class="home-game-feature" href="https://store.steampowered.com/app/4910030/Beasts_of_Ephesus/" target="_blank" rel="noopener">
+              <a class="home-game-feature" href="games-en.html#beasts-of-ephesus">
                 <img src="images/projects/beasts-of-ephesus/shot-01.jpg" alt="Beasts of Ephesus gladiator bout" decoding="async" fetchpriority="high">
                 <div class="home-game-top"><span class="home-game-pill">FEATURED GAME</span><span class="home-game-index">01 / 02</span></div>
                 <div class="home-game-bottom"><div><span class="home-game-kicker">STRATEGY · SIMULATION · Q4 2026</span><h2>Beasts of Ephesus</h2></div><span class="home-game-arrow">↗</span></div>
               </a>
-              <a class="home-game-feature" href="https://store.steampowered.com/app/4256880/Hexagon_Soup/" target="_blank" rel="noopener">
+              <a class="home-game-feature" href="games-en.html#hexagon-soup">
                 <img src="images/projects/hexagon-soup/shot-03.jpg" alt="Hexagon Soup gameplay" loading="lazy" decoding="async">
                 <div class="home-game-top"><span class="home-game-pill">FEATURED GAME</span><span class="home-game-index">02 / 02</span></div>
                 <div class="home-game-bottom"><div><span class="home-game-kicker">SOLO DEVELOPMENT · IN PROGRESS</span><h2>Hexagon Soup</h2></div><span class="home-game-arrow">↗</span></div>
@@ -184,7 +184,7 @@
             <div class="inline-actions">
               <a class="btn primary" href="https://store.steampowered.com/app/4256880/Hexagon_Soup/" target="_blank" rel="noopener"><i class="fab fa-steam"></i> Steam Page</a>
               <a class="btn" href="hexagon-soup-updates-en.html"><i class="fas fa-bullhorn"></i> Patch Notes / Notices</a>
-              <a class="btn" href="about-en.html#project"><i class="fas fa-images"></i> Screenshots</a>
+              <a class="btn" href="games-en.html#hexagon-soup"><i class="fas fa-images"></i> Game Details</a>
             </div>
             </div>
           </article>
@@ -245,7 +245,7 @@
             <p class="post-excerpt">Cited by 1,213 with 38 works (as of February 28, 2026). The publication list is updated with the same criteria as the verified profile.</p>
             <div class="inline-actions">
               <a class="btn" href="https://scholar.google.com/citations?user=JZFDtsgAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i> Open Scholar</a>
-              <a class="btn primary" href="publications.html"><i class="fas fa-list"></i> Full Publications</a>
+              <a class="btn primary" href="publications-en.html"><i class="fas fa-list"></i> Full Publications</a>
             </div>
           </article>
           <article class="post-card">
@@ -292,8 +292,8 @@
 
       <section id="news" class="posts-section">
         <div class="section-header">
-          <h2 class="section-title">News</h2>
-          <p class="section-subtitle">Announcements</p>
+          <h2 class="section-title">Writing & News</h2>
+          <p class="section-subtitle">Articles & Announcements</p>
         </div>
         <div class="posts-list">
           <article class="post-card">
@@ -301,6 +301,7 @@
             <h3 class="post-title">Post Archive</h3>
             <p class="post-excerpt">Previous technical and personal posts are available here.</p>
             <div class="inline-actions">
+              <a class="btn" href="articles/dju-appointment-20260301-en.html"><i class="fas fa-file-lines"></i> The Long Way Around Was the Fastest</a>
               <a class="btn" href="hexagon-soup-updates-en.html"><i class="fas fa-gamepad"></i> Hexagon Soup Updates</a>
               <a class="btn" href="articles/serena-mcp-guide-en.html"><i class="fas fa-file-lines"></i> Serena MCP Installation Guide</a>
               <a class="btn" href="articles/ai-llm-8months-passion-en.html"><i class="fas fa-file-lines"></i> 8 Months of Obsession with AI LLMs</a>
@@ -350,6 +351,7 @@
             <p class="post-excerpt">For student inquiries, use a subject format with course name and student ID. For collaboration proposals, include problem statement, data/environment, and expected outcome.</p>
             <div class="inline-actions">
               <a class="btn primary" href="collaboration-en.html"><i class="fas fa-up-right-from-square"></i> Learn More</a>
+              <a class="btn" href="chat-en.html"><i class="fas fa-comments"></i> AI Chat Service Status</a>
             </div>
           </article>
         </div>
@@ -362,7 +364,7 @@
     </a>
   </div>
 
-  <script src="/js/shared-nav.js?v=20260301"></script>
+  <script src="/js/shared-nav.js?v=20260723"></script>
   <script src="/js/traffic-widget.js?v=20260302"></script>
 
   <script>
@@ -395,21 +397,29 @@
       });
     });
 
-    function updateActiveSection() {
+    function getActiveSectionId() {
       const scrollY = window.scrollY + 140;
-      let activeId = '#home';
+      let activeId = 'home';
 
       sections.forEach((section) => {
         if (scrollY >= section.offsetTop) {
-          activeId = '#' + section.id;
+          activeId = section.id;
         }
       });
 
+      const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 2;
+      if (isAtBottom && sections.length) {
+        activeId = sections[sections.length - 1].id;
+      }
+
+      return activeId;
+    }
+
+    function updateActiveSection() {
+      const activeId = getActiveSectionId();
+
       navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          link.classList.toggle('active', href === activeId);
-        }
+        link.classList.toggle('active', link.dataset.navKey === activeId);
       });
 
       if (window.scrollY > 400) {
@@ -421,6 +431,15 @@
 
     window.addEventListener('scroll', updateActiveSection);
     window.addEventListener('load', updateActiveSection);
+
+    document.querySelectorAll('.language-toggle a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const currentSectionId = getActiveSectionId();
+        if (currentSectionId !== 'home') {
+          link.href = link.getAttribute('href').split('#')[0] + '#' + currentSectionId;
+        }
+      });
+    });
 
     backToTop.addEventListener('click', (event) => {
       event.preventDefault();
