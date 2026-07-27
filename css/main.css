@@ -939,12 +939,19 @@ button {
   font-weight: 600;
   letter-spacing: -0.075em;
   line-height: 0.84;
+  white-space: nowrap;
 }
 
 .home-hero-copy h1 em {
   color: var(--orange);
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
+}
+
+@media (min-width: 981px) {
+  .home-hero-copy h1 {
+    font-size: clamp(50px, 4.6vw, 68px);
+  }
 }
 
 .home-hero-copy > p {
