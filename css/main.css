@@ -958,6 +958,34 @@ button {
   margin-top: clamp(34px, 5vh, 56px);
 }
 
+.home-collaboration-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 20px !important;
+  padding-top: 14px;
+  color: var(--muted) !important;
+  border-top: 1px solid var(--line);
+  font-family: var(--sans) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.home-collaboration-note span {
+  color: var(--orange-deep);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-collaboration-note a {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 1px solid var(--orange);
+}
+
 .home-hero-copy .inline-actions {
   flex-wrap: nowrap;
   gap: 6px;
@@ -970,7 +998,7 @@ button {
 
 .home-hero-games {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   min-width: 0;
   background: var(--ink);
 }
@@ -1021,13 +1049,13 @@ button {
 .home-game-top {
   top: 0;
   align-items: flex-start;
-  padding: 20px 22px;
+  padding: 14px 18px;
 }
 
 .home-game-bottom {
   bottom: 0;
   align-items: flex-end;
-  padding: 24px 26px 27px;
+  padding: 18px 22px 20px;
 }
 
 .home-game-pill {
@@ -1053,15 +1081,15 @@ button {
   margin: 8px 0 0;
   color: var(--white);
   font-family: var(--sans);
-  font-size: clamp(31px, 3.6vw, 56px);
+  font-size: clamp(27px, 3vw, 44px);
   font-weight: 600;
   letter-spacing: -0.065em;
   line-height: 0.92;
 }
 
 .home-game-arrow {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
@@ -1136,11 +1164,80 @@ button {
 }
 
 .game-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: clamp(20px, 2.5vw, 30px);
 }
 
 .game-card-body .inline-actions {
   margin-top: auto;
+}
+
+.home-about-grid,
+.game-project-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.home-about-grid > .post-card:not(.game-showcase-card) {
+  grid-column: span 3;
+}
+
+.home-about-grid > .game-showcase-card,
+.game-project-grid > .game-showcase-card {
+  grid-column: span 2;
+}
+
+.project-partner-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -4px 0 18px;
+  padding: 14px 16px;
+  color: var(--muted);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--orange);
+  font-family: var(--ko);
+  font-size: 14px;
+}
+
+.project-partner-note strong {
+  color: var(--ink);
+}
+
+.project-partner-note a,
+.project-credit a {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 1px solid var(--orange);
+}
+
+.project-credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-family: var(--ko);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.project-credit i {
+  color: var(--orange);
+}
+
+.project-credit a {
+  margin-left: auto;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 1180px) {
@@ -1230,7 +1327,7 @@ button {
   }
 
   .home-hero-games {
-    min-height: 900px;
+    min-height: 1080px;
   }
 
   .home-hero-facts {
@@ -1248,8 +1345,16 @@ button {
   }
 
   .grid-2,
-  .grid-3 {
+  .grid-3,
+  .home-about-grid,
+  .game-project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-about-grid > .post-card:not(.game-showcase-card),
+  .home-about-grid > .game-showcase-card,
+  .game-project-grid > .game-showcase-card {
+    grid-column: auto;
   }
 
   .span-2 {
@@ -1292,11 +1397,11 @@ button {
   }
 
   .home-hero-games {
-    min-height: 760px;
+    min-height: 930px;
   }
 
   .home-game-bottom h2 {
-    font-size: clamp(31px, 10vw, 47px);
+    font-size: clamp(29px, 9vw, 43px);
   }
 
   .home-hero-facts {
@@ -1339,7 +1444,7 @@ button {
   }
 
   .home-hero-games {
-    min-height: 620px;
+    min-height: 780px;
   }
 
   .home-game-top {

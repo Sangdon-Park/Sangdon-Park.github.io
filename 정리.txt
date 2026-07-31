@@ -1,7 +1,7 @@
 ﻿박상돈 통합 이력/실적 정리
 요청 범위: 전공, 학력, 경력, 논문, 저서, 상훈(수상/포상), 프로젝트, 주요 연구 경력, 기고 및 칼럼.
 ========================================================================================
-Snapshot date: 2026-03-04 (repository local workspace)
+Snapshot date: 2026-07-31 (repository local workspace)
 주요 근거 파일: ko.html, about.html, publications.html, collaboration.html, cv/main.tex, articles/*.html, CV.pdf, CV-ko.pdf
 
 주요 참고(소스 버전 차이):
@@ -28,7 +28,7 @@ Snapshot date: 2026-03-04 (repository local workspace)
 - 2017.09 - 2025.04: KAIST 정보전자연구소 연수연구원 (Post-Doctoral Researcher)
 - 2025.05 - 2026.02.28: 세이베리게임즈, AI/게임 개발
 - 2026.03.01 - 현재: 대전대학교 SW융합학부 컴퓨터공학과 조교수
-- 현재 진행 중: 1인 개발 프로젝트 Hexagon Soup
+- 현재 진행 중: Beff Inc. (SayBerry Games)와 Beasts of Ephesus, Floppy Survivors, Hexagon Soup 공동 개발
 
 4) 상훈(수상/포상) 및 연구비 수주
 4-1. 연구비/펠로우십
@@ -70,7 +70,9 @@ Snapshot date: 2026-03-04 (repository local workspace)
 - AxGS Lab 운영: 학부연구생/캡스톤/대학원 준비/공동연구 트랙
 
 6) 프로젝트
-- Hexagon Soup: 기획-설계-구현-밸런싱-테스트를 직접 수행하는 1인 개발 프로젝트
+- Beasts of Ephesus: Beff Inc.와 공동 개발 중인 검투사 구단 경영 전략 시뮬레이션
+- Floppy Survivors: Beff Inc.와 공동 개발 중인 1.44MB 불릿 헤븐 액션 로그라이트
+- Hexagon Soup: Beff Inc.와 공동 개발 중인 아이소메트릭 헥스 그리드 전통 로그라이크
 - AxGS Lab 트랙 프로그램(2026-1 시작): AI x Games Systems / Trustworthy AI / Optimization
 - 세이베리게임즈 기간: LLM 기반 AI 캐릭터 및 인터랙티브 시스템 개발
 - 기고 기반 사례: AI 게임 개발 과제, 시뮬레이터 프로토타입, 공동체 활동 AI 활용
