@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-08-29T07:06:31Z`
+- Last Synced (UTC): `2026-08-30T05:26:46Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
 | Views | 0 | 0 |
-| Clones | 217 | 91 |
+| Clones | 130 | 29 |
 
 ## Daily Views
 
@@ -207,6 +207,8 @@
 | 2026-08-25 | 0 | 0 |
 | 2026-08-26 | 0 | 0 |
 | 2026-08-27 | 0 | 0 |
+| 2026-08-28 | 0 | 0 |
+| 2026-08-29 | 0 | 0 |
 
 ## Daily Clones
 
@@ -405,3 +407,5 @@
 | 2026-08-25 | 2 | 2 |
 | 2026-08-26 | 2 | 2 |
 | 2026-08-27 | 2 | 2 |
+| 2026-08-28 | 10 | 6 |
+| 2026-08-29 | 2 | 2 |
