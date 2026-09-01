@@ -41,8 +41,8 @@
           key: "teaching",
           label: "\uAD50\uC721",
           icon: "fas fa-chalkboard-teacher",
-          localHref: "/courses-2026-spring.html",
-          globalHref: "/courses-2026-spring.html"
+          localHref: "/courses-2026-fall.html",
+          globalHref: "/courses-2026-fall.html"
         },
         {
           key: "news",
@@ -101,8 +101,8 @@
           key: "teaching",
           label: "Teaching",
           icon: "fas fa-chalkboard-teacher",
-          localHref: "/courses-2026-spring-en.html",
-          globalHref: "/courses-2026-spring-en.html"
+          localHref: "/courses-2026-fall-en.html",
+          globalHref: "/courses-2026-fall-en.html"
         },
         {
           key: "news",

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKT8SV46");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>알고리즘 01·02분반 | 2026년 2학기</title>
+    <meta
+      name="description"
+      content="대전대학교 2026년 2학기 알고리즘 01·02분반 강의자료와 공지"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AxGS Lab" />
+    <meta property="og:title" content="알고리즘 01·02분반 | 2026년 2학기" />
+    <meta
+      property="og:description"
+      content="알고리즘 01·02분반 공통 강의자료, 연습문제, 수업 일정"
+    />
+    <meta
+      property="og:url"
+      content="https://sangdon-park.github.io/courses/algorithms-2026-fall.html"
+    />
+    <meta
+      property="og:image"
+      content="https://sangdon-park.github.io/images/AxGS-logo-960.png"
+    />
+    <link
+      rel="canonical"
+      href="https://sangdon-park.github.io/courses/algorithms-2026-fall.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://sangdon-park.github.io/courses/algorithms-2026-fall.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://sangdon-park.github.io/courses/algorithms-2026-fall-en.html"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKT8SV46"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <div class="layout-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-section">
+          <a href="../ko.html"
+            ><img
+              src="../images/Sangdon-320.jpg"
+              srcset="
+                ../images/Sangdon-320.jpg  320w,
+                ../images/Sangdon-640.jpg  640w,
+                ../images/Sangdon.jpg     1560w
+              "
+              sizes="138px"
+              width="138"
+              height="178"
+              alt="박상돈"
+              class="profile-avatar"
+              decoding="async"
+              fetchpriority="high"
+          /></a>
+          <h1 class="profile-name">박상돈</h1>
+          <p class="profile-title">알고리즘 01·02분반<br />2026년 2학기</p>
+          <div class="social-links">
+            <a
+              href="mailto:sangdonpark@dju.kr"
+              class="social-link"
+              aria-label="Email"
+              ><i class="fas fa-envelope"></i></a
+            ><a
+              href="../courses-2026-fall.html"
+              class="social-link"
+              aria-label="2026년 2학기 교육 허브"
+              ><i class="fas fa-book-open"></i></a
+            ><a href="../ko.html#teaching" class="social-link" aria-label="교육"
+              ><i class="fas fa-chalkboard-teacher"></i
+            ></a>
+          </div>
+        </div>
+        <nav class="nav-section">
+          <div class="nav-title">2026-2 핵심 과목</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="algorithms-2026-fall.html" class="nav-link active"
+                ><i class="fas fa-diagram-project"></i> 알고리즘</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="generative-ai-software-engineering-2026-fall.html"
+                class="nav-link"
+                ><i class="fas fa-wand-magic-sparkles"></i> 생성형 AI SW공학</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">알고리즘</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#overview" class="nav-link active"
+                ><i class="fas fa-circle-info"></i> 과목 개요</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#sections" class="nav-link"
+                ><i class="fas fa-users-rectangle"></i> 분반 안내</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#notices" class="nav-link"
+                ><i class="fas fa-bullhorn"></i> 공지</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#materials" class="nav-link"
+                ><i class="fas fa-file-arrow-down"></i> 강의자료</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link"
+                ><i class="fas fa-envelope-open-text"></i> 문의</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">메인 사이트</div>
+          <ul
+            class="nav-list"
+            data-site-nav
+            data-lang="ko"
+            data-active="teaching"
+          ></ul>
+        </nav>
+        <div class="language-toggle">
+          <a href="algorithms-2026-fall-en.html" class="lang-btn">EN</a
+          ><a href="algorithms-2026-fall.html" class="lang-btn active">KO</a>
+        </div>
+      </aside>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="메뉴 열기">
+        <i class="fas fa-bars"></i>
+      </button>
+      <main class="main-content">
+        <section id="overview" class="posts-section">
+          <header class="page-header">
+            <div class="course-hero">
+              <h2>알고리즘</h2>
+              <p>
+                알고리즘의 효율을 분석하고, 문제 구조에 맞는 설계 기법을 선택해
+                정확하고 효율적인 해결책을 구성합니다.
+                <strong>01분반과 02분반은 동일한 공통 자료</strong>를
+                사용합니다.
+              </p>
+              <div class="course-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">교과목 코드</span
+                  ><span class="meta-value">012687</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">분반</span
+                  ><span class="meta-value">01 · 02</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">강의실</span
+                  ><span class="meta-value">융합과학관 24402</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">담당교수</span
+                  ><span class="meta-value">박상돈</span>
+                </div>
+              </div>
+              <div class="callout-box">
+                <strong>강의자료 공개:</strong> 한 학기 미리보기와 1–12장
+                슬라이드, 1–2장 연습문제 자료를 아래 표에서 내려받을 수
+                있습니다.
+              </div>
+              <div class="course-links">
+                <a class="btn primary" href="#materials"
+                  ><i class="fas fa-download"></i> 자료 내려받기</a
+                ><a class="btn" href="../courses-2026-fall.html"
+                  ><i class="fas fa-calendar-days"></i> 2학기 시간표</a
+                >
+              </div>
+            </div>
+          </header>
+        </section>
+
+        <section id="sections" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">분반 안내</h2>
+            <p class="section-subtitle">Sections 01 & 02</p>
+          </div>
+          <div class="section-card-grid">
+            <article class="post-card section-card">
+              <span class="section-number">01</span>
+              <div>
+                <h3 class="post-title">알고리즘-01</h3>
+                <p class="post-excerpt">
+                  <strong>월요일 10:00–12:00</strong><br /><strong
+                    >화요일 11:00–12:00</strong
+                  ><br />융합과학관 24402
+                </p>
+              </div>
+            </article>
+            <article class="post-card section-card">
+              <span class="section-number">02</span>
+              <div>
+                <h3 class="post-title">알고리즘-02</h3>
+                <p class="post-excerpt">
+                  <strong>월요일 13:00–15:00</strong><br /><strong
+                    >화요일 13:00–14:00</strong
+                  ><br />융합과학관 24402
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="callout-box">
+            자료는 두 분반 공통입니다. 출결, 과제 제출, 시험 관련 공지는 반드시
+            본인 분반의 대학 LMS 게시판을 확인하세요.
+          </div>
+        </section>
+
+        <section id="notices" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">공지</h2>
+            <p class="section-subtitle">Announcements</p>
+          </div>
+          <div class="notice-list">
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">알고리즘 강의자료 페이지 개설</h3>
+              <p class="notice-text">
+                01·02분반 공통 슬라이드 13개 묶음과 1·2장 연습문제 자료를
+                공개했습니다. 파일은 각 장별로 내려받을 수 있습니다.
+              </p>
+            </article>
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">분반별 시간 안내</h3>
+              <p class="notice-text">
+                01분반은 월 10:00–12:00·화 11:00–12:00, 02분반은 월
+                13:00–15:00·화 13:00–14:00에 융합과학관 24402에서 진행합니다.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="materials" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">강의자료</h2>
+            <p class="section-subtitle">Common Materials for Both Sections</p>
+          </div>
+          <div class="table-wrap">
+            <table class="course-table material-table">
+              <thead>
+                <tr>
+                  <th>장</th>
+                  <th>주제</th>
+                  <th>강의 슬라이드</th>
+                  <th>연습자료</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td>한 학기 미리보기</td>
+                  <td>
+                    <a href="../data/알고리즘/0장_한학기_미리보기.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>알고리즘과 복잡도 분석</td>
+                  <td>
+                    <a href="../data/알고리즘/1장_알고리즘과_복잡도분석.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td>
+                    <a href="../data/알고리즘/1장_연습문제_50문항_수업용.pptx"
+                      >수업용 PPTX</a
+                    ><a href="../data/알고리즘/1장_연습문제_50문항.docx"
+                      >문제 DOCX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>완전탐색·브루트포스</td>
+                  <td>
+                    <a href="../data/알고리즘/2장_완전탐색_브루트포스.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td>
+                    <a href="../data/알고리즘/2장_연습문제_100문항_수업용.pptx"
+                      >수업용 PPTX</a
+                    ><a href="../data/알고리즘/2장_연습문제_100문항.docx"
+                      >문제 DOCX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>축소 정복 기법</td>
+                  <td>
+                    <a href="../data/알고리즘/3장_축소_정복_기법.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>분할 정복 기법</td>
+                  <td>
+                    <a href="../data/알고리즘/4장_분할_정복_기법.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>그리디 알고리즘</td>
+                  <td>
+                    <a href="../data/알고리즘/5장_그리디_알고리즘.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>동적 계획법</td>
+                  <td>
+                    <a href="../data/알고리즘/6장_동적_계획법.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>백트래킹 기법</td>
+                  <td>
+                    <a href="../data/알고리즘/7장_백트래킹_기법.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>분기한정 기법</td>
+                  <td>
+                    <a href="../data/알고리즘/8장_분기한정_기법.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>NP-완전 문제</td>
+                  <td>
+                    <a href="../data/알고리즘/9장_NP완전_문제.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>근사 알고리즘</td>
+                  <td>
+                    <a href="../data/알고리즘/10장_근사_알고리즘.pptx">PPTX</a>
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>휴리스틱 알고리즘</td>
+                  <td>
+                    <a href="../data/알고리즘/11장_휴리스틱_알고리즘.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>텍스트 알고리즘</td>
+                  <td>
+                    <a href="../data/알고리즘/12장_텍스트_알고리즘.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td>—</td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="material-footnote">
+            <i class="fas fa-circle-info"></i> 강의 순서와 시험 범위는 수업 진행
+            및 LMS 공지를 기준으로 조정될 수 있습니다.
+          </p>
+        </section>
+
+        <section id="contact" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">문의</h2>
+            <p class="section-subtitle">Contact</p>
+          </div>
+          <article class="post-card">
+            <p class="post-excerpt">
+              이메일: <a href="mailto:sangdonpark@dju.kr">sangdonpark@dju.kr</a
+              ><br />제목 형식:
+              <span class="inline-code"
+                >[알고리즘-01 또는 02][학번] 문의 내용</span
+              ><br />분반을 반드시 제목에 표시해 주세요.
+            </p>
+          </article>
+        </section>
+      </main>
+      <a href="#" class="back-to-top" id="back-to-top" aria-label="맨 위로"
+        ><i class="fas fa-arrow-up"></i><span>TOP</span></a
+      >
+    </div>
+    <script src="/js/shared-nav.js?v=20260901"></script>
+    <script src="/js/course-page.js?v=20260901"></script>
+  </body>
+</html>

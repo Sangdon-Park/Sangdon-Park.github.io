@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKT8SV46");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>생성형 AI 소프트웨어공학 | 2026년 2학기</title>
+    <meta
+      name="description"
+      content="대전대학교 2026년 2학기 생성형 AI 소프트웨어공학 강의자료와 공지"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AxGS Lab" />
+    <meta
+      property="og:title"
+      content="생성형 AI 소프트웨어공학 | 2026년 2학기"
+    />
+    <meta
+      property="og:description"
+      content="생성형 AI를 활용한 요구공학, 설계, 구현, 테스트, 배포 프로젝트 수업"
+    />
+    <meta
+      property="og:url"
+      content="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall.html"
+    />
+    <meta
+      property="og:image"
+      content="https://sangdon-park.github.io/images/AxGS-logo-960.png"
+    />
+    <link
+      rel="canonical"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall-en.html"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKT8SV46"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <div class="layout-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-section">
+          <a href="../ko.html"
+            ><img
+              src="../images/Sangdon-320.jpg"
+              srcset="
+                ../images/Sangdon-320.jpg  320w,
+                ../images/Sangdon-640.jpg  640w,
+                ../images/Sangdon.jpg     1560w
+              "
+              sizes="138px"
+              width="138"
+              height="178"
+              alt="박상돈"
+              class="profile-avatar"
+              decoding="async"
+              fetchpriority="high"
+          /></a>
+          <h1 class="profile-name">박상돈</h1>
+          <p class="profile-title">
+            생성형 AI 소프트웨어공학<br />2026년 2학기
+          </p>
+          <div class="social-links">
+            <a
+              href="mailto:sangdonpark@dju.kr"
+              class="social-link"
+              aria-label="Email"
+              ><i class="fas fa-envelope"></i></a
+            ><a
+              href="../courses-2026-fall.html"
+              class="social-link"
+              aria-label="2026년 2학기 교육 허브"
+              ><i class="fas fa-book-open"></i></a
+            ><a href="../ko.html#teaching" class="social-link" aria-label="교육"
+              ><i class="fas fa-chalkboard-teacher"></i
+            ></a>
+          </div>
+        </div>
+        <nav class="nav-section">
+          <div class="nav-title">2026-2 핵심 과목</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="algorithms-2026-fall.html" class="nav-link"
+                ><i class="fas fa-diagram-project"></i> 알고리즘</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="generative-ai-software-engineering-2026-fall.html"
+                class="nav-link active"
+                ><i class="fas fa-wand-magic-sparkles"></i> 생성형 AI SW공학</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">과목 내비게이션</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#overview" class="nav-link active"
+                ><i class="fas fa-circle-info"></i> 과목 개요</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#notices" class="nav-link"
+                ><i class="fas fa-bullhorn"></i> 공지</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#materials" class="nav-link"
+                ><i class="fas fa-file-arrow-down"></i> 강의자료</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#roadmap" class="nav-link"
+                ><i class="fas fa-route"></i> 학기 로드맵</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link"
+                ><i class="fas fa-envelope-open-text"></i> 문의</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">메인 사이트</div>
+          <ul
+            class="nav-list"
+            data-site-nav
+            data-lang="ko"
+            data-active="teaching"
+          ></ul>
+        </nav>
+        <div class="language-toggle">
+          <a
+            href="generative-ai-software-engineering-2026-fall-en.html"
+            class="lang-btn"
+            >EN</a
+          ><a
+            href="generative-ai-software-engineering-2026-fall.html"
+            class="lang-btn active"
+            >KO</a
+          >
+        </div>
+      </aside>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="메뉴 열기">
+        <i class="fas fa-bars"></i>
+      </button>
+      <main class="main-content">
+        <section id="overview" class="posts-section">
+          <header class="page-header">
+            <div class="course-hero">
+              <h2>생성형 AI 소프트웨어공학</h2>
+              <p>
+                AI가 코드를 생성하는 시대에 사람이 맡아야 할
+                <strong>문제 정의, 요구사항, 설계, 검증과 책임</strong>을
+                학습합니다. 매주 작은 실습을 축적해 실제 배포 가능한 팀
+                프로젝트로 연결합니다.
+              </p>
+              <div class="course-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">교과목 코드</span
+                  ><span class="meta-value">406323</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">분반</span
+                  ><span class="meta-value">01</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">시간·강의실</span
+                  ><span class="meta-value">토 13:00–16:00 · 24405</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">담당교수</span
+                  ><span class="meta-value">박상돈</span>
+                </div>
+              </div>
+              <div class="callout-box">
+                <strong>운영 원칙:</strong> AI 도구를 적극 활용하되, 제출물의
+                동작과 의사결정을 본인이 설명하고 검증할 수 있어야 합니다.
+              </div>
+              <div class="course-links">
+                <a class="btn primary" href="#materials"
+                  ><i class="fas fa-download"></i> 1–4강 자료</a
+                ><a class="btn" href="../courses-2026-fall.html"
+                  ><i class="fas fa-calendar-days"></i> 2학기 시간표</a
+                >
+              </div>
+            </div>
+          </header>
+        </section>
+        <section id="notices" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">공지</h2>
+            <p class="section-subtitle">Announcements</p>
+          </div>
+          <div class="notice-list">
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">과목 페이지 및 1–4강 자료 공개</h3>
+              <p class="notice-text">
+                오리엔테이션, 개발 프로세스와 AI 도구 연결, 지시문 작성, AI
+                위임의 경계를 다루는 1–4강 슬라이드를 공개했습니다.
+              </p>
+            </article>
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">수업 준비 안내</h3>
+              <p class="notice-text">
+                실습을 위해 노트북, GitHub 계정, ChatGPT 계정을 준비하세요. 세부
+                설치와 연결은 수업 자료를 따라 진행합니다.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section id="materials" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">강의자료</h2>
+            <p class="section-subtitle">Lecture Slides</p>
+          </div>
+          <div class="table-wrap">
+            <table class="course-table material-table">
+              <thead>
+                <tr>
+                  <th>강</th>
+                  <th>주제</th>
+                  <th>핵심 내용</th>
+                  <th>자료</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>오리엔테이션과 소프트웨어공학 개관</td>
+                  <td>수업 규칙, 소프트웨어 위기, 개발환경, Git/GitHub</td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_1강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>개발 프로세스와 AI 도구 연결</td>
+                  <td>프로세스 모델, 애자일·스크럼, Codex와 ZCode 환경</td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_2강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>생성형 AI와 지시문 작성</td>
+                  <td>확률적 생성, 역할·맥락·요구·형식, 비교 실험</td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_3강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>AI 위임의 기술, 딸깍의 경계</td>
+                  <td>위임 가능성 판단, 작업 분해, 사람 확인과 책임</td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_4강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">공개</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="material-footnote">
+            <i class="fas fa-circle-info"></i> 이전 버전 파일은 배포 대상에서
+            제외했으며, 표에는 최신 강의자료만 연결했습니다.
+          </p>
+        </section>
+        <section id="roadmap" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">학기 로드맵</h2>
+            <p class="section-subtitle">16-Week Learning Path</p>
+          </div>
+          <div class="posts-list grid-3">
+            <article class="post-card">
+              <span class="post-category">1–4주</span>
+              <h3 class="post-title">기초와 AI 위임</h3>
+              <p class="post-excerpt">
+                개발 환경을 만들고 생성형 AI의 동작, 좋은 지시문, 위임 가능한
+                작업의 경계를 익힙니다.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">5–8주</span>
+              <h3 class="post-title">요구사항과 설계</h3>
+              <p class="post-excerpt">
+                팀 프로젝트를 정의하고 요구사항, 구조 설계, 명세 기반 구현을
+                거쳐 중간 점검을 수행합니다.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">9–13주</span>
+              <h3 class="post-title">품질과 운영</h3>
+              <p class="post-excerpt">
+                테스트, 결함 수정, 유지보수, 배포 자동화, 코딩 에이전트와
+                보안·윤리를 다룹니다.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">14–16주</span>
+              <h3 class="post-title">배포와 회고</h3>
+              <p class="post-excerpt">
+                실제 배포된 결과물을 시연하고 프로젝트 기록과 의사결정을
+                되돌아봅니다.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section id="contact" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">문의</h2>
+            <p class="section-subtitle">Contact</p>
+          </div>
+          <article class="post-card">
+            <p class="post-excerpt">
+              이메일: <a href="mailto:sangdonpark@dju.kr">sangdonpark@dju.kr</a
+              ><br />제목 형식:
+              <span class="inline-code"
+                >[생성형 AI 소프트웨어공학-01][학번] 문의 내용</span
+              ><br />과제와 출결의 최종 기준은 대학 LMS 공지입니다.
+            </p>
+          </article>
+        </section>
+      </main>
+      <a href="#" class="back-to-top" id="back-to-top" aria-label="맨 위로"
+        ><i class="fas fa-arrow-up"></i><span>TOP</span></a
+      >
+    </div>
+    <script src="/js/shared-nav.js?v=20260901"></script>
+    <script src="/js/course-page.js?v=20260901"></script>
+  </body>
+</html>

@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKT8SV46");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generative AI Software Engineering | Fall 2026</title>
+    <meta
+      name="description"
+      content="Fall 2026 Generative AI Software Engineering course materials and announcements"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AxGS Lab" />
+    <meta
+      property="og:title"
+      content="Generative AI Software Engineering | Fall 2026"
+    />
+    <meta
+      property="og:description"
+      content="Project-based requirements, design, implementation, testing, and deployment with generative AI"
+    />
+    <meta
+      property="og:url"
+      content="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall-en.html"
+    />
+    <meta
+      property="og:image"
+      content="https://sangdon-park.github.io/images/AxGS-logo-960.png"
+    />
+    <link
+      rel="canonical"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall-en.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://sangdon-park.github.io/courses/generative-ai-software-engineering-2026-fall-en.html"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKT8SV46"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <div class="layout-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-section">
+          <a href="../en.html"
+            ><img
+              src="../images/Sangdon-320.jpg"
+              srcset="
+                ../images/Sangdon-320.jpg  320w,
+                ../images/Sangdon-640.jpg  640w,
+                ../images/Sangdon.jpg     1560w
+              "
+              sizes="138px"
+              width="138"
+              height="178"
+              alt="Sangdon Park"
+              class="profile-avatar"
+              decoding="async"
+              fetchpriority="high"
+          /></a>
+          <h1 class="profile-name">Sangdon Park</h1>
+          <p class="profile-title">
+            Generative AI Software Engineering<br />Fall 2026
+          </p>
+          <div class="social-links">
+            <a
+              href="mailto:sangdonpark@dju.kr"
+              class="social-link"
+              aria-label="Email"
+              ><i class="fas fa-envelope"></i></a
+            ><a
+              href="../courses-2026-fall-en.html"
+              class="social-link"
+              aria-label="Fall 2026 Teaching Portal"
+              ><i class="fas fa-book-open"></i></a
+            ><a
+              href="../en.html#teaching"
+              class="social-link"
+              aria-label="Teaching"
+              ><i class="fas fa-chalkboard-teacher"></i
+            ></a>
+          </div>
+        </div>
+        <nav class="nav-section">
+          <div class="nav-title">Fall 2026 Core</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="algorithms-2026-fall-en.html" class="nav-link"
+                ><i class="fas fa-diagram-project"></i> Algorithms</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="generative-ai-software-engineering-2026-fall-en.html"
+                class="nav-link active"
+                ><i class="fas fa-wand-magic-sparkles"></i> Generative AI SE</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">Course Navigation</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#overview" class="nav-link active"
+                ><i class="fas fa-circle-info"></i> Overview</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#notices" class="nav-link"
+                ><i class="fas fa-bullhorn"></i> Notices</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#materials" class="nav-link"
+                ><i class="fas fa-file-arrow-down"></i> Materials</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#roadmap" class="nav-link"
+                ><i class="fas fa-route"></i> Roadmap</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link"
+                ><i class="fas fa-envelope-open-text"></i> Contact</a
+              >
+            </li>
+          </ul>
+          <div class="nav-title">Main Site</div>
+          <ul
+            class="nav-list"
+            data-site-nav
+            data-lang="en"
+            data-active="teaching"
+          ></ul>
+        </nav>
+        <div class="language-toggle">
+          <a
+            href="generative-ai-software-engineering-2026-fall-en.html"
+            class="lang-btn active"
+            >EN</a
+          ><a
+            href="generative-ai-software-engineering-2026-fall.html"
+            class="lang-btn"
+            >KO</a
+          >
+        </div>
+      </aside>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <main class="main-content">
+        <section id="overview" class="posts-section">
+          <header class="page-header">
+            <div class="course-hero">
+              <h2>Generative AI Software Engineering</h2>
+              <p>
+                Learn the human responsibilities of
+                <strong
+                  >problem definition, requirements, design, validation, and
+                  accountability</strong
+                >
+                when AI generates code. Weekly exercises grow into a deployed
+                team project.
+              </p>
+              <div class="course-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">Course Code</span
+                  ><span class="meta-value">406323</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Section</span
+                  ><span class="meta-value">01</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Time & Room</span
+                  ><span class="meta-value">Sat 13:00–16:00 · 24405</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Instructor</span
+                  ><span class="meta-value">Sangdon Park</span>
+                </div>
+              </div>
+              <div class="callout-box">
+                <strong>Operating principle:</strong> Use AI tools actively, but
+                be able to explain and validate the behavior and decisions in
+                every submission.
+              </div>
+              <div class="course-links">
+                <a class="btn primary" href="#materials"
+                  ><i class="fas fa-download"></i> Lectures 1–4</a
+                ><a class="btn" href="../courses-2026-fall-en.html"
+                  ><i class="fas fa-calendar-days"></i> Fall Timetable</a
+                >
+              </div>
+            </div>
+          </header>
+        </section>
+        <section id="notices" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">Notices</h2>
+            <p class="section-subtitle">Announcements</p>
+          </div>
+          <div class="notice-list">
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">
+                Course page and Lectures 1–4 published
+              </h3>
+              <p class="notice-text">
+                Slides are available for orientation, development processes and
+                AI tools, prompt writing, and the boundary of AI delegation.
+              </p>
+            </article>
+            <article class="notice-item">
+              <div class="notice-date">2026-09-01</div>
+              <h3 class="notice-title">Preparation</h3>
+              <p class="notice-text">
+                Bring a laptop and prepare GitHub and ChatGPT accounts.
+                Installation and tool connections will be completed in class.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section id="materials" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">Lecture Materials</h2>
+            <p class="section-subtitle">Current Slide Decks</p>
+          </div>
+          <div class="table-wrap">
+            <table class="course-table material-table">
+              <thead>
+                <tr>
+                  <th>Lecture</th>
+                  <th>Topic</th>
+                  <th>Focus</th>
+                  <th>Material</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Orientation & Software Engineering</td>
+                  <td>
+                    Course rules, software crises, environment setup, Git/GitHub
+                  </td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_1강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Development Processes & AI Tools</td>
+                  <td>Process models, Agile/Scrum, Codex and ZCode setup</td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_2강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Generative AI & Prompting</td>
+                  <td>
+                    Probabilistic generation, role, context, requirements,
+                    format
+                  </td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_3강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>The Boundary of AI Delegation</td>
+                  <td>
+                    Delegability, task decomposition, human checks,
+                    accountability
+                  </td>
+                  <td>
+                    <a
+                      href="../data/생성형%20AI%20소프트웨어공학/생성형AI소프트웨어공학_4강.pptx"
+                      >PPTX</a
+                    >
+                  </td>
+                  <td><span class="status-pill status-open">Open</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="material-footnote">
+            <i class="fas fa-circle-info"></i> Backup slide versions are
+            excluded; only current materials are linked.
+          </p>
+        </section>
+        <section id="roadmap" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">Semester Roadmap</h2>
+            <p class="section-subtitle">16-Week Learning Path</p>
+          </div>
+          <div class="posts-list grid-3">
+            <article class="post-card">
+              <span class="post-category">Weeks 1–4</span>
+              <h3 class="post-title">Foundations & Delegation</h3>
+              <p class="post-excerpt">
+                Set up tools, understand generative AI, write effective
+                instructions, and determine what can be delegated.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">Weeks 5–8</span>
+              <h3 class="post-title">Requirements & Design</h3>
+              <p class="post-excerpt">
+                Define the team project, develop requirements and architecture,
+                and implement from specifications.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">Weeks 9–13</span>
+              <h3 class="post-title">Quality & Operations</h3>
+              <p class="post-excerpt">
+                Testing, debugging, maintenance, deployment automation, coding
+                agents, security, and ethics.
+              </p>
+            </article>
+            <article class="post-card">
+              <span class="post-category">Weeks 14–16</span>
+              <h3 class="post-title">Deployment & Retrospective</h3>
+              <p class="post-excerpt">
+                Demonstrate a deployed product and reflect on the project's
+                evidence and decisions.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section id="contact" class="posts-section">
+          <div class="section-header">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">Course Inquiries</p>
+          </div>
+          <article class="post-card">
+            <p class="post-excerpt">
+              Email: <a href="mailto:sangdonpark@dju.kr">sangdonpark@dju.kr</a
+              ><br />Subject:
+              <span class="inline-code"
+                >[Generative AI SE-01][Student ID] Topic</span
+              ><br />The university LMS remains authoritative for assignments
+              and attendance.
+            </p>
+          </article>
+        </section>
+      </main>
+      <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top"
+        ><i class="fas fa-arrow-up"></i><span>TOP</span></a
+      >
+    </div>
+    <script src="/js/shared-nav.js?v=20260901"></script>
+    <script src="/js/course-page.js?v=20260901"></script>
+  </body>
+</html>
