@@ -1,14 +1,51 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-09-01T05:12:27Z",
+  "synced_at": "2026-09-02T04:37:25Z",
   "views": {
-    "count": 0,
-    "uniques": 0
+    "count": 14,
+    "uniques": 4
   },
   "clones": {
-    "count": 133,
-    "uniques": 32
+    "count": 124,
+    "uniques": 28
   },
-  "top_paths": [],
+  "top_paths": [
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강.pptx",
+      "title": "/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강.pptx",
+      "count": 5,
+      "uniques": 4
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/생성형 AI 소프트웨어공학",
+      "title": "/tree/main/data/생성형 AI 소프트웨어공학",
+      "count": 5,
+      "uniques": 4
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io",
+      "title": "Overview",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx",
+      "title": "/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/commit/b729fa7d60ca07f284a23252984f88fcdaef2664",
+      "title": "/commit/b729fa7d60ca07f284a23252984f88fcdaef2664",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+      "title": "/tree/main/data",
+      "count": 1,
+      "uniques": 1
+    }
+  ],
   "top_referrers": []
 }
