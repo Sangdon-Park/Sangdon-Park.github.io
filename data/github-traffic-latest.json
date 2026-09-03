@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-09-02T04:37:25Z",
+  "synced_at": "2026-09-03T04:35:44Z",
   "views": {
-    "count": 14,
+    "count": 18,
     "uniques": 4
   },
   "clones": {
-    "count": 124,
-    "uniques": 28
+    "count": 117,
+    "uniques": 24
   },
   "top_paths": [
     {
@@ -25,12 +25,24 @@
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 1,
+      "count": 2,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
+      "title": "/tree/main/data",
+      "count": 2,
       "uniques": 1
     },
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx",
       "title": "/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/알고리즘/0장_한학기_미리보기.pptx",
+      "title": "/blob/main/data/알고리즘/0장_한학기_미리보기.pptx",
       "count": 1,
       "uniques": 1
     },
@@ -41,8 +53,8 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/알고리즘",
+      "title": "/tree/main/data/알고리즘",
       "count": 1,
       "uniques": 1
     }

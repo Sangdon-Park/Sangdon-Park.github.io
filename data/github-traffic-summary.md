@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-09-02T04:37:25Z`
+- Last Synced (UTC): `2026-09-03T04:35:44Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 14 | 4 |
-| Clones | 124 | 28 |
+| Views | 18 | 4 |
+| Clones | 117 | 24 |
 
 ## Daily Views
 
@@ -211,6 +211,7 @@
 | 2026-08-29 | 0 | 0 |
 | 2026-08-30 | 0 | 0 |
 | 2026-08-31 | 14 | 4 |
+| 2026-09-01 | 4 | 1 |
 
 ## Daily Clones
 
@@ -413,6 +414,7 @@
 | 2026-08-29 | 2 | 2 |
 | 2026-08-30 | 6 | 6 |
 | 2026-08-31 | 2 | 2 |
+| 2026-09-01 | 5 | 3 |
 
 ## Top Paths
 
@@ -420,7 +422,9 @@
 |---|---|---:|---:|
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강.pptx | /blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강.pptx | 5 | 4 |
 | /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/생성형 AI 소프트웨어공학 | /tree/main/data/생성형 AI 소프트웨어공학 | 5 | 4 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 2 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx | /blob/main/data/생성형 AI 소프트웨어공학/생성형AI소프트웨어공학_1강_이전버전(백업).pptx | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/알고리즘/0장_한학기_미리보기.pptx | /blob/main/data/알고리즘/0장_한학기_미리보기.pptx | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/commit/b729fa7d60ca07f284a23252984f88fcdaef2664 | /commit/b729fa7d60ca07f284a23252984f88fcdaef2664 | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/알고리즘 | /tree/main/data/알고리즘 | 1 | 1 |
