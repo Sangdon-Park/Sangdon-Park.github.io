@@ -18,7 +18,7 @@ async function flushCloud(){
   try{
     while(cloud.queue.length){const item=cloud.queue[0];await labRequest(item.action,item.body);cloud.queue=cloud.queue.filter(queued=>queued!==item);saveQueue();}
     cloudStatus('● 서버 저장 완료 · 교수님께 진행 상황 공유 중');
-  }catch(error){cloudStatus(error.status===401?'로그인이 만료되었습니다. 다시 로그인하세요.':'연결 대기 · 이 브라우저에 보관 중 / 자동 재시도',true);}
+  }catch(error){cloudStatus(error.status===401?'연결이 만료되었습니다. 실습 시작 버튼을 눌러주세요.':'연결 대기 · 이 브라우저에 보관 중 / 자동 재시도',true);}
   finally{cloud.flushing=false;}
 }
 function cloudDraft(problem,language,code){if(!cloud.session)return;enqueue('draft',{problem,language,code},false);clearTimeout(cloud.draftTimer);cloud.draftTimer=setTimeout(flushCloud,1200);}
@@ -42,7 +42,7 @@ function cloudAccount(data){
   $('cloud-logout').hidden=false;$('cloud-history').hidden=false;
   const legacy=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1')||'{}');$('cloud-import').hidden=!Object.keys(legacy.answers||{}).length;
   show(Math.max(0,Math.min(11,saved.index||0)));if(changed&&worker)boot();
-  cloudStatus('● 로그인 완료 · 진행 상황 자동 저장');flushCloud();
+  cloudStatus('● 실습 기록 연결 완료 · 진행 상황 자동 저장');flushCloud();
 }
 async function cloudInit(){
   let session;try{session=JSON.parse(localStorage.getItem('dju-algolab-session'));}catch{}
@@ -55,18 +55,17 @@ async function cloudInit(){
       const passed=Object.entries(local.passed||{}).map(([key,p])=>({...p,problem:key.replace(/^c:/,''),language:key.startsWith('c:')?'c':'python',created_at:p.at}));
       cloudAccount({token:session.token,student:{...session.student,current_problem:'P'+String((local.index||0)+1).padStart(2,'0'),current_language:local.language||'python'},drafts,passed});
       cloudStatus('연결 대기 · 이 PC에 저장된 답안으로 연습할 수 있습니다.',true);
-    }else cloudStatus('서버 로그인 확인이 필요합니다. 로그인 버튼을 눌러주세요.',true);
+    }else cloudStatus('실습 시작 버튼을 눌러 반·학번·이름을 입력하세요.',true);
   }
 }
 function initCloudUI(){
   const dialog=$('account-dialog'),form=$('account-form');
   const preferred=new URLSearchParams(location.search).get('section');if(['01','02'].includes(preferred))$('account-section').value=preferred;
-  $('cloud-login').onclick=()=>{if(busy)return;if(cloud.session&&!cloud.expired){$('cloud-history').click();return;}form.reset();if(['01','02'].includes(preferred))$('account-section').value=preferred;if(cloud.session){$('account-section').value=cloud.session.student.section;$('account-number').value=cloud.session.student.student_no;}$('account-mode').onchange();$('account-message').textContent='';dialog.showModal();};
+  $('cloud-login').onclick=()=>{if(busy)return;if(cloud.session&&!cloud.expired){$('cloud-history').click();return;}form.reset();if(['01','02'].includes(preferred))$('account-section').value=preferred;if(cloud.session){$('account-section').value=cloud.session.student.section;$('account-number').value=cloud.session.student.student_no;$('account-name').value=cloud.session.student.name;}$('account-message').textContent='';dialog.showModal();};
   $('account-close').onclick=()=>dialog.close();
-  $('account-mode').onchange=()=>{const register=$('account-mode').value==='register';$('register-fields').hidden=!register;$('account-name').required=register;$('account-join').required=register;$('account-password').autocomplete=register?'new-password':'current-password';};
   form.onsubmit=async event=>{
     event.preventDefault();if(cloud.flushing){$('account-message').textContent='저장 요청이 끝난 뒤 다시 시도하세요.';return;}$('account-submit').disabled=true;$('account-message').textContent='확인 중…';
-    try{const data=await labRequest($('account-mode').value,{section:$('account-section').value,student_no:$('account-number').value.trim(),name:$('account-name').value.trim(),password:$('account-password').value,join_code:$('account-join').value.trim()},null);cloudAccount(data);dialog.close();}
+    try{const data=await labRequest('enter',{section:$('account-section').value,student_no:$('account-number').value.trim(),name:$('account-name').value.trim()},null);cloudAccount(data);dialog.close();}
     catch(error){$('account-message').textContent=error.message;}
     finally{$('account-submit').disabled=false;}
   };

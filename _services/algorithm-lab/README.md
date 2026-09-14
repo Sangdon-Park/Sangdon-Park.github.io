@@ -10,14 +10,15 @@ Supabase schema and Edge Function source, without credentials.
 - Edge Function: `algorithm-lab`
 - Dedicated tables: `public.dju_algolab_*`
 - No existing school tables, auth users, or policies are modified.
-- Students authenticate using section, student number and a separate password.
-- Registration requires the appropriate class participation code.
-- Passwords use PBKDF2-SHA256, 120,000 iterations and independent salts.
+- Students enter with section, student number and name; no student password or join code.
+- Matching identities reconnect to existing records (classroom self-identification).
+- Legacy password columns remain for compatibility with already open old pages.
+- Admin passwords use PBKDF2-SHA256, 120,000 iterations and independent salts.
 - Session tokens are random 256-bit values; only hashes are stored in the DB.
 - Student sessions expire after 30 days; admin sessions after 8 hours.
 - All direct anonymous/authenticated table and RPC access is revoked. The Edge
   Function validates its own session and role before service-role access.
-- Password resets revoke existing sessions. Admin passwords can be changed in
+- Admin password changes revoke admin sessions. Passwords can be changed in
   the dashboard; the initial secret is then superseded by the DB hash.
 
 ## Scope of grading
@@ -42,10 +43,9 @@ npx supabase functions deploy algorithm-lab --project-ref tltrbkttwzvwghaplurl -
 Disabling the platform JWT check is intentional: all protected actions require
 the application's opaque session token instead. Do not remove role checks.
 
-Required secrets: `ALGOLAB_ADMIN_HASH`, `ALGOLAB_ADMIN_SALT`, `ALGOLAB_PEPPER`,
-`ALGOLAB_JOIN_01`, `ALGOLAB_JOIN_02`. Supabase supplies `SUPABASE_URL` and
+Required secrets: `ALGOLAB_ADMIN_HASH`, `ALGOLAB_ADMIN_SALT`, `ALGOLAB_PEPPER`. Supabase supplies `SUPABASE_URL` and
 `SUPABASE_SERVICE_ROLE_KEY` to the function. No secrets belong in Git or frontend
-assets. Join codes are shown only after administrator authentication.
+assets. Legacy join secrets are used only by the old registration endpoint.
 
 ## Operational notes
 
@@ -56,10 +56,9 @@ assets. Join codes are shown only after administrator authentication.
 - Student history shows the latest 100 submissions; admin detail shows 200.
 - Dashboard code/progress refreshes every 10 seconds while the tab is visible.
 - Student heartbeats occur every 30 seconds in a visible tab.
-- Unknown student passwords cannot be recovered, only reset.
 - Keep credentials and student exports out of the public repository.
 
 Validation includes isolated fixture API/browser tests for authentication,
 cross-student access denial, duplicate retries, imports, offline drafts, logout,
-password resets and safe code rendering; transactional DB aggregation checks are
+admin password changes and safe code rendering; transactional DB aggregation checks are
 rolled back. Production authentication and RLS privileges are verified separately.

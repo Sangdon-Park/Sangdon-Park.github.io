@@ -69,13 +69,26 @@ export function createHandler({env,fetcher=fetch}){
       let body;try{body=JSON.parse(raw);}catch{fail(400,'잘못된 요청입니다.');}
       if(!body||typeof body!=='object')fail(400,'잘못된 요청입니다.');
       const action=body.action;
-      if(['register','login','admin-login'].includes(action)){
+      if(['enter','register','login','admin-login'].includes(action)){
         const ip=req.headers.get('x-forwarded-for')?.split(',')[0].trim()||'unknown';
         // Classroom NATs share an IP: use both a generous IP budget and a per-account budget.
         const ipHash=await digest(ip+env('ALGOLAB_PEPPER'));
         await limit('ip:'+ipHash,900,500);
         const account=action==='admin-login'?'admin':String(body.section)+':'+String(body.student_no);
         await limit('login:'+await digest(account+':'+ipHash),900,15);
+      }
+      if(action==='enter'){
+        const person=identity(body);
+        const path=table('students')+'?section=eq.'+person.section+'&student_no=eq.'+person.student_no+'&select=*';
+        let rows=await db(path);
+        if(!rows.length){
+          // Retain legacy NOT NULL columns without requiring a student password.
+          try{rows=await db(table('students'),'POST',{...person,password_salt:random(),password_hash:random()});}
+          catch(error){if(!(error instanceof HttpError)||error.status!==409)throw error;rows=await db(path);}
+        }
+        if(!rows[0]||rows[0].name!==person.name)fail(400,'이 학번에 등록된 이름과 다릅니다. 반·학번·이름을 확인하세요.');
+        await touch(rows[0].id,{});
+        return respond({token:await issue('student',rows[0].id),...await state(rows[0].id)});
       }
       if(action==='register'){
         const person=identity(body),secret=password(body.password);
@@ -111,16 +124,10 @@ export function createHandler({env,fetcher=fetch}){
         await upsertDraft(auth.student_id,item);await touch(auth.student_id,item);return respond({ok:true});
       }
       if(action==='history')return respond({submissions:await db(table('submissions')+'?student_id=eq.'+auth.student_id+'&order=created_at.desc&limit=100&select=id,problem,language,passed,total,solved,source,created_at')});
-      if(action==='admin-dashboard')return respond({students:await db('rpc/dju_algolab_dashboard','POST',{}),updated_at:new Date().toISOString(),join_codes:{'01':env('ALGOLAB_JOIN_01'),'02':env('ALGOLAB_JOIN_02')}});
+      if(action==='admin-dashboard')return respond({students:await db('rpc/dju_algolab_dashboard','POST',{}),updated_at:new Date().toISOString()});
       if(action==='admin-student'){
         if(!/^[0-9a-f-]{36}$/i.test(body.student_id||''))fail(400,'학생 식별자가 올바르지 않습니다.');
         return respond({...await state(body.student_id),submissions:await db(table('submissions')+'?student_id=eq.'+body.student_id+'&order=created_at.desc&limit=200&select=*')});
-      }
-      if(action==='admin-reset'){
-        if(!/^[0-9a-f-]{36}$/i.test(body.student_id||''))fail(400,'학생 식별자가 올바르지 않습니다.');
-        const secret=password(body.password),salt=random();
-        await db(table('students')+'?id=eq.'+body.student_id,'PATCH',{password_salt:salt,password_hash:await hashPassword(secret,salt)});
-        await db(table('sessions')+'?student_id=eq.'+body.student_id,'DELETE');return respond({ok:true});
       }
       if(action==='admin-password'){
         const salt=random(),hash=await hashPassword(password(body.password),salt);
