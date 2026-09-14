@@ -57,7 +57,7 @@ function initEditor() {
   editor.on('cursorActivity',()=>{
     const cursor=editor.getCursor();
     const column=CodeMirror.countColumn(editor.getLine(cursor.line),cursor.ch,4);
-    $('cursor-position').textContent=`${cursor.line+1}행 · ${column+1}열`;
+    $('cursor-position').textContent=UI_EN?`Line ${cursor.line+1} · Column ${column+1}`:`${cursor.line+1}행 · ${column+1}열`;
   });
   editor.on('renderLine',(cm,line,element)=>{
     element.style.position='relative';
@@ -69,7 +69,7 @@ function initEditor() {
   });
   $('font-size').onchange=()=>{editor.getWrapperElement().style.fontSize=$('font-size').value+'px';editor.refresh();};
   $('line-wrap').onclick=()=>{const enabled=!editor.getOption('lineWrapping');editor.setOption('lineWrapping',enabled);$('line-wrap').setAttribute('aria-pressed',String(enabled));};
-  function focusEditor(enabled){document.body.classList.toggle('editor-expanded',enabled);$('focus-editor').setAttribute('aria-pressed',String(enabled));$('focus-editor').textContent=enabled?'축소 ↙':'확대 ↗';editor.refresh();}
+  function focusEditor(enabled){document.body.classList.toggle('editor-expanded',enabled);$('focus-editor').setAttribute('aria-pressed',String(enabled));$('focus-editor').textContent=enabled?T('축소 ↙'):T('확대 ↗');editor.refresh();}
   $('focus-editor').onclick=()=>focusEditor(!document.body.classList.contains('editor-expanded'));
   document.addEventListener('keydown',event=>{if(event.key==='Escape')focusEditor(false);});
   for (const [id,command] of [['indent-more','indentMore'],['indent-less','indentLess'],['indent-align','indentAuto'],['editor-undo','undo']]) {

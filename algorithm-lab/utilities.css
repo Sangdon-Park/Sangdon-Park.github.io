@@ -1,0 +1,8 @@
+.lab-utilities{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:10px 24px;background:#111c2b;border-bottom:1px solid #29384b;color:#c6d3e2;font-size:13px;flex-wrap:wrap}
+.lab-utilities select{width:auto;min-width:100px;padding:7px 10px;background:#18283b;color:#eef5ff;border:1px solid #3d526d;border-radius:7px}
+.lab-utilities button{font-size:13px;padding:7px 12px}
+#browser-reset-warning{color:#f59e86}
+#confirm-browser-reset{background:#9e3434;color:white;border-color:#bc5050}
+html[lang=en] .dashboard-tools{flex-wrap:wrap}
+html[lang=en] .identity{flex-wrap:wrap}
+@media(max-width:600px){.lab-utilities{padding:10px 12px;justify-content:flex-start}html[lang=en] .indent-toolbar{flex-wrap:wrap}}

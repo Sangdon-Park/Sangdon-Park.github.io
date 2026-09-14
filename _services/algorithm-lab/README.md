@@ -62,3 +62,12 @@ Validation includes isolated fixture API/browser tests for authentication,
 cross-student access denial, duplicate retries, imports, offline drafts, logout,
 admin password changes and safe code rendering; transactional DB aggregation checks are
 rolled back. Production authentication and RLS privileges are verified separately.
+
+## Shared PCs and interface language
+
+- Both pages offer Korean/English UI selection, persisted locally or selected with `?lang=en`.
+- `locale-en.js` translates UI and all Python/C problem descriptions. Student source code and names are preserved.
+- “Reset this browser” removes only Algorithm Lab local/session storage, including all cached accounts and pending uploads after confirmation. It never deletes server records.
+- Current sessions are revoked when online. Other open lab tabs are notified to clear their tab-local sessions and reload. Offline reset still removes local data.
+- Python/C runtime downloads are retained; students do not need to download the compiler again.
+- Verification: both languages, all 24 problem descriptions, grading, unchanged student code, pending-upload warning/cancel, offline reset, unrelated storage retention, and server record recovery.
