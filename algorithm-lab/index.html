@@ -6,10 +6,12 @@
   <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
   <link rel="stylesheet" href="style.css?v=20260914-studio1">
   <link rel="stylesheet" href="studio.css?v=20260914-studio1">
+  <link rel="stylesheet" href="cloud.css?v=20260914-cloud1">
 </head>
 <body>
   <header><div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><div><span class="eyebrow">DAEJEON UNIVERSITY / COMPUTER ENGINEERING</span><h1>Algorithm Lab <span>알고리즘 코딩 실습</span></h1></div></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
   <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python과 C 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
+  <div class="cloud-strip"><span id="cloud-status" role="status">로그인하면 교수님께 진행 상황이 공유되고, 다른 PC에서도 이어서 풀 수 있습니다.</span><div><button id="cloud-login">학생 로그인 / 등록</button><button id="cloud-import" hidden>기존 답안 가져오기</button><button id="cloud-history" hidden>제출 이력</button><button id="cloud-logout" hidden>로그아웃</button><a href="admin.html">교수자 관리 ↗</a></div></div>
   <main><aside><div class="sidebar-caption">WORKSPACE <span>CHAPTER 01</span></div><h2>문제 목록 <span>12</span></h2><div class="progress-track"><div id="progress-bar"></div></div><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">대전대학교 컴퓨터공학과 · 박상돈<br>탐색 / 연산 횟수 / 복잡도<br><br>각자의 속도로 풀어보세요.<br>채점 후에도 현재 문제에 머뭅니다.</p></aside>
   <section class="workspace"><div class="heading"><div><span id="meta" class="eyebrow"></span><h2 id="title">문제를 불러오는 중입니다</h2></div><span id="level"></span></div>
     <div class="columns"><article><div class="panel-title"><span>문제 설명</span><small>DESCRIPTION</small></div><div class="problem-content"><h3>해결할 문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></div></article>
@@ -25,7 +27,10 @@
       <div id="case-results"></div><button id="next" hidden>다음 문제로 →</button></div>
     </div></div>
   </section></main>
-  <footer>수업용 자동 연습 채점입니다. 제출하려면 선택한 언어의 답안·결과 파일을 내려받아 LMS에 올리세요. 교수자에게 자동 전송되지는 않습니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a></footer>
+  <footer>로그인하면 학번·이름·반·코드·채점 기록이 수업 진행 확인을 위해 교수님께 공유됩니다. 로그인 없이 연습하면 이 브라우저에만 저장됩니다. 브라우저 채점 결과를 기록하는 수업용 실습이며 감독 시험용 서버 채점은 아닙니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a></footer>
+  <dialog id="account-dialog"><div class="dialog-heading"><h2>내 실습 기록 연결</h2><button id="account-close" type="button" aria-label="닫기">✕</button></div><p>반·학번·이름, 답안 코드와 채점 기록을 교수님께 공유합니다. 학교 포털 비밀번호와 다른 비밀번호를 사용하세요.</p><form id="account-form"><label>이용 방식<select id="account-mode"><option value="login">기존 계정 로그인</option><option value="register">처음 등록하기</option></select></label><div class="form-columns"><label>반<select id="account-section"><option value="01">알고리즘 01반</option><option value="02">알고리즘 02반</option></select></label><label>학번<input id="account-number" inputmode="numeric" pattern="[0-9]{6,12}" required autocomplete="username" maxlength="12"></label></div><div id="register-fields" hidden><label>이름<input id="account-name" maxlength="40" autocomplete="name"></label><label>반별 참여 코드<input id="account-join" maxlength="40" placeholder="교수님이 안내한 코드"></label></div><label>실습 비밀번호<input id="account-password" type="password" minlength="8" maxlength="128" required autocomplete="current-password" placeholder="8자 이상"></label><p id="account-message" role="alert"></p><button id="account-submit" class="primary" type="submit">계속하기</button></form><p class="dialog-note">기존 브라우저 답안은 로그인 후 ‘기존 답안 가져오기’로 옮길 수 있습니다. 비밀번호를 잊었다면 교수님께 초기화를 요청하세요.</p></dialog>
+  <dialog id="import-dialog"><h2>기존 답안 가져오기</h2><p id="import-description"></p><div class="dialog-actions"><button id="import-cancel">취소</button><button id="import-confirm" class="primary">본인 답안 확인 · 가져오기</button></div></dialog>
+  <dialog id="history-dialog"><div class="dialog-heading"><h2>내 제출 이력</h2><button id="history-close">닫기</button></div><p>최근 100건 · 시각은 서버에 접수된 시각입니다.</p><div id="history-list"></div></dialog>
   <script src="c-problems.js?v=20260914-c1"></script>
   <script src="vendor/codemirror/codemirror.js"></script>
   <script src="vendor/codemirror/python.js"></script>
@@ -35,5 +40,6 @@
   <script src="vendor/codemirror/closebrackets.js"></script>
   <script src="vendor/codemirror/comment.js"></script>
   <script src="editor.js?v=20260914-studio1"></script>
-  <script src="app.js?v=20260914-studio1"></script>
+  <script src="cloud.js?v=20260914-cloud1"></script>
+  <script src="app.js?v=20260914-cloud1"></script>
 </body></html>

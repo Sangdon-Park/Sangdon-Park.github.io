@@ -19,3 +19,8 @@ hackathon_admin/score-output/
 
 # Temporary extracted assignment folders
 data/*/HW/week*-assignment/
+
+# Local CLI state and private backend environment files
+**/supabase/.temp/
+_services/**/.env
+_services/**/.env.*

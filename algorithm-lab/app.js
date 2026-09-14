@@ -1,5 +1,5 @@
 const $ = id => document.getElementById(id);
-const KEY = 'dju-algorithm-lab-v1';
+let KEY = 'dju-algorithm-lab-v1';
 let problems=[], index=0, worker=null, ready=false, busy=false, timer=null, token=0, job=null;
 let saved={answers:{},passed:{},student:'',index:0};
 try { const item=JSON.parse(localStorage.getItem(KEY)); if(item) saved={...saved,...item}; } catch (_) {}
@@ -60,12 +60,12 @@ function show(i){
   $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.');renderNav();
 }
 function armTimeout(ms){
-  clearTimeout(timer);timer=setTimeout(()=>{busy=false;ready=false;worker.terminate();controls();$('retry').hidden=false;$('engine').textContent='실행 중단';setResult('시간 제한을 넘겨 중단했습니다. 반복 조건과 변수 갱신을 확인하세요. 답안을 수정한 뒤 다시 연결을 눌러주세요.','error');},ms);
+  clearTimeout(timer);timer=setTimeout(()=>{if(job)cloudAttempt(job,{error:'시간 제한 초과'});busy=false;ready=false;worker.terminate();controls();$('retry').hidden=false;$('engine').textContent='실행 중단';setResult('시간 제한을 넘겨 중단했습니다. 반복 조건과 변수 갱신을 확인하세요. 답안을 수정한 뒤 다시 연결을 눌러주세요.','error');},ms);
 }
 function run(mode){
   if(!ready||busy)return;const p=problems[index];const code=getCode();
   saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?'공개 예시 실행 중…':'전체 검사로 채점 중…');
-  job={token:++token,pid:p.id,index,mode,code};
+  job={token:++token,pid:p.id,index,mode,code,language};
   armTimeout(language==='c'?60000:6000);
   worker.postMessage({token:job.token,code,problem:p,cases:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
 }
@@ -75,6 +75,7 @@ function finish(report){
     $('repair-note').textContent=`붙여넣기에 섞인 특수 공백 ${report.normalizedCount}개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.`;
     $('repair-note').hidden=false;renderNav();
   }
+  cloudAttempt(job,report);
   if(report.error){setResult(report.error,'error');return;}
   const success=report.passed===report.total;
   for(const r of report.rows){const row=document.createElement('p');row.textContent=`${r.ok?'✓':'✗'} ${r.public?'공개 예시':'추가 검사'} ${r.number}${r.ok?' 통과':'\n입력: '+r.input+'\n'+r.message}`;$('case-results').append(row);}
@@ -88,9 +89,9 @@ function finish(report){
     if(next>=0){$('next').hidden=false;$('next').onclick=()=>show(next);}
   }else{delete saved.passed[answerKey(job.pid)];persist();renderNav();setResult(`다시 도전해 보세요. ${report.passed}/${report.total}개 검사 통과. 아래에서 실패한 입력과 반환값을 확인하세요.`,'error');}
 }
-$('code').addEventListener('input',()=>{saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();});
+$('code').addEventListener('input',()=>{saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();cloudDraft(problems[index].id,language,$('code').value);});
 $('judge').onclick=()=>run('judge');$('sample').onclick=()=>run('sample');$('retry').onclick=boot;
-$('stop').onclick=()=>{worker.terminate();clearTimeout(timer);busy=false;ready=false;controls();$('engine').textContent='사용자가 중단함';$('retry').hidden=false;setResult('실행을 중단했습니다. 답안을 수정하고 다시 연결을 눌러주세요.');};
+$('stop').onclick=()=>{if(job)cloudAttempt(job,{error:'사용자가 실행을 중단했습니다.'});worker.terminate();clearTimeout(timer);busy=false;ready=false;controls();$('engine').textContent='사용자가 중단함';$('retry').hidden=false;setResult('실행을 중단했습니다. 답안을 수정하고 다시 연결을 눌러주세요.');};
 $('reset').onclick=()=>{if(busy)return;if(confirm('이 문제의 답안을 처음 상태로 되돌릴까요?')){delete saved.answers[answerKey(problems[index].id)];delete saved.passed[answerKey(problems[index].id)];show(index);}};
 $('student').value=saved.student;$('student').oninput=()=>{saved.student=$('student').value;persist();};
 $('download').onclick=()=>{
@@ -104,4 +105,5 @@ $('language').onchange=()=>{
   language=$('language').value;saved.language=language;persist();show(index);boot();
 };
 initEditor();
-fetch('problems.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);boot();}).catch(()=>{setResult('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.','error');});
+initCloudUI();
+fetch('problems.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(async data=>{problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);editor.setOption('readOnly',true);await cloudInit();boot();}).catch(()=>{setResult('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.','error');});

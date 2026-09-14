@@ -1,0 +1,4 @@
+project_id = "dju-algorithm-lab"
+
+[functions.algorithm-lab]
+verify_jwt = false
