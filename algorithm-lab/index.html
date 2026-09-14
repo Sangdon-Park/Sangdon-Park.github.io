@@ -2,16 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>알고리즘 Python 코딩 실습 · 대전대학교</title>
-  <link rel="stylesheet" href="style.css">
+  <title>알고리즘 Python·C 코딩 실습 · 대전대학교</title>
+  <link rel="stylesheet" href="style.css?v=20260914-c1">
 </head>
 <body>
   <header><div><span class="eyebrow">대전대학교 · 컴퓨터공학과 · 박상돈</span><h1>알고리즘 코딩 실습</h1><p>직접 작성하고, 채점하고, 다음 문제로.</p></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
-  <div class="identity"><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>답안은 이 브라우저에 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
+  <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python과 C 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
   <main><aside><h2>문제 목록</h2><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">기본 문제부터 풀어보세요.<br>문제는 자유롭게 선택할 수 있습니다.</p></aside>
   <section class="workspace"><div class="heading"><div><span id="meta" class="eyebrow"></span><h2 id="title">문제를 불러오는 중입니다</h2></div><span id="level"></span></div>
-    <div class="columns"><article><h3>문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></article>
-    <div class="coding"><div class="editor-toolbar"><label for="code">Python 3 · 답안 작성</label><button id="reset">이 문제 초기화</button></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Python 답안 코드"></textarea>
+    <div class="columns"><article><h3>문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></article>
+    <div class="coding"><div class="editor-toolbar"><label id="editor-label" for="code">Python 3 · 답안 작성</label><button id="reset">이 문제 초기화</button></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="답안 코드"></textarea>
       <div class="actions"><button id="sample" disabled>예시 실행</button><button id="judge" class="primary" disabled>채점하기</button><button id="stop" hidden>실행 중지</button></div>
       <p id="repair-note" class="notice" role="status" hidden></p>
       <div class="options"><label><input id="auto" type="checkbox" checked> 통과하면 다음 문제로 자동 이동</label><span>Ctrl + Enter로 채점</span></div>
@@ -19,6 +19,7 @@
       <div id="case-results"></div><button id="next" hidden>다음 문제로 →</button>
     </div></div>
   </section></main>
-  <footer>수업용 자동 연습 채점입니다. 제출하려면 답안·결과 파일을 내려받아 LMS에 올리세요. 교수자에게 자동 전송되지는 않습니다. <a href="https://sangdon-park.github.io">홈페이지</a></footer>
-  <script src="app.js?v=20260914-paste1"></script>
+  <footer>수업용 자동 연습 채점입니다. 제출하려면 선택한 언어의 답안·결과 파일을 내려받아 LMS에 올리세요. 교수자에게 자동 전송되지는 않습니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a></footer>
+  <script src="c-problems.js?v=20260914-c1"></script>
+  <script src="app.js?v=20260914-c1"></script>
 </body></html>

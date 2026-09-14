@@ -1,0 +1,3 @@
+Source: https://github.com/binji/wasm-clang
+Revision: 648c4a89997a351eef75cdaec3ef5b89d4937dec
+Files are unmodified. Apache-2.0 and LLVM licenses are included.
