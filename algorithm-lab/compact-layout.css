@@ -1,0 +1,17 @@
+.compact-lab>header{min-height:54px;padding:8px 18px;gap:16px;flex-wrap:nowrap}
+.compact-lab .brand{gap:9px;flex-shrink:0}.compact-lab .brand-mark{width:30px;height:30px;font-size:15px;border-radius:7px}
+.compact-lab .brand .eyebrow,.compact-lab h1 span{display:none}.compact-lab h1{font-size:18px;margin:0}
+.compact-lab>header>.status{margin-left:auto;gap:10px}.compact-lab .status strong{padding:5px 8px;font-size:11px}
+.compact-controls{display:flex;align-items:center;gap:8px}.compact-controls button,.compact-controls select{font-size:12px;padding:6px 9px;white-space:nowrap}
+.compact-code-language select{background:#1c293d;color:#a3eac4;border:1px solid #3c4d67;border-radius:5px}
+#compact-save-status{font-size:10px;color:#97e6bd}#compact-save-status.cloud-error{color:#ffb18f}
+#workspace-settings{width:min(580px,94vw)}
+#workspace-settings .lab-utilities,#workspace-settings .identity,#workspace-settings .cloud-strip{padding:16px 0;background:none;border:0;border-top:1px solid #304159;margin-top:16px;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:12px}
+#workspace-settings .identity{align-items:center}#workspace-settings .identity>span{width:100%}#workspace-settings .identity button{margin-left:0}
+#workspace-settings .cloud-strip>span{width:100%}#workspace-settings .cloud-strip>div{gap:10px}
+.compact-lab main{min-height:calc(100vh - 54px)}.compact-lab .workspace{padding:16px 20px}.compact-lab .heading{margin-bottom:14px}.compact-lab .heading h2{font-size:22px}
+.compact-lab .CodeMirror{height:calc(100vh - 380px);min-height:340px}
+@media(max-width:1100px){.compact-lab #engine{display:none}.compact-lab>header{gap:10px}.compact-lab .compact-controls{gap:6px}}
+@media(max-width:650px){.compact-lab>header{padding:8px 12px;flex-wrap:wrap;align-items:center;gap:6px}.compact-lab h1{font-size:16px}.compact-lab>header>.status{margin-left:auto}.compact-lab .compact-controls{width:100%;justify-content:flex-end}.compact-code-language{margin-right:auto}.compact-lab .workspace{padding:12px}.compact-lab .CodeMirror{height:55vh;min-height:340px}}
+
+.compact-lab.editor-expanded .CodeMirror{height:calc(100vh - 285px)}
