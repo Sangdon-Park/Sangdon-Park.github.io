@@ -1,0 +1,1 @@
+CodeMirror 5.65.21. Source: https://github.com/codemirror/codemirror5 . Downloaded from the pinned codemirror@5.65.21 npm package via jsDelivr. Files are unmodified. MIT license included in LICENSE.

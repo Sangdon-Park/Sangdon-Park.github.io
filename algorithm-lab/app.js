@@ -9,7 +9,7 @@ const starter = p => language==='c'?C_PROBLEMS[p.id].starter:p.starter;
 const languageName = () => language==='c'?'C':'Python';
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent='브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.';}}
 function setResult(text,kind=''){ $('result').textContent=text; $('result').className=kind; }
-function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy; $('stop').hidden=!busy; $('code').readOnly=busy; $('language').disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy; $('stop').hidden=!busy; $('code').readOnly=busy; if(editor)editor.setOption('readOnly',busy); $('language').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?'C 준비 중… (첫 실행 약 60MB)':'Python 준비 중…';$('retry').hidden=true;
   worker=new Worker(language==='c'?'c-worker.js?v=20260914-c1':'worker.js?v=20260914-paste1');
@@ -42,7 +42,7 @@ function show(i){
   clearTimeout(advance);index=i;saved.index=i;persist();const p=problems[i];
   $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · PPT ${p.slides}`;$('level').textContent=p.level;
   const view=language==='c'?C_PROBLEMS[p.id]:p;
-  $('statement').textContent=view.statement;$('hint').textContent=view.hint;$('code').value=saved.answers[answerKey(p.id)]??starter(p);
+  $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=languageName()+(language==='c'?' · C11':' 3')+' · 답안 작성';
   $('instructions').textContent=language==='c'?'함수 틀의 이름과 매개변수를 유지하세요. main()과 scanf()는 작성하지 않습니다. 채점기가 함수를 호출합니다.\n'+view.result+'\n배열 길이는 n입니다. out·trace·sorted·stats는 채점기가 준비한 결과 저장 공간입니다.':'함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.';
   $('examples').replaceChildren();
@@ -62,7 +62,7 @@ function armTimeout(ms){
   clearTimeout(timer);timer=setTimeout(()=>{busy=false;ready=false;worker.terminate();controls();$('retry').hidden=false;$('engine').textContent='실행 중단';setResult('시간 제한을 넘겨 중단했습니다. 반복 조건과 변수 갱신을 확인하세요. 답안을 수정한 뒤 다시 연결을 눌러주세요.','error');},ms);
 }
 function run(mode){
-  if(!ready||busy)return;clearTimeout(advance);const p=problems[index];const code=$('code').value;
+  if(!ready||busy)return;clearTimeout(advance);const p=problems[index];const code=getCode();
   saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?'공개 예시 실행 중…':'전체 검사로 채점 중…');
   job={token:++token,pid:p.id,index,mode,code};
   armTimeout(language==='c'?60000:6000);
@@ -70,7 +70,7 @@ function run(mode){
 }
 function finish(report){
   if(report.normalizedCount){
-    job.code=report.normalizedCode;$('code').value=job.code;saved.answers[answerKey(job.pid)]=job.code;persist();
+    job.code=report.normalizedCode;setCode(job.code);saved.answers[answerKey(job.pid)]=job.code;persist();
     $('repair-note').textContent=`붙여넣기에 섞인 특수 공백 ${report.normalizedCount}개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.`;
     $('repair-note').hidden=false;renderNav();
   }
@@ -88,11 +88,6 @@ function finish(report){
   }else{delete saved.passed[answerKey(job.pid)];persist();renderNav();setResult(`다시 도전해 보세요. ${report.passed}/${report.total}개 검사 통과. 아래에서 실패한 입력과 반환값을 확인하세요.`,'error');}
 }
 $('code').addEventListener('input',()=>{clearTimeout(advance);saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();});
-$('code').addEventListener('keydown',e=>{
-  if(e.key==='Tab'){e.preventDefault();const t=e.target,a=t.selectionStart,b=t.selectionEnd;t.setRangeText('    ',a,b,'end');t.dispatchEvent(new Event('input'));}
-  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run('judge');}
-  else if(e.key==='Enter'){e.preventDefault();const t=e.target,a=t.selectionStart,b=t.selectionEnd,line=t.value.slice(0,a).split('\n').pop();const spaces=(line.match(/^ */)||[''])[0]+(line.trimEnd().endsWith(language==='c'?'{':':')?'    ':'');t.setRangeText('\n'+spaces,a,b,'end');t.dispatchEvent(new Event('input'));}
-});
 $('judge').onclick=()=>run('judge');$('sample').onclick=()=>run('sample');$('retry').onclick=boot;
 $('stop').onclick=()=>{worker.terminate();clearTimeout(timer);busy=false;ready=false;controls();$('engine').textContent='사용자가 중단함';$('retry').hidden=false;setResult('실행을 중단했습니다. 답안을 수정하고 다시 연결을 눌러주세요.');};
 $('auto').onchange=()=>{if(!$('auto').checked)clearTimeout(advance);};
@@ -108,4 +103,5 @@ $('language').onchange=()=>{
   if(busy)return;clearTimeout(advance);
   language=$('language').value;saved.language=language;persist();show(index);boot();
 };
+initEditor();
 fetch('problems.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);boot();}).catch(()=>{setResult('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.','error');});
