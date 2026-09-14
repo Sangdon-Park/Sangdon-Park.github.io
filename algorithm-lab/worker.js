@@ -15,6 +15,44 @@ self.onmessage = async ({data}) => {
     const answer = py.runPython(`
 import json, copy, math, contextlib, io, traceback
 _payload = json.loads(_payload_json)
+def _normalize_pasted_code(source):
+    # Scan even syntactically invalid pasted code; preserve quoted text and comments.
+    output = []
+    total = 0
+    i = 0
+    while i < len(source):
+        char = source[i]
+        if char == '#':
+            end = source.find(chr(10), i)
+            if end < 0: end = len(source)
+            output.append(source[i:end])
+            i = end
+            continue
+        if char in (chr(34), chr(39)):
+            delimiter = char * 3 if source.startswith(char * 3, i) else char
+            end = i + len(delimiter)
+            while end < len(source):
+                if source[end] == chr(92):
+                    end += 2
+                elif source.startswith(delimiter, end):
+                    end += len(delimiter)
+                    break
+                else:
+                    end += 1
+            output.append(source[i:end])
+            i = end
+            continue
+        point = ord(char)
+        if point in (160, 8199, 8239, 8287, 12288) or 8192 <= point <= 8202:
+            output.append(' ')
+            total += 1
+        elif point in (8203, 65279):
+            total += 1
+        else:
+            output.append(char)
+        i += 1
+    return ''.join(output), total
+_payload['code'], _normalized_count = _normalize_pasted_code(_payload['code'])
 class _Quiet(io.StringIO):
     def write(self, text): return len(text)
 class _Array:
@@ -64,6 +102,8 @@ try:
     _answer={'rows':_report,'passed':sum(r['ok'] for r in _report),'total':len(_report)}
 except BaseException as _e:
     _answer={'error':type(_e).__name__+': '+str(_e)[:600]}
+_answer['normalizedCode'] = _payload['code']
+_answer['normalizedCount'] = _normalized_count
 json.dumps(_answer,ensure_ascii=False)
 `);
     self.postMessage({type:'result',token:data.token,report:JSON.parse(answer)});

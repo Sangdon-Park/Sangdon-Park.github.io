@@ -8,7 +8,7 @@ function setResult(text,kind=''){ $('result').textContent=text; $('result').clas
 function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy; $('stop').hidden=!busy; $('code').readOnly=busy; document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent='Python 준비 중…';$('retry').hidden=true;
-  worker=new Worker('worker.js');
+  worker=new Worker('worker.js?v=20260914-paste1');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent='연결 지연';$('retry').hidden=false;setResult('Python을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.','error');},90000);
   worker.onmessage=({data})=>{
@@ -38,7 +38,7 @@ function show(i){
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');pre.textContent=`예시 ${j+1}\n입력: ${p.function}(${t.args.map(x=>JSON.stringify(x)).join(', ')})\n반환: ${JSON.stringify(t.expected).replaceAll('null','None')}`;$('examples').append(pre);
   }
-  $('case-results').replaceChildren();$('next').hidden=true;setResult('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.');renderNav();
+  $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.');renderNav();
 }
 function run(mode){
   if(!ready||busy)return;clearTimeout(advance);const p=problems[index];const code=$('code').value;
@@ -48,6 +48,11 @@ function run(mode){
   worker.postMessage({token:job.token,code,problem:p,cases:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
 }
 function finish(report){
+  if(report.normalizedCount){
+    job.code=report.normalizedCode;$('code').value=job.code;saved.answers[job.pid]=job.code;persist();
+    $('repair-note').textContent=`붙여넣기에 섞인 특수 공백 ${report.normalizedCount}개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.`;
+    $('repair-note').hidden=false;renderNav();
+  }
   if(report.error){setResult(report.error,'error');return;}
   const success=report.passed===report.total;
   for(const r of report.rows){const row=document.createElement('p');row.textContent=`${r.ok?'✓':'✗'} ${r.public?'공개 예시':'추가 검사'} ${r.number}${r.ok?' 통과':'\n입력: '+r.input+'\n'+r.message}`;$('case-results').append(row);}
