@@ -41,12 +41,12 @@ function initEditor() {
   editor = CodeMirror.fromTextArea($('code'), {
     mode:'python', theme:'dju', lineNumbers:true, indentUnit:4, tabSize:4,
     indentWithTabs:false, smartIndent:true, electricChars:true, matchBrackets:true,
-    styleActiveLine:true, lineWrapping:false, viewportMargin:20,
+    styleActiveLine:true, lineWrapping:false, viewportMargin:20, autoCloseBrackets:true,
     extraKeys:{
       Tab:editTab, 'Shift-Tab':'indentLess', Backspace:editBackspace, Delete:editDelete,
       'Ctrl-Enter':()=>run('judge'), 'Cmd-Enter':()=>run('judge'),
       'Ctrl-Z':'undo', 'Ctrl-Y':'redo', 'Shift-Ctrl-Z':'redo',
-      'Ctrl-]':'indentMore', 'Ctrl-[':'indentLess'
+      'Ctrl-]':'indentMore', 'Ctrl-[':'indentLess', 'Ctrl-/':'toggleComment', 'Cmd-/':'toggleComment'
     }
   });
   editor.on('change',()=>{
@@ -59,6 +59,19 @@ function initEditor() {
     const column=CodeMirror.countColumn(editor.getLine(cursor.line),cursor.ch,4);
     $('cursor-position').textContent=`${cursor.line+1}행 · ${column+1}열`;
   });
+  editor.on('renderLine',(cm,line,element)=>{
+    element.style.position='relative';
+    const columns=CodeMirror.countColumn(line.text,null,4);
+    for(let column=4;column<columns;column+=4){
+      const guide=document.createElement('span');guide.className='indent-guide';
+      guide.style.left=(4+column*cm.defaultCharWidth())+'px';guide.setAttribute('aria-hidden','true');element.append(guide);
+    }
+  });
+  $('font-size').onchange=()=>{editor.getWrapperElement().style.fontSize=$('font-size').value+'px';editor.refresh();};
+  $('line-wrap').onclick=()=>{const enabled=!editor.getOption('lineWrapping');editor.setOption('lineWrapping',enabled);$('line-wrap').setAttribute('aria-pressed',String(enabled));};
+  function focusEditor(enabled){document.body.classList.toggle('editor-expanded',enabled);$('focus-editor').setAttribute('aria-pressed',String(enabled));$('focus-editor').textContent=enabled?'축소 ↙':'확대 ↗';editor.refresh();}
+  $('focus-editor').onclick=()=>focusEditor(!document.body.classList.contains('editor-expanded'));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')focusEditor(false);});
   for (const [id,command] of [['indent-more','indentMore'],['indent-less','indentLess'],['indent-align','indentAuto'],['editor-undo','undo']]) {
     $(id).onclick=()=>{if(busy)return;editor.focus();editor.execCommand(command);};
   }

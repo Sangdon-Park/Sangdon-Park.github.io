@@ -4,23 +4,25 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>알고리즘 Python·C 코딩 실습 · 대전대학교</title>
   <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
-  <link rel="stylesheet" href="style.css?v=20260914-editor1">
+  <link rel="stylesheet" href="style.css?v=20260914-studio1">
+  <link rel="stylesheet" href="studio.css?v=20260914-studio1">
 </head>
 <body>
-  <header><div><span class="eyebrow">대전대학교 · 컴퓨터공학과 · 박상돈</span><h1>알고리즘 코딩 실습</h1><p>직접 작성하고, 채점하고, 다음 문제로.</p></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
+  <header><div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><div><span class="eyebrow">DAEJEON UNIVERSITY / COMPUTER ENGINEERING</span><h1>Algorithm Lab <span>알고리즘 코딩 실습</span></h1></div></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
   <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python과 C 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
-  <main><aside><h2>문제 목록</h2><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">기본 문제부터 풀어보세요.<br>문제는 자유롭게 선택할 수 있습니다.</p></aside>
+  <main><aside><div class="sidebar-caption">WORKSPACE <span>CHAPTER 01</span></div><h2>문제 목록 <span>12</span></h2><div class="progress-track"><div id="progress-bar"></div></div><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">대전대학교 컴퓨터공학과 · 박상돈<br>탐색 / 연산 횟수 / 복잡도<br><br>각자의 속도로 풀어보세요.<br>채점 후에도 현재 문제에 머뭅니다.</p></aside>
   <section class="workspace"><div class="heading"><div><span id="meta" class="eyebrow"></span><h2 id="title">문제를 불러오는 중입니다</h2></div><span id="level"></span></div>
-    <div class="columns"><article><h3>문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></article>
-    <div class="coding"><div class="editor-toolbar"><label id="editor-label" for="code">Python 3 · 답안 작성</label><button id="reset">이 문제 초기화</button></div>
+    <div class="columns"><article><div class="panel-title"><span>문제 설명</span><small>DESCRIPTION</small></div><div class="problem-content"><h3>해결할 문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></div></article>
+    <div class="coding"><div class="editor-toolbar"><div class="file-tab"><span class="file-icon" aria-hidden="true">{ }</span><label id="editor-label" for="code">answer.py</label><span class="saved-dot" title="브라우저 자동 저장" aria-label="브라우저 자동 저장"></span></div><button id="reset">초기화</button></div>
       <div class="indent-toolbar" aria-label="들여쓰기 도구"><button id="indent-less" title="Shift+Tab">← 내어쓰기</button><button id="indent-more" title="Tab">들여쓰기 →</button><button id="indent-align" title="현재 줄 또는 선택한 줄을 앞 코드에 맞춰 정렬">현재 줄 맞춤</button><button id="editor-undo" title="Ctrl+Z">되돌리기</button></div>
+      <div class="view-toolbar"><span id="editor-language">Python 3</span><div><label for="font-size" class="sr-only">코드 글자 크기</label><select id="font-size" title="코드 글자 크기"><option value="13">13px</option><option value="15" selected>15px</option><option value="17">17px</option><option value="20">20px</option></select><button id="line-wrap" aria-pressed="false" title="긴 줄을 화면 폭에 맞춰 표시">줄바꿈</button><button id="focus-editor" aria-pressed="false" title="편집기 크게 보기 · Esc로 종료">확대 ↗</button></div></div>
       <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="답안 코드"></textarea>
-      <div class="editor-help"><span>공백 4칸 · Tab 들여쓰기 · Shift+Tab 내어쓰기<br>여러 줄 선택 가능 · Backspace 4칸 삭제 · Ctrl+Z 복구</span><span id="cursor-position">1행 · 1열</span></div>
-      <div class="actions"><button id="sample" disabled>예시 실행</button><button id="judge" class="primary" disabled>채점하기</button><button id="stop" hidden>실행 중지</button></div>
+      <div class="editor-help"><span>Spaces: 4 <span class="help-detail">· Tab / Shift+Tab · Ctrl+/ 주석</span></span><span id="cursor-position">1행 · 1열</span></div>
+      <div class="actions"><span class="run-shortcut">Ctrl + Enter</span><button id="sample" disabled>▷ 예시 실행</button><button id="judge" class="primary" disabled>채점하기 →</button><button id="stop" hidden>■ 중지</button></div>
+      <div class="results-panel"><div class="panel-title"><span>실행 결과</span><small>TEST RESULTS</small></div>
       <p id="repair-note" class="notice" role="status" hidden></p>
-      <div class="options"><label><input id="auto" type="checkbox" checked> 통과하면 다음 문제로 자동 이동</label><span>Ctrl + Enter로 채점</span></div>
       <div id="result" role="status" aria-live="polite">처음 접속할 때 Python 실행 환경을 받습니다. 준비되는 동안 문제를 읽고 코드를 작성할 수 있습니다.</div>
-      <div id="case-results"></div><button id="next" hidden>다음 문제로 →</button>
+      <div id="case-results"></div><button id="next" hidden>다음 문제로 →</button></div>
     </div></div>
   </section></main>
   <footer>수업용 자동 연습 채점입니다. 제출하려면 선택한 언어의 답안·결과 파일을 내려받아 LMS에 올리세요. 교수자에게 자동 전송되지는 않습니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a></footer>
@@ -30,6 +32,8 @@
   <script src="vendor/codemirror/clike.js"></script>
   <script src="vendor/codemirror/active-line.js"></script>
   <script src="vendor/codemirror/matchbrackets.js"></script>
-  <script src="editor.js?v=20260914-editor1"></script>
-  <script src="app.js?v=20260914-editor1"></script>
+  <script src="vendor/codemirror/closebrackets.js"></script>
+  <script src="vendor/codemirror/comment.js"></script>
+  <script src="editor.js?v=20260914-studio1"></script>
+  <script src="app.js?v=20260914-studio1"></script>
 </body></html>
