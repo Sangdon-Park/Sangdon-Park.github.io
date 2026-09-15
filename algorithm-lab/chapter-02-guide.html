@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2강 Python·C 코드 예제 | Algorithm Lab</title>
+  <link rel="stylesheet" href="chapter-02-guide.css">
+</head>
+<body>
+  <main>
+    <nav aria-label="Language"><a href="?lang=ko">한국어</a> · <a href="?lang=en">English</a></nav>
+    <p class="eyebrow">ALGORITHM LAB · CHAPTER 02</p>
+    <h1 id="guide-title">완전 탐색 · Python과 C</h1>
+    <p id="guide-intro">강의의 예제와 2강 실습 24문제를 연결한 코드 자료입니다. 먼저 문제를 풀고, 아래 예제와 비교해 보세요.</p>
+    <div class="links">
+      <a id="practice-link" href="/algorithm-lab/?chapter=2">2강 연습하기</a>
+      <a id="deck-link" href="/data/알고리즘/2장_완전탐색_브루트포스_Python_C.pptx">Python·C PPTX</a>
+      <a id="zip-link" href="/data/알고리즘/chapter-02-c.zip" download>C 실행 예제 26개 내려받기</a>
+    </div>
+    <section class="intro">
+      <h2 id="run-title">C 코드 실행 방법</h2>
+      <p id="run-note">ZIP의 각 .c 파일에는 함수와 main이 들어 있습니다. 한 파일씩 컴파일하세요. 브라우저 채점에는 main을 제외한 함수와 보조 함수를 작성합니다.</p>
+      <pre><code>gcc -std=c11 -Wall -Wextra find_pairs.c -o find_pairs
+./find_pairs</code></pre>
+      <p id="input-note">Windows에서는 find_pairs.exe를 실행합니다. input_grid.c와 blackjack_input.c는 scanf로 직접 입력받는 연습입니다. 나머지 파일은 첫 공개 예시를 실행합니다.</p>
+      <p id="correction-note">자료 보완: 배낭 예시의 최대 가치는 13입니다. TSP는 출발점을 고정하면 (n−1)!가지 순서입니다. 부분집합 개수 2ⁿ과 원소를 검사·복사하는 시간 O(n·2ⁿ)을 구분합니다.</p>
+    </section>
+    <label for="guide-code" id="code-label">예제 언어</label>
+    <select id="guide-code"><option value="c">C11</option><option value="python">Python 3</option></select>
+    <p id="guide-status" role="status">예제를 불러오는 중입니다.</p>
+    <div id="guide-problems"></div>
+  </main>
+  <script src="chapter-02-guide.js?v=20260915-ch2"></script>
+</body>
+</html>

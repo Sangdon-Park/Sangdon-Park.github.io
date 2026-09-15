@@ -23,7 +23,7 @@ create table if not exists public.dju_algolab_sessions (
 );
 create table if not exists public.dju_algolab_drafts (
   student_id uuid not null references public.dju_algolab_students(id) on delete cascade,
-  problem text not null check(problem ~ '^P(0[1-9]|1[0-2])$'),
+  problem text not null check(problem ~ '^P(0[1-9]|[12][0-9]|3[0-6])$'),
   language text not null check(language in ('python','c')),
   code text not null check(length(code)<=20000),
   updated_at timestamptz not null default now(),
@@ -32,7 +32,7 @@ create table if not exists public.dju_algolab_drafts (
 create table if not exists public.dju_algolab_submissions (
   id uuid primary key,
   student_id uuid not null references public.dju_algolab_students(id) on delete cascade,
-  problem text not null check(problem ~ '^P(0[1-9]|1[0-2])$'),
+  problem text not null check(problem ~ '^P(0[1-9]|[12][0-9]|3[0-6])$'),
   language text not null check(language in ('python','c')),
   code text not null check(length(code)<=20000),
   passed integer not null check(passed>=0),

@@ -41,7 +41,7 @@ function cloudAccount(data){
   $('cloud-login').textContent=data.student.section+T('반 · ')+data.student.name;
   $('cloud-logout').hidden=false;$('cloud-history').hidden=false;
   const legacy=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1')||'{}');$('cloud-import').hidden=!Object.keys(legacy.answers||{}).length;
-  show(Math.max(0,Math.min(11,saved.index||0)));if(changed&&worker)boot();
+  show(Math.max(0,Math.min(problems.length-1,saved.index||0)));if(changed&&worker)boot();
   cloudStatus(T('● 실습 기록 연결 완료 · 진행 상황 자동 저장'));flushCloud();
 }
 async function cloudInit(){

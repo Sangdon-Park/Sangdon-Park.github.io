@@ -1,5 +1,6 @@
 // Compile real C to WebAssembly inside this worker. No student code is uploaded.
 importScripts('vendor/wasm-clang/shared.js');
+importScripts('chapter-02-harness.js?v=20260915-ch2');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
 const clean = text => text.replace(/\x1b\[[0-9;]*m/g, '');
@@ -32,6 +33,10 @@ function normalize(source) {
 }
 function harness(problem, cases) {
   const body = cases.map((test, index) => {
+    if (problem.chapter === 2) {
+      const {setup, call} = chapterTwoCase(problem, test.args);
+      return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;
+    }
     const args = test.args, array = Array.isArray(args[0]) ? args[0] : null;
     let setup = array ? `int A[${Math.max(1,array.length)}]={${array.length ? array.join(',') : '0'}}; int n=${array.length};` : '';
     let call;
@@ -68,7 +73,7 @@ self.onmessage = async ({data}) => {
   try {
     log = '';
     // A fixed set of filenames keeps the in-memory filesystem bounded across runs.
-    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <math.h>\n#include <limits.h>\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases);
+    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n#include <limits.h>\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases);
     api.memfs.addFile('answer.c',new TextEncoder().encode(source));
     self.postMessage({type:'phase', token:data.token, phase:'compile'});
     await api.run(await api.getModule(api.clangFilename), 'clang','-cc1','-emit-obj',

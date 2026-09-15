@@ -30,6 +30,24 @@ It is not an authoritative or tamper-resistant examination judge. Imported
 historic records are tagged `legacy` and excluded from new submission counts.
 Dashboard completion counts a problem solved in either language once.
 
+## Chapter 2
+
+- Chapter 1 keeps P01–P12; chapter 2 adds P13–P36 (24 Python/C exercises).
+- Chapter selection scopes navigation, completion, answer downloads and instructor statistics.
+- `build_chapter2.py` produces `algorithm-lab/chapter-02.json`; `build_chapter2_examples.mjs` produces the standalone C examples. The browser worker and C examples share `chapter-02-harness.js`.
+- Update existing databases with `chapter-02-migration.sql`, then deploy the Edge Function. This extends the two problem-ID checks without modifying student records or access policies.
+- The original 59-slide PPTX is preserved. The separate Python/C edition has 95 editable slides and is linked from both course pages.
+
+From the repository root:
+
+```powershell
+python _services/algorithm-lab/tests/chapter-02.py
+node _services/algorithm-lab/tests/chapter-02.mjs
+node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
+```
+
+These run 146 cases per language through the actual graders, test the original C harness and invalid answers, and check instructor totals without accessing student data.
+
 ## Deployment
 
 From the repository root, using an already authenticated Supabase CLI:
