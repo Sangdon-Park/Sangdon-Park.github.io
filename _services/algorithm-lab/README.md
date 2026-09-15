@@ -48,6 +48,19 @@ node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
 
 These run 146 cases per language through the actual graders, test the original C harness and invalid answers, and check instructor totals without accessing student data.
 
+### Chapter 2 written exercises
+
+The algorithm-writing edition keeps the 60 multiple-choice questions and replaces questions 61–100 with implementation tasks. The DOCX includes design steps, complexity, boundary examples and marking criteria. The classroom PPTX presents each written question followed by separate Python and C implementations (240 slides total). Both course pages link to the revised editions; original files remain available.
+
+The question bank and executable reference checks can be reproduced from the repository root:
+
+```powershell
+python _services/algorithm-lab/build_chapter2_exercises.py
+node _services/algorithm-lab/tests/chapter-02-written.mjs
+```
+
+The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and checks all 40 Python implementations against 199 cases. The Node test compiles and executes all 40 C implementations with the browser's WebAssembly compiler against the same cases. These commands validate the content; they do not rebuild the delivered DOCX/PPTX layouts.
+
 ## Deployment
 
 From the repository root, using an already authenticated Supabase CLI:
