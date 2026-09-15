@@ -50,7 +50,7 @@ These run 146 cases per language through the actual graders, test the original C
 
 ### Chapter 2 written exercises
 
-The algorithm-writing edition keeps the 60 multiple-choice questions and replaces questions 61–100 with implementation tasks. The DOCX includes design steps, complexity, boundary examples and marking criteria. The classroom PPTX presents each written question followed by separate Python and C implementations (240 slides total). Both course pages link to the revised editions; original files remain available.
+The algorithm-writing edition keeps the 60 multiple-choice questions and organizes questions 61–100 into 30 short-answer questions and 10 implementation tasks (61, 65, 69, 71, 74, 78, 79, 80, 88, 99). The DOCX includes design steps, complexity, boundary examples and marking criteria. The classroom PPTX presents each implementation task followed by separate Python and C solutions, and each short-answer question followed by an explanation (210 slides total). Both course pages link to the revised editions; original files remain available.
 
 The question bank and executable reference checks can be reproduced from the repository root:
 
@@ -59,7 +59,7 @@ python _services/algorithm-lab/build_chapter2_exercises.py
 node _services/algorithm-lab/tests/chapter-02-written.mjs
 ```
 
-The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and checks all 40 Python implementations against 199 cases. The Node test compiles and executes all 40 C implementations with the browser's WebAssembly compiler against the same cases. These commands validate the content; they do not rebuild the delivered DOCX/PPTX layouts.
+The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and checks the 10 Python implementations against 65 cases. The Node test compiles and executes the 10 C implementations with the browser's WebAssembly compiler against the same cases. These commands validate the content; they do not rebuild the delivered DOCX/PPTX layouts.
 
 ## Deployment
 

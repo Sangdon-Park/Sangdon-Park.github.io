@@ -4,7 +4,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 const root=path.resolve(import.meta.dirname,'../../..');
 const lab=path.join(root,'algorithm-lab');
-const questions=JSON.parse(fs.readFileSync(path.join(root,'.codex-pptx-work/chapter2-exercises/questions.json'),'utf8'));
+const questions=JSON.parse(fs.readFileSync(path.join(root,'.codex-pptx-work/chapter2-exercises/questions.json'),'utf8')).filter(p=>p.kind==='algorithm');
+assert.equal(questions.length,10);
 let receive;
 const next=()=>new Promise(resolve=>{receive=resolve;});
 const ctx=vm.createContext({TextEncoder,TextDecoder,WebAssembly,Uint8Array,ArrayBuffer,DataView,console,setTimeout,clearTimeout,performance,
@@ -36,4 +37,4 @@ for(const p of questions){
  assert.equal(report.passed,report.total,`${p.q}: ${JSON.stringify(report.rows.filter(r=>!r.ok))}`);
  total+=report.total;
 }
-console.log(`40 written-exercise C reference solutions passed all ${total} tests.`);
+console.log(`${questions.length} written-exercise C reference solutions passed all ${total} tests.`);
