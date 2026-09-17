@@ -1,13 +1,13 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-09-16T04:51:36Z",
+  "synced_at": "2026-09-17T04:55:31Z",
   "views": {
-    "count": 4,
+    "count": 2,
     "uniques": 1
   },
   "clones": {
-    "count": 132,
-    "uniques": 56
+    "count": 168,
+    "uniques": 72
   },
   "top_paths": [
     {
@@ -17,23 +17,17 @@
       "uniques": 1
     },
     {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/data/알고리즘/0장_한학기_미리보기.pptx",
-      "title": "/blob/main/data/알고리즘/0장_한학기_미리보기.pptx",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-      "title": "/tree/main/data",
-      "count": 1,
-      "uniques": 1
-    },
-    {
-      "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data/알고리즘",
-      "title": "/tree/main/data/알고리즘",
+      "path": "/Sangdon-Park/Sangdon-Park.github.io/deployments/github-pages",
+      "title": "/deployments/github-pages",
       "count": 1,
       "uniques": 1
     }
   ],
-  "top_referrers": []
+  "top_referrers": [
+    {
+      "referrer": "github.com",
+      "count": 1,
+      "uniques": 1
+    }
+  ]
 }

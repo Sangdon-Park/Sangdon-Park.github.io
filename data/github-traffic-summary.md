@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-09-16T04:51:36Z`
+- Last Synced (UTC): `2026-09-17T04:55:31Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 4 | 1 |
-| Clones | 132 | 56 |
+| Views | 2 | 1 |
+| Clones | 168 | 72 |
 
 ## Daily Views
 
@@ -225,6 +225,7 @@
 | 2026-09-12 | 0 | 0 |
 | 2026-09-13 | 0 | 0 |
 | 2026-09-14 | 0 | 0 |
+| 2026-09-15 | 2 | 1 |
 
 ## Daily Clones
 
@@ -441,12 +442,17 @@
 | 2026-09-12 | 17 | 11 |
 | 2026-09-13 | 12 | 7 |
 | 2026-09-14 | 48 | 23 |
+| 2026-09-15 | 41 | 21 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
 | /Sangdon-Park/Sangdon-Park.github.io | Overview | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/data/알고리즘/0장_한학기_미리보기.pptx | /blob/main/data/알고리즘/0장_한학기_미리보기.pptx | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data/알고리즘 | /tree/main/data/알고리즘 | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/deployments/github-pages | /deployments/github-pages | 1 | 1 |
+
+## Top Referrers
+
+| Referrer | Views | Unique |
+|---|---:|---:|
+| github.com | 1 | 1 |
