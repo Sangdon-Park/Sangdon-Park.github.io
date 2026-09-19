@@ -115,7 +115,7 @@ the requesting connection; a spoofed XFF did not override it.
 
 Only existing admin sessions can call `admin-site-stats` and `admin-site-visits`.
 `/site-stats/` provides period summaries and paginated 100-row IP/CSV history.
-`/js/site-analytics.js` is included on 40 public HTML pages, excludes admin/privacy,
+`/js/site-analytics.js` is included on 41 public HTML pages, excludes admin/privacy,
 honors DNT/GPC and local opt-out, and never sends queries, forms or student answers.
 IP retention is 30 days; other visit records and browser IDs are limited to 365 days.
 Hourly cleanup can lag the cutoff by up to one hour. `/privacy.html` explains this.
