@@ -53,7 +53,7 @@ export function createHandler({env,fetcher=fetch}){
       db(table('students')+'?id=eq.'+id+'&select=id,section,student_no,name,current_problem,current_language'),
       db(table('drafts')+'?student_id=eq.'+id+'&select=problem,language,code,updated_at'),
       db('rpc/dju_algolab_passed','POST',{p_student:id})]);
-    return {student:students[0],drafts,passed};
+    return {student:students[0],drafts,passed,problemTotals:TOTALS};
   }
   async function touch(id,body){const patch={last_seen:new Date().toISOString()};if(Object.hasOwn(TOTALS,body.problem))patch.current_problem=body.problem;if(['python','c'].includes(body.language))patch.current_language=body.language;await db(table('students')+'?id=eq.'+id,'PATCH',patch);}
   async function upsertDraft(id,body){await db(table('drafts')+'?on_conflict=student_id,problem,language','POST',{student_id:id,...draft(body),updated_at:new Date().toISOString()},'resolution=merge-duplicates,return=minimal');}

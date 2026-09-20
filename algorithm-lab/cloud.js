@@ -1,5 +1,5 @@
 const LAB_API='https://tltrbkttwzvwghaplurl.supabase.co/functions/v1/algorithm-lab';
-const cloud={session:null,queue:[],flushing:false,draftTimer:null};
+const cloud={session:null,queue:[],flushing:false,draftTimer:null,supported:new Set(Array.from({length:36},(_,i)=>'P'+String(i+1).padStart(2,'0'))),catalogChecked:0};
 const cloudStatus=(text,error=false)=>{document.getElementById('cloud-status').textContent=text;document.getElementById('cloud-status').classList.toggle('cloud-error',error);};
 async function labRequest(action,body={},token=cloud.session?.token){
   const response=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});
@@ -16,8 +16,15 @@ async function flushCloud(){
   if(cloud.resetting||cloud.flushing||!cloud.session||!cloud.queue.length)return;
   cloud.flushing=true;cloudStatus(T('서버에 저장 중…'));
   try{
-    while(cloud.queue.length&&!cloud.resetting){const item=cloud.queue[0];await labRequest(item.action,item.body);cloud.queue=cloud.queue.filter(queued=>queued!==item);saveQueue();}
-    cloudStatus(T('● 서버 저장 완료 · 교수님께 진행 상황 공유 중'));
+    if(cloud.queue.some(item=>!cloud.supported.has(item.body.problem))&&Date.now()-cloud.catalogChecked>60000){
+      cloud.catalogChecked=Date.now();const state=await labRequest('state');
+      if(state.problemTotals)cloud.supported=new Set(Object.keys(state.problemTotals));
+    }
+    let item;
+    while(!cloud.resetting&&(item=cloud.queue.find(row=>cloud.supported.has(row.body.problem)))){
+      await labRequest(item.action,item.body);cloud.queue=cloud.queue.filter(queued=>queued!==item);saveQueue();
+    }
+    cloudStatus(cloud.queue.length?T('서버 연결 대기 · 새 연습 기록은 이 브라우저에 보관 중입니다.'):T('● 서버 저장 완료 · 교수님께 진행 상황 공유 중'));
   }catch(error){cloudStatus(error.status===401?T('연결이 만료되었습니다. 실습 시작 버튼을 눌러주세요.'):T('연결 대기 · 이 브라우저에 보관 중 / 자동 재시도'),true);}
   finally{cloud.flushing=false;}
 }
@@ -28,6 +35,7 @@ function cloudAttempt(job,report){
   enqueue('submit',{id:crypto.randomUUID(),problem:job.pid,language:job.language,code:job.code,report,source:'browser'});
 }
 function cloudAccount(data){
+  if(data.problemTotals)cloud.supported=new Set(Object.keys(data.problemTotals));
   cloud.expired=false;cloud.session={token:data.token,student:data.student};localStorage.setItem('dju-algolab-session',JSON.stringify(cloud.session));
   KEY='dju-algorithm-lab-v1:account:'+data.student.id;
   try{cloud.queue=JSON.parse(localStorage.getItem(queueKey())||'[]');}catch{cloud.queue=[];}
