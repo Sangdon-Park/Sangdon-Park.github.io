@@ -1,3 +1,4 @@
+import {visit,requestIP} from './analytics.mjs';
 export const TOTALS={"P01":10,"P02":21,"P03":7,"P04":8,"P05":7,"P06":7,"P07":7,"P08":8,"P09":11,"P10":11,"P11":8,"P12":9,"P13":6,"P14":6,"P15":7,"P16":6,"P17":6,"P18":7,"P19":7,"P20":4,"P21":5,"P22":8,"P23":6,"P24":5,"P25":5,"P26":5,"P27":7,"P28":7,"P29":6,"P30":7,"P31":6,"P32":5,"P33":5,"P34":7,"P35":7,"P36":6,"P37":6,"P38":7,"P39":7,"P40":7,"P41":7,"P42":8,"P43":6,"P44":5,"P45":5,"P46":7,"P47":12,"P48":12,"P49":12,"P50":12,"P51":6,"P52":6,"P53":11,"P54":11,"P55":6,"P56":4,"P57":5,"P58":11,"P59":4,"P60":5,"P61":4,"P62":5,"P63":6,"P64":3,"P65":5,"P66":11,"P67":6,"P68":4,"P69":5,"P70":5,"P71":5,"P72":5,"P73":4,"P74":3,"P75":4,"P76":5,"P77":6,"P78":6,"P79":6,"P80":5,"P81":5,"P82":5,"P83":6,"P84":5,"P85":6,"P86":6};
 export class HttpError extends Error{constructor(status,message){super(message);this.status=status;}}
 export const fail=(status,message)=>{throw new HttpError(status,message);};
@@ -69,6 +70,14 @@ export function createHandler({env,fetcher=fetch}){
       let body;try{body=JSON.parse(raw);}catch{fail(400,'잘못된 요청입니다.');}
       if(!body||typeof body!=='object')fail(400,'잘못된 요청입니다.');
       const action=body.action;
+      if(action==='site-visit'){
+        let record;try{record=visit(body,req);}catch{fail(400,'Invalid visit.');}
+        await limit('site:'+await digest((requestIP(req)||'unknown')+env('ALGOLAB_PEPPER')),60,600);
+        record.visitor_hash=await digest(env('ALGOLAB_PEPPER')+':site:'+body.visitor);
+        await db('dju_site_visits?on_conflict=id','POST',record,'resolution=ignore-duplicates,return=minimal');
+        return respond({ok:true});
+      }
+
       if(['enter','register','login','admin-login'].includes(action)){
         const ip=req.headers.get('x-forwarded-for')?.split(',')[0].trim()||'unknown';
         // Classroom NATs share an IP: use both a generous IP budget and a per-account budget.
@@ -124,6 +133,17 @@ export function createHandler({env,fetcher=fetch}){
         await upsertDraft(auth.student_id,item);await touch(auth.student_id,item);return respond({ok:true});
       }
       if(action==='history')return respond({submissions:await db(table('submissions')+'?student_id=eq.'+auth.student_id+'&order=created_at.desc&limit=100&select=id,problem,language,passed,total,solved,source,created_at')});
+      if(action==='admin-site-stats'){
+        const days=Number(body.days||7);if(![1,7,30,90,365].includes(days))fail(400,'Invalid period.');
+        return respond(await db('rpc/dju_site_stats','POST',{p_days:days}));
+      }
+      if(action==='admin-site-visits'){
+        const offset=Number(body.offset||0);if(!Number.isInteger(offset)||offset<0||offset>1000000)fail(400,'Invalid offset.');
+        const days=Number(body.days||7);if(![1,7,30,90,365].includes(days))fail(400,'Invalid period.');
+        const today=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+        const since=new Date(Date.parse(today+'T00:00:00+09:00')-(days-1)*86400000).toISOString();
+        return respond({visits:await db('dju_site_visits?visited_at=gte.'+encodeURIComponent(since)+'&order=visited_at.desc,id.desc&limit=100&offset='+offset+'&select=id,visited_at,ip,path,referrer,browser,device')});
+      }
       if(action==='admin-dashboard')return respond({students:await db('rpc/dju_algolab_dashboard','POST',{}),updated_at:new Date().toISOString()});
       if(action==='admin-student'){
         if(!/^[0-9a-f-]{36}$/i.test(body.student_id||''))fail(400,'학생 식별자가 올바르지 않습니다.');

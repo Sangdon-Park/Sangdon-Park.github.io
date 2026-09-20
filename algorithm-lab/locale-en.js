@@ -3,6 +3,7 @@ const EN_UI={
   "강의 선택 / Chapter": "Chapter",
   "1강 · 알고리즘과 복잡도": "1 · Algorithms and complexity",
   "2강 · 완전 탐색": "2 · Brute force",
+  "사이트 방문 통계 ↗": "Site analytics ↗",
   "브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.": "Browser storage is unavailable. Download your answers to keep a copy.",
   "C 준비 중… (첫 실행 약 60MB)": "Loading C… (about 60 MB on first use)",
   "Python 준비 중…": "Loading Python…",

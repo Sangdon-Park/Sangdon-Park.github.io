@@ -129,3 +129,22 @@ rolled back. Production authentication and RLS privileges are verified separatel
 - Current sessions are revoked when online. Other open lab tabs are notified to clear their tab-local sessions and reload. Offline reset still removes local data.
 - Python/C runtime downloads are retained; students do not need to download the compiler again.
 - Verification: both languages, all 24 problem descriptions, grading, unchanged student code, pending-upload warning/cancel, offline reset, unrelated storage retention, and server record recovery.
+
+## First-party website analytics (2026-09-19)
+
+`site-analytics.sql` creates the dedicated RLS-protected `dju_site_visits` table,
+service-role-only statistics RPC, and an hourly pg_cron retention job. The public
+`site-visit` action accepts bounded page metadata and an idempotency UUID. It hashes
+a random browser ID with the private pepper, strips referrer paths, and derives
+IP from the hosted Cloudflare `cf-connecting-ip` header. The XFF chain includes
+AWS proxy addresses and is deliberately not used. IP matching was checked against
+the requesting connection; a spoofed XFF did not override it.
+
+Only existing admin sessions can call `admin-site-stats` and `admin-site-visits`.
+`/site-stats/` provides period summaries and paginated 100-row IP/CSV history.
+`/js/site-analytics.js` is included on 41 public HTML pages, excludes admin/privacy,
+honors DNT/GPC and local opt-out, and never sends queries, forms or student answers.
+IP retention is 30 days; other visit records and browser IDs are limited to 365 days.
+Hourly cleanup can lag the cutoff by up to one hour. `/privacy.html` explains this.
+Counts represent observed JavaScript page views and distinct browser IDs, not
+all HTTP traffic or verified individual people. Existing Google tags are separate.

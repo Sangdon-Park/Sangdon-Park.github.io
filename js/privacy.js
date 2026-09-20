@@ -1,0 +1,3 @@
+const toggle=document.getElementById('toggle'),state=document.getElementById('state');
+function render(){const disabled=localStorage.getItem('site-analytics-disabled')==='1';toggle.textContent=disabled?'통계 수집 다시 허용 / Enable analytics':'이 브라우저에서 수집 해제 / Disable analytics';state.textContent=disabled?'수집 해제됨 / Analytics disabled':navigator.doNotTrack==='1'||navigator.globalPrivacyControl?'브라우저의 추적 거부 설정으로 수집하지 않습니다. / Disabled by browser privacy signal':'통계 수집 허용 / Analytics enabled';}
+toggle.onclick=()=>{const disabled=localStorage.getItem('site-analytics-disabled')==='1';localStorage.setItem('site-analytics-disabled',disabled?'0':'1');if(!disabled)localStorage.removeItem('site-analytics-visitor');render();};render();
