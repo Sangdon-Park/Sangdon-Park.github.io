@@ -1,5 +1,5 @@
 .chapter-label { display: block; margin: 12px 0 6px; font-size: 12px; color: #afbdd0; }
-#chapter, #practice-scope { width: 100%; margin-bottom: 18px; padding: 10px; background: #172439; color: #f0f5ff; border: 1px solid #40526d; border-radius: 6px; }
+#chapter { width: 100%; margin-bottom: 18px; padding: 10px; background: #172439; color: #f0f5ff; border: 1px solid #40526d; border-radius: 6px; }
 #chapter-resources { margin-top: 20px; display: grid; gap: 12px; font-size: 12px; }
 #chapter-resources[hidden] { display: none; }
 #chapter-resources a { color: #a5d8ff; line-height: 1.5; }

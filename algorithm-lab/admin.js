@@ -2,7 +2,7 @@ const $=id=>document.getElementById(id),API='https://tltrbkttwzvwghaplurl.supaba
 let token=sessionStorage.getItem('dju-algolab-admin')||'',students=[],section='all',detail=null,choices=[],refreshing=false;
 async function request(action,body={}){const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});const data=await response.json();if(!response.ok){if(response.status===401&&action!=='admin-login')signOut();throw Error(T(data.error)||T('요청 실패'));}return data;}
 function signOut(){token='';students=[];detail=null;choices=[];sessionStorage.removeItem('dju-algolab-admin');$('admin-workspace').hidden=true;$('admin-login-panel').hidden=false;for(const d of document.querySelectorAll('dialog[open]'))d.close();for(const id of ['student-rows','detail-title','detail-summary','detail-grid','submission-code','submission-report','submission-select'])$(id).replaceChildren();}
-const allProblemIds=Array.from({length:86},(_,i)=>'P'+String(i+1).padStart(2,'0'));
+const allProblemIds=Array.from({length:86},(_,i)=>'P'+String(i+1).padStart(2,'0')).filter(id=>!LAB_DUPLICATES[id]);
 const problemChapter=id=>{const n=Number(id.slice(1));return n<=12?1:n<=46?2:n<=56?3:n<=66?4:n<=76?5:6;};
 const selectedIds=()=>allProblemIds.filter(id=>$('admin-chapter').value==='all'||problemChapter(id)===Number($('admin-chapter').value));
 const selectedTotal=()=>selectedIds().length;

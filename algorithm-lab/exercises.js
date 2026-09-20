@@ -2,5 +2,5 @@
 const target=new URL('./',location.href);
 target.search=location.search;
 if(!target.searchParams.has('chapter'))target.searchParams.set('chapter','2');
-target.searchParams.set('scope','exercises');
+target.searchParams.delete('scope');
 location.replace(target.href);

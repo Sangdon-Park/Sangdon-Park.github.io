@@ -65,9 +65,10 @@ The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and ch
 
 ### Chapters 2–6 PPTX coding practice
 
-`/algorithm-lab/?chapter=2&scope=exercises` opens all 50 writing exercises in
+`/algorithm-lab/?chapter=2` opens all 50 writing exercises in
 the existing dark workspace; the old `exercises.html` URL redirects here.
-The sidebar switches chapters and all/PPTX scope. Coverage: chapter 2
+Each chapter lists PPTX exercises first, followed immediately by existing
+lecture practice in one list; stored problem IDs remain unchanged. Coverage: chapter 2
 questions 61/65/69/71/74/78/79/80/88/99 and chapters 3–6 questions 91–100.
 They use P37–P86, preserving all existing IDs and progress. Each has the PPTX
 prompt, Python/C reference, public examples, additional tests and a written
@@ -90,7 +91,11 @@ node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
 
 Apply `exercise-lab-migration.sql` before deploying the updated Edge Function.
 This only extends accepted problem IDs; it does not remove student records.
-The total catalog is 86 problems: 12 / 34 / 10 / 10 / 10 / 10 by chapter.
+Storage retains 86 IDs. The visible catalog has 76 problems: 12 / 24 / 10 /
+10 / 10 / 10 by chapter. Ten duplicated chapter-two lecture problems redirect
+to their PPTX versions via `problem-catalog.js`. Legacy drafts remain stored and
+are copied only into an empty canonical draft; they must be checked against the
+current tests again. Answer downloads include archived duplicate drafts.
 
 From the repository root, using an already authenticated Supabase CLI:
 
