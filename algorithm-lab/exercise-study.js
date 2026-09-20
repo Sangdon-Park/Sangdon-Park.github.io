@@ -13,7 +13,7 @@ function renderStudy(p){
   panel.append(heading,el('p',UI_EN?'Execution checks verify outputs. Also explain the required algorithm, example trace, boundaries, and complexity. Written notes below are saved in this browser.':'실행 검사는 결과를 확인합니다. 시험 답안에는 요구한 알고리즘·예시 처리 과정·경계 조건·복잡도 설명도 필요합니다. 아래 메모는 이 브라우저에 저장됩니다.'));
   if(p.provided)panel.append(el('p',p.provided));
   const entry=studyEntry(p),fields={};
-  const labels=[['method','풀이 방법과 예시 처리 과정','어떤 순서로 처리하나요? 공개 예시 하나를 골라 변수 변화와 결과를 설명하세요.'],['boundary','경계 조건','입력 조건 안에서 빈 배열, 동률, 최솟값·최댓값 등을 어떻게 처리하나요?'],['complexity','시간·공간 복잡도','n이 무엇인지 정의하고 반복 횟수, 재귀 깊이, 작업·결과 배열의 공간을 설명하세요.']];
+  const labels=[['method','풀이 방법과 예시 처리 과정','어떤 순서로 처리하나요? 공개 예시 하나를 골라 변수 변화와 결과를 설명하세요.'],['boundary','경계 조건','입력 조건 안에서 빈 배열, 동률, 최솟값·최댓값 등을 어떻게 처리하나요?'],['complexity','시간 복잡도','n이 무엇인지 정의하고, 반복 횟수나 재귀 호출 횟수로 실행 시간을 설명하세요.']];
   const status=el('p','');status.id='study-status';status.setAttribute('role','status');
   const check=document.createElement('input');check.type='checkbox';check.checked=!!entry.checked;
   const update=()=>{
@@ -24,7 +24,7 @@ function renderStudy(p){
   for(const [key,label,placeholder] of labels){
     const row=el('label',label),input=document.createElement('textarea');input.rows=3;input.id='study-'+key;input.value=entry[key]||'';input.placeholder=placeholder;input.maxLength=5000;row.append(input);fields[key]=input;panel.append(row);input.oninput=()=>{check.checked=false;update();};
   }
-  const label=el('label','');label.className='study-check';label.append(check,document.createTextNode('풀이 예시와 비교해 동작·경계 처리·시간·공간 설명을 점검했습니다.'));panel.append(label);check.onchange=update;
+  const label=el('label','');label.className='study-check';label.append(check,document.createTextNode('풀이 예시와 비교해 동작·경계 처리·시간 설명을 점검했습니다.'));panel.append(label);check.onchange=update;
   const button=el('button','설명을 코드 주석에 반영');button.type='button';button.onclick=()=>{
     if(busy)return;
     if(!Object.values(fields).every(n=>n.value.trim())){status.textContent='설명 3항목을 먼저 작성해 주세요.';return;}

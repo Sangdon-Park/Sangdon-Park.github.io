@@ -319,8 +319,7 @@ def build():
         if f in ('fibonacci','fib_memo','karatsuba'): p['exactInteger']=True
         if f=='fractional_value': p.update(numeric_output=True,tolerance=1e-6)
         if f=='insertion_sort': p['outputArgument']=0;p['provided']='반환값 대신 입력 배열 a가 제자리 정렬되었는지 검사합니다.'
-        if f=='closest_base': p['complexity']+=' 보조 공간 O(1).'
-        if f=='merge_arrays': p['complexity']='시간 O(n+m), 출력 공간 O(n+m). C는 출력 외 O(1). PPTX Python 예시는 슬라이싱 임시 배열을 사용하므로 출력 외에도 최악 O(n+m) 공간이 듭니다.'
+        if f=='merge_arrays': p['complexity']='시간 O(n+m).'
         for t in p['tests']:
             a=t['args']
             if f=='dsu_find':
