@@ -17,7 +17,7 @@
     "starter": "def lock_attempts(secret):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "고정 네 자리: 최악 10,000개 후보.",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -102,7 +102,7 @@
     "starter": "def find_pairs(A, target):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -2024,7 +2024,7 @@
     "starter": "def blackjack(A, target):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n³).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -2247,7 +2247,7 @@
     "starter": "def make_permutations(A, r):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "결과 수 nPr, 기록 시간 O(r·nPr), 재귀·사용 배열 O(n).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -8209,7 +8209,7 @@
     "starter": "def make_combinations(A, r):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "결과 수 nCr, 결과 기록 O(r·nCr), 탐색 노드 수를 함께 고려한다.",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -8382,7 +8382,7 @@
     "starter": "def bf_string_match(text, pattern):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O((n−m+1)·m), n<m이면 즉시 빈 결과.",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -8503,7 +8503,7 @@
     "starter": "def closest_pair(A):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -8636,7 +8636,7 @@
     "starter": "def power_set(A):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n·2ⁿ).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -10314,7 +10314,7 @@
     "starter": "def tsp_min(dist):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "후보 순서 (n−1)!개, 이 구현의 상한 O(n·(n−1)!).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -10540,7 +10540,7 @@
     "starter": "def knapsack(weights, values, capacity):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n·2ⁿ).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sourceHash": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "tests": [
       {
         "args": [
@@ -10712,7 +10712,7 @@
     "starter": "def first_index(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -10969,7 +10969,7 @@
     "starter": "def binary_search(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(n+1)).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -12220,7 +12220,7 @@
     "starter": "def lower_bound(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(n+1)).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -12503,7 +12503,7 @@
     "starter": "def count_equal(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(n+1)). x+1을 쓰지 않아 최댓값 오버플로를 피한다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -12764,7 +12764,7 @@
     "starter": "def gcd_value(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(max(a,b)+2)).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -12876,7 +12876,7 @@
     "starter": "def power_mod(a, n, m):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(n+1)). 중간 곱은 10¹⁸ 미만으로 signed long long 범위 안이다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -12992,7 +12992,7 @@
     "starter": "def insertion_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "최악 시간 O(n²), 정렬된 입력 O(n).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -13287,7 +13287,7 @@
     "starter": "def quick_select(a, k):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "이 고정 피벗 구현의 최악 시간 O(n²). 모든 입력에서 선형이라고 주장할 수 없다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -13538,7 +13538,7 @@
     "starter": "def fibonacci(n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n). F(90)=2880067194370816120이다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -13643,7 +13643,7 @@
     "starter": "def light_coin(weights):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "배열 합 연산을 포함한 시간 O(n). 범위를 줄이는 단계 수만 O(log n)이다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4",
+    "sourceHash": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49",
     "tests": [
       {
         "args": [
@@ -15781,9 +15781,9 @@
     "hint": "두 배열의 맨 앞 미처리 원소를 비교하고 작은 쪽을 출력한다.",
     "solution": "def merge_arrays(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            out.append(a[i]); i += 1\n        else:\n            out.append(b[j]); j += 1\n    out.extend(a[i:])\n    out.extend(b[j:])\n    return out",
     "starter": "def merge_arrays(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n+m). ",
+    "complexity": "시간 O(n+m).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -15899,7 +15899,7 @@
     "study": {
       "method": "두 배열의 맨 앞 미처리 원소를 비교하고 작은 쪽을 출력한다.",
       "boundary": "한쪽 또는 양쪽이 빈 배열일 수 있고 같은 값이면 a를 먼저 선택합니다.",
-      "complexity": "시간 O(n+m). ",
+      "complexity": "시간 O(n+m).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -15921,7 +15921,7 @@
     "starter": "def merge_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log(n+1)). Python은 앞 문항 merge_arrays를 사용한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16227,7 +16227,7 @@
     "starter": "def cross_sum(a, lo, mid, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(hi−lo). 모두 음수여도 빈 구간을 허용하지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16341,9 +16341,9 @@
     "hint": "왼쪽, 오른쪽, 경계를 가로지르는 세 후보 중 최댓값을 반환한다.",
     "solution": "def max_subarray(a, lo, hi):\n    if hi - lo == 1:\n        return a[lo]\n    mid = (lo + hi) // 2\n    return max(max_subarray(a, lo, mid),\n               max_subarray(a, mid, hi),\n               cross_sum(a, lo, mid, hi))",
     "starter": "def max_subarray(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n log n), 재귀 스택 O(log n).",
+    "complexity": "시간 O(n log n).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16448,7 +16448,7 @@
     "study": {
       "method": "왼쪽, 오른쪽, 경계를 가로지르는 세 후보 중 최댓값을 반환한다.",
       "boundary": "빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.",
-      "complexity": "시간 O(n log n), 재귀 스택 O(log n).",
+      "complexity": "시간 O(n log n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -16468,9 +16468,9 @@
     "hint": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
     "solution": "def closest_base(points):\n    best = float('inf')\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            dx = points[i][0] - points[j][0]\n            dy = points[i][1] - points[j][1]\n            best = min(best, dx * dx + dy * dy)\n    return best",
     "starter": "def closest_base(points):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다..",
+    "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16574,7 +16574,7 @@
     "study": {
       "method": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
       "boundary": "제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.",
-      "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다..",
+      "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -16597,9 +16597,9 @@
     "hint": "균일성을 검사하고 서로 다르면 네 사분면을 재귀 호출한다.",
     "solution": "def quad(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r + n)\n           for j in range(c, c + n)):\n        return str(value)\n    h = n // 2\n    return ('(' + quad(a,r,c,h) + quad(a,r,c+h,h)\n            + quad(a,r+h,c,h) + quad(a,r+h,c+h,h) + ')')",
     "starter": "def quad(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. 출력 O(n²), 스택 O(log(n+1)).",
+    "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16736,7 +16736,7 @@
     "study": {
       "method": "균일성을 검사하고 서로 다르면 네 사분면을 재귀 호출한다.",
       "boundary": "균일한 칸은 0/1 한 글자, 분할 순서는 좌상·우상·좌하·우하입니다.",
-      "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. 출력 O(n²), 스택 O(log(n+1)).",
+      "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -16753,13 +16753,13 @@
       "x",
       "y"
     ],
-    "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 작성한다. 큰 수를 같은 10의 거듭제곱으로 나눠 재귀 곱셈을 세 번만 사용한다. C는 long long을 쓴다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "고위 곱, 저위 곱, 두 부분 합의 곱으로 가운데 항을 복원한다.",
+    "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 Python 또는 C로 작성하시오. C는 long long을 쓴다. 다음 식을 사용해 재귀 곱셈을 세 번 수행한다.\n한 수라도 10 미만이면 x*y를 반환한다. 그 외에는 더 큰 수의 자릿수를 L, m은 10의 (L//2)제곱으로 둔다.\nx=a*m+b, y=c*m+d로 나눈다.\np=karatsuba(a,c), q=karatsuba(b,d), r=karatsuba(a+b,c+d)\n반환값은 p*m*m+(r-p-q)*m+q이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
     "solution": "def karatsuba(x, y):\n    if x < 10 or y < 10:\n        return x * y\n    digits = len(str(max(x, y)))\n    base = 10 ** (digits // 2)\n    a, b = divmod(x, base)\n    c, d = divmod(y, base)\n    ac = karatsuba(a, c)\n    bd = karatsuba(b, d)\n    cross = karatsuba(a + b, c + d) - ac - bd\n    return ac * base * base + cross * base + bd",
     "starter": "def karatsuba(x, y):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16837,8 +16837,8 @@
     "c": {
       "starter": "long long karatsuba(long long x, long long y) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "long long karatsuba(long long x, long long y) {\n    if (x<10 || y<10) return x*y;\n    long long t=x>y ? x:y, base=1;\n    int digits=0;\n    while (t) { ++digits; t/=10; }\n    for (int i=0; i<digits/2; ++i) base*=10;\n    long long a=x/base, b=x%base, c=y/base, d=y%base;\n    long long ac=karatsuba(a,c), bd=karatsuba(b,d);\n    long long cross=karatsuba(a+b,c+d)-ac-bd;\n    return ac*base*base+cross*base+bd;\n}",
-      "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 작성한다. 큰 수를 같은 10의 거듭제곱으로 나눠 재귀 곱셈을 세 번만 사용한다. C는 long long을 쓴다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "고위 곱, 저위 곱, 두 부분 합의 곱으로 가운데 항을 복원한다.",
+      "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 Python 또는 C로 작성하시오. C는 long long을 쓴다. 다음 식을 사용해 재귀 곱셈을 세 번 수행한다.\n한 수라도 10 미만이면 x*y를 반환한다. 그 외에는 더 큰 수의 자릿수를 L, m은 10의 (L//2)제곱으로 둔다.\nx=a*m+b, y=c*m+d로 나눈다.\np=karatsuba(a,c), q=karatsuba(b,d), r=karatsuba(a+b,c+d)\n반환값은 p*m*m+(r-p-q)*m+q이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
       "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
@@ -16846,7 +16846,7 @@
     "provided": "",
     "exactInteger": true,
     "study": {
-      "method": "고위 곱, 저위 곱, 두 부분 합의 곱으로 가운데 항을 복원한다.",
+      "method": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
       "boundary": "0·한 자리에서 종료합니다. 자리수와 중간 곱의 long long 범위를 확인합니다.",
       "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
@@ -16865,13 +16865,13 @@
       "A",
       "B"
     ],
-    "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱을 strassen2로 구한다. 스칼라 곱셈은 정확히 7번 사용한다. C는 결과 C[2][2]에 기록한다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "일곱 보조 곱을 만들고 덧셈과 뺄셈으로 네 성분을 결합한다.",
+    "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱 strassen2를 Python 또는 C로 작성하시오. C는 결과 C[2][2]에 기록한다. 아래 식을 그대로 사용하며 스칼라 곱셈은 7번이다.\nA=[[a,b],[c,d]], B=[[e,f],[g,h]]로 둔다.\nM1=(a+d)*(e+h), M2=(c+d)*e, M3=a*(f-h)\nM4=d*(g-e), M5=(a+b)*h, M6=(c-a)*(e+f), M7=(b-d)*(g+h)\nC=[[M1+M4-M5+M7, M3+M5], [M2+M4, M1-M2+M3+M6]]\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
     "solution": "def strassen2(A, B):\n    a,b = A[0]; c,d = A[1]\n    e,f = B[0]; g,h = B[1]\n    m1 = (a+d)*(e+h)\n    m2 = (c+d)*e\n    m3 = a*(f-h)\n    m4 = d*(g-e)\n    m5 = (a+b)*h\n    m6 = (c-a)*(e+f)\n    m7 = (b-d)*(g+h)\n    return [[m1+m4-m5+m7, m3+m5],\n            [m2+m4, m1-m2+m3+m6]]",
     "starter": "def strassen2(A, B):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -16994,15 +16994,15 @@
     "c": {
       "starter": "void strassen2(const int A[][2], const int B[][2], int C[][2]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n}\n",
       "solution": "void strassen2(const int A[][2], const int B[][2], int C[][2]) {\n    int a=A[0][0], b=A[0][1], c=A[1][0], d=A[1][1];\n    int e=B[0][0], f=B[0][1], g=B[1][0], h=B[1][1];\n    int m1=(a+d)*(e+h), m2=(c+d)*e;\n    int m3=a*(f-h), m4=d*(g-e), m5=(a+b)*h;\n    int m6=(c-a)*(e+f), m7=(b-d)*(g+h);\n    C[0][0]=m1+m4-m5+m7; C[0][1]=m3+m5;\n    C[1][0]=m2+m4; C[1][1]=m1-m2+m3+m6;\n}",
-      "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱을 strassen2로 구한다. 스칼라 곱셈은 정확히 7번 사용한다. C는 결과 C[2][2]에 기록한다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "일곱 보조 곱을 만들고 덧셈과 뺄셈으로 네 성분을 결합한다.",
+      "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱 strassen2를 Python 또는 C로 작성하시오. C는 결과 C[2][2]에 기록한다. 아래 식을 그대로 사용하며 스칼라 곱셈은 7번이다.\nA=[[a,b],[c,d]], B=[[e,f],[g,h]]로 둔다.\nM1=(a+d)*(e+h), M2=(c+d)*e, M3=a*(f-h)\nM4=d*(g-e), M5=(a+b)*h, M6=(c-a)*(e+f), M7=(b-d)*(g+h)\nC=[[M1+M4-M5+M7, M3+M5], [M2+M4, M1-M2+M3+M6]]\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
       "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
     "cPrelude": "",
     "provided": "",
     "study": {
-      "method": "일곱 보조 곱을 만들고 덧셈과 뺄셈으로 네 성분을 결합한다.",
+      "method": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
       "boundary": "스칼라 곱셈 7회인 식을 사용합니다. 0과 음수를 포함한 행렬도 처리합니다.",
       "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
@@ -17027,9 +17027,9 @@
     "hint": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
     "solution": "def white_count(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r+n) for j in range(c, c+n)):\n        return value\n    h = n // 2\n    return (white_count(a,r,c,h) + white_count(a,r,c+h,h)\n            + white_count(a,r+h,c,h)\n            + white_count(a,r+h,c+h,h))",
     "starter": "def white_count(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n² log(n+1)) 상한, 재귀 스택 O(log(n+1)). 1인 칸 수와 조각 수는 다르다.",
+    "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -17166,7 +17166,7 @@
     "study": {
       "method": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
       "boundary": "균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.",
-      "complexity": "시간 O(n² log(n+1)) 상한, 재귀 스택 O(log(n+1)). 1인 칸 수와 조각 수는 다르다.",
+      "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -17189,7 +17189,7 @@
     "starter": "def cross_inversions(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0",
+    "sourceHash": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e",
     "tests": [
       {
         "args": [
@@ -17561,7 +17561,7 @@
     "starter": "def coin_count(amount):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "고정된 5종류이므로 시간 O(1). 일반 m종류에서는 시간 O(m).",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -17665,7 +17665,7 @@
     "starter": "def activity_count(activities):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "정렬된 입력에서 시간 O(n). 정렬까지 하면 O(n log n).",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -17791,7 +17791,7 @@
     "starter": "def fractional_value(items, capacity):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "정렬된 입력에서 시간 O(n). 나누기 전에 실수 연산으로 전환한다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -17918,9 +17918,9 @@
     "hint": "루트까지 재귀로 이동한 뒤 돌아오며 각 부모를 대표로 바꾼다.",
     "solution": "def dsu_find(parent, x):\n    if parent[x] != x:\n        parent[x] = dsu_find(parent, parent[x])\n    return parent[x]",
     "starter": "def dsu_find(parent, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "한 호출의 최악 시간·스택 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
+    "complexity": "한 호출의 최악 시간 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -18239,7 +18239,7 @@
     "study": {
       "method": "루트까지 재귀로 이동한 뒤 돌아오며 각 부모를 대표로 바꾼다.",
       "boundary": "루트 반환과 방문 경로의 압축을 모두 검사합니다. 루트 자신을 찾는 경우도 처리합니다.",
-      "complexity": "한 호출의 최악 시간·스택 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
+      "complexity": "한 호출의 최악 시간 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -18262,7 +18262,7 @@
     "starter": "def kruskal_cost(n, edges):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "1≤n≤1000. 이 구현은 랭크 병합이 없다. 보수적 시간 상한 O(n+mn).",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -18404,7 +18404,7 @@
     "starter": "def pick_vertex(dist, used):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n). 동률에서 기존 번호를 유지한다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -18535,7 +18535,7 @@
     "starter": "def dijkstra(g, s):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²). 주어진 상한에서 거리 덧셈은 long long에 안전하다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -18687,7 +18687,7 @@
     "starter": "def nearest_tour(d):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²). 최적 TSP 비용을 보장하지 않는다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -18817,7 +18817,7 @@
     "starter": "def completion_sum(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "정렬된 입력에서 시간 O(n). 최대 합 500500000000은 int 범위를 넘는다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -19910,7 +19910,7 @@
     "starter": "def relax(dist, u, v, w):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(1). 같은 거리 후보는 갱신으로 세지 않는다.",
     "sourceFile": "5장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c",
+    "sourceHash": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570",
     "tests": [
       {
         "args": [
@@ -20052,9 +20052,9 @@
     "hint": "이미 계산한 값은 바로 반환하고 미계산 값만 재귀로 구한다.",
     "solution": "def fib_memo(n, memo):\n    if memo[n] != -1:\n        return memo[n]\n    if n < 2:\n        memo[n] = n\n    else:\n        memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)\n    return memo[n]",
     "starter": "def fib_memo(n, memo):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n), 캐시와 재귀 스택 O(n).",
+    "complexity": "시간 O(n).",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -20349,7 +20349,7 @@
     "study": {
       "method": "이미 계산한 값은 바로 반환하고 미계산 값만 재귀로 구한다.",
       "boundary": "n=0·1도 memo에 저장합니다. 계산한 상태를 재사용하고 F(90)을 정확히 반환합니다.",
-      "complexity": "시간 O(n), 캐시와 재귀 스택 O(n).",
+      "complexity": "시간 O(n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -20372,7 +20372,7 @@
     "starter": "def domino(n, m):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n).",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -20482,7 +20482,7 @@
     "starter": "def make_one(n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n).",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -20585,9 +20585,9 @@
     "hint": "dp가 정확히 1 작은 합법적인 다음 상태 중 명시된 순서의 첫 후보를 선택한다.",
     "solution": "def make_path(n, dp):\n    path = [n]\n    while n > 1:\n        candidates = [n-1]\n        candidates += [n//d for d in (2,3,5) if n%d == 0]\n        n = next(x for x in candidates if dp[x]+1 == dp[n])\n        path.append(n)\n    return path",
     "starter": "def make_path(n, dp):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L), 출력 외 O(1).",
+    "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L).",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -20682,7 +20682,7 @@
     "study": {
       "method": "dp가 정확히 1 작은 합법적인 다음 상태 중 명시된 순서의 첫 후보를 선택한다.",
       "boundary": "시작 n과 끝 1을 포함합니다. 최적 후보 동률은 −1·÷2·÷3·÷5 순입니다.",
-      "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L), 출력 외 O(1).",
+      "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -20705,7 +20705,7 @@
     "starter": "def knapsack2(items, W):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(nW). 빈 선택을 허용하며 n=0 또는 W=0의 답은 0이다.",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -20840,7 +20840,7 @@
     "starter": "def knapsack1(items, W):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(nW). 가치 상한은 앞 문항과 같이 10⁶이다.",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -21367,7 +21367,7 @@
     "starter": "def lcs_length(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(mn). 빈 문자열 경계를 포함한다.",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -21479,7 +21479,7 @@
     "starter": "def lcs_restore(a, b, dp):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "표가 제공되면 복원 시간 O(m+n), 출력 O(min(m,n)).",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -21577,7 +21577,7 @@
     "starter": "def nonadjacent(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n). 모두 음수여도 답 0을 유지한다.",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -31690,13 +31690,13 @@
     "params": [
       "a"
     ],
-    "statement": "1≤행·열≤100, 비용 0..10⁶. 오른쪽·아래 도착은 칸 비용 전부, 대각선 도착은 내림 절반이다. 시작 칸은 전액을 낸다. grid_cost는 왼위에서 오른아래 최소 비용을 반환한다. C 열 폭은 100. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "존재하는 위·왼쪽·왼쪽 위 후보를 각각의 도착 비용과 비교한다.",
+    "statement": "1≤행·열≤100, 칸 비용은 0..10⁶이다. 왼쪽 위에서 오른쪽 아래까지 오른쪽·아래·오른쪽 아래 대각선으로 이동한다. 시작 칸은 전액, 오른쪽·아래로 도착하면 도착 칸 전액, 대각선으로 도착하면 도착 칸 비용//2를 낸다. 예: [[4,8],[6,5]]에서 대각선 경로 비용은 4+5//2=6이다. 최소 비용 grid_cost를 Python 또는 C로 작성하시오. C 열 폭은 100이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "위·왼쪽은 전액, 왼쪽 위는 비용//2를 더해 최솟값을 선택한다.",
     "solution": "def grid_cost(a):\n    rows, cols = len(a), len(a[0])\n    dp = [[10**18]*cols for _ in range(rows)]\n    dp[0][0] = a[0][0]\n    for i in range(rows):\n        for j in range(cols):\n            if i: dp[i][j] = min(dp[i][j], dp[i-1][j]+a[i][j])\n            if j: dp[i][j] = min(dp[i][j], dp[i][j-1]+a[i][j])\n            if i and j:\n                dp[i][j] = min(dp[i][j], dp[i-1][j-1]+a[i][j]//2)\n    return dp[-1][-1]",
     "starter": "def grid_cost(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(행×열). 시작 칸에는 할인하지 않는다.",
     "sourceFile": "6장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6",
+    "sourceHash": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4",
     "tests": [
       {
         "args": [
@@ -31817,15 +31817,15 @@
     "c": {
       "starter": "long long grid_cost(const int a[][100], int rows, int cols,\n                    long long dp[][100]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "long long grid_cost(const int a[][100], int rows, int cols,\n                    long long dp[][100]) {\n    for (int i=0; i<rows; ++i) {\n        for (int j=0; j<cols; ++j) {\n            long long best=1000000000000000000LL, t;\n            if (i==0 && j==0) best=a[0][0];\n            if (i) {t=dp[i-1][j]+a[i][j]; if(t<best) best=t;}\n            if (j) {t=dp[i][j-1]+a[i][j]; if(t<best) best=t;}\n            if (i && j) {\n                t=dp[i-1][j-1]+a[i][j]/2; if(t<best) best=t;\n            }\n            dp[i][j]=best;\n        }\n    }\n    return dp[rows-1][cols-1];\n}",
-      "statement": "1≤행·열≤100, 비용 0..10⁶. 오른쪽·아래 도착은 칸 비용 전부, 대각선 도착은 내림 절반이다. 시작 칸은 전액을 낸다. grid_cost는 왼위에서 오른아래 최소 비용을 반환한다. C 열 폭은 100. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "존재하는 위·왼쪽·왼쪽 위 후보를 각각의 도착 비용과 비교한다.",
+      "statement": "1≤행·열≤100, 칸 비용은 0..10⁶이다. 왼쪽 위에서 오른쪽 아래까지 오른쪽·아래·오른쪽 아래 대각선으로 이동한다. 시작 칸은 전액, 오른쪽·아래로 도착하면 도착 칸 전액, 대각선으로 도착하면 도착 칸 비용//2를 낸다. 예: [[4,8],[6,5]]에서 대각선 경로 비용은 4+5//2=6이다. 최소 비용 grid_cost를 Python 또는 C로 작성하시오. C 열 폭은 100이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "위·왼쪽은 전액, 왼쪽 위는 비용//2를 더해 최솟값을 선택한다.",
       "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
     "cPrelude": "",
     "provided": "",
     "study": {
-      "method": "존재하는 위·왼쪽·왼쪽 위 후보를 각각의 도착 비용과 비교한다.",
+      "method": "위·왼쪽은 전액, 왼쪽 위는 비용//2를 더해 최솟값을 선택한다.",
       "boundary": "시작 칸은 전액입니다. 대각선 도착만 내림 절반이며 한 행·한 열도 처리합니다.",
       "complexity": "시간 O(행×열). 시작 칸에는 할인하지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."

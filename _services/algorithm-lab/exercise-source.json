@@ -58,7 +58,7 @@
     "number": 61,
     "slide": 121,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P13",
     "cOutput": {
       "output": "scalar",
@@ -1962,7 +1962,7 @@
     "number": 65,
     "slide": 130,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P15",
     "cOutput": {
       "output": "rows",
@@ -2167,7 +2167,7 @@
     "number": 69,
     "slide": 139,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P30",
     "cOutput": {
       "output": "scalar",
@@ -8111,7 +8111,7 @@
     "number": 71,
     "slide": 144,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P18",
     "cOutput": {
       "output": "rows",
@@ -8266,7 +8266,7 @@
     "number": 74,
     "slide": 151,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P19",
     "cOutput": {
       "output": "rows",
@@ -8370,7 +8370,7 @@
     "number": 78,
     "slide": 160,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P22",
     "cOutput": {
       "output": "list",
@@ -8486,7 +8486,7 @@
     "number": 79,
     "slide": 163,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P23",
     "cOutput": {
       "output": "fixed",
@@ -10147,7 +10147,7 @@
     "number": 80,
     "slide": 166,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P24",
     "cOutput": {
       "output": "subsets",
@@ -10354,7 +10354,7 @@
     "number": 88,
     "slide": 183,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P26",
     "cOutput": {
       "output": "scalar",
@@ -10508,7 +10508,7 @@
     "number": 99,
     "slide": 206,
     "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sha256": "64b641ed9846f944da03a41161c63d94bc5482f9ee21dfec657a17b43014ed7a",
+    "sha256": "5b6ec401f34b779d936a92bb1f5d9fa47fda587c823d1d0863ddbbae7c178ca7",
     "legacyHarnessId": "P34",
     "cOutput": {
       "output": "scalar",
@@ -10561,7 +10561,7 @@
     "number": 91,
     "slide": 181,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "서로 다른 정수가 오름차순인 배열 a에서 x의 0 기반 인덱스를 반환한다. 없으면 −1이다. 0≤n≤1000. binary_search를 작성한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10609,7 +10609,7 @@
     "number": 92,
     "slide": 185,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "오름차순 배열 a에서 a[i]≥x인 첫 인덱스를 반환한다. 없으면 n이다. 중복을 허용하고 0≤n≤1000이다. lower_bound를 작성한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10659,7 +10659,7 @@
     "number": 93,
     "slide": 189,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "오름차순 배열 a에서 x의 등장 횟수를 로그 시간에 반환하는 count_equal을 작성한다. 0≤n≤1000. x 이상인 첫 위치(없으면 n)를 주는 lower_bound가 제공된다. Python 또는 C로 작성하시오.",
@@ -10708,7 +10708,7 @@
     "number": 94,
     "slide": 193,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "0≤a,b≤10⁹이며 둘 다 0인 경우도 허용한다. gcd_value(a,b)를 반복문으로 작성한다. gcd(0,0)은 0으로 정의한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10748,7 +10748,7 @@
     "number": 95,
     "slide": 197,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "power_mod(a,n,m)은 aⁿ mod m을 반환한다. 0≤a≤10⁹, 0≤n≤10⁹, 1≤m≤10⁹. n=0이면 1 mod m이다. C는 long long을 사용한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10791,7 +10791,7 @@
     "number": 96,
     "slide": 201,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "정수 배열 a를 제자리 오름차순으로 정렬하는 insertion_sort를 작성한다. 0≤n≤1000. 같은 값은 앞에 있던 원소를 뒤로 밀지 않는다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10831,7 +10831,7 @@
     "number": 97,
     "slide": 205,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "1≤n≤1000인 배열에서 중복도 각각 세어 k번째 작은 값을 반환한다. k는 1부터 n까지다. quick_select를 작성하며 배열 변경을 허용한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10874,7 +10874,7 @@
     "number": 98,
     "slide": 209,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "F(0)=0,F(1)=1이다. 0≤n≤90에서 fibonacci(n)을 반복문으로 작성한다. C의 반환형은 long long이며 다음 항을 불필요하게 계산하지 않는다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10911,7 +10911,7 @@
     "number": 99,
     "slide": 213,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "길이 n=2ᵏ(1≤n≤1024)인 weights에 0이 정확히 하나 있고 나머지는 1이다. 왼쪽 절반 합을 조사하며 0의 인덱스를 찾는 light_coin을 작성한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10948,7 +10948,7 @@
     "number": 100,
     "slide": 217,
     "file": "3장_연습문제_100문항_수업용.pptx",
-    "sha256": "35ad4a97bbe6b08eb30759b908f6cce20760f3dad4efe9f3a8b034f4d3418ec4"
+    "sha256": "0d620df5ccff7d46718cb016121ad0facd64f7fdb308eb957088a80babd4ed49"
   },
   {
     "question": "오름차순 정수 배열 a,b를 합친 정렬 결과를 merge_arrays로 구한다. 각 길이는 0..500. 같은 값이면 a를 먼저 쓴다. C는 충분한 out 배열에 기록한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -10995,7 +10995,7 @@
     "number": 91,
     "slide": 181,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "길이 0..1000의 정수 배열을 병합 정렬하시오. Python merge_sort(a)는 새 배열을 반환하고 C merge_sort(a,lo,hi,tmp)는 [lo,hi)를 정렬한다. tmp는 길이 n이다. Python의 정렬 병합 함수 merge_arrays는 제공된다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11035,7 +11035,7 @@
     "number": 92,
     "slide": 185,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "정수 배열의 [lo,hi)에서 lo<mid<hi다. 양쪽에 적어도 한 원소를 포함하는 최대 연속합 cross_sum을 작성한다. n≤1000, 값은 −10⁶..10⁶. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11081,14 +11081,14 @@
     "number": 93,
     "slide": 189,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "비어 있지 않은 배열 [lo,hi)의 최대 연속합 max_subarray를 분할 정복으로 구하시오. 빈 구간은 금지한다. n≤1000, 값은 −10⁶..10⁶. cross_sum은 제공된다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def max_subarray(a, lo, hi):\n    if hi - lo == 1:\n        return a[lo]\n    mid = (lo + hi) // 2\n    return max(max_subarray(a, lo, mid),\n               max_subarray(a, mid, hi),\n               cross_sum(a, lo, mid, hi))",
     "c": "long long max_subarray(const int a[], int lo, int hi) {\n    if (hi-lo == 1) return a[lo];\n    int mid=(lo+hi)/2;\n    long long left=max_subarray(a,lo,mid);\n    long long right=max_subarray(a,mid,hi);\n    long long cross=cross_sum(a,lo,mid,hi);\n    long long best=left>right ? left:right;\n    return best>cross ? best:cross;\n}",
     "answer": "왼쪽, 오른쪽, 경계를 가로지르는 세 후보 중 최댓값을 반환한다.",
-    "complexity": "시간 O(n log n), 재귀 스택 O(log n).",
+    "complexity": "시간 O(n log n).",
     "title": "분할 정복 최대 연속합",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -11126,7 +11126,7 @@
     "number": 94,
     "slide": 193,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11178,14 +11178,14 @@
     "number": 95,
     "slide": 197,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "n=2ᵏ, 1≤n≤32인 0/1 정사각형을 부호화한다. 균일하면 값 하나, 아니면 (왼위 오른위 왼아래 오른아래) 순서로 붙인다. quad(a,r,c,n)을 작성한다. C a의 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def quad(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r + n)\n           for j in range(c, c + n)):\n        return str(value)\n    h = n // 2\n    return ('(' + quad(a,r,c,h) + quad(a,r,c+h,h)\n            + quad(a,r+h,c,h) + quad(a,r+h,c+h,h) + ')')",
     "c": "/* out has >= 4*n*n+1 bytes; start *p=0. */\nvoid quad(const int a[][32], int r, int c, int n,\n          char out[], int *p) {\n    int same=1, value=a[r][c];\n    for (int i=r; i<r+n; ++i)\n        for (int j=c; j<c+n; ++j)\n            if (a[i][j]!=value) same=0;\n    if (same) out[(*p)++]=(char)('0'+value);\n    else {\n        int h=n/2; out[(*p)++]='(';\n        quad(a,r,c,h,out,p); quad(a,r,c+h,h,out,p);\n        quad(a,r+h,c,h,out,p); quad(a,r+h,c+h,h,out,p);\n        out[(*p)++]=')';\n    }\n    out[*p]='\\0';\n}",
     "answer": "균일성을 검사하고 서로 다르면 네 사분면을 재귀 호출한다.",
-    "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. 출력 O(n²), 스택 O(log(n+1)).",
+    "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
     "title": "쿼드트리 부호화",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -11227,13 +11227,13 @@
     "number": 96,
     "slide": 201,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
-    "question": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 작성한다. 큰 수를 같은 10의 거듭제곱으로 나눠 재귀 곱셈을 세 번만 사용한다. C는 long long을 쓴다. Python 또는 C 중 하나로 함수를 작성하시오.",
+    "question": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 Python 또는 C로 작성하시오. C는 long long을 쓴다. 다음 식을 사용해 재귀 곱셈을 세 번 수행한다.\n한 수라도 10 미만이면 x*y를 반환한다. 그 외에는 더 큰 수의 자릿수를 L, m은 10의 (L//2)제곱으로 둔다.\nx=a*m+b, y=c*m+d로 나눈다.\np=karatsuba(a,c), q=karatsuba(b,d), r=karatsuba(a+b,c+d)\n반환값은 p*m*m+(r-p-q)*m+q이다.",
     "python": "def karatsuba(x, y):\n    if x < 10 or y < 10:\n        return x * y\n    digits = len(str(max(x, y)))\n    base = 10 ** (digits // 2)\n    a, b = divmod(x, base)\n    c, d = divmod(y, base)\n    ac = karatsuba(a, c)\n    bd = karatsuba(b, d)\n    cross = karatsuba(a + b, c + d) - ac - bd\n    return ac * base * base + cross * base + bd",
     "c": "long long karatsuba(long long x, long long y) {\n    if (x<10 || y<10) return x*y;\n    long long t=x>y ? x:y, base=1;\n    int digits=0;\n    while (t) { ++digits; t/=10; }\n    for (int i=0; i<digits/2; ++i) base*=10;\n    long long a=x/base, b=x%base, c=y/base, d=y%base;\n    long long ac=karatsuba(a,c), bd=karatsuba(b,d);\n    long long cross=karatsuba(a+b,c+d)-ac-bd;\n    return ac*base*base+cross*base+bd;\n}",
-    "answer": "고위 곱, 저위 곱, 두 부분 합의 곱으로 가운데 항을 복원한다.",
+    "answer": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
     "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
     "title": "카라추바 곱셈",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
@@ -11267,13 +11267,13 @@
     "number": 97,
     "slide": 205,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
-    "question": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱을 strassen2로 구한다. 스칼라 곱셈은 정확히 7번 사용한다. C는 결과 C[2][2]에 기록한다. Python 또는 C 중 하나로 함수를 작성하시오.",
+    "question": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱 strassen2를 Python 또는 C로 작성하시오. C는 결과 C[2][2]에 기록한다. 아래 식을 그대로 사용하며 스칼라 곱셈은 7번이다.\nA=[[a,b],[c,d]], B=[[e,f],[g,h]]로 둔다.\nM1=(a+d)*(e+h), M2=(c+d)*e, M3=a*(f-h)\nM4=d*(g-e), M5=(a+b)*h, M6=(c-a)*(e+f), M7=(b-d)*(g+h)\nC=[[M1+M4-M5+M7, M3+M5], [M2+M4, M1-M2+M3+M6]]",
     "python": "def strassen2(A, B):\n    a,b = A[0]; c,d = A[1]\n    e,f = B[0]; g,h = B[1]\n    m1 = (a+d)*(e+h)\n    m2 = (c+d)*e\n    m3 = a*(f-h)\n    m4 = d*(g-e)\n    m5 = (a+b)*h\n    m6 = (c-a)*(e+f)\n    m7 = (b-d)*(g+h)\n    return [[m1+m4-m5+m7, m3+m5],\n            [m2+m4, m1-m2+m3+m6]]",
     "c": "void strassen2(const int A[][2], const int B[][2], int C[][2]) {\n    int a=A[0][0], b=A[0][1], c=A[1][0], d=A[1][1];\n    int e=B[0][0], f=B[0][1], g=B[1][0], h=B[1][1];\n    int m1=(a+d)*(e+h), m2=(c+d)*e;\n    int m3=a*(f-h), m4=d*(g-e), m5=(a+b)*h;\n    int m6=(c-a)*(e+f), m7=(b-d)*(g+h);\n    C[0][0]=m1+m4-m5+m7; C[0][1]=m3+m5;\n    C[1][0]=m2+m4; C[1][1]=m1-m2+m3+m6;\n}",
-    "answer": "일곱 보조 곱을 만들고 덧셈과 뺄셈으로 네 성분을 결합한다.",
+    "answer": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
     "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
     "title": "2×2 슈트라센",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
@@ -11318,14 +11318,14 @@
     "number": 98,
     "slide": 209,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "0/1 정사각형을 균일할 때까지 네 등분한 뒤 값 1인 최종 조각의 수를 반환한다. n=2ᵏ≤32. white_count(a,r,c,n)을 작성한다. C 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def white_count(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r+n) for j in range(c, c+n)):\n        return value\n    h = n // 2\n    return (white_count(a,r,c,h) + white_count(a,r,c+h,h)\n            + white_count(a,r+h,c,h)\n            + white_count(a,r+h,c+h,h))",
     "c": "int white_count(const int a[][32], int r, int c, int n) {\n    int same=1, value=a[r][c];\n    for (int i=r; i<r+n; ++i)\n        for (int j=c; j<c+n; ++j)\n            if (a[i][j]!=value) same=0;\n    if (same) return value;\n    int h=n/2;\n    return white_count(a,r,c,h)+white_count(a,r,c+h,h)\n         + white_count(a,r+h,c,h)+white_count(a,r+h,c+h,h);\n}",
     "answer": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
-    "complexity": "시간 O(n² log(n+1)) 상한, 재귀 스택 O(log(n+1)). 1인 칸 수와 조각 수는 다르다.",
+    "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
     "title": "단색 종이 조각 수",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -11372,7 +11372,7 @@
     "number": 99,
     "slide": 213,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11417,7 +11417,7 @@
     "number": 100,
     "slide": 217,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "f7977429157fda516e3c3c1eecb95be84e017f39c52d5932bbf812f07065d7a0"
+    "sha256": "5fa9ccdc2cbee9efded71dcffa92b840ed14a66974c082a8fc2763018a550d8e"
   },
   {
     "question": "coin_count(amount)는 {500,100,50,10,1} 동전을 무제한 사용해 amount를 만드는 최소 동전 수를 반환한다. 0≤amount≤10⁹. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11454,7 +11454,7 @@
     "number": 91,
     "slide": 181,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "activities는 (시작,종료) 목록이며 종료 시각 오름차순으로 정렬되어 있다. 0≤시작<종료≤10⁹, 0≤n≤1000. [시작,종료) 기준 최대 활동 수 activity_count를 반환한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11501,7 +11501,7 @@
     "number": 92,
     "slide": 185,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "(무게,가치) 물건 목록은 가치/무게 내림차순이다. 무게·가치는 1..10⁶, n≤1000, 용량 0..10⁶. fractional_value가 최대 가치를 실수로 반환하게 하시오. 오차 10⁻⁶ 허용. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11546,14 +11546,14 @@
     "number": 93,
     "slide": 189,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "parent는 0..n−1 정점의 유효한 분리 집합 숲이다. 루트는 parent[r]=r이다. n≤1000. Python의 재귀 제한은 충분히 크게 설정되어 있다. dsu_find(parent,x)는 대표를 반환하고 방문 경로를 압축한다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def dsu_find(parent, x):\n    if parent[x] != x:\n        parent[x] = dsu_find(parent, parent[x])\n    return parent[x]",
     "c": "int dsu_find(int parent[], int x) {\n    if (parent[x]!=x)\n        parent[x]=dsu_find(parent,parent[x]);\n    return parent[x];\n}",
     "answer": "루트까지 재귀로 이동한 뒤 돌아오며 각 부모를 대표로 바꾼다.",
-    "complexity": "한 호출의 최악 시간·스택 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
+    "complexity": "한 호출의 최악 시간 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
     "title": "경로 압축 find",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -11585,7 +11585,7 @@
     "number": 94,
     "slide": 193,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "1≤n≤1000인 무방향 그래프의 간선 (u,v,w)은 가중치 오름차순이다. −10⁶≤w≤10⁶. kruskal_cost는 MST 비용을 반환한다. 연결 불가면 −10¹⁸이다. dsu_find는 제공된다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11641,7 +11641,7 @@
     "number": 95,
     "slide": 197,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "거리 dist와 확정 여부 used가 주어진다. 미확정이며 거리가 INF 미만인 정점 중 (거리,번호)가 가장 작은 번호를 pick_vertex로 반환한다. 없으면 −1. n≤100, INF=10¹⁸. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11685,7 +11685,7 @@
     "number": 96,
     "slide": 201,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "1≤n≤100, 0≤s<n. g[u][v]는 방향 간선 가중치 0..10⁶이며 −1은 간선 없음이다. dijkstra(g,s)는 거리 배열을 구한다. 도달 불가는 10¹⁸. C 열 폭은 100. pick_vertex는 제공된다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11729,7 +11729,7 @@
     "number": 97,
     "slide": 205,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "n=2..50인 완전 무방향 거리 행렬 d, 가중치 1..10⁶(대각선 0)이다. 0에서 시작, 동률은 작은 도시 번호로 고른다. nearest_tour는 귀환을 포함한 휴리스틱 비용을 반환한다. C 열 폭은 50. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11777,7 +11777,7 @@
     "number": 98,
     "slide": 209,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "모두 시각 0에 도착한 작업의 처리 시간 a가 오름차순이다. 0≤n≤1000, 시간 1..10⁶. completion_sum은 이 순서의 완료 시각 합을 반환한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11812,7 +11812,7 @@
     "number": 99,
     "slide": 213,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "relax(dist,u,v,w)는 u에서 v로 가는 가중치 w 간선을 완화하고 갱신했으면 1, 아니면 0을 반환한다. INF=10¹⁸, 유한 거리≤10¹², 0≤w≤10⁶이다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11854,14 +11854,14 @@
     "number": 100,
     "slide": 217,
     "file": "5장_연습문제_100문항_수업용.pptx",
-    "sha256": "4ab1a8f0fbb6cea9bfee7ee88a72b33c80659de46a7f245e167be7e349321c7c"
+    "sha256": "a21bc32f3591b5e76b4d0bd25c0fc5d391a73bf3d59cb6af0f8c472a14bcc570"
   },
   {
     "question": "0≤n≤90. fib_memo는 F(0)=0,F(1)=1을 따른다. memo는 길이 91, 모두 −1로 초기화되어 전달된다. 함수가 방문한 상태를 저장하도록 작성한다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def fib_memo(n, memo):\n    if memo[n] != -1:\n        return memo[n]\n    if n < 2:\n        memo[n] = n\n    else:\n        memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)\n    return memo[n]",
     "c": "long long fib_memo(int n, long long memo[]) {\n    if (memo[n]!=-1) return memo[n];\n    if (n<2) memo[n]=n;\n    else memo[n]=fib_memo(n-1,memo)+fib_memo(n-2,memo);\n    return memo[n];\n}",
     "answer": "이미 계산한 값은 바로 반환하고 미계산 값만 재귀로 구한다.",
-    "complexity": "시간 O(n), 캐시와 재귀 스택 O(n).",
+    "complexity": "시간 O(n).",
     "title": "메모이제이션 피보나치",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -11891,7 +11891,7 @@
     "number": 91,
     "slide": 181,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "2×n 보드를 1×2 도미노로 채우는 수를 m으로 나눈 나머지를 domino(n,m)으로 구한다. 0≤n≤10⁶, 1≤m≤10⁹. 빈 보드의 방법 수는 1이다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11931,7 +11931,7 @@
     "number": 92,
     "slide": 185,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "1≤n≤10000에서 −1, ÷2, ÷3, ÷5로 1에 도달하는 최소 연산 수 make_one을 구한다. 나눗셈은 나누어떨어질 때만 가능하다. C에는 길이 n+1의 dp가 제공된다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11968,14 +11968,14 @@
     "number": 93,
     "slide": 189,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "1로 만들기의 올바른 dp[1..n]이 제공된다. make_path는 n부터 1까지 최소 경로를 반환한다. 최적 후보 동률은 −1, ÷2, ÷3, ÷5 순이다. C는 out에 쓰고 길이를 반환한다. Python 또는 C 중 하나로 함수를 작성하시오.",
     "python": "def make_path(n, dp):\n    path = [n]\n    while n > 1:\n        candidates = [n-1]\n        candidates += [n//d for d in (2,3,5) if n%d == 0]\n        n = next(x for x in candidates if dp[x]+1 == dp[n])\n        path.append(n)\n    return path",
     "c": "int make_path(int n, const int dp[], int out[]) {\n    int length=0, divisors[]={2,3,5};\n    out[length++]=n;\n    while (n>1) {\n        int next=n-1;\n        if (dp[next]+1!=dp[n]) {\n            for (int j=0; j<3; ++j) {\n                int d=divisors[j];\n                if (n%d==0 && dp[n/d]+1==dp[n]) {next=n/d; break;}\n            }\n        }\n        n=next; out[length++]=n;\n    }\n    return length;\n}",
     "answer": "dp가 정확히 1 작은 합법적인 다음 상태 중 명시된 순서의 첫 후보를 선택한다.",
-    "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L), 출력 외 O(1).",
+    "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L).",
     "title": "최소 연산 경로 복원",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
@@ -12005,7 +12005,7 @@
     "number": 94,
     "slide": 193,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "물건 (무게,가치) n≤100개, 용량 W≤1000. 무게 1..1000, 가치 0..10⁶. knapsack2는 용량 이하 최대 가치를 반환한다. C dp[101][1001]은 호출자가 제공한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -12046,7 +12046,7 @@
     "number": 95,
     "slide": 197,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "0/1 물건 n≤100개, 무게 1..1000, 가치 0..10⁶, 용량 W=0..1000이다. 길이 W+1 배열로 용량 이하 최대 가치를 구하는 knapsack1을 작성한다. C의 dp는 호출자가 제공한다. Python 또는 C로 작성하시오.",
@@ -12096,7 +12096,7 @@
     "number": 96,
     "slide": 201,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "길이 0..100인 ASCII 문자열 a,b의 최장 공통 부분 수열 길이를 lcs_length로 구한다. C는 길이 m,n과 dp[101][101]을 받는다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -12136,7 +12136,7 @@
     "number": 97,
     "slide": 205,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "길이 0..100의 ASCII 문자열 a,b와 접두사 쌍의 LCS 길이 표 dp가 주어진다. lcs_restore로 수열 하나를 복원한다. 문자 불일치에서 위·왼쪽 동률이면 위로 간다. C out 길이는 101 이상. Python 또는 C로 작성하시오.",
@@ -12168,7 +12168,7 @@
     "number": 98,
     "slide": 209,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
     "question": "정수 배열 a에서 인접 원소를 함께 고르지 않는 최대 합 nonadjacent를 구한다. 빈 선택 허용, 0≤n≤10000, 값 −10⁶..10⁶. C는 long long을 반환한다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -12215,13 +12215,13 @@
     "number": 99,
     "slide": 213,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   },
   {
-    "question": "1≤행·열≤100, 비용 0..10⁶. 오른쪽·아래 도착은 칸 비용 전부, 대각선 도착은 내림 절반이다. 시작 칸은 전액을 낸다. grid_cost는 왼위에서 오른아래 최소 비용을 반환한다. C 열 폭은 100. Python 또는 C 중 하나로 함수를 작성하시오.",
+    "question": "1≤행·열≤100, 칸 비용은 0..10⁶이다. 왼쪽 위에서 오른쪽 아래까지 오른쪽·아래·오른쪽 아래 대각선으로 이동한다. 시작 칸은 전액, 오른쪽·아래로 도착하면 도착 칸 전액, 대각선으로 도착하면 도착 칸 비용//2를 낸다. 예: [[4,8],[6,5]]에서 대각선 경로 비용은 4+5//2=6이다. 최소 비용 grid_cost를 Python 또는 C로 작성하시오. C 열 폭은 100이다.",
     "python": "def grid_cost(a):\n    rows, cols = len(a), len(a[0])\n    dp = [[10**18]*cols for _ in range(rows)]\n    dp[0][0] = a[0][0]\n    for i in range(rows):\n        for j in range(cols):\n            if i: dp[i][j] = min(dp[i][j], dp[i-1][j]+a[i][j])\n            if j: dp[i][j] = min(dp[i][j], dp[i][j-1]+a[i][j])\n            if i and j:\n                dp[i][j] = min(dp[i][j], dp[i-1][j-1]+a[i][j]//2)\n    return dp[-1][-1]",
     "c": "long long grid_cost(const int a[][100], int rows, int cols,\n                    long long dp[][100]) {\n    for (int i=0; i<rows; ++i) {\n        for (int j=0; j<cols; ++j) {\n            long long best=1000000000000000000LL, t;\n            if (i==0 && j==0) best=a[0][0];\n            if (i) {t=dp[i-1][j]+a[i][j]; if(t<best) best=t;}\n            if (j) {t=dp[i][j-1]+a[i][j]; if(t<best) best=t;}\n            if (i && j) {\n                t=dp[i-1][j-1]+a[i][j]/2; if(t<best) best=t;\n            }\n            dp[i][j]=best;\n        }\n    }\n    return dp[rows-1][cols-1];\n}",
-    "answer": "존재하는 위·왼쪽·왼쪽 위 후보를 각각의 도착 비용과 비교한다.",
+    "answer": "위·왼쪽은 전액, 왼쪽 위는 비용//2를 더해 최솟값을 선택한다.",
     "complexity": "시간 O(행×열). 시작 칸에는 할인하지 않는다.",
     "title": "대각선 할인 격자",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
@@ -12276,6 +12276,6 @@
     "number": 100,
     "slide": 217,
     "file": "6장_연습문제_100문항_수업용.pptx",
-    "sha256": "823cff2f4f133d424e13838c1c0ea0278db089223c12e432c704032c9fac3fb6"
+    "sha256": "4bac00da83305774abc91644393016d9924eaffce29613dd156e7487e781dcb4"
   }
 ]
