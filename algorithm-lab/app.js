@@ -80,6 +80,7 @@ function show(i){
     }else pre.textContent=`${T("예시 ")}${j+1}${T("\n입력: ")}${p.function}(${t.args.map(x=>JSON.stringify(x)).join(', ')}${T(")\n반환: ")}${JSON.stringify(t.expected).replaceAll('null','None')}`;
     $('examples').append(pre);
   }
+  renderPracticeHints(p);
   renderStudy(p);
   if(p.exercise)$('instructions').textContent=(language==='c'?p.c.starter.split('{')[0]+';\n'+p.c.result:'def '+p.function+'('+p.params.join(', ')+')\n'+(p.outputArgument===undefined?'정수·실수·문자열·목록 등 문제에 맞는 자료형으로 반환합니다.':'입력 배열을 수정합니다.'))+'\n'+(p.provided||'')+'\n입출력 함수를 호출하지 않습니다. main()은 실행 환경이 제공합니다.';
   $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult(restored?'기존 중복 문제의 답안을 불러왔습니다. PPTX 조건으로 채점하기를 눌러 확인하세요.':T('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.'));renderNav();

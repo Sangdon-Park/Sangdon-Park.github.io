@@ -155,3 +155,7 @@ IP retention is 30 days; other visit records and browser IDs are limited to 365 
 Hourly cleanup can lag the cutoff by up to one hour. `/privacy.html` explains this.
 Counts represent observed JavaScript page views and distinct browser IDs, not
 all HTTP traffic or verified individual people. Existing Google tags are separate.
+
+### 단계별 실습 힌트
+
+`practice-hints.js`는 Python/C 선택에 따라 문법·함수 설명, 문제별 풀이 순서, 반환식 빈칸 연습, 검증된 완성 예시를 순서대로 표시합니다. 2–6장 전체에 완성 예시를 제공하며 기존 답안·점수는 변경하지 않습니다. `node _services/algorithm-lab/tests/practice-hints.mjs`로 양 언어의 빈칸 복원과 힌트 구성을 확인합니다.
