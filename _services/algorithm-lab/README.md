@@ -65,7 +65,9 @@ The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and ch
 
 ### Chapters 2–6 PPTX coding practice
 
-`/algorithm-lab/exercises.html` indexes all 50 writing exercises: chapter 2
+`/algorithm-lab/?chapter=2&scope=exercises` opens all 50 writing exercises in
+the existing dark workspace; the old `exercises.html` URL redirects here.
+The sidebar switches chapters and all/PPTX scope. Coverage: chapter 2
 questions 61/65/69/71/74/78/79/80/88/99 and chapters 3–6 questions 91–100.
 They use P37–P86, preserving all existing IDs and progress. Each has the PPTX
 prompt, Python/C reference, public examples, additional tests and a written

@@ -5,14 +5,15 @@ let saved={answers:{},passed:{},student:'',index:0};
 try { const item=JSON.parse(localStorage.getItem(KEY)); if(item) saved={...saved,...item}; } catch (_) {}
 let language=saved.language==='c'?'c':'python';
 let chapter=1;
-const chapterProblems = () => problems.filter(p => (p.chapter || 1) === chapter);
+let practiceScope=new URLSearchParams(location.search).get('scope')==='exercises'?'exercises':'all';
+const chapterProblems = () => problems.filter(p => (p.chapter || 1) === chapter && (practiceScope==='all'||p.exercise));
 const answerKey = id => language==='c'?'c:'+id:id;
 const starter = p => language==='c'?C_PROBLEMS[p.id].starter:p.starter;
 const languageName = () => language==='c'?'C':'Python';
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
-function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy; $('stop').hidden=!busy; $('code').readOnly=busy; if(editor)editor.setOption('readOnly',busy); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy; $('stop').hidden=!busy; $('code').readOnly=busy; if(editor)editor.setOption('readOnly',busy); $('language').disabled=busy;$('chapter').disabled=busy;$('practice-scope').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
   worker=new Worker(language==='c'?'c-worker.js?v=20260920-exercises':'worker.js?v=20260920-exercises');
@@ -34,7 +35,7 @@ function renderNav(){
   $('problems').replaceChildren();
   for(let i=0;i<problems.length;i++){
     const p=problems[i], b=document.createElement('button');
-    if ((p.chapter || 1) !== chapter) continue;
+    if ((p.chapter || 1) !== chapter || (practiceScope==='exercises'&&!p.exercise)) continue;
     const ok=saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)];
     if (p.exercise && !problems.slice(0,i).some(x=>x.chapter===chapter&&x.exercise)){const group=document.createElement('div');group.className='problem-group';group.textContent=UI_EN?'PPTX EXERCISES':'PPTX 연습문제 · 작성형';$('problems').append(group);}
     const badge=document.createElement('span');badge.className='problem-id';badge.textContent=p.exercise?String(p.exercise):p.id;const name=document.createElement('span');name.textContent=p.title;b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
@@ -47,6 +48,11 @@ function renderNav(){
   $('chapter-count').textContent=active.length;
 }
 function show(i){
+  if(practiceScope==='exercises'&&!problems[i].exercise){
+    const first=problems.findIndex(p=>p.chapter===(problems[i].chapter||1)&&p.exercise);
+    if(first>=0)i=first;else practiceScope='all';
+  }
+  $('practice-scope').value=practiceScope;
   index=i;saved.index=i;persist();const p=problems[i];
   chapter=p.chapter||1;$('chapter').value=chapter;
   saved.chapterIndices={...saved.chapterIndices,[chapter]:i};persist();
@@ -54,7 +60,7 @@ function show(i){
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html'+(UI_EN?'?lang=en':'');
   $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python & C':'연습문제 작성형 / Python·C 구현'):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':'반복문 / 순열·조합 / 부분집합'):(UI_EN?'Search / operation counts / complexity':'탐색 / 연산 횟수 / 복잡도');
-  const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',p.id);url.searchParams.set('code',language);history.replaceState(null,'',url);
+  const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',p.id);url.searchParams.set('code',language);url.searchParams.set('scope',practiceScope);history.replaceState(null,'',url);
   $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · ${p.chapter===2?(UI_EN?"Original PPT":"원본 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
   const view=language==='c'?C_PROBLEMS[p.id]:p;
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
@@ -103,8 +109,8 @@ function finish(report){
     saved.passed[answerKey(job.pid)]={code:job.code,passed:report.passed,total:report.total,at:new Date().toISOString()};persist();renderNav();
     const all=chapterProblems().every(p=>saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]);
     setResult(all?(UI_EN?`🎉 Chapter ${chapter}: all ${chapterProblems().length} problems solved! Download your answers in Settings.`:`🎉 ${chapter}강 ${chapterProblems().length}문제를 모두 해결했습니다! 설정에서 답안·결과를 내려받으세요.`):`${T("✅ 통과! ")}${report.passed}/${report.total}${T("개 검사 성공.")}`, 'success');
-    let next=problems.findIndex((p,i)=>(p.chapter||1)===chapter&&i>index&&!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]));
-    if(next<0)next=problems.findIndex(p=>(p.chapter||1)===chapter&&!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]));
+    let next=problems.findIndex((p,i)=>(p.chapter||1)===chapter&&(practiceScope==='all'||p.exercise)&&i>index&&!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]));
+    if(next<0)next=problems.findIndex(p=>(p.chapter||1)===chapter&&(practiceScope==='all'||p.exercise)&&!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]));
     if(next>=0){$('next').hidden=false;$('next').onclick=()=>show(next);}
   }else{delete saved.passed[answerKey(job.pid)];persist();renderNav();setResult(`${T("다시 도전해 보세요. ")}${report.passed}/${report.total}${T("개 검사 통과. 아래에서 실패한 입력과 반환값을 확인하세요.")}`,'error');}
 }
@@ -129,6 +135,8 @@ $('chapter').onchange=()=>{
   const previous=saved.chapterIndices?.[requested];
   show(Number.isInteger(previous)&&(problems[previous]?.chapter||1)===requested?previous:problems.findIndex(p=>(p.chapter||1)===requested));
 };
+$('practice-scope').value=practiceScope;
+$('practice-scope').onchange=()=>{if(busy)return;practiceScope=$('practice-scope').value;show(index);};
 // Capture links before show() updates the URL or cloud restore changes selection.
 const entryParams=new URLSearchParams(location.search);
 initEditor();
@@ -149,9 +157,11 @@ Promise.all(['problems.json','chapter-02.json?v=20260920-exercises','exercise-pr
   problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);
   editor.setOption('readOnly',true);await cloudInit();
   if(['c','python'].includes(entryParams.get('code'))){language=entryParams.get('code');saved.language=language;$('language').value=language;}
+  practiceScope=entryParams.get('scope')==='exercises'?'exercises':'all';
   const requestedChapter=Number(entryParams.get('chapter'));
   const requestedIndex=problems.findIndex(p=>p.id===entryParams.get('problem')&&(![1,2,3,4,5,6].includes(requestedChapter)||(p.chapter||1)===requestedChapter));
   if(requestedIndex>=0)index=requestedIndex;
-  else if([1,2,3,4,5,6].includes(requestedChapter))index=problems.findIndex(p=>(p.chapter||1)===requestedChapter);
+  else if([1,2,3,4,5,6].includes(requestedChapter))index=problems.findIndex(p=>(p.chapter||1)===requestedChapter&&(practiceScope==='all'||p.exercise));
+  if(index<0){practiceScope='all';index=0;}
   show(index);boot();
 }).catch(()=>{setResult(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'),'error');});
