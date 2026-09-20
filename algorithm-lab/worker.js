@@ -71,8 +71,8 @@ def _equal(a,b):
         return isinstance(a,(list,tuple)) and len(a)==len(b) and all(_equal(x,y) for x,y in zip(a,b))
     if b is None: return a is None
     if _payload['problem'].get('numeric_output') and type(b) in (int,float):
-        return type(a) in (int,float) and math.isfinite(a) and math.isclose(a,b,rel_tol=1e-9,abs_tol=1e-9)
-    if type(b) is float: return type(a) in (int,float) and math.isfinite(a) and math.isclose(a,b,rel_tol=1e-9,abs_tol=1e-9)
+        return type(a) in (int,float) and math.isfinite(a) and math.isclose(a,b,rel_tol=0 if 'tolerance' in _payload['problem'] else 1e-9,abs_tol=_payload['problem'].get('tolerance',1e-9))
+    if type(b) is float: return type(a) in (int,float) and math.isfinite(a) and math.isclose(a,b,rel_tol=0,abs_tol=_payload['problem'].get('tolerance',1e-9))
     return type(a) is type(b) and a==b
 def _brief(x):
     s=repr(x)
@@ -81,16 +81,38 @@ _report=[]
 _namespace={'__builtins__':__builtins__}
 try:
     with contextlib.redirect_stdout(_Quiet()), contextlib.redirect_stderr(_Quiet()):
+        exec(_payload['problem'].get('pythonPrelude',''),_namespace)
         exec(compile(_payload['code'],'학생 답안','exec'),_namespace)
     _fn=_namespace.get(_payload['problem']['function'])
     if not callable(_fn): raise ValueError('함수 이름을 확인하세요: '+_payload['problem']['function'])
     for _i,_case in enumerate(_payload['cases']):
         _args=copy.deepcopy(_case['args']); _before=copy.deepcopy(_args)
+        _name=_payload['problem']['function']
+        if _payload['problem'].get('exercise'):
+            if _name=='fib_memo': _args.append([-1]*91)
+            if _name=='make_path':
+                _dp=[0]*(_args[0]+1)
+                for _x in range(2,len(_dp)):
+                    _dp[_x]=1+min([_dp[_x-1]]+[_dp[_x//_d] for _d in (2,3,5) if _x%_d==0])
+                _args.append(_dp)
+            if _name=='lcs_restore':
+                _a,_b=_args; _dp=[[0]*(len(_b)+1) for _ in range(len(_a)+1)]
+                for _x in range(1,len(_a)+1):
+                    for _y in range(1,len(_b)+1):
+                        _dp[_x][_y]=_dp[_x-1][_y-1]+1 if _a[_x-1]==_b[_y-1] else max(_dp[_x-1][_y],_dp[_x][_y-1])
+                _args.append(_dp)
         if _payload['problem'].get('indexed_only'): _args[0]=_Array(_args[0])
         try:
             with contextlib.redirect_stdout(_Quiet()), contextlib.redirect_stderr(_Quiet()):
                 _actual=_fn(*_args)
+            if 'outputArgument' in _payload['problem']: _actual=_args[_payload['problem']['outputArgument']]
+            if _payload['problem'].get('exactInteger'):
+                _actual=str(_actual) if type(_actual) is int else None
             _ok=_equal(_actual,_case['expected']); _message=''
+            if 'after' in _case and _args[0]!=_case['after']:
+                _ok=False; _message='반환값뿐 아니라 dist 배열의 갱신 결과도 확인하세요.'
+            if any(str(_args[_case['mutationArg']][int(_k)])!=str(_v) for _k,_v in _case.get('mutationChecks',{}).items()):
+                _ok=False; _message='반환값뿐 아니라 경로 압축 또는 memo 저장도 필요합니다.'
             if _payload['problem'].get('preserve_input') and _args!=_before:
                 _ok=False; _message='입력 배열이 바뀌었습니다. 복사본을 사용하세요.'
             if not _ok and not _message: _message='예상 '+_brief(_case['expected'])+' / 반환 '+_brief(_actual)

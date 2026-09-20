@@ -21,12 +21,13 @@ vm.runInContext(`students=[{student_no:'fixture',name:'Test',section:'1',problem
   {problem:'P13',language:'c',solved:true,attempts:4},
   {problem:'P36',language:'python',solved:false,attempts:1}
 ]}];`, context);
-for (const [chapter, total, solved, attempts] of [['all',36,2,10], ['1',12,1,5], ['2',24,1,5]]) {
+for (const [chapter, total, solved, attempts] of [['all',86,2,10], ['1',12,1,5], ['2',34,1,5], ['3',10,0,0], ['4',10,0,0], ['5',10,0,0], ['6',10,0,0]]) {
   element('admin-chapter').value = chapter;
   assert.equal(vm.runInContext('selectedTotal()', context), total);
   assert.equal(vm.runInContext('filtered()[0].solved', context), solved);
   assert.equal(vm.runInContext('filtered()[0].attempts', context), attempts);
 }
+element('admin-chapter').value = 'all';
 element('progress-filter').value = 'complete';
 assert.equal(vm.runInContext('filtered().length', context), 0);
 element('progress-filter').value = 'working';

@@ -63,6 +63,33 @@ The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and ch
 
 ## Deployment
 
+### Chapters 2–6 PPTX coding practice
+
+`/algorithm-lab/exercises.html` indexes all 50 writing exercises: chapter 2
+questions 61/65/69/71/74/78/79/80/88/99 and chapters 3–6 questions 91–100.
+They use P37–P86, preserving all existing IDs and progress. Each has the PPTX
+prompt, Python/C reference, public examples, additional tests and a written
+preparation panel. Written self-checks are separate from execution scores;
+students can append their notes as code comments for cloud storage/export.
+
+`exercise-source.json` was checked against the current PPTX question and code
+slides. The generator records file hashes in the public problem bank. Large
+integer outputs are transported as decimal strings to avoid JavaScript rounding,
+while students must still return integers. Mutation checks cover sorting,
+path compression, relaxation and memoization. Supplied helpers/tables are
+available to both runtimes as specified in the source exercises.
+
+```powershell
+python _services/algorithm-lab/build_exercise_lab.py
+python _services/algorithm-lab/tests/exercise-lab.py
+node _services/algorithm-lab/tests/exercise-lab.mjs
+node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
+```
+
+Apply `exercise-lab-migration.sql` before deploying the updated Edge Function.
+This only extends accepted problem IDs; it does not remove student records.
+The total catalog is 86 problems: 12 / 34 / 10 / 10 / 10 / 10 by chapter.
+
 From the repository root, using an already authenticated Supabase CLI:
 
 ```powershell

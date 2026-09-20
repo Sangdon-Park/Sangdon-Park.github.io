@@ -33,6 +33,10 @@ function normalize(source) {
 }
 function harness(problem, cases) {
   const body = cases.map((test, index) => {
+    if (problem.exercise) {
+      const {setup, call} = test.cHarness || chapterTwoCase({...problem,id:problem.legacyHarnessId}, test.args);
+      return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;
+    }
     if (problem.chapter === 2) {
       const {setup, call} = chapterTwoCase(problem, test.args);
       return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;
@@ -62,9 +66,9 @@ function harness(problem, cases) {
   }).join('\n');
   return `\n#line 1 "grader.c"\nint main(void){\n${body}\nreturn 0;}\n`;
 }
-function equal(actual, expected, numeric) {
-  if (Array.isArray(expected)) return Array.isArray(actual) && actual.length === expected.length && expected.every((x,i)=>equal(actual[i],x,numeric));
-  if (numeric) return typeof actual === 'number' && Number.isFinite(actual) && Math.abs(actual-expected)<=Math.max(1e-9,Math.abs(expected)*1e-9);
+function equal(actual, expected, numeric, tolerance) {
+  if (Array.isArray(expected)) return Array.isArray(actual) && actual.length === expected.length && expected.every((x,i)=>equal(actual[i],x,numeric,tolerance));
+  if (numeric) return typeof actual === 'number' && Number.isFinite(actual) && Math.abs(actual-expected)<=(tolerance??Math.max(1e-9,Math.abs(expected)*1e-9));
   return actual === expected;
 }
 self.onmessage = async ({data}) => {
@@ -73,7 +77,7 @@ self.onmessage = async ({data}) => {
   try {
     log = '';
     // A fixed set of filenames keeps the in-memory filesystem bounded across runs.
-    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n#include <limits.h>\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases);
+    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n#include <limits.h>\n' + jsonStringHelper + (data.problem.cPrelude||'') + '\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases);
     api.memfs.addFile('answer.c',new TextEncoder().encode(source));
     self.postMessage({type:'phase', token:data.token, phase:'compile'});
     await api.run(await api.getModule(api.clangFilename), 'clang','-cc1','-emit-obj',
@@ -89,7 +93,7 @@ self.onmessage = async ({data}) => {
       let actual;
       try { actual=JSON.parse(line.slice(line.indexOf(':')+1)); } catch (_) {}
       const expected = data.problem.id==='P06' && test.expected[0]===null ? [0,0] : test.expected;
-      const ok = equal(actual,expected,data.problem.numeric_output);
+      const ok = equal(actual,expected,data.problem.numeric_output,data.problem.tolerance);
       return {number:index+1,public:!!test.public,ok,input:JSON.stringify(test.args).slice(0,230),
         message:ok?'':`예상 ${JSON.stringify(expected)} / 결과 ${JSON.stringify(actual) ?? '결과 없음'}${data.problem.id==='P11'&&actual===null?' (입력 배열 변경 여부를 확인하세요.)':''}`};
     });
@@ -100,4 +104,17 @@ self.onmessage = async ({data}) => {
   }
   self.postMessage({type:'result',token:data.token,report});
 };
+// ASCII strings can contain quotation marks, backslashes and control characters.
+const jsonStringHelper = String.raw`
+static void lab_json_string(const char *s) {
+  putchar('"');
+  for (; *s; ++s) {
+    unsigned char c=(unsigned char)*s;
+    if (c=='"' || c=='\\') { putchar('\\'); putchar(c); }
+    else if (c<32) printf("\\u%04x",c);
+    else putchar(c);
+  }
+  putchar('"');
+}
+`;
 boot();

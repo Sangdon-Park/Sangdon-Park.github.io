@@ -2,8 +2,9 @@ const $=id=>document.getElementById(id),API='https://tltrbkttwzvwghaplurl.supaba
 let token=sessionStorage.getItem('dju-algolab-admin')||'',students=[],section='all',detail=null,choices=[],refreshing=false;
 async function request(action,body={}){const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});const data=await response.json();if(!response.ok){if(response.status===401&&action!=='admin-login')signOut();throw Error(T(data.error)||T('요청 실패'));}return data;}
 function signOut(){token='';students=[];detail=null;choices=[];sessionStorage.removeItem('dju-algolab-admin');$('admin-workspace').hidden=true;$('admin-login-panel').hidden=false;for(const d of document.querySelectorAll('dialog[open]'))d.close();for(const id of ['student-rows','detail-title','detail-summary','detail-grid','submission-code','submission-report','submission-select'])$(id).replaceChildren();}
-const allProblemIds=Array.from({length:36},(_,i)=>'P'+String(i+1).padStart(2,'0'));
-const selectedIds=()=>allProblemIds.filter((_,i)=>$('admin-chapter').value==='all'||($('admin-chapter').value==='1'?i<12:i>=12));
+const allProblemIds=Array.from({length:86},(_,i)=>'P'+String(i+1).padStart(2,'0'));
+const problemChapter=id=>{const n=Number(id.slice(1));return n<=12?1:n<=46?2:n<=56?3:n<=66?4:n<=76?5:6;};
+const selectedIds=()=>allProblemIds.filter(id=>$('admin-chapter').value==='all'||problemChapter(id)===Number($('admin-chapter').value));
 const selectedTotal=()=>selectedIds().length;
 function chapterStudents(){const ids=new Set(selectedIds());return students.map(s=>({...s,solved:new Set(s.problems.filter(p=>ids.has(p.problem)&&p.solved).map(p=>p.problem)).size,attempts:s.problems.filter(p=>ids.has(p.problem)).reduce((sum,p)=>sum+p.attempts,0)}));}
 function filtered(){const query=$('student-search').value.trim().toLowerCase(),state=$('progress-filter').value;return chapterStudents().filter(s=>(section==='all'||s.section===section)&&(!query||(s.student_no+' '+s.name).toLowerCase().includes(query))&&(state==='all'||(state==='not-started'&&s.solved===0)||(state==='working'&&s.solved>0&&s.solved<selectedTotal())||(state==='complete'&&s.solved===selectedTotal())));}

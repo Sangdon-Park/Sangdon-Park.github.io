@@ -1,0 +1,14 @@
+#exercise-study{margin-top:28px;padding-top:20px;border-top:1px solid #40526d}
+#exercise-study[hidden]{display:none}
+#exercise-study p{line-height:1.75;white-space:pre-wrap}
+#exercise-study label{display:block;margin:16px 0 8px;font-weight:600;font-size:14px}
+#exercise-study textarea{box-sizing:border-box;width:100%;display:block;resize:vertical;margin-top:8px;padding:12px;border:1px solid #40526d;border-radius:5px;background:#101c2d;color:#e4edf7;font:14px/1.7 system-ui,sans-serif}
+#exercise-study .study-check{display:flex;gap:8px;align-items:flex-start;font-weight:400;line-height:1.6}
+#exercise-study .study-check input{width:auto;margin-top:5px}
+#exercise-study button{margin:8px 0;padding:9px 12px;border:1px solid #adb9c4;border-radius:5px;background:#24364c;color:#e4edf7;cursor:pointer}
+#exercise-study details{margin-top:16px;padding:14px;background:#172439;color:#e4edf7;border:1px solid #40526d;border-radius:5px}
+#exercise-study summary{cursor:pointer;font-weight:600}
+#exercise-study pre{white-space:pre;overflow:auto;padding:12px;background:#101c2d;color:#e4edf7;font:13px/1.65 Consolas,monospace;border:1px solid #40526d}
+#exercise-study h4{margin-top:20px;margin-bottom:6px}
+#study-status{font-size:13px;color:#afbdd0}
+.problem-group{padding:15px 10px 5px;color:#9fbedb;font-size:12px;letter-spacing:.03em}
