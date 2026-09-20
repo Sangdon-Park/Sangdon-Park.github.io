@@ -64,20 +64,24 @@ function renderPracticeHints(p){
   panel.replaceChildren();
   const el=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
   const data=practiceHintData(p,language);
-  panel.append(el('h3','막혔나요? 한 단계씩 따라 해 보세요'),el('p','문법 → 풀이 순서 → 빈칸 연습 → 완성 풀이 순서로 도움을 받습니다. 힌트를 열어도 작성 중인 코드는 바뀌지 않습니다.'));
+  const toggle=el('button','도움이 필요해요');toggle.type='button';toggle.setAttribute('aria-expanded','false');
+  const body=el('div','');body.hidden=true;toggle.onclick=()=>{body.hidden=!body.hidden;toggle.setAttribute('aria-expanded',String(!body.hidden));};panel.append(toggle,body);
   const content=el('div','');content.id='hint-steps';
   const button=el('button','힌트 받기 · 1단계');button.type='button';button.setAttribute('aria-controls','hint-steps');
   const status=el('p','');status.setAttribute('role','status');status.className='hint-status';
   let step=0;
   const titles=['필요한 문법·함수','어떤 순서로 풀까요?','빈칸을 채우며 따라 쓰기','완성 풀이와 비교하기'];
-  button.onclick=()=>{
+  const previous=el('button','이전 단계');previous.type='button';
+  const paint=()=>{
+    content.replaceChildren();
     const card=el('details','');card.open=true;card.append(el('summary',`${step+1}단계 · ${titles[step]}`));
     if(step===0){const list=el('ul','');for(const text of data.tools)list.append(el('li',text));card.append(list);}
     if(step===1){card.append(el('p',data.method||'입력에서 무엇을 받아 어떤 값을 반환하는지 확인하고, 공개 예시를 손으로 먼저 계산해 보세요.'));card.append(el('p','입출력 예시의 첫 번째 입력으로 변수 값을 종이에 따라 적어 보세요. 반복 한 번마다 무엇이 달라지는지 확인한 뒤 코드로 옮기세요.'));}
     if(step===2){card.append(el('p',data.blanks.length?'___1___ 같은 빈칸에 반환할 값·식을 넣어 보세요. 이 상태 그대로는 실행할 수 없습니다.':'아래 시작 코드에서 TODO를 채워 보세요. 문제에 지정된 함수 이름과 매개변수는 유지하세요.'),el('pre',data.blanks.length?data.skeleton:starter(p)));for(const blank of data.blanks){const answer=el('details','');answer.append(el('summary',blank.label+' 답 확인'),el('code',blank.answer));card.append(answer);}}
     if(step===3){card.append(el('p','한 줄씩 내 코드와 비교해 보세요. 예시 실행으로 확인한 뒤, 풀이를 닫고 다시 작성해 보세요.'),el('pre',data.solution));if(p.study?.boundary)card.append(el('h4','경계 조건도 확인하기'),el('p',p.study.boundary));if(p.study?.complexity)card.append(el('h4','복잡도 설명'),el('p',p.study.complexity));if(p.pythonPrelude?.includes('def ')||p.cPrelude){const prelude=language==='c'?p.cPrelude:p.pythonPrelude;if(prelude)card.append(el('h4','실행 환경에서 제공하는 코드 · 답안에 다시 넣지 않아도 됩니다'),el('pre',prelude));}}
-    content.append(card);step++;status.textContent=`${step}단계 힌트를 열었습니다. 각 단계 제목을 누르면 접거나 펼칠 수 있습니다.`;
-    const total=data.solution?4:3;button.hidden=step===total;button.textContent=`다음 힌트 · ${step+1}단계`;
+    content.append(card);status.textContent=`${step+1} / ${data.solution?4:3} 단계`;previous.disabled=step===0;
+    const total=data.solution?4:3;button.hidden=step===total-1;button.textContent='다음 단계';
   };
-  panel.append(content,button,status);
+  button.onclick=()=>{step++;paint();};previous.onclick=()=>{step--;paint();};
+  const nav=el('div','');nav.className='hint-navigation';nav.append(previous,status,button);body.append(content,nav);paint();
 }

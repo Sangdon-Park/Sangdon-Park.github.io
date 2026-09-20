@@ -3,7 +3,7 @@ const cloud={session:null,queue:[],flushing:false,draftTimer:null,supported:new 
 const cloudStatus=(text,error=false)=>{document.getElementById('cloud-status').textContent=text;document.getElementById('cloud-status').classList.toggle('cloud-error',error);};
 async function labRequest(action,body={},token=cloud.session?.token){
   const response=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});
-  const data=await response.json();if(!response.ok){if(response.status===401&&cloud.session)cloud.expired=true;const error=new Error(T(data.error)||T('서버 요청 실패'));error.status=response.status;throw error;}return data;
+  const data=await response.json();if(!response.ok){if(response.status===401&&cloud.session){cloud.expired=true;requirePracticeAccount();}const error=new Error(T(data.error)||T('서버 요청 실패'));error.status=response.status;throw error;}return data;
 }
 function queueKey(){return 'dju-algolab-outbox:'+cloud.session.student.id;}
 function saveQueue(){if(cloud.resetting)return false;try{localStorage.setItem(queueKey(),JSON.stringify(cloud.queue));return true;}catch{cloudStatus(T('저장 공간 부족 · 답안 파일을 내려받아 보관하세요.'),true);return false;}}
@@ -50,7 +50,7 @@ function cloudAccount(data){
   $('cloud-logout').hidden=false;$('cloud-history').hidden=false;
   const legacy=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1')||'{}');$('cloud-import').hidden=!Object.keys(legacy.answers||{}).length;
   show(Math.max(0,Math.min(problems.length-1,saved.index||0)));if(changed&&worker)boot();
-  cloudStatus(T('● 실습 기록 연결 완료 · 진행 상황 자동 저장'));flushCloud();
+  cloudStatus(T('● 실습 기록 연결 완료 · 진행 상황 자동 저장'));requirePracticeAccount();controls();flushCloud();
 }
 async function cloudInit(){
   let session;try{session=JSON.parse(localStorage.getItem('dju-algolab-session'));}catch{}
@@ -70,7 +70,8 @@ function initCloudUI(){
   const dialog=$('account-dialog'),form=$('account-form');
   const preferred=new URLSearchParams(location.search).get('section');if(['01','02'].includes(preferred))$('account-section').value=preferred;
   $('cloud-login').onclick=()=>{if(busy)return;if(cloud.session&&!cloud.expired){$('cloud-history').click();return;}form.reset();if(['01','02'].includes(preferred))$('account-section').value=preferred;if(cloud.session){$('account-section').value=cloud.session.student.section;$('account-number').value=cloud.session.student.student_no;$('account-name').value=cloud.session.student.name;}$('account-message').textContent='';dialog.showModal();};
-  $('account-close').onclick=()=>dialog.close();
+  dialog.addEventListener('cancel',event=>{if(!cloud.session||cloud.expired)event.preventDefault();});
+  $('account-close').onclick=()=>{if(cloud.session&&!cloud.expired)dialog.close();};
   form.onsubmit=async event=>{
     event.preventDefault();if(cloud.flushing){$('account-message').textContent=T('저장 요청이 끝난 뒤 다시 시도하세요.');return;}$('account-submit').disabled=true;$('account-message').textContent=T('확인 중…');
     try{const data=await labRequest('enter',{section:$('account-section').value,student_no:$('account-number').value.trim(),name:$('account-name').value.trim()},null);cloudAccount(data);dialog.close();}
@@ -108,4 +109,12 @@ function initCloudUI(){
   $('history-close').onclick=()=>$('history-dialog').close();
   setInterval(()=>{if(cloud.resetting||!cloud.session||document.hidden)return;flushCloud();labRequest('heartbeat',{problem:problems[index]?.id,language}).catch(()=>{});},30000);
   window.addEventListener('online',flushCloud);
+}
+
+function requirePracticeAccount(){
+  const locked=!cloud.session||cloud.expired;
+  document.querySelector('main').inert=locked;
+  document.body.classList.toggle('account-required',locked);
+  $('account-close').hidden=locked;
+  if(locked&&!$('account-dialog').open){$('account-message').textContent='반·학번·이름을 입력하면 답안과 진행 상황을 저장하며 실습할 수 있습니다.';$('account-dialog').showModal();}
 }

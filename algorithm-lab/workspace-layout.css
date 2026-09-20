@@ -1,0 +1,37 @@
+.compact-lab main{max-width:none}
+.compact-lab .workspace{padding:22px 24px}
+.compact-lab .columns{grid-template-columns:minmax(300px,1fr) minmax(400px,1.4fr);gap:24px}
+.compact-lab .problem-content{padding:22px}
+.compact-lab .problem-content h3{font-size:14px}
+.compact-lab #statement{font-size:14px;line-height:1.9}
+#answer-tabs{display:flex;align-items:center;gap:4px;padding:0 14px;border-bottom:1px solid #293449;background:#172131;min-height:50px}
+#answer-tabs [role=tab]{align-self:stretch;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;padding:12px;color:#91a1ba}
+#answer-tabs [aria-selected=true]{color:#c8f2dc;border-bottom-color:#97e6bd}
+#answer-tabs .compact-code-language{margin-left:auto}
+#answer-tabs select{padding:6px 8px;font-size:12px}
+#editor-settings{margin:0;padding:10px 16px;border-top:0;border-bottom:1px solid #293449;background:#111a28}
+#editor-settings summary{color:#91a1ba;font-size:12px}
+#editor-settings .indent-toolbar{padding:12px 0 0}
+#editor-settings .view-toolbar{padding:8px 0 0}
+.compact-lab .CodeMirror{height:52vh;min-height:340px}
+#writing-panel{padding:22px;min-height:340px}
+#writing-panel #exercise-study{margin:0;padding:0;border:0}
+#writing-panel #exercise-study h3{margin-top:0}
+#execution-results{margin:0;padding:0;border-top:1px solid #293449}
+#execution-results>summary{padding:14px 18px;color:#c9d3e2}
+#execution-results .results-panel{border:0}
+#function-guide{margin-top:20px;padding-top:14px}
+#function-guide summary,#resource-menu summary{color:#a1b4ce}
+#resource-menu{margin:18px 8px;padding-top:14px}
+#resource-menu a{display:block;padding:8px 0;font-size:12px}
+#practice-hints{margin:20px 0 0;padding:0;border:0;border-radius:0;background:none}
+#practice-hints>button{width:100%;background:#20392f;border:1px solid #3b655b;color:#c5efdb}
+#practice-hints .hint-navigation{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}
+#practice-hints .hint-navigation button{font-size:12px;padding:8px 10px;background:#24364c;color:#e4edf7}
+#practice-hints .hint-navigation button:disabled{opacity:.4;cursor:default}
+#practice-hints .hint-status{margin:0;white-space:nowrap}
+#practice-hints #hint-steps>details{max-height:52vh;overflow:auto;margin-bottom:0}
+.compact-lab .coding{box-shadow:none}
+@media(min-width:1101px){.compact-lab main>aside{position:sticky;top:0;height:calc(100vh - 54px);box-sizing:border-box;display:flex;flex-direction:column}.compact-lab #problems{min-height:0;flex:1;overflow:auto;max-height:none}.compact-lab .coding{position:sticky;top:16px}}
+@media(max-width:1100px){.compact-lab .columns{grid-template-columns:minmax(0,1fr)}.compact-lab .workspace{padding:16px}.compact-lab .CodeMirror{height:50vh}}
+@media(max-width:650px){#answer-tabs{padding:0 8px}#answer-tabs [role=tab]{padding:10px 8px;font-size:12px}.compact-lab .problem-content,#writing-panel{padding:16px}.compact-lab .columns{gap:16px}.compact-lab #problems{max-height:180px;overflow:auto}}

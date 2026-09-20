@@ -6,7 +6,7 @@ function studyEntry(p){return readStudy()[answerKey(p.id)]||{};}
 function saveStudy(p,entry){const all=readStudy();all[answerKey(p.id)]=entry;try{localStorage.setItem(studyKey(),JSON.stringify(all));}catch{$('study-status').textContent='저장 공간이 부족합니다. 답안을 내려받아 보관하세요.';}}
 function renderStudy(p){
   let panel=$('exercise-study');
-  if(!panel){panel=document.createElement('section');panel.id='exercise-study';document.querySelector('.problem-content').append(panel);}
+  if(!panel){panel=document.createElement('section');panel.id='exercise-study';document.getElementById('writing-panel').append(panel);}
   panel.replaceChildren();panel.hidden=!p.exercise;if(!p.exercise)return;
   const el=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
   const heading=el('h3',UI_EN?'Prepare the full answer':'코드와 풀이 설명까지 연습하기');
@@ -34,16 +34,5 @@ function renderStudy(p){
     code+='\n'+marker+' STUDY-NOTES-BEGIN\n'+lines.map(line=>marker+' '+line).join('\n')+'\n'+marker+' STUDY-NOTES-END\n';
     setCode(code);saved.answers[answerKey(p.id)]=code;persist();cloudDraft(p.id,language,code);renderNav();setResult('설명 주석을 반영했습니다. 채점하기로 최종 코드를 확인하세요.');$('case-results').replaceChildren();$('next').hidden=true;status.textContent='코드 끝에 설명 주석을 반영했습니다. 채점하기로 코드를 다시 확인하세요.';
   };panel.append(button,status);
-  const details=el('details',''),summary=el('summary','풀이·경계 조건·Python/C 구현 예시');details.append(summary);
-  for(const [title,text] of [['풀이 방법',p.study.method],['경계 조건',p.study.boundary],['시간·공간 복잡도',p.study.complexity]])details.append(el('h4',title),el('p',text));
-  for(const lang of ['python','c']){
-    details.append(el('h4',lang==='c'?'C 구현 예시':'Python 구현 예시'),el('pre',lang==='c'?p.c.solution:p.solution));
-  }
-  if(p.pythonPrelude.includes('def ')||p.cPrelude){
-    details.append(el('h4','실행 환경에서 제공하는 코드'));
-    if(p.pythonPrelude.includes('def '))details.append(el('pre',p.pythonPrelude));
-    if(p.cPrelude)details.append(el('pre',p.cPrelude));
-  }
-  const source=el('a',`${p.chapter}장 연습문제 PPTX 내려받기`);source.href='/data/알고리즘/'+p.sourceFile;details.append(source);panel.append(details);
   status.textContent=entry.checked?'설명 자가 점검 기록이 있습니다. 수정하면 다시 점검하세요.':'작성한 설명은 언어별로 자동 저장됩니다.';
 }
