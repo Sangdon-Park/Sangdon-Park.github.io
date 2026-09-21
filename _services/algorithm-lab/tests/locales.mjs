@@ -4,8 +4,8 @@ import assert from 'node:assert/strict';
 const lab=new URL('../../../algorithm-lab/',import.meta.url);
 const read=f=>fs.readFileSync(new URL(f,lab),'utf8');
 const bank=['problems.json','chapter-02.json','exercise-problems.json'].flatMap(f=>JSON.parse(read(f)));
-function fixture(locale){
- const storage=new Map();
+function fixture(locale,savedLocale){
+ const storage=new Map(savedLocale?[['dju-algolab-locale',savedLocale]]:[]);
  const ctx=vm.createContext({URLSearchParams,location:{search:locale?'?lang='+locale:''},localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)}});
  for(const f of ['locale-en.js','locale-extra.js'])vm.runInContext(read(f),ctx);
  vm.runInContext(read('i18n.js').split('document.documentElement.lang=')[0],ctx);
@@ -14,7 +14,7 @@ function fixture(locale){
 }
 assert.equal(vm.runInContext('UI_LOCALE',fixture('')),'ko');
 assert.equal(vm.runInContext('UI_LOCALE',fixture('fr')),'ko');
-for(const locale of ['ko','en','es']){
+for(const locale of ['ko','en','es-ES','es-419']){
  const ctx=fixture(locale),translate=vm.runInContext('localizeProblem',ctx),t=vm.runInContext('T',ctx),c=vm.runInContext('C_PROBLEMS',ctx),hint=vm.runInContext('practiceHintData',ctx);
  for(const original of bank){
   const p=structuredClone(original);if(p.c)c[p.id]=structuredClone(p.c);
@@ -40,3 +40,14 @@ for(const locale of ['ko','en','es']){
  }
 }
 console.log('All 86 problems: Korean/English/Spanish fields, Python/C examples, hints, immutable source code and test inputs verified.');
+
+assert.equal(vm.runInContext('UI_LOCALE',fixture('es')),'es-419');
+for(const locale of ['es-ES','es-419']){
+ assert.equal(vm.runInContext('UI_LOCALE',fixture('',locale)),locale);
+ assert.equal(vm.runInContext('UI_DATE_LOCALE',fixture(locale)),locale);
+ assert.equal(vm.runInContext('UI_ES',fixture(locale)),true);
+}
+const spain=fixture('es-ES'),latam=fixture('es-419');
+assert.match(vm.runInContext("T('배열 A에서 i<j이며 A[i]+A[j]=target인 모든 값 쌍을 구하는 함수를 작성하시오. i, j가 증가하는 순서로 저장한다. 값이 같아도 인덱스가 다른 쌍은 별개다. 0≤n≤30, 값과 target은 −100~100이다.\\n\\n탐색 순서와 종료 조건을 정하고 Python 또는 C로 함수를 작성하시오.\\n예시 입력의 처리 과정을 보이고, 경계 조건 하나와 시간 복잡도를 설명하시오.')",spain),/array A/);
+assert.equal(vm.runInContext("T('인접 선택 금지 최대 합')",spain),vm.runInContext("T('인접 선택 금지 최대 합')",latam));
+console.log('Spain/Latin America selection, persistence, legacy Spanish links, regional terminology and date locales passed.');

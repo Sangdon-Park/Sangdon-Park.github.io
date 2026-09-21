@@ -1,12 +1,25 @@
 // UI language is independent of the Python/C answer language.
+const UI_LOCALES=['ko','en','es-ES','es-419'];
+const normalizeLocale=value=>value==='es'?'es-419':value;
 const UI_LOCALE=(()=>{
-  const requested=new URLSearchParams(location.search).get('lang');
-  if(['ko','en','es'].includes(requested)){try{localStorage.setItem('dju-algolab-locale',requested);}catch{}return requested;}
-  try{const saved=localStorage.getItem('dju-algolab-locale');return ['ko','en','es'].includes(saved)?saved:'ko';}catch{return 'ko';}
+  const requested=normalizeLocale(new URLSearchParams(location.search).get('lang'));
+  if(UI_LOCALES.includes(requested)){try{localStorage.setItem('dju-algolab-locale',requested);}catch{}return requested;}
+  try{const saved=normalizeLocale(localStorage.getItem('dju-algolab-locale'));return UI_LOCALES.includes(saved)?saved:'ko';}catch{return 'ko';}
 })();
 const UI_EN=UI_LOCALE==='en';
-const UI_DATE_LOCALE={ko:'ko-KR',en:'en-US',es:'es-ES'}[UI_LOCALE];
-const UI_DICTIONARY=UI_LOCALE==='es'?LOCALE_ES:{...LOCALE_EN,...EN_UI};
+const UI_ES=UI_LOCALE.startsWith('es-');
+const UI_DATE_LOCALE={ko:'ko-KR',en:'en-US','es-ES':'es-ES','es-419':'es-419'}[UI_LOCALE];
+// Shared Spanish content, with regional vocabulary applied only to display text.
+// Mathematical notation, identifiers, examples and student code are not localized.
+function spanishDictionary(locale){
+  if(locale!=='es-ES')return LOCALE_ES;
+  const words={arreglo:'array',arreglos:'arrays',costo:'coste',costos:'costes',computadora:'ordenador',computadoras:'ordenadores'};
+  return Object.fromEntries(Object.entries(LOCALE_ES).map(([key,value])=>[key,value.replace(/\b(arreglos?|costos?|computadoras?)\b/gi,word=>{
+    const translated=words[word.toLowerCase()];
+    return word[0]===word[0].toUpperCase()?translated[0].toUpperCase()+translated.slice(1):translated;
+  })]));
+}
+const UI_DICTIONARY=UI_ES?spanishDictionary(UI_LOCALE):{...LOCALE_EN,...EN_UI};
 function T(text){
   if(typeof text!=='string'||UI_LOCALE==='ko')return text;
   const dictionary=UI_DICTIONARY;
@@ -63,7 +76,7 @@ if(UI_LOCALE!=='ko'){
 }
 const utility=document.createElement('div');
 utility.className='lab-utilities';
-utility.innerHTML='<label for="ui-language">Language / 언어</label><select id="ui-language" aria-label="Interface language"><option value="ko">한국어</option><option value="en">English</option><option value="es">Español</option></select><button id="clear-browser" type="button"></button>';
+utility.innerHTML='<label for="ui-language">Language / 언어</label><select id="ui-language" aria-label="Interface language"><option value="ko">한국어</option><option value="en">English</option><option value="es-ES">Español (España)</option><option value="es-419">Español (Latinoamérica)</option></select><button id="clear-browser" type="button"></button>';
 const utilityAnchor=document.querySelector('header')||document.querySelector('main');utilityAnchor.before(utility);
 document.getElementById('ui-language').value=UI_LOCALE;
 document.getElementById('ui-language').onchange=event=>{

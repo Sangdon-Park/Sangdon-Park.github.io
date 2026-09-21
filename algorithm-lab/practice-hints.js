@@ -74,7 +74,7 @@ function renderPracticeHints(p){
   const previous=el('button',T('이전 단계'));previous.type='button';
   const paint=()=>{
     content.replaceChildren();
-    const card=el('details','');card.open=true;card.append(el('summary',(UI_LOCALE==='es'?`Paso ${step+1} · ${titles[step]}`:UI_EN?`Step ${step+1} · ${titles[step]}`:`${step+1}단계 · ${titles[step]}`)));
+    const card=el('details','');card.open=true;card.append(el('summary',(UI_ES?`Paso ${step+1} · ${titles[step]}`:UI_EN?`Step ${step+1} · ${titles[step]}`:`${step+1}단계 · ${titles[step]}`)));
     if(step===0){const list=el('ul','');for(const text of data.tools)list.append(el('li',text));card.append(list);}
     if(step===1){card.append(el('p',data.method||T('입력에서 무엇을 받아 어떤 값을 반환하는지 확인하고, 공개 예시를 손으로 먼저 계산해 보세요.')));card.append(el('p',T('입출력 예시의 첫 번째 입력으로 변수 값을 종이에 따라 적어 보세요. 반복 한 번마다 무엇이 달라지는지 확인한 뒤 코드로 옮기세요.')));}
     if(step===2){card.append(el('p',data.blanks.length?T('___1___ 같은 빈칸에 반환할 값·식을 넣어 보세요. 이 상태 그대로는 실행할 수 없습니다.'):T('아래 시작 코드에서 TODO를 채워 보세요. 문제에 지정된 함수 이름과 매개변수는 유지하세요.')),el('pre',data.blanks.length?data.skeleton:starter(p)));for(const blank of data.blanks){const answer=el('details','');answer.append(el('summary',blank.label+T(' 답 확인')),el('code',blank.answer));card.append(answer);}}

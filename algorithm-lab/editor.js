@@ -57,7 +57,7 @@ function initEditor() {
   editor.on('cursorActivity',()=>{
     const cursor=editor.getCursor();
     const column=CodeMirror.countColumn(editor.getLine(cursor.line),cursor.ch,4);
-    $('cursor-position').textContent=UI_LOCALE==='es'?`Línea ${cursor.line+1} · Columna ${column+1}`:UI_EN?`Line ${cursor.line+1} · Column ${column+1}`:`${cursor.line+1}행 · ${column+1}열`;
+    $('cursor-position').textContent=UI_ES?`Línea ${cursor.line+1} · Columna ${column+1}`:UI_EN?`Line ${cursor.line+1} · Column ${column+1}`:`${cursor.line+1}행 · ${column+1}열`;
   });
   editor.on('renderLine',(cm,line,element)=>{
     element.style.position='relative';

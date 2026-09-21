@@ -16,4 +16,4 @@
 
 .compact-lab.editor-expanded .CodeMirror{height:calc(100vh - 285px)}
 
-.compact-controls #ui-language { background: #192b44; color: #dce8f9; border: 1px solid #405a7d; border-radius: 5px; padding: 6px 8px; max-width: 120px; font-size: 12px; }
+.compact-controls #ui-language { background: #192b44; color: #dce8f9; border: 1px solid #405a7d; border-radius: 5px; padding: 6px 8px; max-width: 210px; font-size: 12px; }

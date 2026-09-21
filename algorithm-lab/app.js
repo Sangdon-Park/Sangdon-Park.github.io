@@ -57,7 +57,7 @@ function show(i){
   index=i;saved.index=i;persist();const p=problems[i];
   chapter=p.chapter||1;$('chapter').value=chapter;
   saved.chapterIndices={...saved.chapterIndices,[chapter]:i};persist();
-  $('chapter-caption').textContent=(UI_LOCALE==='es'?'TEMA ':UI_EN?'CHAPTER ':'CHAPTER ')+String(chapter).padStart(2,'0');
+  $('chapter-caption').textContent=(UI_ES?'TEMA ':UI_EN?'CHAPTER ':'CHAPTER ')+String(chapter).padStart(2,'0');
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
   $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python & C':T('연습문제 작성형 / Python·C 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
