@@ -1,5 +1,13 @@
 // English UI strings and problem descriptions. Student code is never translated.
 const EN_UI={
+  "목록 정렬": "Sort students",
+  "정렬": "Sort",
+  "정렬 기준": "Sort by",
+  "정렬 방향": "Sort direction",
+  "푼 문제 수": "Problems solved",
+  "채점 제출 수": "Grading submissions",
+  "오름차순 ↑": "Ascending ↑",
+  "내림차순 ↓": "Descending ↓",
   "강의 선택 / Chapter": "Chapter",
   "1강 · 알고리즘과 복잡도": "1 · Algorithms and complexity",
   "2강 · 완전 탐색": "2 · Brute force",

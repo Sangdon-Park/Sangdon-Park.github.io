@@ -8,9 +8,38 @@ const selectedIds=()=>allProblemIds.filter(id=>$('admin-chapter').value==='all'|
 const selectedTotal=()=>selectedIds().length;
 function chapterStudents(){const ids=new Set(selectedIds());return students.map(s=>({...s,solved:new Set(s.problems.filter(p=>ids.has(p.problem)&&p.solved).map(p=>p.problem)).size,attempts:s.problems.filter(p=>ids.has(p.problem)).reduce((sum,p)=>sum+p.attempts,0)}));}
 function filtered(){const query=$('student-search').value.trim().toLowerCase(),state=$('progress-filter').value;return chapterStudents().filter(s=>(section==='all'||s.section===section)&&(!query||(s.student_no+' '+s.name).toLowerCase().includes(query))&&(state==='all'||(state==='not-started'&&s.solved===0)||(state==='working'&&s.solved>0&&s.solved<selectedTotal())||(state==='complete'&&s.solved===selectedTotal())));}
+const studentCollator = new Intl.Collator('ko-KR', {numeric:true, sensitivity:'base'});
+const sortFields = ['student_no', 'name', 'solved', 'attempts', 'last_seen'];
+function sortedStudents() {
+  const field = $('student-sort').value || 'student_no';
+  const direction = $('sort-direction').value === 'desc' ? -1 : 1;
+  return filtered().sort((a, b) => {
+    let comparison;
+    if (field === 'last_seen') {
+      const left = Date.parse(a.last_seen), right = Date.parse(b.last_seen);
+      // Missing activity remains at the end in either direction.
+      if (Number.isFinite(left) !== Number.isFinite(right)) return Number.isFinite(left) ? -1 : 1;
+      comparison = Number.isFinite(left) ? left - right : 0;
+    } else if (field === 'solved' || field === 'attempts') comparison = a[field] - b[field];
+    else comparison = studentCollator.compare(a[field] || '', b[field] || '');
+    return direction * comparison || studentCollator.compare(a.student_no, b.student_no)
+      || studentCollator.compare(a.section, b.section) || studentCollator.compare(a.id || '', b.id || '');
+  });
+}
+function saveStudentSort() {
+  try { sessionStorage.setItem('dju-algolab-admin-sort', JSON.stringify({field:$('student-sort').value, direction:$('sort-direction').value})); } catch {}
+  render();
+}
+try {
+  const order = JSON.parse(sessionStorage.getItem('dju-algolab-admin-sort'));
+  if (order && sortFields.includes(order.field) && ['asc','desc'].includes(order.direction)) {
+    $('student-sort').value = order.field;
+    $('sort-direction').value = order.direction;
+  }
+} catch {}
 function time(value){return new Date(value).toLocaleString((UI_EN?'en-US':'ko-KR'),{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}
 function render(){
- const rows=filtered();$('student-rows').replaceChildren();$('stat-students').textContent=rows.length+T('명');$('stat-average').textContent=(rows.length?rows.reduce((n,s)=>n+s.solved,0)/rows.length:0).toFixed(1)+' / '+selectedTotal();$('stat-complete').textContent=rows.filter(s=>s.solved===selectedTotal()).length+T('명');$('stat-attempts').textContent=rows.reduce((n,s)=>n+s.attempts,0)+T('회');
+ const rows=sortedStudents();$('student-rows').replaceChildren();$('stat-students').textContent=rows.length+T('명');$('stat-average').textContent=(rows.length?rows.reduce((n,s)=>n+s.solved,0)/rows.length:0).toFixed(1)+' / '+selectedTotal();$('stat-complete').textContent=rows.filter(s=>s.solved===selectedTotal()).length+T('명');$('stat-attempts').textContent=rows.reduce((n,s)=>n+s.attempts,0)+T('회');
  for(const student of rows){const tr=document.createElement('tr');const cell=text=>{const td=document.createElement('td');td.textContent=text;tr.append(td);return td;};cell(UI_EN?'Section '+student.section:student.section+'반');const person=cell(student.student_no);const name=document.createElement('strong');name.textContent=student.name;person.append(name);const progress=cell(student.solved+' / '+selectedTotal());const track=document.createElement('div');track.className='student-progress';const fill=document.createElement('div');fill.style.width=student.solved/selectedTotal()*100+'%';track.append(fill);progress.append(track);cell(student.attempts+T('회'));cell(student.current_problem+' · '+(student.current_language==='c'?'C':'Python'));cell(time(student.last_seen));const action=cell('');const button=document.createElement('button');button.textContent=T('이력 · 코드');button.onclick=()=>openStudent(student.id);action.append(button);$('student-rows').append(tr);}
  $('admin-empty').hidden=rows.length>0;$('admin-empty').textContent=students.length?T('조건에 맞는 학생이 없습니다.'):T('아직 등록한 학생이 없습니다. 학생들에게 실습 링크를 안내하세요. 반·학번·이름만 입력하면 됩니다.');
 }
@@ -20,6 +49,11 @@ $('admin-logout').onclick=async()=>{try{await request('logout');}catch{}signOut(
 for(const button of document.querySelectorAll('[data-section]'))button.onclick=()=>{section=button.dataset.section;for(const b of document.querySelectorAll('[data-section]'))b.setAttribute('aria-pressed',String(b===button));render();};
 $('admin-chapter').onchange=render;
 $('student-search').oninput=render;$('progress-filter').onchange=render;$('admin-refresh').onclick=refresh;
+$('student-sort').onchange=()=>{
+  $('sort-direction').value=['solved','attempts','last_seen'].includes($('student-sort').value)?'desc':'asc';
+  saveStudentSort();
+};
+$('sort-direction').onchange=saveStudentSort;
 setInterval(()=>{if(token&&$('admin-auto').checked&&!document.hidden)refresh();},10000);
 async function openStudent(id){
  const activeToken=token;detail=null;choices=[];
@@ -34,5 +68,5 @@ $('submission-select').onchange=showCode;$('detail-close').onclick=()=>$('studen
 function passwordDialog(){$('password-form').reset();$('password-error').textContent='';$('password-title').textContent=T('관리자 비밀번호 변경');$('password-dialog').showModal();}
 $('admin-change-password').onclick=passwordDialog;$('password-cancel').onclick=()=>$('password-dialog').close();
 $('password-form').onsubmit=async event=>{event.preventDefault();$('password-submit').disabled=true;try{await request('admin-password',{password:$('new-password').value});$('password-dialog').close();signOut();$('admin-login-error').textContent=T('비밀번호를 변경했습니다. 새 비밀번호로 로그인하세요.');}catch(error){$('password-error').textContent=error.message;}finally{$('password-submit').disabled=false;}};
-$('admin-csv').onclick=()=>{const quote=value=>'"'+String(value).replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')+'"';const lines=[[T('반'),T('학번'),T('이름'),T('해결 문제'),T('총 문제'),T('채점 제출'),T('최근 활동')],...filtered().map(s=>[s.section,s.student_no,s.name,s.solved,selectedTotal(),s.attempts,s.last_seen])].map(row=>row.map(quote).join(',')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+lines],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=T('알고리즘_진행현황_')+section+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('admin-csv').onclick=()=>{const quote=value=>'"'+String(value).replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')+'"';const lines=[[T('반'),T('학번'),T('이름'),T('해결 문제'),T('총 문제'),T('채점 제출'),T('최근 활동')],...sortedStudents().map(s=>[s.section,s.student_no,s.name,s.solved,selectedTotal(),s.attempts,s.last_seen])].map(row=>row.map(quote).join(',')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+lines],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=T('알고리즘_진행현황_')+section+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 if(token){$('admin-login-panel').hidden=true;$('admin-workspace').hidden=false;refresh();}
