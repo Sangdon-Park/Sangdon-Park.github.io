@@ -6,7 +6,7 @@
   const code=el('div',null,'coding-panel'),writing=el('div',null,'writing-panel');
   for(const panel of [code,writing])panel.setAttribute('role','tabpanel');
   const actions=coding.querySelector('.actions'),results=coding.querySelector('.results-panel');
-  for(const child of [...coding.children])if(child!==actions&&child!==results)code.append(child);
+  for(const child of [...coding.children])if(child!==actions&&child!==results&&!child.classList.contains('ai-hint-panel'))code.append(child);
   const buttons=[];
   const select=(isWriting)=>{
     code.hidden=isWriting;writing.hidden=!isWriting;

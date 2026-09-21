@@ -51,6 +51,7 @@ function initEditor() {
   });
   editor.on('change',()=>{
     clearErrorLine();
+    resetAIHint();
     if (editorSyncing || !problems.length) return;
     $('code').value=editor.getValue();
     $('code').dispatchEvent(new Event('input'));

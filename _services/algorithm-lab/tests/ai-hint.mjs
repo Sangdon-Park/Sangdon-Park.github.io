@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {createHandler} from '../supabase/functions/algorithm-lab/core.mjs';
+let role='student', configured=true, limited=false, upstream=200, text='반복문이 배열의 마지막 원소까지 확인하는지 살펴보세요.', finish='STOP';
+const calls=[];
+const handler=createHandler({env:name=>name==='GEMINI_API_KEY'?(configured?'private-fixture-key':''):name==='ALGOLAB_HINT_MODEL'?'': 'fixture',fetcher:async(url,options)=>{
+  calls.push({url,...options});
+  if(url.includes('dju_algolab_sessions?'))return Response.json([{role,student_id:'student-fixture',token_hash:'session-fixture'}]);
+  if(url.includes('rate_limit'))return Response.json(!(limited&&JSON.parse(options.body).p_key.startsWith('hint:')));
+  if(url.startsWith('https://generativelanguage.googleapis.com/'))return Response.json({candidates:[{finishReason:finish,content:{parts:[{text:JSON.stringify({hint:text})}]}}]}, {status:upstream});
+  throw Error('Unexpected request');
+}});
+const body={problem:'P01',language:'python',locale:'ko',code:'def linear_search(A, target):\n    return -1',statement:'Find the first index.',execution:'{"passed":0,"total":2}',name:'DO NOT SEND NAME',solution:'DO NOT SEND SOLUTION'};
+const send=(patch={},token='a'.repeat(64))=>handler(new Request('https://fixture.invalid',{method:'POST',headers:{Authorization:'Bearer '+token},body:JSON.stringify({action:'ai-hint',...body,...patch})}));
+assert.equal((await send({},'')).status,401);
+role='admin';assert.equal((await send()).status,403);role='student';
+assert.equal((await send({problem:'bad'})).status,400);
+assert.equal((await send({locale:'xx'})).status,400);
+assert.equal((await send({code:'x'.repeat(20001)})).status,400);
+configured=false;assert.equal((await send()).status,503);configured=true;
+assert.equal(calls.filter(c=>c.url.includes('googleapis')).length,0);
+for(const locale of ['ko','en','es-ES','es-419'])assert.equal((await send({locale})).status,200);
+const google=calls.find(c=>c.url.includes('googleapis'));
+assert.match(google.url,/gemini-3\.7-flash:generateContent$/);
+assert.equal(google.headers['x-goog-api-key'],'private-fixture-key');
+assert.ok(!google.body.includes('DO NOT SEND'));
+assert.ok(!google.body.includes('student-fixture'));
+assert.match(JSON.parse(google.body).systemInstruction.parts[0].text,/Never provide a solution/);
+assert.ok(calls.some(c=>c.body&&JSON.parse(c.body).p_limit===30));
+assert.ok(calls.some(c=>c.body&&JSON.parse(c.body).p_limit===1000));
+limited=true;const before=calls.length;assert.equal((await send()).status,429);assert.ok(!calls.slice(before).some(c=>c.url.includes('googleapis')));limited=false;
+upstream=403;let response=await send();assert.equal(response.status,502);assert.ok(!(await response.text()).includes('private-fixture-key'));upstream=200;
+for(text of ['```python\nreturn 4\n```','x'.repeat(321),''])assert.equal((await send()).status,502);
+text='Check the loop boundary.';finish='MAX_TOKENS';assert.equal((await send()).status,502);finish='STOP';
+
+// UI source snapshots: exclude stale errors and hidden tests; discard late responses.
+const output={textContent:'',hidden:true}, button={};let request, resolveRequest;
+const ctx=vm.createContext({document:{getElementById:id=>id==='ai-hint'?button:output},busy:false,cloud:{session:{student:{id:'fixture'}}},problems:[{id:'P01',title:'Find',statement:'Task',solution:'SECRET'}],index:0,language:'python',UI_LOCALE:'en',C_PROBLEMS:{},T:x=>x,controls(){},getCode:()=>ctx.source,source:'original',job:{pid:'P01',language:'python',code:'original'},labRequest:async(action,payload)=>{request={action,payload};return new Promise(resolve=>{resolveRequest=resolve;});}});
+vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/ai-hint.js',import.meta.url),'utf8'),ctx);
+ctx.report={rows:[{input:'HIDDEN INPUT',message:'HIDDEN ANSWER',diagnostic:{line:2,message:'IndexError'}}],passed:0,total:1};
+vm.runInContext('rememberHintRun(report)',ctx);
+let pending=vm.runInContext('requestAIHint()',ctx);
+assert.match(request.payload.execution,/IndexError/);assert.ok(!JSON.stringify(request).includes('HIDDEN'));assert.ok(!JSON.stringify(request).includes('SECRET'));
+vm.runInContext('resetAIHint()',ctx);resolveRequest({hint:'outdated'});await pending;assert.equal(output.textContent,'');
+ctx.source='changed';pending=vm.runInContext('requestAIHint()',ctx);assert.match(request.payload.execution,/has not been run/);resolveRequest({hint:'Check one boundary.'});await pending;assert.equal(output.textContent,'Check one boundary.');
+console.log('AI hints: auth, bounds, all locales, secret isolation, rate limits, provider failures, output checks and stale-source handling passed.');

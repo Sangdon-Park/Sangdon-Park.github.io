@@ -14,7 +14,7 @@ const languageName = () => language==='c'?'C':'Python';
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
-function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
   worker=new Worker(language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
@@ -47,6 +47,7 @@ function renderNav(){
   $('chapter-count').textContent=active.length;
 }
 function show(i){
+  resetAIHint();
   clearErrorLine();
   i=problems.findIndex(p=>p.id===canonicalProblemId(problems[i].id));
   const target=problems[i], legacy=Object.keys(LAB_DUPLICATES).find(id=>LAB_DUPLICATES[id]===target.id);
@@ -100,6 +101,7 @@ function finish(report){
     $('repair-note').textContent=`${T("붙여넣기에 섞인 특수 공백 ")}${report.normalizedCount}${T("개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.")}`;
     $('repair-note').hidden=false;renderNav();
   }
+  rememberHintRun(report);
   cloudAttempt(job,report);
   if(report.error){setResult(report.errorSummary||report.error,'error');for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.rawError||'':'');return;}
   const success=report.passed===report.total;

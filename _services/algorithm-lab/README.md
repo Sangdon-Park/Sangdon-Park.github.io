@@ -159,3 +159,14 @@ all HTTP traffic or verified individual people. Existing Google tags are separat
 ### 단계별 실습 힌트
 
 `practice-hints.js`는 Python/C 선택에 따라 문법·함수 설명, 문제별 풀이 순서, 반환식 빈칸 연습, 검증된 완성 예시를 순서대로 표시합니다. 2–6장 전체에 완성 예시를 제공하며 기존 답안·점수는 변경하지 않습니다. `node _services/algorithm-lab/tests/practice-hints.mjs`로 양 언어의 빈칸 복원과 힌트 구성을 확인합니다.
+
+
+### Tiny AI hints (Google Gemini)
+
+The authenticated `ai-hint` action sends only the current problem statement, source code and a bounded execution summary to Google. Student identity, reference solutions and hidden test inputs/answers are excluded. The browser discards stale hints after code/problem changes and never reuses diagnostics from a different source snapshot.
+
+Set `GEMINI_API_KEY` in Supabase Edge Function Secrets for project `tltrbkttwzvwghaplurl`. Do not put the key in frontend files or Git. Optional `ALGOLAB_HINT_MODEL` defaults to `gemini-3.7-flash`. Without a key the endpoint returns a translated unavailable message without calling Google.
+
+The system prompt requests one tiny hint in the selected UI language, no solution or replacement code. Structured JSON, output length/code checks, a 15-second upstream timeout and persistent rate limits (one request per 15-second bucket, 30 per student per UTC day, 1,000 total per UTC day) bound use. Prompt instructions and checks reduce answer leakage but cannot guarantee semantic compliance from a generative model. Provider failures are sanitized; no API keys or upstream error bodies are returned.
+
+Test: `node _services/algorithm-lab/tests/ai-hint.mjs`. This uses a mocked Gemini API; real-model verification requires the deployed secret.

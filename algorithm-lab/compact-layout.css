@@ -24,3 +24,7 @@
 .error-detail pre { font: 12px/1.7 Consolas, monospace; white-space: pre; overflow: auto; padding: 10px; background: #101827; max-height: 320px; }
 .error-detail summary { cursor: pointer; color: #bad0eb; }
 .answer-error-line { background: #a849354a !important; }
+
+.ai-hint-panel { margin:12px 0; padding:12px; border:1px solid #39546b; border-radius:8px; }
+.ai-hint-panel small { display:block; margin-top:8px; color:#a9bed2; }
+#ai-hint-result { line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; color:#b6edce; }
