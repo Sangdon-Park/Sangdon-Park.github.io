@@ -67,8 +67,8 @@ function show(i){
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='c'?'C / C11':'Python 3';
   const instructions=problemFunctionInstructions(p,language,view,UI_EN);
-  $('instructions').textContent=instructions;
-  $('statement').textContent=view.statement.replaceAll('Python 또는 C',language==='c'?'C':'Python')+'\n\n'+(UI_EN?'Function contract':'함수 작성 규칙')+'\n'+instructions;
+  $('instructions').textContent=commonFunctionHelp(language,UI_EN);
+  $('statement').textContent=view.statement.replaceAll('Python 또는 C',language==='c'?'C':'Python')+'\n\n'+(UI_EN?'Inputs and return value':'함수 입출력')+'\n'+instructions;
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');

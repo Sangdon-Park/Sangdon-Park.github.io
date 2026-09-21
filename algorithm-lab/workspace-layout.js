@@ -23,7 +23,7 @@
   settings.append(code.querySelector('.indent-toolbar'),code.querySelector('.view-toolbar'));code.querySelector('.editor-toolbar').after(settings);
   const lang=document.querySelector('.compact-code-language');tabs.append(lang);
   const execution=el('details',null,'execution-results');execution.append(el('summary','실행 결과'));results.before(execution);execution.append(results);results.querySelector('.panel-title').hidden=true;
-  const contract=el('details',null,'function-guide');contract.append(el('summary','함수 작성 안내'));const instructions=document.getElementById('instructions');instructions.before(contract);contract.append(instructions);
+  const contract=el('details',null,'function-guide');contract.append(el('summary',UI_EN?'Common coding help':'공통 작성 도움말'));const instructions=document.getElementById('instructions');document.querySelector('aside').append(contract);contract.append(instructions);
   const resources=document.getElementById('chapter-resources'),resourceMenu=el('details',null,'resource-menu');resourceMenu.append(el('summary','강의 자료'));resources.before(resourceMenu);resourceMenu.append(resources);
   document.querySelector('.aside-note').hidden=true;
   window.syncPracticeLayout=p=>{buttons[1].hidden=!p.exercise;select(false);execution.open=false;resourceMenu.hidden=(p.chapter||1)!==2;};

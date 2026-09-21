@@ -158,25 +158,49 @@ function formatProblemExample(p, t, language, c, number, english = false) {
 function problemFunctionInstructions(p, language, c, english = false) {
   const label = (ko, en) => english ? en : ko;
   if (language === 'python') {
-    return label('함수의 이름과 매개변수를 유지하세요. input()·print() 없이 예시의 입력을 매개변수로 받습니다.',
-      'Keep the function name and parameters. The runtime passes the example inputs; do not use input() or print().') + '\n' +
-      (p.outputArgument !== undefined ? label('반환값 대신 수정된 입력 배열을 검사합니다.', 'The modified input array is checked instead of the return value.') :
-        label('예시의 반환값을 return으로 반환하세요.', 'Return the value shown in the example.')) + (p.provided ? '\n' + p.provided : '');
+    const result = p.outputArgument !== undefined
+      ? label('결과: 입력 배열을 제자리에서 수정합니다.', 'Result: modify the input array in place.')
+      : label('반환값: 예시에 표시된 결과', 'Return value: the result shown in the examples');
+    return result + (p.provided ? '\n' + p.provided : '');
   }
+  if (p.function === 'binary_trace') return label(
+    'A: 정렬된 배열, n: 원소 수, target: 찾을 값\ntrace: 각 단계의 [low, high, mid, A[mid]]를 저장할 배열 (채점기 제공)\n반환값: 저장한 기록 수',
+    'A: sorted array; n: element count; target: value to find\ntrace: stores [low, high, mid, A[mid]] for each step (provided by the grader)\nReturn value: number of recorded steps');
   const model = cExampleModel(p, p.tests.find(t => t.public), c);
-  const lines = [model.signature + ';', label('함수의 이름과 매개변수를 유지하세요. main()·scanf()·printf()는 작성하지 않습니다.',
-    'Keep the function name and parameters. Do not write main(), scanf(), or printf().')];
-  if (model.inputs.some(s => s.includes('['))) lines.push(label(
-    '배열과 필요한 길이·범위는 실행 환경이 전달합니다. 함수 매개변수 배열의 길이를 sizeof로 계산하지 마세요. 예시의 길이·범위 매개변수를 사용하세요.',
-    'The runtime supplies arrays and their required lengths/ranges. Do not use sizeof to find the length of an array parameter; use the length/range parameters shown in the example.'));
-  if (model.storage.length) lines.push(label('결과·작업 배열은 실행 환경이 준비합니다. 함수 안에서 같은 이름으로 다시 선언하지 마세요.',
-    'The runtime allocates output and workspace arrays. Do not redeclare them inside the function.'));
-  const count = ['list', 'rows', 'words', 'subsets'].includes(c.output) || ['binary_trace', 'make_path'].includes(p.function);
-  lines.push(model.returnType === 'void' ? label('반환값은 없습니다(void). 결과는 예시에 표시된 배열·변수에 저장하세요.',
-    'There is no return value (void). Store results in the arrays/variables shown in the example.') : count ?
-    label('결과 배열에 저장한 원소 수(2차원 배열은 행 수)를 return으로 반환하세요. 배열 자체를 반환하지 않습니다.',
-      'Return the number of stored elements (rows for a 2D array), not the array itself.') :
-    label('예시에 표시된 값을 return으로 반환하세요.', 'Return the value shown in the example.'));
-  lines.push(c.result);
+  const declarations = model.signature.slice(model.signature.indexOf('(') + 1, -1).split(',');
+  const names = declarations.map(s => s.replace(/\[[^\]]*\]/g, '').trim().match(/\w+$/)[0]);
+  const buffers = model.storage.map(s => s.match(/(\w+)\[/)[1]);
+  const descriptions = {target: label('목표값', 'target value'), rows: label('행 수', 'rows'), cols: label('열 수', 'columns')};
+  const first = p.tests.find(t => t.public).args[0];
+  if (Array.isArray(first) && names.includes('n')) descriptions.n = label('원소 수', 'element count');
+  if (['quad', 'white_count'].includes(p.function)) descriptions.n = label('정사각형의 한 변 길이', 'square side length');
+  if (['lcs_length', 'lcs_restore'].includes(p.function)) {
+    descriptions.m = label('a의 길이', 'length of a'); descriptions.n = label('b의 길이', 'length of b');
+  }
+  if (['merge_arrays', 'cross_inversions'].includes(p.function)) {
+    descriptions.n = label('a의 원소 수', 'elements in a'); descriptions.m = label('b의 원소 수', 'elements in b');
+  }
+  if (p.function === 'kruskal_cost') { descriptions.n = label('정점 수', 'vertices'); descriptions.m = label('간선 수', 'edges'); }
+  if (['tsp_min', 'nearest_tour'].includes(p.function)) descriptions.n = label('도시 수', 'cities');
+  if (p.function === 'dijkstra') descriptions.n = label('정점 수', 'vertices');
+  const inputs = names.filter(name => !buffers.includes(name)).map(name => descriptions[name] ? `${name} (${descriptions[name]})` : name);
+  const lines = [label('입력: ', 'Inputs: ') + inputs.join(', ')];
+  if (c.result && !c.result.startsWith('PPTX')) lines.push(c.result);
+  else {
+    if (buffers.length) lines.push(buffers.join(', ') + label(': 결과·작업 배열 (채점기 제공)', ': output/workspace arrays (provided by the grader)'));
+    lines.push(model.returnType === 'void' ? label('반환값: 없음 (void)', 'Return value: none (void)') :
+      p.function === 'make_path' ? label('반환값: 경로에 저장한 원소 수', 'Return value: number of path elements') :
+      label('반환값: 예시에 표시된 결과', 'Return value: the result shown in the examples'));
+  }
+  if (buffers.length && c.result && !c.result.startsWith('PPTX')) lines.push(buffers.join(', ') + label(': 채점기가 제공하는 저장 공간', ': storage provided by the grader'));
   return lines.join('\n');
+}
+
+function commonFunctionHelp(language, english = false) {
+  if (language === 'python') return english
+    ? 'Keep the supplied function name and parameters. The grader passes the inputs; do not use input() or print(). Return the result unless the problem asks you to modify an array.'
+    : '제공된 함수의 이름과 매개변수를 유지하세요. 입력은 채점기가 전달하므로 input()·print()는 필요 없습니다. 배열을 수정하는 문제를 제외하면 결과를 return으로 반환합니다.';
+  return english
+    ? 'Keep the supplied function name and parameters. The grader supplies main(), inputs, and output/workspace arrays; do not redeclare them. Use the given length parameters: sizeof on an array parameter measures a pointer, not the array. Follow each problem’s return-value contract.'
+    : '제공된 함수의 이름과 매개변수를 유지하세요. main()과 입출력, 결과·작업 배열은 채점기가 준비하므로 따로 작성하거나 다시 선언할 필요가 없습니다. 배열 길이는 전달받은 매개변수를 사용합니다. 함수 매개변수에 sizeof를 적용하면 배열이 아닌 포인터의 크기가 나옵니다. 반환값은 각 문제의 설명을 따르세요.';
 }
