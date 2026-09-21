@@ -1,7 +1,7 @@
 const $=id=>document.getElementById(id),API='https://tltrbkttwzvwghaplurl.supabase.co/functions/v1/algorithm-lab';
 let token=sessionStorage.getItem('dju-algolab-admin')||'',students=[],section='all',detail=null,choices=[],refreshing=false;
 async function request(action,body={}){const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});const data=await response.json();if(!response.ok){if(response.status===401&&action!=='admin-login')signOut();throw Error(T(data.error)||T('요청 실패'));}return data;}
-function signOut(){token='';students=[];detail=null;choices=[];sessionStorage.removeItem('dju-algolab-admin');$('admin-workspace').hidden=true;$('admin-login-panel').hidden=false;for(const d of document.querySelectorAll('dialog[open]'))d.close();for(const id of ['student-rows','detail-title','detail-summary','detail-grid','submission-code','submission-report','submission-select'])$(id).replaceChildren();}
+function signOut(){token='';students=[];detail=null;choices=[];sessionStorage.removeItem('dju-algolab-admin');$('admin-workspace').hidden=true;$('admin-login-panel').hidden=false;for(const d of document.querySelectorAll('dialog[open]'))d.close();for(const id of ['student-rows','student-cards','detail-title','detail-summary','detail-grid','submission-code','submission-report','submission-select'])$(id).replaceChildren();}
 const allProblemIds=Array.from({length:86},(_,i)=>'P'+String(i+1).padStart(2,'0')).filter(id=>!LAB_DUPLICATES[id]);
 const problemChapter=id=>{const n=Number(id.slice(1));return n<=12?1:n<=46?2:n<=56?3:n<=66?4:n<=76?5:6;};
 const selectedIds=()=>allProblemIds.filter(id=>$('admin-chapter').value==='all'||problemChapter(id)===Number($('admin-chapter').value));
@@ -37,9 +37,60 @@ try {
     $('sort-direction').value = order.direction;
   }
 } catch {}
+let studentView = 'cards';
+try { if (sessionStorage.getItem('dju-algolab-admin-view') === 'list') studentView = 'list'; } catch {}
+function setStudentView(view) {
+  studentView = view;
+  try { sessionStorage.setItem('dju-algolab-admin-view', view); } catch {}
+  render();
+}
+$('view-cards').onclick = () => setStudentView('cards');
+$('view-list').onclick = () => setStudentView('list');
+function renderCards(rows) {
+  const container = $('student-cards');
+  container.replaceChildren();
+  container.hidden = studentView !== 'cards';
+  $('student-table').hidden = studentView !== 'list';
+  $('view-cards').setAttribute('aria-pressed', String(studentView === 'cards'));
+  $('view-list').setAttribute('aria-pressed', String(studentView === 'list'));
+  for (const student of rows) {
+    const card = document.createElement('article');
+    card.className = 'student-card';
+    const add = (parent, tag, text, className) => {
+      const node = document.createElement(tag);
+      node.textContent = text;
+      if (className) node.className = className;
+      parent.append(node);
+      return node;
+    };
+    const heading = add(card, 'div', '', 'student-card-heading');
+    add(heading, 'h3', student.name);
+    add(heading, 'span', UI_EN ? 'Section ' + student.section : student.section + '반', 'student-card-section');
+    add(card, 'p', student.student_no, 'student-card-number');
+    const metrics = add(card, 'div', '', 'student-card-metrics');
+    const solved = add(metrics, 'div', '');
+    add(solved, 'span', T('푼 문제 수'));
+    const count = add(solved, 'strong', String(student.solved));
+    add(count, 'small', ' / ' + selectedTotal());
+    const attempts = add(metrics, 'div', '');
+    add(attempts, 'span', T('채점 제출 수'));
+    add(attempts, 'strong', student.attempts + T('회'));
+    const track = add(card, 'div', '', 'student-progress');
+    const fill = add(track, 'div', '');
+    fill.style.width = (selectedTotal() ? student.solved / selectedTotal() * 100 : 0) + '%';
+    const meta = add(card, 'dl', '', 'student-card-meta');
+    add(meta, 'dt', T('현재 열어 둔 문제'));
+    add(meta, 'dd', student.current_problem ? student.current_problem + ' · ' + (student.current_language === 'c' ? 'C' : 'Python') : '—');
+    add(meta, 'dt', T('최근 활동'));
+    add(meta, 'dd', Number.isFinite(Date.parse(student.last_seen)) ? time(student.last_seen) : '—');
+    const button = add(card, 'button', T('이력 · 코드'));
+    button.onclick = () => openStudent(student.id);
+    container.append(card);
+  }
+}
 function time(value){return new Date(value).toLocaleString((UI_EN?'en-US':'ko-KR'),{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}
 function render(){
- const rows=sortedStudents();$('student-rows').replaceChildren();$('stat-students').textContent=rows.length+T('명');$('stat-average').textContent=(rows.length?rows.reduce((n,s)=>n+s.solved,0)/rows.length:0).toFixed(1)+' / '+selectedTotal();$('stat-complete').textContent=rows.filter(s=>s.solved===selectedTotal()).length+T('명');$('stat-attempts').textContent=rows.reduce((n,s)=>n+s.attempts,0)+T('회');
+ const rows=sortedStudents();renderCards(rows);$('student-rows').replaceChildren();$('stat-students').textContent=rows.length+T('명');$('stat-average').textContent=(rows.length?rows.reduce((n,s)=>n+s.solved,0)/rows.length:0).toFixed(1)+' / '+selectedTotal();$('stat-complete').textContent=rows.filter(s=>s.solved===selectedTotal()).length+T('명');$('stat-attempts').textContent=rows.reduce((n,s)=>n+s.attempts,0)+T('회');
  for(const student of rows){const tr=document.createElement('tr');const cell=text=>{const td=document.createElement('td');td.textContent=text;tr.append(td);return td;};cell(UI_EN?'Section '+student.section:student.section+'반');const person=cell(student.student_no);const name=document.createElement('strong');name.textContent=student.name;person.append(name);const progress=cell(student.solved+' / '+selectedTotal());const track=document.createElement('div');track.className='student-progress';const fill=document.createElement('div');fill.style.width=student.solved/selectedTotal()*100+'%';track.append(fill);progress.append(track);cell(student.attempts+T('회'));cell(student.current_problem+' · '+(student.current_language==='c'?'C':'Python'));cell(time(student.last_seen));const action=cell('');const button=document.createElement('button');button.textContent=T('이력 · 코드');button.onclick=()=>openStudent(student.id);action.append(button);$('student-rows').append(tr);}
  $('admin-empty').hidden=rows.length>0;$('admin-empty').textContent=students.length?T('조건에 맞는 학생이 없습니다.'):T('아직 등록한 학생이 없습니다. 학생들에게 실습 링크를 안내하세요. 반·학번·이름만 입력하면 됩니다.');
 }

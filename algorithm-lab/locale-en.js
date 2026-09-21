@@ -1,5 +1,8 @@
 // English UI strings and problem descriptions. Student code is never translated.
 const EN_UI={
+  "보기 방식": "View mode",
+  "카드형": "Cards",
+  "목록형": "List",
   "목록 정렬": "Sort students",
   "정렬": "Sort",
   "정렬 기준": "Sort by",
