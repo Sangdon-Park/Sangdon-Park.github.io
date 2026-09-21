@@ -47,7 +47,7 @@ function cloudAccount(data){
   const changed=language!==(saved.language||'python');language=saved.language||'python';$('language').value=language;
   $('student').value=saved.student;$('student').readOnly=true;
   $('cloud-login').textContent=data.student.section+T('반 · ')+data.student.name;
-  $('cloud-logout').hidden=false;$('cloud-history').hidden=false;
+  $('cloud-section').hidden=false;$('cloud-logout').hidden=false;$('cloud-history').hidden=false;
   const legacy=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1')||'{}');$('cloud-import').hidden=!Object.keys(legacy.answers||{}).length;
   show(Math.max(0,Math.min(problems.length-1,saved.index||0)));if(changed&&worker)boot();
   cloudStatus(T('● 실습 기록 연결 완료 · 진행 상황 자동 저장'));requirePracticeAccount();controls();flushCloud();
@@ -77,6 +77,34 @@ function initCloudUI(){
     try{const data=await labRequest('enter',{section:$('account-section').value,student_no:$('account-number').value.trim(),name:$('account-name').value.trim()},null);cloudAccount(data);dialog.close();}
     catch(error){$('account-message').textContent=error.message;}
     finally{$('account-submit').disabled=false;}
+  };
+  $('cloud-section').onclick=()=>{
+    if(busy||!cloud.session||cloud.expired)return;
+    $('section-select').value=cloud.session.student.section;
+    $('section-message').textContent='';
+    $('section-dialog').showModal();
+  };
+  $('section-close').onclick=()=>{if(!$('section-submit').disabled)$('section-dialog').close();};
+  $('section-dialog').addEventListener('cancel',event=>{if($('section-submit').disabled)event.preventDefault();});
+  $('section-form').onsubmit=async event=>{
+    event.preventDefault();
+    if($('section-submit').disabled||!cloud.session||cloud.expired)return;
+    const activeSession=cloud.session;
+    const selectedSection=$('section-select').value;
+    $('section-submit').disabled=true;
+    $('section-message').textContent=T('변경 중…');
+    try{
+      const data=await labRequest('change-section',{section:selectedSection});
+      if(cloud.session!==activeSession||cloud.resetting)return;
+      // Keep the same account ID, editor, drafts, and pending submission queue.
+      cloud.session.student=data.student;
+      localStorage.setItem('dju-algolab-session',JSON.stringify(cloud.session));
+      $('cloud-login').textContent=data.student.section+T('반 · ')+data.student.name;
+      $('account-section').value=data.student.section;
+      $('section-dialog').close();
+      cloudStatus(T('분반이 변경되었습니다. 다음 접속부터 변경한 분반을 선택하세요.'));
+    }catch(error){$('section-message').textContent=error.message;}
+    finally{$('section-submit').disabled=false;}
   };
   $('cloud-logout').onclick=async()=>{
     if(busy)return;clearTimeout(cloud.draftTimer);enqueue('draft',{problem:problems[index].id,language,code:getCode()});while(cloud.flushing)await new Promise(resolve=>setTimeout(resolve,100));

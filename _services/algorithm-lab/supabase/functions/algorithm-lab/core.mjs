@@ -124,6 +124,14 @@ export function createHandler({env,fetcher=fetch}){
       const admin=String(action).startsWith('admin-'),auth=await session(req,admin?'admin':'student');
       await limit('session:'+auth.token_hash,60,admin?60:180);
       if(action==='state')return respond(await state(auth.student_id));
+      if(action==='change-section'){
+        if(!['01','02'].includes(body.section))fail(400,'01분반 또는 02분반을 선택하세요.');
+        let rows;
+        try{rows=await db(table('students')+'?id=eq.'+auth.student_id+'&select=id,section,student_no,name,current_problem,current_language','PATCH',{section:body.section});}
+        catch(error){if(error instanceof HttpError&&error.status===409)fail(409,'해당 분반에 같은 학번의 계정이 있습니다. 기록 통합은 교수님께 요청하세요.');throw error;}
+        if(!rows?.length)fail(401,'로그인이 만료되었습니다. 다시 로그인하세요.');
+        return respond({student:rows[0]});
+      }
       if(action==='heartbeat'){await touch(auth.student_id,body);return respond({ok:true});}
       if(action==='draft'){await upsertDraft(auth.student_id,body);await touch(auth.student_id,body);return respond({ok:true});}
       if(action==='submit'){

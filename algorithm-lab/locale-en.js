@@ -1,5 +1,13 @@
 // English UI strings and problem descriptions. Student code is never translated.
 const EN_UI={
+  "분반 변경": "Change section",
+  "작성한 코드와 풀이·제출 기록을 유지하면서 분반을 변경합니다.": "Change your section while keeping your code, progress, and submissions.",
+  "이동할 분반": "New section",
+  "변경하기": "Apply change",
+  "변경 중…": "Changing…",
+  "01분반 또는 02분반을 선택하세요.": "Choose Section 01 or Section 02.",
+  "해당 분반에 같은 학번의 계정이 있습니다. 기록 통합은 교수님께 요청하세요.": "An account with this student number already exists in that section. Ask your instructor to merge the records.",
+  "분반이 변경되었습니다. 다음 접속부터 변경한 분반을 선택하세요.": "Section changed. Choose your new section the next time you sign in.",
   "보기 방식": "View mode",
   "카드형": "Cards",
   "목록형": "List",
