@@ -44,6 +44,7 @@ function cloudAccount(data){
   for(const d of data.drafts){const key=d.language==='c'?'c:'+d.problem:d.problem;remote.answers[key]=d.code;}
   for(const p of data.passed){const key=p.language==='c'?'c:'+p.problem:p.problem;if(!remote.passed[key])remote.passed[key]={code:p.code,passed:p.passed,total:p.total,at:p.created_at};}
   saved=local&&cloud.queue.length?{...local,student:remote.student}:remote;
+  saved.judged=local?.judged||{};
   const changed=language!==(saved.language||'python');language=saved.language||'python';$('language').value=language;
   $('student').value=saved.student;$('student').readOnly=true;
   $('cloud-login').textContent=data.student.section+T('반 · ')+data.student.name;

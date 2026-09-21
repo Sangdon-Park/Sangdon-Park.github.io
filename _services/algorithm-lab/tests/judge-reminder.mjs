@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const elements = new Map();
+const element = id => {
+  if (!elements.has(id)) elements.set(id, {open:false, showModal(){this.open=true;}, close(){this.open=false;}, addEventListener(){}});
+  return elements.get(id);
+};
+const ctx = vm.createContext({document:{getElementById:element},problems:[{id:'P01'},{id:'P02'}],index:0,cloud:{session:{student:{id:'one'}}},saved:{},language:'python',busy:false,ready:true,code:'starter',getCode:()=>ctx.code,starter:()=> 'starter',answerKey:id=>ctx.language==='c'?'c:'+id:id,persist(){},show:i=>{ctx.index=i;},run:mode=>{ctx.ran=mode;}});
+vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/judge-reminder.js',import.meta.url),'utf8'),ctx);
+const needs=()=>vm.runInContext('needsJudgeReminder()',ctx);
+assert.equal(needs(),false);
+ctx.code='   ';assert.equal(needs(),false);
+ctx.code='return -1';assert.equal(needs(),true);
+vm.runInContext("rememberJudgedAnswer({mode:'sample',pid:'P01',language:'python',code})",ctx);assert.equal(needs(),true);
+vm.runInContext('moveToProblem(1)',ctx);assert.equal(element('judge-reminder').open,true);assert.equal(ctx.index,0);
+element('reminder-stay').onclick();assert.equal(ctx.index,0);
+vm.runInContext('moveToProblem(1)',ctx);element('reminder-judge').onclick();assert.equal(ctx.ran,'judge');assert.equal(ctx.index,0);
+vm.runInContext("rememberJudgedAnswer({mode:'judge',pid:'P01',language:'python',code})",ctx);assert.equal(needs(),false);
+ctx.code='return 1';assert.equal(needs(),true);
+vm.runInContext('moveToProblem(1)',ctx);element('reminder-continue').onclick();assert.equal(ctx.index,1);
+ctx.index=0;ctx.language='c';assert.equal(needs(),true);
+ctx.saved.passed={'c:P01':{code:ctx.code}};assert.equal(needs(),false);
+ctx.saved={};ctx.cloud.session=null;assert.equal(needs(),false);
+console.log('Judge reminder: untouched/blank code, sample vs grading, edits, per-language state, passed answers, stay/skip/grade navigation passed.');

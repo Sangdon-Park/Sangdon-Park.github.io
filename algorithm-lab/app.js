@@ -14,7 +14,7 @@ const languageName = () => language==='c'?'C':'Python';
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
-function controls(){ $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
   worker=new Worker(language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
@@ -38,7 +38,7 @@ function renderNav(){
     const i=problems.indexOf(p), b=document.createElement('button');
     const ok=saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)];
     const badge=document.createElement('span');badge.className='problem-id';badge.textContent=p.exercise?String(p.exercise):p.id;const name=document.createElement('span');name.textContent=p.title;b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
-    b.onclick=()=>{if(!busy)show(i);};$('problems').append(b);
+    b.onclick=()=>{if(!busy)moveToProblem(i);};$('problems').append(b);
   }
   const active=chapterProblems();
   const count=active.filter(p=>saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]).length;
@@ -92,6 +92,7 @@ function run(mode){
   if(!ready||busy)return;const p=problems[index];const code=getCode();
   saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?T('공개 예시 실행 중…'):T('전체 검사로 채점 중…'));
   job={token:++token,pid:p.id,index,mode,code,language};
+  rememberJudgedAnswer(job);
   armTimeout(language==='c'?60000:6000);
   worker.postMessage({token:job.token,code,problem:p,cases:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
 }
@@ -101,6 +102,7 @@ function finish(report){
     $('repair-note').textContent=`${T("붙여넣기에 섞인 특수 공백 ")}${report.normalizedCount}${T("개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.")}`;
     $('repair-note').hidden=false;renderNav();
   }
+  rememberJudgedAnswer(job);
   rememberHintRun(report);
   cloudAttempt(job,report);
   if(report.error){setResult(report.errorSummary||report.error,'error');for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.rawError||'':'');return;}
@@ -117,7 +119,7 @@ function finish(report){
     const unsolved=p=>!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]);
     const candidate=ordered.slice(position+1).find(unsolved)||ordered.find(unsolved);
     const next=problems.indexOf(candidate);
-    if(next>=0){$('next').hidden=false;$('next').onclick=()=>show(next);}
+    if(next>=0){$('next').hidden=false;$('next').onclick=()=>moveToProblem(next);}
   }else{delete saved.passed[answerKey(job.pid)];persist();renderNav();setResult(`${T("다시 도전해 보세요. ")}${report.passed}/${report.total}${T("개 검사 통과. 아래에서 실패한 입력과 반환값을 확인하세요.")}`,'error');}
 }
 $('code').addEventListener('input',()=>{saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();cloudDraft(problems[index].id,language,$('code').value);});
@@ -134,13 +136,15 @@ $('download').onclick=()=>{
 $('language').value=language;
 $('language').onchange=()=>{
   if(busy)return;
-  language=$('language').value;saved.language=language;persist();show(index);boot();
+  const requested=$('language').value;$('language').value=language;
+  requestPracticeMove(()=>{language=requested;$('language').value=language;saved.language=language;persist();show(index);boot();});
 };
 $('chapter').onchange=()=>{
   if(busy){$('chapter').value=chapter;return;}
   const requested=Number($('chapter').value);
+  $('chapter').value=chapter;
   const previous=saved.chapterIndices?.[requested];
-  show(Number.isInteger(previous)&&(problems[previous]?.chapter||1)===requested?previous:firstInChapter(requested));
+  moveToProblem(Number.isInteger(previous)&&(problems[previous]?.chapter||1)===requested?previous:firstInChapter(requested));
 };
 // Capture links before show() updates the URL or cloud restore changes selection.
 const entryParams=new URLSearchParams(location.search);
