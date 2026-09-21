@@ -314,8 +314,8 @@ def build():
         p['cPrelude']=sources[helper]['c'] if helper and f!='merge_sort' else ''
         p['provided']=f'{helper} 함수는 실행 환경에 제공됩니다.' if helper else ''
         if f=='fib_memo': p['provided']='memo: 길이 91, 모든 값이 −1인 배열을 실행 환경이 전달합니다.'
-        if f=='make_path': p['provided']='dp: 1로 만들기의 최솟값 표를 실행 환경이 계산하여 전달합니다. 입력 예시에는 n만 표시합니다.'
-        if f=='lcs_restore': p['provided']='dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 입력 예시에는 문자열만 표시합니다.'
+        if f=='make_path': p['provided']='dp: 1로 만들기의 최솟값 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.'
+        if f=='lcs_restore': p['provided']='dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.'
         if f in ('fibonacci','fib_memo','karatsuba'): p['exactInteger']=True
         if f=='fractional_value': p.update(numeric_output=True,tolerance=1e-6)
         if f=='insertion_sort': p['outputArgument']=0;p['provided']='반환값 대신 입력 배열 a가 제자리 정렬되었는지 검사합니다.'

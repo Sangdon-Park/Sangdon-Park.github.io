@@ -66,24 +66,18 @@ function show(i){
   const view=language==='c'?C_PROBLEMS[p.id]:p;
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='c'?'C / C11':'Python 3';
-  $('instructions').textContent=language==='c'?T('함수 틀의 이름과 매개변수를 유지하세요. main()과 scanf()는 작성하지 않습니다. 채점기가 함수를 호출합니다.\n')+view.result+(p.chapter===2?(UI_EN?'\nInclude standard headers as needed. Output arrays are provided by the grader.':'\n표준 헤더를 포함해도 됩니다. out과 sizes는 채점기가 준비한 결과 저장 공간입니다.'):T('\n배열 길이는 n입니다. out·trace·sorted·stats는 채점기가 준비한 결과 저장 공간입니다.')):T('함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.');
+  const instructions=problemFunctionInstructions(p,language,view,UI_EN);
+  $('instructions').textContent=instructions;
+  $('statement').textContent=view.statement.replaceAll('Python 또는 C',language==='c'?'C':'Python')+'\n\n'+(UI_EN?'Function contract':'함수 작성 규칙')+'\n'+instructions;
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');
-    if(p.exercise || (language==='c' && p.chapter===2)){
-      pre.textContent=`${T('예시 ')}${j+1}\n${p.params.filter((_,k)=>k<t.args.length).map((name,k)=>`${name} = ${JSON.stringify(t.args[k])}`).join('\n')}\n${UI_EN?'Result':'결과'}: ${expectedText(p,t.expected)}\n${language==='c'?view.result:(p.provided||'함수를 호출한 결과를 검사합니다.')}`;
-    }else if(language==='c'){
-      const args=t.args, hasArray=Array.isArray(args[0]);
-      const input=hasArray?`A = {${args[0].join(', ')}}, n = ${args[0].length}${args.length>1?', target = '+args[1]:''}`:`n = ${args[0]}${args.length>1?', p = '+args[1]:''}`;
-      const expected=p.id==='P06'&&t.expected[0]===null?[0,0]:t.expected;
-      pre.textContent=`${T("예시 ")}${j+1}${T("\n입력: ")}${input}${T("\n결과: ")}${JSON.stringify(expected)}\n${language==='c'?view.result:(p.provided||'함수를 호출한 결과를 검사합니다.')}`;
-    }else pre.textContent=`${T("예시 ")}${j+1}${T("\n입력: ")}${p.function}(${t.args.map(x=>JSON.stringify(x)).join(', ')}${T(")\n반환: ")}${JSON.stringify(t.expected).replaceAll('null','None')}`;
+    pre.textContent=formatProblemExample(p,t,language,view,j+1,UI_EN);
     $('examples').append(pre);
   }
   renderPracticeHints(p);
   renderStudy(p);
   syncPracticeLayout(p);
-  if(p.exercise)$('instructions').textContent=(language==='c'?p.c.starter.split('{')[0]+';\n'+p.c.result:'def '+p.function+'('+p.params.join(', ')+')\n'+(p.outputArgument===undefined?'정수·실수·문자열·목록 등 문제에 맞는 자료형으로 반환합니다.':'입력 배열을 수정합니다.'))+'\n'+(p.provided||'')+'\n입출력 함수를 호출하지 않습니다. main()은 실행 환경이 제공합니다.';
   $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult(restored?'기존 중복 문제의 답안을 불러왔습니다. PPTX 조건으로 채점하기를 눌러 확인하세요.':T('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.'));renderNav();
 }
 function armTimeout(ms){

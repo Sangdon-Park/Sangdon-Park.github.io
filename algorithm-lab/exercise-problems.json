@@ -20678,7 +20678,7 @@
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
     "cPrelude": "",
-    "provided": "dp: 1로 만들기의 최솟값 표를 실행 환경이 계산하여 전달합니다. 입력 예시에는 n만 표시합니다.",
+    "provided": "dp: 1로 만들기의 최솟값 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.",
     "study": {
       "method": "dp가 정확히 1 작은 합법적인 다음 상태 중 명시된 순서의 첫 후보를 선택한다.",
       "boundary": "시작 n과 끝 1을 포함합니다. 최적 후보 동률은 −1·÷2·÷3·÷5 순입니다.",
@@ -21551,7 +21551,7 @@
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
     "cPrelude": "",
-    "provided": "dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 입력 예시에는 문자열만 표시합니다.",
+    "provided": "dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.",
     "study": {
       "method": "끝에서 역추적하며 일치 문자를 모은 뒤 순서를 뒤집는다.",
       "boundary": "문자 불일치에서 위·왼쪽이 같으면 위로 갑니다. 빈 결과도 유효합니다.",
