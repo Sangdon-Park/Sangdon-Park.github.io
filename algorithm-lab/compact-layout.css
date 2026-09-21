@@ -15,3 +15,5 @@
 @media(max-width:650px){.compact-lab>header{padding:8px 12px;flex-wrap:wrap;align-items:center;gap:6px}.compact-lab h1{font-size:16px}.compact-lab>header>.status{margin-left:auto}.compact-lab .compact-controls{width:100%;justify-content:flex-end}.compact-code-language{margin-right:auto}.compact-lab .workspace{padding:12px}.compact-lab .CodeMirror{height:55vh;min-height:340px}}
 
 .compact-lab.editor-expanded .CodeMirror{height:calc(100vh - 285px)}
+
+.compact-controls #ui-language { background: #192b44; color: #dce8f9; border: 1px solid #405a7d; border-radius: 5px; padding: 6px 8px; max-width: 120px; font-size: 12px; }

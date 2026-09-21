@@ -1,13 +1,33 @@
 // UI language is independent of the Python/C answer language.
-const UI_EN=(()=>{
+const UI_LOCALE=(()=>{
   const requested=new URLSearchParams(location.search).get('lang');
-  if(['ko','en'].includes(requested)){try{localStorage.setItem('dju-algolab-locale',requested);}catch{}return requested==='en';}
-  try{return localStorage.getItem('dju-algolab-locale')==='en';}catch{return false;}
+  if(['ko','en','es'].includes(requested)){try{localStorage.setItem('dju-algolab-locale',requested);}catch{}return requested;}
+  try{const saved=localStorage.getItem('dju-algolab-locale');return ['ko','en','es'].includes(saved)?saved:'ko';}catch{return 'ko';}
 })();
-function T(text){return UI_EN?(EN_UI[text]??text):text;}
+const UI_EN=UI_LOCALE==='en';
+const UI_DATE_LOCALE={ko:'ko-KR',en:'en-US',es:'es-ES'}[UI_LOCALE];
+const UI_DICTIONARY=UI_LOCALE==='es'?LOCALE_ES:{...LOCALE_EN,...EN_UI};
+function T(text){
+  if(typeof text!=='string'||UI_LOCALE==='ko')return text;
+  const dictionary=UI_DICTIONARY;
+  if(Object.hasOwn(dictionary,text))return dictionary[text];
+  // Joined explanations use individually translated lines; source code is never passed here.
+  return text.split('\n').map(line=>{
+    if(Object.hasOwn(dictionary,line))return dictionary[line];
+    const trimmed=line.trim();
+    return Object.hasOwn(dictionary,trimmed)?line.replace(trimmed,dictionary[trimmed]):line;
+  }).join('\n');
+}
+function localizeProblem(p){
+  if(UI_LOCALE==='ko')return p;
+  for(const field of ['title','section','slides','level','statement','hint','provided','complexity'])if(p[field])p[field]=T(p[field]);
+  if(p.study)for(const field of ['method','boundary','complexity'])if(p.study[field])p.study[field]=T(p.study[field]);
+  if(p.c)for(const field of ['statement','hint','result'])if(p.c[field])p.c[field]=T(p.c[field]);
+  return p;
+}
 // Translate only known judge diagnostics, not editor or submitted source code.
 function messageText(text){
-  if(!UI_EN||typeof text!=='string')return text;
+  if(UI_LOCALE==='ko'||typeof text!=='string')return text;
   const parts={
     '슬라이싱 대신 정수 인덱스를 사용하세요.':'Use integer indices instead of slicing.',
     '배열의 인덱스 범위를 벗어났습니다.':'Array index out of range.',
@@ -23,17 +43,17 @@ function messageText(text){
     '결과 없음':'No result', '학생 답안':'Student answer',
     '예상 ':'Expected ', ' / 반환 ':' / Returned ', ' / 결과 ':' / Output '
   };
-  for(const [ko,en] of Object.entries(parts))text=text.replaceAll(ko,en);
+  for(const [ko,en] of Object.entries(parts))text=text.replaceAll(ko,UI_EN?en:T(ko));
   return T(text);
 }
-document.documentElement.lang=UI_EN?'en':'ko';
-if(UI_EN){
+document.documentElement.lang=UI_LOCALE;
+if(UI_LOCALE!=='ko'){
   const walker=document.createTreeWalker(document.documentElement,NodeFilter.SHOW_TEXT);
   let node;
   while((node=walker.nextNode())){
     if(node.parentElement?.closest('script,style,textarea,pre,code'))continue;
     const text=node.nodeValue.trim();
-    if(EN_UI[text])node.nodeValue=node.nodeValue.replace(text,EN_UI[text]);
+    node.nodeValue=node.nodeValue.replace(text,T(text));
   }
   for(const el of document.querySelectorAll('[title],[placeholder],[aria-label]')){
     for(const attr of ['title','placeholder','aria-label'])if(el.hasAttribute(attr))el.setAttribute(attr,T(el.getAttribute(attr)));
@@ -43,12 +63,23 @@ if(UI_EN){
 }
 const utility=document.createElement('div');
 utility.className='lab-utilities';
-utility.innerHTML='<label for="ui-language">Language / 언어</label><select id="ui-language" aria-label="Interface language"><option value="ko">한국어</option><option value="en">English</option></select><button id="clear-browser" type="button"></button>';
-document.querySelector('header').after(utility);
-document.getElementById('ui-language').value=UI_EN?'en':'ko';
+utility.innerHTML='<label for="ui-language">Language / 언어</label><select id="ui-language" aria-label="Interface language"><option value="ko">한국어</option><option value="en">English</option><option value="es">Español</option></select><button id="clear-browser" type="button"></button>';
+const utilityAnchor=document.querySelector('header')||document.querySelector('main');utilityAnchor.before(utility);
+document.getElementById('ui-language').value=UI_LOCALE;
 document.getElementById('ui-language').onchange=event=>{
   const locale=event.target.value;
   try{localStorage.setItem('dju-algolab-locale',locale);}catch{}
   const url=new URL(location.href);url.searchParams.set('lang',locale);location.assign(url.href);
 };
-document.getElementById('clear-browser').textContent=UI_EN?'Reset this browser':'이 브라우저 초기화';
+document.getElementById('clear-browser').textContent=T('이 브라우저 초기화');
+
+// First-time visitors must be able to choose a language inside the sign-in dialog.
+const accountDialog=document.getElementById('account-dialog');
+if(accountDialog){
+  const picker=document.getElementById('ui-language').cloneNode(true);
+  picker.id='login-ui-language';picker.setAttribute('aria-label','Idioma / 언어 / Language');
+  picker.value=UI_LOCALE;picker.onchange=document.getElementById('ui-language').onchange;
+  accountDialog.querySelector('.dialog-heading').after(picker);
+}
+
+if(!accountDialog&&!document.getElementById('admin-workspace'))document.getElementById('clear-browser').hidden=true;

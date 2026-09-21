@@ -141,7 +141,7 @@ function cExampleModel(p, t, c) {
 }
 
 function formatProblemExample(p, t, language, c, number, english = false) {
-  const label = (ko, en) => english ? en : ko;
+  const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
   const model = language === 'c' ? cExampleModel(p, t, c) : pythonExampleModel(p, t);
   const lines = [`${label('예시', 'Example')} ${number} · ${language === 'c' ? 'C' : 'Python'}`,
     label('호출 전 입력:', 'Inputs before the call:'), ...model.inputs];
@@ -156,7 +156,7 @@ function formatProblemExample(p, t, language, c, number, english = false) {
 }
 
 function problemFunctionInstructions(p, language, c, english = false) {
-  const label = (ko, en) => english ? en : ko;
+  const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
   if (language === 'python') {
     const result = p.outputArgument !== undefined
       ? label('결과: 입력 배열을 제자리에서 수정합니다.', 'Result: modify the input array in place.')

@@ -1,5 +1,5 @@
 (() => {
-  const en = new URLSearchParams(location.search).get('lang') === 'en';
+  const en = UI_EN;
   const $ = id => document.getElementById(id);
   if (en) {
     document.documentElement.lang = 'en';
@@ -17,29 +17,30 @@
     for (const [id, value] of Object.entries(labels)) $(id).textContent = value;
     $('practice-link').href = '/algorithm-lab/?chapter=2&lang=en';
   }
+  $('practice-link').href='/algorithm-lab/?chapter=2&lang='+UI_LOCALE;
   fetch('chapter-02.json?v=20260915-ch2').then(r => { if (!r.ok) throw Error(); return r.json(); }).then(problems => {
     const render = () => {
       const open = new Set([...document.querySelectorAll('details[open]')].map(d => d.id));
       $('guide-problems').replaceChildren();
       for (const p of problems) {
-        const data = en ? p.en : p;
+        const data = localizeProblem(p);
         const view = $('guide-code').value === 'c' ? data.c : data;
         const details = document.createElement('details'); details.id = p.id; details.open = open.has(p.id);
         const summary = document.createElement('summary'); summary.textContent = `${p.id} · ${data.title}`;
-        const ref = document.createElement('p'); ref.className = 'reference'; ref.textContent = `${en ? 'Original slide' : '원본 슬라이드'} ${p.slides}`;
+        const ref = document.createElement('p'); ref.className = 'reference'; ref.textContent = `${en ? 'Original slide' : T('원본 슬라이드')} ${p.slides}`;
         const description = document.createElement('p'); description.className = 'description'; description.textContent = view.statement;
         const pre = document.createElement('pre'), code = document.createElement('code');
         code.textContent = $('guide-code').value === 'c' ? p.c.solution : p.solution; pre.append(code);
         const hint = document.createElement('p'); hint.textContent = view.hint;
         const links = document.createElement('div'); links.className = 'links';
-        const practice = document.createElement('a'); practice.textContent = en ? 'Practice this problem' : '이 문제 연습하기';
-        practice.href = `/algorithm-lab/?chapter=2&problem=${p.id}&code=${$('guide-code').value}&lang=${en ? 'en' : 'ko'}`;
-        const download = document.createElement('a'); download.textContent = en ? 'Download complete .c' : 'main 포함 .c 내려받기';
-        download.href = `/data/알고리즘/chapter-02-c/${p.function}.c`; download.download = p.function + '.c';
+        const practice = document.createElement('a'); practice.textContent = en ? 'Practice this problem' : T('이 문제 연습하기');
+        practice.href = `/algorithm-lab/?chapter=2&problem=${p.id}&code=${$('guide-code').value}&lang=${UI_LOCALE}`;
+        const download = document.createElement('a'); download.textContent = en ? 'Download complete .c' : T('main 포함 .c 내려받기');
+        download.href = (T("/data/알고리즘/chapter-02-c/")+(p.function)+T(".c")); download.download = p.function + '.c';
         links.append(practice, download); details.append(summary, ref, description, pre, hint, links); $('guide-problems').append(details);
       }
     };
-    $('guide-status').textContent = en ? '24 examples · expand a title to view code' : '24개 예제 · 제목을 펼치면 코드가 보입니다.';
+    $('guide-status').textContent = en ? '24 examples · expand a title to view code' : T('24개 예제 · 제목을 펼치면 코드가 보입니다.');
     $('guide-code').onchange = render; render();
-  }).catch(() => { $('guide-status').textContent = en ? 'Could not load examples. Please reload.' : '예제를 불러오지 못했습니다. 새로고침해 주세요.'; });
+  }).catch(() => { $('guide-status').textContent = en ? 'Could not load examples. Please reload.' : T('예제를 불러오지 못했습니다. 새로고침해 주세요.'); });
 })();

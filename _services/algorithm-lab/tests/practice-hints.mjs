@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const root=new URL('../../../',import.meta.url);
 const read=file=>fs.readFileSync(new URL(file,root),'utf8');
-const context=vm.createContext({});
+const context=vm.createContext({T:x=>x});
 vm.runInContext(read('algorithm-lab/c-problems.js')+'\n'+read('algorithm-lab/practice-hints.js')+'\nthis.hints=practiceHintData;this.c=C_PROBLEMS;',context);
 const bank=['chapter-02.json','exercise-problems.json'].flatMap(file=>JSON.parse(read('algorithm-lab/'+file)));
 for(const p of bank){

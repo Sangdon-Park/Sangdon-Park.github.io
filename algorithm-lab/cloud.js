@@ -132,7 +132,7 @@ function initCloudUI(){
   };
   $('cloud-history').onclick=async()=>{
     $('history-dialog').showModal();$('history-list').textContent=T('불러오는 중…');
-    try{const data=await labRequest('history');$('history-list').replaceChildren();for(const item of data.submissions){const row=document.createElement('p');row.textContent=`${item.problem} · ${item.language==='c'?'C':'Python'} · ${item.solved?T('통과'):`${item.passed}/${item.total}`} · ${new Date(item.created_at).toLocaleString((UI_EN?'en-US':'ko-KR'))}${item.source==='legacy'?T(' · 기존 기록 가져옴'):''}`;$('history-list').append(row);}if(!data.submissions.length)$('history-list').textContent=T('아직 제출 기록이 없습니다.');}catch(error){$('history-list').textContent=error.message;}
+    try{const data=await labRequest('history');$('history-list').replaceChildren();for(const item of data.submissions){const row=document.createElement('p');row.textContent=`${item.problem} · ${item.language==='c'?'C':'Python'} · ${item.solved?T('통과'):`${item.passed}/${item.total}`} · ${new Date(item.created_at).toLocaleString(UI_DATE_LOCALE)}${item.source==='legacy'?T(' · 기존 기록 가져옴'):''}`;$('history-list').append(row);}if(!data.submissions.length)$('history-list').textContent=T('아직 제출 기록이 없습니다.');}catch(error){$('history-list').textContent=error.message;}
   };
   $('history-close').onclick=()=>$('history-dialog').close();
   setInterval(()=>{if(cloud.resetting||!cloud.session||document.hidden)return;flushCloud();labRequest('heartbeat',{problem:problems[index]?.id,language}).catch(()=>{});},30000);
@@ -144,5 +144,5 @@ function requirePracticeAccount(){
   document.querySelector('main').inert=locked;
   document.body.classList.toggle('account-required',locked);
   $('account-close').hidden=locked;
-  if(locked&&!$('account-dialog').open){$('account-message').textContent='반·학번·이름을 입력하면 답안과 진행 상황을 저장하며 실습할 수 있습니다.';$('account-dialog').showModal();}
+  if(locked&&!$('account-dialog').open){$('account-message').textContent=T('반·학번·이름을 입력하면 답안과 진행 상황을 저장하며 실습할 수 있습니다.');$('account-dialog').showModal();}
 }
