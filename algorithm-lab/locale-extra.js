@@ -1856,3 +1856,6 @@ Object.assign(LOCALE_EN, {
   "인접 선택 금지 최대 합": "Maximum sum without adjacent elements",
   "대각선 할인 격자": "Grid with diagonal discounts"
 });
+
+Object.assign(LOCALE_EN, {"경고": "Warning", "참고": "Note", "오류": "Error", "답안 줄: ": "Answer line: ", " · 열: ": " · Column: ", "코드로 이동": "Go to code", "답안이 바뀌었습니다. 다시 실행해 주세요.": "The answer has changed. Run it again.", "이 오류는 답안의 정확한 줄을 확인할 수 없습니다.": "The exact source line is not available for this error.", "호출 순서: ": "Call sequence: ", "원본 오류 로그": "Original error log"});
+Object.assign(LOCALE_ES, {"경고": "Advertencia", "참고": "Nota", "오류": "Error", "답안 줄: ": "Línea de tu código: ", " · 열: ": " · Columna: ", "코드로 이동": "Ir al código", "답안이 바뀌었습니다. 다시 실행해 주세요.": "El código ha cambiado. Ejecútalo de nuevo.", "이 오류는 답안의 정확한 줄을 확인할 수 없습니다.": "No se puede determinar la línea exacta de este error.", "호출 순서: ": "Secuencia de llamadas: ", "원본 오류 로그": "Registro original del error"});

@@ -77,6 +77,15 @@ def _equal(a,b):
 def _brief(x):
     s=repr(x)
     return s if len(s)<230 else s[:227]+'...'
+def _diagnostic(error):
+    frames=[f for f in traceback.extract_tb(error.__traceback__) if f.filename=='학생 답안']
+    syntax=isinstance(error,SyntaxError) and error.filename=='학생 답안'
+    line=error.lineno if syntax else (frames[-1].lineno if frames else None)
+    column=error.offset if syntax else None
+    return {'line':line,'column':column,'file':'answer.py' if line else None,
+            'severity':'error','message':type(error).__name__+': '+str(error)[:1000],
+            'frames':[{'line':f.lineno,'name':f.name} for f in frames],
+            'raw':''.join(traceback.format_exception(type(error),error,error.__traceback__))[:12000]}
 _report=[]
 _namespace={'__builtins__':__builtins__}
 try:
@@ -102,6 +111,7 @@ try:
                         _dp[_x][_y]=_dp[_x-1][_y-1]+1 if _a[_x-1]==_b[_y-1] else max(_dp[_x-1][_y],_dp[_x][_y-1])
                 _args.append(_dp)
         if _payload['problem'].get('indexed_only'): _args[0]=_Array(_args[0])
+        _detail=None
         try:
             with contextlib.redirect_stdout(_Quiet()), contextlib.redirect_stderr(_Quiet()):
                 _actual=_fn(*_args)
@@ -116,14 +126,16 @@ try:
             if _payload['problem'].get('preserve_input') and _args!=_before:
                 _ok=False; _message='입력 배열이 바뀌었습니다. 복사본을 사용하세요.'
             if not _ok and not _message: _message='예상 '+_brief(_case['expected'])+' / 반환 '+_brief(_actual)
-        except NotImplementedError:
+        except NotImplementedError as _e:
+            _detail=_diagnostic(_e)
             _ok=False; _message='미작성: NotImplementedError를 지우고 함수의 내용을 작성하세요.'
         except Exception as _e:
+            _detail=_diagnostic(_e)
             _ok=False; _message=type(_e).__name__+': '+str(_e)[:250]
-        _report.append({'number':_i+1,'public':_case.get('public',False),'ok':_ok,'message':_message,'input':_brief(_case['args'])})
+        _report.append({'number':_i+1,'public':_case.get('public',False),'ok':_ok,'message':_message,'input':_brief(_case['args']),'diagnostic':_detail})
     _answer={'rows':_report,'passed':sum(r['ok'] for r in _report),'total':len(_report)}
 except BaseException as _e:
-    _answer={'error':type(_e).__name__+': '+str(_e)[:600]}
+    _answer={'error':type(_e).__name__+': '+str(_e)[:600],'diagnostics':[_diagnostic(_e)]}
 _answer['normalizedCode'] = _payload['code']
 _answer['normalizedCount'] = _normalized_count
 json.dumps(_answer,ensure_ascii=False)

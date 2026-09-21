@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
   <link rel="stylesheet" href="style.css?v=20260914-studio1">
   <link rel="stylesheet" href="studio.css?v=20260914-studio1">
-  <link rel="stylesheet" href="cloud.css?v=20260921-regions">
-<link rel="stylesheet" href="utilities.css?v=20260914-i18n1"><link rel="stylesheet" href="compact-layout.css?v=20260921-regions"><link rel="stylesheet" href="chapter.css?v=20260920-front"><link rel="stylesheet" href="exercise-study.css?v=20260921-regions"><link rel="stylesheet" href="practice-hints.css?v=20260921-regions"><link rel="stylesheet" href="workspace-layout.css?v=20260921-regions"></head>
+  <link rel="stylesheet" href="cloud.css?v=20260921-errors">
+<link rel="stylesheet" href="utilities.css?v=20260914-i18n1"><link rel="stylesheet" href="compact-layout.css?v=20260921-errors"><link rel="stylesheet" href="chapter.css?v=20260920-front"><link rel="stylesheet" href="exercise-study.css?v=20260921-errors"><link rel="stylesheet" href="practice-hints.css?v=20260921-errors"><link rel="stylesheet" href="workspace-layout.css?v=20260921-errors"></head>
 <body>
   <header><div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><div><span class="eyebrow">DAEJEON UNIVERSITY / COMPUTER ENGINEERING</span><h1>Algorithm Lab <span>알고리즘 코딩 실습</span></h1></div></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
   <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python과 C 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
@@ -32,9 +32,9 @@
   <dialog id="account-dialog"><div class="dialog-heading"><h2>실습 시작</h2><button id="account-close" type="button" aria-label="닫기">✕</button></div><p>반·학번·이름을 입력하면 바로 시작합니다. 답안과 진행 상황은 교수님께 공유됩니다.</p><form id="account-form"><div class="form-columns"><label>반<select id="account-section"><option value="01">알고리즘 01반</option><option value="02">알고리즘 02반</option></select></label><label>학번<input id="account-number" inputmode="numeric" pattern="[0-9]{6,12}" required autocomplete="username" maxlength="12"></label></div><label>이름<input id="account-name" maxlength="40" required autocomplete="name"></label><p id="account-message" role="alert"></p><button id="account-submit" class="primary" type="submit">실습 시작하기</button></form><p class="dialog-note">다음에도 같은 반·학번·이름을 입력하면 이어서 풀 수 있습니다. 이전 답안은 시작 후 ‘기존 답안 가져오기’로 옮기세요.</p></dialog>
   <dialog id="import-dialog"><h2>기존 답안 가져오기</h2><p id="import-description"></p><div class="dialog-actions"><button id="import-cancel">취소</button><button id="import-confirm" class="primary">본인 답안 확인 · 가져오기</button></div></dialog>
   <dialog id="history-dialog"><div class="dialog-heading"><h2>내 제출 이력</h2><button id="history-close">닫기</button></div><p>최근 100건 · 시각은 서버에 접수된 시각입니다.</p><div id="history-list"></div></dialog>
-  <script src="locale-en.js?v=20260921-regions"></script>
-<script src="locale-extra.js?v=20260921-regions"></script>
-<script src="i18n.js?v=20260921-regions"></script>
+  <script src="locale-en.js?v=20260921-errors"></script>
+<script src="locale-extra.js?v=20260921-errors"></script>
+<script src="i18n.js?v=20260921-errors"></script>
 <script src="c-problems.js?v=20260914-c1"></script>
   <script src="vendor/codemirror/codemirror.js"></script>
   <script src="vendor/codemirror/python.js"></script>
@@ -43,15 +43,16 @@
   <script src="vendor/codemirror/matchbrackets.js"></script>
   <script src="vendor/codemirror/closebrackets.js"></script>
   <script src="vendor/codemirror/comment.js"></script>
-  <script src="editor.js?v=20260921-regions"></script>
-  <script src="cloud.js?v=20260921-regions"></script>
-  <script src="compact-layout.js?v=20260921-regions"></script>
-  <script src="workspace-layout.js?v=20260921-regions"></script>
-  <script src="exercise-study.js?v=20260921-regions"></script>
-  <script src="practice-hints.js?v=20260921-regions"></script>
+  <script src="editor.js?v=20260921-errors"></script>
+  <script src="cloud.js?v=20260921-errors"></script>
+  <script src="compact-layout.js?v=20260921-errors"></script>
+  <script src="workspace-layout.js?v=20260921-errors"></script>
+  <script src="exercise-study.js?v=20260921-errors"></script>
+  <script src="practice-hints.js?v=20260921-errors"></script>
   <script src="problem-catalog.js?v=20260920-front"></script>
-<script src="examples.js?v=20260921-regions"></script>
-<script src="app.js?v=20260921-regions"></script>
-<script src="browser-reset.js?v=20260921-regions"></script>
+<script src="examples.js?v=20260921-errors"></script>
+<script src="error-details.js?v=20260921-errors"></script>
+<script src="app.js?v=20260921-errors"></script>
+<script src="browser-reset.js?v=20260921-errors"></script>
 <script defer src="/js/site-analytics.js?v=20260919-1"></script>
 </body></html>

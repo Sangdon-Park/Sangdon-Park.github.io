@@ -1,5 +1,6 @@
 // Compile real C to WebAssembly inside this worker. No student code is uploaded.
 importScripts('vendor/wasm-clang/shared.js');
+importScripts('diagnostics.js?v=20260921-errors');
 importScripts('chapter-02-harness.js?v=20260915-ch2');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
@@ -74,6 +75,7 @@ function equal(actual, expected, numeric, tolerance) {
 self.onmessage = async ({data}) => {
   const normalized = normalize(data.code);
   const report = {normalizedCode: normalized.code, normalizedCount: normalized.count};
+  let phase='compile';
   try {
     log = '';
     // A fixed set of filenames keeps the in-memory filesystem bounded across runs.
@@ -84,7 +86,9 @@ self.onmessage = async ({data}) => {
       ...api.clangCommonArgs.filter(arg=>arg!=='-fcolor-diagnostics'), '-O0','-std=c11','-Werror=implicit-function-declaration','-o','answer.o','-x','c','answer.c');
     await api.link('answer.o','answer.wasm');
     const module = await WebAssembly.compile(api.memfs.getFileContents('answer.wasm'));
-    log = '';
+    report.diagnostics=parseCDiagnostics(clean(log));
+    report.compilerLog=clean(log).slice(0,20000);
+    log = '';phase='runtime';
     self.postMessage({type:'phase', token:data.token, phase:'run'});
     await api.run(module,'answer.wasm');
     const output = clean(log);
@@ -100,7 +104,11 @@ self.onmessage = async ({data}) => {
     report.passed = report.rows.filter(row=>row.ok).length;
     report.total = report.rows.length;
   } catch (error) {
-    report.error = 'C 컴파일·실행 오류\n' + (clean(log).slice(-5000) || String(error));
+    report.errorSummary = 'C 컴파일·실행 오류';
+    report.diagnostics=phase==='compile'?parseCDiagnostics(clean(log)):[];
+    report.rawError=(clean(log)+'\n'+String(error)).slice(0,20000);
+    report.error=report.errorSummary+'\n'+report.rawError;
+    if(!report.diagnostics.length)report.diagnostics=[{severity:'error',message:String(error),line:null,file:null}];
   }
   self.postMessage({type:'result',token:data.token,report});
 };

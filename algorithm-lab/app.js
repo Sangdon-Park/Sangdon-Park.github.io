@@ -17,7 +17,7 @@ function setResult(text,kind=''){ $('result').textContent=messageText(text); $('
 function controls(){ $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='c'?'c-worker.js?v=20260920-exercises':'worker.js?v=20260920-exercises');
+  worker=new Worker(language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -47,6 +47,7 @@ function renderNav(){
   $('chapter-count').textContent=active.length;
 }
 function show(i){
+  clearErrorLine();
   i=problems.findIndex(p=>p.id===canonicalProblemId(problems[i].id));
   const target=problems[i], legacy=Object.keys(LAB_DUPLICATES).find(id=>LAB_DUPLICATES[id]===target.id);
   let restored=false;
@@ -85,6 +86,7 @@ function armTimeout(ms){
 }
 function run(mode){
   if(!cloud.session||cloud.expired){requirePracticeAccount();return;}
+  clearErrorLine();
   $('execution-results').open=true;
   if(!ready||busy)return;const p=problems[index];const code=getCode();
   saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?T('공개 예시 실행 중…'):T('전체 검사로 채점 중…'));
@@ -99,10 +101,11 @@ function finish(report){
     $('repair-note').hidden=false;renderNav();
   }
   cloudAttempt(job,report);
-  if(report.error){setResult(report.error,'error');return;}
+  if(report.error){setResult(report.errorSummary||report.error,'error');for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.rawError||'':'');return;}
   const success=report.passed===report.total;
   if(problems[job.index].exercise){const note=document.createElement('p');note.className='notice';note.textContent=T('실행 결과 검사입니다. 알고리즘 사용 조건과 풀이·경계·복잡도 설명은 아래 작성란과 풀이 예시로 별도 점검하세요.');$('case-results').append(note);}
-  for(const r of report.rows){const row=document.createElement('p');row.textContent=`${r.ok?'✓':'✗'} ${r.public?T('공개 예시'):T('추가 검사')} ${r.number}${r.ok?T(' 통과'):T('\n입력: ')+r.input+'\n'+messageText(r.message)}`;$('case-results').append(row);}
+  for(const r of report.rows){const row=document.createElement('p');row.textContent=`${r.ok?'✓':'✗'} ${r.public?T('공개 예시'):T('추가 검사')} ${r.number}${r.ok?T(' 통과'):T('\n입력: ')+r.input+'\n'+messageText(r.message)}`;$('case-results').append(row);if(r.diagnostic)showDiagnostic(r.diagnostic,job.code);}
+  for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.compilerLog||'':'');
   if(job.mode==='sample'){setResult(`${T("예시 ")}${report.passed}/${report.total}${T(" 통과. 전체 검사는 채점하기로 확인하세요.")}`,success?'success':'error');return;}
   if(success){
     saved.passed[answerKey(job.pid)]={code:job.code,passed:report.passed,total:report.total,at:new Date().toISOString()};persist();renderNav();
