@@ -64,7 +64,7 @@ function show(i){
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
   $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python & C':T('연습문제 작성형 / Python·C 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
   const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',p.id);url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
-  $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · ${p.chapter===2?(UI_EN?"Lecture PPT":"강의 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
+  $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · ${p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
   const view=language==='c'?C_PROBLEMS[p.id]:p;
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='c'?'C / C11':'Python 3';
