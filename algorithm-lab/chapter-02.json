@@ -4,7 +4,7 @@
     "chapter": 2,
     "title": "네 자리 자물쇠",
     "section": "2.1 완전 탐색",
-    "slides": "7, 9, 10",
+    "slides": "14, 16–24",
     "level": "기본",
     "function": "lock_attempts",
     "params": [
@@ -87,7 +87,7 @@
     "chapter": 2,
     "title": "약수 모두 찾기",
     "section": "2.2 단일 반복문",
-    "slides": "13, 14",
+    "slides": "27–34",
     "level": "기본",
     "function": "find_divisors",
     "params": [
@@ -219,7 +219,7 @@
     "chapter": 2,
     "title": "합이 K인 두 수",
     "section": "2.2 이중 반복문",
-    "slides": "15, 16",
+    "slides": "35–42",
     "level": "기본",
     "function": "find_pairs",
     "params": [
@@ -2140,7 +2140,7 @@
     "chapter": 2,
     "title": "세 주사위의 합",
     "section": "2.2 삼중 반복문",
-    "slides": "17, 18",
+    "slides": "43–50",
     "level": "기본",
     "function": "dice_sum",
     "params": [
@@ -2387,7 +2387,7 @@
     "chapter": 2,
     "title": "세 장 선택하기",
     "section": "2.4 조합의 반복문",
-    "slides": "25, 26",
+    "slides": "63–70",
     "level": "기본",
     "function": "choose_three",
     "params": [
@@ -3147,7 +3147,7 @@
     "chapter": 2,
     "title": "직접 만드는 r개 순열",
     "section": "2.4 순열과 조합",
-    "slides": "27, 28, 29",
+    "slides": "71–83",
     "level": "기본",
     "function": "make_permutations",
     "params": [
@@ -9108,7 +9108,7 @@
     "chapter": 2,
     "title": "직접 만드는 r개 조합",
     "section": "2.4 순열과 조합",
-    "slides": "30, 31, 32",
+    "slides": "84–95",
     "level": "기본",
     "function": "make_combinations",
     "params": [
@@ -9280,7 +9280,7 @@
     "chapter": 2,
     "title": "1·2·3 비밀번호 후보",
     "section": "예제 2.1",
-    "slides": "34, 35",
+    "slides": "97–103",
     "level": "기본",
     "function": "password_candidates",
     "params": [
@@ -9393,7 +9393,7 @@
     "chapter": 2,
     "title": "아이스크림 두 가지 맛",
     "section": "예제 2.2",
-    "slides": "36, 37",
+    "slides": "104–111",
     "level": "기본",
     "function": "icecream_menus",
     "params": [
@@ -10260,7 +10260,7 @@
     "chapter": 2,
     "title": "문자열의 모든 일치 위치",
     "section": "2.5 문자열 매칭",
-    "slides": "40, 41, 42",
+    "slides": "113–126",
     "level": "기본",
     "function": "bf_string_match",
     "params": [
@@ -10381,7 +10381,7 @@
     "chapter": 2,
     "title": "가장 가까운 두 수",
     "section": "2.5 최솟값 갱신",
-    "slides": "43, 44",
+    "slides": "127–135",
     "level": "기본",
     "function": "closest_pair",
     "params": [
@@ -10513,7 +10513,7 @@
     "chapter": 2,
     "title": "비트마스크로 모든 부분집합",
     "section": "2.5 부분집합",
-    "slides": "46, 47, 53",
+    "slides": "136–154",
     "level": "기본",
     "function": "power_set",
     "params": [
@@ -12190,7 +12190,7 @@
     "chapter": 2,
     "title": "탐색 공간 계산",
     "section": "2.6 조합적 폭발",
-    "slides": "49, 50, 51",
+    "slides": "156–161",
     "level": "기본",
     "function": "search_space",
     "params": [
@@ -12286,7 +12286,7 @@
     "chapter": 2,
     "title": "외판원 순회 최소 비용",
     "section": "예제 2.4",
-    "slides": "55, 56, 57",
+    "slides": "164–174",
     "level": "도전",
     "function": "tsp_min",
     "params": [
@@ -12509,7 +12509,7 @@
     "chapter": 2,
     "title": "합이 target인 부분집합",
     "section": "2.7 가지치기 전의 기준",
-    "slides": "60, 61",
+    "slides": "177–181",
     "level": "기본",
     "function": "subset_sum_count",
     "params": [
@@ -12639,7 +12639,7 @@
     "chapter": 2,
     "title": "기억하는 피보나치",
     "section": "2.7 메모이제이션",
-    "slides": "64, 65",
+    "slides": "183–192",
     "level": "기본",
     "function": "fib_memo",
     "params": [
@@ -12729,7 +12729,7 @@
     "chapter": 2,
     "title": "세 수의 합 개수",
     "section": "Coding Test 2.1",
-    "slides": "74, 75",
+    "slides": "215–222",
     "level": "기본",
     "function": "three_sum_count",
     "params": [
@@ -12940,7 +12940,7 @@
     "chapter": 2,
     "title": "블랙잭 최대 합",
     "section": "Coding Test 2.2",
-    "slides": "77, 78",
+    "slides": "223–232",
     "level": "기본",
     "function": "blackjack",
     "params": [
@@ -13162,7 +13162,7 @@
     "chapter": 2,
     "title": "모든 쌍의 차이",
     "section": "반복문 연습 1",
-    "slides": "80, 81",
+    "slides": "234–241",
     "level": "기본",
     "function": "pair_differences",
     "params": [
@@ -13742,7 +13742,7 @@
     "chapter": 2,
     "title": "합이 K인 세 수 나열",
     "section": "반복문 연습 2",
-    "slides": "80, 82",
+    "slides": "234–237, 242–245",
     "level": "기본",
     "function": "three_sum_values",
     "params": [
@@ -19599,7 +19599,7 @@
     "chapter": 2,
     "title": "회문만 골라내기",
     "section": "문자열 연습",
-    "slides": "84, 85",
+    "slides": "246–255",
     "level": "기본",
     "function": "palindrome_words",
     "params": [
@@ -19762,7 +19762,7 @@
     "chapter": 2,
     "title": "0/1 배낭 완전 탐색",
     "section": "부분집합 연습",
-    "slides": "87, 88",
+    "slides": "256–266",
     "level": "도전",
     "function": "knapsack",
     "params": [
@@ -19934,7 +19934,7 @@
     "chapter": 2,
     "title": "숫자 야구 후보 세기",
     "section": "순열 연습",
-    "slides": "90, 91, 92",
+    "slides": "267–282",
     "level": "도전",
     "function": "baseball_count",
     "params": [
@@ -20082,7 +20082,7 @@
     "chapter": 2,
     "title": "2차원 배열 입력과 순회",
     "section": "입력·2차원 배열",
-    "slides": "70, 72",
+    "slides": "196–213",
     "level": "기본",
     "function": "grid_sum",
     "params": [

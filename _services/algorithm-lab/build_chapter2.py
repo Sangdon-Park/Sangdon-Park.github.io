@@ -511,6 +511,11 @@ def grid_sum(grid):
     return sum(sum(row) for row in grid)
 ''', [([[[1,2,3],[4,5,6]]],21), ([[[-7]]],-7), ([[[0,0],[0,0],[0,0]]],0), ([[[1],[2],[3]]],6), ([[[1000]*8 for _ in range(8)]],64000), ([[[-1,2,-3,4]]],2)])
 
+# Published Chapter 2 detailed lecture (297 slides, September 2026).
+DETAILED_LECTURE_PAGES = {'P13': '14, 16–24', 'P14': '27–34', 'P15': '35–42', 'P16': '43–50', 'P17': '63–70', 'P18': '71–83', 'P19': '84–95', 'P20': '97–103', 'P21': '104–111', 'P22': '113–126', 'P23': '127–135', 'P24': '136–154', 'P25': '156–161', 'P26': '164–174', 'P27': '177–181', 'P28': '183–192', 'P29': '215–222', 'P30': '223–232', 'P31': '234–241', 'P32': '234–237, 242–245', 'P33': '246–255', 'P34': '256–266', 'P35': '267–282', 'P36': '196–213'}
+for problem in problems:
+    problem["slides"] = DETAILED_LECTURE_PAGES[problem["id"]]
+
 assert len(problems) == 24
 (ROOT / "algorithm-lab/chapter-02.json").write_text(json.dumps(problems, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
 print(f"Generated {len(problems)} problems / {sum(len(p['tests']) for p in problems)} cases")
