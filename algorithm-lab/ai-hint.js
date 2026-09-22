@@ -24,7 +24,7 @@ async function requestAIHint() {
   try {
     const data = await labRequest('ai-hint', {
       problem:p.id, language, locale:UI_LOCALE, code,
-      statement:[p.title, p.statement, language === 'c' ? C_PROBLEMS[p.id].statement : ''].filter(Boolean).join('\n'),
+      statement:[p.title, p.statement, language === 'java' ? javaView(p).signature : language === 'c' ? C_PROBLEMS[p.id].statement : ''].filter(Boolean).join('\n'),
       execution:matching ? lastHintRun.execution : 'This current code has not been run. Do not assume any previous error still applies.',
     });
     if (version === hintVersion && cloud.session?.student.id === account) output.textContent = data.hint;

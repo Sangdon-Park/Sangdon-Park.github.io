@@ -28,7 +28,7 @@ function renderStudy(p){
   const button=el('button',T('설명을 코드 주석에 반영'));button.type='button';button.onclick=()=>{
     if(busy)return;
     if(!Object.values(fields).every(n=>n.value.trim())){status.textContent=T('설명 3항목을 먼저 작성해 주세요.');return;}
-    const marker=language==='c'?'//':'#';
+    const marker=language==='python'?'#':'//';
     let code=getCode().replace(/\n?(?:#|\/\/) STUDY-NOTES-BEGIN[\s\S]*?(?:#|\/\/) STUDY-NOTES-END\n?/g,'');
     const lines=labels.flatMap(([key,title])=>[title,...fields[key].value.split('\n'),'']);
     code+='\n'+marker+' STUDY-NOTES-BEGIN\n'+lines.map(line=>marker+' '+line).join('\n')+'\n'+marker+' STUDY-NOTES-END\n';

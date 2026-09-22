@@ -170,3 +170,29 @@ Set `GEMINI_API_KEY` in Supabase Edge Function Secrets for project `tltrbkttwzvw
 The system prompt requests one tiny hint in the selected UI language, no solution or replacement code. Structured JSON, output length/code checks, a 15-second upstream timeout and persistent rate limits (one request per 15-second bucket, 30 per student per UTC day, 1,000 total per UTC day) bound use. Prompt instructions and checks reduce answer leakage but cannot guarantee semantic compliance from a generative model. Provider failures are sanitized; no API keys or upstream error bodies are returned.
 
 Test: `node _services/algorithm-lab/tests/ai-hint.mjs`. This uses a mocked Gemini API; real-model verification requires the deployed secret.
+
+## Java practice (2026-09-22)
+
+All 86 problem IDs have Java 8 method contracts, starters and examples. The Java
+editor uses class Solution with static methods; LabSupport supplies the same
+helper algorithms and workspace data as the original exercises. ECJ 4.6.1 and
+CheerpJ 4.3 compile and execute locally in a terminable worker. Exact long results,
+array mutations, input preservation, floating tolerances and error line links
+are checked. Indexed-access complexity constraints (P02/P04) are pedagogical,
+as with C; Java checks the results and time limit, not individual array reads.
+Java hints provide syntax, algorithm guidance and starters; complete reference
+solutions remain available for Python/C only.
+
+Deployment order: apply java-migration.sql to the existing database, deploy the
+algorithm-lab Edge Function, then publish the site. Existing identities, drafts
+and submissions are retained. The state response advertises supported languages;
+while an older backend is deployed, Java entries stay in the browser outbox and
+do not block Python/C uploads. Java uses java:problem keys independently of C
+and the legacy unprefixed Python keys, including restore/import/judge reminders.
+
+Validation: node _services/algorithm-lab/tests/java-browser.cjs (Playwright + Chrome;
+NODE_PATH can point at an existing Playwright installation). This runs the real
+compiler/JVM, checks resubmission, diagnostics, long precision and mutation, and
+compiles every problem's starter and all its grading cases. Existing examples,
+locales, exercise-sync, judge-reminder, AI hint and instructor tests also apply.
+Runtime/compiler licensing and sources are in algorithm-lab/vendor/java/README.md.

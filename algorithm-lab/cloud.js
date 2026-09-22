@@ -1,5 +1,5 @@
 const LAB_API='https://tltrbkttwzvwghaplurl.supabase.co/functions/v1/algorithm-lab';
-const cloud={session:null,queue:[],flushing:false,draftTimer:null,supported:new Set(Array.from({length:36},(_,i)=>'P'+String(i+1).padStart(2,'0'))),catalogChecked:0};
+const cloud={session:null,queue:[],flushing:false,draftTimer:null,supported:new Set(Array.from({length:36},(_,i)=>'P'+String(i+1).padStart(2,'0'))),catalogChecked:0,languages:new Set(['python','c'])};
 const cloudStatus=(text,error=false)=>{document.getElementById('cloud-status').textContent=text;document.getElementById('cloud-status').classList.toggle('cloud-error',error);};
 async function labRequest(action,body={},token=cloud.session?.token){
   const response=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});
@@ -16,12 +16,13 @@ async function flushCloud(){
   if(cloud.resetting||cloud.flushing||!cloud.session||!cloud.queue.length)return;
   cloud.flushing=true;cloudStatus(T('서버에 저장 중…'));
   try{
-    if(cloud.queue.some(item=>!cloud.supported.has(item.body.problem))&&Date.now()-cloud.catalogChecked>60000){
+    if(cloud.queue.some(item=>(!cloud.supported.has(item.body.problem)||!cloud.languages.has(item.body.language)))&&Date.now()-cloud.catalogChecked>60000){
       cloud.catalogChecked=Date.now();const state=await labRequest('state');
       if(state.problemTotals)cloud.supported=new Set(Object.keys(state.problemTotals));
+      if(state.languages)cloud.languages=new Set(state.languages);
     }
     let item;
-    while(!cloud.resetting&&(item=cloud.queue.find(row=>cloud.supported.has(row.body.problem)))){
+    while(!cloud.resetting&&(item=cloud.queue.find(row=>cloud.supported.has(row.body.problem)&&cloud.languages.has(row.body.language)))){
       await labRequest(item.action,item.body);cloud.queue=cloud.queue.filter(queued=>queued!==item);saveQueue();
     }
     cloudStatus(cloud.queue.length?T('서버 연결 대기 · 새 연습 기록은 이 브라우저에 보관 중입니다.'):T('● 서버 저장 완료 · 교수님께 진행 상황 공유 중'));
@@ -35,14 +36,15 @@ function cloudAttempt(job,report){
   enqueue('submit',{id:crypto.randomUUID(),problem:job.pid,language:job.language,code:job.code,report,source:'browser'});
 }
 function cloudAccount(data){
+  if(data.languages)cloud.languages=new Set(data.languages);
   if(data.problemTotals)cloud.supported=new Set(Object.keys(data.problemTotals));
   cloud.expired=false;cloud.session={token:data.token,student:data.student};localStorage.setItem('dju-algolab-session',JSON.stringify(cloud.session));
   KEY='dju-algorithm-lab-v1:account:'+data.student.id;
   try{cloud.queue=JSON.parse(localStorage.getItem(queueKey())||'[]');}catch{cloud.queue=[];}
   let local;try{local=JSON.parse(localStorage.getItem(KEY));}catch{}
   const remote={answers:{},passed:{},student:data.student.student_no+' '+data.student.name,index:Number(data.student.current_problem.slice(1))-1,language:data.student.current_language};
-  for(const d of data.drafts){const key=d.language==='c'?'c:'+d.problem:d.problem;remote.answers[key]=d.code;}
-  for(const p of data.passed){const key=p.language==='c'?'c:'+p.problem:p.problem;if(!remote.passed[key])remote.passed[key]={code:p.code,passed:p.passed,total:p.total,at:p.created_at};}
+  for(const d of data.drafts){const key=d.language==='python'?d.problem:d.language+':'+d.problem;remote.answers[key]=d.code;}
+  for(const p of data.passed){const key=p.language==='python'?p.problem:p.language+':'+p.problem;if(!remote.passed[key])remote.passed[key]={code:p.code,passed:p.passed,total:p.total,at:p.created_at};}
   saved=local&&cloud.queue.length?{...local,student:remote.student}:remote;
   saved.judged=local?.judged||{};
   const changed=language!==(saved.language||'python');language=saved.language||'python';$('language').value=language;
@@ -60,8 +62,8 @@ async function cloudInit(){
   catch(error){
     let local;try{local=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1:account:'+session.student.id));}catch{}
     if(error.status!==401&&local){
-      const drafts=Object.entries(local.answers||{}).map(([key,code])=>({problem:key.replace(/^c:/,''),language:key.startsWith('c:')?'c':'python',code}));
-      const passed=Object.entries(local.passed||{}).map(([key,p])=>({...p,problem:key.replace(/^c:/,''),language:key.startsWith('c:')?'c':'python',created_at:p.at}));
+      const drafts=Object.entries(local.answers||{}).map(([key,code])=>({problem:key.replace(/^(c|java):/,''),language:key.startsWith('java:')?'java':key.startsWith('c:')?'c':'python',code}));
+      const passed=Object.entries(local.passed||{}).map(([key,p])=>({...p,problem:key.replace(/^(c|java):/,''),language:key.startsWith('java:')?'java':key.startsWith('c:')?'c':'python',created_at:p.at}));
       cloudAccount({token:session.token,student:{...session.student,current_problem:'P'+String((local.index||0)+1).padStart(2,'0'),current_language:local.language||'python'},drafts,passed});
       cloudStatus(T('연결 대기 · 이 PC에 저장된 답안으로 연습할 수 있습니다.'),true);
     }else cloudStatus(T('실습 시작 버튼을 눌러 반·학번·이름을 입력하세요.'),true);
@@ -124,7 +126,7 @@ function initCloudUI(){
   $('import-confirm').onclick=()=>{
     const legacy=JSON.parse(localStorage.getItem('dju-algorithm-lab-v1')||'{}');
     for(const [key,code] of Object.entries(legacy.answers||{})){
-      const language=key.startsWith('c:')?'c':'python',problem=key.replace(/^c:/,'');if(!problems.some(p=>p.id===problem))continue;
+      const language=key.startsWith('java:')?'java':key.startsWith('c:')?'c':'python',problem=key.replace(/^(c|java):/,'');if(!problems.some(p=>p.id===problem))continue;
       saved.answers[key]=code;const record=legacy.passed?.[key];
       if(record&&record.code===code){saved.passed[key]=record;enqueue('submit',{id:crypto.randomUUID(),problem,language,code,source:'legacy',report:{passed:record.passed,total:record.total}});}
       else enqueue('draft',{problem,language,code});
@@ -133,7 +135,7 @@ function initCloudUI(){
   };
   $('cloud-history').onclick=async()=>{
     $('history-dialog').showModal();$('history-list').textContent=T('불러오는 중…');
-    try{const data=await labRequest('history');$('history-list').replaceChildren();for(const item of data.submissions){const row=document.createElement('p');row.textContent=`${item.problem} · ${item.language==='c'?'C':'Python'} · ${item.solved?T('통과'):`${item.passed}/${item.total}`} · ${new Date(item.created_at).toLocaleString(UI_DATE_LOCALE)}${item.source==='legacy'?T(' · 기존 기록 가져옴'):''}`;$('history-list').append(row);}if(!data.submissions.length)$('history-list').textContent=T('아직 제출 기록이 없습니다.');}catch(error){$('history-list').textContent=error.message;}
+    try{const data=await labRequest('history');$('history-list').replaceChildren();for(const item of data.submissions){const row=document.createElement('p');row.textContent=`${item.problem} · ${item.language==='java'?'Java':item.language==='c'?'C':'Python'} · ${item.solved?T('통과'):`${item.passed}/${item.total}`} · ${new Date(item.created_at).toLocaleString(UI_DATE_LOCALE)}${item.source==='legacy'?T(' · 기존 기록 가져옴'):''}`;$('history-list').append(row);}if(!data.submissions.length)$('history-list').textContent=T('아직 제출 기록이 없습니다.');}catch(error){$('history-list').textContent=error.message;}
   };
   $('history-close').onclick=()=>$('history-dialog').close();
   setInterval(()=>{if(cloud.resetting||!cloud.session||document.hidden)return;flushCloud();labRequest('heartbeat',{problem:problems[index]?.id,language}).catch(()=>{});},30000);

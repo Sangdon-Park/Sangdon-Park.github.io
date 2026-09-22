@@ -30,6 +30,7 @@ const HINT_TOOLS = {
 };
 
 function practiceHintData(p, lang){
+  if(lang==='java') return {solution:'',tools:[T(commonFunctionHelp('java',typeof UI_EN!=='undefined'&&UI_EN))],method:p.hint,skeleton:javaView(p).starter,blanks:[]};
   const view=lang==='c'?C_PROBLEMS[p.id]:p;
   const solution=(lang==='c'?p.c?.solution:p.solution)||'';
   const tools=[];

@@ -1867,3 +1867,15 @@ Object.assign(LOCALE_ES, {"작은 AI 힌트": "Pequeña pista de IA", "누르면
 Object.assign(LOCALE_EN, {"채점하기를 누르셨나요?": "Did you click Submit for grading?", "현재 코드는 아직 채점하지 않았습니다. 예시 실행만으로는 문제 해결로 기록되지 않습니다.": "Your current code has not been submitted for grading. Running examples alone does not mark the problem as solved.", "계속 작성하기": "Keep editing", "채점 없이 이동": "Leave without grading", "지금 채점하기": "Submit now"});
 
 Object.assign(LOCALE_ES, {"채점하기를 누르셨나요?": "¿Has enviado tu código para evaluarlo?", "현재 코드는 아직 채점하지 않았습니다. 예시 실행만으로는 문제 해결로 기록되지 않습니다.": "Tu código actual aún no se ha enviado para evaluar. Ejecutar solo los ejemplos no marca el problema como resuelto.", "계속 작성하기": "Seguir escribiendo", "채점 없이 이동": "Continuar sin evaluar", "지금 채점하기": "Evaluar ahora"});
+
+Object.assign(LOCALE_EN, {"Python, C, Java 답안은 각각 자동 저장됩니다.":"Python, C and Java answers are saved separately.","Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)":"Preparing Java… (the first run may take a while)"," 실행·채점 중…":" running and grading…"," 컴파일 중…":" compiling…","Java 컴파일 오류":"Java compilation error","Java 실행 오류":"Java runtime error","연습문제 작성형 / Python·C·Java 구현":"PPTX coding exercises / Python, C and Java"});
+Object.assign(LOCALE_ES, {"Python, C, Java 답안은 각각 자동 저장됩니다.":"Las respuestas de Python, C y Java se guardan por separado.","Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)":"Preparando Java… (la primera ejecución puede tardar)"," 실행·채점 중…":" ejecutando y evaluando…"," 컴파일 중…":" compilando…","Java 컴파일 오류":"Error de compilación de Java","Java 실행 오류":"Error de ejecución de Java","연습문제 작성형 / Python·C·Java 구현":"Ejercicios de programación / Python, C y Java"});
+
+Object.assign(LOCALE_ES, {"Solution 클래스와 제공된 static 메서드를 유지하세요. main()과 Scanner 없이 전달된 입력으로 결과를 반환하거나 지정된 배열을 수정합니다. 배열 길이는 배열.length, long 상수는 L 접미사를 사용합니다. 제공되는 보조 메서드는 LabSupport에서 상속됩니다.":"Mantén la clase Solution y el método static proporcionado. Devuelve el resultado o modifica el array indicado con los argumentos recibidos; no necesitas main() ni Scanner. Usa array.length y el sufijo L para constantes long. Los métodos auxiliares se heredan de LabSupport."});
+
+Object.assign(LOCALE_EN, {"알고리즘 Python·C·Java 코딩 실습 · 대전대학교":"Algorithms Python/C/Java Lab · Daejeon University"});
+Object.assign(LOCALE_ES, {"알고리즘 Python·C·Java 코딩 실습 · 대전대학교":"Laboratorio de algoritmos Python/C/Java · Universidad de Daejeon"});
+for(const dictionary of [LOCALE_EN,LOCALE_ES]) {
+  const old=Object.keys(dictionary).find(key=>key.includes('같은 문제를 Python 또는 C 중 한 언어로 통과하면'));
+  if(old)dictionary[old.replace('Python 또는 C','Python, C, Java')]=dictionary[old].replace('Python or C','Python, C or Java').replace('Python o C','Python, C o Java');
+}

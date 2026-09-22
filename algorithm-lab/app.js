@@ -3,21 +3,21 @@ let KEY = 'dju-algorithm-lab-v1';
 let problems=[], index=0, worker=null, ready=false, busy=false, timer=null, token=0, job=null;
 let saved={answers:{},passed:{},student:'',index:0};
 try { const item=JSON.parse(localStorage.getItem(KEY)); if(item) saved={...saved,...item}; } catch (_) {}
-let language=saved.language==='c'?'c':'python';
+let language=['python','c','java'].includes(saved.language)?saved.language:'python';
 let chapter=1;
 const orderedChapter = value => problems.filter(p=>(p.chapter||1)===value&&!LAB_DUPLICATES[p.id]).sort((a,b)=>Number(!!b.exercise)-Number(!!a.exercise));
 const chapterProblems = () => orderedChapter(chapter);
 const firstInChapter = value => problems.indexOf(orderedChapter(value)[0]);
-const answerKey = id => language==='c'?'c:'+id:id;
-const starter = p => language==='c'?C_PROBLEMS[p.id].starter:p.starter;
-const languageName = () => language==='c'?'C':'Python';
+const answerKey = id => language==='python'?id:language+':'+id;
+const starter = p => language==='java'?javaView(p).starter:language==='c'?C_PROBLEMS[p.id].starter:p.starter;
+const languageName = () => ({python:'Python',c:'C',java:'Java'})[language];
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
 function controls(){ $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
-  if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
+  if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
+  worker=new Worker(language==='java'?'java-worker.js?v=20260922-java':language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -25,8 +25,8 @@ function boot(){
     if(data.type==='ready'){clearTimeout(timer);ready=true;$('engine').textContent='● '+languageName()+T(' 실행 준비 완료');controls();return;}
     if(data.type==='boot-error'){clearTimeout(timer);$('engine').textContent=T('연결 실패');$('retry').hidden=false;setResult(languageName()+T(' 실행 환경을 받지 못했습니다. 다시 연결을 눌러주세요.'),'error');return;}
     if(data.type==='phase'&&job&&data.token===job.token){
-      if(data.phase==='run'){armTimeout(6000);setResult(T('C 실행·채점 중…'));}
-      else setResult(T('C 컴파일 중…'));
+      if(data.phase==='run'){armTimeout(language==='java'?15000:6000);setResult(languageName()+T(' 실행·채점 중…'));}
+      else setResult(languageName()+T(' 컴파일 중…'));
     }
     if(data.type==='result'&&job&&data.token===job.token){clearTimeout(timer);busy=false;controls();finish(data.report);}
   };
@@ -62,15 +62,15 @@ function show(i){
   $('chapter-caption').textContent=(UI_ES?'TEMA ':UI_EN?'CHAPTER ':'CHAPTER ')+String(chapter).padStart(2,'0');
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
-  $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python & C':T('연습문제 작성형 / Python·C 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
+  $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
   const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',p.id);url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
   $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · ${p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
-  const view=language==='c'?C_PROBLEMS[p.id]:p;
-  $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
-  $('editor-label').textContent=p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='c'?'C / C11':'Python 3';
+  const view=language==='java'?javaView(p):language==='c'?C_PROBLEMS[p.id]:p;
+  $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='java'?'text/x-java':language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
+  $('editor-label').textContent=language==='java'?'Solution.java':p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='java'?'Java 8':language==='c'?'C / C11':'Python 3';
   const instructions=problemFunctionInstructions(p,language,view,UI_EN);
   $('instructions').textContent=T(commonFunctionHelp(language,UI_EN));
-  $('statement').textContent=view.statement.replaceAll('Python 또는 C',language==='c'?'C':'Python').replaceAll('Python or C',language==='c'?'C':'Python').replaceAll('Python o C',language==='c'?'C':'Python')+'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions;
+  $('statement').textContent=view.statement.replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions;
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');
@@ -93,7 +93,7 @@ function run(mode){
   saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?T('공개 예시 실행 중…'):T('전체 검사로 채점 중…'));
   job={token:++token,pid:p.id,index,mode,code,language};
   rememberJudgedAnswer(job);
-  armTimeout(language==='c'?60000:6000);
+  armTimeout(language==='java'?180000:language==='c'?60000:6000);
   worker.postMessage({token:job.token,code,problem:p,cases:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
 }
 function finish(report){
@@ -164,7 +164,7 @@ Promise.all(['problems.json','chapter-02.json?v=20260922-detailed-lecture','exer
   }
   problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);
   editor.setOption('readOnly',true);await cloudInit();
-  if(['c','python'].includes(entryParams.get('code'))){language=entryParams.get('code');saved.language=language;$('language').value=language;}
+  if(['c','python','java'].includes(entryParams.get('code'))){language=entryParams.get('code');saved.language=language;$('language').value=language;}
   const requestedChapter=Number(entryParams.get('chapter'));
   const requestedIndex=problems.findIndex(p=>p.id===entryParams.get('problem')&&(![1,2,3,4,5,6].includes(requestedChapter)||(p.chapter||1)===requestedChapter));
   if(requestedIndex>=0)index=requestedIndex;

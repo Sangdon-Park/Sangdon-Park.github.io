@@ -6,7 +6,7 @@ function clearErrorLine() {
 function showDiagnostic(detail, source, raw = '') {
   const card = document.createElement('section');
   card.className = 'error-detail';
-  const own = ['answer.py', 'answer.c'].includes(detail.file);
+  const own = ['answer.py', 'answer.c', 'Solution.java'].includes(detail.file);
   const validLine = own && Number.isInteger(detail.line) && detail.line > 0 && detail.line <= source.split('\n').length;
   const label = document.createElement('strong');
   label.textContent = (detail.severity === 'warning' ? T('경고') : detail.severity === 'note' ? T('참고') : T('오류')) + ': ' + messageText(detail.message);

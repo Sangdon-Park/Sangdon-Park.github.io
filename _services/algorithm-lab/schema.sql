@@ -10,7 +10,7 @@ create table if not exists public.dju_algolab_students (
   created_at timestamptz not null default now(),
   last_seen timestamptz not null default now(),
   current_problem text not null default 'P01',
-  current_language text not null default 'python' check(current_language in ('python','c')),
+  current_language text not null default 'python' check(current_language in ('python','c','java')),
   unique(section, student_no)
 );
 create table if not exists public.dju_algolab_sessions (
@@ -24,7 +24,7 @@ create table if not exists public.dju_algolab_sessions (
 create table if not exists public.dju_algolab_drafts (
   student_id uuid not null references public.dju_algolab_students(id) on delete cascade,
   problem text not null check(problem ~ '^P(0[1-9]|[1-7][0-9]|8[0-6])$'),
-  language text not null check(language in ('python','c')),
+  language text not null check(language in ('python','c','java')),
   code text not null check(length(code)<=20000),
   updated_at timestamptz not null default now(),
   primary key(student_id,problem,language)
@@ -33,7 +33,7 @@ create table if not exists public.dju_algolab_submissions (
   id uuid primary key,
   student_id uuid not null references public.dju_algolab_students(id) on delete cascade,
   problem text not null check(problem ~ '^P(0[1-9]|[1-7][0-9]|8[0-6])$'),
-  language text not null check(language in ('python','c')),
+  language text not null check(language in ('python','c','java')),
   code text not null check(length(code)<=20000),
   passed integer not null check(passed>=0),
   total integer not null check(total between 1 and 50),

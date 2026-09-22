@@ -142,8 +142,8 @@ function cExampleModel(p, t, c) {
 
 function formatProblemExample(p, t, language, c, number, english = false) {
   const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
-  const model = language === 'c' ? cExampleModel(p, t, c) : pythonExampleModel(p, t);
-  const lines = [`${label('예시', 'Example')} ${number} · ${language === 'c' ? 'C' : 'Python'}`,
+  const model = language === 'java' ? javaExampleModel(p,t) : language === 'c' ? cExampleModel(p, t, c) : pythonExampleModel(p, t);
+  const lines = [`${label('예시', 'Example')} ${number} · ${language === 'java' ? 'Java' : language === 'c' ? 'C' : 'Python'}`,
     label('호출 전 입력:', 'Inputs before the call:'), ...model.inputs];
   if (model.storage?.length) lines.push('', label('실행 환경이 준비하는 결과·작업 공간:', 'Output / workspace allocated by the runtime:'), ...model.storage);
   lines.push('', label('함수 호출:', 'Function call:'), model.call);
@@ -157,6 +157,7 @@ function formatProblemExample(p, t, language, c, number, english = false) {
 
 function problemFunctionInstructions(p, language, c, english = false) {
   const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
+  if (language === 'java') return javaContract(p).signature + '\n' + (p.provided || '');
   if (language === 'python') {
     const result = p.outputArgument !== undefined
       ? label('결과: 입력 배열을 제자리에서 수정합니다.', 'Result: modify the input array in place.')
@@ -197,6 +198,7 @@ function problemFunctionInstructions(p, language, c, english = false) {
 }
 
 function commonFunctionHelp(language, english = false) {
+  if(language === 'java') return english ? 'Keep class Solution and the supplied static method. The grader supplies inputs; main() and Scanner are unnecessary. Return the specified value or modify the specified array. Use array.length; long uses an L suffix. Helper methods are inherited from LabSupport.' : 'Solution 클래스와 제공된 static 메서드를 유지하세요. main()과 Scanner 없이 전달된 입력으로 결과를 반환하거나 지정된 배열을 수정합니다. 배열 길이는 배열.length, long 상수는 L 접미사를 사용합니다. 제공되는 보조 메서드는 LabSupport에서 상속됩니다.';
   if (language === 'python') return english
     ? 'Keep the supplied function name and parameters. The grader passes the inputs; do not use input() or print(). Return the result unless the problem asks you to modify an array.'
     : '제공된 함수의 이름과 매개변수를 유지하세요. 입력은 채점기가 전달하므로 input()·print()는 필요 없습니다. 배열을 수정하는 문제를 제외하면 결과를 return으로 반환합니다.';

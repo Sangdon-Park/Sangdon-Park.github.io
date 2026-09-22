@@ -2,15 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>알고리즘 Python·C 코딩 실습 · 대전대학교</title>
+  <title>알고리즘 Python·C·Java 코딩 실습 · 대전대학교</title>
   <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
   <link rel="stylesheet" href="style.css?v=20260914-studio1">
   <link rel="stylesheet" href="studio.css?v=20260914-studio1">
-  <link rel="stylesheet" href="cloud.css?v=20260921-reminder">
-<link rel="stylesheet" href="utilities.css?v=20260914-i18n1"><link rel="stylesheet" href="compact-layout.css?v=20260921-reminder"><link rel="stylesheet" href="chapter.css?v=20260920-front"><link rel="stylesheet" href="exercise-study.css?v=20260921-reminder"><link rel="stylesheet" href="practice-hints.css?v=20260921-reminder"><link rel="stylesheet" href="workspace-layout.css?v=20260921-reminder"></head>
+  <link rel="stylesheet" href="cloud.css?v=20260922-java">
+<link rel="stylesheet" href="utilities.css?v=20260914-i18n1"><link rel="stylesheet" href="compact-layout.css?v=20260922-java"><link rel="stylesheet" href="chapter.css?v=20260920-front"><link rel="stylesheet" href="exercise-study.css?v=20260922-java"><link rel="stylesheet" href="practice-hints.css?v=20260922-java"><link rel="stylesheet" href="workspace-layout.css?v=20260922-java"></head>
 <body>
   <header><div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><div><span class="eyebrow">DAEJEON UNIVERSITY / COMPUTER ENGINEERING</span><h1>Algorithm Lab <span>알고리즘 코딩 실습</span></h1></div></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
-  <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python과 C 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
+  <div class="identity"><label>작성 언어 <select id="language"><option value="python">Python 3</option><option value="c">C (C11)</option><option value="java">Java 8</option></select></label><label>학번·이름 <input id="student" placeholder="예: 20261234 홍길동" maxlength="60"></label><span>Python, C, Java 답안은 각각 자동 저장됩니다.</span><button id="download">답안·결과 내려받기</button></div>
   <div class="cloud-strip"><span id="cloud-status" role="status">반·학번·이름을 입력하면 진행 상황이 자동 저장됩니다.</span><div><button id="cloud-login">실습 시작</button><button id="cloud-import" hidden>기존 답안 가져오기</button><button id="cloud-history" hidden>제출 이력</button><button id="cloud-section" hidden>분반 변경</button><button id="cloud-logout" hidden>로그아웃</button><a href="admin.html">교수자 관리 ↗</a></div></div>
   <main><aside><div class="sidebar-caption">WORKSPACE <span id="chapter-caption">CHAPTER 01</span></div><label class="chapter-label" for="chapter">강의 선택 / Chapter</label><select id="chapter"><option value="1">1강 · 알고리즘과 복잡도</option><option value="2">2강 · 완전 탐색</option><option value="3">3강 · 축소 정복</option><option value="4">4강 · 분할 정복</option><option value="5">5강 · 그리디 알고리즘</option><option value="6">6강 · 동적 계획법</option></select><h2>문제 목록 <span id="chapter-count">12</span></h2><div class="progress-track"><div id="progress-bar"></div></div><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">대전대학교 컴퓨터공학과 · 박상돈<br><span id="chapter-note">탐색 / 연산 횟수 / 복잡도</span><br><br>각자의 속도로 풀어보세요.<br>채점 후에도 현재 문제에 머뭅니다.</p><div id="chapter-resources" hidden><a href="chapter-02-guide.html">Python·C 강의 예제 / Examples</a><a href="/data/알고리즘/chapter-02-c.zip" download>C 예제 내려받기 / Download C</a><a href="/data/알고리즘/2장_완전탐색_브루트포스_Python_C.pptx">Python·C PPTX</a> <a href="/data/알고리즘/2장_완전탐색_브루트포스_Python_C.pdf" target="_blank" rel="noopener">Python·C PDF</a></div></aside>
   <section class="workspace"><div class="heading"><div><span id="meta" class="eyebrow"></span><h2 id="title">문제를 불러오는 중입니다</h2></div><span id="level"></span></div>
@@ -29,16 +29,17 @@
       <div id="case-results"></div><button id="next" hidden>다음 문제로 →</button></div>
     </div></div>
   </section></main>
-  <footer>로그인하면 학번·이름·반·코드·채점 기록이 수업 진행 확인을 위해 교수님께 공유됩니다. 반·학번·이름 입력 후 실습할 수 있습니다. 연결이 끊기면 기록을 이 브라우저에 보관하고 연결 복구 후 다시 전송합니다. 브라우저 채점 결과를 기록하는 수업용 실습이며 감독 시험용 서버 채점은 아닙니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a></footer>
+  <footer>로그인하면 학번·이름·반·코드·채점 기록이 수업 진행 확인을 위해 교수님께 공유됩니다. 반·학번·이름 입력 후 실습할 수 있습니다. 연결이 끊기면 기록을 이 브라우저에 보관하고 연결 복구 후 다시 전송합니다. 브라우저 채점 결과를 기록하는 수업용 실습이며 감독 시험용 서버 채점은 아닙니다. <a href="https://sangdon-park.github.io">홈페이지</a> · <a href="vendor/wasm-clang/UPSTREAM.txt">C 실행 환경 출처·라이선스</a> · <a href="vendor/java/README.md">Java runtime · licenses</a></footer>
   <dialog id="section-dialog"><div class="dialog-heading"><h2>분반 변경</h2><button id="section-close" type="button">닫기</button></div><p>작성한 코드와 풀이·제출 기록을 유지하면서 분반을 변경합니다.</p><form id="section-form"><label for="section-select">이동할 분반</label><select id="section-select"><option value="01">알고리즘 01반</option><option value="02">알고리즘 02반</option></select><p id="section-message" role="alert"></p><button id="section-submit" class="primary" type="submit">변경하기</button></form></dialog>
   <dialog id="account-dialog"><div class="dialog-heading"><h2>실습 시작</h2><button id="account-close" type="button" aria-label="닫기">✕</button></div><p>반·학번·이름을 입력하면 바로 시작합니다. 답안과 진행 상황은 교수님께 공유됩니다.</p><form id="account-form"><div class="form-columns"><label>반<select id="account-section"><option value="01">알고리즘 01반</option><option value="02">알고리즘 02반</option></select></label><label>학번<input id="account-number" inputmode="numeric" pattern="[0-9]{6,12}" required autocomplete="username" maxlength="12"></label></div><label>이름<input id="account-name" maxlength="40" required autocomplete="name"></label><p id="account-message" role="alert"></p><button id="account-submit" class="primary" type="submit">실습 시작하기</button></form><p class="dialog-note">다음에도 같은 반·학번·이름을 입력하면 이어서 풀 수 있습니다. 이전 답안은 시작 후 ‘기존 답안 가져오기’로 옮기세요.</p></dialog>
   <dialog id="import-dialog"><h2>기존 답안 가져오기</h2><p id="import-description"></p><div class="dialog-actions"><button id="import-cancel">취소</button><button id="import-confirm" class="primary">본인 답안 확인 · 가져오기</button></div></dialog>
   <dialog id="history-dialog"><div class="dialog-heading"><h2>내 제출 이력</h2><button id="history-close">닫기</button></div><p>최근 100건 · 시각은 서버에 접수된 시각입니다.</p><div id="history-list"></div></dialog>
   <dialog id="judge-reminder" aria-labelledby="judge-reminder-title"><h2 id="judge-reminder-title">채점하기를 누르셨나요?</h2><p>현재 코드는 아직 채점하지 않았습니다. 예시 실행만으로는 문제 해결로 기록되지 않습니다.</p><div class="dialog-actions"><button id="reminder-stay" autofocus>계속 작성하기</button><button id="reminder-continue">채점 없이 이동</button><button id="reminder-judge" class="primary">지금 채점하기</button></div></dialog>
-  <script src="locale-en.js?v=20260921-reminder"></script>
-<script src="locale-extra.js?v=20260921-reminder"></script>
-<script src="i18n.js?v=20260921-reminder"></script>
+  <script src="locale-en.js?v=20260922-java"></script>
+<script src="locale-extra.js?v=20260922-java"></script>
+<script src="i18n.js?v=20260922-java"></script>
 <script src="c-problems.js?v=20260914-c1"></script>
+  <script src="java-problems.js?v=20260922-java"></script>
   <script src="vendor/codemirror/codemirror.js"></script>
   <script src="vendor/codemirror/python.js"></script>
   <script src="vendor/codemirror/clike.js"></script>
@@ -46,18 +47,18 @@
   <script src="vendor/codemirror/matchbrackets.js"></script>
   <script src="vendor/codemirror/closebrackets.js"></script>
   <script src="vendor/codemirror/comment.js"></script>
-  <script src="editor.js?v=20260921-reminder"></script>
-  <script src="cloud.js?v=20260921-reminder"></script>
-  <script src="compact-layout.js?v=20260921-reminder"></script>
-  <script src="workspace-layout.js?v=20260921-reminder"></script>
-  <script src="exercise-study.js?v=20260921-reminder"></script>
-  <script src="practice-hints.js?v=20260921-reminder"></script>
+  <script src="editor.js?v=20260922-java"></script>
+  <script src="cloud.js?v=20260922-java"></script>
+  <script src="compact-layout.js?v=20260922-java"></script>
+  <script src="workspace-layout.js?v=20260922-java"></script>
+  <script src="exercise-study.js?v=20260922-java"></script>
+  <script src="practice-hints.js?v=20260922-java"></script>
   <script src="problem-catalog.js?v=20260920-front"></script>
-<script src="examples.js?v=20260921-reminder"></script>
-<script src="error-details.js?v=20260921-reminder"></script>
-<script src="ai-hint.js?v=20260921-reminder"></script>
-<script src="judge-reminder.js?v=20260921-reminder"></script>
-<script src="app.js?v=20260921-reminder"></script>
-<script src="browser-reset.js?v=20260921-reminder"></script>
+<script src="examples.js?v=20260922-java"></script>
+<script src="error-details.js?v=20260922-java"></script>
+<script src="ai-hint.js?v=20260922-java"></script>
+<script src="judge-reminder.js?v=20260922-java"></script>
+<script src="app.js?v=20260922-java"></script>
+<script src="browser-reset.js?v=20260922-java"></script>
 <script defer src="/js/site-analytics.js?v=20260919-1"></script>
 </body></html>

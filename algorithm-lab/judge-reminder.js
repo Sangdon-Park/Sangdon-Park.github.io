@@ -8,7 +8,7 @@ function needsJudgeReminder() {
 }
 function rememberJudgedAnswer(attempt) {
   if (attempt.mode !== 'judge') return;
-  const key = attempt.language === 'c' ? 'c:' + attempt.pid : attempt.pid;
+  const key = attempt.language === 'python' ? attempt.pid : attempt.language + ':' + attempt.pid;
   saved.judged = {...saved.judged, [key]:attempt.code};
   persist();
 }
@@ -35,4 +35,7 @@ document.getElementById('reminder-judge').onclick = () => {
   pendingPracticeMove = null;
   run('judge');
 };
-document.getElementById('judge-reminder').addEventListener('close', () => { pendingPracticeMove = null; });
+document.getElementById('judge-reminder').addEventListener('close', () => {
+  // A queued close event must not cancel a newer navigation dialog.
+  if (!document.getElementById('judge-reminder').open) pendingPracticeMove = null;
+});
