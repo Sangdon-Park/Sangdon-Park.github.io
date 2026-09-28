@@ -1,0 +1,68 @@
+{
+  "executed_at": "2026-09-06T06:28:18.613437+00:00",
+  "python": "3.12.14",
+  "passed": 12,
+  "total": 12,
+  "cases": [
+    {
+      "name": "test_duplicate_counted_once",
+      "passed": true,
+      "seconds": 0.018
+    },
+    {
+      "name": "test_late_event_keeps_latest",
+      "passed": true,
+      "seconds": 0.015
+    },
+    {
+      "name": "test_conflicting_reuse_rejected",
+      "passed": true,
+      "seconds": 0.014
+    },
+    {
+      "name": "test_failed_transaction_rolls_back_and_retries",
+      "passed": true,
+      "seconds": 0.016
+    },
+    {
+      "name": "test_reopen_preserves_idempotency",
+      "passed": true,
+      "seconds": 0.013
+    },
+    {
+      "name": "test_users_are_isolated",
+      "passed": true,
+      "seconds": 0.015
+    },
+    {
+      "name": "test_equal_times_have_deterministic_latest",
+      "passed": true,
+      "seconds": 0.014
+    },
+    {
+      "name": "test_concurrent_duplicate_submissions",
+      "passed": true,
+      "seconds": 0.157
+    },
+    {
+      "name": "test_api_validation",
+      "passed": true,
+      "seconds": 0.023
+    },
+    {
+      "name": "test_api_duplicate_and_conflict",
+      "passed": true,
+      "seconds": 0.018
+    },
+    {
+      "name": "test_feed_and_new_user_fallback",
+      "passed": true,
+      "seconds": 0.019
+    },
+    {
+      "name": "test_index_changes_plan_not_results",
+      "passed": true,
+      "seconds": 0.016
+    }
+  ]
+}

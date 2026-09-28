@@ -1,0 +1,15 @@
+{
+  "description": "수업용 모의 지원 포트폴리오와 함께 제공하는 실제 코드·설명. 백엔드·테스트·측정 코드의 검증 범위는 README와 evidence에 기록했습니다.",
+  "sha256": {
+    "app.py": "1f02194cd324b2a6df028460edc6ce57505090960bdb2520e0fe5757b2f0a05d",
+    "store.py": "d691f4c9640fd6b2ddb093cf91c7a6cbb9b5d69aec1a1ef9a03ec91c7072415a",
+    "test_app.py": "3f9f0ca0ce5146400601f78c490079ae14c9d5aa706c05711cd02969fa547df5",
+    "verify.py": "e6eda98244b9b25664920653a7fc9186c4da162f873da737abd7cf1d7dfa80a0",
+    "benchmark.py": "0ff9559b36d2efc425ca4ced84dcd6486b2d8ef24bd7fb0d14336828ce6edbc8",
+    "requirements.txt": "f8e9d67b82f4f08cb78e72f1720d675522c637bf5a2db959365f3297b03530e2",
+    "web/index.html": "5373552197cfbece0f9c69749e161fd10e7f446eca5656038f39aef4a58e5756",
+    "web/style.css": "fcaeb6eeb17b76f74c3a7c7eecf79eac1ab5f6973d23b4082401da4e21788cf9",
+    "web/app.js": "641a6b51b8a6b7c03032b4794d8e1557bf508aee09ec263aea89617336442331",
+    "README.md": "959fb7102bc9573e337bc222cbb0fc484d282cc65c1fd7572ffbfb9d2d57d46d"
+  }
+}

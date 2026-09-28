@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>교내 중고거래 · 클릭 전후 시연</title><link rel="stylesheet" href="/web/style.css"></head>
+<body><header><strong>교내 중고거래</strong><span>박상돈 · 컴퓨터공학과 수업 예제</span><nav><a href="/">게시글 목록</a><a href="/?view=evidence">검증 기록</a></nav></header>
+<main id="feed-view"><p class="eyebrow">동작을 확인하는 로컬 시연 · 게시글은 예시 데이터</p><h1>관심 있는 게시글을 선택해 보세요</h1><p class="intro">전공책을 선택하면, 서버가 클릭을 저장하고 책 게시글을 먼저 보내줍니다.</p>
+<div class="layout"><section><h2>게시글 목록 <small id="order">처음에는 최신순</small></h2><div id="posts"></div></section>
+<aside><h2>클릭하면 어떤 일이 생길까?</h2><div class="step"><b>1. 화면에서 한 행동</b><p id="action">아직 게시글을 선택하지 않았습니다.</p></div>
+<div class="step"><b>2. 서버가 저장한 기록</b><p id="saved">이 학생의 클릭 기록 0건</p></div>
+<div class="step"><b>3. 서버가 다시 보낸 목록</b><p id="returned">클릭 기록이 없어서 최신 게시글부터 보냅니다.</p></div>
+<details><summary>같은 요청이 다시 도착하면?</summary><p>인터넷 연결 문제로 같은 클릭 요청이 재전송되는 상황입니다.</p><button id="replay" disabled>방금 클릭한 요청을 다시 보내기</button><p id="replay-result"></p></details>
+<p class="scope">이번 구현: 클릭 저장 + 목록 순서 변경<br>로그인·판매글 작성·채팅은 아직 구현하지 않았습니다.</p></aside></div></main>
+<main id="evidence-view" hidden><p class="eyebrow">동봉한 실제 결과 파일</p><h1>테스트와 SQL 조회 실험</h1><p class="intro">HTTP 전체 응답 시간이 아닌 DB 조회 실험입니다.</p><div class="layout">
+<section><h2 id="test-summary"></h2><table><thead><tr><th>확인 항목</th><th>결과</th></tr></thead><tbody id="test-rows"></tbody></table></section>
+<section><h2>인덱스 전후 SQL 조회</h2><table><thead><tr><th>조건</th><th>p50</th><th>p95</th></tr></thead><tbody id="benchmark-rows"></tbody></table><pre id="plans"></pre><p id="meta"></p></section></div></main>
+<footer>실행 중인 서버: 내 컴퓨터 · 다른 사람이 인터넷으로 접속하는 배포 단계는 아직입니다.</footer><script src="/web/app.js"></script></body></html>

@@ -1,0 +1,14 @@
+{
+  "purpose": "Files included in the 2026-09-06 teaching example. Results are in evidence/.",
+  "sha256": {
+    "app.py": "1f02194cd324b2a6df028460edc6ce57505090960bdb2520e0fe5757b2f0a05d",
+    "store.py": "d691f4c9640fd6b2ddb093cf91c7a6cbb9b5d69aec1a1ef9a03ec91c7072415a",
+    "test_app.py": "3f9f0ca0ce5146400601f78c490079ae14c9d5aa706c05711cd02969fa547df5",
+    "verify.py": "e6eda98244b9b25664920653a7fc9186c4da162f873da737abd7cf1d7dfa80a0",
+    "benchmark.py": "0ff9559b36d2efc425ca4ced84dcd6486b2d8ef24bd7fb0d14336828ce6edbc8",
+    "requirements.txt": "f8e9d67b82f4f08cb78e72f1720d675522c637bf5a2db959365f3297b03530e2",
+    "web/index.html": "69e1a94b943ab4d6ff8564621fd7cde5c0e1c8161429c7f4336143e841d0ec50",
+    "web/style.css": "1cc12e9b9caf1ff752e2b5044190f938b7c401335ea00a9b0b2b50bb051df5f6",
+    "web/app.js": "b7156567f9e3094400d62f2d0419c1ea663474285b9c663ee0c993d6f028aede"
+  }
+}
