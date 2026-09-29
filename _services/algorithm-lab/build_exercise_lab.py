@@ -1,7 +1,8 @@
 """Build the PPTX exercise practice bank. No private exam selections are used.
 
-exercise-source.json contains the 50 coding questions checked against the PPTX.
+exercise-source.json contains the active coding questions checked against the PPTX.
 Tests combine every supplied example with boundary cases and independent oracles.
+Stable source IDs and saved random cases preserve existing progress and tests.
 """
 from pathlib import Path
 import ast
@@ -289,13 +290,13 @@ def ccase(p,t):
 def build():
     sources={re.search(r'def (\w+)',q['python'])[1]:q for q in SOURCE}
     out=[]
-    for i,q in enumerate(SOURCE,37):
+    for q in SOURCE:
         f=re.search(r'def (\w+)',q['python'])[1]
         params=[a.arg for a in ast.parse(q['python']).body[0].args.args]
         signature=re.search(r'(?:void|int|double|long long)\s+'+f+r'\s*\([^{}]+\)\s*\{',q['c'])[0][:-1].strip()
         return_type=signature.split(f)[0].strip()
         starter=signature+' {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n'+('' if return_type=='void' else '  return 0;\n')+'}\n'
-        p={'id':f'P{i:02}', 'chapter':q['chapter'],'exercise':q['number'], 'title':q['title'], 'section':f"연습문제 {q['number']}번", 'slides':str(q['slide']), 'level':'PPTX 작성형', 'function':f, 'params':params, 'statement':q['question']+'\n\n'+q['requirements'], 'hint':q['answer'], 'solution':q['python'], 'starter':f'def {f}('+', '.join(params)+'):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n', 'complexity':q['complexity'], 'sourceFile':q['file'],'sourceHash':q['sha256'], 'tests':copy.deepcopy(q['tests']), 'c':{'starter':starter,'solution':q['c'],'statement':q['question']+'\n\n'+q['requirements'],'hint':q['answer'],'result':q.get('contract','PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다.')}}
+        p={'id':q['id'], 'chapter':q['chapter'],'exercise':q['number'], 'title':q['title'], 'section':f"연습문제 {q['number']}번", 'slides':str(q['slide']), 'level':'PPTX 작성형', 'function':f, 'params':params, 'statement':q['question']+'\n\n'+q['requirements'], 'hint':q['answer'], 'solution':q['python'], 'starter':f'def {f}('+', '.join(params)+'):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n', 'complexity':q['complexity'], 'sourceFile':q['file'],'sourceHash':q['sha256'], 'tests':copy.deepcopy(q['tests']), 'c':{'starter':starter,'solution':q['c'],'statement':q['question']+'\n\n'+q['requirements'],'hint':q['answer'],'result':q.get('contract','PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다.')}}
         if q['chapter']==2:
             p['legacyHarnessId']=q['legacyHarnessId'];p['c']['result']=q['contract']
             p['c'].update(q['cOutput'])
@@ -303,7 +304,9 @@ def build():
             if f=='find_pairs': p['tests']=[t for t in p['tests'] if all(-100<=v<=100 for v in t['args'][0])]
         else:
             for a in EXTRA.get(f,[]): p['tests'].append({'args':a,'expected':oracle(f,a),'public':False})
-            if f in ('first_index','binary_search','lower_bound','count_equal','insertion_sort','quick_select','merge_sort','cross_inversions'):
+            if 'randomCases' in q:
+                p['tests'].extend(copy.deepcopy(q['randomCases']))
+            elif f in ('first_index','binary_search','lower_bound','count_equal','insertion_sort','quick_select','merge_sort','cross_inversions'):
                 for _ in range(6):
                     v=[RNG.randrange(-10,11) for _ in range(RNG.randrange(1,18))]
                     if f in ('binary_search','lower_bound','count_equal','cross_inversions'): v=sorted(set(v)) if f=='binary_search' else sorted(v)
@@ -337,7 +340,10 @@ def build():
         out.append(p)
     (ROOT/'algorithm-lab/exercise-problems.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     core=ROOT/'_services/algorithm-lab/supabase/functions/algorithm-lab/core.mjs'
-    text=core.read_text(encoding='utf-8'); totals=json.loads(re.search(r'export const TOTALS=(.*?);',text)[1]);totals.update({p['id']:len(p['tests']) for p in out})
+    text=core.read_text(encoding='utf-8')
+    # Rebuild the active contracts from catalogs; retired IDs remain in storage.
+    legacy=[p for name in ('problems.json','chapter-02.json') for p in json.loads((ROOT/'algorithm-lab'/name).read_text(encoding='utf-8'))]
+    totals={p['id']:len(p['tests']) for p in legacy+out}
     core.write_text(re.sub(r'export const TOTALS=.*?;', 'export const TOTALS='+json.dumps(totals,separators=(',',':'))+';',text,count=1),encoding='utf-8')
     print(f'Built {len(out)} PPTX exercises, {sum(len(p["tests"]) for p in out)} cases per language.')
 

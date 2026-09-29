@@ -65,18 +65,25 @@ The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and ch
 
 ### Chapters 2–6 PPTX coding practice
 
-`/algorithm-lab/?chapter=2` opens all 50 writing exercises in
+`/algorithm-lab/?chapter=2` opens the 47 active writing exercises in
 the existing dark workspace; the old `exercises.html` URL redirects here.
 Each chapter lists PPTX exercises first, followed immediately by existing
 lecture practice in one list; stored problem IDs remain unchanged. Coverage: chapter 2
-questions 61/65/69/71/74/78/79/80/88/99 and chapters 3–6 questions 91–100.
-They use P37–P86, preserving all existing IDs and progress. Each has the PPTX
+questions 61/65/69/71/74/78/79/80/88/99, chapter 3 questions
+91/92/95/97/98/99/100, and chapters 4–6 questions 91–100.
+They retain their original IDs within P37–P86 and existing progress. P49, P50,
+and P52 are retired because their algorithms are not covered in the lecture body.
+Each has the PPTX
 prompt, Python/C reference, public examples, additional tests and a written
 preparation panel. Written self-checks are separate from execution scores;
 students can append their notes as code comments for cloud storage/export.
+Chapters 1–3 require only the code and its time-complexity explanation; the
+preparation panel asks only for time complexity and retains older notes in storage.
 
 `exercise-source.json` was checked against the current PPTX question and code
-slides. The generator records file hashes in the public problem bank. Large
+slides. Stable source IDs and saved random test cases prevent removals from
+renumbering later exercises or changing their verified cases. The generator
+records file hashes in the public problem bank. Large
 integer outputs are transported as decimal strings to avoid JavaScript rounding,
 while students must still return integers. Mutation checks cover sorting,
 path compression, relaxation and memoization. Supplied helpers/tables are
@@ -91,11 +98,14 @@ node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
 
 Apply `exercise-lab-migration.sql` before deploying the updated Edge Function.
 This only extends accepted problem IDs; it does not remove student records.
-Storage retains 86 IDs. The visible catalog has 76 problems: 12 / 24 / 10 /
+Storage still allows the original 86 IDs. The visible catalog has 72 problems: 11 / 24 / 7 /
 10 / 10 / 10 by chapter. Ten duplicated chapter-two lecture problems redirect
 to their PPTX versions via `problem-catalog.js`. Legacy drafts remain stored and
 are copied only into an empty canonical draft; they must be checked against the
-current tests again. Answer downloads include archived duplicate drafts.
+current tests again. P04 (first-occurrence binary search) is also retired because
+the lecture teaches only ordinary binary search. Existing records are retained;
+new submissions are accepted only for active catalog IDs. Answer downloads
+include archived duplicate and retired drafts.
 
 From the repository root, using an already authenticated Supabase CLI:
 
@@ -173,12 +183,12 @@ Test: `node _services/algorithm-lab/tests/ai-hint.mjs`. This uses a mocked Gemin
 
 ## Java practice (2026-09-22)
 
-All 86 problem IDs have Java 8 method contracts, starters and examples. The Java
+All active problem IDs have Java 8 method contracts, starters and examples. The Java
 editor uses class Solution with static methods; LabSupport supplies the same
 helper algorithms and workspace data as the original exercises. ECJ 4.6.1 and
 CheerpJ 4.3 compile and execute locally in a terminable worker. Exact long results,
 array mutations, input preservation, floating tolerances and error line links
-are checked. Indexed-access complexity constraints (P02/P04) are pedagogical,
+are checked. Indexed-access complexity constraints (P02) are pedagogical,
 as with C; Java checks the results and time limit, not individual array reads.
 Java hints provide syntax, algorithm guidance and starters; complete reference
 solutions remain available for Python/C only.

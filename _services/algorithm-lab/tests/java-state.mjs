@@ -22,4 +22,4 @@ assert.equal(vm.runInContext('cloud.queue[0].body.language',ctx),'java');
 supported=true;vm.runInContext('cloud.catalogChecked=0',ctx);await vm.runInContext('flushCloud()',ctx);
 assert.deepEqual(sent,['python','c','java']);
 assert.equal(vm.runInContext('cloud.queue.length',ctx),0);
-console.log('Java accepted for all 86 backend contracts; staged Java uploads retain drafts without blocking Python/C and resume after upgrade.');
+console.log(`Java accepted for all ${Object.keys(TOTALS).length} active backend contracts; staged uploads retain drafts without blocking Python/C and resume after upgrade.`);

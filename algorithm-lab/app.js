@@ -107,7 +107,7 @@ function finish(report){
   cloudAttempt(job,report);
   if(report.error){setResult(report.errorSummary||report.error,'error');for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.rawError||'':'');return;}
   const success=report.passed===report.total;
-  if(problems[job.index].exercise){const note=document.createElement('p');note.className='notice';note.textContent=T('실행 결과 검사입니다. 알고리즘 사용 조건과 풀이·경계·복잡도 설명은 아래 작성란과 풀이 예시로 별도 점검하세요.');$('case-results').append(note);}
+  if(problems[job.index].exercise){const note=document.createElement('p');note.className='notice';note.textContent=T(problems[job.index].chapter<=3?'실행 결과 검사입니다. 자기 코드의 시간 복잡도 설명은 아래 작성란에서 점검하세요.':'실행 결과 검사입니다. 알고리즘 사용 조건과 풀이·경계·복잡도 설명은 아래 작성란과 풀이 예시로 별도 점검하세요.');$('case-results').append(note);}
   for(const r of report.rows){const row=document.createElement('p');row.textContent=`${r.ok?'✓':'✗'} ${r.public?T('공개 예시'):T('추가 검사')} ${r.number}${r.ok?T(' 통과'):T('\n입력: ')+r.input+'\n'+messageText(r.message)}`;$('case-results').append(row);if(r.diagnostic)showDiagnostic(r.diagnostic,job.code);}
   for(const [i,detail] of (report.diagnostics||[]).entries())showDiagnostic(detail,job.code,i===0?report.compilerLog||'':'');
   if(job.mode==='sample'){setResult(`${T("예시 ")}${report.passed}/${report.total}${T(" 통과. 전체 검사는 채점하기로 확인하세요.")}`,success?'success':'error');return;}
@@ -130,6 +130,7 @@ $('student').value=saved.student;$('student').oninput=()=>{saved.student=$('stud
 $('download').onclick=()=>{
   const rows=chapterProblems().map(p=>({id:p.id,title:p.title,chapter,language,study:p.exercise?studyEntry(p):undefined,code:saved.answers[answerKey(p.id)]??starter(p),solved:!!(saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)]),result:saved.passed[answerKey(p.id)]?{passed:saved.passed[answerKey(p.id)].passed,total:saved.passed[answerKey(p.id)].total,at:saved.passed[answerKey(p.id)].at}:null}));
   const archivedAnswers=Object.entries(LAB_DUPLICATES).filter(([oldId,newId])=>problems.find(p=>p.id===newId)?.chapter===chapter&&saved.answers[answerKey(oldId)]!==undefined).map(([id,canonicalId])=>({id,canonicalId,language,code:saved.answers[answerKey(id)],result:saved.passed[answerKey(id)]||null}));
+  for(const [id,oldChapter] of Object.entries(LAB_RETIRED))if(oldChapter===chapter&&saved.answers[answerKey(id)]!==undefined)archivedAnswers.push({id,retired:true,language,study:studyEntry({id}),code:saved.answers[answerKey(id)],result:saved.passed[answerKey(id)]||null});
   const output={archivedAnswers,language,chapter,course:UI_EN?`Algorithms Chapter ${chapter}`:(T("알고리즘 ")+(chapter)+T("장 코딩 실습")),student:saved.student,exportedAt:new Date().toISOString(),solved:rows.filter(r=>r.solved).length,total:rows.length,answers:rows};
   const url=URL.createObjectURL(new Blob([JSON.stringify(output,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${T("알고리즘_")}ch${chapter}_${language}_${(saved.student||T('이름미입력')).replace(/[^가-힣a-zA-Z0-9_-]/g,'_')}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
@@ -150,7 +151,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20260921-contracts'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20260929-lecture-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20260929-lecture-scope'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};

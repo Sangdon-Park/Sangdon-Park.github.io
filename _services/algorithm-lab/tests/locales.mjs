@@ -39,7 +39,7 @@ for(const locale of ['ko','en','es-ES','es-419']){
   }else assert.equal(p.statement,original.statement);
  }
 }
-console.log('All 86 problems: Korean/English/Spanish fields, Python/C examples, hints, immutable source code and test inputs verified.');
+console.log(`All ${bank.length} catalog records: Korean/English/Spanish fields, Python/C examples, hints, immutable source code and test inputs verified.`);
 
 assert.equal(vm.runInContext('UI_LOCALE',fixture('es')),'es-419');
 for(const locale of ['es-ES','es-419']){

@@ -5,3 +5,5 @@ const LAB_DUPLICATES=Object.freeze({
   P23:'P43', P24:'P44', P26:'P45', P30:'P39', P34:'P46'
 });
 const canonicalProblemId=id=>LAB_DUPLICATES[id]||id;
+// Not covered by the lecture body. Preserve saved work under its original ID.
+const LAB_RETIRED=Object.freeze({P04:1,P49:3,P50:3,P52:3});

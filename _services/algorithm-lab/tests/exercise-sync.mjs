@@ -9,6 +9,13 @@ for(const p of bank){
   assert.ok(submission({id:'c0953417-749e-42c1-b7e9-1162b6fcf21b',problem:p.id,language:'python',code:p.solution,report:{passed:p.tests.length,total:p.tests.length}}).solved);
 }
 assert.throws(()=>draft({problem:'P87',language:'c',code:''}));
+for(const id of ['P04','P49','P50','P52']){
+  assert.equal(TOTALS[id],undefined);
+  assert.ok(!bank.some(p=>p.id===id));
+  assert.throws(()=>draft({problem:id,language:'python',code:'saved legacy answer'}));
+}
+assert.equal(bank.find(p=>p.id==='P53').function,'insertion_sort');
+assert.equal(bank.find(p=>p.id==='P86').function,'grid_cost');
 const store=new Map(),sent=[],status={textContent:'',classList:{toggle(){}}};
 let upgraded=false;
 const ctx=vm.createContext({Date,Set,JSON,console,AbortSignal,T:x=>x,
@@ -30,4 +37,4 @@ upgraded=true;vm.runInContext('cloud.catalogChecked=0',ctx);
 await vm.runInContext('flushCloud()',ctx);
 assert.deepEqual(sent,['P01','P77']);
 assert.equal(vm.runInContext('cloud.queue.length',ctx),0);
-console.log('50 exercise backend contracts passed; staged rollout retains new drafts, saves old drafts and resumes sync.');
+console.log(`${bank.length} exercise backend contracts passed; retired IDs rejected, retained IDs stable, staged rollout preserves drafts.`);

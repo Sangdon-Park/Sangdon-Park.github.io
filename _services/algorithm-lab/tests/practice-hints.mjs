@@ -22,4 +22,4 @@ const lock=bank.find(p=>p.id==='P37');
 assert.ok(context.hints(lock,'python').tools.some(s=>s.startsWith('range(')));
 assert.ok(context.hints(lock,'c').tools.some(s=>s.startsWith('strcmp(')));
 assert.ok(!context.hints(lock,'c').tools.some(s=>s.startsWith('range(')));
-console.log('74 problem references in both languages: hints, blank restoration, and language-specific tools passed.');
+console.log(`${bank.length} problem references in both languages: hints, blank restoration, and language-specific tools passed.`);
