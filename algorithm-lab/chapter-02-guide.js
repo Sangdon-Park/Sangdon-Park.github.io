@@ -34,7 +34,7 @@
         const hint = document.createElement('p'); hint.textContent = view.hint;
         const links = document.createElement('div'); links.className = 'links';
         const practice = document.createElement('a'); practice.textContent = en ? 'Practice this problem' : T('이 문제 연습하기');
-        practice.href = `/algorithm-lab/?chapter=2&problem=${p.id}&code=${$('guide-code').value}&lang=${UI_LOCALE}`;
+        practice.href = `/algorithm-lab/?chapter=2&problem=${p.exercise||p.id}&code=${$('guide-code').value}&lang=${UI_LOCALE}`;
         const download = document.createElement('a'); download.textContent = en ? 'Download complete .c' : T('main 포함 .c 내려받기');
         download.href = (T("/data/알고리즘/chapter-02-c/")+(p.function)+T(".c")); download.download = p.function + '.c';
         links.append(practice, download); details.append(summary, ref, description, pre, hint, links); $('guide-problems').append(details);

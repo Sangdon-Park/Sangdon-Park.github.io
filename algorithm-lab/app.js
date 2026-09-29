@@ -37,7 +37,7 @@ function renderNav(){
   for(const p of chapterProblems()){
     const i=problems.indexOf(p), b=document.createElement('button');
     const ok=saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)];
-    const badge=document.createElement('span');badge.className='problem-id';badge.textContent=p.exercise?String(p.exercise):p.id;const name=document.createElement('span');name.textContent=p.title;b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
+    const badge=document.createElement('span');badge.className='problem-id';badge.textContent=displayedProblemId(p);const name=document.createElement('span');name.textContent=p.title;b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
     b.onclick=()=>{if(!busy)moveToProblem(i);};$('problems').append(b);
   }
   const active=chapterProblems();
@@ -63,8 +63,8 @@ function show(i){
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
   $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
-  const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',p.id);url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
-  $('title').textContent=p.title;$('meta').textContent=`${p.id} · ${p.section} · ${p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
+  const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',displayedProblemId(p));url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
+  $('title').textContent=p.title;$('meta').textContent=`${p.exercise?p.section:p.id+' · '+p.section} · ${p.exercise?'PPTX':p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
   const view=language==='java'?javaView(p):language==='c'?C_PROBLEMS[p.id]:p;
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='java'?'text/x-java':language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=language==='java'?'Solution.java':p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='java'?'Java 8':language==='c'?'C / C11':'Python 3';
@@ -151,7 +151,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20260929-lecture-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20260929-lecture-scope'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20260929-complete-v2','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20260929-complete-v2'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
@@ -167,7 +167,7 @@ Promise.all(['problems.json?v=20260929-lecture-scope','chapter-02.json?v=2026092
   editor.setOption('readOnly',true);await cloudInit();
   if(['c','python','java'].includes(entryParams.get('code'))){language=entryParams.get('code');saved.language=language;$('language').value=language;}
   const requestedChapter=Number(entryParams.get('chapter'));
-  const requestedIndex=problems.findIndex(p=>p.id===entryParams.get('problem')&&(![1,2,3,4,5,6].includes(requestedChapter)||(p.chapter||1)===requestedChapter));
+  const requestedIndex=findLinkedProblem(problems,entryParams.get('problem'),requestedChapter);
   if(requestedIndex>=0)index=requestedIndex;
   else if([1,2,3,4,5,6].includes(requestedChapter))index=firstInChapter(requestedChapter);
   if(index<0)index=0;

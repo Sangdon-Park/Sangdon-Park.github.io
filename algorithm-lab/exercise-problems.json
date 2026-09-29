@@ -11,13 +11,13 @@
     "params": [
       "secret"
     ],
-    "statement": "네 자리 숫자 문자열 secret을 0000부터 순서대로 찾는 함수를 작성하시오. 네 중첩 반복문을 사용하고, 찾을 때까지 시도한 횟수를 반환하시오. 0000도 첫 시도이며 앞자리 0을 보존한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 숫자 0~9로 된 정확히 네 자리 문자열 secret. 앞자리 0도 가능하다.\n할 일: 0000, 0001, …, 9999 순서로 네 겹 반복문을 돌려 secret을 찾는다.\n반환할 것: secret을 찾을 때까지의 시도 횟수. 0000이 첫 번째 시도이다.\n\nPython과 C 모두 시도 횟수를 반환한다.\n예: \"0000\"이면 1, \"0001\"이면 2이다.\n자릿수가 네 자리로 고정된 점을 반영해 시간 복잡도를 주석으로 쓰시오.",
     "hint": "a,b,c,d를 각각 0~9로 순회한다.\n후보마다 횟수를 1 증가시키고 네 자리 모두를 비교한다.\n일치하면 즉시 횟수를 반환한다.",
     "solution": "def lock_attempts(secret):\n    count = 0\n    for a in range(10):\n        for b in range(10):\n            for c in range(10):\n                for d in range(10):\n                    count += 1\n                    if f\"{a}{b}{c}{d}\" == secret:\n                        return count",
     "starter": "def lock_attempts(secret):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "고정 네 자리: 최악 10,000개 후보.",
+    "complexity": "시간 복잡도: 자릿수 4가 고정이므로 최대 10,000번 검사, O(1).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -65,9 +65,9 @@
     "c": {
       "starter": "int lock_attempts(const char secret[]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int lock_attempts(const char secret[]) {\n  int count = 0;\n  for (int a = 0; a < 10; a++)\n    for (int b = 0; b < 10; b++)\n      for (int c = 0; c < 10; c++)\n        for (int d = 0; d < 10; d++) {\n          char attempt[5] = {'0'+a, '0'+b, '0'+c, '0'+d, '\\0'};\n          count++;\n          if (strcmp(attempt, secret) == 0) return count;\n        }\n  return 0;\n}",
-      "statement": "네 자리 숫자 문자열 secret을 0000부터 순서대로 찾는 함수를 작성하시오. 네 중첩 반복문을 사용하고, 찾을 때까지 시도한 횟수를 반환하시오. 0000도 첫 시도이며 앞자리 0을 보존한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 숫자 0~9로 된 정확히 네 자리 문자열 secret. 앞자리 0도 가능하다.\n할 일: 0000, 0001, …, 9999 순서로 네 겹 반복문을 돌려 secret을 찾는다.\n반환할 것: secret을 찾을 때까지의 시도 횟수. 0000이 첫 번째 시도이다.\n\nPython과 C 모두 시도 횟수를 반환한다.\n예: \"0000\"이면 1, \"0001\"이면 2이다.\n자릿수가 네 자리로 고정된 점을 반영해 시간 복잡도를 주석으로 쓰시오.",
       "hint": "a,b,c,d를 각각 0~9로 순회한다.\n후보마다 횟수를 1 증가시키고 네 자리 모두를 비교한다.\n일치하면 즉시 횟수를 반환한다.",
-      "result": "return = 시도 횟수",
+      "result": "Python: lock_attempts(secret)\nC: int lock_attempts(const char secret[])",
       "output": "scalar",
       "capacity": 0,
       "width": 0
@@ -79,8 +79,8 @@
     "study": {
       "method": "a,b,c,d를 각각 0~9로 순회한다.\n후보마다 횟수를 1 증가시키고 네 자리 모두를 비교한다.\n일치하면 즉시 횟수를 반환한다.",
       "boundary": "0000은 1회, 9999는 10,000회입니다. 네 중첩 반복문을 사용합니다.",
-      "complexity": "고정 네 자리: 최악 10,000개 후보.",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "complexity": "시간 복잡도: 자릿수 4가 고정이므로 최대 10,000번 검사, O(1).",
+      "requirements": "Python과 C 모두 시도 횟수를 반환한다.\n예: \"0000\"이면 1, \"0001\"이면 2이다.\n자릿수가 네 자리로 고정된 점을 반영해 시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 121
   },
@@ -97,13 +97,13 @@
       "A",
       "target"
     ],
-    "statement": "정수 배열 A의 길이를 n이라 한다(0≤n≤30). 인덱스는 0부터 시작한다. i<j이고 A[i]+A[j]=target인 값 쌍 [A[i],A[j]]를 i 우선, 같은 i에서는 j 증가 순으로 반환하시오. 같은 값도 위치가 다르면 별개이며 결과가 없으면 빈 목록이다. 원소와 target은 −100~100이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 정수 배열 A(길이 n, 0≤n≤30)와 target. 원소와 target은 −100~100이다.\n반환할 것: 0≤i<j<n이고 A[i]+A[j]=target인 값 쌍 [A[i],A[j]] 전부.\ni를 작은 순서로, 같은 i에서는 j를 작은 순서로 검사해 담는다. 같은 값도 위치가 다르면 별개의 선택이다.\n\nPython: 값 쌍들의 목록, 없으면 [].\nC: 준비된 out의 각 행에 쌍을 쓰고 행 수를 반환한다. 최대 435행이 준비되어 있다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "i를 고르고 j를 i+1부터 순회한다.\n합을 검사한 후에만 쌍을 저장한다.\n같은 원소를 두 번 고르거나 순서를 뒤집어 중복 저장하지 않는다.",
     "solution": "def find_pairs(A, target):\n    result = []\n    for i in range(len(A)):\n        for j in range(i + 1, len(A)):\n            if A[i] + A[j] == target:\n                result.append([A[i], A[j]])\n    return result",
     "starter": "def find_pairs(A, target):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -1988,9 +1988,9 @@
     "c": {
       "starter": "int find_pairs(const int A[], int n, int target, int out[][2]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int find_pairs(const int A[], int n, int target, int out[][2]) {\n  int count = 0;\n  for (int i = 0; i < n; i++)\n    for (int j = i + 1; j < n; j++)\n      if (A[i] + A[j] == target) {\n        out[count][0] = A[i]; out[count++][1] = A[j];\n      }\n  return count;\n}",
-      "statement": "정수 배열 A의 길이를 n이라 한다(0≤n≤30). 인덱스는 0부터 시작한다. i<j이고 A[i]+A[j]=target인 값 쌍 [A[i],A[j]]를 i 우선, 같은 i에서는 j 증가 순으로 반환하시오. 같은 값도 위치가 다르면 별개이며 결과가 없으면 빈 목록이다. 원소와 target은 −100~100이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 정수 배열 A(길이 n, 0≤n≤30)와 target. 원소와 target은 −100~100이다.\n반환할 것: 0≤i<j<n이고 A[i]+A[j]=target인 값 쌍 [A[i],A[j]] 전부.\ni를 작은 순서로, 같은 i에서는 j를 작은 순서로 검사해 담는다. 같은 값도 위치가 다르면 별개의 선택이다.\n\nPython: 값 쌍들의 목록, 없으면 [].\nC: 준비된 out의 각 행에 쌍을 쓰고 행 수를 반환한다. 최대 435행이 준비되어 있다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "i를 고르고 j를 i+1부터 순회한다.\n합을 검사한 후에만 쌍을 저장한다.\n같은 원소를 두 번 고르거나 순서를 뒤집어 중복 저장하지 않는다.",
-      "result": "Python: 값 쌍 목록 반환. C: out[][2]에 저장하고 행 수 반환(최대 435행).",
+      "result": "Python: find_pairs(A, target)\nC: int find_pairs(const int A[], int n, int target, int out[][2])",
       "output": "rows",
       "capacity": 435,
       "width": 2
@@ -2003,7 +2003,7 @@
       "method": "i를 고르고 j를 i+1부터 순회한다.\n합을 검사한 후에만 쌍을 저장한다.\n같은 원소를 두 번 고르거나 순서를 뒤집어 중복 저장하지 않는다.",
       "boundary": "빈 배열·원소 1개는 빈 목록입니다. i<j 순서와 같은 값의 서로 다른 인덱스를 구분합니다.",
       "complexity": "시간 O(n²).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: 값 쌍들의 목록, 없으면 [].\nC: 준비된 out의 각 행에 쌍을 쓰고 행 수를 반환한다. 최대 435행이 준비되어 있다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 130
   },
@@ -2020,13 +2020,13 @@
       "A",
       "target"
     ],
-    "statement": "길이 n(0≤n≤100)의 카드 값 배열 A에서 서로 다른 인덱스의 카드 3장을 고른다. 같은 값의 카드도 허용한다. 합이 target 이하인 최대 합을 반환하고, 가능한 조합이 없으면 0을 반환하시오. 각 값은 1~1,000이고 0≤target≤3,000이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 카드 값 배열 A(길이 n, 0≤n≤100)와 target. 카드 값은 1~1,000, target은 0~3,000이다.\n할 일: 서로 다른 위치의 카드 세 장을 고른다. 값이 같은 카드도 고를 수 있다.\n반환할 것: target 이하인 세 장의 합 중 가장 큰 값. 가능한 선택이 없으면 0이다.\n\nPython과 C 모두 최대 합을 정수로 반환한다.\n같은 위치의 카드를 두 번 고르면 안 된다.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "i<j<k인 후보를 만든다.\n합이 target 이하인지 먼저 검사한다.\n조건을 통과한 후보로만 best를 갱신한다.",
     "solution": "def blackjack(A, target):\n    best = 0\n    for i in range(len(A)):\n        for j in range(i + 1, len(A)):\n            for k in range(j + 1, len(A)):\n                total = A[i] + A[j] + A[k]\n                if total <= target and total > best:\n                    best = total\n    return best",
     "starter": "def blackjack(A, target):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n³).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -2212,9 +2212,9 @@
     "c": {
       "starter": "int blackjack(const int A[], int n, int target) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int blackjack(const int A[], int n, int target) {\n  int best=0;\n  for(int i=0;i<n;i++) for(int j=i+1;j<n;j++) for(int k=j+1;k<n;k++) {\n    int total=A[i]+A[j]+A[k];\n    if(total<=target && total>best) best=total;\n  }\n  return best;\n}",
-      "statement": "길이 n(0≤n≤100)의 카드 값 배열 A에서 서로 다른 인덱스의 카드 3장을 고른다. 같은 값의 카드도 허용한다. 합이 target 이하인 최대 합을 반환하고, 가능한 조합이 없으면 0을 반환하시오. 각 값은 1~1,000이고 0≤target≤3,000이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 카드 값 배열 A(길이 n, 0≤n≤100)와 target. 카드 값은 1~1,000, target은 0~3,000이다.\n할 일: 서로 다른 위치의 카드 세 장을 고른다. 값이 같은 카드도 고를 수 있다.\n반환할 것: target 이하인 세 장의 합 중 가장 큰 값. 가능한 선택이 없으면 0이다.\n\nPython과 C 모두 최대 합을 정수로 반환한다.\n같은 위치의 카드를 두 번 고르면 안 된다.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "i<j<k인 후보를 만든다.\n합이 target 이하인지 먼저 검사한다.\n조건을 통과한 후보로만 best를 갱신한다.",
-      "result": "return = 최대 합 또는 0",
+      "result": "Python: blackjack(A, target)\nC: int blackjack(const int A[], int n, int target)",
       "output": "scalar",
       "capacity": 0,
       "width": 0
@@ -2227,7 +2227,7 @@
       "method": "i<j<k인 후보를 만든다.\n합이 target 이하인지 먼저 검사한다.\n조건을 통과한 후보로만 best를 갱신한다.",
       "boundary": "세 장 미만이거나 가능한 합이 없으면 0입니다.",
       "complexity": "시간 O(n³).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python과 C 모두 최대 합을 정수로 반환한다.\n같은 위치의 카드를 두 번 고르면 안 된다.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 139
   },
@@ -2244,13 +2244,13 @@
       "A",
       "r"
     ],
-    "statement": "서로 다른 정수 n개인 배열 A에서 중복 선택 없이 r개를 고르는 모든 순열을 생성하시오(0≤r≤n≤6). 각 단계에서 입력 인덱스 0~n−1 순으로 깊이 우선 탐색한다. r=0이면 빈 순열 하나다. 순열 생성 라이브러리는 쓰지 않는다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n)와 선택 개수 r. 0≤r≤n≤6이다.\n반환할 것: 같은 원소를 두 번 쓰지 않고 r개를 순서 있게 나열한 모든 결과.\n첫 칸을 A의 앞에서부터 고르고, 다음 칸도 아직 안 쓴 원소를 앞에서부터 고른다. r=0이면 빈 결과 하나이다. 순열 라이브러리는 쓰지 않는다.\n\nPython: 결과 목록, r=0이면 [[]].\nC: out에 한 결과씩 r칸을 쓰고 행 수 반환. 720행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "현재 경로와 사용 여부 배열을 유지한다.\n사용하지 않은 원소를 선택해 재귀 호출한다.\n길이가 r이면 기록하고, 돌아오면 선택을 취소한다.",
     "solution": "def make_permutations(A, r):\n    result, path = [], []\n    used = [False] * len(A)\n    def dfs():\n        if len(path) == r:\n            result.append(path.copy())\n            return\n        for i in range(len(A)):\n            if not used[i]:\n                used[i] = True\n                path.append(A[i])\n                dfs()\n                path.pop()\n                used[i] = False\n    dfs()\n    return result",
     "starter": "def make_permutations(A, r):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 상한 O(n·n!), 결과 수 nPr. 각 결과를 기록할 때 r개 원소를 복사한다.",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -8175,9 +8175,9 @@
     "c": {
       "starter": "int make_permutations(const int A[], int n, int r, int out[][6]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "static void perm_visit(const int A[], int n, int r, int depth, int used[], int path[],\n    int out[][6], int *count) {\n  if (depth==r) {\n    for(int j=0;j<r;j++) out[*count][j]=path[j];\n    (*count)++; return;\n  }\n  for (int i=0; i<n; i++) {\n    if (used[i]) continue;\n    used[i]=1; path[depth]=A[i];\n    perm_visit(A,n,r,depth+1,used,path,out,count);\n    used[i]=0;\n  }\n}\nint make_permutations(const int A[], int n, int r, int out[][6]) {\n  int path[6]={0}, count=0;\n  int used[6]={0}; perm_visit(A,n,r,0,used,path,out,&count);\n  return count;\n}",
-      "statement": "서로 다른 정수 n개인 배열 A에서 중복 선택 없이 r개를 고르는 모든 순열을 생성하시오(0≤r≤n≤6). 각 단계에서 입력 인덱스 0~n−1 순으로 깊이 우선 탐색한다. r=0이면 빈 순열 하나다. 순열 생성 라이브러리는 쓰지 않는다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n)와 선택 개수 r. 0≤r≤n≤6이다.\n반환할 것: 같은 원소를 두 번 쓰지 않고 r개를 순서 있게 나열한 모든 결과.\n첫 칸을 A의 앞에서부터 고르고, 다음 칸도 아직 안 쓴 원소를 앞에서부터 고른다. r=0이면 빈 결과 하나이다. 순열 라이브러리는 쓰지 않는다.\n\nPython: 결과 목록, r=0이면 [[]].\nC: out에 한 결과씩 r칸을 쓰고 행 수 반환. 720행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "현재 경로와 사용 여부 배열을 유지한다.\n사용하지 않은 원소를 선택해 재귀 호출한다.\n길이가 r이면 기록하고, 돌아오면 선택을 취소한다.",
-      "result": "Python: 순열 목록. C: out[][6]의 각 행 앞 r칸에 기록, 행 수 반환(최대 720).",
+      "result": "Python: make_permutations(A, r)\nC: int make_permutations(const int A[], int n, int r, int out[][6])",
       "output": "rows",
       "capacity": 720,
       "width": 6
@@ -8190,7 +8190,7 @@
       "method": "현재 경로와 사용 여부 배열을 유지한다.\n사용하지 않은 원소를 선택해 재귀 호출한다.\n길이가 r이면 기록하고, 돌아오면 선택을 취소한다.",
       "boundary": "r=0이면 빈 순열 하나입니다. 같은 원소를 중복 사용하지 않고 입력 인덱스 순으로 탐색합니다.",
       "complexity": "시간 상한 O(n·n!), 결과 수 nPr. 각 결과를 기록할 때 r개 원소를 복사한다.",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: 결과 목록, r=0이면 [[]].\nC: out에 한 결과씩 r칸을 쓰고 행 수 반환. 720행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 144
   },
@@ -8207,13 +8207,13 @@
       "A",
       "r"
     ],
-    "statement": "서로 다른 정수 n개인 배열 A에서 r개를 고르는 모든 조합을 생성하시오(0≤r≤n≤6). 각 조합의 인덱스는 증가하며 결과 목록도 인덱스의 사전순이다. r=0이면 빈 조합 하나다. 조합 생성 라이브러리는 쓰지 않는다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n)와 선택 개수 r. 0≤r≤n≤6이다.\n반환할 것: r개를 고른 모든 조합. 먼저 고른 원소의 오른쪽에서만 다음 원소를 고르며, 매번 A의 앞쪽부터 시도한다.\n입력 순서를 유지하고 같은 조합을 다시 담지 않는다. r=0이면 빈 조합 하나이다. 조합 라이브러리는 쓰지 않는다.\n\nPython: 조합 목록, r=0이면 [[]].\nC: out에 한 조합씩 r칸을 쓰고 행 수 반환. 20행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "현재 경로와 다음 선택의 시작 인덱스를 유지한다.\ni를 선택한 뒤에는 i+1부터 고르게 재귀 호출한다.\n경로 길이가 r이면 결과를 기록한다.",
     "solution": "def make_combinations(A, r):\n    result, path = [], []\n    def dfs(start):\n        if len(path) == r:\n            result.append(path.copy())\n            return\n        for i in range(start, len(A)):\n            path.append(A[i])\n            dfs(i + 1)\n            path.pop()\n    dfs(0)\n    return result",
     "starter": "def make_combinations(A, r):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 상한 O(n·2ⁿ), 결과 수 nCr. 미완성 경로의 탐색과 결과 복사도 포함한다.",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -8349,9 +8349,9 @@
     "c": {
       "starter": "int make_combinations(const int A[], int n, int r, int out[][6]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "static void comb_visit(const int A[], int n, int r, int depth, int start, int path[],\n    int out[][6], int *count) {\n  if (depth==r) {\n    for(int j=0;j<r;j++) out[*count][j]=path[j];\n    (*count)++; return;\n  }\n  for (int i=start; i<n; i++) {\n    path[depth]=A[i];\n    comb_visit(A,n,r,depth+1,i+1,path,out,count);\n  }\n}\nint make_combinations(const int A[], int n, int r, int out[][6]) {\n  int path[6]={0}, count=0;\n  comb_visit(A,n,r,0,0,path,out,&count);\n  return count;\n}",
-      "statement": "서로 다른 정수 n개인 배열 A에서 r개를 고르는 모든 조합을 생성하시오(0≤r≤n≤6). 각 조합의 인덱스는 증가하며 결과 목록도 인덱스의 사전순이다. r=0이면 빈 조합 하나다. 조합 생성 라이브러리는 쓰지 않는다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n)와 선택 개수 r. 0≤r≤n≤6이다.\n반환할 것: r개를 고른 모든 조합. 먼저 고른 원소의 오른쪽에서만 다음 원소를 고르며, 매번 A의 앞쪽부터 시도한다.\n입력 순서를 유지하고 같은 조합을 다시 담지 않는다. r=0이면 빈 조합 하나이다. 조합 라이브러리는 쓰지 않는다.\n\nPython: 조합 목록, r=0이면 [[]].\nC: out에 한 조합씩 r칸을 쓰고 행 수 반환. 20행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "현재 경로와 다음 선택의 시작 인덱스를 유지한다.\ni를 선택한 뒤에는 i+1부터 고르게 재귀 호출한다.\n경로 길이가 r이면 결과를 기록한다.",
-      "result": "Python: 조합 목록. C: out[][6]의 각 행 앞 r칸에 기록, 행 수 반환(최대 20).",
+      "result": "Python: make_combinations(A, r)\nC: int make_combinations(const int A[], int n, int r, int out[][6])",
       "output": "rows",
       "capacity": 720,
       "width": 6
@@ -8364,7 +8364,7 @@
       "method": "현재 경로와 다음 선택의 시작 인덱스를 유지한다.\ni를 선택한 뒤에는 i+1부터 고르게 재귀 호출한다.\n경로 길이가 r이면 결과를 기록한다.",
       "boundary": "r=0이면 빈 조합 하나입니다. 인덱스가 증가하도록 선택합니다.",
       "complexity": "시간 상한 O(n·2ⁿ), 결과 수 nCr. 미완성 경로의 탐색과 결과 복사도 포함한다.",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: 조합 목록, r=0이면 [[]].\nC: out에 한 조합씩 r칸을 쓰고 행 수 반환. 20행이 준비되어 있다. r=0이면 1 반환.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 151
   },
@@ -8381,13 +8381,13 @@
       "text",
       "pattern"
     ],
-    "statement": "텍스트 text(길이 n, 0≤n≤50)에서 패턴 pattern(길이 m, 1≤m≤10)의 모든 시작 인덱스를 무차별 매칭으로 구하시오. 영문 대소문자를 구별한다. 인덱스는 0부터 세고 증가 순서로 반환한다. 겹치는 일치도 포함하며 일치가 없으면 빈 목록이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 영문 문자열 text(길이 n, 0≤n≤50)와 pattern(길이 m, 1≤m≤10). 대소문자를 구별한다.\n할 일: 시작 위치를 한 칸씩 옮기며 pattern과 글자별로 비교한다.\n반환할 것: 일치하는 모든 시작 위치를 작은 순서로 담은 목록. 위치는 0부터 세고 겹치는 일치도 포함한다. 없으면 빈 목록이다.\n\nPython: 시작 위치 목록을 반환한다.\nC: 준비된 out(50칸)에 위치를 쓰고 개수를 반환한다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "시작 위치 i를 0부터 n−m까지 검사한다.\n각 위치에서 패턴 문자를 하나씩 비교한다.\nm개가 모두 맞으면 i를 저장한다.",
     "solution": "def bf_string_match(text, pattern):\n    result = []\n    for i in range(len(text) - len(pattern) + 1):\n        j = 0\n        while j < len(pattern) and text[i+j] == pattern[j]:\n            j += 1\n        if j == len(pattern):\n            result.append(i)\n    return result",
     "starter": "def bf_string_match(text, pattern):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "n≥m: 최악 O((n−m+1)m). n<m: Python O(1), C는 strlen 때문에 O(n+m).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -8472,9 +8472,9 @@
     "c": {
       "starter": "int bf_string_match(const char text[], const char pattern[], int out[]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int bf_string_match(const char text[], const char pattern[], int out[]) {\n  int n=(int)strlen(text), m=(int)strlen(pattern), count=0;\n  for(int i=0;i<=n-m;i++) {\n    int j=0;\n    while(j<m && text[i+j]==pattern[j]) j++;\n    if(j==m) out[count++]=i;\n  }\n  return count;\n}",
-      "statement": "텍스트 text(길이 n, 0≤n≤50)에서 패턴 pattern(길이 m, 1≤m≤10)의 모든 시작 인덱스를 무차별 매칭으로 구하시오. 영문 대소문자를 구별한다. 인덱스는 0부터 세고 증가 순서로 반환한다. 겹치는 일치도 포함하며 일치가 없으면 빈 목록이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 영문 문자열 text(길이 n, 0≤n≤50)와 pattern(길이 m, 1≤m≤10). 대소문자를 구별한다.\n할 일: 시작 위치를 한 칸씩 옮기며 pattern과 글자별로 비교한다.\n반환할 것: 일치하는 모든 시작 위치를 작은 순서로 담은 목록. 위치는 0부터 세고 겹치는 일치도 포함한다. 없으면 빈 목록이다.\n\nPython: 시작 위치 목록을 반환한다.\nC: 준비된 out(50칸)에 위치를 쓰고 개수를 반환한다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "시작 위치 i를 0부터 n−m까지 검사한다.\n각 위치에서 패턴 문자를 하나씩 비교한다.\nm개가 모두 맞으면 i를 저장한다.",
-      "result": "Python: 인덱스 목록. C: out[]에 저장하고 개수 반환(호출자가 50칸 이상 준비).",
+      "result": "Python: bf_string_match(text, pattern)\nC: int bf_string_match(const char text[], const char pattern[], int out[])",
       "output": "list",
       "capacity": 201,
       "width": 0
@@ -8487,7 +8487,7 @@
       "method": "시작 위치 i를 0부터 n−m까지 검사한다.\n각 위치에서 패턴 문자를 하나씩 비교한다.\nm개가 모두 맞으면 i를 저장한다.",
       "boundary": "패턴은 비어 있지 않습니다. 텍스트가 더 짧으면 빈 목록, 겹치는 일치도 모두 포함합니다.",
       "complexity": "n≥m: 최악 O((n−m+1)m). n<m: Python O(1), C는 strlen 때문에 O(n+m).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: 시작 위치 목록을 반환한다.\nC: 준비된 out(50칸)에 위치를 쓰고 개수를 반환한다. 없으면 0.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 160
   },
@@ -8503,13 +8503,13 @@
     "params": [
       "A"
     ],
-    "statement": "길이 n(2≤n≤30)의 정수 배열 A에서 i=0부터, 각 i에 대해 j=i+1부터 증가시키며 차이 |A[i]−A[j]|가 최소인 쌍을 구하시오. 동률이면 처음 쌍을 유지하며 중복값도 허용한다. 결과는 [A[i],A[j],차이]이고 값은 −2,000,000,000~2,000,000,000이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 정수 배열 A(길이 n, 2≤n≤30). 값은 −2,000,000,000~2,000,000,000이며 중복도 가능하다.\n할 일: i=0,1,…,n−2 순서로, 각 i에서 j=i+1,…,n−1 순서로 모든 쌍을 검사한다.\n반환할 것: 차이 |A[i]−A[j]|가 가장 작은 [A[i],A[j],차이]. 차이가 같으면 먼저 찾은 쌍을 유지한다.\n\nPython: [첫 값, 둘째 값, 차이] 반환.\nC: out[0], out[1], out[2]에 이 순서로 저장하며 반환값은 없다. 차이는 long long으로 계산한다.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "best를 아직 선택되지 않은 상태로 시작한다.\n각 쌍의 차이를 비교해 더 작을 때만 갱신한다.\nC는 뺄셈 전에 long long으로 변환한다.",
     "solution": "def closest_pair(A):\n    best = None\n    for i in range(len(A)):\n        for j in range(i + 1, len(A)):\n            gap = abs(A[i] - A[j])\n            if best is None or gap < best[2]:\n                best = [A[i], A[j], gap]\n    return best",
     "starter": "def closest_pair(A):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n²).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -8606,9 +8606,9 @@
     "c": {
       "starter": "void closest_pair(const int A[], int n, long long out[3]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n}\n",
       "solution": "void closest_pair(const int A[], int n, long long out[3]) {\n  out[2]=LLONG_MAX;\n  for(int i=0;i<n;i++) for(int j=i+1;j<n;j++) {\n    long long diff=llabs((long long)A[i]-A[j]);\n    if(diff<out[2]) { out[0]=A[i]; out[1]=A[j]; out[2]=diff; }\n  }\n}",
-      "statement": "길이 n(2≤n≤30)의 정수 배열 A에서 i=0부터, 각 i에 대해 j=i+1부터 증가시키며 차이 |A[i]−A[j]|가 최소인 쌍을 구하시오. 동률이면 처음 쌍을 유지하며 중복값도 허용한다. 결과는 [A[i],A[j],차이]이고 값은 −2,000,000,000~2,000,000,000이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 정수 배열 A(길이 n, 2≤n≤30). 값은 −2,000,000,000~2,000,000,000이며 중복도 가능하다.\n할 일: i=0,1,…,n−2 순서로, 각 i에서 j=i+1,…,n−1 순서로 모든 쌍을 검사한다.\n반환할 것: 차이 |A[i]−A[j]|가 가장 작은 [A[i],A[j],차이]. 차이가 같으면 먼저 찾은 쌍을 유지한다.\n\nPython: [첫 값, 둘째 값, 차이] 반환.\nC: out[0], out[1], out[2]에 이 순서로 저장하며 반환값은 없다. 차이는 long long으로 계산한다.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "best를 아직 선택되지 않은 상태로 시작한다.\n각 쌍의 차이를 비교해 더 작을 때만 갱신한다.\nC는 뺄셈 전에 long long으로 변환한다.",
-      "result": "Python: [첫 값, 둘째 값, 차이] 반환. C: long long out[3]에 기록.",
+      "result": "Python: closest_pair(A)\nC: void closest_pair(const int A[], int n, long long out[3])",
       "output": "fixed",
       "capacity": 0,
       "width": 3
@@ -8621,7 +8621,7 @@
       "method": "best를 아직 선택되지 않은 상태로 시작한다.\n각 쌍의 차이를 비교해 더 작을 때만 갱신한다.\nC는 뺄셈 전에 long long으로 변환한다.",
       "boundary": "뺄셈 전에 long long으로 변환합니다. 동률에서는 먼저 발견한 인덱스 쌍을 유지합니다.",
       "complexity": "시간 O(n²).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: [첫 값, 둘째 값, 차이] 반환.\nC: out[0], out[1], out[2]에 이 순서로 저장하며 반환값은 없다. 차이는 long long으로 계산한다.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 163
   },
@@ -8637,13 +8637,13 @@
     "params": [
       "A"
     ],
-    "statement": "서로 다른 정수 n개인 배열 A의 모든 부분집합을 생성하시오(0≤n≤8). 마스크를 0부터 2ⁿ−1까지 증가시키며, 오른쪽 0번 비트는 A[0]의 선택 여부다. 각 부분집합 내부는 입력 인덱스 증가 순이고 빈 부분집합도 포함한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n, 0≤n≤8).\n반환할 것: 빈 부분집합을 포함한 모든 부분집합. 비트마스크 0부터 2ⁿ−1까지의 순서로 만든다.\n오른쪽 0번 비트가 1이면 A[0]을 고른다. 각 결과 안에서는 A의 입력 순서를 유지한다. 예: 마스크 5(101)는 A[0], A[2]를 고른다.\n\nPython: 부분집합 목록, A=[]이면 [[]].\nC: out[k]에 k번째 부분집합, sizes[k]에 그 길이를 쓰고 부분집합 수 반환. 각각 256행/칸이 준비되어 있다. 빈 행은 길이 0.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "mask를 0부터 2ⁿ−1까지 순회한다.\nj번째 비트가 1이면 A[j]를 현재 부분집합에 넣는다.\nC는 out과 각 행 길이 sizes를 함께 기록한다.",
     "solution": "def power_set(A):\n    result = []\n    for mask in range(1 << len(A)):\n        subset = []\n        for j in range(len(A)):\n            if mask & (1 << j):\n                subset.append(A[j])\n        result.append(subset)\n    return result",
     "starter": "def power_set(A):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n·2ⁿ).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -10285,9 +10285,9 @@
     "c": {
       "starter": "int power_set(const int A[], int n, int out[][8], int sizes[]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int power_set(const int A[], int n, int out[][8], int sizes[]) {\n  int count=1<<n;\n  for(int mask=0;mask<count;mask++) {\n    sizes[mask]=0;\n    for(int j=0;j<n;j++) if(mask & (1u<<j))\n      out[mask][sizes[mask]++]=A[j];\n  }\n  return count;\n}",
-      "statement": "서로 다른 정수 n개인 배열 A의 모든 부분집합을 생성하시오(0≤n≤8). 마스크를 0부터 2ⁿ−1까지 증가시키며, 오른쪽 0번 비트는 A[0]의 선택 여부다. 각 부분집합 내부는 입력 인덱스 증가 순이고 빈 부분집합도 포함한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 서로 다른 정수 배열 A(길이 n, 0≤n≤8).\n반환할 것: 빈 부분집합을 포함한 모든 부분집합. 비트마스크 0부터 2ⁿ−1까지의 순서로 만든다.\n오른쪽 0번 비트가 1이면 A[0]을 고른다. 각 결과 안에서는 A의 입력 순서를 유지한다. 예: 마스크 5(101)는 A[0], A[2]를 고른다.\n\nPython: 부분집합 목록, A=[]이면 [[]].\nC: out[k]에 k번째 부분집합, sizes[k]에 그 길이를 쓰고 부분집합 수 반환. 각각 256행/칸이 준비되어 있다. 빈 행은 길이 0.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "mask를 0부터 2ⁿ−1까지 순회한다.\nj번째 비트가 1이면 A[j]를 현재 부분집합에 넣는다.\nC는 out과 각 행 길이 sizes를 함께 기록한다.",
-      "result": "out[][8], sizes[] = 부분집합과 길이, return = 개수 (최대 256)",
+      "result": "Python: power_set(A)\nC: int power_set(const int A[], int n, int out[][8], int sizes[])",
       "output": "subsets",
       "capacity": 256,
       "width": 8
@@ -10300,7 +10300,7 @@
       "method": "mask를 0부터 2ⁿ−1까지 순회한다.\nj번째 비트가 1이면 A[j]를 현재 부분집합에 넣는다.\nC는 out과 각 행 길이 sizes를 함께 기록한다.",
       "boundary": "빈 입력에도 빈 부분집합 하나가 있습니다. 비트마스크 순서를 지킵니다.",
       "complexity": "시간 O(n·2ⁿ).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: 부분집합 목록, A=[]이면 [[]].\nC: out[k]에 k번째 부분집합, sizes[k]에 그 길이를 쓰고 부분집합 수 반환. 각각 256행/칸이 준비되어 있다. 빈 행은 길이 0.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 166
   },
@@ -10316,13 +10316,13 @@
     "params": [
       "dist"
     ],
-    "statement": "도시 수 n인 비용 행렬 dist에서 dist[i][j]는 i번에서 j번으로 가는 비용이다. 도시 번호는 0~n−1이다. 0에서 출발해 나머지 도시를 한 번씩 방문하고 0으로 돌아오는 최소 비용을 구하시오. 2≤n≤8, 대각선은 0, 나머지는 1~1,000이다. 모든 이동이 가능하며 비대칭 비용도 허용한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 도시 n개(2≤n≤8)의 비용 행렬 dist. 도시 번호는 0~n−1이고 dist[i][j]는 i에서 j로 가는 비용이다.\n반환할 것: 0에서 출발해 다른 도시를 한 번씩 방문한 뒤 0으로 돌아오는 최소 비용.\n모든 이동이 가능하다. 같은 도시의 비용은 0, 나머지는 1~1,000이며 반대 방향의 비용은 다를 수 있다.\n\nPython: n×n 목록을 받는다.\nC: 한 행이 8칸인 배열의 앞 n행·n열을 사용한다. 두 언어 모두 최소 비용을 정수로 반환한다.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "0번 도시를 미리 방문 처리한다.\n나머지 도시를 놓는 모든 순서를 탐색하며 비용을 누적한다.\n모두 방문하면 마지막 도시에서 0으로 돌아오는 비용을 더한다.",
     "solution": "def tsp_min(dist):\n    n = len(dist)\n    used = [False] * n\n    used[0] = True\n    def dfs(last, depth, cost):\n        if depth == n:\n            return cost + dist[last][0]\n        best = float('inf')\n        for city in range(1, n):\n            if not used[city]:\n                used[city] = True\n                value = dfs(city, depth + 1, cost + dist[last][city])\n                best = min(best, value)\n                used[city] = False\n        return best\n    return dfs(0, 1, 0)",
     "starter": "def tsp_min(dist):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "후보 순서 (n−1)!개, 이 구현의 상한 O(n·(n−1)!).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -10510,9 +10510,9 @@
     "c": {
       "starter": "int tsp_min(const int dist[][8], int n) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "static void tsp_visit(const int d[][8], int n, int depth, int last,\n                      int used[], int cost, int *best) {\n  if(depth==n) {\n    int total=cost+d[last][0];\n    if(total<*best) *best=total;\n    return;\n  }\n  for(int next=1;next<n;next++) if(!used[next]) {\n    used[next]=1;\n    tsp_visit(d,n,depth+1,next,used,cost+d[last][next],best);\n    used[next]=0;\n  }\n}\nint tsp_min(const int dist[][8], int n) {\n  int used[8]={1}, best=INT_MAX;\n  tsp_visit(dist,n,1,0,used,0,&best);\n  return best;\n}",
-      "statement": "도시 수 n인 비용 행렬 dist에서 dist[i][j]는 i번에서 j번으로 가는 비용이다. 도시 번호는 0~n−1이다. 0에서 출발해 나머지 도시를 한 번씩 방문하고 0으로 돌아오는 최소 비용을 구하시오. 2≤n≤8, 대각선은 0, 나머지는 1~1,000이다. 모든 이동이 가능하며 비대칭 비용도 허용한다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 도시 n개(2≤n≤8)의 비용 행렬 dist. 도시 번호는 0~n−1이고 dist[i][j]는 i에서 j로 가는 비용이다.\n반환할 것: 0에서 출발해 다른 도시를 한 번씩 방문한 뒤 0으로 돌아오는 최소 비용.\n모든 이동이 가능하다. 같은 도시의 비용은 0, 나머지는 1~1,000이며 반대 방향의 비용은 다를 수 있다.\n\nPython: n×n 목록을 받는다.\nC: 한 행이 8칸인 배열의 앞 n행·n열을 사용한다. 두 언어 모두 최소 비용을 정수로 반환한다.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "0번 도시를 미리 방문 처리한다.\n나머지 도시를 놓는 모든 순서를 탐색하며 비용을 누적한다.\n모두 방문하면 마지막 도시에서 0으로 돌아오는 비용을 더한다.",
-      "result": "return = 최소 왕복 비용",
+      "result": "Python: tsp_min(dist)\nC: int tsp_min(const int dist[][8], int n)",
       "output": "scalar",
       "capacity": 0,
       "width": 0
@@ -10525,7 +10525,7 @@
       "method": "0번 도시를 미리 방문 처리한다.\n나머지 도시를 놓는 모든 순서를 탐색하며 비용을 누적한다.\n모두 방문하면 마지막 도시에서 0으로 돌아오는 비용을 더한다.",
       "boundary": "비대칭 비용도 가능합니다. 마지막 도시에서 0으로 돌아오는 비용을 포함합니다.",
       "complexity": "후보 순서 (n−1)!개, 이 구현의 상한 O(n·(n−1)!).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python: n×n 목록을 받는다.\nC: 한 행이 8칸인 배열의 앞 n행·n열을 사용한다. 두 언어 모두 최소 비용을 정수로 반환한다.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 183
   },
@@ -10543,13 +10543,13 @@
       "values",
       "capacity"
     ],
-    "statement": "길이가 n으로 같은 두 배열 weights, values와 용량 capacity가 주어진다. 인덱스 i는 한 물건의 무게와 가치다. 각 물건을 최대 한 번 골라 총무게가 capacity 이하인 최대 가치를 반환하시오. 비트마스크로 모든 선택을 검사한다. 0≤n≤16, 무게·가치는 1~100, 0≤capacity≤300이며 빈 선택의 가치는 0이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+    "statement": "주어진 것: 길이가 같은 weights, values와 용량 capacity. 길이 n은 0~16, 무게·가치는 1~100, capacity는 0~300이다.\ni번 물건의 무게는 weights[i], 가치는 values[i]이다. 각 물건은 최대 한 번만 고른다.\n반환할 것: 총무게가 capacity 이하인 선택 중 최대 총가치. 아무것도 고르지 않으면 0이다. 비트마스크로 모든 선택을 검사한다.\n\nPython과 C 모두 최대 총가치를 반환한다.\nC의 n은 두 배열의 공통 길이이다. 선택한 물건 목록은 반환하지 않는다.\n시간 복잡도를 주석으로 쓰시오.",
     "hint": "각 mask마다 무게와 가치를 따로 합산한다.\n총 무게가 capacity 이하일 때만 best를 갱신한다.\n빈 선택도 포함해 아무것도 담을 수 없을 때 0을 반환한다.",
     "solution": "def knapsack(weights, values, capacity):\n    best = 0\n    for mask in range(1 << len(weights)):\n        weight, value = 0, 0\n        for j in range(len(weights)):\n            if mask & (1 << j):\n                weight += weights[j]\n                value += values[j]\n        if weight <= capacity and value > best:\n            best = value\n    return best",
     "starter": "def knapsack(weights, values, capacity):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n·2ⁿ).",
     "sourceFile": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx",
-    "sourceHash": "92dba81f35f7b79f84bc92f0ad81eeb8c173d30bcbf9a955de8153ccd3fb8b8d",
+    "sourceHash": "79637c90d2045bfea7fe28823478f111f0feb1025f1c709f762f0831933e6151",
     "tests": [
       {
         "args": [
@@ -10684,9 +10684,9 @@
     "c": {
       "starter": "int knapsack(const int weights[], const int values[], int n, int capacity) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "int knapsack(const int weights[], const int values[], int n, int capacity) {\n  int best=0;\n  for(unsigned mask=0;mask<(1u<<n);mask++) {\n    int weight=0, value=0;\n    for(int j=0;j<n;j++) if(mask & (1u<<j)) {weight+=weights[j]; value+=values[j];}\n    if(weight<=capacity && value>best) best=value;\n  }\n  return best;\n}",
-      "statement": "길이가 n으로 같은 두 배열 weights, values와 용량 capacity가 주어진다. 인덱스 i는 한 물건의 무게와 가치다. 각 물건을 최대 한 번 골라 총무게가 capacity 이하인 최대 가치를 반환하시오. 비트마스크로 모든 선택을 검사한다. 0≤n≤16, 무게·가치는 1~100, 0≤capacity≤300이며 빈 선택의 가치는 0이다.\n\nPython 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오.",
+      "statement": "주어진 것: 길이가 같은 weights, values와 용량 capacity. 길이 n은 0~16, 무게·가치는 1~100, capacity는 0~300이다.\ni번 물건의 무게는 weights[i], 가치는 values[i]이다. 각 물건은 최대 한 번만 고른다.\n반환할 것: 총무게가 capacity 이하인 선택 중 최대 총가치. 아무것도 고르지 않으면 0이다. 비트마스크로 모든 선택을 검사한다.\n\nPython과 C 모두 최대 총가치를 반환한다.\nC의 n은 두 배열의 공통 길이이다. 선택한 물건 목록은 반환하지 않는다.\n시간 복잡도를 주석으로 쓰시오.",
       "hint": "각 mask마다 무게와 가치를 따로 합산한다.\n총 무게가 capacity 이하일 때만 best를 갱신한다.\n빈 선택도 포함해 아무것도 담을 수 없을 때 0을 반환한다.",
-      "result": "return = 최대 가치",
+      "result": "Python: knapsack(weights, values, capacity)\nC: int knapsack(const int weights[], const int values[], int n, int capacity)",
       "output": "scalar",
       "capacity": 0,
       "width": 0
@@ -10699,7 +10699,7 @@
       "method": "각 mask마다 무게와 가치를 따로 합산한다.\n총 무게가 capacity 이하일 때만 best를 갱신한다.\n빈 선택도 포함해 아무것도 담을 수 없을 때 0을 반환한다.",
       "boundary": "각 물건은 최대 한 번 선택합니다. 빈 입력 또는 용량 0이면 0입니다.",
       "complexity": "시간 O(n·2ⁿ).",
-      "requirements": "Python 또는 C로 함수를 작성하고, 자기 코드의 시간 복잡도를 주석으로 설명하시오."
+      "requirements": "Python과 C 모두 최대 총가치를 반환한다.\nC의 n은 두 배열의 공통 길이이다. 선택한 물건 목록은 반환하지 않는다.\n시간 복잡도를 주석으로 쓰시오."
     },
     "sourceOriginalSlide": 206
   },
@@ -10722,7 +10722,7 @@
     "starter": "def first_index(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -10980,7 +10980,7 @@
     "starter": "def binary_search(a, x):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(n+1)).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -12232,7 +12232,7 @@
     "starter": "def gcd_value(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(max(a,b)+2)).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -12343,7 +12343,7 @@
     "starter": "def insertion_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "최악 시간 O(n²), 정렬된 입력 O(n).",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -12639,7 +12639,7 @@
     "starter": "def quick_select(a, k):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "이 고정 피벗 구현의 최악 시간 O(n²). 모든 입력에서 선형이라고 주장할 수 없다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -12891,7 +12891,7 @@
     "starter": "def fibonacci(n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n). F(90)=2880067194370816120이다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -12997,7 +12997,7 @@
     "starter": "def light_coin(weights):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "배열 합 연산을 포함한 시간 O(n). 범위를 줄이는 단계 수만 O(log n)이다.",
     "sourceFile": "3장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "77274c97ce54d837f5cf290a57cd1b987c2f22106ed5198185cde6a4aae3a361",
+    "sourceHash": "272a53136dd2a67809b30fc200b5dcc6b14356173871fba4e8e1b2a9eea38982",
     "tests": [
       {
         "args": [
@@ -15256,7 +15256,8 @@
       "boundary": "한쪽 또는 양쪽이 빈 배열일 수 있고 같은 값이면 a를 먼저 선택합니다.",
       "complexity": "시간 O(n+m).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 181
   },
   {
     "id": "P58",
@@ -15559,7 +15560,8 @@
       "boundary": "길이 0·1에서 종료합니다. Python은 새 배열 반환, C는 [lo,hi) 제자리 정렬입니다.",
       "complexity": "시간 O(n log(n+1)). Python은 앞 문항 merge_arrays를 사용한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 185
   },
   {
     "id": "P59",
@@ -15676,7 +15678,8 @@
       "boundary": "양쪽에서 각각 한 원소 이상 선택합니다. 모두 음수여도 0으로 초기화하지 않습니다.",
       "complexity": "시간 O(hi−lo). 모두 음수여도 빈 구간을 허용하지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 189
   },
   {
     "id": "P60",
@@ -15805,7 +15808,8 @@
       "boundary": "빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.",
       "complexity": "시간 O(n log n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 193
   },
   {
     "id": "P61",
@@ -15931,7 +15935,8 @@
       "boundary": "제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.",
       "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 197
   },
   {
     "id": "P62",
@@ -16093,7 +16098,8 @@
       "boundary": "균일한 칸은 0/1 한 글자, 분할 순서는 좌상·우상·좌하·우하입니다.",
       "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 201
   },
   {
     "id": "P63",
@@ -16205,7 +16211,8 @@
       "boundary": "0·한 자리에서 종료합니다. 자리수와 중간 곱의 long long 범위를 확인합니다.",
       "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 205
   },
   {
     "id": "P64",
@@ -16361,7 +16368,8 @@
       "boundary": "스칼라 곱셈 7회인 식을 사용합니다. 0과 음수를 포함한 행렬도 처리합니다.",
       "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 209
   },
   {
     "id": "P65",
@@ -16523,7 +16531,8 @@
       "boundary": "균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.",
       "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 213
   },
   {
     "id": "P66",
@@ -16896,7 +16905,8 @@
       "boundary": "같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.",
       "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 217
   },
   {
     "id": "P67",
@@ -17000,7 +17010,8 @@
       "boundary": "금액 0은 0개입니다. 정해진 동전 500·100·50·10·1을 사용합니다.",
       "complexity": "고정된 5종류이므로 시간 O(1). 일반 m종류에서는 시간 O(m).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 181
   },
   {
     "id": "P68",
@@ -17125,7 +17136,8 @@
       "boundary": "끝 시각과 다음 시작 시각이 같아도 선택할 수 있습니다. 입력은 끝 시각 순입니다.",
       "complexity": "정렬된 입력에서 시간 O(n). 정렬까지 하면 O(n log n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 185
   },
   {
     "id": "P69",
@@ -17254,7 +17266,8 @@
       "boundary": "용량 0·빈 목록을 처리합니다. 물건 일부의 가치는 실수로 계산합니다.",
       "complexity": "정렬된 입력에서 시간 O(n). 나누기 전에 실수 연산으로 전환한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 189
   },
   {
     "id": "P70",
@@ -17596,7 +17609,8 @@
       "boundary": "루트 반환과 방문 경로의 압축을 모두 검사합니다. 루트 자신을 찾는 경우도 처리합니다.",
       "complexity": "한 호출의 최악 시간 O(n). 경로 압축만으로 모든 단일 호출을 O(1)이라 할 수 없다. Python 재귀 제한은 입력 깊이 이상으로 설정한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 193
   },
   {
     "id": "P71",
@@ -17738,7 +17752,8 @@
       "boundary": "사이클을 건너뛰고 n−1개 간선이 안 모이면 −10¹⁸, n=1이면 0입니다.",
       "complexity": "1≤n≤1000. 이 구현은 랭크 병합이 없다. 보수적 시간 상한 O(n+mn).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 197
   },
   {
     "id": "P72",
@@ -17869,7 +17884,8 @@
       "boundary": "미방문·유한 거리만 후보입니다. 동률은 작은 번호, 후보 없으면 −1입니다.",
       "complexity": "시간 O(n). 동률에서 기존 번호를 유지한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 201
   },
   {
     "id": "P73",
@@ -18022,7 +18038,8 @@
       "boundary": "−1은 간선 없음, 가중치 0은 유효한 간선입니다. 도달 불가는 10¹⁸입니다.",
       "complexity": "시간 O(n²). 주어진 상한에서 거리 덧셈은 long long에 안전하다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 205
   },
   {
     "id": "P74",
@@ -18152,7 +18169,8 @@
       "boundary": "거리 동률은 작은 도시 번호, 마지막 귀환도 포함합니다. 최적해 보장 알고리즘은 아닙니다.",
       "complexity": "시간 O(n²). 최적 TSP 비용을 보장하지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 209
   },
   {
     "id": "P75",
@@ -19242,7 +19260,8 @@
       "boundary": "빈 배열은 0, 누적합과 전체 합은 long long 범위를 사용합니다.",
       "complexity": "정렬된 입력에서 시간 O(n). 최대 합 500500000000은 int 범위를 넘는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 213
   },
   {
     "id": "P76",
@@ -19388,7 +19407,8 @@
       "boundary": "실제 dist 변경과 반환값을 모두 검사합니다. INF에서 출발하거나 동률이면 갱신하지 않습니다.",
       "complexity": "시간 O(1). 같은 거리 후보는 갱신으로 세지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 217
   },
   {
     "id": "P77",
@@ -19706,7 +19726,8 @@
       "boundary": "n=0·1도 memo에 저장합니다. 계산한 상태를 재사용하고 F(90)을 정확히 반환합니다.",
       "complexity": "시간 O(n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 181
   },
   {
     "id": "P78",
@@ -19817,7 +19838,8 @@
       "boundary": "빈 보드도 1가지입니다. m=1이면 n=0에서도 0입니다.",
       "complexity": "시간 O(n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 185
   },
   {
     "id": "P79",
@@ -19921,7 +19943,8 @@
       "boundary": "n=1은 0회, 나누어떨어지는 연산만 선택합니다.",
       "complexity": "시간 O(n).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 189
   },
   {
     "id": "P80",
@@ -20039,7 +20062,8 @@
       "boundary": "시작 n과 끝 1을 포함합니다. 최적 후보 동률은 −1·÷2·÷3·÷5 순입니다.",
       "complexity": "1≤n≤10000, out 길이 n이면 충분하다. 경로 길이 L에 대해 시간 O(L), 출력 O(L).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 193
   },
   {
     "id": "P81",
@@ -20174,7 +20198,8 @@
       "boundary": "빈 목록·용량 0은 0입니다. 선택 후보는 이전 행에서 가져옵니다.",
       "complexity": "시간 O(nW). 빈 선택을 허용하며 n=0 또는 W=0의 답은 0이다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 197
   },
   {
     "id": "P82",
@@ -20701,7 +20726,8 @@
       "boundary": "용량을 내림차순으로 갱신하여 같은 물건을 여러 번 쓰지 않습니다.",
       "complexity": "시간 O(nW). 가치 상한은 앞 문항과 같이 10⁶이다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 201
   },
   {
     "id": "P83",
@@ -20812,7 +20838,8 @@
       "boundary": "빈 문자열 경계를 0으로 처리합니다. 부분 문자열이 아니라 부분 수열입니다.",
       "complexity": "시간 O(mn). 빈 문자열 경계를 포함한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 205
   },
   {
     "id": "P84",
@@ -20912,7 +20939,8 @@
       "boundary": "문자 불일치에서 위·왼쪽이 같으면 위로 갑니다. 빈 결과도 유효합니다.",
       "complexity": "표가 제공되면 복원 시간 O(m+n), 출력 O(min(m,n)).",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 209
   },
   {
     "id": "P85",
@@ -31031,7 +31059,8 @@
       "boundary": "빈 선택을 허용하므로 빈 배열·모두 음수인 배열은 0입니다.",
       "complexity": "시간 O(n). 모두 음수여도 답 0을 유지한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 213
   },
   {
     "id": "P86",
@@ -31184,6 +31213,7 @@
       "boundary": "시작 칸은 전액입니다. 대각선 도착만 내림 절반이며 한 행·한 열도 처리합니다.",
       "complexity": "시간 O(행×열). 시작 칸에는 할인하지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
+    },
+    "sourceOriginalSlide": 217
   }
 ]
