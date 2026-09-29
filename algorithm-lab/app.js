@@ -14,10 +14,10 @@ const languageName = () => ({python:'Python',c:'C',java:'Java'})[language];
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
-function controls(){ $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='java'?'java-worker.js?v=20260922-java':language==='c'?'c-worker.js?v=20260921-errors':'worker.js?v=20260921-errors');
+  worker=new Worker(language==='java'?'java-worker.js?v=20260929-custom':language==='c'?'c-worker.js?v=20260929-custom':'worker.js?v=20260929-custom');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -25,7 +25,7 @@ function boot(){
     if(data.type==='ready'){clearTimeout(timer);ready=true;$('engine').textContent='● '+languageName()+T(' 실행 준비 완료');controls();return;}
     if(data.type==='boot-error'){clearTimeout(timer);$('engine').textContent=T('연결 실패');$('retry').hidden=false;setResult(languageName()+T(' 실행 환경을 받지 못했습니다. 다시 연결을 눌러주세요.'),'error');return;}
     if(data.type==='phase'&&job&&data.token===job.token){
-      if(data.phase==='run'){armTimeout(language==='java'?15000:6000);setResult(languageName()+T(' 실행·채점 중…'));}
+      if(data.phase==='run'){armTimeout(language==='java'?15000:6000);setResult(languageName()+T(job.mode==='custom'?' 직접 입력 실행 중…':' 실행·채점 중…'));}
       else setResult(languageName()+T(' 컴파일 중…'));
     }
     if(data.type==='result'&&job&&data.token===job.token){clearTimeout(timer);busy=false;controls();finish(data.report);}
@@ -77,24 +77,28 @@ function show(i){
     pre.textContent=formatProblemExample(p,t,language,view,j+1,UI_EN);
     $('examples').append(pre);
   }
+  renderCustomInputs(p);
   renderPracticeHints(p);
   renderStudy(p);
   syncPracticeLayout(p);
   $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult(restored?T('기존 중복 문제의 답안을 불러왔습니다. PPTX 조건으로 채점하기를 눌러 확인하세요.'):T('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.'));renderNav();
 }
 function armTimeout(ms){
-  clearTimeout(timer);timer=setTimeout(()=>{if(job)cloudAttempt(job,{error:T('시간 제한 초과')});busy=false;ready=false;worker.terminate();controls();$('retry').hidden=false;$('engine').textContent=T('실행 중단');setResult(T('시간 제한을 넘겨 중단했습니다. 반복 조건과 변수 갱신을 확인하세요. 답안을 수정한 뒤 다시 연결을 눌러주세요.'),'error');},ms);
+  clearTimeout(timer);timer=setTimeout(()=>{if(job&&job.mode==='judge')cloudAttempt(job,{error:T('시간 제한 초과')});busy=false;ready=false;worker.terminate();controls();$('retry').hidden=false;$('engine').textContent=T('실행 중단');setResult(T('시간 제한을 넘겨 중단했습니다. 반복 조건과 변수 갱신을 확인하세요. 답안을 수정한 뒤 다시 연결을 눌러주세요.'),'error');},ms);
 }
 function run(mode){
   if(!cloud.session||cloud.expired){requirePracticeAccount();return;}
   clearErrorLine();
   $('execution-results').open=true;
   if(!ready||busy)return;const p=problems[index];const code=getCode();
-  saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='sample'?T('공개 예시 실행 중…'):T('전체 검사로 채점 중…'));
-  job={token:++token,pid:p.id,index,mode,code,language};
-  rememberJudgedAnswer(job);
+  let customArgs;
+  if(mode==='custom'){try{customArgs=customArgsFromUI(p);$('custom-input-error').textContent='';}catch(error){$('custom-input-error').textContent=error.message;return;}}
+  customCompleted=false;
+  saved.answers[answerKey(p.id)]=code;persist();busy=true;controls();$('next').hidden=true;$('case-results').replaceChildren();setResult(mode==='custom'?customLabel('직접 입력 실행 중…','Running your input…','Ejecutando tu entrada…'):mode==='sample'?T('공개 예시 실행 중…'):T('전체 검사로 채점 중…'));
+  job={token:++token,pid:p.id,index,mode,code,language,...(mode==='custom'?{args:customArgs}:{})};
+  if(mode==='judge')rememberJudgedAnswer(job);
   armTimeout(language==='java'?180000:language==='c'?60000:6000);
-  worker.postMessage({token:job.token,code,problem:p,cases:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
+  worker.postMessage({token:job.token,mode,code,problem:p,cases:mode==='custom'?[{args:customArgs}]:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
 }
 function finish(report){
   if(report.normalizedCount){
@@ -102,6 +106,7 @@ function finish(report){
     $('repair-note').textContent=`${T("붙여넣기에 섞인 특수 공백 ")}${report.normalizedCount}${T("개를 정리했습니다. 문자열과 주석은 그대로 유지했습니다.")}`;
     $('repair-note').hidden=false;renderNav();
   }
+  if(job.mode==='custom'){finishCustom(report);return;}
   rememberJudgedAnswer(job);
   rememberHintRun(report);
   cloudAttempt(job,report);
@@ -122,9 +127,10 @@ function finish(report){
     if(next>=0){$('next').hidden=false;$('next').onclick=()=>moveToProblem(next);}
   }else{delete saved.passed[answerKey(job.pid)];persist();renderNav();setResult(`${T("다시 도전해 보세요. ")}${report.passed}/${report.total}${T("개 검사 통과. 아래에서 실패한 입력과 반환값을 확인하세요.")}`,'error');}
 }
-$('code').addEventListener('input',()=>{saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();cloudDraft(problems[index].id,language,$('code').value);});
+$('code').addEventListener('input',()=>{invalidateCustomResult();saved.answers[answerKey(problems[index].id)]=$('code').value;persist();renderNav();cloudDraft(problems[index].id,language,$('code').value);});
+$('custom-run').onclick=()=>run('custom');
 $('judge').onclick=()=>run('judge');$('sample').onclick=()=>run('sample');$('retry').onclick=boot;
-$('stop').onclick=()=>{if(job)cloudAttempt(job,{error:T('사용자가 실행을 중단했습니다.')});worker.terminate();clearTimeout(timer);busy=false;ready=false;controls();$('engine').textContent=T('사용자가 중단함');$('retry').hidden=false;setResult(T('실행을 중단했습니다. 답안을 수정하고 다시 연결을 눌러주세요.'));};
+$('stop').onclick=()=>{if(job&&job.mode==='judge')cloudAttempt(job,{error:T('사용자가 실행을 중단했습니다.')});worker.terminate();clearTimeout(timer);busy=false;ready=false;controls();$('engine').textContent=T('사용자가 중단함');$('retry').hidden=false;setResult(T('실행을 중단했습니다. 답안을 수정하고 다시 연결을 눌러주세요.'));};
 $('reset').onclick=()=>{if(busy)return;if(confirm(T('이 문제의 답안을 처음 상태로 되돌릴까요?'))){delete saved.answers[answerKey(problems[index].id)];delete saved.passed[answerKey(problems[index].id)];show(index);}};
 $('student').value=saved.student;$('student').oninput=()=>{saved.student=$('student').value;persist();};
 $('download').onclick=()=>{

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css?v=20260914-studio1">
   <link rel="stylesheet" href="studio.css?v=20260914-studio1">
   <link rel="stylesheet" href="cloud.css?v=20260922-java">
+  <link rel="stylesheet" href="custom-inputs.css?v=20260929-custom">
 <link rel="stylesheet" href="utilities.css?v=20260914-i18n1"><link rel="stylesheet" href="compact-layout.css?v=20260922-java"><link rel="stylesheet" href="chapter.css?v=20260920-front"><link rel="stylesheet" href="exercise-study.css?v=20260922-java"><link rel="stylesheet" href="practice-hints.css?v=20260922-java"><link rel="stylesheet" href="workspace-layout.css?v=20260922-java"></head>
 <body>
   <header><div class="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><div><span class="eyebrow">DAEJEON UNIVERSITY / COMPUTER ENGINEERING</span><h1>Algorithm Lab <span>알고리즘 코딩 실습</span></h1></div></div><div class="status"><span id="engine">Python 준비 중…</span><button id="retry" hidden>다시 연결</button><strong id="progress">0 / 12 해결</strong></div></header>
@@ -21,6 +22,7 @@
       <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="답안 코드"></textarea>
       <div class="editor-help"><span>Spaces: 4 <span class="help-detail">· Tab / Shift+Tab · Ctrl+/ 주석</span></span><span id="cursor-position">1행 · 1열</span></div>
       <div class="actions"><span class="run-shortcut">Ctrl + Enter</span><button id="sample" disabled>▷ 예시 실행</button><button id="judge" class="primary" disabled>채점하기 →</button><button id="stop" hidden>■ 중지</button></div>
+      <details class="custom-input-panel"><summary id="custom-summary">직접 입력으로 실행</summary><p id="custom-note"></p><div id="custom-fields"></div><p id="custom-input-error" role="alert"></p><div class="custom-actions"><button id="custom-run" type="button" disabled>▷ 내 입력 실행</button><button id="custom-example" type="button">예시 입력 불러오기</button></div></details>
       <section class="ai-hint-panel"><button id="ai-hint" disabled>작은 AI 힌트</button><small>누르면 문제·현재 코드·최근 오류를 Google AI에 보내 짧은 힌트 하나를 받습니다.</small><p id="ai-hint-result" role="status" hidden></p></section>
       <div class="results-panel"><div class="panel-title"><span>실행 결과</span><small>TEST RESULTS</small></div>
       <p id="repair-note" class="notice" role="status" hidden></p>
@@ -58,7 +60,9 @@
 <script src="error-details.js?v=20260922-java"></script>
 <script src="ai-hint.js?v=20260922-java"></script>
 <script src="judge-reminder.js?v=20260922-java"></script>
-<script src="app.js?v=20260929-complete-v2"></script>
+<script src="custom-inputs.js?v=20260929-custom"></script>
+<script src="custom-ui.js?v=20260929-custom"></script>
+<script src="app.js?v=20260929-custom"></script>
 <script src="browser-reset.js?v=20260922-java"></script>
 <script defer src="/js/site-analytics.js?v=20260919-1"></script>
 </body></html>

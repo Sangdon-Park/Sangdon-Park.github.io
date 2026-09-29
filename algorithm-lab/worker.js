@@ -1,5 +1,6 @@
 /* A separate worker keeps an accidental infinite loop out of the page UI. */
 const BASE = 'https://cdn.jsdelivr.net/pyodide/v0.29.2/full/';
+importScripts('custom-inputs.js?v=20260929-custom');
 let py;
 async function boot() {
   try {
@@ -11,6 +12,7 @@ async function boot() {
 self.onmessage = async ({data}) => {
   if (!py) return;
   try {
+    if(data.mode==='custom'){if(data.cases.length!==1)throw Error('직접 실행은 입력 하나씩 실행합니다.');validateCustomArgs(data.problem,data.cases[0].args);}
     py.globals.set('_payload_json', JSON.stringify(data));
     const answer = py.runPython(`
 import json, copy, math, contextlib, io, traceback
@@ -55,6 +57,13 @@ def _normalize_pasted_code(source):
 _payload['code'], _normalized_count = _normalize_pasted_code(_payload['code'])
 class _Quiet(io.StringIO):
     def write(self, text): return len(text)
+class _Capture(io.StringIO):
+    def write(self, text):
+        super().write(text[:max(0,10000-self.tell())])
+        return len(text)
+_custom = _payload.get('mode') == 'custom'
+_stdout = _Capture() if _custom else _Quiet()
+_stderr = _Capture() if _custom else _Quiet()
 class _Array:
     def __init__(self, values):
         self.values=values; self.reads=0; self.limit=2*len(values).bit_length()+2
@@ -89,7 +98,7 @@ def _diagnostic(error):
 _report=[]
 _namespace={'__builtins__':__builtins__}
 try:
-    with contextlib.redirect_stdout(_Quiet()), contextlib.redirect_stderr(_Quiet()):
+    with contextlib.redirect_stdout(_stdout), contextlib.redirect_stderr(_stderr):
         exec(_payload['problem'].get('pythonPrelude',''),_namespace)
         exec(compile(_payload['code'],'학생 답안','exec'),_namespace)
     _fn=_namespace.get(_payload['problem']['function'])
@@ -110,12 +119,16 @@ try:
                     for _y in range(1,len(_b)+1):
                         _dp[_x][_y]=_dp[_x-1][_y-1]+1 if _a[_x-1]==_b[_y-1] else max(_dp[_x-1][_y],_dp[_x][_y-1])
                 _args.append(_dp)
-        if _payload['problem'].get('indexed_only'): _args[0]=_Array(_args[0])
+        if _payload['problem'].get('indexed_only') and not _custom: _args[0]=_Array(_args[0])
         _detail=None
         try:
-            with contextlib.redirect_stdout(_Quiet()), contextlib.redirect_stderr(_Quiet()):
+            with contextlib.redirect_stdout(_stdout), contextlib.redirect_stderr(_stderr):
                 _actual=_fn(*_args)
             if 'outputArgument' in _payload['problem']: _actual=_args[_payload['problem']['outputArgument']]
+            if _custom:
+                _changed = {str(_j):_brief(_value) for _j,_value in enumerate(_args) if _j>=len(_before) or _value!=_before[_j]}
+                _answer={'custom':{'input':_brief(_case['args']),'value':repr(_actual)[:10000],'stdout':_stdout.getvalue(),'stderr':_stderr.getvalue(),'after':json.dumps(_changed,ensure_ascii=False) if _changed else ''}}
+                break
             if _payload['problem'].get('exactInteger'):
                 _actual=str(_actual) if type(_actual) is int else None
             _ok=_equal(_actual,_case['expected']); _message=''
@@ -132,10 +145,14 @@ try:
         except Exception as _e:
             _detail=_diagnostic(_e)
             _ok=False; _message=type(_e).__name__+': '+str(_e)[:250]
+        if _custom:
+            _answer={'error':_message,'diagnostics':[_detail] if _detail else [],'custom':{'stdout':_stdout.getvalue(),'stderr':_stderr.getvalue()}}
+            break
         _report.append({'number':_i+1,'public':_case.get('public',False),'ok':_ok,'message':_message,'input':_brief(_case['args']),'diagnostic':_detail})
-    _answer={'rows':_report,'passed':sum(r['ok'] for r in _report),'total':len(_report)}
+    if not _custom: _answer={'rows':_report,'passed':sum(r['ok'] for r in _report),'total':len(_report)}
 except BaseException as _e:
     _answer={'error':type(_e).__name__+': '+str(_e)[:600],'diagnostics':[_diagnostic(_e)]}
+    if _custom: _answer['custom']={'stdout':_stdout.getvalue(),'stderr':_stderr.getvalue()}
 _answer['normalizedCode'] = _payload['code']
 _answer['normalizedCount'] = _normalized_count
 json.dumps(_answer,ensure_ascii=False)

@@ -2,6 +2,7 @@
 importScripts('vendor/wasm-clang/shared.js');
 importScripts('diagnostics.js?v=20260921-errors');
 importScripts('chapter-02-harness.js?v=20260915-ch2');
+importScripts('custom-inputs.js?v=20260929-custom','custom-c-harness.js?v=20260929-custom');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
 const clean = text => text.replace(/\x1b\[[0-9;]*m/g, '');
@@ -32,8 +33,10 @@ function normalize(source) {
   });
   return {code, count};
 }
-function harness(problem, cases) {
+function harness(problem, cases, custom=false) {
+  const customBody=({setup,call,after=''})=>`{${setup}\nprintf("\\nDJU_CUSTOM_RESULT:");${call}printf("\\nDJU_CUSTOM_STDOUT:");lab_json_string(lab_custom_output);${after?'printf("\\nDJU_CUSTOM_AFTER:");'+after:''}printf("\\n");fflush(stdout);}`;
   const body = cases.map((test, index) => {
+    if(custom&&Number(problem.id.slice(1))>=13)return customBody(customCCase(problem,test.args));
     if (problem.exercise) {
       const {setup, call} = test.cHarness || chapterTwoCase({...problem,id:problem.legacyHarnessId}, test.args);
       return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;
@@ -59,13 +62,14 @@ function harness(problem, cases) {
         setup += `int before[${Math.max(1,array.length)}];for(int i=0;i<n;i++)before[i]=A[i];`;
         call = `int sorted[100]={0};long long stats[2]={-1,-1};bubble_stats(A,n,sorted,stats);
           int changed=0;for(int i=0;i<n;i++)if(A[i]!=before[i])changed=1;
-          if(changed){printf("null");}else{printf("[[");for(int i=0;i<n;i++){if(i)printf(",");printf("%d",sorted[i]);}printf("],%lld,%lld]",stats[0],stats[1]);}`; break;
+          if(changed&&${custom?'0':'1'}){printf("null");}else{printf("[[");for(int i=0;i<n;i++){if(i)printf(",");printf("%d",sorted[i]);}printf("],%lld,%lld]",stats[0],stats[1]);}`; break;
       case 'P12': call = `long long out[3]={-1,-1,-1};loop_counts(${args[0]},out);printf("[%lld,%lld,%lld]",out[0],out[1],out[2]);`; break;
       default: throw new Error('지원하지 않는 문제입니다.');
     }
+    if(custom)return customBody({setup,call});
     return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;
   }).join('\n');
-  return `\n#line 1 "grader.c"\nint main(void){\n${body}\nreturn 0;}\n`;
+  return `${custom?'\n#undef printf\n#undef puts\n#undef putchar\n':''}\n#line 1 "grader.c"\nint main(void){\n${body}\nreturn 0;}\n`;
 }
 function equal(actual, expected, numeric, tolerance) {
   if (Array.isArray(expected)) return Array.isArray(actual) && actual.length === expected.length && expected.every((x,i)=>equal(actual[i],x,numeric,tolerance));
@@ -77,9 +81,10 @@ self.onmessage = async ({data}) => {
   const report = {normalizedCode: normalized.code, normalizedCount: normalized.count};
   let phase='compile';
   try {
+    if(data.mode==='custom'){if(data.cases.length!==1)throw Error('직접 실행은 입력 하나씩 실행합니다.');validateCustomArgs(data.problem,data.cases[0].args);}
     log = '';
     // A fixed set of filenames keeps the in-memory filesystem bounded across runs.
-    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n#include <limits.h>\n' + jsonStringHelper + (data.problem.cPrelude||'') + '\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases);
+    const source = '#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <math.h>\n#include <limits.h>\n' + jsonStringHelper + (data.problem.cPrelude||'') + (data.mode==='custom'?customCOutputSupport:'') + '\n#line 1 "answer.c"\n' + normalized.code + harness(data.problem,data.cases,data.mode==='custom');
     api.memfs.addFile('answer.c',new TextEncoder().encode(source));
     self.postMessage({type:'phase', token:data.token, phase:'compile'});
     await api.run(await api.getModule(api.clangFilename), 'clang','-cc1','-emit-obj',
@@ -91,7 +96,14 @@ self.onmessage = async ({data}) => {
     log = '';phase='runtime';
     self.postMessage({type:'phase', token:data.token, phase:'run'});
     await api.run(module,'answer.wasm');
-    const output = clean(log);
+    const output = data.mode==='custom'?clean(log).replace(/\nDJU_CUSTOM_STREAM:[^\n]*\n/g,''):clean(log);
+    if(data.mode==='custom'){
+      const read=name=>output.split('\n').find(row=>row.startsWith(name+':'))?.slice(name.length+1);
+      const actual=read('DJU_CUSTOM_RESULT');
+      let stdout='';try{stdout=JSON.parse(read('DJU_CUSTOM_STDOUT'));}catch{}
+      report.custom={input:JSON.stringify(data.cases[0].args),value:actual??'(반환 결과 없음)',stdout,after:read('DJU_CUSTOM_AFTER')||'',raw:output.split('\n').filter(line=>!line.startsWith('DJU_CUSTOM_')&&!/^>\s*answer\.wasm\s*$/.test(line)).join('\n').trim().slice(0,10000)};
+      self.postMessage({type:'result',token:data.token,report});return;
+    }
     report.rows = data.cases.map((test,index)=>{
       const line = output.split('\n').find(row=>row.startsWith(`DJU_CASE_${index}:`));
       let actual;
@@ -104,6 +116,11 @@ self.onmessage = async ({data}) => {
     report.passed = report.rows.filter(row=>row.ok).length;
     report.total = report.rows.length;
   } catch (error) {
+    if(data.mode==='custom'&&phase==='runtime'){
+      const chunks=[];for(const line of clean(log).split('\n'))if(line.startsWith('DJU_CUSTOM_STREAM:'))try{chunks.push(JSON.parse(line.slice('DJU_CUSTOM_STREAM:'.length)));}catch{}
+      report.custom={stdout:chunks.join('').slice(0,10000)};
+      log=log.replace(/\nDJU_CUSTOM_STREAM:[^\n]*\n/g,'').replace(/^>\s*answer\.wasm\s*$/gm,'');
+    }
     report.errorSummary = 'C 컴파일·실행 오류';
     report.diagnostics=phase==='compile'?parseCDiagnostics(clean(log)):[];
     report.rawError=(clean(log)+'\n'+String(error)).slice(0,20000);

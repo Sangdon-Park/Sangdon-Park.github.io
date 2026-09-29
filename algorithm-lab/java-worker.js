@@ -1,5 +1,5 @@
 // Actual Java 8 compiler/JVM in a terminable worker; no execution API or API key.
-importScripts('java-problems.js?v=20260922-java','java-harness.js?v=20260922-java');
+importScripts('java-problems.js?v=20260922-java','custom-inputs.js?v=20260929-custom','java-harness.js?v=20260929-custom');
 let lib, compiler, support, sequence=0;
 async function errorText(error){try{return await error.toString();}catch{return 'Java runtime error';}}
 async function boot(){
@@ -31,7 +31,7 @@ self.onmessage=async({data})=>{
   try{
     const File=await lib.java.io.File;
     folder=await new File(dir);await folder.mkdirs();
-    for(const [name,source]of Object.entries({'Solution.java':data.code,'LabSupport.java':support,'LabJudge.java':javaHarness(data.problem,data.cases)}))cheerpOSAddStringFile('/str/'+name,source);
+    for(const [name,source]of Object.entries({'Solution.java':data.code,'LabSupport.java':support,'LabJudge.java':javaHarness(data.problem,data.cases,data.mode)}))cheerpOSAddStringFile('/str/'+name,source);
     const StringWriter=await lib.java.io.StringWriter, PrintWriter=await lib.java.io.PrintWriter;
     const output=await new StringWriter(), writer=await new PrintWriter(output);
     self.postMessage({type:'phase',token:data.token,phase:'compile'});
@@ -48,8 +48,8 @@ self.onmessage=async({data})=>{
       loader=await URLClassLoader.newInstance([url],null);
       const Judge=await loader.loadClass('LabJudge');
       const method=await Judge.getMethod('run',[]);
-      const rows=JSON.parse(await method.invoke(null,[]));
-      report={rows,passed:rows.filter(r=>r.ok).length,total:rows.length,diagnostics:diagnostics(log),compilerLog:log.slice(0,20000)};
+      const result=JSON.parse(await method.invoke(null,[]));
+      report=data.mode==='custom'?{...result,diagnostics:[...diagnostics(log),...(result.rows||[]).flatMap(r=>r.diagnostic?[r.diagnostic]:[])]}:{rows:result,passed:result.filter(r=>r.ok).length,total:result.length,diagnostics:diagnostics(log),compilerLog:log.slice(0,20000)};
     }
   }catch(error){const message=await errorText(error);report={error:message,errorSummary:'Java 실행 오류',diagnostics:[{severity:'error',message,line:null}]};}
   finally{
