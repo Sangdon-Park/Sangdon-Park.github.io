@@ -1,25 +1,30 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
-  "synced_at": "2026-10-02T05:41:03Z",
+  "synced_at": "2026-10-03T05:21:16Z",
   "views": {
-    "count": 2,
-    "uniques": 2
+    "count": 3,
+    "uniques": 3
   },
   "clones": {
-    "count": 358,
-    "uniques": 140
+    "count": 359,
+    "uniques": 142
   },
   "top_paths": [
     {
       "path": "/Sangdon-Park/Sangdon-Park.github.io",
       "title": "Overview",
-      "count": 2,
-      "uniques": 2
+      "count": 3,
+      "uniques": 3
     }
   ],
   "top_referrers": [
     {
       "referrer": "Bing",
+      "count": 1,
+      "uniques": 1
+    },
+    {
+      "referrer": "github.com",
       "count": 1,
       "uniques": 1
     }
