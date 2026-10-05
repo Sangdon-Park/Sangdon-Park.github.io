@@ -1,4 +1,4 @@
-@import url("main.css");
+@import url("main.css?v=20261005");
 
 .article-container {
   width: 100%;
@@ -7,6 +7,7 @@
   padding: clamp(28px, 5.5vw, 72px);
   background: var(--white);
   border: 1px solid var(--line);
+  border-radius: 16px;
 }
 
 .back-to-posts {
@@ -39,7 +40,7 @@
   padding: 4px 9px;
   color: var(--orange-deep);
   background: var(--accent-soft);
-  border: 1px solid rgba(255, 106, 33, 0.28);
+  border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;

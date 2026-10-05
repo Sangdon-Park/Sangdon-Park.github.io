@@ -4,6 +4,7 @@
   padding: clamp(30px, 4.8vw, 62px);
   background: var(--white);
   border: 1px solid var(--line);
+  border-radius: 16px;
 }
 
 .course-hero::before {
@@ -17,14 +18,7 @@
 }
 
 .course-hero::after {
-  content: "";
-  position: absolute;
-  top: -72px;
-  right: -54px;
-  width: 190px;
-  height: 190px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  display: none;
 }
 
 .course-hero h2 {
@@ -34,7 +28,7 @@
   font-size: clamp(36px, 5vw, 68px);
   font-weight: 600;
   letter-spacing: -0.055em;
-  line-height: 1.05;
+  line-height: 1.2;
   word-break: keep-all;
 }
 

@@ -4,17 +4,17 @@
       items: [
         {
           key: "home",
-          label: "Home",
+          label: "홈",
           icon: "fas fa-house",
           localHref: "#home",
           globalHref: "/ko.html#home"
         },
         {
-          key: "about",
-          label: "\uC18C\uAC1C",
-          icon: "fas fa-user",
-          localHref: "/about.html",
-          globalHref: "/about.html"
+          key: "teaching",
+          label: "\uAD50\uC721",
+          icon: "fas fa-chalkboard-teacher",
+          localHref: "#teaching",
+          globalHref: "/courses-2026-fall.html"
         },
         {
           key: "research",
@@ -27,22 +27,22 @@
           key: "games",
           label: "\uAC8C\uC784",
           icon: "fas fa-gamepad",
-          localHref: "/games.html",
+          localHref: "#projects",
           globalHref: "/games.html"
         },
         {
           key: "publications",
           label: "\uB17C\uBB38",
           icon: "fas fa-book",
-          localHref: "/publications.html",
+          localHref: "#publications",
           globalHref: "/publications.html"
         },
         {
-          key: "teaching",
-          label: "\uAD50\uC721",
-          icon: "fas fa-chalkboard-teacher",
-          localHref: "/courses-2026-fall.html",
-          globalHref: "/courses-2026-fall.html"
+          key: "about",
+          label: "\uC18C\uAC1C",
+          icon: "fas fa-user",
+          localHref: "#about",
+          globalHref: "/about.html"
         },
         {
           key: "news",
@@ -70,11 +70,11 @@
           globalHref: "/en.html#home"
         },
         {
-          key: "about",
-          label: "About",
-          icon: "fas fa-user",
-          localHref: "/about-en.html",
-          globalHref: "/about-en.html"
+          key: "teaching",
+          label: "Teaching",
+          icon: "fas fa-chalkboard-teacher",
+          localHref: "#teaching",
+          globalHref: "/courses-2026-fall-en.html"
         },
         {
           key: "research",
@@ -87,22 +87,22 @@
           key: "games",
           label: "Games",
           icon: "fas fa-gamepad",
-          localHref: "/games-en.html",
+          localHref: "#projects",
           globalHref: "/games-en.html"
         },
         {
           key: "publications",
           label: "Publications",
           icon: "fas fa-book",
-          localHref: "/publications-en.html",
+          localHref: "#publications",
           globalHref: "/publications-en.html"
         },
         {
-          key: "teaching",
-          label: "Teaching",
-          icon: "fas fa-chalkboard-teacher",
-          localHref: "/courses-2026-fall-en.html",
-          globalHref: "/courses-2026-fall-en.html"
+          key: "about",
+          label: "About",
+          icon: "fas fa-user",
+          localHref: "#about",
+          globalHref: "/about-en.html"
         },
         {
           key: "news",
@@ -138,8 +138,8 @@
         const activeClass = item.key === active ? " active" : "";
         return (
           `<li class="nav-item">` +
-          `<a href="${href}" class="nav-link${activeClass}" data-nav-key="${item.key}">` +
-          `<i class="${item.icon}"></i> ${item.label}</a></li>`
+          `<a href="${href}" class="nav-link${activeClass}" data-nav-key="${item.key}"${activeClass ? ' aria-current="page"' : ""}>` +
+          `<i class="${item.icon}" aria-hidden="true"></i> ${item.label}</a></li>`
         );
       })
       .join("");
@@ -174,43 +174,86 @@
     }
   });
 
+  const main = document.querySelector("main");
+  if (main) {
+    if (!main.id) main.id = "main-content";
+    if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1");
+    if (!document.querySelector(".skip-link")) {
+      const skip = document.createElement("a");
+      skip.className = "skip-link";
+      skip.href = "#" + main.id;
+      skip.textContent = document.documentElement.lang.startsWith("en") ? "Skip to content" : "본문 바로가기";
+      document.body.prepend(skip);
+    }
+  }
+
+  const brand = document.createElement("a");
+  brand.className = "mobile-brand";
+  brand.href = document.documentElement.lang.startsWith("en") ? "/en.html" : "/ko.html";
+  brand.innerHTML = "<strong>AxGS Lab<span aria-hidden=\"true\">.</span></strong><span>DAEJEON UNIVERSITY</span>";
+  document.body.prepend(brand);
+
   const sidebar = document.getElementById("sidebar");
   const mobileToggle = document.getElementById("mobile-toggle");
 
   if (sidebar && mobileToggle) {
     const isEn = (document.documentElement.lang || "").toLowerCase().startsWith("en");
-    const openLabel = isEn ? "Open menu" : "\uBA54\uB274 \uC5F4\uAE30";
-    const closeLabel = isEn ? "Close menu" : "\uBA54\uB274 \uB2EB\uAE30";
-
+    const openLabel = isEn ? "Open menu" : "메뉴 열기";
+    const closeLabel = isEn ? "Close menu" : "메뉴 닫기";
+    const mobile = matchMedia("(max-width: 980px)");
+    const backdrop = document.createElement("button");
+    backdrop.className = "menu-backdrop";
+    backdrop.type = "button";
+    backdrop.tabIndex = -1;
+    backdrop.setAttribute("aria-label", closeLabel);
+    document.body.appendChild(backdrop);
     mobileToggle.setAttribute("aria-controls", "sidebar");
 
-    const syncMobileMenuState = () => {
-      const isOpen = sidebar.classList.contains("open");
-      mobileToggle.setAttribute("aria-expanded", String(isOpen));
-      mobileToggle.setAttribute("aria-label", isOpen ? closeLabel : openLabel);
+    const syncState = () => {
+      const open = mobile.matches && sidebar.classList.contains("open");
+      mobileToggle.setAttribute("aria-expanded", String(open));
+      mobileToggle.setAttribute("aria-label", open ? closeLabel : openLabel);
+      document.body.classList.toggle("menu-open", open);
+      if (main) main.inert = open;
+      sidebar.inert = mobile.matches && !open;
     };
-
-    syncMobileMenuState();
-    new MutationObserver(syncMobileMenuState).observe(sidebar, {
-      attributes: true,
-      attributeFilter: ["class"]
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && sidebar.classList.contains("open")) {
-        sidebar.classList.remove("open");
-        mobileToggle.focus();
+    const close = (restoreFocus = false) => {
+      sidebar.classList.remove("open");
+      syncState();
+      if (restoreFocus) mobileToggle.focus();
+    };
+    mobileToggle.addEventListener("click", event => {
+      // Older page scripts also bind this button. Keep one owner for the menu.
+      event.stopImmediatePropagation();
+      const opening = !sidebar.classList.contains("open");
+      sidebar.classList.toggle("open", opening);
+      syncState();
+      if (opening) sidebar.querySelector(".nav-link")?.focus();
+    }, true);
+    backdrop.addEventListener("click", () => close(true));
+    sidebar.addEventListener("click", event => {
+      if (event.target.closest("a") && mobile.matches) {
+        close();
+        main?.focus({ preventScroll: true });
       }
     });
-
-    document.addEventListener("click", (event) => {
-      if (
-        sidebar.classList.contains("open") &&
-        !sidebar.contains(event.target) &&
-        !mobileToggle.contains(event.target)
-      ) {
-        sidebar.classList.remove("open");
+    document.addEventListener("keydown", event => {
+      if (!mobile.matches || !sidebar.classList.contains("open")) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close(true);
+      }
+      if (event.key === "Tab") {
+        const controls = [...sidebar.querySelectorAll('a[href], button:not([disabled])'), mobileToggle]
+          .filter(node => node.getClientRects().length && !node.closest("[inert]"));
+        const index = controls.indexOf(document.activeElement);
+        event.preventDefault();
+        const nextIndex = index < 0 ? 0 : (index + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+        controls[nextIndex]?.focus();
       }
     });
+    mobile.addEventListener("change", () => close());
+    new MutationObserver(syncState).observe(sidebar, { attributes: true, attributeFilter: ["class"] });
+    syncState();
   }
 })();

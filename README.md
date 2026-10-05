@@ -15,6 +15,9 @@ Assistant Professor in the **Department of Computer Engineering, School of SW Co
 - `articles/`: article pages (`*-en.html` for English counterparts)
 - `css/main.css`: global design/theme
 - `css/article.css`: article-specific styles
+- `css/course.css`: course hubs, schedules, and material tables
+- `js/shared-nav.js`: bilingual navigation and accessible mobile menu
+- `js/home-page.js`: homepage section navigation and language switching
 - `js/chatbot.js`: optional chatbot integration script
 - `_config.yml`, `Gemfile`: Jekyll/GitHub Pages configuration
 
@@ -42,6 +45,12 @@ bundle exec jekyll doctor
 ```
 
 ## Content Update Guide
+
+The Korean and English homepages share the same section order: home, teaching,
+research, projects, publications, about, writing, and contact. Keep course
+lectures and exercises in their existing separate categories when updating links.
+Shared styles and navigation are used by the profile, project, course, and article
+pages; test desktop and mobile layouts after changing them.
 
 1. **Profile / About / Teaching / Contact updates**
    - Edit `ko.html` and `en.html`.
