@@ -14,7 +14,7 @@ const languageName = () => ({python:'Python',c:'C',java:'Java'})[language];
 const expectedText=(p,value)=>p.exactInteger?String(value):JSON.stringify(value);
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(_){$('result').textContent=T('브라우저 저장 공간을 사용할 수 없습니다. 답안을 내려받아 보관하세요.');}}
 function setResult(text,kind=''){ $('result').textContent=messageText(text); $('result').className=kind; }
-function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
+function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; aiHintControls(); $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
   worker=new Worker(language==='java'?'java-worker.js?v=20261011-ch4-scope':language==='c'?'c-worker.js?v=20261011-ch4-scope':'worker.js?v=20261011-ch4-scope');
@@ -70,7 +70,7 @@ function show(i){
   $('editor-label').textContent=language==='java'?'Solution.java':p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='java'?'Java 8':language==='c'?'C / C11':'Python 3';
   const instructions=problemFunctionInstructions(p,language,view,UI_EN);
   $('instructions').textContent=T(commonFunctionHelp(language,UI_EN));
-  $('statement').textContent=view.statement.replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions;
+  $('statement').textContent=view.statement.replaceAll('Python 또는 C 중 하나로',languageName()+'로').replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions;
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');
@@ -79,6 +79,7 @@ function show(i){
   }
   renderCustomInputs(p);
   renderPracticeHints(p);
+  renderAIHints();
   renderStudy(p);
   syncPracticeLayout(p);
   $('case-results').replaceChildren();$('repair-note').hidden=true;$('next').hidden=true;setResult(restored?T('기존 중복 문제의 답안을 불러왔습니다. PPTX 조건으로 채점하기를 눌러 확인하세요.'):T('코드를 작성한 뒤 예시 실행 또는 채점하기를 누르세요.'));renderNav();
@@ -157,7 +158,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261011-ch4-scope'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};

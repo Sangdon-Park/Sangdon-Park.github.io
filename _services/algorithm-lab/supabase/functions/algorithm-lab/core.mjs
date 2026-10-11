@@ -1,8 +1,8 @@
 import {hintInput,generateHint} from './ai-hint.mjs';
 import {visit,requestIP} from './analytics.mjs';
 export const TOTALS={"P01":10,"P02":21,"P03":7,"P05":7,"P06":7,"P07":7,"P08":8,"P09":11,"P10":11,"P11":8,"P12":9,"P13":6,"P14":6,"P15":7,"P16":6,"P17":6,"P18":7,"P19":7,"P20":4,"P21":5,"P22":8,"P23":6,"P24":5,"P25":5,"P26":5,"P27":7,"P28":7,"P29":6,"P30":7,"P31":6,"P32":5,"P33":5,"P34":7,"P35":7,"P36":6,"P37":6,"P38":7,"P39":7,"P40":7,"P41":7,"P42":8,"P43":6,"P44":5,"P45":5,"P46":7,"P47":12,"P48":12,"P51":6,"P53":11,"P54":11,"P55":6,"P56":4,"P57":5,"P58":11,"P59":4,"P60":5,"P61":4,"P62":5,"P87":31,"P88":31,"P89":7,"P65":5,"P66":11,"P67":6,"P68":4,"P69":5,"P70":5,"P71":5,"P72":5,"P73":4,"P74":3,"P75":4,"P76":5,"P77":6,"P78":6,"P79":6,"P80":5,"P81":5,"P82":5,"P83":6,"P84":5,"P85":6,"P86":6};
-export class HttpError extends Error{constructor(status,message){super(message);this.status=status;}}
-export const fail=(status,message)=>{throw new HttpError(status,message);};
+export class HttpError extends Error{constructor(status,message,details={}){super(message);this.status=status;Object.assign(this,details);}}
+export const fail=(status,message,details)=>{throw new HttpError(status,message,details);};
 export const hex=bytes=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 export const random=()=>hex(crypto.getRandomValues(new Uint8Array(32)));
 export const digest=async text=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))));
@@ -40,7 +40,7 @@ export function createHandler({env,fetcher=fetch}){
     return data;
   }
   const table=name=>'dju_algolab_'+name;
-  async function limit(key,window,max){if(!await db('rpc/dju_algolab_rate_limit','POST',{p_key:key,p_window:window,p_limit:max}))fail(429,'요청이 너무 많습니다. 잠시 후 다시 시도하세요.');}
+  async function limit(key,window,max,message){if(!await db('rpc/dju_algolab_rate_limit','POST',{p_key:key,p_window:window,p_limit:max}))fail(429,message||'요청이 너무 많습니다. 잠시 후 다시 시도하세요.',{retryAfter:window-Math.floor(Date.now()/1000)%window});}
   async function session(req,role){
     const token=req.headers.get('Authorization')?.replace(/^Bearer /,'')||'';
     if(!/^[a-f0-9]{64}$/.test(token))fail(401,'로그인이 필요합니다.');
@@ -129,8 +129,8 @@ export function createHandler({env,fetcher=fetch}){
         const input=hintInput(body,fail);
         if(!env('GEMINI_API_KEY'))fail(503,'AI 힌트는 준비 중입니다. 잠시 후 다시 이용해 주세요.');
         await limit('hint:student:'+auth.student_id,15,1);
-        await limit('hint:day:'+auth.student_id,86400,30);
-        await limit('hint:global',86400,1000);
+        await limit('hint:day:'+auth.student_id,86400,30,'오늘 이용할 수 있는 AI 힌트를 모두 받았습니다. 기본 단계별 힌트는 계속 이용할 수 있습니다.');
+        await limit('hint:global',86400,1000,'오늘의 AI 힌트 이용량이 많습니다. 기본 단계별 힌트를 이용해 주세요.');
         return respond(await generateHint({body,input,env,fetcher,fail}));
       }
       if(action==='state')return respond(await state(auth.student_id));
@@ -173,6 +173,6 @@ export function createHandler({env,fetcher=fetch}){
         await db(table('sessions')+'?role=eq.admin','DELETE');return respond({ok:true});
       }
       fail(400,'지원하지 않는 요청입니다.');
-    }catch(error){return respond({error:error instanceof HttpError?error.message:'서버 저장에 실패했습니다. 잠시 후 다시 시도하세요.'},error instanceof HttpError?error.status:500);}
+    }catch(error){return respond({error:error instanceof HttpError?error.message:'서버 저장에 실패했습니다. 잠시 후 다시 시도하세요.',...(error instanceof HttpError&&error.retryAfter?{retryAfter:error.retryAfter}:{})},error instanceof HttpError?error.status:500);}
   };
 }

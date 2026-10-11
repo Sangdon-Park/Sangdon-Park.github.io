@@ -176,16 +176,28 @@ all HTTP traffic or verified individual people. Existing Google tags are separat
 
 ### 단계별 실습 힌트
 
-`practice-hints.js`는 Python/C 선택에 따라 문법·함수 설명, 문제별 풀이 순서, 반환식 빈칸 연습, 검증된 완성 예시를 순서대로 표시합니다. 2–6장 전체에 완성 예시를 제공하며 기존 답안·점수는 변경하지 않습니다. `node _services/algorithm-lab/tests/practice-hints.mjs`로 양 언어의 빈칸 복원과 힌트 구성을 확인합니다.
+`practice-hints.js`는 Python/C/Java 선택에 따라 문법·함수 설명 → 문제별 풀이 순서 → 핵심 코드 빈칸 → 검증된 완성 예시의 네 단계를 표시합니다. 활성 72문항 모두에 언어별 완성 예시를 제공하며, 빈칸은 개별로 펼쳐 확인할 수 있습니다. 기존 답안·점수는 변경하지 않습니다. `hint-guides.js`는 문제별 세 단계와 경계 조건을, `hint-references.js`와 `java-hint-references.js`는 초보자가 읽기 쉬운 참조 풀이를 제공합니다.
+
+검증 명령:
+
+```powershell
+node _services/algorithm-lab/tests/practice-hints.mjs
+python _services/algorithm-lab/tests/hint-references.py
+node _services/algorithm-lab/tests/hint-references.mjs
+node _services/algorithm-lab/tests/hint-java-browser.cjs
+node _services/algorithm-lab/tests/hints-browser.cjs
+```
+
+각 언어의 실제 실행기로 72문항·531개 원래 테스트를 확인합니다. Java와 UI 브라우저 검증은 Playwright와 Chrome을 사용하며, `NODE_PATH`로 기존 Playwright 설치 경로를 지정할 수 있습니다. UI 테스트는 격리된 계정·API·실행기 픽스처를 사용하여 단계 이동, 빈칸 복원, AI 힌트 이력, 실패 후 재시도와 모바일 배치를 확인합니다.
 
 
 ### Tiny AI hints (Google Gemini)
 
-The authenticated `ai-hint` action sends only the current problem statement, source code and a bounded execution summary to Google. Student identity, reference solutions and hidden test inputs/answers are excluded. The browser discards stale hints after code/problem changes and never reuses diagnostics from a different source snapshot.
+The authenticated `ai-hint` action sends only the current problem statement, source code, a bounded execution summary, and up to ten previously accepted hints to Google. Student identity, reference solutions and hidden test inputs/answers are excluded. Hint history is scoped to the current account/problem/language/UI locale in session storage. Code edits retain accepted hints but invalidate in-flight requests and old execution diagnostics; switching context cannot display a stale response.
 
 Set `GEMINI_API_KEY` in Supabase Edge Function Secrets for project `tltrbkttwzvwghaplurl`. Do not put the key in frontend files or Git. Optional `ALGOLAB_HINT_MODEL` defaults to `gemini-3.7-flash`. Without a key the endpoint returns a translated unavailable message without calling Google.
 
-The system prompt requests one tiny hint in the selected UI language, no solution or replacement code. Structured JSON, output length/code checks, a 15-second upstream timeout and persistent rate limits (one request per 15-second bucket, 30 per student per UTC day, 1,000 total per UTC day) bound use. Prompt instructions and checks reduce answer leakage but cannot guarantee semantic compliance from a generative model. Provider failures are sanitized; no API keys or upstream error bodies are returned.
+The system prompt requests one short, actionable next hint in the selected UI language, no full solution or replacement function. Continuations undergo a second semantic review against the history: a paraphrase of the same repair must be replaced with new trace/boundary/reasoning information. Exact/text-similar duplicates are rejected and do not advance the displayed step. Each student request makes at most two provider calls, with a ten-second timeout per call. The same budget covers transient failures and duplicate/incomplete responses. Persistent rate limits remain one request per 15-second bucket, 30 per student per UTC day, and 1,000 total per UTC day. The UI shows the cooldown and preserves earlier hints on failure; built-in steps remain available. Prompt instructions and checks reduce repetition and answer leakage but cannot guarantee semantic compliance from a generative model. Provider failures are sanitized; no API keys or upstream error bodies are returned.
 
 Test: `node _services/algorithm-lab/tests/ai-hint.mjs`. This uses a mocked Gemini API; real-model verification requires the deployed secret.
 
@@ -198,8 +210,8 @@ CheerpJ 4.3 compile and execute locally in a terminable worker. Exact long resul
 array mutations, input preservation, floating tolerances and error line links
 are checked. Indexed-access complexity constraints (P02) are pedagogical,
 as with C; Java checks the results and time limit, not individual array reads.
-Java hints provide syntax, algorithm guidance and starters; complete reference
-solutions remain available for Python/C only.
+Java hints provide the same four stages as Python/C, including individually
+revealed key-code blanks and complete reference solutions for all 72 active problems.
 
 Deployment order: apply java-migration.sql to the existing database, deploy the
 algorithm-lab Edge Function, then publish the site. Existing identities, drafts

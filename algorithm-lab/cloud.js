@@ -1,9 +1,9 @@
 const LAB_API='https://tltrbkttwzvwghaplurl.supabase.co/functions/v1/algorithm-lab';
 const cloud={session:null,queue:[],flushing:false,draftTimer:null,supported:new Set(Array.from({length:36},(_,i)=>'P'+String(i+1).padStart(2,'0'))),catalogChecked:0,languages:new Set(['python','c'])};
 const cloudStatus=(text,error=false)=>{document.getElementById('cloud-status').textContent=text;document.getElementById('cloud-status').classList.toggle('cloud-error',error);};
-async function labRequest(action,body={},token=cloud.session?.token){
-  const response=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});
-  const data=await response.json();if(!response.ok){if(response.status===401&&cloud.session){cloud.expired=true;requirePracticeAccount();}const error=new Error(T(data.error)||T('서버 요청 실패'));error.status=response.status;throw error;}return data;
+async function labRequest(action,body={},token=cloud.session?.token,options={}){
+  const response=await fetch(LAB_API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:options.signal||AbortSignal.timeout(20000)});
+  const data=await response.json();if(!response.ok){if(response.status===401&&cloud.session){cloud.expired=true;requirePracticeAccount();}const error=new Error(T(data.error)||T('서버 요청 실패'));error.status=response.status;error.retryAfter=data.retryAfter;throw error;}return data;
 }
 function queueKey(){return 'dju-algolab-outbox:'+cloud.session.student.id;}
 function saveQueue(){if(cloud.resetting)return false;try{localStorage.setItem(queueKey(),JSON.stringify(cloud.queue));return true;}catch{cloudStatus(T('저장 공간 부족 · 답안 파일을 내려받아 보관하세요.'),true);return false;}}

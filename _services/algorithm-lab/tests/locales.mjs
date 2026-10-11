@@ -9,7 +9,7 @@ function fixture(locale,savedLocale){
  const ctx=vm.createContext({URLSearchParams,location:{search:locale?'?lang='+locale:''},localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)}});
  for(const f of ['locale-en.js','locale-extra.js'])vm.runInContext(read(f),ctx);
  vm.runInContext(read('i18n.js').split('document.documentElement.lang=')[0],ctx);
- for(const f of ['c-problems.js','examples.js','practice-hints.js'])vm.runInContext(read(f),ctx);
+ for(const f of ['c-problems.js','java-problems.js','examples.js','hint-guides.js','hint-references.js','java-hint-references.js','practice-hints.js','problem-catalog.js'])vm.runInContext(read(f),ctx);
  return ctx;
 }
 assert.equal(vm.runInContext('UI_LOCALE',fixture('')),'ko');
@@ -28,8 +28,9 @@ for(const locale of ['ko','en','es-ES','es-419']){
    for(const obj of [p,p.study,c[p.id]])for(const field of ['title','section','slides','level','statement','hint','provided','complexity','method','boundary','result']){
     if(obj?.[field])assert.ok(!/[가-힣]|ZXQ\d+QXZ/.test(obj[field]),`${locale}/${p.id}/${field}: ${obj[field]}`);
    }
-   for(const language of ['python','c']){
+   for(const language of ['python','c','java']){
     const data=hint(p,language);
+    for(const text of [...data.steps,data.check])assert.ok(!/[가-힣]/.test(text),`${locale}/${p.id}/${language}/guide: ${text}`);
     for(const tool of data.tools)assert.ok(!/[가-힣]/.test(tool),`${locale}/${p.id}/hint: ${tool}`);
     for(const test of p.tests.filter(x=>x.public)){
      const result=vm.runInContext('formatProblemExample',ctx)(p,test,language,c[p.id],1,locale==='en');
@@ -39,7 +40,7 @@ for(const locale of ['ko','en','es-ES','es-419']){
   }else assert.equal(p.statement,original.statement);
  }
 }
-console.log(`All ${bank.length} catalog records: Korean/English/Spanish fields, Python/C examples, hints, immutable source code and test inputs verified.`);
+console.log(`All ${bank.length} catalog records: Korean/English/Spanish fields, Python/C/Java examples, hints, immutable source code and test inputs verified.`);
 
 assert.equal(vm.runInContext('UI_LOCALE',fixture('es')),'es-419');
 for(const locale of ['es-ES','es-419']){

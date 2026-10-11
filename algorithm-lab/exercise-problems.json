@@ -15121,7 +15121,7 @@
     "starter": "def merge_arrays(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -15259,7 +15259,7 @@
     "starter": "def merge_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log(n+1)). Python은 앞 문항 merge_arrays를 사용한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -15565,7 +15565,7 @@
     "starter": "def cross_sum(a, lo, mid, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(hi−lo). 모두 음수여도 빈 구간을 허용하지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -15681,7 +15681,7 @@
     "starter": "def max_subarray(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log n).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -15810,7 +15810,7 @@
     "solution": "def mod_power(a, b, m):\n    if b == 0:\n        return 1 % m\n    half = mod_power(a, b // 2, m)\n    result = (half * half) % m\n    if b % 2 == 1:\n        result = (result * a) % m\n    return result",
     "starter": "def mod_power(a, b, m):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -15943,7 +15943,7 @@
     "starter": "def quad(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -16104,7 +16104,7 @@
     "starter": "def partition(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "길이가 k인 구간에서 시간 O(k). 같은 값은 피벗의 왼쪽으로 보낸다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -24229,7 +24229,7 @@
     "starter": "def quick_sort(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -32412,7 +32412,7 @@
     "starter": "def white_count(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -32566,13 +32566,13 @@
       "a",
       "b"
     ],
-    "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+    "statement": "역전 쌍은 원래 배열에서 앞의 수가 뒤의 수보다 큰 두 원소의 쌍입니다.\n원래 배열의 왼쪽·오른쪽 부분을 각각 오름차순으로 정렬한 a, b가 주어집니다.\na에서 하나, b에서 하나를 골라 a[i] > b[j]인 쌍만 셉니다. 같은 값은 세지 않습니다.\n\n예: a=[1,4,7], b=[2,3,8]이면\n(4,2), (4,3), (7,2), (7,3)의 4쌍입니다.\n\ncross_inversions(a,b)를 병합처럼 순회하여 작성하시오.\n각 길이는 0~1000이며, 한쪽이 비면 0을 반환합니다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "a=[1,4,7], b=[2,3,8]에서 i=j=count=0으로 시작합니다.\n1 <= 2: i만 늘려 4를 봅니다. 아직 역전 쌍은 없습니다.\n4 > 2: 남은 왼쪽 [4,7] 모두 2보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 > 3: 다시 [4,7] 모두 3보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 <= 8, 7 <= 8: i만 늘리다가 왼쪽이 끝납니다. 총 4쌍입니다.\n\n왼쪽 길이를 n, 오른쪽 길이를 m이라 하면 더할 개수는 n-i개입니다.\n각 반복에서 i 또는 j가 한 칸 전진하므로 시간은 O(n+m)입니다.",
     "solution": "def cross_inversions(a, b):\n    i = j = count = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            i += 1\n        else:\n            count += len(a) - i\n            j += 1\n    return count",
     "starter": "def cross_inversions(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "sourceHash": "41c6d0100c8b5a6f15425295b3cc5725d8385ff87d7a6764d3692cc99621f77c",
     "tests": [
       {
         "args": [
@@ -32912,15 +32912,15 @@
     "c": {
       "starter": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
       "solution": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n    int i=0, j=0;\n    long long count=0;\n    while (i<n && j<m) {\n        if (a[i]<=b[j]) ++i;\n        else { count+=n-i; ++j; }\n    }\n    return count;\n}",
-      "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+      "statement": "역전 쌍은 원래 배열에서 앞의 수가 뒤의 수보다 큰 두 원소의 쌍입니다.\n원래 배열의 왼쪽·오른쪽 부분을 각각 오름차순으로 정렬한 a, b가 주어집니다.\na에서 하나, b에서 하나를 골라 a[i] > b[j]인 쌍만 셉니다. 같은 값은 세지 않습니다.\n\n예: a=[1,4,7], b=[2,3,8]이면\n(4,2), (4,3), (7,2), (7,3)의 4쌍입니다.\n\ncross_inversions(a,b)를 병합처럼 순회하여 작성하시오.\n각 길이는 0~1000이며, 한쪽이 비면 0을 반환합니다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "a=[1,4,7], b=[2,3,8]에서 i=j=count=0으로 시작합니다.\n1 <= 2: i만 늘려 4를 봅니다. 아직 역전 쌍은 없습니다.\n4 > 2: 남은 왼쪽 [4,7] 모두 2보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 > 3: 다시 [4,7] 모두 3보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 <= 8, 7 <= 8: i만 늘리다가 왼쪽이 끝납니다. 총 4쌍입니다.\n\n왼쪽 길이를 n, 오른쪽 길이를 m이라 하면 더할 개수는 n-i개입니다.\n각 반복에서 i 또는 j가 한 칸 전진하므로 시간은 O(n+m)입니다.",
       "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
     },
     "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
     "cPrelude": "",
     "provided": "",
     "study": {
-      "method": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+      "method": "a=[1,4,7], b=[2,3,8]에서 i=j=count=0으로 시작합니다.\n1 <= 2: i만 늘려 4를 봅니다. 아직 역전 쌍은 없습니다.\n4 > 2: 남은 왼쪽 [4,7] 모두 2보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 > 3: 다시 [4,7] 모두 3보다 큽니다. 2쌍을 더하고 j를 늘립니다.\n4 <= 8, 7 <= 8: i만 늘리다가 왼쪽이 끝납니다. 총 4쌍입니다.\n\n왼쪽 길이를 n, 오른쪽 길이를 m이라 하면 더할 개수는 n-i개입니다.\n각 반복에서 i 또는 j가 한 칸 전진하므로 시간은 O(n+m)입니다.",
       "boundary": "같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.",
       "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
