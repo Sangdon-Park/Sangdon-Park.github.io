@@ -63,7 +63,7 @@ function cExampleModel(p, t, c) {
   }
   if (f === 'merge_arrays' || f === 'cross_inversions') values.m = a[1].length;
   if (f === 'merge_sort') { values.lo = 0; values.hi = a[0].length; buffers.tmp = [Math.max(1, a[0].length)]; }
-  if (['closest_base', 'activity_count', 'fractional_value', 'knapsack1', 'knapsack2'].includes(f)) {
+  if (['activity_count', 'fractional_value', 'knapsack1', 'knapsack2'].includes(f)) {
     values[names[0]] = a[0].map(row => row[0]); values[names[1]] = a[0].map(row => row[1]);
   }
   if (f === 'kruskal_cost') values.m = a[1].length;

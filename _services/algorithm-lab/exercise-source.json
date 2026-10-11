@@ -11345,7 +11345,7 @@
     "number": 91,
     "slide": 181,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P57"
   },
   {
@@ -11386,7 +11386,7 @@
     "number": 92,
     "slide": 185,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P58",
     "randomCases": [
       {
@@ -11588,7 +11588,7 @@
     "number": 93,
     "slide": 189,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P59"
   },
   {
@@ -11634,61 +11634,88 @@
     "number": 94,
     "slide": 193,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P60"
   },
   {
-    "question": "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.",
-    "python": "def closest_base(points):\n    best = float('inf')\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            dx = points[i][0] - points[j][0]\n            dy = points[i][1] - points[j][1]\n            best = min(best, dx * dx + dy * dy)\n    return best",
-    "c": "long long closest_base(const int x[], const int y[], int n) {\n    long long best=800000001LL;\n    for (int i=0; i<n; ++i) {\n        for (int j=i+1; j<n; ++j) {\n            long long dx=(long long)x[i]-x[j];\n            long long dy=(long long)y[i]-y[j];\n            long long d=dx*dx+dy*dy;\n            if (d<best) best=d;\n        }\n    }\n    return best;\n}",
-    "answer": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
-    "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
-    "title": "최근접 쌍의 기저 사례",
+    "question": "a의 b제곱을 m으로 나눈 나머지를 반환하는 mod_power(a,b,m)을 작성하시오.\n0≤a≤10⁹, 0≤b≤10⁹, 1≤m≤10⁹이다. b=0이면 1%m을 반환한다.\n그 외에는 b//2의 재귀 결과를 한 번만 구해 half에 저장하고 제곱한다.\nb가 홀수이면 a를 한 번 더 곱하며, 곱셈 후마다 m으로 나눈 나머지를 저장한다.\nPython 또는 C 중 하나로 함수를 작성하시오.",
+    "python": "def mod_power(a, b, m):\n    if b == 0:\n        return 1 % m\n    half = mod_power(a, b // 2, m)\n    result = (half * half) % m\n    if b % 2 == 1:\n        result = (result * a) % m\n    return result",
+    "c": "int mod_power(int a, int b, int m) {\n    if (b == 0) return 1 % m;\n    long long half = mod_power(a, b / 2, m);\n    long long result = (half * half) % m;\n    if (b % 2 == 1) result = (result * a) % m;\n    return (int)result;\n}",
+    "answer": "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.",
+    "complexity": "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.",
+    "title": "빠른 거듭제곱과 나머지",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "tests": [
       {
         "args": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              3,
-              0
-            ]
-          ]
+          3,
+          5,
+          7
         ],
-        "expected": 9,
+        "expected": 5,
         "public": true
       },
       {
         "args": [
-          [
-            [
-              2,
-              2
-            ],
-            [
-              2,
-              2
-            ]
-          ]
+          3,
+          11,
+          7
+        ],
+        "expected": 5,
+        "public": true
+      },
+      {
+        "args": [
+          9,
+          0,
+          7
+        ],
+        "expected": 1,
+        "public": false
+      },
+      {
+        "args": [
+          0,
+          0,
+          1
         ],
         "expected": 0,
-        "public": true
+        "public": false
+      },
+      {
+        "args": [
+          0,
+          7,
+          19
+        ],
+        "expected": 0,
+        "public": false
+      },
+      {
+        "args": [
+          2,
+          30,
+          1000
+        ],
+        "expected": 824,
+        "public": false
+      },
+      {
+        "args": [
+          1000000000,
+          1000000000,
+          999999937
+        ],
+        "expected": 657727886,
+        "public": false
       }
     ],
     "chapter": 4,
     "number": 95,
     "slide": 197,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
-    "id": "P61"
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
+    "id": "P89"
   },
   {
     "question": "n=2ᵏ, 1≤n≤32인 0/1 정사각형을 부호화한다. 균일하면 값 하나, 아니면 (왼위 오른위 왼아래 오른아래) 순서로 붙인다. quad(a,r,c,n)을 작성한다. C a의 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.",
@@ -11737,13 +11764,13 @@
     "number": 96,
     "slide": 201,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P62"
   },
   {
     "chapter": 4,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "id": "P87",
     "number": 97,
@@ -19723,7 +19750,7 @@
   {
     "chapter": 4,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "id": "P88",
     "number": 98,
@@ -27809,7 +27836,7 @@
     "number": 99,
     "slide": 213,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P65"
   },
   {
@@ -27855,7 +27882,7 @@
     "number": 100,
     "slide": 217,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sha256": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "id": "P66",
     "randomCases": [
       {

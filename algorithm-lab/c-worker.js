@@ -2,7 +2,7 @@
 importScripts('vendor/wasm-clang/shared.js');
 importScripts('diagnostics.js?v=20260921-errors');
 importScripts('chapter-02-harness.js?v=20260915-ch2');
-importScripts('custom-inputs.js?v=20261011-ch4-sorts','custom-c-harness.js?v=20261011-ch4-sorts');
+importScripts('custom-inputs.js?v=20261011-ch4-scope','custom-c-harness.js?v=20261011-ch4-scope');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
 const clean = text => text.replace(/\x1b\[[0-9;]*m/g, '');

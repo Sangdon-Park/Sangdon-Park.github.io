@@ -14,7 +14,7 @@ function customCCase(p,args) {
   switch(f){
     case 'first_index':case 'binary_search':case 'quick_select':
       setup=arr('a',args[0]);call=direct(['a',args[0].length,args[1]]);break;
-    case 'gcd_value':case 'fibonacci':case 'coin_count':case 'domino':call=direct(args.map(lit));break;
+    case 'mod_power':case 'gcd_value':case 'fibonacci':case 'coin_count':case 'domino':call=direct(args.map(lit));break;
     case 'partition':
       setup=arr('a',args[0]);call=direct(['a',args[1],args[2]]);break;
     case 'quick_sort':
@@ -29,7 +29,7 @@ function customCCase(p,args) {
       else call=direct(['a',args[0].length,'b',args[1].length]);break;
     case 'cross_sum':case 'max_subarray':
       setup=arr('a',args[0]);call=direct(['a',...args.slice(1)]);break;
-    case 'closest_base':case 'activity_count':case 'fractional_value':case 'knapsack1':case 'knapsack2':
+    case 'activity_count':case 'fractional_value':case 'knapsack1':case 'knapsack2':
       setup=arr('a',args[0].map(r=>r[0]))+arr('b',args[0].map(r=>r[1]));
       if(f==='knapsack1')setup+=`int dp[${args[1]+1}]={0};`;
       if(f==='knapsack2')setup+='static int dp[101][1001];';

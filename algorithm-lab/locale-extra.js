@@ -1,5 +1,11 @@
 // Additional English and Spanish display translations. Never apply to student code.
 const LOCALE_EN={
+  "빠른 거듭제곱과 나머지": "Fast modular exponentiation",
+  "a의 b제곱을 m으로 나눈 나머지를 반환하는 mod_power(a,b,m)을 작성하시오.\n0≤a≤10⁹, 0≤b≤10⁹, 1≤m≤10⁹이다. b=0이면 1%m을 반환한다.\n그 외에는 b//2의 재귀 결과를 한 번만 구해 half에 저장하고 제곱한다.\nb가 홀수이면 a를 한 번 더 곱하며, 곱셈 후마다 m으로 나눈 나머지를 저장한다.\nPython 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Return a^b modulo m with mod_power(a,b,m). 0≤a≤10^9, 0≤b≤10^9, 1≤m≤10^9. For b=0 return 1%m. Otherwise recursively compute b//2 once, store it in half, and square it. For odd b multiply by a once more. Reduce modulo m after each multiplication. Write Python or C.\n\nExplain behavior, boundary cases, and time complexity.",
+  "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.": "Compute the half-exponent result once, reuse its square, and multiply by a once more only for odd b.",
+  "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.": "Time O(log(b+1)). Each level makes one half-exponent call and reuses half.",
+  "b=0이면 1%m을 반환한다. m=1이면 모든 결과가 0이다. C의 중간 곱셈은 long long으로 계산한다.": "For b=0 return 1%m. For m=1 every result is 0. Use long long for intermediate C multiplications.",
+  "a의 b제곱을 m으로 나눈 나머지를 int로 반환합니다. 중간 곱셈은 long long으로 계산합니다.": "Return a^b modulo m as int. Use long long for intermediate products.",
   "분반 변경": "Change section",
   "작성한 코드와 풀이·제출 기록을 유지하면서 분반을 변경합니다.": "Change your section while keeping your code, progress, and submissions.",
   "이동할 분반": "New section",
@@ -537,10 +543,6 @@ const LOCALE_EN={
   "cross_sum 함수는 실행 환경에 제공됩니다.": "The cross_sum function is provided in the execution environment.",
   "시간 O(n log n).": "Time O(n log n).",
   "빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.": "Empty sections are prohibited. Check if there are 1 elements and they are all negative.",
-  "최근접 쌍의 기저 사례": "Base case of nearest pair",
-  "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implement closest_base, the base case of closest-pair divide and conquer. There are 2 or 3 points with integer coordinates in −10000..10000. Return the squared minimum distance. C inputs are x[], y[], and n.\n\nWrite the function in Python or C. Explain its behavior, boundary cases, and time complexity.",
-  "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.": "Compares all two points in the basis interval and finds the minimum squared distance.",
-  "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.": "Compare O(k²), in this basis k≤3, so O(1). Distinguish it from the time of the full nearest pair algorithm.",
   "제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.": "Returns the squared distance. Two equal dots are 0.",
   "쿼드트리 부호화": "Quadtree encoding",
   "n=2ᵏ, 1≤n≤32인 0/1 정사각형을 부호화한다. 균일하면 값 하나, 아니면 (왼위 오른위 왼아래 오른아래) 순서로 붙인다. quad(a,r,c,n)을 작성한다. C a의 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Encode a square grid of 0s and 1s with n=2ᵏ and 1≤n≤32. If uniform, emit its value once. Otherwise, enclose the encodings in parentheses in top-left, top-right, bottom-left, bottom-right order. Implement quad(a,r,c,n). In C, a has row width 32.\n\nWrite the function in Python or C. Explain its behavior, boundary cases, and time complexity.",
@@ -892,6 +894,12 @@ const LOCALE_EN={
   "출력 없음": "No output"
 };
 const LOCALE_ES={
+  "빠른 거듭제곱과 나머지": "Exponenciación modular rápida",
+  "a의 b제곱을 m으로 나눈 나머지를 반환하는 mod_power(a,b,m)을 작성하시오.\n0≤a≤10⁹, 0≤b≤10⁹, 1≤m≤10⁹이다. b=0이면 1%m을 반환한다.\n그 외에는 b//2의 재귀 결과를 한 번만 구해 half에 저장하고 제곱한다.\nb가 홀수이면 a를 한 번 더 곱하며, 곱셈 후마다 m으로 나눈 나머지를 저장한다.\nPython 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Devuelve a^b módulo m mediante mod_power(a,b,m). 0≤a≤10^9, 0≤b≤10^9, 1≤m≤10^9. Si b=0, devuelve 1%m. En otro caso calcula b//2 recursivamente una sola vez, guárdalo en half y elévalo al cuadrado. Si b es impar, multiplica una vez más por a. Reduce módulo m después de cada multiplicación. Escribe Python o C.\n\nExplica el funcionamiento, los casos límite y la complejidad temporal.",
+  "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.": "Calcula una vez el resultado del exponente reducido a la mitad, reutiliza su cuadrado y multiplica por a solo si b es impar.",
+  "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.": "Tiempo O(log(b+1)). Cada nivel hace una sola llamada con la mitad del exponente y reutiliza half.",
+  "b=0이면 1%m을 반환한다. m=1이면 모든 결과가 0이다. C의 중간 곱셈은 long long으로 계산한다.": "Para b=0 devuelve 1%m. Con m=1 todos los resultados son 0. Usa long long para las multiplicaciones intermedias en C.",
+  "a의 b제곱을 m으로 나눈 나머지를 int로 반환합니다. 중간 곱셈은 long long으로 계산합니다.": "Devuelve a^b módulo m como int. Usa long long para los productos intermedios.",
   "분반 변경": "Cambiar de grupo",
   "작성한 코드와 풀이·제출 기록을 유지하면서 분반을 변경합니다.": "Cambie de clase manteniendo el código escrito y los registros de soluciones/envíos.",
   "이동할 분반": "Nuevo grupo",
@@ -1429,10 +1437,6 @@ const LOCALE_ES={
   "cross_sum 함수는 실행 환경에 제공됩니다.": "La función cross_sum se proporciona en el entorno de ejecución.",
   "시간 O(n log n).": "Tiempo O(n log n).",
   "빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.": "Están prohibidos los tramos vacíos. Comprueba si hay elementos 1 y todos son negativos.",
-  "최근접 쌍의 기저 사례": "Caso base del par de puntos más cercano",
-  "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implementa closest_base, el caso base del algoritmo de división y conquista para el par de puntos más cercano. Hay 2 o 3 puntos con coordenadas enteras entre −10000 y 10000. Devuelve el cuadrado de la distancia mínima. En C, las entradas son x[], y[] y n.\n\nEscribe la función en Python o C. Explica su funcionamiento, los casos límite y la complejidad temporal.",
-  "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.": "Compara los dos puntos en el intervalo base y encuentra la distancia mínima al cuadrado.",
-  "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.": "Compare O(k²), en esta base k≤3, entonces O(1). Distinguirlo del tiempo del algoritmo del par más cercano completo.",
   "제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.": "Devuelve la distancia al cuadrado. Dos puntos iguales son 0.",
   "쿼드트리 부호화": "Codificación con quadtree",
   "n=2ᵏ, 1≤n≤32인 0/1 정사각형을 부호화한다. 균일하면 값 하나, 아니면 (왼위 오른위 왼아래 오른아래) 순서로 붙인다. quad(a,r,c,n)을 작성한다. C a의 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Codifica una matriz cuadrada de 0 y 1, con n=2ᵏ y 1≤n≤32. Si es uniforme, escribe su valor una sola vez; en caso contrario, concatena entre paréntesis los resultados de arriba-izquierda, arriba-derecha, abajo-izquierda y abajo-derecha, en ese orden. Implementa quad(a,r,c,n). En C, a tiene ancho de fila 32.\n\nEscribe la función en Python o C. Explica su funcionamiento, los casos límite y la complejidad temporal.",
@@ -1811,7 +1815,6 @@ Object.assign(LOCALE_EN, {
   "병합 정렬": "Merge sort",
   "경계를 가로지르는 합": "Maximum sum across the midpoint",
   "분할 정복 최대 연속합": "Maximum subarray by divide and conquer",
-  "최근접 쌍의 기저 사례": "Closest-pair base case",
   "쿼드트리 부호화": "Quadtree encoding",
   "단색 종이 조각 수": "Count uniform paper pieces",
   "병합 중 역전 쌍 세기": "Count cross inversions during merging",
@@ -2122,4 +2125,40 @@ Object.assign(LOCALE_ES, {
   "Python과 C 모두 최대 총가치를 반환한다.": "Tanto en Python como en C, devuelve el mayor valor total.",
   "C의 n은 두 배열의 공통 길이이다. 선택한 물건 목록은 반환하지 않는다.": "En C, n es la longitud común de los dos arreglos. No devuelvas una lista de los objetos elegidos.",
   "시간 복잡도: 자릿수 4가 고정이므로 최대 10,000번 검사, O(1).": "Complejidad temporal: El número de dígitos está fijado en 4, así que se hacen como máximo 10.000 intentos: O(1)."
+});
+
+Object.assign(LOCALE_EN, {
+  "길이 0..1000의 정수 배열을 병합 정렬하시오. Python merge_sort(a)는 새 배열을 반환한다. C merge_sort(a,lo,hi,tmp)는 lo 이상 hi 미만인 [lo,hi)를 제자리 정렬한다. 전체 배열의 C 호출은 merge_sort(a,0,n,tmp)이며 tmp는 길이 n이다. Python의 merge_arrays는 제공된다. Python 또는 C로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Merge-sort an integer array of length 0..1000. Python merge_sort(a) returns a new array. C merge_sort(a,lo,hi,tmp) sorts the half-open interval [lo,hi) in place. To sort the whole C array, call merge_sort(a,0,n,tmp), where tmp has length n. Python merge_arrays is provided. Write the function in Python or C.\n\nExplain behavior, boundary cases, and time complexity.",
+  "Python은 정렬된 새 배열을 반환합니다. C는 [lo,hi)를 수정하며 hi는 포함하지 않습니다. 전체 C 호출의 hi는 n입니다.": "Python returns a new sorted array. C modifies [lo,hi), excluding hi. For the whole C array, hi is n.",
+  "퀵 정렬의 분할 함수": "Quicksort partition function",
+  "정수 배열 a의 [lo,hi]를 다음 순서대로 분할하는 partition(a,lo,hi)를 작성하시오. 양 끝을 포함하며 0≤lo≤hi<n≤1000이다.\n① 가운데 인덱스 (lo+hi)//2의 값을 hi로 교환해 피벗으로 둔다. L=lo, R=hi-1이다.\n② L≤R이고 a[L]≤피벗인 동안 L을 계속 증가시킨다. 이어 L≤R이고 a[R]>피벗인 동안 R을 계속 감소시킨다.\n③ L>R이면 탐색을 끝내고, 아니면 a[L]과 a[R]을 교환한 뒤 ②를 반복한다.\n④ a[L]과 a[hi]를 교환하고 L을 반환한다. 구간 밖의 값은 바꾸지 않는다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implement partition(a,lo,hi) for quicksort. Both endpoints of [lo,hi] are included, and 0≤lo≤hi<len(a)≤1000. Move the middle-index pivot to hi, then set L=lo and R=hi−1. Move L past values ≤pivot and R past values >pivot; swap misplaced values until the pointers cross. Finally swap a[L] and a[hi], and return L. Do not modify values outside [lo,hi]. Write the function in Python or C.\n\nExplain behavior, boundary cases, and time complexity.",
+  "가운데 피벗을 끝으로 옮기고 두 포인터로 잘못 놓인 값을 교환한다. 교차하면 피벗을 L에 놓고 그 인덱스를 반환한다.": "Move the middle-index pivot to the end, then swap misplaced values with two pointers. After they cross, place the pivot at L and return L.",
+  "길이가 k인 구간에서 시간 O(k). 같은 값은 피벗의 왼쪽으로 보낸다.": "Time O(k) for an interval of length k. Values equal to the pivot go to its left.",
+  "원소가 하나이면 그 인덱스를 반환합니다. L≤R 검사를 배열 접근보다 먼저 하고, 피벗 위치와 구간 밖 값도 확인합니다.": "For one element, return its index. Check L≤R before accessing the array. Verify the pivot position and unchanged values outside the interval.",
+  "반환한 피벗 인덱스와 분할 후 배열을 함께 검사합니다. [lo,hi]의 양 끝을 포함합니다.": "Both the returned pivot index and the partitioned array are checked. Both endpoints of [lo,hi] are included.",
+  "퀵 정렬": "Quicksort",
+  "정수 배열 a의 [lo,hi]를 제자리 오름차순으로 정렬하는 quick_sort(a,lo,hi)를 작성하시오. 양 끝을 포함하며 길이 n은 0..1000이다.\n전체 배열의 첫 호출은 (a,0,n-1)이다. 빈 배열은 lo=0, hi=-1로 호출하며 즉시 끝낸다.\n앞 문항의 partition이 Python과 C 실행 환경에 제공된다. lo≥hi이면 종료하고, 피벗 인덱스 p를 제외한 [lo,p-1]과 [p+1,hi]를 재귀 정렬한다.\n구간 밖의 값은 바꾸지 않는다. 반환값 대신 배열 a를 검사한다. sort·sorted·qsort 등 정렬 라이브러리는 쓰지 않는다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implement quick_sort(a,lo,hi) to sort an integer array of length 0..1000 in place in ascending order. Both endpoints of [lo,hi] are included. The full-array call is quick_sort(a,0,n−1); for an empty array, lo=0 and hi=−1. partition is provided in Python and C. After partitioning, recursively sort [lo,p−1] and [p+1,hi], excluding the pivot. Do not modify values outside [lo,hi]. The changed array is checked, not the return value. Do not use a sorting library. Write Python or C.\n\nExplain behavior, boundary cases, and time complexity.",
+  "길이가 0 또는 1인 구간에서 종료한다. partition으로 피벗 자리를 확정한 뒤 피벗을 제외한 두 구간을 재귀 정렬한다.": "Stop for an interval of length 0 or 1. Use partition to fix the pivot position, then recursively sort the two intervals excluding the pivot.",
+  "Python·C 실행 환경에 앞 문항의 partition이 제공됩니다. 배열 a를 제자리 정렬합니다.": "The partition function from the previous exercise is provided in both Python and C. Sort a in place.",
+  "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.": "Average O(n log n), worst O(n²). The value at the middle index is not guaranteed to be the median.",
+  "빈 구간·한 원소는 즉시 종료합니다. 재귀에 피벗을 다시 넣지 않고 [lo,p−1]과 [p+1,hi]를 정렬합니다.": "Stop immediately for an empty or one-element interval. Exclude the pivot from recursive calls: sort [lo,p−1] and [p+1,hi].",
+  "입력 배열 a의 변경 결과를 검사합니다. 반환값은 검사하지 않습니다. [lo,hi]의 양 끝을 포함합니다.": "The changed input array a is checked. The return value is not checked. Both endpoints of [lo,hi] are included."
+});
+
+Object.assign(LOCALE_ES, {
+  "길이 0..1000의 정수 배열을 병합 정렬하시오. Python merge_sort(a)는 새 배열을 반환한다. C merge_sort(a,lo,hi,tmp)는 lo 이상 hi 미만인 [lo,hi)를 제자리 정렬한다. 전체 배열의 C 호출은 merge_sort(a,0,n,tmp)이며 tmp는 길이 n이다. Python의 merge_arrays는 제공된다. Python 또는 C로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Ordena por mezcla un arreglo de enteros de longitud 0..1000. Python merge_sort(a) devuelve un arreglo nuevo. C merge_sort(a,lo,hi,tmp) ordena en el sitio el intervalo semiabierto [lo,hi). Para ordenar todo el arreglo en C, llama a merge_sort(a,0,n,tmp), con tmp de longitud n. Se proporciona merge_arrays en Python. Escribe la función en Python o C.\n\nExplica el funcionamiento, los casos límite y la complejidad temporal.",
+  "Python은 정렬된 새 배열을 반환합니다. C는 [lo,hi)를 수정하며 hi는 포함하지 않습니다. 전체 C 호출의 hi는 n입니다.": "Python devuelve un arreglo nuevo ordenado. C modifica [lo,hi), sin incluir hi. Para todo el arreglo en C, hi es n.",
+  "퀵 정렬의 분할 함수": "Función de partición de quicksort",
+  "정수 배열 a의 [lo,hi]를 다음 순서대로 분할하는 partition(a,lo,hi)를 작성하시오. 양 끝을 포함하며 0≤lo≤hi<n≤1000이다.\n① 가운데 인덱스 (lo+hi)//2의 값을 hi로 교환해 피벗으로 둔다. L=lo, R=hi-1이다.\n② L≤R이고 a[L]≤피벗인 동안 L을 계속 증가시킨다. 이어 L≤R이고 a[R]>피벗인 동안 R을 계속 감소시킨다.\n③ L>R이면 탐색을 끝내고, 아니면 a[L]과 a[R]을 교환한 뒤 ②를 반복한다.\n④ a[L]과 a[hi]를 교환하고 L을 반환한다. 구간 밖의 값은 바꾸지 않는다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implementa partition(a,lo,hi) para quicksort. Se incluyen ambos extremos de [lo,hi], y 0≤lo≤hi<len(a)≤1000. Mueve el pivote del índice central a hi y fija L=lo y R=hi−1. Avanza L sobre valores ≤pivot y R sobre valores >pivot; intercambia valores mal situados hasta que los punteros se crucen. Finalmente intercambia a[L] y a[hi] y devuelve L. No modifiques valores fuera de [lo,hi]. Escribe la función en Python o C.\n\nExplica el funcionamiento, los casos límite y la complejidad temporal.",
+  "가운데 피벗을 끝으로 옮기고 두 포인터로 잘못 놓인 값을 교환한다. 교차하면 피벗을 L에 놓고 그 인덱스를 반환한다.": "Mueve el pivote del índice central al final y usa dos punteros para intercambiar valores mal situados. Al cruzarse, coloca el pivote en L y devuelve L.",
+  "길이가 k인 구간에서 시간 O(k). 같은 값은 피벗의 왼쪽으로 보낸다.": "Tiempo O(k) para un intervalo de longitud k. Los valores iguales al pivote van a su izquierda.",
+  "원소가 하나이면 그 인덱스를 반환합니다. L≤R 검사를 배열 접근보다 먼저 하고, 피벗 위치와 구간 밖 값도 확인합니다.": "Con un solo elemento, devuelve su índice. Comprueba L≤R antes de acceder al arreglo. Verifica la posición del pivote y que no cambien los valores fuera del intervalo.",
+  "반환한 피벗 인덱스와 분할 후 배열을 함께 검사합니다. [lo,hi]의 양 끝을 포함합니다.": "Se comprueban tanto el índice del pivote devuelto como el arreglo tras la partición. Se incluyen ambos extremos de [lo,hi].",
+  "퀵 정렬": "Quicksort",
+  "정수 배열 a의 [lo,hi]를 제자리 오름차순으로 정렬하는 quick_sort(a,lo,hi)를 작성하시오. 양 끝을 포함하며 길이 n은 0..1000이다.\n전체 배열의 첫 호출은 (a,0,n-1)이다. 빈 배열은 lo=0, hi=-1로 호출하며 즉시 끝낸다.\n앞 문항의 partition이 Python과 C 실행 환경에 제공된다. lo≥hi이면 종료하고, 피벗 인덱스 p를 제외한 [lo,p-1]과 [p+1,hi]를 재귀 정렬한다.\n구간 밖의 값은 바꾸지 않는다. 반환값 대신 배열 a를 검사한다. sort·sorted·qsort 등 정렬 라이브러리는 쓰지 않는다. Python 또는 C로 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.": "Implementa quick_sort(a,lo,hi) para ordenar en el sitio y en orden ascendente un arreglo de enteros de longitud 0..1000. Se incluyen ambos extremos de [lo,hi]. La llamada para todo el arreglo es quick_sort(a,0,n−1); si está vacío, lo=0 y hi=−1. Se proporciona partition en Python y C. Tras la partición, ordena recursivamente [lo,p−1] y [p+1,hi], excluyendo el pivote. No modifiques valores fuera de [lo,hi]. Se comprueba el arreglo modificado, no el valor devuelto. No uses bibliotecas de ordenación. Escribe Python o C.\n\nExplica el funcionamiento, los casos límite y la complejidad temporal.",
+  "길이가 0 또는 1인 구간에서 종료한다. partition으로 피벗 자리를 확정한 뒤 피벗을 제외한 두 구간을 재귀 정렬한다.": "Termina cuando el intervalo tenga longitud 0 o 1. Usa partition para fijar la posición del pivote y ordena recursivamente los dos intervalos que lo excluyen.",
+  "Python·C 실행 환경에 앞 문항의 partition이 제공됩니다. 배열 a를 제자리 정렬합니다.": "Se proporciona la función partition del ejercicio anterior en Python y C. Ordena a en el sitio.",
+  "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.": "Promedio O(n log n), peor caso O(n²). El valor del índice central no tiene por qué ser la mediana.",
+  "빈 구간·한 원소는 즉시 종료합니다. 재귀에 피벗을 다시 넣지 않고 [lo,p−1]과 [p+1,hi]를 정렬합니다.": "Termina inmediatamente si el intervalo está vacío o tiene un elemento. Excluye el pivote de las llamadas recursivas: ordena [lo,p−1] y [p+1,hi].",
+  "입력 배열 a의 변경 결과를 검사합니다. 반환값은 검사하지 않습니다. [lo,hi]의 양 끝을 포함합니다.": "Se comprueba el arreglo de entrada a modificado. No se comprueba el valor devuelto. Se incluyen ambos extremos de [lo,hi]."
 });

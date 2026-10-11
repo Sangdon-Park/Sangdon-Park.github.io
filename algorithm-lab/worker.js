@@ -1,6 +1,6 @@
 /* A separate worker keeps an accidental infinite loop out of the page UI. */
 const BASE = 'https://cdn.jsdelivr.net/pyodide/v0.29.2/full/';
-importScripts('custom-inputs.js?v=20261011-ch4-sorts');
+importScripts('custom-inputs.js?v=20261011-ch4-scope');
 let py;
 async function boot() {
   try {

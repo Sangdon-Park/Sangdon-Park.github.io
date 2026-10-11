@@ -15121,7 +15121,7 @@
     "starter": "def merge_arrays(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -15259,7 +15259,7 @@
     "starter": "def merge_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log(n+1)). Python은 앞 문항 merge_arrays를 사용한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -15565,7 +15565,7 @@
     "starter": "def cross_sum(a, lo, mid, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(hi−lo). 모두 음수여도 빈 구간을 허용하지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -15681,7 +15681,7 @@
     "starter": "def max_subarray(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log n).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -15791,128 +15791,134 @@
     }
   },
   {
-    "id": "P61",
     "chapter": 4,
     "exercise": 95,
-    "title": "최근접 쌍의 기저 사례",
     "section": "연습문제 95번",
     "slides": "197",
     "level": "PPTX 작성형",
-    "function": "closest_base",
-    "params": [
-      "points"
-    ],
-    "statement": "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
-    "solution": "def closest_base(points):\n    best = float('inf')\n    for i in range(len(points)):\n        for j in range(i + 1, len(points)):\n            dx = points[i][0] - points[j][0]\n            dy = points[i][1] - points[j][1]\n            best = min(best, dx * dx + dy * dy)\n    return best",
-    "starter": "def closest_base(points):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "id": "P89",
+    "title": "빠른 거듭제곱과 나머지",
+    "function": "mod_power",
+    "params": [
+      "a",
+      "b",
+      "m"
+    ],
+    "statement": "a의 b제곱을 m으로 나눈 나머지를 반환하는 mod_power(a,b,m)을 작성하시오.\n0≤a≤10⁹, 0≤b≤10⁹, 1≤m≤10⁹이다. b=0이면 1%m을 반환한다.\n그 외에는 b//2의 재귀 결과를 한 번만 구해 half에 저장하고 제곱한다.\nb가 홀수이면 a를 한 번 더 곱하며, 곱셈 후마다 m으로 나눈 나머지를 저장한다.\nPython 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.",
+    "solution": "def mod_power(a, b, m):\n    if b == 0:\n        return 1 % m\n    half = mod_power(a, b // 2, m)\n    result = (half * half) % m\n    if b % 2 == 1:\n        result = (result * a) % m\n    return result",
+    "starter": "def mod_power(a, b, m):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
+    "complexity": "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              3,
-              0
-            ]
-          ]
+          3,
+          5,
+          7
         ],
-        "expected": 9,
+        "expected": 5,
         "public": true,
         "cHarness": {
-          "setup": "int a[3]={0,3,3};int b[3]={0,4,0};",
-          "call": "printf(\"%lld\",(long long)closest_base(a,b,3));"
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(3,5,7));"
         }
       },
       {
         "args": [
-          [
-            [
-              2,
-              2
-            ],
-            [
-              2,
-              2
-            ]
-          ]
+          3,
+          11,
+          7
+        ],
+        "expected": 5,
+        "public": true,
+        "cHarness": {
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(3,11,7));"
+        }
+      },
+      {
+        "args": [
+          9,
+          0,
+          7
+        ],
+        "expected": 1,
+        "public": false,
+        "cHarness": {
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(9,0,7));"
+        }
+      },
+      {
+        "args": [
+          0,
+          0,
+          1
         ],
         "expected": 0,
-        "public": true,
+        "public": false,
         "cHarness": {
-          "setup": "int a[2]={2,2};int b[2]={2,2};",
-          "call": "printf(\"%lld\",(long long)closest_base(a,b,2));"
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(0,0,1));"
         }
       },
       {
         "args": [
-          [
-            [
-              -10000,
-              -10000
-            ],
-            [
-              10000,
-              10000
-            ]
-          ]
+          0,
+          7,
+          19
         ],
-        "expected": 800000000,
+        "expected": 0,
         "public": false,
         "cHarness": {
-          "setup": "int a[2]={-10000,10000};int b[2]={-10000,10000};",
-          "call": "printf(\"%lld\",(long long)closest_base(a,b,2));"
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(0,7,19));"
         }
       },
       {
         "args": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              8,
-              8
-            ]
-          ]
+          2,
+          30,
+          1000
         ],
-        "expected": 2,
+        "expected": 824,
         "public": false,
         "cHarness": {
-          "setup": "int a[3]={0,1,8};int b[3]={0,1,8};",
-          "call": "printf(\"%lld\",(long long)closest_base(a,b,3));"
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(2,30,1000));"
+        }
+      },
+      {
+        "args": [
+          1000000000,
+          1000000000,
+          999999937
+        ],
+        "expected": 657727886,
+        "public": false,
+        "cHarness": {
+          "setup": "",
+          "call": "printf(\"%d\",mod_power(1000000000,1000000000,999999937));"
         }
       }
     ],
     "c": {
-      "starter": "long long closest_base(const int x[], const int y[], int n) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
-      "solution": "long long closest_base(const int x[], const int y[], int n) {\n    long long best=800000001LL;\n    for (int i=0; i<n; ++i) {\n        for (int j=i+1; j<n; ++j) {\n            long long dx=(long long)x[i]-x[j];\n            long long dy=(long long)y[i]-y[j];\n            long long d=dx*dx+dy*dy;\n            if (d<best) best=d;\n        }\n    }\n    return best;\n}",
-      "statement": "최근접 쌍 분할 정복의 기저 함수 closest_base를 작성한다. 점 2~3개이며 좌표는 −10000..10000의 정수다. 최소 거리의 제곱을 반환한다. C 입력은 x[],y[],n이다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
-      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
+      "starter": "int mod_power(int a, int b, int m) {\n  // 여기에 코드를 작성하세요.\n  return 0;\n}\n",
+      "solution": "int mod_power(int a, int b, int m) {\n    if (b == 0) return 1 % m;\n    long long half = mod_power(a, b / 2, m);\n    long long result = (half * half) % m;\n    if (b % 2 == 1) result = (result * a) % m;\n    return (int)result;\n}",
+      "statement": "a의 b제곱을 m으로 나눈 나머지를 반환하는 mod_power(a,b,m)을 작성하시오.\n0≤a≤10⁹, 0≤b≤10⁹, 1≤m≤10⁹이다. b=0이면 1%m을 반환한다.\n그 외에는 b//2의 재귀 결과를 한 번만 구해 half에 저장하고 제곱한다.\nb가 홀수이면 a를 한 번 더 곱하며, 곱셈 후마다 m으로 나눈 나머지를 저장한다.\nPython 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.",
+      "result": "a의 b제곱을 m으로 나눈 나머지를 int로 반환합니다. 중간 곱셈은 long long으로 계산합니다.",
+      "signature": "int mod_power(int a, int b, int m)"
     },
-    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
+    "pythonPrelude": "",
     "cPrelude": "",
     "provided": "",
     "study": {
-      "method": "기저 구간의 모든 두 점을 비교하며 제곱 거리의 최솟값을 구한다.",
-      "boundary": "제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.",
-      "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
+      "method": "절반 지수의 결과를 한 번 구해 저장하고, 제곱한 뒤 홀수일 때만 a를 추가로 곱한다.",
+      "boundary": "b=0이면 1%m을 반환한다. m=1이면 모든 결과가 0이다. C의 중간 곱셈은 long long으로 계산한다.",
+      "complexity": "시간 O(log(b+1)). 지수를 절반으로 줄이는 호출은 한 번이며, 저장한 half를 재사용한다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },
@@ -15937,7 +15943,7 @@
     "starter": "def quad(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -16098,7 +16104,7 @@
     "starter": "def partition(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "길이가 k인 구간에서 시간 O(k). 같은 값은 피벗의 왼쪽으로 보낸다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -24223,7 +24229,7 @@
     "starter": "def quick_sort(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -32406,7 +32412,7 @@
     "starter": "def white_count(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [
@@ -32566,7 +32572,7 @@
     "starter": "def cross_inversions(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "sourceHash": "20b3a7f5bef416bb07c9a2df6381401517bd87f42a0522b0871d1a62668b7ced",
     "tests": [
       {
         "args": [

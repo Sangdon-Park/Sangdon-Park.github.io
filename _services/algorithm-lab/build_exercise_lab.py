@@ -52,7 +52,7 @@ EXTRA = {
  'merge_sort': [[[1]], [[3,2,1,0]], [[-2,3,-2,0]]],
  'cross_sum': [[[99,-4,-2,99],1,2,3], [[1,2,3,4],0,2,4]],
  'max_subarray': [[[-9],0,1], [[99,-5,2,3,-1,99],1,5], [[1,2,3],0,3]],
- 'closest_base': [[[[-10000,-10000],[10000,10000]]], [[[0,0],[1,1],[8,8]]]],
+ 'mod_power': [[1000000000,1000000000,999999937], [0,7,19], [0,0,1]],
  'quad': [[[[0]],0,0,1], [[[1,1],[1,1]],0,0,2], [[[0,0,1,1],[0,0,1,1],[1,0,0,1],[0,1,1,0]],0,0,4]],
  'white_count': [[[[0]],0,0,1], [[[1]],0,0,1], [[[1]*4 for _ in range(4)],0,0,4]],
  'cross_inversions': [[[],[1]], [[5,6],[1,2,3]], [[1,1],[2,2]]],
@@ -87,7 +87,7 @@ def oracle(name,a):
     if name=='gcd_value':
         import math
         return math.gcd(*a)
-    if name=='power_mod': return pow(*a)
+    if name in ('power_mod','mod_power'): return pow(*a)
     if name in ('insertion_sort','merge_sort'): return sorted(a[0])
     if name=='quick_select': return sorted(a[0])[a[1]-1]
     if name in ('fibonacci','fib_memo'): return fib(a[0])
@@ -99,7 +99,6 @@ def oracle(name,a):
     if name=='max_subarray':
         v,lo,hi=a
         return max(sum(v[i:j]) for i in range(lo,hi) for j in range(i+1,hi+1))
-    if name=='closest_base': return min(sum((x-y)**2 for x,y in zip(p,q)) for p,q in itertools.combinations(a[0],2))
     if name in ('quad','white_count'):
         m,r,c,n=a
         cells=[m[i][j] for i in range(r,r+n) for j in range(c,c+n)]
@@ -215,7 +214,7 @@ def ccase(p,t):
     if p['chapter']==2: return None # existing tested chapterTwoCase adapter
     if f in ['first_index','binary_search','lower_bound','count_equal','quick_select']:
         s=arr('a',a[0]);expr=f'{f}(a,{len(a[0])},{a[1]})'
-    elif f in ['gcd_value','power_mod','fibonacci','coin_count','domino']:
+    elif f in ['gcd_value','power_mod','mod_power','fibonacci','coin_count','domino']:
         expr=f'{f}('+','.join(map(literal,a))+')'
     elif f in ['partition','quick_sort']:
         n=len(a[0]);s=arr('a',a[0])
@@ -236,7 +235,7 @@ def ccase(p,t):
         else: expr=f'{f}(a,{n},b,{m})'
     elif f in ['cross_sum','max_subarray']:
         s=arr('a',a[0]);expr=f'{f}(a,'+','.join(map(str,a[1:]))+')'
-    elif f in ['closest_base','activity_count','fractional_value','knapsack1','knapsack2']:
+    elif f in ['activity_count','fractional_value','knapsack1','knapsack2']:
         n=len(a[0]);s=arr('a',[x[0] for x in a[0]])+arr('b',[x[1] for x in a[0]])
         expr=f'{f}(a,b,{n}'
         if len(a)>1: expr+=f',{a[1]}'
@@ -345,7 +344,8 @@ def build():
     text=core.read_text(encoding='utf-8')
     # Rebuild the active contracts from catalogs; retired IDs remain in storage.
     legacy=[p for name in ('problems.json','chapter-02.json') for p in json.loads((ROOT/'algorithm-lab'/name).read_text(encoding='utf-8'))]
-    totals={p['id']:len(p['tests']) for p in legacy+out}
+    totals=json.loads(re.search(r'export const TOTALS=(.*?);',text).group(1))
+    totals.update({p['id']:len(p['tests']) for p in legacy+out})
     core.write_text(re.sub(r'export const TOTALS=.*?;', 'export const TOTALS='+json.dumps(totals,separators=(',',':'))+';',text,count=1),encoding='utf-8')
     print(f'Built {len(out)} PPTX exercises, {sum(len(p["tests"]) for p in out)} cases per language.')
 
@@ -377,7 +377,7 @@ def boundary(f):
       'merge_sort':'길이 0·1에서 종료합니다. Python은 새 배열 반환, C는 [lo,hi) 제자리 정렬입니다.',
       'cross_sum':'양쪽에서 각각 한 원소 이상 선택합니다. 모두 음수여도 0으로 초기화하지 않습니다.',
       'max_subarray':'빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.',
-      'closest_base':'제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.',
+      'mod_power':'b=0이면 1%m입니다. m=1이면 항상 0이며, 절반 지수의 재귀 결과를 한 번 구해 재사용합니다. C 중간 곱은 long long입니다.',
       'quad':'균일한 칸은 0/1 한 글자, 분할 순서는 좌상·우상·좌하·우하입니다.',
       'white_count':'균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.',
       'cross_inversions':'같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.',

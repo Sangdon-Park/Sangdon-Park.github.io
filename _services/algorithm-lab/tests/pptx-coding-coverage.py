@@ -5,7 +5,7 @@ import json,re,zipfile,xml.etree.ElementTree as E
 ROOT=Path(__file__).resolve().parents[3]
 NS={'a':'http://schemas.openxmlformats.org/drawingml/2006/main','p':'http://schemas.openxmlformats.org/presentationml/2006/main','r':'http://schemas.openxmlformats.org/officeDocument/2006/relationships'}
 bank=json.loads((ROOT/'algorithm-lab/exercise-problems.json').read_text(encoding='utf-8'))
-files={2:'2장_연습문제_100문항_알고리즘작성형_수업용.pptx',3:'3장_연습문제_100문항_수업용.pptx'}
+files={2:'2장_연습문제_100문항_알고리즘작성형_수업용.pptx',**{c:f'{c}장_연습문제_100문항_수업용.pptx' for c in range(3,7)}}
 for chapter,name in files.items():
     expected={}
     with zipfile.ZipFile(ROOT/'data/알고리즘'/name) as z:

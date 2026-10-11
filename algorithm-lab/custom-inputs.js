@@ -79,7 +79,7 @@ function validateCustomArgs(p,args) {
   if(['merge_arrays','cross_inversions'].includes(f)){length(0,0,f==='merge_arrays'?500:1000);length(1,0,f==='merge_arrays'?500:1000);}
   if(f==='cross_sum')need(0<=args[1]&&args[1]<args[2]&&args[2]<args[3]&&args[3]<=args[0].length,'0 ≤ lo < mid < hi ≤ 배열 길이를 지켜주세요.');
   if(f==='max_subarray')need(0<=args[1]&&args[1]<args[2]&&args[2]<=args[0].length,'0 ≤ lo < hi ≤ 배열 길이를 지켜주세요.');
-  if(f==='closest_base')matrix(0,2,3,2);
+  if(f==='mod_power'){range(0,0,1e9);range(1,0,1e9);range(2,1,1e9);}
   if(['quad','white_count'].includes(f)){square(0,1,32);range(3,1,32);need((args[3]&(args[3]-1))===0&&args[1]>=0&&args[2]>=0&&args[1]+args[3]<=args[0].length&&args[2]+args[3]<=args[0].length,'n은 2의 거듭제곱이며 (r,c)에서 시작하는 영역이 배열 안에 있어야 합니다.');}
   if(['activity_count','fractional_value','knapsack1','knapsack2'].includes(f)){length(0,0,['knapsack1','knapsack2'].includes(f)?100:1000);need(args[0].every(r=>r.length===2),'각 항목은 숫자 두 개를 가진 배열이어야 합니다.');if(f!=='activity_count'){need(args[0].every(r=>r[0]>0),'물건 무게는 양수여야 합니다.');range(1,0,f==='fractional_value'?1e6:1000);}}
   if(f==='dsu_find'){index(1,args[0].length);need(args[0].every(v=>v>=0&&v<args[0].length),'parent 값은 배열 안의 인덱스여야 합니다.');for(let x=0;x<args[0].length;x++){const seen=new Set();let v=x;while(args[0][v]!==v){need(!seen.has(v),'parent는 루트를 가진 숲이어야 합니다. 순환이 있습니다.');seen.add(v);v=args[0][v];}}}
