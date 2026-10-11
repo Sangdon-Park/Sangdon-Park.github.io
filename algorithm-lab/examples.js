@@ -105,10 +105,10 @@ function cExampleModel(p, t, c) {
     after.push(`stats = ${exampleLiteral(t.expected.slice(1), 'c')}`);
   } else if (['insertion_sort', 'merge_sort', 'quick_sort'].includes(f)) {
     after.push(`a = ${exampleLiteral(t.expected, 'c')}`);
-  } else if (['merge_arrays', 'dijkstra', 'strassen2', 'quad', 'lcs_restore', 'make_path'].includes(f)) {
-    const name = f === 'dijkstra' ? 'dist' : f === 'strassen2' ? 'C' : 'out';
-    buffers[name] = f === 'strassen2' ? [2, 2] : [f === 'quad' ? 4097 : f === 'lcs_restore' ? 101 : f === 'make_path' ? a[0] : Math.max(1, t.expected.length)];
-    after.push(`${name}${Array.isArray(t.expected) && f !== 'strassen2' ? t.expected.length ? `[0..${t.expected.length - 1}]` : ': 0' : ''}${Array.isArray(t.expected) && !t.expected.length ? '' : ' = ' + exampleLiteral(t.expected, 'c')}`);
+  } else if (['merge_arrays', 'dijkstra', 'quad', 'lcs_restore', 'make_path'].includes(f)) {
+    const name = f === 'dijkstra' ? 'dist' : 'out';
+    buffers[name] = [f === 'quad' ? 4097 : f === 'lcs_restore' ? 101 : f === 'make_path' ? a[0] : Math.max(1, t.expected.length)];
+    after.push(`${name}${Array.isArray(t.expected) ? t.expected.length ? `[0..${t.expected.length - 1}]` : ': 0' : ''}${Array.isArray(t.expected) && !t.expected.length ? '' : ' = ' + exampleLiteral(t.expected, 'c')}`);
     if (f === 'quad') { values.p = 0; after.push(`pos = ${t.expected.length}`); }
     if (f === 'make_path') result = String(t.expected.length);
   }

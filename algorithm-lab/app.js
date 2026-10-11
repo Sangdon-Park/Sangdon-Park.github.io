@@ -17,7 +17,7 @@ function setResult(text,kind=''){ $('result').textContent=messageText(text); $('
 function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; $('ai-hint').disabled=hintPending||busy||!cloud.session||cloud.expired; $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='java'?'java-worker.js?v=20261011-ch4-sorts':language==='c'?'c-worker.js?v=20261011-ch4-sorts':'worker.js?v=20261011-ch4-sorts');
+  worker=new Worker(language==='java'?'java-worker.js?v=20261011-ch4-core':language==='c'?'c-worker.js?v=20261011-ch4-core':'worker.js?v=20261011-ch4-core');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -157,7 +157,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-sorts','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261011-ch4-sorts'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-core','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261011-ch4-core'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};

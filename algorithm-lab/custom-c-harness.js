@@ -14,7 +14,7 @@ function customCCase(p,args) {
   switch(f){
     case 'first_index':case 'binary_search':case 'quick_select':
       setup=arr('a',args[0]);call=direct(['a',args[0].length,args[1]]);break;
-    case 'gcd_value':case 'fibonacci':case 'karatsuba':case 'coin_count':case 'domino':call=direct(args.map(lit));break;
+    case 'gcd_value':case 'fibonacci':case 'coin_count':case 'domino':call=direct(args.map(lit));break;
     case 'partition':
       setup=arr('a',args[0]);call=direct(['a',args[1],args[2]]);break;
     case 'quick_sort':
@@ -38,8 +38,6 @@ function customCCase(p,args) {
       setup=mat('a',args[0],32);
       if(f==='quad'){setup+='char out[4097]={0};int pos=0;';call=`quad(a,${args.slice(1).join(',')},out,&pos);out[4096]=0;lab_json_string(out);`;}
       else call=direct(['a',...args.slice(1)]);break;
-    case 'strassen2':
-      setup=mat('a',args[0],2)+mat('b',args[1],2)+'int out[2][2]={{0}};';call='strassen2(a,b,out);printf("[[%d,%d],[%d,%d]]",out[0][0],out[0][1],out[1][0],out[1][1]);';break;
     case 'dsu_find':setup=arr('a',args[0]);call=direct(['a',args[1]]);break;
     case 'kruskal_cost':setup=mat('edges',args[1],3);call=direct([args[0],'edges',args[1].length]);break;
     case 'pick_vertex':setup=arr('d',args[0],'long long')+arr('used',args[1]);call=direct(['d','used',args[0].length]);break;

@@ -15121,7 +15121,7 @@
     "starter": "def merge_arrays(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n+m).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -15259,7 +15259,7 @@
     "starter": "def merge_sort(a):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log(n+1)). Python은 앞 문항 merge_arrays를 사용한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -15565,7 +15565,7 @@
     "starter": "def cross_sum(a, lo, mid, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(hi−lo). 모두 음수여도 빈 구간을 허용하지 않는다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -15681,7 +15681,7 @@
     "starter": "def max_subarray(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "시간 O(n log n).",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -15808,7 +15808,7 @@
     "starter": "def closest_base(points):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "O(k²) 비교, 이 기저에서는 k≤3이므로 O(1). 전체 최근접 쌍 알고리즘의 시간과 구별한다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -15937,7 +15937,7 @@
     "starter": "def quad(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "이 전체 균일성 검사 구현은 O(n² log(n+1)) 시간 상한. .",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -16079,815 +16079,12 @@
     }
   },
   {
-    "id": "P63",
-    "chapter": 4,
-    "exercise": 97,
-    "title": "카라추바 곱셈",
-    "section": "연습문제 97번",
-    "slides": "205",
-    "level": "PPTX 작성형",
-    "function": "karatsuba",
-    "params": [
-      "x",
-      "y"
-    ],
-    "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 Python 또는 C로 작성하시오. C는 long long을 쓴다. 다음 식을 사용해 재귀 곱셈을 세 번 수행한다.\n한 수라도 10 미만이면 x*y를 반환한다. 그 외에는 더 큰 수의 자릿수를 L, m은 10의 (L//2)제곱으로 둔다.\nx=a*m+b, y=c*m+d로 나눈다.\np=karatsuba(a,c), q=karatsuba(b,d), r=karatsuba(a+b,c+d)\n반환값은 p*m*m+(r-p-q)*m+q이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
-    "solution": "def karatsuba(x, y):\n    if x < 10 or y < 10:\n        return x * y\n    digits = len(str(max(x, y)))\n    base = 10 ** (digits // 2)\n    a, b = divmod(x, base)\n    c, d = divmod(y, base)\n    ac = karatsuba(a, c)\n    bd = karatsuba(b, d)\n    cross = karatsuba(a + b, c + d) - ac - bd\n    return ac * base * base + cross * base + bd",
-    "starter": "def karatsuba(x, y):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
-    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
-    "tests": [
-      {
-        "args": [
-          12,
-          34
-        ],
-        "expected": "408",
-        "public": true,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(12,34));"
-        }
-      },
-      {
-        "args": [
-          12345,
-          6789
-        ],
-        "expected": "83810205",
-        "public": true,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(12345,6789));"
-        }
-      },
-      {
-        "args": [
-          0,
-          999
-        ],
-        "expected": "0",
-        "public": true,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(0,999));"
-        }
-      },
-      {
-        "args": [
-          99999999,
-          99999999
-        ],
-        "expected": "9999999800000001",
-        "public": false,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(99999999,99999999));"
-        }
-      },
-      {
-        "args": [
-          99999999,
-          1
-        ],
-        "expected": "99999999",
-        "public": false,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(99999999,1));"
-        }
-      },
-      {
-        "args": [
-          10,
-          10
-        ],
-        "expected": "100",
-        "public": false,
-        "cHarness": {
-          "setup": "",
-          "call": "printf(\"\\\"%lld\\\"\",(long long)karatsuba(10,10));"
-        }
-      }
-    ],
-    "c": {
-      "starter": "long long karatsuba(long long x, long long y) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
-      "solution": "long long karatsuba(long long x, long long y) {\n    if (x<10 || y<10) return x*y;\n    long long t=x>y ? x:y, base=1;\n    int digits=0;\n    while (t) { ++digits; t/=10; }\n    for (int i=0; i<digits/2; ++i) base*=10;\n    long long a=x/base, b=x%base, c=y/base, d=y%base;\n    long long ac=karatsuba(a,c), bd=karatsuba(b,d);\n    long long cross=karatsuba(a+b,c+d)-ac-bd;\n    return ac*base*base+cross*base+bd;\n}",
-      "statement": "0≤x,y<10⁸인 정수 곱 karatsuba(x,y)를 Python 또는 C로 작성하시오. C는 long long을 쓴다. 다음 식을 사용해 재귀 곱셈을 세 번 수행한다.\n한 수라도 10 미만이면 x*y를 반환한다. 그 외에는 더 큰 수의 자릿수를 L, m은 10의 (L//2)제곱으로 둔다.\nx=a*m+b, y=c*m+d로 나눈다.\np=karatsuba(a,c), q=karatsuba(b,d), r=karatsuba(a+b,c+d)\n반환값은 p*m*m+(r-p-q)*m+q이다.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
-      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
-    },
-    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
-    "cPrelude": "",
-    "provided": "",
-    "exactInteger": true,
-    "study": {
-      "method": "주어진 세 곱 p, q, r을 재귀로 구하고 결합식에 대입한다.",
-      "boundary": "0·한 자리에서 종료합니다. 자리수와 중간 곱의 long long 범위를 확인합니다.",
-      "complexity": "자릿수 L의 일반화된 계산 모델에서 O(L^log₂3). 여기서는 입력·중간 곱이 long long 범위 안이다.",
-      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
-  },
-  {
-    "id": "P64",
-    "chapter": 4,
-    "exercise": 98,
-    "title": "2×2 슈트라센",
-    "section": "연습문제 98번",
-    "slides": "209",
-    "level": "PPTX 작성형",
-    "function": "strassen2",
-    "params": [
-      "A",
-      "B"
-    ],
-    "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱 strassen2를 Python 또는 C로 작성하시오. C는 결과 C[2][2]에 기록한다. 아래 식을 그대로 사용하며 스칼라 곱셈은 7번이다.\nA=[[a,b],[c,d]], B=[[e,f],[g,h]]로 둔다.\nM1=(a+d)*(e+h), M2=(c+d)*e, M3=a*(f-h)\nM4=d*(g-e), M5=(a+b)*h, M6=(c-a)*(e+f), M7=(b-d)*(g+h)\nC=[[M1+M4-M5+M7, M3+M5], [M2+M4, M1-M2+M3+M6]]\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
-    "solution": "def strassen2(A, B):\n    a,b = A[0]; c,d = A[1]\n    e,f = B[0]; g,h = B[1]\n    m1 = (a+d)*(e+h)\n    m2 = (c+d)*e\n    m3 = a*(f-h)\n    m4 = d*(g-e)\n    m5 = (a+b)*h\n    m6 = (c-a)*(e+f)\n    m7 = (b-d)*(g+h)\n    return [[m1+m4-m5+m7, m3+m5],\n            [m2+m4, m1-m2+m3+m6]]",
-    "starter": "def strassen2(A, B):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
-    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
-    "tests": [
-      {
-        "args": [
-          [
-            [
-              1,
-              2
-            ],
-            [
-              3,
-              4
-            ]
-          ],
-          [
-            [
-              2,
-              0
-            ],
-            [
-              1,
-              2
-            ]
-          ]
-        ],
-        "expected": [
-          [
-            4,
-            4
-          ],
-          [
-            10,
-            8
-          ]
-        ],
-        "public": true,
-        "cHarness": {
-          "setup": "int a[2][2]={{1,2},{3,4}};int b[2][2]={{2,0},{1,2}};int out[2][2]={{0}};",
-          "call": "strassen2(a,b,out);printf(\"[[%d,%d],[%d,%d]]\",out[0][0],out[0][1],out[1][0],out[1][1]);"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          [
-            [
-              3,
-              -2
-            ],
-            [
-              9,
-              1
-            ]
-          ]
-        ],
-        "expected": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ],
-        "public": false,
-        "cHarness": {
-          "setup": "int a[2][2]={{0,0},{0,0}};int b[2][2]={{3,-2},{9,1}};int out[2][2]={{0}};",
-          "call": "strassen2(a,b,out);printf(\"[[%d,%d],[%d,%d]]\",out[0][0],out[0][1],out[1][0],out[1][1]);"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              1000,
-              -1000
-            ],
-            [
-              -1000,
-              1000
-            ]
-          ],
-          [
-            [
-              1000,
-              1000
-            ],
-            [
-              -1000,
-              -1000
-            ]
-          ]
-        ],
-        "expected": [
-          [
-            2000000,
-            2000000
-          ],
-          [
-            -2000000,
-            -2000000
-          ]
-        ],
-        "public": false,
-        "cHarness": {
-          "setup": "int a[2][2]={{1000,-1000},{-1000,1000}};int b[2][2]={{1000,1000},{-1000,-1000}};int out[2][2]={{0}};",
-          "call": "strassen2(a,b,out);printf(\"[[%d,%d],[%d,%d]]\",out[0][0],out[0][1],out[1][0],out[1][1]);"
-        }
-      }
-    ],
-    "c": {
-      "starter": "void strassen2(const int A[][2], const int B[][2], int C[][2]) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n}\n",
-      "solution": "void strassen2(const int A[][2], const int B[][2], int C[][2]) {\n    int a=A[0][0], b=A[0][1], c=A[1][0], d=A[1][1];\n    int e=B[0][0], f=B[0][1], g=B[1][0], h=B[1][1];\n    int m1=(a+d)*(e+h), m2=(c+d)*e;\n    int m3=a*(f-h), m4=d*(g-e), m5=(a+b)*h;\n    int m6=(c-a)*(e+f), m7=(b-d)*(g+h);\n    C[0][0]=m1+m4-m5+m7; C[0][1]=m3+m5;\n    C[1][0]=m2+m4; C[1][1]=m1-m2+m3+m6;\n}",
-      "statement": "각 성분이 −1000..1000인 2×2 행렬 A,B의 곱 strassen2를 Python 또는 C로 작성하시오. C는 결과 C[2][2]에 기록한다. 아래 식을 그대로 사용하며 스칼라 곱셈은 7번이다.\nA=[[a,b],[c,d]], B=[[e,f],[g,h]]로 둔다.\nM1=(a+d)*(e+h), M2=(c+d)*e, M3=a*(f-h)\nM4=d*(g-e), M5=(a+b)*h, M6=(c-a)*(e+f), M7=(b-d)*(g+h)\nC=[[M1+M4-M5+M7, M3+M5], [M2+M4, M1-M2+M3+M6]]\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
-      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
-    },
-    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
-    "cPrelude": "",
-    "provided": "",
-    "study": {
-      "method": "제공된 M1~M7을 구한 뒤 C의 네 성분을 조합한다.",
-      "boundary": "스칼라 곱셈 7회인 식을 사용합니다. 0과 음수를 포함한 행렬도 처리합니다.",
-      "complexity": "고정 크기 2×2이므로 시간 O(1). 재귀적인 n×n 일반화와 구별한다.",
-      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
-  },
-  {
-    "id": "P65",
-    "chapter": 4,
-    "exercise": 99,
-    "title": "단색 종이 조각 수",
-    "section": "연습문제 99번",
-    "slides": "213",
-    "level": "PPTX 작성형",
-    "function": "white_count",
-    "params": [
-      "a",
-      "r",
-      "c",
-      "n"
-    ],
-    "statement": "0/1 정사각형을 균일할 때까지 네 등분한 뒤 값 1인 최종 조각의 수를 반환한다. n=2ᵏ≤32. white_count(a,r,c,n)을 작성한다. C 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
-    "solution": "def white_count(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r+n) for j in range(c, c+n)):\n        return value\n    h = n // 2\n    return (white_count(a,r,c,h) + white_count(a,r,c+h,h)\n            + white_count(a,r+h,c,h)\n            + white_count(a,r+h,c+h,h))",
-    "starter": "def white_count(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
-    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
-    "tests": [
-      {
-        "args": [
-          [
-            [
-              1,
-              1
-            ],
-            [
-              1,
-              1
-            ]
-          ],
-          0,
-          0,
-          2
-        ],
-        "expected": 1,
-        "public": true,
-        "cHarness": {
-          "setup": "int a[2][32]={{1,1},{1,1}};",
-          "call": "printf(\"%lld\",(long long)white_count(a,0,0,2));"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              0
-            ]
-          ],
-          0,
-          0,
-          2
-        ],
-        "expected": 2,
-        "public": true,
-        "cHarness": {
-          "setup": "int a[2][32]={{0,1},{1,0}};",
-          "call": "printf(\"%lld\",(long long)white_count(a,0,0,2));"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              0
-            ]
-          ],
-          0,
-          0,
-          1
-        ],
-        "expected": 0,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[1][32]={{0}};",
-          "call": "printf(\"%lld\",(long long)white_count(a,0,0,1));"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              1
-            ]
-          ],
-          0,
-          0,
-          1
-        ],
-        "expected": 1,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[1][32]={{1}};",
-          "call": "printf(\"%lld\",(long long)white_count(a,0,0,1));"
-        }
-      },
-      {
-        "args": [
-          [
-            [
-              1,
-              1,
-              1,
-              1
-            ],
-            [
-              1,
-              1,
-              1,
-              1
-            ],
-            [
-              1,
-              1,
-              1,
-              1
-            ],
-            [
-              1,
-              1,
-              1,
-              1
-            ]
-          ],
-          0,
-          0,
-          4
-        ],
-        "expected": 1,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[4][32]={{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};",
-          "call": "printf(\"%lld\",(long long)white_count(a,0,0,4));"
-        }
-      }
-    ],
-    "c": {
-      "starter": "int white_count(const int a[][32], int r, int c, int n) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
-      "solution": "int white_count(const int a[][32], int r, int c, int n) {\n    int same=1, value=a[r][c];\n    for (int i=r; i<r+n; ++i)\n        for (int j=c; j<c+n; ++j)\n            if (a[i][j]!=value) same=0;\n    if (same) return value;\n    int h=n/2;\n    return white_count(a,r,c,h)+white_count(a,r,c+h,h)\n         + white_count(a,r+h,c,h)+white_count(a,r+h,c+h,h);\n}",
-      "statement": "0/1 정사각형을 균일할 때까지 네 등분한 뒤 값 1인 최종 조각의 수를 반환한다. n=2ᵏ≤32. white_count(a,r,c,n)을 작성한다. C 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
-      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
-    },
-    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
-    "cPrelude": "",
-    "provided": "",
-    "study": {
-      "method": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
-      "boundary": "균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.",
-      "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
-      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
-  },
-  {
-    "id": "P66",
-    "chapter": 4,
-    "exercise": 100,
-    "title": "병합 중 역전 쌍 세기",
-    "section": "연습문제 100번",
-    "slides": "217",
-    "level": "PPTX 작성형",
-    "function": "cross_inversions",
-    "params": [
-      "a",
-      "b"
-    ],
-    "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-    "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
-    "solution": "def cross_inversions(a, b):\n    i = j = count = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            i += 1\n        else:\n            count += len(a) - i\n            j += 1\n    return count",
-    "starter": "def cross_inversions(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
-    "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
-    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
-    "tests": [
-      {
-        "args": [
-          [
-            1,
-            4,
-            7
-          ],
-          [
-            2,
-            3,
-            8
-          ]
-        ],
-        "expected": 4,
-        "public": true,
-        "cHarness": {
-          "setup": "int a[3]={1,4,7};int b[3]={2,3,8};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,3,b,3));"
-        }
-      },
-      {
-        "args": [
-          [
-            2,
-            2
-          ],
-          [
-            2
-          ]
-        ],
-        "expected": 0,
-        "public": true,
-        "cHarness": {
-          "setup": "int a[2]={2,2};int b[1]={2};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,1));"
-        }
-      },
-      {
-        "args": [
-          [],
-          [
-            1
-          ]
-        ],
-        "expected": 0,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[1]={0};int b[1]={1};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,0,b,1));"
-        }
-      },
-      {
-        "args": [
-          [
-            5,
-            6
-          ],
-          [
-            1,
-            2,
-            3
-          ]
-        ],
-        "expected": 6,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[2]={5,6};int b[3]={1,2,3};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,3));"
-        }
-      },
-      {
-        "args": [
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            2
-          ]
-        ],
-        "expected": 0,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[2]={1,1};int b[2]={2,2};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,2));"
-        }
-      },
-      {
-        "args": [
-          [
-            -8,
-            -6,
-            -6,
-            -4,
-            -3,
-            -3,
-            -2,
-            -2,
-            -1,
-            0,
-            2,
-            4,
-            5,
-            6,
-            9
-          ],
-          [
-            -6,
-            -4,
-            -3,
-            -2,
-            -1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            5,
-            8
-          ]
-        ],
-        "expected": 73,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[15]={-8,-6,-6,-4,-3,-3,-2,-2,-1,0,2,4,5,6,9};int b[12]={-6,-4,-3,-2,-1,0,0,1,1,1,5,8};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,15,b,12));"
-        }
-      },
-      {
-        "args": [
-          [
-            -5,
-            -5,
-            -4,
-            -4,
-            -3,
-            -1,
-            -1,
-            0,
-            1,
-            2,
-            5,
-            6,
-            6,
-            9,
-            9,
-            10
-          ],
-          [
-            -8,
-            -8,
-            -8,
-            -7,
-            -4,
-            3,
-            4,
-            5,
-            7,
-            9,
-            9,
-            10
-          ]
-        ],
-        "expected": 98,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[16]={-5,-5,-4,-4,-3,-1,-1,0,1,2,5,6,6,9,9,10};int b[12]={-8,-8,-8,-7,-4,3,4,5,7,9,9,10};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,16,b,12));"
-        }
-      },
-      {
-        "args": [
-          [
-            -8,
-            -8,
-            -7,
-            -5,
-            -3,
-            -2,
-            1,
-            1,
-            2,
-            3,
-            4,
-            7,
-            9,
-            10
-          ],
-          [
-            -7,
-            -7,
-            -6,
-            -5,
-            -4,
-            -3,
-            -1,
-            0,
-            1,
-            3,
-            5,
-            8
-          ]
-        ],
-        "expected": 93,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[14]={-8,-8,-7,-5,-3,-2,1,1,2,3,4,7,9,10};int b[12]={-7,-7,-6,-5,-4,-3,-1,0,1,3,5,8};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,14,b,12));"
-        }
-      },
-      {
-        "args": [
-          [
-            -10,
-            -8,
-            -7,
-            -7,
-            -6,
-            -6,
-            -5,
-            -5,
-            -2,
-            3,
-            3,
-            5,
-            5,
-            8,
-            10,
-            10
-          ],
-          [
-            -8,
-            -8,
-            -6,
-            -6,
-            -5,
-            -5,
-            1,
-            3,
-            3,
-            6,
-            8,
-            9
-          ]
-        ],
-        "expected": 88,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[16]={-10,-8,-7,-7,-6,-6,-5,-5,-2,3,3,5,5,8,10,10};int b[12]={-8,-8,-6,-6,-5,-5,1,3,3,6,8,9};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,16,b,12));"
-        }
-      },
-      {
-        "args": [
-          [
-            -10,
-            -6,
-            -4,
-            -4,
-            -2,
-            -1,
-            -1,
-            0,
-            0,
-            5,
-            6,
-            9
-          ],
-          [
-            -6,
-            -6,
-            -5,
-            -4,
-            -2,
-            -1,
-            1,
-            3,
-            4,
-            4,
-            8,
-            9
-          ]
-        ],
-        "expected": 63,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[12]={-10,-6,-4,-4,-2,-1,-1,0,0,5,6,9};int b[12]={-6,-6,-5,-4,-2,-1,1,3,4,4,8,9};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,12,b,12));"
-        }
-      },
-      {
-        "args": [
-          [
-            -10,
-            -9,
-            -8,
-            -8,
-            -7,
-            -6,
-            -5,
-            -1,
-            1,
-            1,
-            2,
-            3,
-            3,
-            4,
-            5,
-            5,
-            7
-          ],
-          [
-            -8,
-            -7,
-            -6,
-            -5,
-            -4,
-            -3,
-            -2,
-            -1,
-            2,
-            5,
-            8,
-            8
-          ]
-        ],
-        "expected": 92,
-        "public": false,
-        "cHarness": {
-          "setup": "int a[17]={-10,-9,-8,-8,-7,-6,-5,-1,1,1,2,3,3,4,5,5,7};int b[12]={-8,-7,-6,-5,-4,-3,-2,-1,2,5,8,8};",
-          "call": "printf(\"%lld\",(long long)cross_inversions(a,17,b,12));"
-        }
-      }
-    ],
-    "c": {
-      "starter": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
-      "solution": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n    int i=0, j=0;\n    long long count=0;\n    while (i<n && j<m) {\n        if (a[i]<=b[j]) ++i;\n        else { count+=n-i; ++j; }\n    }\n    return count;\n}",
-      "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
-      "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
-      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
-    },
-    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
-    "cPrelude": "",
-    "provided": "",
-    "study": {
-      "method": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
-      "boundary": "같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.",
-      "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
-      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
-    }
-  },
-  {
     "id": "P87",
     "chapter": 4,
-    "exercise": 101,
+    "exercise": 97,
     "title": "퀵 정렬의 분할 함수",
-    "section": "연습문제 101번",
-    "slides": "221",
+    "section": "연습문제 97번",
+    "slides": "205",
     "level": "PPTX 작성형",
     "function": "partition",
     "params": [
@@ -16901,7 +16098,7 @@
     "starter": "def partition(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "길이가 k인 구간에서 시간 O(k). 같은 값은 피벗의 왼쪽으로 보낸다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -25009,10 +24206,10 @@
   {
     "id": "P88",
     "chapter": 4,
-    "exercise": 102,
+    "exercise": 98,
     "title": "퀵 정렬",
-    "section": "연습문제 102번",
-    "slides": "225",
+    "section": "연습문제 98번",
+    "slides": "209",
     "level": "PPTX 작성형",
     "function": "quick_sort",
     "params": [
@@ -25026,7 +24223,7 @@
     "starter": "def quick_sort(a, lo, hi):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
     "complexity": "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.",
     "sourceFile": "4장_연습문제_100문항_수업용.pptx",
-    "sourceHash": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
     "tests": [
       {
         "args": [
@@ -33185,6 +32382,541 @@
       "method": "길이가 0 또는 1인 구간에서 종료한다. partition으로 피벗 자리를 확정한 뒤 피벗을 제외한 두 구간을 재귀 정렬한다.",
       "boundary": "빈 구간·한 원소는 즉시 종료합니다. 재귀에 피벗을 다시 넣지 않고 [lo,p−1]과 [p+1,hi]를 정렬합니다.",
       "complexity": "평균 O(n log n), 최악 O(n²). 가운데 인덱스의 값이 중앙값이라는 보장은 없다.",
+      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
+    }
+  },
+  {
+    "id": "P65",
+    "chapter": 4,
+    "exercise": 99,
+    "title": "단색 종이 조각 수",
+    "section": "연습문제 99번",
+    "slides": "213",
+    "level": "PPTX 작성형",
+    "function": "white_count",
+    "params": [
+      "a",
+      "r",
+      "c",
+      "n"
+    ],
+    "statement": "0/1 정사각형을 균일할 때까지 네 등분한 뒤 값 1인 최종 조각의 수를 반환한다. n=2ᵏ≤32. white_count(a,r,c,n)을 작성한다. C 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
+    "solution": "def white_count(a, r, c, n):\n    value = a[r][c]\n    if all(a[i][j] == value\n           for i in range(r, r+n) for j in range(c, c+n)):\n        return value\n    h = n // 2\n    return (white_count(a,r,c,h) + white_count(a,r,c+h,h)\n            + white_count(a,r+h,c,h)\n            + white_count(a,r+h,c+h,h))",
+    "starter": "def white_count(a, r, c, n):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
+    "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
+    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          0,
+          0,
+          2
+        ],
+        "expected": 1,
+        "public": true,
+        "cHarness": {
+          "setup": "int a[2][32]={{1,1},{1,1}};",
+          "call": "printf(\"%lld\",(long long)white_count(a,0,0,2));"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          0,
+          0,
+          2
+        ],
+        "expected": 2,
+        "public": true,
+        "cHarness": {
+          "setup": "int a[2][32]={{0,1},{1,0}};",
+          "call": "printf(\"%lld\",(long long)white_count(a,0,0,2));"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              0
+            ]
+          ],
+          0,
+          0,
+          1
+        ],
+        "expected": 0,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[1][32]={{0}};",
+          "call": "printf(\"%lld\",(long long)white_count(a,0,0,1));"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              1
+            ]
+          ],
+          0,
+          0,
+          1
+        ],
+        "expected": 1,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[1][32]={{1}};",
+          "call": "printf(\"%lld\",(long long)white_count(a,0,0,1));"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ],
+            [
+              1,
+              1,
+              1,
+              1
+            ]
+          ],
+          0,
+          0,
+          4
+        ],
+        "expected": 1,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[4][32]={{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1}};",
+          "call": "printf(\"%lld\",(long long)white_count(a,0,0,4));"
+        }
+      }
+    ],
+    "c": {
+      "starter": "int white_count(const int a[][32], int r, int c, int n) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
+      "solution": "int white_count(const int a[][32], int r, int c, int n) {\n    int same=1, value=a[r][c];\n    for (int i=r; i<r+n; ++i)\n        for (int j=c; j<c+n; ++j)\n            if (a[i][j]!=value) same=0;\n    if (same) return value;\n    int h=n/2;\n    return white_count(a,r,c,h)+white_count(a,r,c+h,h)\n         + white_count(a,r+h,c,h)+white_count(a,r+h,c+h,h);\n}",
+      "statement": "0/1 정사각형을 균일할 때까지 네 등분한 뒤 값 1인 최종 조각의 수를 반환한다. n=2ᵏ≤32. white_count(a,r,c,n)을 작성한다. C 열 폭은 32다. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
+      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
+    },
+    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
+    "cPrelude": "",
+    "provided": "",
+    "study": {
+      "method": "균일한 1 영역은 한 조각, 균일한 0 영역은 0개로 세고 나머지는 네 결과를 합한다.",
+      "boundary": "균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.",
+      "complexity": "시간 O(n² log(n+1)) 상한. 1인 칸 수와 조각 수는 다르다.",
+      "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
+    }
+  },
+  {
+    "id": "P66",
+    "chapter": 4,
+    "exercise": 100,
+    "title": "병합 중 역전 쌍 세기",
+    "section": "연습문제 100번",
+    "slides": "217",
+    "level": "PPTX 작성형",
+    "function": "cross_inversions",
+    "params": [
+      "a",
+      "b"
+    ],
+    "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+    "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+    "solution": "def cross_inversions(a, b):\n    i = j = count = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            i += 1\n        else:\n            count += len(a) - i\n            j += 1\n    return count",
+    "starter": "def cross_inversions(a, b):\n    # 여기에 코드를 작성하세요.\n    raise NotImplementedError\n",
+    "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
+    "sourceFile": "4장_연습문제_100문항_수업용.pptx",
+    "sourceHash": "8199e20ef9973f6922b43342a063e0f866ca136d4d3e5077a9765fd721d5d7f8",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            4,
+            7
+          ],
+          [
+            2,
+            3,
+            8
+          ]
+        ],
+        "expected": 4,
+        "public": true,
+        "cHarness": {
+          "setup": "int a[3]={1,4,7};int b[3]={2,3,8};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,3,b,3));"
+        }
+      },
+      {
+        "args": [
+          [
+            2,
+            2
+          ],
+          [
+            2
+          ]
+        ],
+        "expected": 0,
+        "public": true,
+        "cHarness": {
+          "setup": "int a[2]={2,2};int b[1]={2};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,1));"
+        }
+      },
+      {
+        "args": [
+          [],
+          [
+            1
+          ]
+        ],
+        "expected": 0,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[1]={0};int b[1]={1};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,0,b,1));"
+        }
+      },
+      {
+        "args": [
+          [
+            5,
+            6
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 6,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[2]={5,6};int b[3]={1,2,3};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,3));"
+        }
+      },
+      {
+        "args": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "expected": 0,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[2]={1,1};int b[2]={2,2};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,2,b,2));"
+        }
+      },
+      {
+        "args": [
+          [
+            -8,
+            -6,
+            -6,
+            -4,
+            -3,
+            -3,
+            -2,
+            -2,
+            -1,
+            0,
+            2,
+            4,
+            5,
+            6,
+            9
+          ],
+          [
+            -6,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            5,
+            8
+          ]
+        ],
+        "expected": 73,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[15]={-8,-6,-6,-4,-3,-3,-2,-2,-1,0,2,4,5,6,9};int b[12]={-6,-4,-3,-2,-1,0,0,1,1,1,5,8};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,15,b,12));"
+        }
+      },
+      {
+        "args": [
+          [
+            -5,
+            -5,
+            -4,
+            -4,
+            -3,
+            -1,
+            -1,
+            0,
+            1,
+            2,
+            5,
+            6,
+            6,
+            9,
+            9,
+            10
+          ],
+          [
+            -8,
+            -8,
+            -8,
+            -7,
+            -4,
+            3,
+            4,
+            5,
+            7,
+            9,
+            9,
+            10
+          ]
+        ],
+        "expected": 98,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[16]={-5,-5,-4,-4,-3,-1,-1,0,1,2,5,6,6,9,9,10};int b[12]={-8,-8,-8,-7,-4,3,4,5,7,9,9,10};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,16,b,12));"
+        }
+      },
+      {
+        "args": [
+          [
+            -8,
+            -8,
+            -7,
+            -5,
+            -3,
+            -2,
+            1,
+            1,
+            2,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          [
+            -7,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -1,
+            0,
+            1,
+            3,
+            5,
+            8
+          ]
+        ],
+        "expected": 93,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[14]={-8,-8,-7,-5,-3,-2,1,1,2,3,4,7,9,10};int b[12]={-7,-7,-6,-5,-4,-3,-1,0,1,3,5,8};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,14,b,12));"
+        }
+      },
+      {
+        "args": [
+          [
+            -10,
+            -8,
+            -7,
+            -7,
+            -6,
+            -6,
+            -5,
+            -5,
+            -2,
+            3,
+            3,
+            5,
+            5,
+            8,
+            10,
+            10
+          ],
+          [
+            -8,
+            -8,
+            -6,
+            -6,
+            -5,
+            -5,
+            1,
+            3,
+            3,
+            6,
+            8,
+            9
+          ]
+        ],
+        "expected": 88,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[16]={-10,-8,-7,-7,-6,-6,-5,-5,-2,3,3,5,5,8,10,10};int b[12]={-8,-8,-6,-6,-5,-5,1,3,3,6,8,9};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,16,b,12));"
+        }
+      },
+      {
+        "args": [
+          [
+            -10,
+            -6,
+            -4,
+            -4,
+            -2,
+            -1,
+            -1,
+            0,
+            0,
+            5,
+            6,
+            9
+          ],
+          [
+            -6,
+            -6,
+            -5,
+            -4,
+            -2,
+            -1,
+            1,
+            3,
+            4,
+            4,
+            8,
+            9
+          ]
+        ],
+        "expected": 63,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[12]={-10,-6,-4,-4,-2,-1,-1,0,0,5,6,9};int b[12]={-6,-6,-5,-4,-2,-1,1,3,4,4,8,9};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,12,b,12));"
+        }
+      },
+      {
+        "args": [
+          [
+            -10,
+            -9,
+            -8,
+            -8,
+            -7,
+            -6,
+            -5,
+            -1,
+            1,
+            1,
+            2,
+            3,
+            3,
+            4,
+            5,
+            5,
+            7
+          ],
+          [
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            2,
+            5,
+            8,
+            8
+          ]
+        ],
+        "expected": 92,
+        "public": false,
+        "cHarness": {
+          "setup": "int a[17]={-10,-9,-8,-8,-7,-6,-5,-1,1,1,2,3,3,4,5,5,7};int b[12]={-8,-7,-6,-5,-4,-3,-2,-1,2,5,8,8};",
+          "call": "printf(\"%lld\",(long long)cross_inversions(a,17,b,12));"
+        }
+      }
+    ],
+    "c": {
+      "starter": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n  // TODO: 문제의 조건에 맞게 구현하세요.\n  return 0;\n}\n",
+      "solution": "long long cross_inversions(const int a[], int n,\n                           const int b[], int m) {\n    int i=0, j=0;\n    long long count=0;\n    while (i<n && j<m) {\n        if (a[i]<=b[j]) ++i;\n        else { count+=n-i; ++j; }\n    }\n    return count;\n}",
+      "statement": "오름차순 배열 a,b는 원래 배열의 왼쪽·오른쪽 절반이다. a[i]>b[j]인 교차 역전 쌍 수 cross_inversions를 병합식 순회로 구하시오. 각 길이 0..1000. Python 또는 C 중 하나로 함수를 작성하시오.\n\n함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
+      "hint": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+      "result": "PPTX에 제시된 함수 형식을 사용합니다. 결과 배열과 작업 배열은 채점기가 준비합니다."
+    },
+    "pythonPrelude": "import sys\nsys.setrecursionlimit(10000)\n",
+    "cPrelude": "",
+    "provided": "",
+    "study": {
+      "method": "오른쪽 값이 더 작으면 남은 왼쪽 원소 모두와 역전 쌍을 만든다.",
+      "boundary": "같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.",
+      "complexity": "시간 O(n+m). 같은 값은 역전 쌍으로 세지 않는다.",
       "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오."
     }
   },

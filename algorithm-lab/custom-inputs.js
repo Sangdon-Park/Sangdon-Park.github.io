@@ -58,7 +58,7 @@ function validateCustomArgs(p,args) {
   const matrix=(i,min,max,width=null)=>{length(i,min,max);const cols=width??args[i][0]?.length;need(cols>=1&&cols<=max&&args[i].every(r=>r.length===cols),fields[i].name+': 모든 행의 길이가 같은 행렬을 입력하세요.');};
   const square=(i,min,max)=>{matrix(i,min,max);need(args[i].every(r=>r.length===args[i].length),fields[i].name+': 정사각형 행렬을 입력하세요.');};
   const index=(i,n)=>range(i,0,n-1);
-  const scalarLimits={expected_checks:[[1,1000000],[0,1]],doubling_steps:[[1,2**51]],binary_worst:[[0,2**51]],loop_counts:[[1,10000]],find_divisors:[[1,10000]],dice_sum:[[0,20]],icecream_menus:[[0,20]],search_space:[[1,12]],gcd_value:[[0,1e9],[0,1e9]],fibonacci:[[0,90]],karatsuba:[[0,99999999],[0,99999999]],coin_count:[[0,1e9]],domino:[[0,1e6],[1,1e9]],make_one:[[1,10000]],make_path:[[1,10000]],fib_memo:[[0,p.exercise?90:70]]};
+  const scalarLimits={expected_checks:[[1,1000000],[0,1]],doubling_steps:[[1,2**51]],binary_worst:[[0,2**51]],loop_counts:[[1,10000]],find_divisors:[[1,10000]],dice_sum:[[0,20]],icecream_menus:[[0,20]],search_space:[[1,12]],gcd_value:[[0,1e9],[0,1e9]],fibonacci:[[0,90]],coin_count:[[0,1e9]],domino:[[0,1e6],[1,1e9]],make_one:[[1,10000]],make_path:[[1,10000]],fib_memo:[[0,p.exercise?90:70]]};
   if(scalarLimits[f])scalarLimits[f].forEach(([min,max],i)=>range(i,min,max));
   const vectorCaps={linear_search:10000,binary_search:p.exercise?1000:10000,binary_trace:10000,first_index:1000,sum_count:10000,max_count:10000,search_count:10000,bubble_stats:100,find_pairs:30,choose_three:10,make_permutations:6,make_combinations:6,power_set:8,subset_sum_count:16,three_sum_count:100,blackjack:100,pair_differences:30,three_sum_values:20,palindrome_words:30,knapsack:16,baseball_count:20,insertion_sort:1000,quick_select:1000,merge_sort:1000,partition:1000,quick_sort:1000,cross_sum:1000,max_subarray:1000,dsu_find:1000,pick_vertex:100,relax:1000,completion_sum:1000,nonadjacent:10000};
   if(vectorCaps[f])length(0,['quick_select','cross_sum','max_subarray','dsu_find'].includes(f)?1:0,vectorCaps[f]);
@@ -81,7 +81,6 @@ function validateCustomArgs(p,args) {
   if(f==='max_subarray')need(0<=args[1]&&args[1]<args[2]&&args[2]<=args[0].length,'0 ≤ lo < hi ≤ 배열 길이를 지켜주세요.');
   if(f==='closest_base')matrix(0,2,3,2);
   if(['quad','white_count'].includes(f)){square(0,1,32);range(3,1,32);need((args[3]&(args[3]-1))===0&&args[1]>=0&&args[2]>=0&&args[1]+args[3]<=args[0].length&&args[2]+args[3]<=args[0].length,'n은 2의 거듭제곱이며 (r,c)에서 시작하는 영역이 배열 안에 있어야 합니다.');}
-  if(f==='strassen2'){matrix(0,2,2,2);matrix(1,2,2,2);}
   if(['activity_count','fractional_value','knapsack1','knapsack2'].includes(f)){length(0,0,['knapsack1','knapsack2'].includes(f)?100:1000);need(args[0].every(r=>r.length===2),'각 항목은 숫자 두 개를 가진 배열이어야 합니다.');if(f!=='activity_count'){need(args[0].every(r=>r[0]>0),'물건 무게는 양수여야 합니다.');range(1,0,f==='fractional_value'?1e6:1000);}}
   if(f==='dsu_find'){index(1,args[0].length);need(args[0].every(v=>v>=0&&v<args[0].length),'parent 값은 배열 안의 인덱스여야 합니다.');for(let x=0;x<args[0].length;x++){const seen=new Set();let v=x;while(args[0][v]!==v){need(!seen.has(v),'parent는 루트를 가진 숲이어야 합니다. 순환이 있습니다.');seen.add(v);v=args[0][v];}}}
   if(f==='kruskal_cost'){range(0,1,1000);length(1,0,10000);need(args[1].every(r=>r.length===3&&r[0]>=0&&r[0]<args[0]&&r[1]>=0&&r[1]<args[0]),'edges: 각 행은 [시작 정점, 끝 정점, 가중치]이며 정점은 0~n-1입니다.');}
@@ -93,7 +92,7 @@ function validateCustomArgs(p,args) {
   if(f==='grid_cost')matrix(0,1,100);
   // C int arguments share the same safe range across languages. Long distances
   // and the infinity sentinel are explicitly supported where the contract uses them.
-  const numeric=(value,i)=>{if(Array.isArray(value))return value.forEach(v=>numeric(v,i));if(typeof value==='number'&&Number.isInteger(value)&&!['expected_checks','doubling_steps','binary_worst','karatsuba'].includes(f)){const isDistance=['pick_vertex','relax'].includes(f)&&i===0;need(isDistance?(value===1e18||Number.isSafeInteger(value)&&Math.abs(value)<=1e12):value>=-2147483648&&value<=2147483647,fields[i].name+': 정수 범위를 확인하세요.');}if(typeof value==='string')need(value.length<=200&&!/[^\x20-\x7e]/.test(value),fields[i].name+': 실행 입력은 200자 이하의 ASCII 문자로 입력하세요.');};
+  const numeric=(value,i)=>{if(Array.isArray(value))return value.forEach(v=>numeric(v,i));if(typeof value==='number'&&Number.isInteger(value)&&!['expected_checks','doubling_steps','binary_worst'].includes(f)){const isDistance=['pick_vertex','relax'].includes(f)&&i===0;need(isDistance?(value===1e18||Number.isSafeInteger(value)&&Math.abs(value)<=1e12):value>=-2147483648&&value<=2147483647,fields[i].name+': 정수 범위를 확인하세요.');}if(typeof value==='string')need(value.length<=200&&!/[^\x20-\x7e]/.test(value),fields[i].name+': 실행 입력은 200자 이하의 ASCII 문자로 입력하세요.');};
   args.forEach(numeric);
   return args;
 }

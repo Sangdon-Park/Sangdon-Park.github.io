@@ -54,8 +54,6 @@ EXTRA = {
  'max_subarray': [[[-9],0,1], [[99,-5,2,3,-1,99],1,5], [[1,2,3],0,3]],
  'closest_base': [[[[-10000,-10000],[10000,10000]]], [[[0,0],[1,1],[8,8]]]],
  'quad': [[[[0]],0,0,1], [[[1,1],[1,1]],0,0,2], [[[0,0,1,1],[0,0,1,1],[1,0,0,1],[0,1,1,0]],0,0,4]],
- 'karatsuba': [[99999999,99999999],[99999999,1],[10,10]],
- 'strassen2': [[[[0,0],[0,0]],[[3,-2],[9,1]]], [[[1000,-1000],[-1000,1000]],[[1000,1000],[-1000,-1000]]]],
  'white_count': [[[[0]],0,0,1], [[[1]],0,0,1], [[[1]*4 for _ in range(4)],0,0,4]],
  'cross_inversions': [[[],[1]], [[5,6],[1,2,3]], [[1,1],[2,2]]],
  'coin_count': [[1],[500],[1000000000]],
@@ -108,8 +106,6 @@ def oracle(name,a):
         if len(set(cells))==1: return str(cells[0]) if name=='quad' else cells[0]
         h=n//2; parts=[oracle(name,[m,r+dr,c+dc,h]) for dr,dc in [(0,0),(0,h),(h,0),(h,h)]]
         return '('+''.join(parts)+')' if name=='quad' else sum(parts)
-    if name=='karatsuba': return a[0]*a[1]
-    if name=='strassen2': return [[sum(a[0][i][k]*a[1][k][j] for k in range(2)) for j in range(2)] for i in range(2)]
     if name=='cross_inversions': return sum(x>y for x in a[0] for y in a[1])
     if name=='coin_count':
         v=a[0]; count=0
@@ -219,7 +215,7 @@ def ccase(p,t):
     if p['chapter']==2: return None # existing tested chapterTwoCase adapter
     if f in ['first_index','binary_search','lower_bound','count_equal','quick_select']:
         s=arr('a',a[0]);expr=f'{f}(a,{len(a[0])},{a[1]})'
-    elif f in ['gcd_value','power_mod','fibonacci','karatsuba','coin_count','domino']:
+    elif f in ['gcd_value','power_mod','fibonacci','coin_count','domino']:
         expr=f'{f}('+','.join(map(literal,a))+')'
     elif f in ['partition','quick_sort']:
         n=len(a[0]);s=arr('a',a[0])
@@ -252,9 +248,6 @@ def ccase(p,t):
         if f=='quad':
             s+='char out[4097]={0};int pos=0;';call=expr+',out,&pos);printf("\\\"%s\\\"",out);';expr=''
         else: expr+=')'
-    elif f=='strassen2':
-        s=mat('a',a[0],2)+mat('b',a[1],2)+'int out[2][2]={{0}};'
-        call='strassen2(a,b,out);printf("[[%d,%d],[%d,%d]]",out[0][0],out[0][1],out[1][0],out[1][1]);'
     elif f=='dsu_find':
         s=arr('a',a[0]);call=f'int result=dsu_find(a,{a[1]});int valid=1;'
         for i,v in t['mutationChecks'].items(): call+=f'if(a[{i}]!={v})valid=0;'
@@ -326,7 +319,7 @@ def build():
         if f=='fib_memo': p['provided']='memo: 길이 91, 모든 값이 −1인 배열을 실행 환경이 전달합니다.'
         if f=='make_path': p['provided']='dp: 1로 만들기의 최솟값 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.'
         if f=='lcs_restore': p['provided']='dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.'
-        if f in ('fibonacci','fib_memo','karatsuba'): p['exactInteger']=True
+        if f in ('fibonacci','fib_memo'): p['exactInteger']=True
         if f=='fractional_value': p.update(numeric_output=True,tolerance=1e-6)
         if f=='quick_sort': p['outputArgument']=0;p['provided']='Python·C 실행 환경에 앞 문항의 partition이 제공됩니다. 배열 a를 제자리 정렬합니다.'
         if f=='partition': p['mutationMessage']='반환한 피벗 인덱스와 분할 후 배열을 함께 확인하세요.'
@@ -386,8 +379,6 @@ def boundary(f):
       'max_subarray':'빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.',
       'closest_base':'제곱 거리를 반환합니다. 같은 점 두 개는 0입니다.',
       'quad':'균일한 칸은 0/1 한 글자, 분할 순서는 좌상·우상·좌하·우하입니다.',
-      'karatsuba':'0·한 자리에서 종료합니다. 자리수와 중간 곱의 long long 범위를 확인합니다.',
-      'strassen2':'스칼라 곱셈 7회인 식을 사용합니다. 0과 음수를 포함한 행렬도 처리합니다.',
       'white_count':'균일한 1 영역은 크기와 무관하게 1개, 균일한 0 영역은 0개입니다.',
       'cross_inversions':'같은 값은 역전이 아닙니다. 어느 배열이 비어 있으면 0입니다.',
       'coin_count':'금액 0은 0개입니다. 정해진 동전 500·100·50·10·1을 사용합니다.',

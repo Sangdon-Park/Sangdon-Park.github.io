@@ -9,13 +9,15 @@ for(const p of bank){
   assert.ok(submission({id:'c0953417-749e-42c1-b7e9-1162b6fcf21b',problem:p.id,language:'python',code:p.solution,report:{passed:p.tests.length,total:p.tests.length}}).solved);
 }
 assert.throws(()=>draft({problem:'P89',language:'c',code:''}));
-for(const id of ['P04','P49','P50','P52']){
+for(const id of ['P04','P49','P50','P52','P63','P64']){
   assert.equal(TOTALS[id],undefined);
   assert.ok(!bank.some(p=>p.id===id));
   assert.throws(()=>draft({problem:id,language:'python',code:'saved legacy answer'}));
 }
 assert.equal(bank.find(p=>p.id==='P53').function,'insertion_sort');
 assert.equal(bank.find(p=>p.id==='P86').function,'grid_cost');
+assert.equal(bank.find(p=>p.id==='P87').exercise,97);
+assert.equal(bank.find(p=>p.id==='P88').exercise,98);
 for(const filename of ['schema.sql','chapter-04-sorts-migration.sql']){
   const sql=fs.readFileSync(new URL('../'+filename,import.meta.url),'utf8');
   const patterns=[...sql.matchAll(/check\s*\(\s*problem\s*~\s*'([^']+)'/gi)].map(m=>new RegExp(m[1]));
