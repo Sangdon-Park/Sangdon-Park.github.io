@@ -11302,7 +11302,7 @@
   },
   {
     "question": "오름차순 정수 배열 a,b를 합친 정렬 결과를 merge_arrays로 구한다. 각 길이는 0..500. 같은 값이면 a를 먼저 쓴다. C는 충분한 out 배열에 기록한다. Python 또는 C 중 하나로 함수를 작성하시오.",
-    "python": "def merge_arrays(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            out.append(a[i]); i += 1\n        else:\n            out.append(b[j]); j += 1\n    out.extend(a[i:])\n    out.extend(b[j:])\n    return out",
+    "python": "def merge_arrays(a, b):\n    i = j = 0\n    out = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            out.append(a[i])\n            i += 1\n        else:\n            out.append(b[j])\n            j += 1\n    while i < len(a):\n        out.append(a[i])\n        i += 1\n    while j < len(b):\n        out.append(b[j])\n        j += 1\n    return out",
     "c": "void merge_arrays(const int a[], int n, const int b[],\n                  int m, int out[]) {\n    int i=0, j=0, k=0;\n    while (i<n && j<m) {\n        if (a[i]<=b[j]) out[k++]=a[i++];\n        else out[k++]=b[j++];\n    }\n    while (i<n) out[k++]=a[i++];\n    while (j<m) out[k++]=b[j++];\n}",
     "answer": "두 배열의 맨 앞 미처리 원소를 비교하고 작은 쪽을 출력한다.",
     "complexity": "시간 O(n+m).",
@@ -11345,7 +11345,7 @@
     "number": 91,
     "slide": 181,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P57"
   },
   {
@@ -11386,7 +11386,7 @@
     "number": 92,
     "slide": 185,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P58",
     "randomCases": [
       {
@@ -11588,7 +11588,7 @@
     "number": 93,
     "slide": 189,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P59"
   },
   {
@@ -11634,7 +11634,7 @@
     "number": 94,
     "slide": 193,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P60"
   },
   {
@@ -11687,7 +11687,7 @@
     "number": 95,
     "slide": 197,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P61"
   },
   {
@@ -11737,7 +11737,7 @@
     "number": 96,
     "slide": 201,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P62"
   },
   {
@@ -11778,7 +11778,7 @@
     "number": 97,
     "slide": 205,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P63"
   },
   {
@@ -11830,7 +11830,7 @@
     "number": 98,
     "slide": 209,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P64"
   },
   {
@@ -11885,7 +11885,7 @@
     "number": 99,
     "slide": 213,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P65"
   },
   {
@@ -11931,7 +11931,7 @@
     "number": 100,
     "slide": 217,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "id": "P66",
     "randomCases": [
       {
@@ -12161,7 +12161,7 @@
   {
     "chapter": 4,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "id": "P87",
     "number": 101,
@@ -20141,7 +20141,7 @@
   {
     "chapter": 4,
     "file": "4장_연습문제_100문항_수업용.pptx",
-    "sha256": "13c17558cf06847569ce974bba3d1043fc1cab079ce927995eca47cb4918958a",
+    "sha256": "347fe2f5086568928ae8728a825b224061dc85bc091206fbe503a629931cccda",
     "requirements": "함수의 동작, 경계 처리, 시간 복잡도를 함께 작성하시오.",
     "id": "P88",
     "number": 102,
