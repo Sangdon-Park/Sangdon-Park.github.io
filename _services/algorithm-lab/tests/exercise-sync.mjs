@@ -16,6 +16,15 @@ for(const id of ['P04','P49','P50','P52']){
 }
 assert.equal(bank.find(p=>p.id==='P53').function,'insertion_sort');
 assert.equal(bank.find(p=>p.id==='P86').function,'grid_cost');
+for(const filename of ['schema.sql','chapter-04-sorts-migration.sql']){
+  const sql=fs.readFileSync(new URL('../'+filename,import.meta.url),'utf8');
+  const patterns=[...sql.matchAll(/check\s*\(\s*problem\s*~\s*'([^']+)'/gi)].map(m=>new RegExp(m[1]));
+  assert.equal(patterns.length,2,filename+' must validate both drafts and submissions');
+  for(const pattern of patterns){
+    for(const id of Object.keys(TOTALS))assert.ok(pattern.test(id),filename+' rejects '+id);
+    assert.ok(!pattern.test('P89'),filename+' accepts unknown P89');
+  }
+}
 const store=new Map(),sent=[],status={textContent:'',classList:{toggle(){}}};
 let upgraded=false;
 const ctx=vm.createContext({Date,Set,JSON,console,AbortSignal,T:x=>x,
@@ -28,13 +37,13 @@ const ctx=vm.createContext({Date,Set,JSON,console,AbortSignal,T:x=>x,
   }
 });
 vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/cloud.js',import.meta.url),'utf8'),ctx);
-vm.runInContext("cloud.session={token:'fixture',student:{id:'fixture'}};cloud.queue=[{action:'draft',body:{problem:'P77',language:'c',code:'new'}},{action:'draft',body:{problem:'P01',language:'c',code:'old'}}];",ctx);
+vm.runInContext("cloud.session={token:'fixture',student:{id:'fixture'}};cloud.queue=[{action:'draft',body:{problem:'P77',language:'c',code:'new'}},{action:'draft',body:{problem:'P87',language:'python',code:'partition'}},{action:'draft',body:{problem:'P88',language:'c',code:'quick sort'}},{action:'draft',body:{problem:'P01',language:'c',code:'old'}}];",ctx);
 await vm.runInContext('flushCloud()',ctx);
 assert.deepEqual(sent,['P01']);
-assert.equal(vm.runInContext('cloud.queue.length',ctx),1);
+assert.equal(vm.runInContext('cloud.queue.length',ctx),3);
 assert.match(status.textContent,/브라우저/);
 upgraded=true;vm.runInContext('cloud.catalogChecked=0',ctx);
 await vm.runInContext('flushCloud()',ctx);
-assert.deepEqual(sent,['P01','P77']);
+assert.deepEqual(sent,['P01','P77','P87','P88']);
 assert.equal(vm.runInContext('cloud.queue.length',ctx),0);
 console.log(`${bank.length} exercise backend contracts passed; retired IDs rejected, retained IDs stable, staged rollout preserves drafts.`);

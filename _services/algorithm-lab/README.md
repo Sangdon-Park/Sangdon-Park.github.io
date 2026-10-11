@@ -65,13 +65,16 @@ The generator writes `.codex-pptx-work/chapter2-exercises/questions.json` and ch
 
 ### Chapters 2–6 PPTX coding practice
 
-`/algorithm-lab/?chapter=2` opens the 47 active writing exercises in
+`/algorithm-lab/?chapter=2` opens the 49 active writing exercises in
 the existing dark workspace; the old `exercises.html` URL redirects here.
 Each chapter lists PPTX exercises first, followed immediately by existing
 lecture practice in one list; stored problem IDs remain unchanged. Coverage: chapter 2
 questions 61/65/69/71/74/78/79/80/88/99, chapter 3 questions
-91/92/95/97/98/99/100, and chapters 4–6 questions 91–100.
-They retain their original IDs within P37–P86 and existing progress. P49, P50,
+91/92/95/97/98/99/100, chapter 4 questions 91–102, and chapters 5–6 questions 91–100.
+Chapter 4 supplements 101/102 cover two-pointer partition and quicksort, with
+Python/C examples, matching lecture conventions and stored-array checks.
+They retain their original IDs within P37–P86 and existing progress; P87/P88
+are appended IDs for the new chapter 4 supplements. P49, P50,
 and P52 are retired because their algorithms are not covered in the lecture body.
 Each has the PPTX
 prompt, Python/C reference, public examples, additional tests and a written
@@ -96,10 +99,14 @@ node _services/algorithm-lab/tests/exercise-lab.mjs
 node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
 ```
 
-Apply `exercise-lab-migration.sql` before deploying the updated Edge Function.
+Apply `exercise-lab-migration.sql`, followed by `chapter-04-sorts-migration.sql`,
+before deploying the updated Edge Function and the new public catalog.
 This only extends accepted problem IDs; it does not remove student records.
-Storage still allows the original 86 IDs. The visible catalog has 72 problems: 11 / 24 / 7 /
-10 / 10 / 10 by chapter. Ten duplicated chapter-two lecture problems redirect
+The database must allow P87/P88 in both draft and submission constraints;
+updating the Edge Function's TOTALS alone is insufficient. `exercise-sync.mjs`
+checks the schema and supplement migration against the complete backend catalog.
+Storage allows IDs through P88. The visible catalog has 74 problems: 11 / 24 / 7 /
+12 / 10 / 10 by chapter. Ten duplicated chapter-two lecture problems redirect
 to their PPTX versions via `problem-catalog.js`. Legacy drafts remain stored and
 are copied only into an empty canonical draft; they must be checked against the
 current tests again. P04 (first-occurrence binary search) is also retired because
