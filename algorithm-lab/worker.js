@@ -1,6 +1,6 @@
 /* A separate worker keeps an accidental infinite loop out of the page UI. */
 const BASE = 'https://cdn.jsdelivr.net/pyodide/v0.29.2/full/';
-importScripts('custom-inputs.js?v=20260929-custom');
+importScripts('custom-inputs.js?v=20261011-ch4-sorts');
 let py;
 async function boot() {
   try {
@@ -133,7 +133,7 @@ try:
                 _actual=str(_actual) if type(_actual) is int else None
             _ok=_equal(_actual,_case['expected']); _message=''
             if 'after' in _case and _args[0]!=_case['after']:
-                _ok=False; _message='반환값뿐 아니라 dist 배열의 갱신 결과도 확인하세요.'
+                _ok=False; _message=_payload['problem'].get('mutationMessage','반환값뿐 아니라 dist 배열의 갱신 결과도 확인하세요.')
             if any(str(_args[_case['mutationArg']][int(_k)])!=str(_v) for _k,_v in _case.get('mutationChecks',{}).items()):
                 _ok=False; _message='반환값뿐 아니라 경로 압축 또는 memo 저장도 필요합니다.'
             if _payload['problem'].get('preserve_input') and _args!=_before:

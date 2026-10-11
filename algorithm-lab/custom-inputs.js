@@ -60,7 +60,7 @@ function validateCustomArgs(p,args) {
   const index=(i,n)=>range(i,0,n-1);
   const scalarLimits={expected_checks:[[1,1000000],[0,1]],doubling_steps:[[1,2**51]],binary_worst:[[0,2**51]],loop_counts:[[1,10000]],find_divisors:[[1,10000]],dice_sum:[[0,20]],icecream_menus:[[0,20]],search_space:[[1,12]],gcd_value:[[0,1e9],[0,1e9]],fibonacci:[[0,90]],karatsuba:[[0,99999999],[0,99999999]],coin_count:[[0,1e9]],domino:[[0,1e6],[1,1e9]],make_one:[[1,10000]],make_path:[[1,10000]],fib_memo:[[0,p.exercise?90:70]]};
   if(scalarLimits[f])scalarLimits[f].forEach(([min,max],i)=>range(i,min,max));
-  const vectorCaps={linear_search:10000,binary_search:p.exercise?1000:10000,binary_trace:10000,first_index:1000,sum_count:10000,max_count:10000,search_count:10000,bubble_stats:100,find_pairs:30,choose_three:10,make_permutations:6,make_combinations:6,power_set:8,subset_sum_count:16,three_sum_count:100,blackjack:100,pair_differences:30,three_sum_values:20,palindrome_words:30,knapsack:16,baseball_count:20,insertion_sort:1000,quick_select:1000,merge_sort:1000,cross_sum:1000,max_subarray:1000,dsu_find:1000,pick_vertex:100,relax:1000,completion_sum:1000,nonadjacent:10000};
+  const vectorCaps={linear_search:10000,binary_search:p.exercise?1000:10000,binary_trace:10000,first_index:1000,sum_count:10000,max_count:10000,search_count:10000,bubble_stats:100,find_pairs:30,choose_three:10,make_permutations:6,make_combinations:6,power_set:8,subset_sum_count:16,three_sum_count:100,blackjack:100,pair_differences:30,three_sum_values:20,palindrome_words:30,knapsack:16,baseball_count:20,insertion_sort:1000,quick_select:1000,merge_sort:1000,partition:1000,quick_sort:1000,cross_sum:1000,max_subarray:1000,dsu_find:1000,pick_vertex:100,relax:1000,completion_sum:1000,nonadjacent:10000};
   if(vectorCaps[f])length(0,['quick_select','cross_sum','max_subarray','dsu_find'].includes(f)?1:0,vectorCaps[f]);
   if(f==='lock_attempts')need(/^\d{4}$/.test(args[0]),'secret: 앞자리 0을 포함한 네 자리 숫자를 입력하세요.');
   if(['make_permutations','make_combinations'].includes(f))range(1,0,args[0].length);
@@ -72,6 +72,8 @@ function validateCustomArgs(p,args) {
   if(f==='baseball_count'){length(1,args[0].length,args[0].length);length(2,args[0].length,args[0].length);need(args[0].every(v=>/^\d{3}$/.test(v)&&new Set(v).size===3),'guesses: 서로 다른 숫자로 된 세 자리 문자열을 입력하세요.');need([...args[1],...args[2]].every(v=>v>=0&&v<=3),'strikes와 balls는 0~3입니다.');}
   if(f==='tsp_min')square(0,2,8);
   if(f==='grid_sum')matrix(0,1,8);
+  if(f==='partition')need(0<=args[1]&&args[1]<=args[2]&&args[2]<args[0].length,'0 ≤ lo ≤ hi < 배열 길이를 지켜주세요.');
+  if(f==='quick_sort')need((args[0].length===0&&args[1]===0&&args[2]===-1)||(0<=args[1]&&args[1]<=args[2]&&args[2]<args[0].length),'빈 배열은 lo=0, hi=-1입니다. 그 외에는 0 ≤ lo ≤ hi < 배열 길이를 지켜주세요.');
   if(f==='quick_select')range(1,1,args[0].length);
   if(f==='light_coin'){length(0,1,1024);need((args[0].length&(args[0].length-1))===0&&args[0].filter(v=>v===0).length===1&&args[0].every(v=>v===0||v===1),'weights: 길이가 2의 거듭제곱이고 0 하나와 나머지 1로 구성되어야 합니다.');}
   if(['merge_arrays','cross_inversions'].includes(f)){length(0,0,f==='merge_arrays'?500:1000);length(1,0,f==='merge_arrays'?500:1000);}

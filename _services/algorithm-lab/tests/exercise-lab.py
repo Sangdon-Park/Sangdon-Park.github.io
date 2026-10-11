@@ -20,6 +20,8 @@ bad={
  'dsu_find':'def dsu_find(parent,x):\n    while parent[x]!=x: x=parent[x]\n    return x',
  'relax':'def relax(dist,u,v,w):\n    return int(dist[u]<10**18 and dist[u]+w<dist[v])',
  'fib_memo':'def fib_memo(n,memo):\n    a,b=0,1\n    for _ in range(n): a,b=b,a+b\n    return a',
+ 'partition':'def partition(a,lo,hi):\n    pivot=a[(lo+hi)//2]\n    return lo+sum(x<=pivot for x in a[lo:hi+1])-1',
+ 'quick_sort':'def quick_sort(a,lo,hi):\n    a.sort()',
 }
 for name,code in bad.items():
     r=run(next(p for p in problems if p['function']==name),code)

@@ -15,6 +15,10 @@ function customCCase(p,args) {
     case 'first_index':case 'binary_search':case 'quick_select':
       setup=arr('a',args[0]);call=direct(['a',args[0].length,args[1]]);break;
     case 'gcd_value':case 'fibonacci':case 'karatsuba':case 'coin_count':case 'domino':call=direct(args.map(lit));break;
+    case 'partition':
+      setup=arr('a',args[0]);call=direct(['a',args[1],args[2]]);break;
+    case 'quick_sort':
+      setup=arr('a',args[0]);call=`quick_sort(a,${args[1]},${args[2]});`+list('a',args[0].length);break;
     case 'insertion_sort':case 'merge_sort':
       setup=arr('a',args[0])+arr('tmp',Array(args[0].length).fill(0));call=`${f}(${f==='merge_sort'?`a,0,${args[0].length},tmp`:`a,${args[0].length}`});`+list('a',args[0].length);break;
     case 'light_coin':case 'completion_sum':case 'nonadjacent':
@@ -61,7 +65,7 @@ function customCCase(p,args) {
     default:throw Error('직접 실행 함수 설정이 없습니다: '+f);
   }
   // Show mutated arguments separately from the returned/output value.
-  const changed=f==='dsu_find'?['a',args[0].length,'int']:f==='relax'?['d',args[0].length,'long long']:null;
+  const changed=['dsu_find','partition'].includes(f)?['a',args[0].length,'int']:f==='relax'?['d',args[0].length,'long long']:null;
   return {setup,call,after:changed?list(...changed):''};
 }
 const customCOutputSupport=String.raw`

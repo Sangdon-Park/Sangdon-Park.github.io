@@ -25,9 +25,12 @@ const bad={
   fibonacci:'long long fibonacci(int n){long long a=0,b=1;for(int i=0;i<n;i++){long long t=a+b;a=b;b=t;}return a+(n==90);}',
   dsu_find:'int dsu_find(int p[],int x){while(p[x]!=x)x=p[x];return x;}',
   relax:'int relax(long long d[],int u,int v,int w){return d[u]<1000000000000000000LL&&d[u]+w<d[v];}',
-  fib_memo:'long long fib_memo(int n,long long m[]){long long a=0,b=1;for(int i=0;i<n;i++){long long t=a+b;a=b;b=t;}return a;}'
+  fib_memo:'long long fib_memo(int n,long long m[]){long long a=0,b=1;for(int i=0;i<n;i++){long long t=a+b;a=b;b=t;}return a;}',
+  partition:'int partition(int a[],int lo,int hi){int count=0,pivot=a[lo+(hi-lo)/2];for(int i=lo;i<=hi;i++)count+=a[i]<=pivot;return lo+count-1;}',
+  quick_sort:'void quick_sort(int a[],int lo,int hi){for(int i=1;i<=hi;i++){int v=a[i],j=i-1;while(j>=0&&a[j]>v){a[j+1]=a[j];j--;}a[j+1]=v;}}'
 };
 for(const [name,code] of Object.entries(bad)){
+  console.log('Check incorrect answer:',name);
   const r=await run(problems.find(p=>p.function===name),code);
   assert.ok(r.error||r.passed<r.total,`${name}: wrong answer accepted`);
 }

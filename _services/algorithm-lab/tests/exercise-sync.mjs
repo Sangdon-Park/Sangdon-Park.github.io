@@ -8,7 +8,7 @@ for(const p of bank){
   draft({problem:p.id,language:'c',code:p.c.solution});
   assert.ok(submission({id:'c0953417-749e-42c1-b7e9-1162b6fcf21b',problem:p.id,language:'python',code:p.solution,report:{passed:p.tests.length,total:p.tests.length}}).solved);
 }
-assert.throws(()=>draft({problem:'P87',language:'c',code:''}));
+assert.throws(()=>draft({problem:'P89',language:'c',code:''}));
 for(const id of ['P04','P49','P50','P52']){
   assert.equal(TOTALS[id],undefined);
   assert.ok(!bank.some(p=>p.id===id));

@@ -221,6 +221,13 @@ def ccase(p,t):
         s=arr('a',a[0]);expr=f'{f}(a,{len(a[0])},{a[1]})'
     elif f in ['gcd_value','power_mod','fibonacci','karatsuba','coin_count','domino']:
         expr=f'{f}('+','.join(map(literal,a))+')'
+    elif f in ['partition','quick_sort']:
+        n=len(a[0]);s=arr('a',a[0])
+        if f=='quick_sort': call=f'quick_sort(a,{a[1]},{a[2]});'+printarr('a',n)
+        else:
+            call=f'int result=partition(a,{a[1]},{a[2]});int valid=1;'
+            for i,v in enumerate(t['after']): call+=f'if(a[{i}]!={v})valid=0;'
+            call+='if(valid)printf("%d",result);else printf("null");'
     elif f in ['insertion_sort','merge_sort']:
         n=len(a[0]);s=arr('a',a[0])+f'int tmp[{max(1,n)}]={{0}};'
         call=(f'{f}(a,{n});' if f=='insertion_sort' else f'{f}(a,0,{n},tmp);')+printarr('a',n)
@@ -312,7 +319,7 @@ def build():
                     if f in ('binary_search','lower_bound','count_equal','cross_inversions'): v=sorted(set(v)) if f=='binary_search' else sorted(v)
                     a=[v,RNG.randrange(-12,13)] if f in ('first_index','binary_search','lower_bound','count_equal') else [v,RNG.randrange(1,len(v)+1)] if f=='quick_select' else [v,sorted(RNG.choices(range(-10,11),k=12))] if f=='cross_inversions' else [v]
                     p['tests'].append({'args':a,'expected':oracle(f,a),'public':False})
-        helper={'count_equal':'lower_bound','merge_sort':'merge_arrays','max_subarray':'cross_sum','kruskal_cost':'dsu_find','dijkstra':'pick_vertex'}.get(f)
+        helper={'count_equal':'lower_bound','merge_sort':'merge_arrays','quick_sort':'partition','max_subarray':'cross_sum','kruskal_cost':'dsu_find','dijkstra':'pick_vertex'}.get(f)
         p['pythonPrelude']='import sys\nsys.setrecursionlimit(10000)\n'+(sources[helper]['python'] if helper else '')
         p['cPrelude']=sources[helper]['c'] if helper and f!='merge_sort' else ''
         p['provided']=f'{helper} 함수는 실행 환경에 제공됩니다.' if helper else ''
@@ -321,6 +328,8 @@ def build():
         if f=='lcs_restore': p['provided']='dp: 두 문자열의 접두사 LCS 길이 표를 실행 환경이 계산하여 전달합니다. 예시의 dp도 함수 매개변수로 전달됩니다.'
         if f in ('fibonacci','fib_memo','karatsuba'): p['exactInteger']=True
         if f=='fractional_value': p.update(numeric_output=True,tolerance=1e-6)
+        if f=='quick_sort': p['outputArgument']=0;p['provided']='Python·C 실행 환경에 앞 문항의 partition이 제공됩니다. 배열 a를 제자리 정렬합니다.'
+        if f=='partition': p['mutationMessage']='반환한 피벗 인덱스와 분할 후 배열을 함께 확인하세요.'
         if f=='insertion_sort': p['outputArgument']=0;p['provided']='반환값 대신 입력 배열 a가 제자리 정렬되었는지 검사합니다.'
         if f=='merge_arrays': p['complexity']='시간 O(n+m).'
         for t in p['tests']:
@@ -370,6 +379,8 @@ def boundary(f):
       'fibonacci':'n=0,1을 처리하고 F(90)까지 long long으로 정확히 반환합니다.',
       'light_coin':'n=1과 0이 양 끝에 있는 경우를 확인합니다. 합을 구하는 비용도 시간에 포함합니다.',
       'merge_arrays':'한쪽 또는 양쪽이 빈 배열일 수 있고 같은 값이면 a를 먼저 선택합니다.',
+      'partition':'원소가 하나이면 그 인덱스를 반환합니다. L≤R 검사를 배열 접근보다 먼저 하고, 피벗 위치와 구간 밖 값도 확인합니다.',
+      'quick_sort':'빈 구간·한 원소는 즉시 종료합니다. 재귀에 피벗을 다시 넣지 않고 [lo,p−1]과 [p+1,hi]를 정렬합니다.',
       'merge_sort':'길이 0·1에서 종료합니다. Python은 새 배열 반환, C는 [lo,hi) 제자리 정렬입니다.',
       'cross_sum':'양쪽에서 각각 한 원소 이상 선택합니다. 모두 음수여도 0으로 초기화하지 않습니다.',
       'max_subarray':'빈 구간은 금지입니다. 원소 1개와 모두 음수인 경우를 확인합니다.',

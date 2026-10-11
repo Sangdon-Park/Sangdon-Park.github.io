@@ -103,7 +103,7 @@ function cExampleModel(p, t, c) {
     buffers.sorted = [100]; buffers.stats = [2];
     after.push(`sorted${a[0].length ? `[0..${a[0].length - 1}] = ${exampleLiteral(t.expected[0], 'c')}` : ': 0'}`);
     after.push(`stats = ${exampleLiteral(t.expected.slice(1), 'c')}`);
-  } else if (['insertion_sort', 'merge_sort'].includes(f)) {
+  } else if (['insertion_sort', 'merge_sort', 'quick_sort'].includes(f)) {
     after.push(`a = ${exampleLiteral(t.expected, 'c')}`);
   } else if (['merge_arrays', 'dijkstra', 'strassen2', 'quad', 'lcs_restore', 'make_path'].includes(f)) {
     const name = f === 'dijkstra' ? 'dist' : f === 'strassen2' ? 'C' : 'out';

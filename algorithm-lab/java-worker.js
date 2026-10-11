@@ -1,5 +1,5 @@
 // Actual Java 8 compiler/JVM in a terminable worker; no execution API or API key.
-importScripts('java-problems.js?v=20260922-java','custom-inputs.js?v=20260929-custom','java-harness.js?v=20260929-custom');
+importScripts('java-problems.js?v=20260922-java','custom-inputs.js?v=20261011-ch4-sorts','java-harness.js?v=20261011-ch4-sorts');
 let lib, compiler, support, sequence=0;
 async function errorText(error){try{return await error.toString();}catch{return 'Java runtime error';}}
 async function boot(){
@@ -12,7 +12,7 @@ async function boot(){
     cheerpOSAddStringFile('/str/ecj.jar',new Uint8Array(await jar.arrayBuffer()));
     lib=await cheerpjRunLibrary('/str/ecj.jar');
     compiler=await lib.org.eclipse.jdt.core.compiler.batch.BatchCompiler;
-    const response=await fetch('vendor/java/LabSupport.java');
+    const response=await fetch('vendor/java/LabSupport.java?v=20261011-ch4-sorts');
     if(!response.ok)throw new Error('Java helper download failed');
     support=await response.text();
     self.postMessage({type:'ready'});

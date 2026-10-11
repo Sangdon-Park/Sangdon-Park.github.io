@@ -2,6 +2,18 @@ import java.lang.reflect.Array;
 
 // Shared helpers and JSON transport. Student output is not used as judge data.
 class LabSupport {
+  public static int partition(int[] a,int lo,int hi){
+    int m=lo+(hi-lo)/2,t=a[m];a[m]=a[hi];a[hi]=t;
+    int pivot=a[hi],L=lo,R=hi-1;
+    while(true){
+      while(L<=R&&a[L]<=pivot)L++;
+      while(L<=R&&a[R]>pivot)R--;
+      if(L>R)break;
+      t=a[L];a[L]=a[R];a[R]=t;
+    }
+    t=a[L];a[L]=a[hi];a[hi]=t;
+    return L;
+  }
   static java.io.PrintStream[] quiet(){java.io.PrintStream[] original={System.out,System.err};java.io.PrintStream sink=new java.io.PrintStream(new java.io.OutputStream(){public void write(int b){} public void write(byte[] b,int off,int len){}});System.setOut(sink);System.setErr(sink);return original;}
   static String[] parts(String[] chunks){StringBuilder b=new StringBuilder();for(String s:chunks)b.append(s);return b.toString().split(",");}
   static int[] ints(String[] chunks){String[] s=parts(chunks);int[] a=new int[s.length];for(int i=0;i<s.length;i++)a[i]=Integer.parseInt(s[i]);return a;}

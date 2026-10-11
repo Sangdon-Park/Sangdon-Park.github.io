@@ -15,6 +15,10 @@ for(const input of ['', '1,,2', '1, ,2', ',1', '1,', '[1,"2"]', '[1];alert(1)', 
 assert.throws(()=>readCustomArgs(search,['[1,2]','1.5']));
 const q=p=>problems.find(x=>x.function===p);
 assert.throws(()=>validateCustomArgs(q('quick_select'),[[],1]));
+validateCustomArgs(q('quick_sort'),[[],0,-1]);
+assert.throws(()=>validateCustomArgs(q('partition'),[[],0,0]));
+assert.throws(()=>validateCustomArgs(q('partition'),[[3,1],0,2]));
+assert.throws(()=>validateCustomArgs(q('quick_sort'),[[3,1],0,2]));
 assert.throws(()=>validateCustomArgs(q('make_permutations'),[[1,2],3]));
 assert.throws(()=>validateCustomArgs(q('grid_sum'),[[[1],[2,3]]]));
 assert.throws(()=>validateCustomArgs(q('dsu_find'),[[1,0],0]));
@@ -50,6 +54,8 @@ r=await run(search,'int first_index(const int a[],int n,int x){printf("before cr
 r=await run(search,'int first_index(const int a[],int n,int x){return -1;}',[[],8]);assert.equal(r.custom.value,'-1');
 r=await run(search,'int first_index(const int a[],int n,int x){return missing;}');assert.ok(r.error);assert.ok(r.diagnostics.length);
 r=await run(q('dsu_find'),q('dsu_find').c.solution,[[0,0,1,2],3]);assert.equal(r.custom.value,'0');assert.equal(r.custom.after,'[0,0,0,0]');
+r=await run(q('partition'),q('partition').c.solution,[[8,4,6,3,7,1],0,5]);assert.equal(r.custom.value,'3');assert.equal(r.custom.after,'[3,4,1,6,7,8]');
+r=await run(q('quick_sort'),q('quick_sort').c.solution,[[90,8,4,6,3,7,1,-90],1,6]);assert.equal(r.custom.value,'[90,1,3,4,6,7,8,-90]');
 r=await run(q('bf_string_match'),q('bf_string_match').c.solution,['a"\\;b','"\\']);assert.equal(r.custom.value,'[1]');
 r=await run(search,search.c.solution,undefined,'judge');assert.equal(r.passed,r.total);assert.equal(r.custom,undefined);
 console.log(`Real C/WASM: ${problems.length} custom harnesses, fresh inputs, debug output, compile error, mutation display, quoted text and official judging passed.`);
