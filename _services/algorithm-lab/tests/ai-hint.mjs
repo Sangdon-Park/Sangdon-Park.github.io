@@ -4,13 +4,13 @@ import vm from 'node:vm';
 import {createHandler} from '../supabase/functions/algorithm-lab/core.mjs';
 import {repeatsHint} from '../supabase/functions/algorithm-lab/ai-hint.mjs';
 let role='student', configured=true, limited=false, upstream=200, text='반복문이 배열의 마지막 원소까지 확인하는지 살펴보세요.', finish='STOP';
-let hintQueue=[];
+let hintQueue=[],transportFailure=null;
 const calls=[];
 const handler=createHandler({env:name=>name==='GEMINI_API_KEY'?(configured?'private-fixture-key':''):name==='ALGOLAB_HINT_MODEL'?'': 'fixture',fetcher:async(url,options)=>{
   calls.push({url,...options});
   if(url.includes('dju_algolab_sessions?'))return Response.json([{role,student_id:'student-fixture',token_hash:'session-fixture'}]);
   if(url.includes('rate_limit'))return Response.json(!(limited&&JSON.parse(options.body).p_key.startsWith('hint:')));
-  if(url.startsWith('https://generativelanguage.googleapis.com/'))return Response.json({candidates:[{finishReason:finish,content:{parts:[{text:JSON.stringify({hint:hintQueue.length?hintQueue.shift():text})}]}}]}, {status:upstream});
+  if(url.startsWith('https://generativelanguage.googleapis.com/')){if(transportFailure)throw transportFailure;return Response.json({candidates:[{finishReason:finish,content:{parts:[{text:JSON.stringify({hint:hintQueue.length?hintQueue.shift():text})}]}}]}, {status:upstream});}
   throw Error('Unexpected request');
 }});
 const body={problem:'P01',language:'python',locale:'ko',code:'def linear_search(A, target):\n    return -1',statement:'Find the first index.',execution:'{"passed":0,"total":2}',name:'DO NOT SEND NAME',solution:'DO NOT SEND SOLUTION'};
@@ -57,8 +57,16 @@ assert.equal(semanticCalls.length,2,'Continuations must review meaning, even whe
 assert.match(JSON.parse(semanticCalls[1].body).systemInstruction.parts[0].text,/MEANING/);
 assert.equal(JSON.parse(JSON.parse(semanticCalls[1].body).contents[0].parts[0].text).proposalHint,'Insert the missing increment so the loop moves forward.');
 const allRepeated=calls.length;response=await send({history:[text]});assert.equal(response.status,502);
+assert.equal((await response.json()).reason,'repeated_hint');
 assert.equal(calls.slice(allRepeated).filter(c=>c.url.includes('googleapis')).length,2,'No unbounded duplicate retry.');
-upstream=503;const transientStart=calls.length;assert.equal((await send()).status,503);assert.equal(calls.slice(transientStart).filter(c=>c.url.includes('googleapis')).length,2);upstream=200;
+upstream=503;const transientStart=calls.length;response=await send();assert.equal(response.status,503);assert.equal((await response.json()).reason,'provider_busy');assert.equal(calls.slice(transientStart).filter(c=>c.url.includes('googleapis')).length,2);upstream=200;
+for(const [name,reason] of [['TimeoutError','provider_timeout'],['TypeError','provider_network']]){
+  transportFailure=Object.assign(new Error('Private provider error must stay private'),{name});
+  const start=calls.length;response=await send();assert.equal(response.status,503);
+  const data=await response.json();assert.equal(data.reason,reason);assert.ok(!JSON.stringify(data).includes('Private provider'));
+  assert.equal(calls.slice(start).filter(c=>c.url.includes('googleapis')).length,2);
+}
+transportFailure=null;
 
 // Frontend: progression, storage, failure recovery, account/language/problem isolation and races.
 class Element {constructor(){this.textContent='';this.hidden=true;this.children=[];}append(...children){this.children.push(...children);}replaceChildren(...children){this.children=children;}}

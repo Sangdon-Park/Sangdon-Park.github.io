@@ -173,6 +173,6 @@ export function createHandler({env,fetcher=fetch}){
         await db(table('sessions')+'?role=eq.admin','DELETE');return respond({ok:true});
       }
       fail(400,'지원하지 않는 요청입니다.');
-    }catch(error){return respond({error:error instanceof HttpError?error.message:'서버 저장에 실패했습니다. 잠시 후 다시 시도하세요.',...(error instanceof HttpError&&error.retryAfter?{retryAfter:error.retryAfter}:{})},error instanceof HttpError?error.status:500);}
+    }catch(error){return respond({error:error instanceof HttpError?error.message:'서버 저장에 실패했습니다. 잠시 후 다시 시도하세요.',...(error instanceof HttpError&&error.retryAfter?{retryAfter:error.retryAfter}:{}),...(error instanceof HttpError&&error.reason?{reason:error.reason}:{})},error instanceof HttpError?error.status:500);}
   };
 }
