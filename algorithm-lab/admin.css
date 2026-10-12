@@ -58,6 +58,7 @@
 .problem-card > button { width: 100%; font-size: 12px; }
 #problem-detail { width: min(1100px, 95vw); max-height: 90vh; overflow: auto; }
 #problem-detail-title { overflow-wrap: anywhere; }
+#problem-detail .dialog-heading > button { flex-shrink: 0; white-space: nowrap; }
 #problem-detail-summary { font-size: 12px; color: #b9cbe5; }
 .problem-status { display: inline-block; padding: 4px 7px; border-radius: 4px; background: #243246; }
 .problem-status.solved { color: #b4eecb; background: #243b32; }
