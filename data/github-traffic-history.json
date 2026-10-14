@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-10-13T06:48:48Z",
+  "updated_at": "2026-10-14T04:56:38Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -954,6 +954,10 @@
     "2026-10-11": {
       "count": 0,
       "uniques": 0
+    },
+    "2026-10-12": {
+      "count": 4,
+      "uniques": 2
     }
   },
   "clones_by_day": {
@@ -1908,6 +1912,10 @@
     "2026-10-11": {
       "count": 164,
       "uniques": 67
+    },
+    "2026-10-12": {
+      "count": 7,
+      "uniques": 5
     }
   },
   "snapshots": [
@@ -3718,32 +3726,57 @@
       "views_uniques": 3,
       "clones_count": 398,
       "clones_uniques": 154
+    },
+    {
+      "date": "2026-10-14",
+      "synced_at": "2026-10-14T04:56:38Z",
+      "views_count": 6,
+      "views_uniques": 4,
+      "clones_count": 367,
+      "clones_uniques": 146
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-10-13T06:48:48Z",
+    "synced_at": "2026-10-14T04:56:38Z",
     "views": {
-      "count": 3,
-      "uniques": 3
+      "count": 6,
+      "uniques": 4
     },
     "clones": {
-      "count": 398,
-      "uniques": 154
+      "count": 367,
+      "uniques": 146
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Overview",
-        "count": 3,
-        "uniques": 3
+        "count": 4,
+        "uniques": 4
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/actions",
+        "title": "/actions",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/projects",
+        "title": "/projects",
+        "count": 1,
+        "uniques": 1
       }
     ],
     "top_referrers": [
       {
         "referrer": "github.com",
-        "count": 2,
-        "uniques": 2
+        "count": 3,
+        "uniques": 3
+      },
+      {
+        "referrer": "Bing",
+        "count": 1,
+        "uniques": 1
       }
     ]
   }
