@@ -5,11 +5,13 @@ const root=new URL('../../../',import.meta.url);
 const bank=JSON.parse(fs.readFileSync(new URL('algorithm-lab/exercise-problems.json',root),'utf8'));
 const context=vm.createContext({bank});
 vm.runInContext(fs.readFileSync(new URL('algorithm-lab/problem-catalog.js',root),'utf8'),context);
+vm.runInContext('this.retired=LAB_RETIRED',context);
 for(const [index,p] of bank.entries()){
   context.index=index;
   assert.equal(vm.runInContext('displayedProblemId(bank[index])',context),String(p.exercise));
-  assert.equal(vm.runInContext('findLinkedProblem(bank, String(bank[index].exercise), bank[index].chapter)',context),index);
-  assert.equal(vm.runInContext('findLinkedProblem(bank, bank[index].id, bank[index].chapter)',context),index);
+  const expected=context.retired[p.id]?-1:index;
+  assert.equal(vm.runInContext('findLinkedProblem(bank, String(bank[index].exercise), bank[index].chapter)',context),expected);
+  assert.equal(vm.runInContext('findLinkedProblem(bank, bank[index].id, bank[index].chapter)',context),expected);
 }
 assert.equal(vm.runInContext('findLinkedProblem(bank,"P13",2)',context),bank.findIndex(p=>p.id==='P37'));
 assert.equal(vm.runInContext('findLinkedProblem(bank,"93",3)',context),-1);

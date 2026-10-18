@@ -5,7 +5,7 @@ let saved={answers:{},passed:{},student:'',index:0};
 try { const item=JSON.parse(localStorage.getItem(KEY)); if(item) saved={...saved,...item}; } catch (_) {}
 let language=['python','c','java'].includes(saved.language)?saved.language:'python';
 let chapter=1;
-const orderedChapter = value => problems.filter(p=>(p.chapter||1)===value&&!LAB_DUPLICATES[p.id]).sort((a,b)=>Number(!!b.exercise)-Number(!!a.exercise));
+const orderedChapter = value => problems.filter(p=>(p.chapter||1)===value&&!LAB_DUPLICATES[p.id]&&!LAB_RETIRED[p.id]).sort((a,b)=>Number(!!b.exercise)-Number(!!a.exercise));
 const chapterProblems = () => orderedChapter(chapter);
 const firstInChapter = value => problems.indexOf(orderedChapter(value)[0]);
 const answerKey = id => language==='python'?id:language+':'+id;
@@ -50,6 +50,8 @@ function show(i){
   resetAIHint();
   clearErrorLine();
   i=problems.findIndex(p=>p.id===canonicalProblemId(problems[i].id));
+  // A saved index or cloud restore may still point to a retired exercise.
+  if(LAB_RETIRED[problems[i].id])i=firstInChapter(problems[i].chapter||1);
   const target=problems[i], legacy=Object.keys(LAB_DUPLICATES).find(id=>LAB_DUPLICATES[id]===target.id);
   let restored=false;
   if(legacy&&saved.answers[answerKey(target.id)]===undefined&&saved.answers[answerKey(legacy)]!==undefined){
