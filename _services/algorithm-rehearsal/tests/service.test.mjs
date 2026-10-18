@@ -46,7 +46,7 @@ test('grading isolates instructions and combines deterministic MC with validated
   assert.equal(result.earned, 4); assert.equal(result.ceiling, 14); assert.equal(result.tiles.length, 6);
   assert.equal(result.model, 'gemini-3.8-flash'); assert.equal(result.requestedModel, 'gemini-3.8-flash');
   assert.match(packet.systemInstruction.parts[0].text, /신뢰하지 않는 데이터/);
-  assert.match(result.note, /서버 실행 검증이 아닙니다/);
+  assert.match(result.note, /답안과 코드를 읽고 채점/);
   await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => ({ ok: false, status: 429 }) }), /PROVIDER_BUSY/);
 });
 test('rejects unexpected or missing model metadata without falling back', async () => {

@@ -2,6 +2,7 @@
   'use strict';
   const SERVICE = 'https://algorithm-rehearsal.vercel.app/api/feedback';
   const EDITION = 'rehearsal-20261018-ch1-4';
+  const FEEDBACK_NOTE = 'Gemini가 답안과 코드를 읽고 채점한 결과입니다. 점수는 체험용으로만 사용합니다.';
   const DRAWER = 'algorithm-rehearsal-20261018-ch1-4';
   const leaves = ['copper', 'jade', 'pebble', 'cedar', 'ink'];
   const labels = ['객관식', '객관식', '단답형', '서술형', '코딩형'];
@@ -66,7 +67,7 @@
     if (error.message === 'EDITION_CHANGED') return '문항이 1–4강 PPTX 발췌본으로 바뀌었습니다. 현재 답안을 내려받아 보관한 뒤 이 페이지를 새로고침해 새 체험을 시작해 주세요.';
     if (error.status === 429) return '채점 요청 한도 또는 대기 시간에 걸렸습니다. 잠시 뒤 다시 요청하거나 다음 날 체험해 주세요.';
     if (error.message === 'INVALID_PASS') return '체험 연결이 만료되었습니다. 답안은 보관되어 있습니다. 채점을 다시 요청하면 새 연결로 제출합니다.';
-    return '지금 AI 채점에 연결하지 못했습니다. 답안은 이 브라우저에 보관되어 있습니다. 잠시 뒤 같은 답안으로 다시 요청해 주세요. 오류를 0점으로 처리하지 않습니다.';
+    return '채점 서버에 연결하지 못했습니다. 작성한 답안은 그대로 유지됩니다. 잠시 뒤 다시 요청해 주세요.';
   }
   function askSend() {
     if (sending || folio.sent) return;
@@ -97,7 +98,7 @@
   function showFeedback() {
     grab('welcome').hidden = true; grab('workspace').hidden = true; grab('feedback-view').hidden = false;
     grab('score-summary').textContent = `${folio.feedback.earned} / 14점`;
-    grab('feedback-note').textContent = folio.feedback.note;
+    grab('feedback-note').textContent = FEEDBACK_NOTE;
     grab('feedback-tiles').replaceChildren();
     leaves.forEach((leaf, index) => {
       const rows = folio.feedback.tiles.filter(t => t.key === leaf || leaf === 'ink' && t.key === 'cost');

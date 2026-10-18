@@ -28,6 +28,7 @@ const server = http.createServer((req, res) => {
       return route.fulfill({ json: { edition: body.edition, earned: 14, ceiling: 14, note: '연습용 AI 코드 검토', tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 테스트 피드백' })) } });
     });
     await page.goto(origin + '/algorithm-preview/');
+    assert.ok(!(await page.textContent('body')).includes('난이도나 점수로 본시험 결과를 예측'));
     await page.evaluate(() => localStorage.setItem('algorithm-rehearsal-20261018', 'preserved-legacy-draft'));
     assert.equal(await page.locator('.field-help a[href$=".pptx"]').count(), 5);
     await page.screenshot({ path: path.join(__dirname, 'welcome-desktop.png'), fullPage: true });
@@ -61,9 +62,10 @@ const server = http.createServer((req, res) => {
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'mobile horizontal overflow');
     await page.screenshot({ path: path.join(__dirname, 'coding-mobile.png'), fullPage: true });
     await page.click('#send-practice'); assert.ok(await page.locator('#send-dialog').isVisible()); await page.click('#confirm-send');
-    await page.waitForSelector('#retry-feedback:not([hidden])'); assert.match(await page.textContent('#submission-status'), /0점으로 처리하지 않습니다/);
+    await page.waitForSelector('#retry-feedback:not([hidden])'); assert.match(await page.textContent('#submission-status'), /작성한 답안은 그대로 유지/);
     await page.click('#retry-feedback'); await page.waitForSelector('#feedback-view:not([hidden])');
     assert.equal(await page.locator('.result-tile').count(), 5); assert.match(await page.textContent('#score-summary'), /14 \/ 14/);
+    assert.match(await page.textContent('#feedback-note'), /답안과 코드를 읽고 채점/);
     assert.equal(begins, 1); assert.equal(sends, 2);
     const downloaded = page.waitForEvent('download'); await page.click('#download-practice'); assert.equal((await downloaded).suggestedFilename(), 'algorithm-preview-my-answers.json');
     await page.reload(); await page.click('#resume-practice'); assert.ok(await page.locator('#feedback-view').isVisible());

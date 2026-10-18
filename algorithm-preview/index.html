@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="알고리즘 중간고사 답안 작성과 제출을 미리 체험하는 5문항 연습입니다. 실제 성적에 반영되지 않습니다.">
+  <meta name="description" content="1–4강 연습문제 5문항으로 알고리즘 중간고사 답안 작성과 제출을 연습합니다.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>중간고사 미리보기 · 알고리즘</title>
   <link rel="stylesheet" href="practice.css?v=20261018-ch1-4">
-  <script src="preview.js?v=20261018-ch1-4" defer></script>
+  <script src="preview.js?v=20261018-copy" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -28,15 +28,15 @@
             <div><dt>서술형</dt><dd>1문항 · 이유를 문장으로 설명 · 4점</dd></div>
             <div><dt>코딩형</dt><dd>1문항 · Python 또는 C · 4점</dd></div>
           </dl>
-          <p>총 14점입니다. 난이도나 점수로 본시험 결과를 예측하는 테스트는 아닙니다.</p>
+          <p>총 14점입니다.</p>
         </div>
         <div class="intro-notes">
           <h2>시작 전에</h2>
           <ul>
-            <li>이름·학번·응시 코드를 입력하지 않습니다.</li>
+            <li>가입 없이 바로 시작할 수 있습니다.</li>
             <li>답안은 이 브라우저에 자동 저장됩니다.</li>
             <li>15분 연습 타이머가 끝나면 제출합니다. 본시험 시간은 110분입니다.</li>
-            <li>예시 문항과 연습용 채점입니다. 실제 시험 문제·성적과 연결되지 않습니다.</li>
+            <li>점수는 이 체험에서만 사용합니다.</li>
           </ul>
           <p class="privacy-note">제출하면 서술 답안과 코드가 Gemini로 전송됩니다. 이름·학번·연락처 등 개인정보는 쓰지 마세요. AI 피드백에는 오류가 있을 수 있습니다.</p>
           <button id="begin-practice" class="primary" type="button">5문항 체험 시작하기 <span aria-hidden="true">→</span></button>
@@ -126,7 +126,7 @@
             <pre id="example-output" class="run-output" tabindex="0" aria-live="polite">실행 결과가 여기에 표시됩니다. 첫 실행은 실행 환경을 내려받아 시간이 걸릴 수 있습니다.</pre>
             <label class="field-label" for="cost-answer">내 코드의 최악 시간 복잡도와 간단한 근거</label>
             <textarea id="cost-answer" data-entry="cost" maxlength="600" rows="3" placeholder="O(…). n을 무엇으로 두었고, 무엇을 몇 번 하는지 적어 주세요."></textarea>
-            <p class="field-help">코드 검토 3점 + 시간 복잡도 1점입니다. 이 체험의 AI 코드 검토는 본시험의 서버 실행 채점과 다릅니다.</p>
+            <p class="field-help">코드 검토 3점 + 시간 복잡도 1점입니다. Gemini가 제출한 코드를 읽고 평가합니다.</p>
           </article>
           <div class="page-navigation"><button id="previous-leaf" class="secondary" type="button">← 이전 문항</button><button id="next-leaf" class="secondary" type="button">다음 문항 →</button></div>
         </div>
@@ -142,7 +142,7 @@
       <div id="feedback-tiles"></div>
       <div class="result-actions"><button id="download-practice" class="secondary" type="button">내 답안·결과 내려받기</button><button id="restart-practice" class="primary" type="button">처음부터 다시 체험</button><a class="back-link" href="/courses/algorithms-2026-fall.html">강좌로 돌아가기 →</a></div>
     </section>
-    <footer class="page-footer">실제 시험 접속·본인 확인은 교수님 안내를 따르세요. 이 페이지에는 본시험 문항이나 응시 기록이 없습니다.</footer>
+    <footer class="page-footer">본시험 접속과 본인 확인은 수업 안내를 따라 주세요.</footer>
   </main>
   <dialog id="send-dialog" aria-labelledby="send-heading"><h2 id="send-heading">답안을 제출할까요?</h2><p id="send-summary"></p><p>제출 후에는 이번 답안을 수정할 수 없습니다. 연습용으로 다시 시작할 수 있습니다.</p><div class="dialog-actions"><button id="cancel-send" class="secondary" type="button">계속 작성</button><button id="confirm-send" class="primary" type="button">제출하고 피드백 보기</button></div></dialog>
 </body>

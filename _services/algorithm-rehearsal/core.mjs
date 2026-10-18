@@ -75,5 +75,5 @@ export async function assess(sheet, dialect, { key, fetcher = fetch } = {}) {
   }
   tiles.push(...verifyReview(review, sheet));
   return { edition: EDITION, earned: tiles.reduce((sum, row) => sum + row.earned, 0), ceiling: 14, tiles,
-    requestedModel: GRADING_MODEL, model: body.modelVersion, note: '연습용 AI 참고 채점입니다. 코딩 점수는 코드 검토이며 서버 실행 검증이 아닙니다. 실제 성적에 반영되지 않습니다.' };
+    requestedModel: GRADING_MODEL, model: body.modelVersion, note: 'Gemini가 답안과 코드를 읽고 채점한 결과입니다. 점수는 체험용으로만 사용합니다.' };
 }
