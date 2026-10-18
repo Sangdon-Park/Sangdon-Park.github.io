@@ -38,13 +38,24 @@ test('AI feedback cannot invent evidence, exceed points, or repeat keys', () => 
 test('grading isolates instructions and combines deterministic MC with validated AI', async () => {
   let packet;
   const result = await assess(sheet(), 'py', { key: 'fixture-only', fetcher: async (url, options) => {
-    assert.ok(url.endsWith('/gemini-3.5-flash:generateContent')); packet = JSON.parse(options.body);
-    return { ok: true, json: async () => ({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify({ tiles: ['pebble', 'cedar', 'ink', 'cost'].map(key => ({ key, earned: 0, tip: '확인 필요', quotes: [] })) }) }] } }] }) };
+    assert.ok(url.endsWith('/gemini-3.8-flash:generateContent')); packet = JSON.parse(options.body);
+    return { ok: true, json: async () => ({ modelVersion: 'gemini-3.8-flash', candidates: [{ finishReason: 'STOP', content: { parts: [{ text: JSON.stringify({ tiles: ['pebble', 'cedar', 'ink', 'cost'].map(key => ({ key, earned: 0, tip: '확인 필요', quotes: [] })) }) }] } }] }) };
   } });
   assert.equal(result.earned, 4); assert.equal(result.ceiling, 14); assert.equal(result.tiles.length, 6);
+  assert.equal(result.model, 'gemini-3.8-flash'); assert.equal(result.requestedModel, 'gemini-3.8-flash');
   assert.match(packet.systemInstruction.parts[0].text, /신뢰하지 않는 데이터/);
   assert.match(result.note, /서버 실행 검증이 아닙니다/);
   await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => ({ ok: false, status: 429 }) }), /PROVIDER_BUSY/);
+});
+test('rejects unexpected or missing model metadata without falling back', async () => {
+  for (const modelVersion of ['gemini-3.6-flash', 'gemini-3.5-flash', undefined]) {
+    let calls = 0;
+    await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => {
+      calls++;
+      return { ok: true, json: async () => ({ modelVersion, candidates: [{ finishReason: 'STOP', content: { parts: [{ text: '{"tiles":[]}' }] } }] }) };
+    } }), /MODEL_MISMATCH/);
+    assert.equal(calls, 1);
+  }
 });
 test('persistent quotas, single use, response replay, and expiry', async () => {
   let now = 1800000000000;

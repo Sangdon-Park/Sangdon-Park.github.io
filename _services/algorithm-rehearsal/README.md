@@ -13,7 +13,7 @@ Standalone, anonymous practice at `/algorithm-preview/`. Exactly five fresh exam
 
 ## Grading and limits
 
-MC answers are deterministic. `gemini-3.5-flash` reviews the other four scoring components against a fixed rubric. The initially considered 3.8 model returned provider overload errors during deployment checks; 3.5 responded successfully. Structured responses, bounded integer points and answer-evidence checks are validated server-side. Prompt-injection defenses reduce risk; AI practice grading is not a security or academic correctness guarantee.
+MC answers are deterministic. Only `gemini-3.8-flash` reviews the other four scoring components against a fixed rubric. The response must identify the requested model (or a versioned variant); different or missing model metadata is rejected. There is no fallback to another model. Provider quota and availability are separate from the application's daily cap; a configured key does not establish classroom capacity. Structured responses, bounded integer points and answer-evidence checks are validated server-side. Prompt-injection defenses reduce risk; AI practice grading is not a security or academic correctness guarantee.
 
 Code feedback is **AI code review**, not server execution or a real exam grade. The UI says so explicitly. Provider failures remain retryable errors, never zero grades.
 

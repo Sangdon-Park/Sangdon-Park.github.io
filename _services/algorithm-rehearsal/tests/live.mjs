@@ -10,6 +10,8 @@ const begun = await call({ task: 'begin' }); assert.equal(begun.status, 200, JSO
 const payload = { task: 'assess', pass: begun.data.pass, dialect: process.argv.includes('--c') ? 'c99' : 'py', sheet: exampleSheet(process.argv.includes('--c')) };
 const result = await call(payload); console.log(JSON.stringify(result));
 assert.equal(result.status, 200); assert.equal(result.data.earned, 14); assert.equal(result.data.tiles.length, 6);
+assert.equal(result.data.requestedModel, 'gemini-3.8-flash');
+assert.ok(result.data.model === 'gemini-3.8-flash' || result.data.model.startsWith('gemini-3.8-flash-'));
 const replay = await call(payload); assert.deepEqual(replay, result);
 assert.equal((await call({ ...payload, sheet: {} })).status, 409);
 assert.equal((await call({ task: 'begin' }, 'https://not-allowed.invalid')).status, 403);
