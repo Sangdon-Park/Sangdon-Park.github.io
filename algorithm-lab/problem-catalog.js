@@ -14,4 +14,4 @@ function findLinkedProblem(list,value,chapter){
   return match?list.indexOf(match):-1;
 }
 // Not covered by the lecture body. Preserve saved work under its original ID.
-const LAB_RETIRED=Object.freeze({P04:1,P49:3,P50:3,P52:3,P75:5});
+const LAB_RETIRED=Object.freeze({P04:1,P49:3,P50:3,P52:3,P70:5,P72:5,P73:5,P74:5,P75:5});

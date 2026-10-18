@@ -24,9 +24,13 @@ vm.runInContext(`students=[{student_no:'fixture',name:'Test',section:'1',problem
   {problem:'P36',language:'python',solved:false,attempts:1},
   {problem:'P04',language:'python',solved:true,attempts:9},
   {problem:'P49',language:'c',solved:true,attempts:7},
-  {problem:'P75',language:'python',solved:true,attempts:8}
+  {problem:'P75',language:'python',solved:true,attempts:8},
+  {problem:'P70',language:'c',solved:true,attempts:3},
+  {problem:'P72',language:'java',solved:true,attempts:2},
+  {problem:'P73',language:'java',solved:true,attempts:4},
+  {problem:'P74',language:'python',solved:true,attempts:5}
 ]}];`, context);
-for (const [chapter, total, solved, attempts] of [['all',71,2,10], ['1',11,1,5], ['2',24,1,5], ['3',7,0,0], ['4',10,0,0], ['5',9,0,0], ['6',10,0,0]]) {
+for (const [chapter, total, solved, attempts] of [['all',67,2,10], ['1',11,1,5], ['2',24,1,5], ['3',7,0,0], ['4',10,0,0], ['5',5,0,0], ['6',10,0,0]]) {
   element('admin-chapter').value = chapter;
   assert.equal(vm.runInContext('selectedTotal()', context), total);
   assert.equal(vm.runInContext('filtered()[0].solved', context), solved);

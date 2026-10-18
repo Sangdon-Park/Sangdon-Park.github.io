@@ -25,24 +25,33 @@ const server=http.createServer((req,res)=>{
     return route.continue();
    });
    await context.addInitScript(({retiredIndex,language})=>{
-    const key=language==='python'?'P75':language+':P75';
-    localStorage.setItem('dju-algorithm-lab-v1',JSON.stringify({index:retiredIndex,language,answers:{[key]:'saved ATM answer'},passed:{[key]:{code:'saved ATM answer',passed:4,total:4}}}));
+    const answers={},passed={};
+    for(const id of ['P70','P72','P73','P74','P75']){
+     const key=language==='python'?id:language+':'+id;
+     answers[key]='saved '+id+' answer';passed[key]={code:answers[key],passed:4,total:4};
+    }
+    localStorage.setItem('dju-algorithm-lab-v1',JSON.stringify({index:retiredIndex,language,answers,passed}));
    },{retiredIndex,language});
    const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
    await page.goto(base+`algorithm-lab/index.html?chapter=5&problem=99&code=${language}&verify=retire-atm`);
-   await page.waitForFunction(()=>document.getElementById('chapter-count').textContent==='9');
-   assert.deepEqual(await page.locator('#problems .problem-id').allTextContents(),['91','92','93','94','95','96','97','98','100']);
+   await page.waitForFunction(()=>document.getElementById('chapter-count').textContent==='5');
+   assert.deepEqual(await page.locator('#problems .problem-id').allTextContents(),['91','92','93','95','100']);
    assert.equal(new URL(page.url()).searchParams.get('problem'),'91');
-   assert.equal(await page.locator('#progress').innerText(),'0 / 9 해결');
-   assert.equal(await page.evaluate(()=>{show(problems.findIndex(p=>p.id==='P75'));return problems[index].id;}),'P67');
+   assert.equal(await page.locator('#progress').innerText(),'0 / 5 해결');
+   for(const id of ['P70','P72','P73','P74','P75']){
+    assert.equal(await page.evaluate(id=>{show(problems.findIndex(p=>p.id===id));return problems[index].id;},id),'P67');
+   }
    const downloadPromise=page.waitForEvent('download');
    await page.evaluate(()=>document.getElementById('download').click());
    const download=await downloadPromise,output=JSON.parse(fs.readFileSync(await download.path(),'utf8'));
-   assert.equal(output.total,9);assert.equal(output.answers.some(p=>p.id==='P75'),false);
-   assert.equal(output.archivedAnswers.find(p=>p.id==='P75').code,'saved ATM answer');
-   assert.equal(output.archivedAnswers.find(p=>p.id==='P75').retired,true);
+   assert.equal(output.total,5);assert.equal(output.archivedAnswers.length,5);
+   for(const id of ['P70','P72','P73','P74','P75']){
+    assert.equal(output.answers.some(p=>p.id===id),false);
+    assert.equal(output.archivedAnswers.find(p=>p.id===id).code,'saved '+id+' answer');
+    assert.equal(output.archivedAnswers.find(p=>p.id===id).retired,true);
+   }
    assert.deepEqual(errors,[]);
-   console.log(`Student ATM retirement ${language}/${width}: 9 exercises, direct link/restore guarded, archived download preserved.`);
+   console.log(`Student chapter 5 ${language}/${width}: 5 exercises, five retired restores guarded, archived downloads preserved.`);
    await context.close();
   }
  }finally{await browser.close();server.close();}
