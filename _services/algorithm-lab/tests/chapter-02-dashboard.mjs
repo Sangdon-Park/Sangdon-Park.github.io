@@ -15,6 +15,7 @@ const context = vm.createContext({
   setInterval: () => {}, T: x => x, UI_EN: false
 });
 vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/problem-catalog.js', import.meta.url), 'utf8'), context);
+vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/admin-problems.js', import.meta.url), 'utf8'), context);
 vm.runInContext(fs.readFileSync(new URL('../../../algorithm-lab/admin.js', import.meta.url), 'utf8'), context);
 vm.runInContext(`students=[{student_no:'fixture',name:'Test',section:'1',problems:[
   {problem:'P01',language:'c',solved:true,attempts:2},
