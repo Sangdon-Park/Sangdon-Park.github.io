@@ -24,3 +24,6 @@ data/*/HW/week*-assignment/
 **/supabase/.temp/
 _services/**/.env
 _services/**/.env.*
+_services/**/node_modules/
+_services/**/.vercel/
+_services/algorithm-rehearsal/tests/*.png

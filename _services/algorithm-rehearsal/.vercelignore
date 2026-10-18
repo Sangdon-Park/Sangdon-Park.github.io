@@ -1,0 +1,6 @@
+.vercel
+.env*
+tests
+README.md
+*.private.*
+node_modules

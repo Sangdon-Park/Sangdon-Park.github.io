@@ -1,0 +1,8 @@
+{
+  "name": "algorithm-rehearsal-feedback",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "24.x" },
+  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "dependencies": { "@vercel/blob": "2.6.1" }
+}
