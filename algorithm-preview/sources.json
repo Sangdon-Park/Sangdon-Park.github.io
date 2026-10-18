@@ -1,0 +1,39 @@
+{
+  "edition": "rehearsal-20261018-ch1-4",
+  "scope": [1, 2, 3, 4],
+  "notes": "문제 본문과 선택지는 원문 발췌. 웹 제목·배점·답안 칸·공개 실행 예제만 체험용으로 구성. PPTX 자체는 변경하지 않음.",
+  "questions": [
+    {
+      "key": "copper", "chapter": 1, "question": 22, "kind": "객관식",
+      "file": "1장_연습문제_50문항_수업용.pptx", "slide": 37, "part": "slide43.xml",
+      "sha256": "A793864342FA1B7479BAB0388CDEBF8B1D0F7FDF42B1C404DEF983C04A7BFFB8",
+      "quote": "A는 숫자 n개가 든 리스트이며 n≥1이다. 다음 Python 코드를 한 번 실행한다. A[i] > largest를 검사하는 횟수만 셀 때, 총 몇 번 검사하는가?",
+      "options": ["n", "n / 2", "n + 1", "n − 1", "n(n−1)/2"]
+    },
+    {
+      "key": "jade", "chapter": 4, "question": 2, "kind": "객관식",
+      "file": "4장_연습문제_100문항_수업용.pptx", "slide": 3, "part": "slide3.xml",
+      "sha256": "41C6D0100C8B5A6F15425295B3CC5725D8385FF87D7A6764D3692CC99621F77C",
+      "quote": "합병 정렬의 분할 뒤 반드시 필요한 전제는?",
+      "options": ["모든 원소가 서로 다르다", "입력이 이미 정렬되어 있다", "두 부분을 각각 정렬한 뒤 병합한다", "두 부분의 길이가 항상 같다", "두 부분의 값 범위가 겹치지 않는다"]
+    },
+    {
+      "key": "pebble", "chapter": 2, "question": 62, "kind": "단답형",
+      "file": "2장_연습문제_100문항_알고리즘작성형_수업용.pptx", "slide": 124, "part": "slide124.xml",
+      "sha256": "79637C90D2045BFEA7FE28823478F111F0FEB1025F1C709F762F0831933E6151",
+      "quote": "0~9로 이루어진 4자리 자물쇠를 0000부터 순서대로 모두 시도할 때, 마지막까지 갔다면 총 몇 회 시도한 것인지 쓰시오."
+    },
+    {
+      "key": "cedar", "chapter": 3, "question": 77, "kind": "서술형",
+      "file": "3장_연습문제_100문항_수업용.pptx", "slide": 139, "part": "slide153.xml",
+      "sha256": "272A53136DD2A67809B30FC200B5DCC6B14356173871FBA4E8E1B2A9EEA38982",
+      "quote": "최대공약수를 구하는 유클리드 알고리즘은 b가 0이 아닐 동안 (a,b)를 (b,a%b)로 동시에 바꾼다. %는 a를 b로 나눈 나머지이며, b=0이면 a를 반환한다. (18,12)에서 시작한다. 시작 쌍부터 종료할 때까지의 (a,b)를 순서대로 쓰고, 최종 최대공약수를 쓰시오."
+    },
+    {
+      "key": "ink", "chapter": 3, "question": 91, "kind": "코딩형",
+      "file": "3장_연습문제_100문항_수업용.pptx", "slide": 163, "part": "slide181.xml",
+      "sha256": "272A53136DD2A67809B30FC200B5DCC6B14356173871FBA4E8E1B2A9EEA38982",
+      "quote": "길이 n인 정수 배열 a와 정수 x가 주어진다. x가 처음 등장하는 인덱스(0부터)를 반환하고 없으면 −1을 반환하는 first_index를 작성하시오. 0≤n≤1000이며 원소와 x는 C의 int 범위이다. 배열은 바꾸지 않는다. Python: first_index(a,x) / C: int first_index(const int a[],int n,int x) Python 또는 C 하나로 함수와 시간 복잡도를 작성하시오. 기본 정수 연산은 O(1)로 센다."
+    }
+  ]
+}

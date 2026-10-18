@@ -19,13 +19,15 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
       let payload = req.body;
       if (typeof payload === 'string') { if (Buffer.byteLength(payload) > 32000) throw fail('BAD_SHEET'); try { payload = JSON.parse(payload); } catch { throw fail('BAD_SHEET'); } }
       if (!payload || Buffer.byteLength(JSON.stringify(payload)) > 32000) throw fail('BAD_SHEET');
+      if (typeof payload !== 'object' || Array.isArray(payload) || !['begin', 'assess'].includes(payload.task)) throw fail('BAD_SHEET');
+      if (payload.edition !== EDITION) throw fail('EDITION_CHANGED', 409);
       const quota = meter || createMeter(blobRepository());
       const ip = String(req.headers['x-vercel-forwarded-for'] || req.headers['x-real-ip'] || 'unknown').split(',')[0].trim().slice(0, 64);
       if (payload.task === 'begin') return res.status(200).json({ edition: EDITION, ...await quota.begin(ip) });
       if (payload.task !== 'assess') throw fail('BAD_SHEET');
       const sheet = cleanSheet(payload.sheet, payload.dialect);
       pass = payload.pass;
-      const reservation = await quota.reserve(pass, ip, digest(JSON.stringify([payload.dialect, sheet])));
+      const reservation = await quota.reserve(pass, ip, digest(JSON.stringify([EDITION, payload.dialect, sheet])));
       if (reservation.cached) return res.status(200).json(reservation.cached);
       reserved = true;
       const feedback = await grader(sheet, payload.dialect, { key });

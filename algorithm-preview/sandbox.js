@@ -1,6 +1,6 @@
 // Public sample runner, unrelated to the examination execution infrastructure.
 let pythonRuntime, cRuntime, transcript = '';
-const specimen = [ [[2, 9, 4, 9], 5, 2], [[], 3, 0], [[-3, 0, 6], 0, 1] ];
+const specimen = [ [[8, 3, 8], 8, 0], [[8, 3, 8], 7, -1], [[], 8, -1] ];
 self.onmessage = async ({ data }) => {
   try {
     if (data.launch === 'py') {
@@ -30,11 +30,11 @@ class Quiet(io.StringIO):
 outcomes = []
 with contextlib.redirect_stdout(Quiet()), contextlib.redirect_stderr(Quiet()):
     exec(compile(practice_source, 'practice.py', 'exec'), ns)
-    routine = ns.get('count_above')
-    if not callable(routine): raise ValueError('count_above 함수를 작성하세요.')
-    for values, pivot, expected in json.loads(practice_specimen):
+    routine = ns.get('first_index')
+    if not callable(routine): raise ValueError('first_index 함수를 작성하세요.')
+    for values, target, expected in json.loads(practice_specimen):
         before = values[:]
-        actual = routine(values, pivot)
+        actual = routine(values, target)
         ok = type(actual) is int and actual == expected and values == before
         outcomes.append(('통과' if ok else '확인 필요') + ' · 예상 ' + str(expected) + ' / 반환 ' + str(actual)[:100] + ('' if values == before else ' · 입력 목록 변경'))
 '\\n'.join(str(i + 1) + '번: ' + text for i, text in enumerate(outcomes))
@@ -43,7 +43,7 @@ with contextlib.redirect_stdout(Quiet()), contextlib.redirect_stderr(Quiet()):
     }
     if (data.dialect !== 'c99') throw Error('작성 언어를 확인하세요.');
     transcript = '';
-    const cases = specimen.map(([values, pivot, expected], index) => `{int values[${Math.max(1, values.length)}]={${values.length ? values.join(',') : '0'}};int result=count_above(values,${values.length},${pivot});int untouched=1;${values.map((value, i) => `if(values[${i}]!=${value})untouched=0;`).join('')}printf("\\nREHEARSAL_${index}:%d:%d\\n",result,untouched);}`).join('\n');
+    const cases = specimen.map(([values, target, expected], index) => `{int values[${Math.max(1, values.length)}]={${values.length ? values.join(',') : '0'}};int result=first_index(values,${values.length},${target});int untouched=1;${values.map((value, i) => `if(values[${i}]!=${value})untouched=0;`).join('')}printf("\\nREHEARSAL_${index}:%d:%d\\n",result,untouched);}`).join('\n');
     const c = '#include <stdio.h>\n' + data.ink + '\nint main(void){\n' + cases + '\nreturn 0;}\n';
     cRuntime.memfs.addFile('sample.c', new TextEncoder().encode(c));
     await cRuntime.run(await cRuntime.getModule(cRuntime.clangFilename), 'clang', '-cc1', '-emit-obj', ...cRuntime.clangCommonArgs.filter(arg => arg !== '-fcolor-diagnostics'), '-O0', '-std=c11', '-Werror=implicit-function-declaration', '-o', 'sample.o', '-x', 'c', 'sample.c');

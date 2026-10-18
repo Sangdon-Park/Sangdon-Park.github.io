@@ -2,8 +2,9 @@
 import assert from 'node:assert/strict';
 import { exampleSheet } from './fixture.mjs';
 const endpoint = 'https://algorithm-rehearsal.vercel.app/api/feedback';
+const edition = 'rehearsal-20261018-ch1-4';
 async function call(body, origin = 'https://sangdon-park.github.io') {
-  const response = await fetch(endpoint, { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const response = await fetch(endpoint, { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: JSON.stringify({ ...body, edition }) });
   return { status: response.status, data: await response.json() };
 }
 const begun = await call({ task: 'begin' }); assert.equal(begun.status, 200, JSON.stringify(begun));
@@ -12,6 +13,7 @@ const result = await call(payload); console.log(JSON.stringify(result));
 assert.equal(result.status, 200); assert.equal(result.data.earned, 14); assert.equal(result.data.tiles.length, 6);
 assert.equal(result.data.requestedModel, 'gemini-3.8-flash');
 assert.ok(result.data.model === 'gemini-3.8-flash' || result.data.model.startsWith('gemini-3.8-flash-'));
+assert.equal(result.data.edition, edition);
 const replay = await call(payload); assert.deepEqual(replay, result);
 assert.equal((await call({ ...payload, sheet: {} })).status, 409);
 assert.equal((await call({ task: 'begin' }, 'https://not-allowed.invalid')).status, 403);

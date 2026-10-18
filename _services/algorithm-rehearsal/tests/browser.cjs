@@ -21,22 +21,26 @@ const server = http.createServer((req, res) => {
     let begins = 0, sends = 0;
     await page.route('https://algorithm-rehearsal.vercel.app/api/feedback', async route => {
       const body = route.request().postDataJSON();
-      if (body.task === 'begin') { begins++; await new Promise(r => setTimeout(r, 150)); return route.fulfill({ json: { pass: 'a'.repeat(64) } }); }
+      assert.equal(body.edition, 'rehearsal-20261018-ch1-4');
+      if (body.task === 'begin') { begins++; await new Promise(r => setTimeout(r, 150)); return route.fulfill({ json: { edition: body.edition, pass: 'a'.repeat(64) } }); }
       sends++;
       if (sends === 1) return route.fulfill({ status: 503, json: { problem: 'PROVIDER_BUSY' } });
-      return route.fulfill({ json: { earned: 14, ceiling: 14, note: '연습용 AI 코드 검토', tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 테스트 피드백' })) } });
+      return route.fulfill({ json: { edition: body.edition, earned: 14, ceiling: 14, note: '연습용 AI 코드 검토', tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 테스트 피드백' })) } });
     });
     await page.goto(origin + '/algorithm-preview/');
+    await page.evaluate(() => localStorage.setItem('algorithm-rehearsal-20261018', 'preserved-legacy-draft'));
+    assert.equal(await page.locator('.field-help a[href$=".pptx"]').count(), 5);
     await page.screenshot({ path: path.join(__dirname, 'welcome-desktop.png'), fullPage: true });
     await page.click('#begin-practice');
-    await page.check('input[name="copper"][value="b"]');
+    await page.check('input[name="copper"][value="d"]');
     await page.click('#jump-jade'); await page.check('input[name="jade"][value="c"]');
-    await page.click('#jump-pebble'); await page.fill('#pebble-answer', '4회, 첫 원소를 제외한 나머지 4개를 비교');
+    await page.click('#jump-pebble'); await page.fill('#pebble-answer', '10000');
     await page.reload(); await page.click('#resume-practice');
-    await page.click('#jump-pebble'); assert.match(await page.inputValue('#pebble-answer'), /^4회/);
-    await page.click('#jump-cedar'); await page.fill('#cedar-answer', '21은 처음이라 1회, 99는 없어서 끝까지 보므로 4회');
+    await page.click('#jump-pebble'); assert.equal(await page.inputValue('#pebble-answer'), '10000');
+    assert.equal(await page.evaluate(() => localStorage.getItem('algorithm-rehearsal-20261018')), 'preserved-legacy-draft');
+    await page.click('#jump-cedar'); await page.fill('#cedar-answer', '(18,12) → (12,6) → (6,0), 최대공약수 6');
     await page.click('#jump-ink');
-    const py = 'def count_above(items, pivot):\n    return sum(1 for item in items if item > pivot)';
+    const py = 'def first_index(a, x):\n    for i, value in enumerate(a):\n        if value == x:\n            return i\n    return -1';
     await page.fill('#ink-answer', py); await page.fill('#cost-answer', 'O(n), n개를 한 번씩 비교');
     async function run(source, language) {
       await page.selectOption('#practice-dialect', language); await page.fill('#ink-answer', source); await page.click('#try-examples');
@@ -44,11 +48,11 @@ const server = http.createServer((req, res) => {
       return page.textContent('#example-output');
     }
     const pyResult = await run(py, 'py'); console.log('Python:', pyResult); assert.equal((pyResult.match(/통과/g) || []).length, 3);
-    const c = 'int count_above(const int items[], int length, int pivot) { int total=0; for(int i=0;i<length;i++) if(items[i]>pivot) total++; return total; }';
+    const c = 'int first_index(const int a[], int n, int x) { for(int i=0;i<n;i++) if(a[i]==x) return i; return -1; }';
     const cResult = await run(c, 'c99'); console.log('C:', cResult); assert.equal((cResult.match(/통과/g) || []).length, 3);
-    const wrong = await run(c.replace('>pivot', '>=pivot'), 'c99'); assert.match(wrong, /확인 필요/);
+    const wrong = await run(c.replace('return i;', 'return i+1;'), 'c99'); assert.match(wrong, /확인 필요/);
     await page.selectOption('#practice-dialect', 'py'); assert.equal(await page.inputValue('#ink-answer'), py);
-    await page.fill('#ink-answer', 'def count_above(items, pivot):\n    while True: pass'); await page.click('#try-examples');
+    await page.fill('#ink-answer', 'def first_index(a, x):\n    while True: pass'); await page.click('#try-examples');
     await page.waitForFunction(() => document.querySelector('#example-output').textContent.includes('공개 예제를 실행'), {}, { timeout: 100000 });
     await page.click('#stop-examples'); assert.match(await page.textContent('#example-output'), /사용자가 실행을 중단/);
     await page.fill('#ink-answer', py);

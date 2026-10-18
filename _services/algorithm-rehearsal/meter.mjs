@@ -1,6 +1,6 @@
 import { get, put } from '@vercel/blob';
 import { createHash, randomBytes } from 'node:crypto';
-import { fail } from './core.mjs';
+import { fail, EDITION } from './core.mjs';
 const digest = value => createHash('sha256').update(value).digest('hex');
 export function blobRepository() {
   return {
@@ -36,14 +36,14 @@ export function createMeter(repo, now = () => Date.now()) {
       await daily(`meter/${day()}/open-all.json`, 1500);
       await daily(`meter/${day()}/open-${mark(ip, day())}.json`, 300);
       const pass = randomBytes(32).toString('hex');
-      await repo.write(`passes/${digest(pass)}.json`, { until: now() + 3600000, phase: 'fresh', tries: 0 });
+      await repo.write(`passes/${digest(pass)}.json`, { edition: EDITION, until: now() + 3600000, phase: 'fresh', tries: 0 });
       return { pass, validFor: 3600 };
     },
     async reserve(pass, ip, fingerprint) {
       if (!/^[a-f0-9]{64}$/.test(pass || '')) throw fail('INVALID_PASS', 401);
       const path = `passes/${digest(pass)}.json`;
       const old = await repo.read(path);
-      if (!old || old.value.until < now()) throw fail('INVALID_PASS', 401);
+      if (!old || old.value.until < now() || old.value.edition !== EDITION) throw fail('INVALID_PASS', 401);
       if (old.value.phase === 'done') {
         if (old.value.fingerprint !== fingerprint) throw fail('ALREADY_SENT', 409);
         return { cached: old.value.feedback };

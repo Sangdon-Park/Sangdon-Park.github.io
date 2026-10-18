@@ -1,5 +1,5 @@
 // New practice content and protocol. Never import the examination repository.
-export const EDITION = 'rehearsal-20261018-a';
+export const EDITION = 'rehearsal-20261018-ch1-4';
 export const GRADING_MODEL = 'gemini-3.8-flash';
 export const LIMITS = Object.freeze({ copper: 1, jade: 1, pebble: 500, cedar: 1800, ink: 6000, cost: 600 });
 export const fail = (tag, status = 400) => Object.assign(new Error(tag), { status, tag });
@@ -13,16 +13,16 @@ export function cleanSheet(value, dialect) {
     if (typeof entry !== 'string' || entry.length > cap || entry.includes('\u0000')) throw fail('BAD_SHEET');
     cleaned[key] = entry.replace(/\r\n/g, '\n').trim();
   }
-  if (cleaned.copper && !'abcd'.includes(cleaned.copper)) throw fail('BAD_SHEET');
-  if (cleaned.jade && !'abcd'.includes(cleaned.jade)) throw fail('BAD_SHEET');
+  if (cleaned.copper && !'abcde'.includes(cleaned.copper)) throw fail('BAD_SHEET');
+  if (cleaned.jade && !'abcde'.includes(cleaned.jade)) throw fail('BAD_SHEET');
   return cleaned;
 }
 
 const rubric = [
-  { key: 'pebble', maximum: 2, rule: '문제: [12,7,19,4,10]의 첫 원소를 초기 최댓값으로 쓰고 나머지를 한 번씩 비교한다. 값 비교 횟수와 한 줄 근거. 정답 4회 1점, 첫 원소를 제외한 네 원소를 비교한다는 근거 1점. 답만 쓰면 1점. 다른 연산은 세지 않는다.' },
-  { key: 'cedar', maximum: 4, rule: '문제: [21,8,35,14]를 앞에서부터 순차 탐색하여 21을 찾을 때와 없는 99를 찾을 때 비교 횟수 및 이유를 설명한다. 21은 첫 원소라 1회: 횟수 1점, 첫 일치에서 끝난다는 이유 1점. 99는 없어서 4회: 횟수 1점, 끝까지 확인한다는 이유 1점. 요구하지 않은 복잡도/증명/표현으로 감점하지 않는다.' },
-  { key: 'ink', maximum: 3, rule: '코딩 문제: count_above가 정수 목록에서 pivot보다 엄격히 큰 원소 수를 정수로 반환한다. py 서명 count_above(items,pivot), C 서명 int count_above(const int items[],int length,int pivot). n 0..200, 값 -1000..1000. 파싱/main/출력 불필요. 순회/비교 1점, 조건을 만족할 때 개수 누적 1점, 올바른 초기화와 반환(빈 입력 0 포함) 1점. >=는 > 조건 점수를 못 받는다. 제출 코드를 읽고 평가하되 실행했다고 주장하지 않는다. 문법 오류나 상수 반환을 정답으로 인정하지 않는다. 다른 정확한 알고리즘도 인정한다.' },
-  { key: 'cost', maximum: 1, rule: '자기 코드의 시간 복잡도와 간단한 근거. 보통 O(n)이고 n개를 한 번씩 비교한다는 설명이면 1점. 다른 구현이면 실제 구현과 일치하는 분석을 인정한다. 공간 복잡도나 추가 경계 설명은 요구하지 않는다. 코드가 없거나 설명이 없으면 0점.' }
+  { key: 'pebble', maximum: 2, rule: '출처: 2강 연습문제 62번. 0~9로 이루어진 4자리 자물쇠를 0000부터 마지막까지 모두 시도한 횟수. 정답 10000회. 10,000, 10^4, 10⁴, 10**4, 10×10×10×10, 만 회 등 동치 표현 모두 정답 2점. 숫자나 식만 있어도 2점이며 별도 근거를 요구하지 않는다. 9999나 다른 값은 0점. 반박하거나 부정한 수를 정답으로 오인하지 않는다.' },
+  { key: 'cedar', maximum: 4, rule: '출처: 3강 연습문제 77번. 유클리드 알고리즘에서 (18,12)부터 b=0까지 (a,b)를 (b,a%b)로 동시에 갱신한 쌍과 최대공약수. 순서대로 (18,12), (12,6), (6,0)를 쓰면 각 1점, 최대공약수 6에 1점. 괄호/화살표 표기나 문장 표현이 달라도 인정한다. 해당 쌍이 틀리거나 순서가 뒤바뀌면 해당 점수를 주지 않는다. 마지막 쌍의 6을 알고리즘 반환값이라고 명확히 설명하면 최대공약수 점수를 인정한다. 별도 증명이나 공간 복잡도는 요구하지 않는다.' },
+  { key: 'ink', maximum: 3, rule: '출처: 3강 연습문제 91번. first_index가 길이 n 정수 배열 a에서 정수 x의 첫 등장 인덱스(0부터)를 반환하고 없거나 비면 -1을 반환한다. n 0..1000, C int 범위, 배열 변경 금지. Python first_index(a,x), C int first_index(const int a[],int n,int x). 함수만 작성. 0부터 올바른 범위의 원소 순회/검색 1점, x와 같을 때 첫 일치의 인덱스를 반환 1점, 미발견과 빈 배열에서 -1 반환 및 배열 유지 1점. 중복에서 마지막 위치를 반환하면 첫 일치 점수는 주지 않는다. True/False, 발견 값 자체 또는 1부터 센 위치는 올바른 인덱스가 아니다. 상수만 반환하는 코드는 만점이 아니다. 문법 오류가 있으면 만점으로 인정하지 않는다. 다른 정확한 구현도 인정한다. 코드를 실행한 척하지 않는다.' },
+  { key: 'cost', maximum: 1, rule: '자기 코드의 최악 시간 복잡도와 간단한 근거. 순차 탐색이면 O(n) 또는 Θ(n), n개 원소를 최대 한 번씩 비교한다는 설명이면 1점. 첫 원소에서 끝나는 최선 O(1)만 쓰면 0점. 다른 구현이면 실제 구현에 맞는 분석을 인정한다. 공간 복잡도나 추가 경계 설명은 요구하지 않는다. 코드가 없거나 설명이 없으면 반드시 0점.' }
 ];
 
 export function verifyReview(raw, sheet) {
@@ -34,10 +34,12 @@ export function verifyReview(raw, sheet) {
     if (!spec || seen.has(tile.key) || !Number.isInteger(tile.earned) || tile.earned < 0 || tile.earned > spec.maximum ||
         typeof tile.tip !== 'string' || !tile.tip.trim() || tile.tip.length > 900 || !Array.isArray(tile.quotes) || tile.quotes.length > 4) reject('tile-shape');
     seen.add(tile.key);
+    if (!sheet[tile.key] || tile.key === 'cost' && !sheet.ink) {
+      return { key: tile.key, earned: 0, ceiling: spec.maximum, tip: tile.key === 'cost' && !sheet.ink ? '코드를 제출하지 않아 시간 복잡도 점수는 0점입니다.' : '답안을 제출하지 않았습니다.' };
+    }
     const normalized = text => text.replace(/\s+/g, ' ').trim();
     for (const quote of tile.quotes) if (typeof quote !== 'string' || !quote.trim() || quote.length > 400 || !normalized(sheet[tile.key]).includes(normalized(quote))) reject('nonliteral-evidence');
     if (tile.earned > 0 && (!sheet[tile.key] || !tile.quotes.length)) reject('missing-evidence');
-    if (tile.key === 'cost' && !sheet.ink && tile.earned) reject('missing-code');
     return { key: tile.key, earned: tile.earned, ceiling: spec.maximum, tip: tile.tip.trim() };
   });
 }
@@ -45,8 +47,8 @@ export function verifyReview(raw, sheet) {
 export async function assess(sheet, dialect, { key, fetcher = fetch } = {}) {
   if (!key) throw fail('FEEDBACK_NOT_CONFIGURED', 503);
   const tiles = [
-    { key: 'copper', earned: sheet.copper === 'b' ? 2 : 0, ceiling: 2, tip: '1부터 4까지 더하면 1+2+3+4=10입니다. range(1,5)는 5를 포함하지 않습니다.' },
-    { key: 'jade', earned: sheet.jade === 'c' ? 2 : 0, ceiling: 2, tip: '두 회의는 4시에 바로 이어지므로 함께 선택할 수 있습니다. 앞 회의 종료와 다음 시작이 같아도 됩니다.' }
+    { key: 'copper', earned: sheet.copper === 'd' ? 2 : 0, ceiling: 2, tip: '정답은 ④ n−1입니다. 첫 원소는 초기 최댓값으로 쓰고, 나머지 n−1개 원소를 각각 한 번 비교합니다.' },
+    { key: 'jade', earned: sheet.jade === 'c' ? 2 : 0, ceiling: 2, tip: '정답은 ③입니다. 병합은 각각 정렬된 두 부분을 입력으로 받아 하나의 정렬된 배열로 합칩니다.' }
   ];
   const schema = { type: 'OBJECT', properties: { tiles: { type: 'ARRAY', minItems: 4, maxItems: 4, items: { type: 'OBJECT', properties: {
     key: { type: 'STRING', enum: rubric.map(r => r.key) }, earned: { type: 'INTEGER' }, tip: { type: 'STRING' }, quotes: { type: 'ARRAY', maxItems: 2, items: { type: 'STRING' } }

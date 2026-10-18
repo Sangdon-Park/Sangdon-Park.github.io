@@ -1,8 +1,8 @@
 export function exampleSheet(c = false) {
   return {
-    copper: 'b', jade: 'c', pebble: '4회. 처음 원소는 초기 최댓값으로 이미 쓰므로 나머지 네 원소만 각각 한 번 비교한다.',
-    cedar: '21은 첫 원소에서 일치하여 바로 끝나므로 1회 비교한다. 99는 배열에 없어 네 원소를 끝까지 확인해야 하므로 4회 비교한다.',
-    ink: c ? 'int count_above(const int items[], int length, int pivot) { int count = 0; for (int i=0;i<length;i++) if (items[i]>pivot) count++; return count; }' : 'def count_above(items, pivot):\n    count = 0\n    for item in items:\n        if item > pivot:\n            count += 1\n    return count',
-    cost: 'O(n). n은 원소 수이며 각 원소를 한 번씩 비교한다.'
+    copper: 'd', jade: 'c', pebble: '10,000회',
+    cedar: '(18,12) → (12,6) → (6,0), 최대공약수는 6이다. 18%12=6, 12%6=0이므로 두 번째 값이 0일 때 첫 값 6을 반환한다.',
+    ink: c ? 'int first_index(const int a[], int n, int x) { for (int i=0;i<n;i++) if(a[i]==x) return i; return -1; }' : 'def first_index(a, x):\n    for i, value in enumerate(a):\n        if value == x:\n            return i\n    return -1',
+    cost: '최악 O(n). n은 원소 수이며 x가 없으면 n개를 한 번씩 비교한다.'
   };
 }

@@ -1,12 +1,13 @@
 (() => {
   'use strict';
   const SERVICE = 'https://algorithm-rehearsal.vercel.app/api/feedback';
-  const DRAWER = 'algorithm-rehearsal-20261018';
+  const EDITION = 'rehearsal-20261018-ch1-4';
+  const DRAWER = 'algorithm-rehearsal-20261018-ch1-4';
   const leaves = ['copper', 'jade', 'pebble', 'cedar', 'ink'];
   const labels = ['객관식', '객관식', '단답형', '서술형', '코딩형'];
   const starters = {
-    py: 'def count_above(items, pivot):\n    # pivot보다 큰 원소의 개수를 반환하세요.\n    pass\n',
-    c99: 'int count_above(const int items[], int length, int pivot) {\n    // pivot보다 큰 원소의 개수를 반환하세요.\n    return 0;\n}\n'
+    py: 'def first_index(a, x):\n    # x가 처음 등장하는 인덱스, 없으면 -1을 반환하세요.\n    pass\n',
+    c99: 'int first_index(const int a[], int n, int x) {\n    // x가 처음 등장하는 인덱스, 없으면 -1을 반환하세요.\n    return -1;\n}\n'
   };
   const grab = id => document.getElementById(id);
   let folio, cursor = 0, sending = false, sandbox, runnerClock, loadClock, generation = 0, locked = false, connecting;
@@ -48,7 +49,7 @@
   }
   function showWorkspace() { grab('welcome').hidden = true; grab('feedback-view').hidden = true; grab('workspace').hidden = false; paintInputs(); updateRail(); turn(0, false); tick(); }
   async function packet(body) {
-    const response = await fetch(SERVICE, { method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(55000) });
+    const response = await fetch(SERVICE, { method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...body, edition: EDITION }), signal: AbortSignal.timeout(55000) });
     const data = await response.json();
     if (!response.ok) throw Object.assign(new Error(data.problem || 'TEMPORARY_FAILURE'), { status: response.status });
     return data;
@@ -62,6 +63,7 @@
     return connecting;
   }
   function friendly(error) {
+    if (error.message === 'EDITION_CHANGED') return '문항이 1–4강 PPTX 발췌본으로 바뀌었습니다. 현재 답안을 내려받아 보관한 뒤 이 페이지를 새로고침해 새 체험을 시작해 주세요.';
     if (error.status === 429) return '채점 요청 한도 또는 대기 시간에 걸렸습니다. 잠시 뒤 다시 요청하거나 다음 날 체험해 주세요.';
     if (error.message === 'INVALID_PASS') return '체험 연결이 만료되었습니다. 답안은 보관되어 있습니다. 채점을 다시 요청하면 새 연결로 제출합니다.';
     return '지금 AI 채점에 연결하지 못했습니다. 답안은 이 브라우저에 보관되어 있습니다. 잠시 뒤 같은 답안으로 다시 요청해 주세요. 오류를 0점으로 처리하지 않습니다.';
@@ -80,7 +82,7 @@
     try {
       await connect();
       const feedback = await packet({ task: 'assess', pass: folio.pass, dialect: folio.dialect, sheet: folio.sheet });
-      if (!Array.isArray(feedback.tiles) || !Number.isFinite(feedback.earned) || feedback.ceiling !== 14) throw Error('BAD_FEEDBACK');
+      if (feedback.edition !== EDITION || !Array.isArray(feedback.tiles) || !Number.isFinite(feedback.earned) || feedback.ceiling !== 14) throw Error('BAD_FEEDBACK');
       folio.feedback = feedback; persist(); showFeedback();
     } catch (error) { if (error.message === 'INVALID_PASS') { folio.pass = null; persist(); } status.textContent = friendly(error); status.classList.add('is-error'); grab('retry-feedback').hidden = false; }
     finally { sending = false; locked = false; }
@@ -118,7 +120,7 @@
     stopRunner(); const serial = ++generation;
     grab('try-examples').disabled = true; grab('stop-examples').hidden = false;
     grab('example-output').textContent = '실행 환경을 준비하고 있습니다…';
-    sandbox = new Worker('sandbox.js?v=20261018-a');
+    sandbox = new Worker('sandbox.js?v=20261018-ch1-4');
     loadClock = setTimeout(() => { stopRunner(); grab('example-output').textContent = '실행 환경 다운로드 시간이 초과됐습니다. 네트워크를 확인한 뒤 다시 실행해 주세요.'; }, 90000);
     sandbox.onerror = () => { stopRunner(); grab('example-output').textContent = '실행 환경을 열지 못했습니다. 네트워크 상태를 확인하세요.'; };
     sandbox.onmessage = ({ data }) => {

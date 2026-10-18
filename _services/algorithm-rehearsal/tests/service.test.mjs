@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanSheet, verifyReview, assess, fail } from '../core.mjs';
+import { cleanSheet, verifyReview, assess, fail, EDITION } from '../core.mjs';
 import { createMeter } from '../meter.mjs';
 import { buildGateway } from '../api/feedback.mjs';
 
-const sheet = () => cleanSheet({ copper: 'b', jade: 'c', pebble: '4회', cedar: '1회, 4회', ink: 'return 0', cost: 'O(n)' }, 'py');
+const sheet = () => cleanSheet({ copper: 'd', jade: 'c', pebble: '10000', cedar: '(18,12), (12,6), (6,0), 최대공약수 6', ink: 'return -1', cost: 'O(n)' }, 'py');
 function repository() {
   const rows = new Map(); let version = 0;
   return {
@@ -18,12 +18,14 @@ function repository() {
   };
 }
 async function request(handler, body, overrides = {}) {
+  if (body && typeof body === 'object') body = { edition: EDITION, ...body };
   const res = { headers: {}, setHeader(k, v) { this.headers[k] = v; }, status(n) { this.statusCode = n; return this; }, json(value) { this.value = value; return this; }, end() {} };
   await handler({ method: 'POST', headers: { origin: 'https://sangdon-park.github.io', 'content-type': 'application/json', 'x-real-ip': '127.0.0.1', ...overrides.headers }, body, ...Object.fromEntries(Object.entries(overrides).filter(([k]) => k !== 'headers')) }, res);
   return res;
 }
 test('strict sheet contract and size bounds', () => {
-  assert.equal(sheet().copper, 'b');
+  assert.equal(sheet().copper, 'd');
+  assert.equal(cleanSheet({ copper: 'e', jade: 'e' }, 'py').copper, 'e');
   for (const value of [{ hidden: 'x' }, { copper: 'ab' }, { ink: 'x'.repeat(6001) }, { cedar: 4 }, { cost: '\0' }]) assert.throws(() => cleanSheet(value, 'py'), /BAD_SHEET/);
   assert.throws(() => cleanSheet({}, 'javascript'), /BAD_SHEET/);
   assert.equal(cleanSheet({}, 'c99').ink, '');
@@ -70,7 +72,7 @@ test('persistent quotas, single use, response replay, and expiry', async () => {
   await assert.rejects(() => meter.reserve('0'.repeat(64), 'one', 'digest'), /INVALID_PASS/);
   now += 3600001;
   await assert.rejects(() => meter.reserve(pass, 'one', 'digest'), /INVALID_PASS/);
-  assert.ok(!JSON.stringify([...repo.rows]).includes('return 0'));
+  assert.ok(!JSON.stringify([...repo.rows]).includes('return -1'));
 });
 test('CAS only permits one concurrent reservation; retries capped', async () => {
   let now = 1800000000000;
@@ -114,4 +116,18 @@ test('provider failures never become a zero grade or leak errors', async () => {
   const begun = await request(handler, { task: 'begin' });
   const response = await request(handler, { task: 'assess', pass: begun.value.pass, dialect: 'py', sheet: sheet() });
   assert.equal(response.statusCode, 503); assert.deepEqual(response.value, { problem: 'TEMPORARY_FAILURE' });
+});
+test('old or missing editions are rejected before allocating storage or grading', async () => {
+  let calls = 0;
+  const handler = buildGateway({ key: 'fixture', meter: { begin: async () => { calls++; } }, grader: async () => { calls++; } });
+  for (const edition of [undefined, 'rehearsal-20261018-a']) {
+    const response = await request(handler, { task: 'begin', edition });
+    assert.equal(response.statusCode, 409); assert.equal(response.value.problem, 'EDITION_CHANGED');
+  }
+  assert.equal(calls, 0);
+});
+test('no submission or no code deterministically receives zero without an AI validation error', () => {
+  const raw = { tiles: ['pebble', 'cedar', 'ink', 'cost'].map(key => ({ key, earned: 1, tip: '의도적으로 만든 AI 오판정', quotes: ['invented evidence'] })) };
+  const result = verifyReview(raw, cleanSheet({ cost: 'O(n)' }, 'py'));
+  assert.deepEqual(result.map(t => t.earned), [0,0,0,0]);
 });

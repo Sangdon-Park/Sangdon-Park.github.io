@@ -1,6 +1,20 @@
 # Algorithms midterm rehearsal
 
-Standalone, anonymous practice at `/algorithm-preview/`. Exactly five fresh examples: two multiple choice, one short answer, one essay, one Python/C function task. Mint practice UI, 15-minute timer, 14 practice points. No actual exam questions are imported.
+Standalone, anonymous practice at `/algorithm-preview/`. Exactly five questions excerpted from the public Chapters 1–4 exercise PPTX files: two multiple choice, one short answer, one essay, one Python/C function task. Mint practice UI, 15-minute timer, 14 practice points. No actual exam questions are imported.
+
+## Public exercise sources
+
+| Slot | Public exercise | Topic |
+| --- | --- | --- |
+| MC 1 | Chapter 1, question 22 | Maximum-finding comparisons |
+| MC 2 | Chapter 4, question 2 | Merge-sort prerequisite |
+| Short answer | Chapter 2, question 62 | Four-digit lock candidates |
+| Essay | Chapter 3, question 77 | Euclidean algorithm trace |
+| Coding | Chapter 3, question 91 | `first_index`, first matching zero-based index |
+
+Stems, choices and input contracts are excerpted without altering their meaning. Web headings, practice points, answer fields and public execution examples are added for the rehearsal. Each question links to its source PPTX. `algorithm-preview/sources.json` records source question numbers, exact quotes, physical slide positions, part names and SHA-256 hashes. Run `pwsh -File tests/sources.ps1` to verify quotations against both original PPTX XML and visible page content. The PPTX files themselves are not modified.
+
+Edition `rehearsal-20261018-ch1-4` uses a separate localStorage namespace. Old drafts/results are retained, not imported or graded against the new questions. API requests without the current edition are rejected before allocation or grading. Tickets and cache fingerprints are edition-bound.
 
 ## Isolation
 
@@ -34,4 +48,4 @@ Public Pages changes deploy through the repository's existing GitHub Pages workf
 
 ## Verification
 
-`npm test` checks payloads, evidence bounds, deterministic scoring, CAS concurrency, quotas, expiry, replay, origin/method restrictions and safe provider errors. `tests/browser.cjs` checks desktop/mobile, persistence, submission error/retry, result/download, Python/C examples and worker cancellation with a mock feedback API. Set `NODE_PATH` to an installed Playwright package directory. Run `node tests/browser.cjs` from this service folder. Real Gemini connectivity is separately tested using synthetic answers only, without accessing exam administration or student records.
+`npm test` checks payloads, evidence bounds, deterministic scoring, CAS concurrency, quotas, expiry, replay, model/edition restrictions, zero credit without code and safe provider errors. `tests/browser.cjs` checks desktop/mobile, source links, old-draft isolation, persistence, submission error/retry, result/download, Python/C examples and worker cancellation with a mock feedback API. Set `NODE_PATH` to an installed Playwright package directory. Run `node tests/browser.cjs` from this service folder. `tests/live.mjs` and `tests/live-matrix.mjs` use synthetic answers against the public practice API only; do not run unnecessarily because each uncached grading call consumes the provider's quota. They never access exam administration or student records.
