@@ -1,5 +1,19 @@
 # Algorithms midterm rehearsal
 
+## Current production: time-bounded Codex worker
+
+As of 2026-10-19, the default `/api/feedback` handler uses `buildCodexGateway` and **never calls Gemini**. Legacy Gemini helpers/tests below remain for historical context. Questions, edition, saved-answer namespace and 14-point rubric are unchanged. Submitted answers are frozen, queued, reviewed and returned as component scores with detailed explanations, following the examination's workflow while using independent code, credentials and storage.
+
+- The local Codex CLI worker polls every **5 seconds**, reviews up to **3 jobs concurrently**, and stops at its fixed deadline. Current window ends **2026-10-19 21:09:24 Asia/Seoul**. Keep this computer online; a time-bounded helper prevents idle system sleep without changing persistent power settings.
+- `scripts/start-codex-worker.ps1 -Until <UTC ISO timestamp>` launches through the linked practice Vercel project's environment runner. Only the private practice Blob credential is required. No OpenAI API key or Gemini key is used by the worker; Codex CLI uses the existing ChatGPT login. Deadlines greater than ten hours are rejected.
+- Child Codex processes ignore user config, are ephemeral/read-only, have shell/browser/apps/plugins/multi-agent/hooks disabled, and receive a stripped environment without the Blob/provider credentials. Student code is data and is never executed on the host. The published example worker still executes examples inside the student's browser.
+- Private `codex/jobs/` objects temporarily store submitted answers and fingerprints. Private CAS index/leases enforce immutable submissions, claim ownership, recovery and cached replay. Completed jobs remove raw answer text; logical seven-day expiry does not physically delete old objects. Old Gemini ticket feedback is preserved in its original object. New Codex job creation is capped at 200/day; polling/replay do not spend another grading slot.
+- The browser handles HTTP 202 queued/grading responses with 5-second polling. Existing failed Gemini submissions automatically resume after page reload, keeping the same saved answers. Already graded students can choose **저장한 답안으로 Codex 채점**; old feedback is retained locally and included in downloads. Do not tell students to clear browser storage or start over.
+- `.vercel/codex-worker-status.json` contains only PID, heartbeat, deadline and counters. Event logs omit student answers and credentials. A separate app heartbeat checks process health and may restart only before the same fixed deadline. Do not extend the window or touch actual examination data.
+- `tests/codex-queue.test.mjs` covers saved-result regrading, immutable replay, privacy, single claims, expiry and lease recovery. `tests/retry-browser.cjs` also checks Gemini-to-Codex saved-answer recovery and old-feedback preservation. A synthetic correct Python submission completed through the deployed API and local Codex worker with 14/14 points; this does not establish correctness for every student answer.
+
+## Earlier Gemini configuration (inactive in production)
+
 Standalone, anonymous practice at `/algorithm-preview/`. Exactly five questions excerpted from the public Chapters 1–4 exercise PPTX files: two multiple choice, one short answer, one essay, one Python/C function task. Mint practice UI, 15-minute timer, 14 practice points. No actual exam questions are imported.
 
 ## Public exercise sources

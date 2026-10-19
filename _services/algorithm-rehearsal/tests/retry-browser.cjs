@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '../../..');
 const endpoint = 'https://algorithm-rehearsal.vercel.app/api/feedback';
 const drawer = 'algorithm-rehearsal-20261018-ch1-4', edition = 'rehearsal-20261018-ch1-4';
 const sheet = { copper: 'd', jade: 'c', pebble: '10000', cedar: '(18,12) → (12,6) → (6,0), GCD=6', ink: 'def first_index(a, x):\n    for i, v in enumerate(a):\n        if v == x: return i\n    return -1', cost: 'O(n), n개를 비교한다.' };
-const feedback = { edition, earned: 14, ceiling: 14, tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 답안의 기준별 피드백입니다.' })) };
+const feedback = { edition, provider: 'codex', earned: 14, ceiling: 14, tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 답안의 기준별 피드백입니다.' })) };
 const server = http.createServer((req, res) => {
   let file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
   if (!file.startsWith(root + path.sep)) return res.writeHead(403).end();
@@ -119,6 +119,28 @@ async function until(check, label) {
       await page.evaluate(() => { window.testOnline = true; dispatchEvent(new Event('online')); });
       await page.clock.fastForward(1); await until(async () => !!(await state(page)).feedback, 'online automatic resume');
       assert.equal(calls, 1); await context.close();
+    }
+    {
+      let calls = 0;
+      const { page, context } = await setup(route => {
+        calls++;
+        if (calls === 2) return route.fulfill({ status: 202, json: { edition, provider: 'codex', state: 'queued', retryAfterSeconds: 5 } });
+        return route.fulfill({ json: feedback });
+      });
+      await until(async () => !!(await state(page)).feedback, 'saved-result setup');
+      await page.evaluate(key => {
+        const saved = JSON.parse(localStorage.getItem(key));
+        saved.feedback = { ...saved.feedback, provider: 'gemini', model: 'gemini-3.8-flash' };
+        localStorage.setItem(key, JSON.stringify(saved));
+      }, drawer);
+      await page.reload(); await page.click('#recover-codex');
+      await until(async () => (await state(page)).queuePending, 'old Gemini result submitted to Codex');
+      assert.deepEqual((await state(page)).sheet, sheet);
+      assert.equal((await state(page)).previousFeedback[0].feedback.model, 'gemini-3.8-flash');
+      await page.clock.fastForward(5100);
+      await until(async () => (await state(page)).feedback?.provider === 'codex', 'Codex replaces displayed result');
+      assert.equal(calls, 3); assert.ok(await page.locator('#regrade-codex').isHidden());
+      await context.close();
     }
     assert.deepEqual(errors, []);
     console.log('PASS: automatic retries, saved-submission reload, server delay, pause/resume, terminal stop, ticket renewal, offline recovery, and detailed feedback.');

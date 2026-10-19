@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
       if (body.task === 'begin') { begins++; await new Promise(r => setTimeout(r, 150)); return route.fulfill({ json: { edition: body.edition, pass: 'a'.repeat(64) } }); }
       sends++;
       if (sends === 1) return route.fulfill({ status: 503, json: { problem: 'PROVIDER_BUSY' } });
-      return route.fulfill({ json: { edition: body.edition, earned: 14, ceiling: 14, note: '연습용 AI 코드 검토', tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 테스트 피드백' })) } });
+      return route.fulfill({ json: { edition: body.edition, provider: 'codex', earned: 14, ceiling: 14, note: 'Codex 코드 검토', tiles: ['copper', 'jade', 'pebble', 'cedar', 'ink', 'cost'].map((key, i) => ({ key, earned: [2,2,2,4,3,1][i], ceiling: [2,2,2,4,3,1][i], tip: '합성 테스트 피드백' })) } });
     });
     await page.goto(origin + '/algorithm-preview/');
     assert.ok(!(await page.textContent('body')).includes('난이도나 점수로 본시험 결과를 예측'));
