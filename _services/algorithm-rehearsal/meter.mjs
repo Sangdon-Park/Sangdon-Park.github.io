@@ -12,7 +12,7 @@ export function blobRepository() {
     }
   };
 }
-async function revise(repo, path, transform) {
+export async function revise(repo, path, transform) {
   for (let retry = 0; retry < 5; retry++) {
     const saved = await repo.read(path);
     const next = transform(saved?.value);

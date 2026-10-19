@@ -19,7 +19,7 @@ export function cleanSheet(value, dialect) {
   return cleaned;
 }
 
-const rubric = [
+export const rubric = [
   { key: 'pebble', maximum: 2, rule: '출처: 2강 연습문제 62번. 0~9로 이루어진 4자리 자물쇠를 0000부터 마지막까지 모두 시도한 횟수. 정답 10000회. 10,000, 10^4, 10⁴, 10**4, 10×10×10×10, 만 회 등 동치 표현 모두 정답 2점. 숫자나 식만 있어도 2점이며 별도 근거를 요구하지 않는다. 9999나 다른 값은 0점. 반박하거나 부정한 수를 정답으로 오인하지 않는다.' },
   { key: 'cedar', maximum: 4, rule: '출처: 3강 연습문제 77번. 유클리드 알고리즘에서 (18,12)부터 b=0까지 (a,b)를 (b,a%b)로 동시에 갱신한 쌍과 최대공약수. 순서대로 (18,12), (12,6), (6,0)를 쓰면 각 1점, 최대공약수 6에 1점. 괄호/화살표 표기나 문장 표현이 달라도 인정한다. 해당 쌍이 틀리거나 순서가 뒤바뀌면 해당 점수를 주지 않는다. 마지막 쌍의 6을 알고리즘 반환값이라고 명확히 설명하면 최대공약수 점수를 인정한다. 별도 증명이나 공간 복잡도는 요구하지 않는다.' },
   { key: 'ink', maximum: 3, rule: '출처: 3강 연습문제 91번. first_index가 길이 n 정수 배열 a에서 정수 x의 첫 등장 인덱스(0부터)를 반환하고 없거나 비면 -1을 반환한다. n 0..1000, C int 범위, 배열 변경 금지. Python first_index(a,x), C int first_index(const int a[],int n,int x). 함수만 작성. 0부터 올바른 범위의 원소 순회/검색 1점, x와 같을 때 첫 일치의 인덱스를 반환 1점, 미발견과 빈 배열에서 -1 반환 및 배열 유지 1점. 중복에서 마지막 위치를 반환하면 첫 일치 점수는 주지 않는다. True/False, 발견 값 자체 또는 1부터 센 위치는 올바른 인덱스가 아니다. 상수만 반환하는 코드는 만점이 아니다. 문법 오류가 있으면 만점으로 인정하지 않는다. 다른 정확한 구현도 인정한다. 코드를 실행한 척하지 않는다.' },
@@ -45,6 +45,16 @@ export function verifyReview(raw, sheet) {
     if (tile.earned > 0 && (!sheet[tile.key] || !tile.quotes.length)) reject('missing-evidence');
     return { key: tile.key, earned: tile.earned, ceiling: spec.maximum, tip: tile.tip.trim() };
   });
+}
+
+export function codexFeedback(raw, sheet, model = 'codex') {
+  const tiles = [
+    { key: 'copper', earned: sheet.copper === 'd' ? 2 : 0, ceiling: 2, tip: `정답은 ④ n−1입니다. ${sheet.copper === 'd' ? '정답을 골라 2점입니다.' : '선택한 답이 정답과 달라 0점입니다.'} 첫 원소는 초기 최댓값으로 정하고 두 번째부터 마지막까지 한 번씩 비교하므로 n−1번입니다.` },
+    { key: 'jade', earned: sheet.jade === 'c' ? 2 : 0, ceiling: 2, tip: `정답은 ③입니다. ${sheet.jade === 'c' ? '정답을 골라 2점입니다.' : '선택한 답이 정답과 달라 0점입니다.'} 두 부분 배열을 각각 정렬한 뒤 병합해야 합니다. 그래야 각 부분의 맨 앞 값 중 작은 것을 차례로 꺼내 정렬된 결과를 만들 수 있습니다.` },
+    ...verifyReview(raw, sheet)
+  ];
+  return { edition: EDITION, provider: 'codex', model, earned: tiles.reduce((sum, row) => sum + row.earned, 0), ceiling: 14, tiles,
+    note: 'Codex가 답안과 코드를 읽고 채점한 결과입니다. 문항별 점수와 풀이를 확인해 주세요.' };
 }
 
 export async function assess(sheet, dialect, { key, fetcher = fetch } = {}) {

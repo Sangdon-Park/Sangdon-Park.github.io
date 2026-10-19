@@ -2,7 +2,7 @@
   'use strict';
   const SERVICE = 'https://algorithm-rehearsal.vercel.app/api/feedback';
   const EDITION = 'rehearsal-20261018-ch1-4';
-  const FEEDBACK_NOTE = 'Gemini가 답안과 코드를 읽고 채점한 결과입니다. 점수는 체험용으로만 사용합니다.';
+  const FEEDBACK_NOTE = 'Codex가 답안과 코드를 읽고 채점한 결과입니다. 문항별 점수와 풀이를 확인해 주세요.';
   const DRAWER = 'algorithm-rehearsal-20261018-ch1-4';
   const leaves = ['copper', 'jade', 'pebble', 'cedar', 'ink'];
   const labels = ['객관식', '객관식', '단답형', '서술형', '코딩형'];
@@ -121,6 +121,10 @@
       if (!grab('submission-status').classList.contains('is-error')) grab('submission-status').textContent = '자동 재시도를 멈췄습니다. 답안은 보관되어 있습니다.';
       return;
     }
+    if (folio.queuePending) {
+      grab('submission-status').textContent = folio.queueState === 'grading' ? 'Codex가 답안을 채점하고 있습니다. 결과를 5초마다 확인합니다.' : '답안을 제출했습니다. Codex 채점 대기 중입니다. 결과를 5초마다 확인합니다.';
+      return;
+    }
     const left = Math.max(0, Math.ceil(((folio.nextRetryAt || Date.now()) - Date.now()) / 1000));
     if (left >= 3600) {
       const when = new Date(folio.nextRetryAt).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -129,7 +133,7 @@
       return;
     }
     const wait = left >= 3600 ? `${Math.ceil(left / 3600)}시간` : left >= 60 ? `${Math.floor(left / 60)}분 ${left % 60}초` : `${left}초`;
-    const lead = navigator.onLine === false ? '인터넷 연결을 기다리고 있습니다.' : ['DAILY_LIMIT', 'PROVIDER_DAILY_LIMIT'].includes(folio.lastIssue) ? '채점 API의 오늘 사용 한도에 도달했습니다.' : folio.lastIssue === 'PROVIDER_BUSY' ? '채점 API의 다음 요청을 기다리고 있습니다.' : 'Gemini 응답을 기다리고 있습니다.';
+    const lead = navigator.onLine === false ? '인터넷 연결을 기다리고 있습니다.' : ['DAILY_LIMIT', 'PROVIDER_DAILY_LIMIT'].includes(folio.lastIssue) ? '채점 API의 오늘 사용 한도에 도달했습니다.' : '채점 서버의 응답을 기다리고 있습니다.';
     grab('submission-status').textContent = `${lead} ${wait} 뒤 자동으로 다시 요청합니다.`;
   }
   function resumePending() {
@@ -158,10 +162,15 @@
       sending = false; locked = false; defer(new Error('OFFLINE')); resumePending(); return;
     }
     grab('retry-feedback').hidden = true;
-    const status = grab('submission-status'); status.classList.remove('is-error'); status.textContent = (auto ? '연습 시간이 끝났습니다. ' : '') + '답안을 제출하고 Gemini 피드백을 기다리는 중입니다…';
+    const status = grab('submission-status'); status.classList.remove('is-error'); status.textContent = (auto ? '연습 시간이 끝났습니다. ' : '') + '제출한 답안의 Codex 채점 결과를 확인하고 있습니다…';
     try {
       await connect();
       const feedback = await packet({ task: 'assess', pass: folio.pass, dialect: folio.dialect, sheet: folio.sheet });
+      if (feedback.edition === EDITION && feedback.provider === 'codex' && ['queued', 'grading'].includes(feedback.state)) {
+        folio.queuePending = true; folio.queueState = feedback.state; folio.codexSwitched = true;
+        folio.nextRetryAt = Date.now() + 5000; folio.retryPaused = false; folio.retryAttempt = 0;
+        persist(); return;
+      }
       if (feedback.edition !== EDITION || !Array.isArray(feedback.tiles) || !Number.isFinite(feedback.earned) || feedback.ceiling !== 14) throw Error('BAD_FEEDBACK');
       folio.feedback = feedback; persist(); showFeedback();
     } catch (error) {
@@ -170,7 +179,7 @@
       if (retryable && !['EDITION_CHANGED', 'MODEL_MISMATCH', 'BAD_SHEET', 'FEEDBACK_NOT_CONFIGURED'].includes(error.message)) defer(error);
       else {
         folio.retryPaused = true; folio.lastIssue = error.message; persist();
-        status.textContent = error.message === 'MODEL_MISMATCH' || error.message === 'FEEDBACK_NOT_CONFIGURED' ? '채점 서버 설정 확인이 필요합니다. 답안은 보관했습니다.' : friendly(error);
+        status.textContent = error.message === 'CODEX_CLOSED' ? '오늘의 Codex 채점 운영 시간이 끝났습니다. 답안은 저장했습니다.' : error.message === 'MODEL_MISMATCH' || error.message === 'FEEDBACK_NOT_CONFIGURED' ? '채점 서버 설정 확인이 필요합니다. 답안은 보관했습니다.' : friendly(error);
         status.classList.add('is-error'); grab('retry-feedback').hidden = false;
       }
     }
@@ -188,7 +197,7 @@
     clearTimeout(retryClock);
     grab('welcome').hidden = true; grab('workspace').hidden = true; grab('feedback-view').hidden = false;
     grab('score-summary').textContent = `${folio.feedback.earned} / 14점`;
-    grab('feedback-note').textContent = FEEDBACK_NOTE;
+    grab('feedback-note').textContent = folio.feedback.provider === 'codex' ? FEEDBACK_NOTE : folio.feedback.note || '저장된 채점 결과입니다.';
     grab('feedback-tiles').replaceChildren();
     leaves.forEach((leaf, index) => {
       const rows = folio.feedback.tiles.filter(t => t.key === leaf || leaf === 'ink' && t.key === 'cost');
@@ -279,7 +288,11 @@
   grab('download-draft').onclick = grab('download-practice').onclick;
   grab('resume-practice').hidden = !restore();
   const saved = restore();
-  if (saved?.sent && !saved.feedback) { folio = saved; showWorkspace(); grab('retry-feedback').hidden = false; resumePending(); }
+  if (saved?.sent && !saved.feedback) {
+    folio = saved;
+    if (!folio.codexSwitched) { folio.codexSwitched = true; folio.nextRetryAt = 0; folio.retryPaused = false; folio.lastIssue = ''; persist(); }
+    showWorkspace(); grab('retry-feedback').hidden = false; resumePending();
+  }
   setInterval(tick, 1000);
   window.addEventListener('online', () => { if (pending() && folio.lastIssue === 'OFFLINE') folio.nextRetryAt = 0; resumePending(); });
   document.addEventListener('visibilitychange', () => { if (!document.hidden) resumePending(); });

@@ -1,5 +1,6 @@
 import { assess, cleanSheet, EDITION, fail } from '../core.mjs';
 import { blobRepository, createMeter, digest } from '../meter.mjs';
+import { createCodexQueue } from '../codex-queue.mjs';
 const allowed = new Set(['https://sangdon-park.github.io']);
 export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_API_KEY } = {}) {
   return async (req, res) => {
@@ -50,4 +51,33 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
     }
   };
 }
-export default buildGateway();
+// Production only accepts/polls isolated Codex jobs. No Gemini fallback.
+export function buildCodexGateway({ repo = blobRepository(), queue = createCodexQueue(repo), meter = createMeter(repo) } = {}) {
+  return async (req, res) => {
+    const origin = req.headers.origin;
+    res.setHeader('Cache-Control', 'no-store'); res.setHeader('Vary', 'Origin');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    if (!allowed.has(origin)) return res.status(403).json({ problem: 'ORIGIN_DENIED' });
+    res.setHeader('Access-Control-Allow-Origin', origin); res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); res.setHeader('Access-Control-Expose-Headers', 'Retry-After');
+    if (req.method === 'OPTIONS') return res.status(204).end();
+    if (req.method !== 'POST') return res.status(405).json({ problem: 'METHOD_DENIED' });
+    try {
+      let payload = req.body;
+      if (typeof payload === 'string') { if (Buffer.byteLength(payload) > 32000) throw fail('BAD_SHEET'); try { payload = JSON.parse(payload); } catch { throw fail('BAD_SHEET'); } }
+      if (!payload || typeof payload !== 'object' || Array.isArray(payload) || Buffer.byteLength(JSON.stringify(payload)) > 32000 || !['begin', 'assess'].includes(payload.task)) throw fail('BAD_SHEET');
+      if (payload.edition !== EDITION) throw fail('EDITION_CHANGED', 409);
+      const ip = String(req.headers['x-vercel-forwarded-for'] || req.headers['x-real-ip'] || 'unknown').split(',')[0].trim().slice(0, 64);
+      if (payload.task === 'begin') return res.status(200).json({ edition: EDITION, provider: 'codex', ...await meter.begin(ip) });
+      const feedback = await queue.submit(payload.pass, cleanSheet(payload.sheet, payload.dialect), payload.dialect, ip);
+      if (feedback.state) { res.setHeader('Retry-After', '5'); return res.status(202).json(feedback); }
+      return res.status(200).json(feedback);
+    } catch (error) {
+      const problem = error.tag || 'TEMPORARY_FAILURE', retryable = error.retryable ?? ['TEMPORARY_FAILURE', 'TRY_LATER', 'DAILY_LIMIT', 'INVALID_PASS'].includes(problem);
+      const retryAfterSeconds = error.retryAfterSeconds || 5;
+      if (retryable) res.setHeader('Retry-After', String(retryAfterSeconds));
+      return res.status(error.status || 503).json({ problem, retryable, ...(retryable ? { retryAfterSeconds } : {}) });
+    }
+  };
+}
+export default buildCodexGateway();
