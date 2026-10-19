@@ -198,6 +198,7 @@
     grab('welcome').hidden = true; grab('workspace').hidden = true; grab('feedback-view').hidden = false;
     grab('score-summary').textContent = `${folio.feedback.earned} / 14점`;
     grab('feedback-note').textContent = folio.feedback.provider === 'codex' ? FEEDBACK_NOTE : folio.feedback.note || '저장된 채점 결과입니다.';
+    grab('regrade-codex').hidden = folio.feedback.provider === 'codex';
     grab('feedback-tiles').replaceChildren();
     leaves.forEach((leaf, index) => {
       const rows = folio.feedback.tiles.filter(t => t.key === leaf || leaf === 'ink' && t.key === 'cost');
@@ -275,6 +276,16 @@
   grab('cancel-send').onclick = () => grab('send-dialog').close();
   grab('confirm-send').onclick = () => { grab('send-dialog').close(); send(); };
   grab('retry-feedback').onclick = () => { folio.retryPaused = false; folio.nextRetryAt = 0; persist(); send(); };
+  function recoverCodex() {
+    folio = restore(); if (!folio?.sent) return;
+    if (folio.feedback?.provider === 'codex') { showFeedback(); return; }
+    if (folio.feedback) folio.previousFeedback = [...(folio.previousFeedback || []), { savedAt: new Date().toISOString(), feedback: folio.feedback }];
+    folio.feedback = null; folio.codexSwitched = true; folio.retryPaused = false;
+    folio.nextRetryAt = 0; folio.retryAttempt = 0; folio.queuePending = false;
+    persist(); showWorkspace(); send();
+  }
+  grab('recover-codex').onclick = recoverCodex;
+  grab('regrade-codex').onclick = recoverCodex;
   grab('pause-feedback').onclick = () => {
     folio.retryPaused = !folio.retryPaused; clearTimeout(retryClock); persist();
     grab('pause-feedback').textContent = folio.retryPaused ? '자동 재시도 이어가기' : '자동 재시도 일시정지';
@@ -284,10 +295,11 @@
   grab('try-examples').onclick = examples;
   grab('stop-examples').onclick = () => { generation++; stopRunner(); grab('example-output').textContent = '사용자가 실행을 중단했습니다.'; };
   grab('restart-practice').onclick = () => { if (confirm('이 브라우저의 체험 답안과 결과를 지우고 다시 시작할까요?')) { localStorage.removeItem(DRAWER); folio = null; grab('feedback-view').hidden = true; grab('welcome').hidden = false; grab('resume-practice').hidden = true; } };
-  grab('download-practice').onclick = () => { const exportData = { practiceOnly: true, savedAt: new Date().toISOString(), dialect: folio.dialect, answers: folio.sheet, feedback: folio.feedback }; const url = URL.createObjectURL(new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })); const link = document.createElement('a'); link.href = url; link.download = 'algorithm-preview-my-answers.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); };
+  grab('download-practice').onclick = () => { const exportData = { practiceOnly: true, savedAt: new Date().toISOString(), dialect: folio.dialect, answers: folio.sheet, feedback: folio.feedback, previousFeedback: folio.previousFeedback || [] }; const url = URL.createObjectURL(new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })); const link = document.createElement('a'); link.href = url; link.download = 'algorithm-preview-my-answers.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); };
   grab('download-draft').onclick = grab('download-practice').onclick;
   grab('resume-practice').hidden = !restore();
   const saved = restore();
+  grab('recover-codex').hidden = !saved?.sent || saved.feedback?.provider === 'codex';
   if (saved?.sent && !saved.feedback) {
     folio = saved;
     if (!folio.codexSwitched) { folio.codexSwitched = true; folio.nextRetryAt = 0; folio.retryPaused = false; folio.lastIssue = ''; persist(); }

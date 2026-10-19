@@ -7,7 +7,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>중간고사 미리보기 · 알고리즘</title>
   <link rel="stylesheet" href="practice.css?v=20261019-feedback">
-  <script src="preview.js?v=20261019-codex-live" defer></script>
+  <script src="preview.js?v=20261019-codex-recovery" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -41,6 +41,7 @@
           <p class="privacy-note">제출한 답안과 코드는 Codex가 채점합니다. 채점 대기 중에는 답안을 수정할 수 없으며, 결과는 자동으로 표시됩니다. 이름·학번·연락처 등 개인정보는 쓰지 마세요.</p>
           <button id="begin-practice" class="primary" type="button">5문항 체험 시작하기 <span aria-hidden="true">→</span></button>
           <button id="resume-practice" class="quiet" type="button" hidden>저장한 체험 이어서 보기</button>
+          <button id="recover-codex" class="secondary" type="button" hidden>저장한 답안으로 Codex 채점</button>
         </div>
       </div>
     </section>
@@ -132,7 +133,7 @@
         </div>
       </div>
       <div id="submission-status" class="submission-status" role="status" aria-live="polite"></div>
-      <button id="retry-feedback" class="secondary" type="button" hidden>저장한 답안으로 채점 다시 요청</button>
+      <button id="retry-feedback" class="secondary" type="button" hidden>저장한 답안으로 Codex 채점</button>
       <button id="pause-feedback" class="quiet" type="button" hidden>자동 재시도 일시정지</button>
       <p id="retry-help" class="field-help" hidden>이 창에서 자동으로 다시 요청합니다. 창을 닫아도 다시 열면 이어서 채점합니다.</p>
       <button id="download-draft" class="quiet" type="button">현재 답안 내려받기</button>
@@ -142,7 +143,7 @@
       <p class="eyebrow">사전 체험 완료</p><h1>답안 제출을 마쳤습니다</h1>
       <p id="score-summary" class="score-summary"></p><p id="feedback-note" class="privacy-note"></p>
       <div id="feedback-tiles"></div>
-      <div class="result-actions"><button id="download-practice" class="secondary" type="button">내 답안·결과 내려받기</button><button id="restart-practice" class="primary" type="button">처음부터 다시 체험</button><a class="back-link" href="/courses/algorithms-2026-fall.html">강좌로 돌아가기 →</a></div>
+      <div class="result-actions"><button id="download-practice" class="secondary" type="button">내 답안·결과 내려받기</button><button id="regrade-codex" class="primary" type="button" hidden>저장한 답안으로 Codex 채점</button><button id="restart-practice" class="primary" type="button">처음부터 다시 체험</button><a class="back-link" href="/courses/algorithms-2026-fall.html">강좌로 돌아가기 →</a></div>
     </section>
     <footer class="page-footer">본시험 접속과 본인 확인은 수업 안내를 따라 주세요.</footer>
   </main>

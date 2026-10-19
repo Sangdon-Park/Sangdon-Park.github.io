@@ -43,10 +43,9 @@ export function createCodexQueue(repo, now = () => Date.now()) {
       const saved = await repo.read(jobPath(id));
       if (saved?.value.fingerprint && saved.value.fingerprint !== fingerprint) throw fail('ALREADY_SENT', 409);
       if (saved?.value.feedback) return saved.value.feedback;
-      // Preserve old successfully graded submissions; new/failed ones use Codex.
+      // Keep old ticket feedback untouched; Codex regrades live in separate jobs.
       if (!saved && ticket.value.phase === 'done') {
         if (ticket.value.fingerprint !== fingerprint) throw fail('ALREADY_SENT', 409);
-        return ticket.value.feedback;
       }
       const control = await open();
       if (!saved) {
