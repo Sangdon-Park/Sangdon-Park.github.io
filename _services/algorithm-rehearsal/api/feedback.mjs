@@ -13,6 +13,7 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
     res.setHeader('Access-Control-Expose-Headers', 'Retry-After');
     if (req.method === 'OPTIONS') return res.status(204).end();
     if (req.method !== 'POST') return res.status(405).json({ problem: 'METHOD_DENIED' });
+    const started = Date.now();
     let pass, lease, quota, reserved = false;
     try {
       if (!key || !process.env.BLOB_READ_WRITE_TOKEN && !meter) throw fail('FEEDBACK_NOT_CONFIGURED', 503);
@@ -33,13 +34,15 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
       reserved = true; lease = reservation.lease;
       const feedback = await grader(sheet, payload.dialect, { key });
       await quota.finish(pass, feedback, lease); reserved = false;
+      console.info('Rehearsal grading completed', JSON.stringify({ model: feedback.model, elapsedMs: Date.now() - started }));
       return res.status(200).json(feedback);
     } catch (error) {
       const tag = error.tag || 'TEMPORARY_FAILURE';
       const status = error.status || 503;
-      const retryable = error.retryable ?? ['TEMPORARY_FAILURE', 'TRY_LATER', 'DAILY_LIMIT', 'PROVIDER_BUSY', 'PROVIDER_TIMEOUT', 'PROVIDER_UNAVAILABLE', 'UNUSABLE_FEEDBACK', 'INVALID_PASS'].includes(tag);
+      if (reserved) console.warn('Rehearsal grading deferred', JSON.stringify({ problem: tag, elapsedMs: Date.now() - started }));
+      const retryable = error.retryable ?? ['TEMPORARY_FAILURE', 'TRY_LATER', 'DAILY_LIMIT', 'PROVIDER_DAILY_LIMIT', 'PROVIDER_BUSY', 'PROVIDER_TIMEOUT', 'PROVIDER_UNAVAILABLE', 'UNUSABLE_FEEDBACK', 'INVALID_PASS'].includes(tag);
       const retryAfterSeconds = retryable ? Math.min(86400, Math.max(1, Math.ceil(error.retryAfterSeconds || (tag === 'INVALID_PASS' ? 1 : 30)))) : 0;
-      if (error.providerCooldown && quota?.deferProvider) { try { await quota.deferProvider(retryAfterSeconds); } catch {} }
+      if (error.providerCooldown && quota?.deferProvider) { try { await quota.deferProvider(retryAfterSeconds, tag); } catch {} }
       if (reserved) { try { await quota.finish(pass, null, lease, retryAfterSeconds || 30); } catch {} }
       if (retryable) res.setHeader('Retry-After', String(retryAfterSeconds));
       // Never return upstream errors, prompts, submitted code, keys, or stack traces.

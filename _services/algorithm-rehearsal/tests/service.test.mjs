@@ -159,6 +159,18 @@ test('provider quotas carry their actual retry delay and long requests are allow
   }) }), error => error.tag === 'PROVIDER_BUSY' && error.retryable && error.retryAfterSeconds === 3600 && error.providerCooldown);
   await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => { throw Object.assign(new Error('timeout'), { name: 'TimeoutError' }); } }), error => error.tag === 'PROVIDER_TIMEOUT' && error.retryable);
 });
+
+test('provider daily quota remains identifiable throughout the shared cooldown', async () => {
+  await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => ({
+    ok: false, status: 429, json: async () => ({ error: { details: [
+      { violations: [{ quotaId: 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', quotaValue: '20' }] },
+      { '@type': 'type.googleapis.com/google.rpc.RetryInfo', retryDelay: '7200s' }
+    ] } })
+  }) }), error => error.tag === 'PROVIDER_DAILY_LIMIT' && error.retryAfterSeconds === 7200);
+  const meter = createMeter(repository()), { pass } = await meter.begin('one');
+  await meter.deferProvider(7200, 'PROVIDER_DAILY_LIMIT');
+  await assert.rejects(() => meter.reserve(pass, 'one', 'same'), error => error.tag === 'PROVIDER_DAILY_LIMIT' && error.retryAfterSeconds > 7100);
+});
 test('old or missing editions are rejected before allocating storage or grading', async () => {
   let calls = 0;
   const handler = buildGateway({ key: 'fixture', meter: { begin: async () => { calls++; } }, grader: async () => { calls++; } });

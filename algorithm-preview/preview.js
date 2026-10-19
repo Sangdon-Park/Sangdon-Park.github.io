@@ -122,8 +122,14 @@
       return;
     }
     const left = Math.max(0, Math.ceil(((folio.nextRetryAt || Date.now()) - Date.now()) / 1000));
+    if (left >= 3600) {
+      const when = new Date(folio.nextRetryAt).toLocaleString('ko-KR', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const reason = ['DAILY_LIMIT', 'PROVIDER_DAILY_LIMIT'].includes(folio.lastIssue) ? '채점 API의 오늘 사용 한도에 도달했습니다.' : '채점 API에서 지정한 시간까지 대기합니다.';
+      grab('submission-status').textContent = `${reason} 다음 자동 요청: ${when}. 답안은 저장했습니다.`;
+      return;
+    }
     const wait = left >= 3600 ? `${Math.ceil(left / 3600)}시간` : left >= 60 ? `${Math.floor(left / 60)}분 ${left % 60}초` : `${left}초`;
-    const lead = navigator.onLine === false ? '인터넷 연결을 기다리고 있습니다.' : folio.lastIssue === 'DAILY_LIMIT' || folio.lastIssue === 'PROVIDER_BUSY' ? '채점 요청이 몰려 대기 중입니다.' : 'Gemini 응답을 기다리고 있습니다.';
+    const lead = navigator.onLine === false ? '인터넷 연결을 기다리고 있습니다.' : ['DAILY_LIMIT', 'PROVIDER_DAILY_LIMIT'].includes(folio.lastIssue) ? '채점 API의 오늘 사용 한도에 도달했습니다.' : folio.lastIssue === 'PROVIDER_BUSY' ? '채점 API의 다음 요청을 기다리고 있습니다.' : 'Gemini 응답을 기다리고 있습니다.';
     grab('submission-status').textContent = `${lead} ${wait} 뒤 자동으로 다시 요청합니다.`;
   }
   function resumePending() {

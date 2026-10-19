@@ -34,8 +34,9 @@ export function createMeter(repo, now = () => Date.now()) {
     });
   }
   return {
-    async deferProvider(seconds) {
-      await revise(repo, providerPath, old => ({ until: Math.max(old?.until || 0, now() + Math.min(86400, Math.max(1, seconds)) * 1000) }));
+    async deferProvider(seconds, problem = 'PROVIDER_BUSY') {
+      const until = now() + Math.min(86400, Math.max(1, seconds)) * 1000;
+      await revise(repo, providerPath, old => old?.until > until ? old : { until, problem: problem === 'PROVIDER_DAILY_LIMIT' ? problem : 'PROVIDER_BUSY' });
     },
     async begin(ip) {
       // Independent private store: contains no examination records or credentials.
@@ -63,7 +64,7 @@ export function createMeter(repo, now = () => Date.now()) {
       }
       if (old.value.retryAt > now()) throw fail('TRY_LATER', 429, { retryAfterSeconds: secondsUntil(old.value.retryAt) });
       const provider = await repo.read(providerPath);
-      if (provider?.value.until > now()) throw fail('PROVIDER_BUSY', 503, { retryAfterSeconds: secondsUntil(provider.value.until) });
+      if (provider?.value.until > now()) throw fail(provider.value.problem || 'PROVIDER_BUSY', 503, { retryAfterSeconds: secondsUntil(provider.value.until) });
       const lease = randomBytes(16).toString('hex');
       try { await repo.write(path, { ...old.value, phase: 'busy', tries: (old.value.tries || 0) + 1, fingerprint, lease, busyUntil: now() + LEASE_MS, until: now() + TICKET_MS }, old.etag); }
       catch (error) { if (error.tag === 'CONFLICT') throw fail('TRY_LATER', 429); throw error; }

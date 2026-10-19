@@ -87,6 +87,7 @@ async function until(check, label) {
       let calls = 0;
       const { page, context } = await setup(route => ++calls === 1 ? route.fulfill({ status: 429, json: { problem: 'DAILY_LIMIT', retryable: true, retryAfterSeconds: 3600 } }) : route.fulfill({ json: feedback }));
       await until(async () => (await state(page)).retryAttempt === 1, 'long quota delay');
+      assert.match(await page.textContent('#submission-status'), /오늘 사용 한도.*다음 자동 요청/);
       await page.clock.fastForward(120000); assert.equal(calls, 1, 'no repeated quota calls');
       await next(page, 1); await until(async () => !!(await state(page)).feedback, 'quota resumes');
       await context.close();

@@ -32,8 +32,10 @@ export function verifyReview(raw, sheet) {
   const seen = new Set();
   return raw.tiles.map(tile => {
     const spec = rubric.find(row => row.key === tile.key);
-    if (!spec || seen.has(tile.key) || !Number.isInteger(tile.earned) || tile.earned < 0 || tile.earned > spec.maximum ||
-        typeof tile.tip !== 'string' || !tile.tip.trim() || tile.tip.length > 900 || !Array.isArray(tile.quotes) || tile.quotes.length > 4) reject('tile-shape');
+    if (!spec || seen.has(tile.key)) reject('unknown-or-repeated-key');
+    if (!Number.isInteger(tile.earned) || tile.earned < 0 || tile.earned > spec.maximum) reject('points-out-of-bounds');
+    if (typeof tile.tip !== 'string' || !tile.tip.trim() || tile.tip.length > 900) reject('feedback-text-shape');
+    if (!Array.isArray(tile.quotes) || tile.quotes.length > 4) reject('evidence-list-shape');
     seen.add(tile.key);
     if (!sheet[tile.key] || tile.key === 'cost' && !sheet.ink) {
       return { key: tile.key, earned: 0, ceiling: spec.maximum, tip: tile.key === 'cost' && !sheet.ink ? '코드를 제출하지 않아 시간 복잡도 점수는 0점입니다.' : '답안을 제출하지 않았습니다.' };
@@ -59,7 +61,7 @@ export async function assess(sheet, dialect, { key, fetcher = fetch } = {}) {
   try {
     response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${GRADING_MODEL}:generateContent`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
-      body: JSON.stringify({ systemInstruction: { parts: [{ text: instructions }] }, contents: [{ role: 'user', parts: [{ text: JSON.stringify({ rubric, dialect, answers: Object.fromEntries(rubric.map(r => [r.key, sheet[r.key]])) }) }] }],
+      body: JSON.stringify({ systemInstruction: { parts: [{ text: instructions + ' 완벽하다, 흠잡을 데 없다, 모범적이다 같은 과장된 칭찬과 일반적인 학습 격려를 생략하고 실제 답안 설명에 집중한다. 서술형과 코드형은 각 배점 요소에서 몇 점을 얻거나 놓쳤는지 구체적으로 짚는다.' }] }, contents: [{ role: 'user', parts: [{ text: JSON.stringify({ rubric, dialect, answers: Object.fromEntries(rubric.map(r => [r.key, sheet[r.key]])) }) }] }],
         generationConfig: { temperature: 0, maxOutputTokens: 5000, thinkingConfig: { thinkingLevel: 'low' }, responseMimeType: 'application/json', responseSchema: schema } })
     });
   } catch (error) {
@@ -73,10 +75,16 @@ export async function assess(sheet, dialect, { key, fetcher = fetch } = {}) {
     try { details = (await response.json()).error?.details || []; } catch {}
     const delay = details.find(d => d['@type']?.endsWith('/google.rpc.RetryInfo'))?.retryDelay;
     const daily = details.some(d => d.violations?.some(v => /PerDay/.test(v.quotaId || '')));
+    const quota = details.flatMap(d => d.violations || []).map(v => ({
+      metric: String(v.quotaMetric || '').replace(/[^a-zA-Z0-9_./-]/g, '').slice(0, 160),
+      id: String(v.quotaId || '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 160),
+      limit: /^\d+$/.test(String(v.quotaValue)) ? String(v.quotaValue).slice(0, 12) : undefined
+    }));
+    if (quota.length) console.warn('Rehearsal provider quota', JSON.stringify(quota));
     const headerDelay = Number(response.headers?.get('retry-after')) || 0;
     const seconds = Math.max(headerDelay, Number.parseFloat(delay) || (daily ? 86400 : 30));
     const retryable = response.status === 429 || response.status >= 500;
-    throw fail(response.status === 429 ? 'PROVIDER_BUSY' : 'PROVIDER_UNAVAILABLE', 503, {
+    throw fail(response.status === 429 ? daily ? 'PROVIDER_DAILY_LIMIT' : 'PROVIDER_BUSY' : 'PROVIDER_UNAVAILABLE', 503, {
       retryable, retryAfterSeconds: Math.min(86400, Math.max(1, Math.ceil(seconds))), providerCooldown: retryable
     });
   }
