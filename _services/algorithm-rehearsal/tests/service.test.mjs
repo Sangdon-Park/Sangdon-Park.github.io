@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanSheet, verifyReview, assess, fail, EDITION } from '../core.mjs';
+import { cleanSheet, verifyReview, assess, fail, EDITION, PROVIDER_TIMEOUT_MS } from '../core.mjs';
 import { createMeter } from '../meter.mjs';
 import { buildGateway } from '../api/feedback.mjs';
 
@@ -70,18 +70,22 @@ test('persistent quotas, single use, response replay, and expiry', async () => {
   assert.equal((await meter.reserve(pass, 'one', 'digest')).cached.earned, 14);
   await assert.rejects(() => meter.reserve(pass, 'one', 'different'), /ALREADY_SENT/);
   await assert.rejects(() => meter.reserve('0'.repeat(64), 'one', 'digest'), /INVALID_PASS/);
-  now += 3600001;
+  now += 7 * 86400000 + 1;
   await assert.rejects(() => meter.reserve(pass, 'one', 'digest'), /INVALID_PASS/);
   assert.ok(!JSON.stringify([...repo.rows]).includes('return -1'));
 });
-test('CAS only permits one concurrent reservation; retries capped', async () => {
+test('CAS only permits one concurrent reservation; retries continue beyond two failures', async () => {
   let now = 1800000000000;
   const meter = createMeter(repository(), () => now), { pass } = await meter.begin('one');
   const results = await Promise.allSettled([meter.reserve(pass, 'one', 'a'), meter.reserve(pass, 'one', 'a')]);
   assert.equal(results.filter(x => x.status === 'fulfilled').length, 1);
-  await meter.finish(pass, null); now += 21000;
-  await meter.reserve(pass, 'one', 'a'); await meter.finish(pass, null); now += 21000;
-  await assert.rejects(() => meter.reserve(pass, 'one', 'a'), /TRY_LATER/);
+  for (let n = 0; n < 4; n++) {
+    await meter.finish(pass, null);
+    await assert.rejects(() => meter.reserve(pass, 'one', 'a'), error => error.tag === 'TRY_LATER' && error.retryAfterSeconds > 0);
+    now += 31000; await meter.reserve(pass, 'one', 'a');
+  }
+  await meter.finish(pass, { earned: 14 });
+  assert.equal((await meter.reserve(pass, 'one', 'a')).cached.earned, 14);
 });
 test('per-address grade quota persists across new meter instances', async () => {
   let now = 1800000000000; const repo = repository();
@@ -115,7 +119,45 @@ test('provider failures never become a zero grade or leak errors', async () => {
   const handler = buildGateway({ key: 'fixture', meter: createMeter(repository()), grader: async () => { throw Error('SECRET_PROVIDER_TRACE'); } });
   const begun = await request(handler, { task: 'begin' });
   const response = await request(handler, { task: 'assess', pass: begun.value.pass, dialect: 'py', sheet: sheet() });
-  assert.equal(response.statusCode, 503); assert.deepEqual(response.value, { problem: 'TEMPORARY_FAILURE' });
+  assert.equal(response.statusCode, 503); assert.deepEqual(response.value, { problem: 'TEMPORARY_FAILURE', retryable: true, retryAfterSeconds: 30 });
+});
+test('an abandoned lease recovers and its old owner cannot overwrite the replacement', async () => {
+  let now = 1800000000000;
+  const meter = createMeter(repository(), () => now), { pass } = await meter.begin('one');
+  const first = await meter.reserve(pass, 'one', 'same');
+  now += 210001;
+  const second = await meter.reserve(pass, 'one', 'same');
+  assert.notEqual(first.lease, second.lease);
+  await assert.rejects(() => meter.finish(pass, { earned: 0 }, first.lease), /TRY_LATER/);
+  await meter.finish(pass, { earned: 14 }, second.lease);
+  assert.equal((await meter.reserve(pass, 'one', 'same')).cached.earned, 14);
+});
+test('legacy twice-failed tickets recover without discarding the submission', async () => {
+  let now = 1800000000000;
+  const repo = repository(), meter = createMeter(repo, () => now), { pass } = await meter.begin('one');
+  const [path, row] = [...repo.rows].find(([p]) => p.startsWith('passes/'));
+  await repo.write(path, { ...row.value, tries: 2, phase: 'busy' }, row.etag);
+  await assert.rejects(() => meter.reserve(pass, 'one', 'same'), error => error.retryAfterSeconds === 90);
+  now += 90001;
+  const reservation = await meter.reserve(pass, 'one', 'same');
+  await meter.finish(pass, { earned: 14 }, reservation.lease);
+  assert.equal((await meter.reserve(pass, 'one', 'same')).cached.earned, 14);
+});
+test('provider cooldown prevents new provider attempts and preserves the ticket', async () => {
+  let now = 1800000000000;
+  const repo = repository(), meter = createMeter(repo, () => now), { pass } = await meter.begin('one');
+  await meter.deferProvider(3600);
+  await assert.rejects(() => meter.reserve(pass, 'one', 'same'), error => error.tag === 'PROVIDER_BUSY' && error.retryAfterSeconds === 3600);
+  const row = [...repo.rows].find(([p]) => p.startsWith('passes/'))[1];
+  assert.equal(row.value.tries, 0);
+  now += 3600001; assert.ok((await meter.reserve(pass, 'one', 'same')).lease);
+});
+test('provider quotas carry their actual retry delay and long requests are allowed', async () => {
+  assert.equal(PROVIDER_TIMEOUT_MS, 120000);
+  await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => ({
+    ok: false, status: 429, json: async () => ({ error: { details: [{ '@type': 'type.googleapis.com/google.rpc.RetryInfo', retryDelay: '3600s' }] } })
+  }) }), error => error.tag === 'PROVIDER_BUSY' && error.retryable && error.retryAfterSeconds === 3600 && error.providerCooldown);
+  await assert.rejects(() => assess(sheet(), 'py', { key: 'fixture', fetcher: async () => { throw Object.assign(new Error('timeout'), { name: 'TimeoutError' }); } }), error => error.tag === 'PROVIDER_TIMEOUT' && error.retryable);
 });
 test('old or missing editions are rejected before allocating storage or grading', async () => {
   let calls = 0;

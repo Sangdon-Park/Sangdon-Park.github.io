@@ -6,8 +6,8 @@
   <meta name="description" content="1–4강 연습문제 5문항으로 알고리즘 중간고사 답안 작성과 제출을 연습합니다.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>중간고사 미리보기 · 알고리즘</title>
-  <link rel="stylesheet" href="practice.css?v=20261018-ch1-4">
-  <script src="preview.js?v=20261018-copy" defer></script>
+  <link rel="stylesheet" href="practice.css?v=20261019-feedback">
+  <script src="preview.js?v=20261019-auto-retry" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -133,6 +133,8 @@
       </div>
       <div id="submission-status" class="submission-status" role="status" aria-live="polite"></div>
       <button id="retry-feedback" class="secondary" type="button" hidden>저장한 답안으로 채점 다시 요청</button>
+      <button id="pause-feedback" class="quiet" type="button" hidden>자동 재시도 일시정지</button>
+      <p id="retry-help" class="field-help" hidden>이 창에서 자동으로 다시 요청합니다. 창을 닫아도 다시 열면 이어서 채점합니다.</p>
       <button id="download-draft" class="quiet" type="button">현재 답안 내려받기</button>
     </section>
 

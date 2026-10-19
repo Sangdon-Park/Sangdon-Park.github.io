@@ -10,9 +10,10 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Expose-Headers', 'Retry-After');
     if (req.method === 'OPTIONS') return res.status(204).end();
     if (req.method !== 'POST') return res.status(405).json({ problem: 'METHOD_DENIED' });
-    let pass, reserved = false;
+    let pass, lease, quota, reserved = false;
     try {
       if (!key || !process.env.BLOB_READ_WRITE_TOKEN && !meter) throw fail('FEEDBACK_NOT_CONFIGURED', 503);
       if (!/^application\/json(?:\s*;|$)/i.test(req.headers['content-type'] || '')) throw fail('BAD_SHEET');
@@ -21,7 +22,7 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
       if (!payload || Buffer.byteLength(JSON.stringify(payload)) > 32000) throw fail('BAD_SHEET');
       if (typeof payload !== 'object' || Array.isArray(payload) || !['begin', 'assess'].includes(payload.task)) throw fail('BAD_SHEET');
       if (payload.edition !== EDITION) throw fail('EDITION_CHANGED', 409);
-      const quota = meter || createMeter(blobRepository());
+      quota = meter || createMeter(blobRepository());
       const ip = String(req.headers['x-vercel-forwarded-for'] || req.headers['x-real-ip'] || 'unknown').split(',')[0].trim().slice(0, 64);
       if (payload.task === 'begin') return res.status(200).json({ edition: EDITION, ...await quota.begin(ip) });
       if (payload.task !== 'assess') throw fail('BAD_SHEET');
@@ -29,17 +30,20 @@ export function buildGateway({ meter, grader = assess, key = process.env.GEMINI_
       pass = payload.pass;
       const reservation = await quota.reserve(pass, ip, digest(JSON.stringify([EDITION, payload.dialect, sheet])));
       if (reservation.cached) return res.status(200).json(reservation.cached);
-      reserved = true;
+      reserved = true; lease = reservation.lease;
       const feedback = await grader(sheet, payload.dialect, { key });
-      await quota.finish(pass, feedback); reserved = false;
+      await quota.finish(pass, feedback, lease); reserved = false;
       return res.status(200).json(feedback);
     } catch (error) {
-      if (reserved) { try { await (meter || createMeter(blobRepository())).finish(pass, null); } catch {} }
       const tag = error.tag || 'TEMPORARY_FAILURE';
       const status = error.status || 503;
-      if (status === 429) res.setHeader('Retry-After', '30');
+      const retryable = error.retryable ?? ['TEMPORARY_FAILURE', 'TRY_LATER', 'DAILY_LIMIT', 'PROVIDER_BUSY', 'PROVIDER_TIMEOUT', 'PROVIDER_UNAVAILABLE', 'UNUSABLE_FEEDBACK', 'INVALID_PASS'].includes(tag);
+      const retryAfterSeconds = retryable ? Math.min(86400, Math.max(1, Math.ceil(error.retryAfterSeconds || (tag === 'INVALID_PASS' ? 1 : 30)))) : 0;
+      if (error.providerCooldown && quota?.deferProvider) { try { await quota.deferProvider(retryAfterSeconds); } catch {} }
+      if (reserved) { try { await quota.finish(pass, null, lease, retryAfterSeconds || 30); } catch {} }
+      if (retryable) res.setHeader('Retry-After', String(retryAfterSeconds));
       // Never return upstream errors, prompts, submitted code, keys, or stack traces.
-      return res.status(status).json({ problem: tag });
+      return res.status(status).json({ problem: tag, retryable, ...(retryable ? { retryAfterSeconds } : {}) });
     }
   };
 }

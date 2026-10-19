@@ -62,10 +62,15 @@ const server = http.createServer((req, res) => {
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'mobile horizontal overflow');
     await page.screenshot({ path: path.join(__dirname, 'coding-mobile.png'), fullPage: true });
     await page.click('#send-practice'); assert.ok(await page.locator('#send-dialog').isVisible()); await page.click('#confirm-send');
-    await page.waitForSelector('#retry-feedback:not([hidden])'); assert.match(await page.textContent('#submission-status'), /작성한 답안은 그대로 유지/);
+    await page.waitForSelector('#retry-feedback:not([hidden])'); assert.match(await page.textContent('#submission-status'), /자동으로 다시 요청/);
     await page.click('#retry-feedback'); await page.waitForSelector('#feedback-view:not([hidden])');
     assert.equal(await page.locator('.result-tile').count(), 5); assert.match(await page.textContent('#score-summary'), /14 \/ 14/);
     assert.match(await page.textContent('#feedback-note'), /답안과 코드를 읽고 채점/);
+    assert.equal(await page.locator('.reference-answer').count(), 6);
+    assert.equal(await page.locator('.submitted-answer').count(), 6);
+    assert.match(await page.textContent('.reference-answer code'), /def first_index/);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'feedback mobile horizontal overflow');
+    await page.screenshot({ path: path.join(__dirname, 'feedback-mobile.png'), fullPage: true });
     assert.equal(begins, 1); assert.equal(sends, 2);
     const downloaded = page.waitForEvent('download'); await page.click('#download-practice'); assert.equal((await downloaded).suggestedFilename(), 'algorithm-preview-my-answers.json');
     await page.reload(); await page.click('#resume-practice'); assert.ok(await page.locator('#feedback-view').isVisible());
