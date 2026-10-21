@@ -1,5 +1,6 @@
 import {hintInput,generateHint} from './ai-hint.mjs';
 import {visit,requestIP} from './analytics.mjs';
+import {peerReview} from './peer-review.mjs';
 export const TOTALS={"P01":10,"P02":21,"P03":7,"P05":7,"P06":7,"P07":7,"P08":8,"P09":11,"P10":11,"P11":8,"P12":9,"P13":6,"P14":6,"P15":7,"P16":6,"P17":6,"P18":7,"P19":7,"P20":4,"P21":5,"P22":8,"P23":6,"P24":5,"P25":5,"P26":5,"P27":7,"P28":7,"P29":6,"P30":7,"P31":6,"P32":5,"P33":5,"P34":7,"P35":7,"P36":6,"P37":6,"P38":7,"P39":7,"P40":7,"P41":7,"P42":8,"P43":6,"P44":5,"P45":5,"P46":7,"P47":12,"P48":12,"P51":6,"P53":11,"P54":11,"P55":6,"P56":4,"P57":5,"P58":11,"P59":4,"P60":5,"P61":4,"P62":5,"P87":31,"P88":31,"P89":7,"P65":5,"P66":11,"P67":6,"P68":4,"P69":5,"P70":5,"P71":5,"P72":5,"P73":4,"P74":3,"P75":4,"P76":5,"P77":6,"P78":6,"P79":6,"P80":5,"P81":5,"P82":5,"P83":6,"P84":5,"P85":6,"P86":6};
 export class HttpError extends Error{constructor(status,message,details={}){super(message);this.status=status;Object.assign(this,details);}}
 export const fail=(status,message,details)=>{throw new HttpError(status,message,details);};
@@ -124,6 +125,7 @@ export function createHandler({env,fetcher=fetch}){
       if(action==='logout'){const auth=await session(req);await db(table('sessions')+'?token_hash=eq.'+auth.token_hash,'DELETE');return respond({ok:true});}
       const admin=String(action).startsWith('admin-'),auth=await session(req,admin?'admin':'student');
       await limit('session:'+auth.token_hash,60,admin?60:180);
+      if(String(action).startsWith('peer-')||String(action).startsWith('admin-peer-'))return respond(await peerReview({action,body,auth,db,limit,fail,draft,activeIds:new Set(Object.keys(TOTALS))}));
       if(action==='ai-hint'){
         draft(body);
         const input=hintInput(body,fail);

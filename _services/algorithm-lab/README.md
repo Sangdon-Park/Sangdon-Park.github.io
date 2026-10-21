@@ -1,5 +1,31 @@
 # Algorithm Lab classroom service
 
+## Anonymous pair code review (2026-10-21)
+
+`/algorithm-lab/peer-review.html` snapshots a voluntarily shared practice solution.
+The server places students in progress quartiles within their section, based on
+distinct solved problems recorded by the service. Ties stay together. Within the
+same section, problem, answer language and quartile, it pairs the nearest solution
+counts. Unmatched students wait; matching never silently switches sections or languages.
+The SQL enqueue RPC serializes matching and preserves idempotency.
+
+Partners exchange anonymous reviews. Names, student numbers, partner record IDs
+and progress bands are omitted from student responses. A student's own name and
+number are rejected in the initial shared code/explanation. Students are also
+instructed to omit identifying details from feedback. Both students submit their
+reviews before received feedback is released. Original code, structured feedback,
+revision decisions, final code and reflection are preserved on the server.
+
+Instructor view `?view=teacher` requires an existing admin session. Instructors
+can see identities, record a 0–5 rubric assessment, and export evidence JSON or
+summary CSV. These records support assessment of regular coding practice; the
+feature does not change existing course grade weights or examination records.
+Practice browser-check results remain the progress proxy described below.
+
+Apply `peer-review-migration.sql`, then deploy the Edge Function and static files.
+Run `node _services/algorithm-lab/tests/peer-review.mjs` for authorization,
+anonymity, matching bands, feedback release, reflection and grading checks.
+
 The GitHub Pages UI remains in `/algorithm-lab/`. This directory starts with `_`
 and is not published as a Jekyll site directory. It contains the reproducible
 Supabase schema and Edge Function source, without credentials.
