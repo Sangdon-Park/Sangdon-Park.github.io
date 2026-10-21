@@ -3,6 +3,8 @@ const $=id=>document.getElementById(id),params=new URLSearchParams(location.sear
 const english=(params.get('lang')||localStorage.getItem('dju-algolab-locale'))==='en';
 const L=(ko,en)=>english?en:ko;
 let account=null,token='',state=null,records=[],selected=null,dirty=false,loading=false,pollTimer=null,newId=crypto.randomUUID();
+let problemBank=[];
+const bankReady=Promise.all(['problems.json','chapter-02.json','exercise-problems.json'].map(async file=>{const r=await fetch(file);if(!r.ok)throw Error('Problem bank unavailable');return r.json();})).then(banks=>{problemBank=banks.flat();}).catch(()=>{});
 try{account=JSON.parse(localStorage.getItem('dju-algolab-session'));}catch{}
 token=teacher?sessionStorage.getItem('dju-algolab-admin')||'':account?.token||'';
 const el=(parent,tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;parent.append(node);return node;};
@@ -34,6 +36,7 @@ function feedbackBlock(parent,title,feedback){
  el(parent,'h3',title);for(const [key,ko,en] of [['strength','좋은 점','Strengths'],['improvement','개선 의견과 근거','Improvements and reasons'],['test','추가 테스트와 예상 결과','Additional test and expected output'],['complexity','시간 복잡도','Time complexity']]){el(parent,'strong',L(ko,en));el(parent,'p',feedback[key]);}
 }
 async function openReview(id,silent=false){
+ await bankReady;
  const data=await api(teacher?'admin-peer-detail':'peer-detail',{id});
  if(silent&&selected?.id!==id)return;
  if(silent&&dirty)return;
@@ -45,6 +48,13 @@ function renderDetail(){
  el(root,'p',phase(r),'pair-status');
  if(teacher)el(root,'p',`${r.owner?.section} / ${r.owner?.student_no} ${r.owner?.name} · ${L('짝','Partner')}: ${r.reviewer?.name||L('대기','Waiting')}`);
  el(root,'p',L('상대에게 이름·학번은 표시되지 않습니다. 코드·설명·피드백에도 본인이나 친구의 이름·학번을 쓰지 마세요.','Names and student numbers are hidden. Do not include identities in code, explanations, or feedback.'),'muted');
+ const problem=problemBank.find(p=>p.id===r.problem);
+ if(problem){
+  el(root,'h3',(problem.chapter||1)+L('강 · ',' / ')+(problem.exercise?L('연습문제 ','Exercise ')+problem.exercise+' · ':'')+problem.title);
+  const view=r.language==='c'?(problem.c||C_PROBLEMS[problem.id]||problem):r.language==='java'?javaView(problem):problem;
+  const prompt=el(root,'details');el(prompt,'summary',L('문제 설명·함수 형식 보기','Problem statement and function contract'));el(prompt,'p',view.statement);el(prompt,'pre',view.starter);
+  const link=el(prompt,'a',L('코딩연습에서 문제·예제 확인','Open problem and examples in practice'));link.href='./?chapter='+(problem.chapter||1)+'&problem='+encodeURIComponent(r.problem)+'&code='+r.language;
+ }
  codeBlock(root,L('내 원본 코드','My original code'),r.original_code);
  el(root,'p',r.explanation);
  if(!r.partner){el(root,'p',L('같은 분반·문제·언어에서 풀이 진행도가 비슷한 학생을 기다리고 있습니다. 이 화면은 10초마다 확인합니다.','Waiting for a student in the same section, problem, language, and progress band. Updates every 10 seconds.'));return;}
