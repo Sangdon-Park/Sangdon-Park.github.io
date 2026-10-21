@@ -65,4 +65,6 @@ const ranks=[0,1,2,3,4,5,6,7].map((n,i)=>({id:String(i),section:'01',problems:Ar
 const active=new Set(Array.from({length:8},(_,i)=>'P'+i));
 assert.deepEqual(ranks.map(s=>skillBand(ranks,s,active).band),[0,0,1,1,2,2,3,3]);
 assert.equal(skillBand(students,students[0],active).band,skillBand(students,students[1],active).band);
+assert.equal(skillBand([{id:'x',section:'01',problems:[{problem:'P13',solved:true},{problem:'P37',solved:true},{problem:'P70',solved:true}]}],{id:'x',section:'01'},new Set(['P13','P37','P70'])).solved,1);
+assert.equal((await send('peer-create',{id:'dddddddd-dddd-4ddd-8ddd-dddddddddddd',...submit,problem:'P70'})).status,400);
 console.log('Anonymous peer review: queue, ability bands, mutual feedback gate, immutable evidence, reflection, instructor assessment, identity allowlist and cross-account access checks passed.');

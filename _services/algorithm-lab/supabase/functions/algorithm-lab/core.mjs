@@ -1,6 +1,6 @@
 import {hintInput,generateHint} from './ai-hint.mjs';
 import {visit,requestIP} from './analytics.mjs';
-import {peerReview} from './peer-review.mjs';
+import {peerReview,peerProblem} from './peer-review.mjs';
 export const TOTALS={"P01":10,"P02":21,"P03":7,"P05":7,"P06":7,"P07":7,"P08":8,"P09":11,"P10":11,"P11":8,"P12":9,"P13":6,"P14":6,"P15":7,"P16":6,"P17":6,"P18":7,"P19":7,"P20":4,"P21":5,"P22":8,"P23":6,"P24":5,"P25":5,"P26":5,"P27":7,"P28":7,"P29":6,"P30":7,"P31":6,"P32":5,"P33":5,"P34":7,"P35":7,"P36":6,"P37":6,"P38":7,"P39":7,"P40":7,"P41":7,"P42":8,"P43":6,"P44":5,"P45":5,"P46":7,"P47":12,"P48":12,"P51":6,"P53":11,"P54":11,"P55":6,"P56":4,"P57":5,"P58":11,"P59":4,"P60":5,"P61":4,"P62":5,"P87":31,"P88":31,"P89":7,"P65":5,"P66":11,"P67":6,"P68":4,"P69":5,"P70":5,"P71":5,"P72":5,"P73":4,"P74":3,"P75":4,"P76":5,"P77":6,"P78":6,"P79":6,"P80":5,"P81":5,"P82":5,"P83":6,"P84":5,"P85":6,"P86":6};
 export class HttpError extends Error{constructor(status,message,details={}){super(message);this.status=status;Object.assign(this,details);}}
 export const fail=(status,message,details)=>{throw new HttpError(status,message,details);};
@@ -55,7 +55,7 @@ export function createHandler({env,fetcher=fetch}){
       db(table('students')+'?id=eq.'+id+'&select=id,section,student_no,name,current_problem,current_language'),
       db(table('drafts')+'?student_id=eq.'+id+'&select=problem,language,code,updated_at'),
       db('rpc/dju_algolab_passed','POST',{p_student:id})]);
-    return {student:students[0],drafts,passed,problemTotals:TOTALS,languages:['python','c','java']};
+    return {student:students[0],drafts,passed,problemTotals:TOTALS,peerProblems:Object.keys(TOTALS).filter(peerProblem),languages:['python','c','java']};
   }
   async function touch(id,body){const patch={last_seen:new Date().toISOString()};if(Object.hasOwn(TOTALS,body.problem))patch.current_problem=body.problem;if(['python','c','java'].includes(body.language))patch.current_language=body.language;await db(table('students')+'?id=eq.'+id,'PATCH',patch);}
   async function upsertDraft(id,body){await db(table('drafts')+'?on_conflict=student_id,problem,language','POST',{student_id:id,...draft(body),updated_at:new Date().toISOString()},'resolution=merge-duplicates,return=minimal');}

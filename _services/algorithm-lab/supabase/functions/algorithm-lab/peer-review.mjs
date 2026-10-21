@@ -1,7 +1,11 @@
 const TABLE='dju_algolab_peer_reviews';
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+// Keep matching aligned with the visible practice catalog; historical duplicates count once.
+const ALIASES={P13:'P37',P15:'P38',P18:'P40',P19:'P41',P22:'P42',P23:'P43',P24:'P44',P26:'P45',P30:'P39',P34:'P46'};
+const RETIRED=new Set(['P04','P49','P50','P52','P70','P72','P73','P74','P75']);
+export const peerProblem=id=>!RETIRED.has(id)&&!Object.hasOwn(ALIASES,id);
 export function skillBand(students,person,activeIds) {
-  const count=s=>new Set((s.problems||[]).filter(p=>p.solved&&activeIds.has(p.problem)).map(p=>p.problem)).size;
+  const count=s=>new Set((s.problems||[]).filter(p=>p.solved).map(p=>ALIASES[p.problem]||p.problem).filter(id=>activeIds.has(id)&&!RETIRED.has(id))).size;
   const cohort=students.filter(s=>s.section===person.section),own=cohort.find(s=>s.id===person.id);
   const solved=own?count(own):0,lower=cohort.filter(s=>count(s)<solved).length;
   return {solved,band:Math.min(3,Math.floor(4*lower/Math.max(1,cohort.length)))};
@@ -32,7 +36,7 @@ export async function peerReview({action,body,auth,db,limit,fail,draft,activeIds
       original_code:row.original_code,explanation:row.explanation,created_at:row.created_at,matched_at:row.matched_at,
       my_feedback:peer?.feedback||null,feedback:peer?.feedback?row.feedback:null,
       feedback_waiting:!!row.feedback&&!peer?.feedback,
-      reflection:row.reflection,assessment:row.assessment,reviewed_at:row.reviewed_at,reflected_at:row.reflected_at,
+      reflection:row.reflection,assessment:row.assessment,reviewed_at:row.reviewed_at,reflected_at:row.reflected_at,assessed_at:row.assessed_at,
       partner:peer?{original_code:peer.original_code,explanation:peer.explanation}:null};
   };
   if(action==='peer-list'||action==='admin-peer-list'){
@@ -42,6 +46,7 @@ export async function peerReview({action,body,auth,db,limit,fail,draft,activeIds
   if(action==='peer-detail'||action==='admin-peer-detail')return {review:await view(await own())};
   if(action==='peer-create'){
     id();const item=draft(body),explanation=text(body.explanation,'풀이 설명');
+    if(!peerProblem(item.problem))fail(400,'현재 코딩연습 목록의 문제로 리뷰를 신청하세요.');
     if(!item.code.trim())fail(400,'공유할 코드를 먼저 작성하세요.');
     await limit('peer-create:'+auth.student_id,3600,30);
     const owner=await person(auth.student_id);if(!owner)fail(401,'실습 시작 후 다시 시도하세요.');

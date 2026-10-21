@@ -8,7 +8,7 @@ token=teacher?sessionStorage.getItem('dju-algolab-admin')||'':account?.token||''
 const el=(parent,tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;parent.append(node);return node;};
 const time=t=>t?new Date(t).toLocaleString(english?'en-US':'ko-KR'):'';
 const message=text=>{$('status').textContent=text;};
-const phase=r=>r.assessed_at?L('교원 평가 완료','Instructor assessed'):r.reflected_at?L('수정·성찰 완료','Reflection submitted'):r.matched_at?L('익명 리뷰 진행','Anonymous review'):L('매칭 대기','Waiting for a match');
+const phase=r=>(r.assessed_at||r.assessment)?L('교원 평가 완료','Instructor assessed'):r.reflected_at?L('수정·성찰 완료','Reflection submitted'):r.matched_at?L('익명 리뷰 진행','Anonymous review'):L('매칭 대기','Waiting for a match');
 async function api(action,body={}){
  const response=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify({action,...body}),signal:AbortSignal.timeout(20000)});
  const data=await response.json();if(!response.ok){const error=Error(data.error||'Request failed');error.status=response.status;throw error;}return data;
@@ -68,7 +68,8 @@ function renderDetail(){
   field(f.form,'verification',L('재실행 결과·배운 점·다음 목표','Rerun results, learning, and next goal')).minLength=5;
   el(f.form,'button',L('수정·성찰 제출','Submit reflection'));f.restore();
  }else if(r.reflection){
-  el(root,'h3',L('수정·성찰 기록','Reflection record'));el(root,'p',r.reflection.decision+' · '+r.reflection.reason);codeBlock(root,L('최종 코드','Final code'),r.reflection.revised_code);el(root,'p',r.reflection.verification);
+  const decisions={accepted:L('반영','Accepted'),partial:L('일부 반영','Partly accepted'),rejected:L('미반영·근거 제시','Not accepted, with reasons')};
+  el(root,'h3',L('수정·성찰 기록','Reflection record'));el(root,'p',decisions[r.reflection.decision]+' · '+r.reflection.reason);codeBlock(root,L('최종 코드','Final code'),r.reflection.revised_code);el(root,'p',r.reflection.verification);
  }
  if(r.assessment){const box=el(root,'div','','assessment');el(box,'h3',L('교원 평가','Instructor assessment')+' '+r.assessment.score+' / 5');el(box,'p',r.assessment.comment);}
  if(teacher){
@@ -94,8 +95,9 @@ async function refresh(silent=false){
 async function newReview(){
  state=await api('state');const root=$('detail');root.replaceChildren();selected=null;dirty=false;renderList();
  let current=null;try{current=JSON.parse(sessionStorage.getItem('dju-algolab-peer-draft:'+account.student.id));}catch{}
- const drafts=[...state.drafts].filter(d=>d.code.trim()&&Object.hasOwn(state.problemTotals,d.problem));
- if(current){const at=drafts.findIndex(d=>d.problem===current.problem&&d.language===current.language);if(at>=0)drafts.splice(at,1);drafts.unshift(current);}
+ const eligible=new Set(state.peerProblems||Object.keys(state.problemTotals));
+ const drafts=[...state.drafts].filter(d=>d.code.trim()&&eligible.has(d.problem));
+ if(current&&eligible.has(current.problem)){const at=drafts.findIndex(d=>d.problem===current.problem&&d.language===current.language);if(at>=0)drafts.splice(at,1);drafts.unshift(current);}
  if(!drafts.length){el(root,'p',L('코딩연습에서 코드를 작성한 뒤 리뷰를 신청하세요.','Write code in the practice workspace first.'));return;}
  el(root,'h2',L('내 풀이로 익명 리뷰 신청','Submit my code for anonymous review'));
  el(root,'p',L('같은 분반·문제·언어, 비슷한 풀이 진행도 안에서 자동 매칭합니다. 코드와 설명에 이름·학번을 쓰지 마세요.','Matching uses section, problem, language, and similar solution progress. Remove names and student numbers from code and explanations.'));
