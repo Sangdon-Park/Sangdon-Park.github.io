@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-10-26T04:50:38Z",
+  "updated_at": "2026-10-27T05:08:57Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -1006,6 +1006,10 @@
     "2026-10-24": {
       "count": 0,
       "uniques": 0
+    },
+    "2026-10-25": {
+      "count": 7,
+      "uniques": 2
     }
   },
   "clones_by_day": {
@@ -2012,6 +2016,10 @@
     "2026-10-24": {
       "count": 16,
       "uniques": 10
+    },
+    "2026-10-25": {
+      "count": 12,
+      "uniques": 7
     }
   },
   "snapshots": [
@@ -3926,24 +3934,32 @@
       "views_uniques": 2,
       "clones_count": 485,
       "clones_uniques": 171
+    },
+    {
+      "date": "2026-10-27",
+      "synced_at": "2026-10-27T05:08:57Z",
+      "views_count": 11,
+      "views_uniques": 3,
+      "clones_count": 333,
+      "clones_uniques": 120
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-10-26T04:50:38Z",
+    "synced_at": "2026-10-27T05:08:57Z",
     "views": {
-      "count": 4,
-      "uniques": 2
+      "count": 11,
+      "uniques": 3
     },
     "clones": {
-      "count": 485,
-      "uniques": 171
+      "count": 333,
+      "uniques": 120
     },
     "top_paths": [
       {
         "path": "/Sangdon-Park/Sangdon-Park.github.io",
         "title": "Overview",
-        "count": 2,
+        "count": 5,
         "uniques": 2
       },
       {
@@ -3953,20 +3969,44 @@
         "uniques": 1
       },
       {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/.github/workflows/github-traffic-sync.yml",
+        "title": "/blob/main/.github/workflows/github-traffic-sync.yml",
+        "count": 1,
+        "uniques": 1
+      },
+      {
         "path": "/Sangdon-Park/Sangdon-Park.github.io/projects",
         "title": "/projects",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/.github/workflows",
+        "title": "/tree/main/.github/workflows",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab",
+        "title": "/tree/main/algorithm-lab",
+        "count": 1,
+        "uniques": 1
+      },
+      {
+        "path": "/sangdon-park/sangdon-park.github.io/issues/8",
+        "title": "/issues/8",
         "count": 1,
         "uniques": 1
       }
     ],
     "top_referrers": [
       {
-        "referrer": "Bing",
-        "count": 1,
+        "referrer": "github.com",
+        "count": 3,
         "uniques": 1
       },
       {
-        "referrer": "github.com",
+        "referrer": "Bing",
         "count": 1,
         "uniques": 1
       }

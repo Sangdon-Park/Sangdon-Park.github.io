@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-10-26T04:50:38Z`
+- Last Synced (UTC): `2026-10-27T05:08:57Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 4 | 2 |
-| Clones | 485 | 171 |
+| Views | 11 | 3 |
+| Clones | 333 | 120 |
 
 ## Daily Views
 
@@ -265,6 +265,7 @@
 | 2026-10-22 | 0 | 0 |
 | 2026-10-23 | 0 | 0 |
 | 2026-10-24 | 0 | 0 |
+| 2026-10-25 | 7 | 2 |
 
 ## Daily Clones
 
@@ -521,18 +522,23 @@
 | 2026-10-22 | 17 | 11 |
 | 2026-10-23 | 13 | 8 |
 | 2026-10-24 | 16 | 10 |
+| 2026-10-25 | 12 | 7 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 2 | 2 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 2 |
 | /Sangdon-Park/Sangdon-Park.github.io/actions | /actions | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/.github/workflows/github-traffic-sync.yml | /blob/main/.github/workflows/github-traffic-sync.yml | 1 | 1 |
 | /Sangdon-Park/Sangdon-Park.github.io/projects | /projects | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/.github/workflows | /tree/main/.github/workflows | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab | /tree/main/algorithm-lab | 1 | 1 |
+| /sangdon-park/sangdon-park.github.io/issues/8 | /issues/8 | 1 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
+| github.com | 3 | 1 |
 | Bing | 1 | 1 |
-| github.com | 1 | 1 |
