@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-10-27T05:08:57Z`
+- Last Synced (UTC): `2026-10-28T05:45:17Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 11 | 3 |
-| Clones | 333 | 120 |
+| Views | 108 | 4 |
+| Clones | 329 | 118 |
 
 ## Daily Views
 
@@ -266,6 +266,7 @@
 | 2026-10-23 | 0 | 0 |
 | 2026-10-24 | 0 | 0 |
 | 2026-10-25 | 7 | 2 |
+| 2026-10-26 | 101 | 3 |
 
 ## Daily Clones
 
@@ -523,22 +524,26 @@
 | 2026-10-23 | 13 | 8 |
 | 2026-10-24 | 16 | 10 |
 | 2026-10-25 | 12 | 7 |
+| 2026-10-26 | 3 | 3 |
 
 ## Top Paths
 
 | Path | Title | Views | Unique |
 |---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 5 | 2 |
-| /Sangdon-Park/Sangdon-Park.github.io/actions | /actions | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/.github/workflows/github-traffic-sync.yml | /blob/main/.github/workflows/github-traffic-sync.yml | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/projects | /projects | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/.github/workflows | /tree/main/.github/workflows | 1 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab | /tree/main/algorithm-lab | 1 | 1 |
-| /sangdon-park/sangdon-park.github.io/issues/8 | /issues/8 | 1 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io | Overview | 10 | 3 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab | /tree/main/algorithm-lab | 10 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 9 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin.html | /blob/main/algorithm-lab/admin.html | 6 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/_services | /tree/main/_services | 4 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab/vendor | /tree/main/algorithm-lab/vendor | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/_services/algorithm-rehearsal/public/index.html | /blob/main/_services/algorithm-rehearsal/public/index.html | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin-problems.js | /blob/main/algorithm-lab/admin-problems.js | 2 | 1 |
+| /Sangdon-Park/Sangdon-Park.github.io/tree/main/_services/algorithm-lab | /tree/main/_services/algorithm-lab | 2 | 1 |
 
 ## Top Referrers
 
 | Referrer | Views | Unique |
 |---|---:|---:|
-| github.com | 3 | 1 |
+| github.com | 4 | 2 |
 | Bing | 1 | 1 |
