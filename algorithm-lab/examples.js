@@ -158,6 +158,10 @@ function formatProblemExample(p, t, language, c, number, english = false) {
 
 function problemFunctionInstructions(p, language, c, english = false) {
   const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
+  if (p.finalExam && p.returnDescription && language !== 'java') {
+    const signature = language === 'c' ? c.signature : `${p.function}(${p.params.join(', ')})`;
+    return [signature, language === 'c' ? c.argumentGuide : '', p.returnDescription].filter(Boolean).join('\n');
+  }
   if (language === 'java') return javaContract(p).signature + '\n' + (p.provided || '');
   if (language === 'python') {
     const result = p.outputArgument !== undefined

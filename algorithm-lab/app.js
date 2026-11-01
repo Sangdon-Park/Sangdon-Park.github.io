@@ -72,7 +72,7 @@ function show(i){
   $('editor-label').textContent=language==='java'?'Solution.java':p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='java'?'Java 8':language==='c'?'C / C11':'Python 3';
   const instructions=problemFunctionInstructions(p,language,view,UI_EN);
   $('instructions').textContent=T(commonFunctionHelp(language,UI_EN));
-  $('statement').textContent=view.statement.replaceAll('Python 또는 C 중 하나로',languageName()+'로').replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions;
+  $('statement').textContent=view.statement.replaceAll('Python 또는 C 중 하나로',languageName()+'로').replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+(p.finalExam?'':'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions);
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');
@@ -160,7 +160,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261101-final24'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261101-reviewed'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
