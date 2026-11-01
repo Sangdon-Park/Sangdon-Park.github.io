@@ -32,9 +32,9 @@ for(const p of finals){
  assert.equal(vm.runInContext('findLinkedProblem(problems,p.displayId,p.chapter)',ctx),bank.indexOf(p));
  assert.equal(vm.runInContext('findLinkedProblem(problems,p.id,p.chapter)',ctx),bank.indexOf(p));
 }
-const invalids=[['F07-02',[[1,0],1]],['F08-01',[[[0,1],[1,0]],[0,0]]],['F08-02',[[[1,2],[3,4]],[1,1],1]],['F09-04',[1,[[0,1,1]]]],['F10-04',[2,[4]]],['F11-03',[10,12,-1,0.2]],['F11-03',[10,12,1,1]]];
+const invalids=[['F06-01-v2',[91]],['F06-01-v2',[-1]],['F06-02-v2',[[]]],['F06-02-v2',[[1000001]]],['F07-02',[[1,0],1]],['F08-01',[[[0,1],[1,0]],[0,0]]],['F08-02',[[[1,2],[3,4]],[1,1],1]],['F09-04',[1,[[0,1,1]]]],['F10-04',[2,[4]]],['F11-03',[10,12,-1,0.2]],['F11-03',[10,12,1,1]]];
 for(const [id,args] of invalids){ctx.p=finals.find(p=>p.id===id);ctx.args=args;assert.throws(()=>vm.runInContext('validateCustomArgs(p,args)',ctx),id);}
-assert.equal(finals.find(p=>p.id==='F06-02').javaResult,'long');
+assert.equal(finals.find(p=>p.chapter===6&&p.examOrder===2).javaResult,'long');
 for(const chapter of [1,2,3,4,5]){
  ctx.chapterUnderTest=chapter;
  const old=bank.filter(p=>(p.chapter||1)===chapter&&!vm.runInContext(`LAB_DUPLICATES[${JSON.stringify(p.id)}]||LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx));

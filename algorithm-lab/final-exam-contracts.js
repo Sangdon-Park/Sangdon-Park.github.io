@@ -10,7 +10,8 @@ function validateFinalArgs(p,args) {
   const tour=(i,n)=>{vector(i,0,n-1,n,n);need(args[i][0]===0&&new Set(args[i]).size===n,'route는 0으로 시작하며 모든 도시를 한 번씩 포함해야 합니다.');};
   need(Array.isArray(args)&&args.length===p.params.length,'함수 인자 개수를 확인하세요.');
   switch(p.function) {
-    case 'fib_bottomup': scalar(0,0,90); break;
+    case 'fib_bottomup': case 'climb_stairs': scalar(0,0,90); break;
+    case 'max_subarray': vector(0,-1000000,1000000,1,10000); break;
     case 'nonadjacent': vector(0,-1000000,1000000,0,10000); break;
     case 'make_one': scalar(0,1,10000); break;
     case 'knapsack2':
@@ -43,8 +44,8 @@ function finalCCase(p,args) {
   const mat=(name,a,width)=>`int ${name}[${Math.max(1,a.length)}][${width}]={${a.map(r=>'{'+r.join(',')+'}').join(',')||'{0}'}};`;
   let setup='',inputs=[];
   switch(p.function) {
-    case 'fib_bottomup': case 'permutation_count': case 'nqueen_count': case 'within_factor': case 'manhattan': case 'accept_move': inputs=args;break;
-    case 'nonadjacent': setup=arr('a',args[0]);inputs=['a',args[0].length];break;
+    case 'fib_bottomup': case 'climb_stairs': case 'permutation_count': case 'nqueen_count': case 'within_factor': case 'manhattan': case 'accept_move': inputs=args;break;
+    case 'nonadjacent': case 'max_subarray': setup=arr('a',args[0]);inputs=['a',args[0].length];break;
     case 'make_one': setup=`int dp[${args[0]+1}]={0};`;inputs=[args[0],'dp'];break;
     case 'knapsack2': setup=arr('w',args[0].map(r=>r[0]))+arr('v',args[0].map(r=>r[1]))+'static int dp[101][1001];';inputs=['w','v',args[0].length,args[1],'dp'];break;
     case 'subset_sum_count': setup=arr('a',args[0]);inputs=['a',args[0].length,args[1]];break;
