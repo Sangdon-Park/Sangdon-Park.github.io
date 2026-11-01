@@ -33,6 +33,7 @@ function javaContract(p) {
   // Distances use the same 10^18 infinity sentinel as the original exercises.
   if (['pick_vertex','relax'].includes(p.function)) types[0]='long[]';
   let result=p.outputArgument!==undefined?'void':p.exactInteger?'long':p.numeric_output?'double':javaType(p.tests.map(t=>t.expected));
+  if(p.javaResult)result=p.javaResult;
   if(p.function==='dijkstra')result='long[]';
   return {names,types,result,signature:`public static ${result} ${p.function}(${names.map((n,i)=>types[i]+' '+n).join(', ')})`};
 }

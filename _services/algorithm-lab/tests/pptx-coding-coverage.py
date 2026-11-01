@@ -5,7 +5,7 @@ import json,re,zipfile,xml.etree.ElementTree as E
 ROOT=Path(__file__).resolve().parents[3]
 NS={'a':'http://schemas.openxmlformats.org/drawingml/2006/main','p':'http://schemas.openxmlformats.org/presentationml/2006/main','r':'http://schemas.openxmlformats.org/officeDocument/2006/relationships'}
 bank=json.loads((ROOT/'algorithm-lab/exercise-problems.json').read_text(encoding='utf-8'))
-files={2:'2장_연습문제_100문항_알고리즘작성형_수업용.pptx',**{c:f'{c}장_연습문제_100문항_수업용.pptx' for c in range(3,7)}}
+files={2:'2장_연습문제_100문항_알고리즘작성형_수업용.pptx',**{c:f'{c}장_연습문제_100문항_수업용.pptx' for c in range(3,6)}}
 for chapter,name in files.items():
     expected={}
     with zipfile.ZipFile(ROOT/'data/알고리즘'/name) as z:
@@ -25,3 +25,24 @@ for chapter,name in files.items():
         assert p['sourceFile']==name and int(p['slides'])==page,(chapter,number,'wrong source')
         assert p['starter'] and p['c']['starter'] and p['tests'],(chapter,number,'incomplete coding entry')
     print(f'Chapter {chapter}: {len(expected)} / {len(expected)} PPTX coding exercises registered: '+', '.join(map(str,sorted(expected))))
+
+# Chapters 6-11 now use four public coding tasks in each lecture deck.
+finals=json.loads((ROOT/'algorithm-lab/final-problems.json').read_text(encoding='utf-8'))
+compact=lambda s:re.sub(r'\s+','',s)
+for chapter in range(6,12):
+    tasks=[p for p in finals if p['chapter']==chapter]
+    assert len(tasks)==4
+    with zipfile.ZipFile(ROOT/'data/알고리즘'/tasks[0]['sourceFile']) as z:
+        rels={e.get('Id'):e.get('Target') for e in E.fromstring(z.read('ppt/_rels/presentation.xml.rels'))}
+        ids=E.fromstring(z.read('ppt/presentation.xml')).find('p:sldIdLst',NS)
+        pages=[]
+        for sid in ids:
+            target=rels[sid.get('{'+NS['r']+'}id')]
+            part=target.lstrip('/') if target.startswith('/') else 'ppt/'+target
+            pages.append(''.join(t.text or '' for t in E.fromstring(z.read(part)).findall('.//a:t',NS)))
+        all_text=compact(''.join(pages))
+        for p in tasks:
+            assert compact(p['solution']) in compact(pages[int(p['slides'])-1]),(p['id'],'Python slide mismatch')
+            assert compact(p['c']['solution']) in all_text,(p['id'],'C code missing')
+            assert p['displayId'] in ''.join(pages),(p['id'],'question number missing')
+    print(f'Chapter {chapter}: 4 public tasks, Python/C implementations and slide links match.')

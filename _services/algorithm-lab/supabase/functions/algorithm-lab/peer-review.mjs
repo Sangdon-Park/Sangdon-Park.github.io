@@ -2,7 +2,7 @@ const TABLE='dju_algolab_peer_reviews';
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 // Keep matching aligned with the visible practice catalog; historical duplicates count once.
 const ALIASES={P13:'P37',P15:'P38',P18:'P40',P19:'P41',P22:'P42',P23:'P43',P24:'P44',P26:'P45',P30:'P39',P34:'P46'};
-const RETIRED=new Set(['P04','P49','P50','P52','P70','P72','P73','P74','P75']);
+const RETIRED=new Set(['P04','P49','P50','P52','P70','P72','P73','P74','P75','P77','P78','P79','P80','P81','P82','P83','P84','P85','P86']);
 export const peerProblem=id=>!RETIRED.has(id)&&!Object.hasOwn(ALIASES,id);
 export function skillBand(students,person,activeIds) {
   const count=s=>new Set((s.problems||[]).filter(p=>p.solved).map(p=>ALIASES[p.problem]||p.problem).filter(id=>activeIds.has(id)&&!RETIRED.has(id))).size;

@@ -21,7 +21,7 @@ assert.equal(bank.find(p=>p.id==='P53').function,'insertion_sort');
 assert.equal(bank.find(p=>p.id==='P86').function,'grid_cost');
 assert.equal(bank.find(p=>p.id==='P87').exercise,97);
 assert.equal(bank.find(p=>p.id==='P88').exercise,98);
-for(const filename of ['schema.sql','chapter-04-scope-migration.sql']){
+for(const filename of ['schema.sql','final-24-migration.sql']){
   const sql=fs.readFileSync(new URL('../'+filename,import.meta.url),'utf8');
   const patterns=[...sql.matchAll(/check\s*\(\s*problem\s*~\s*'([^']+)'/gi)].map(m=>new RegExp(m[1]));
   assert.equal(patterns.length,2,filename+' must validate both drafts and submissions');

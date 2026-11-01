@@ -42,7 +42,7 @@ function cloudAccount(data){
   KEY='dju-algorithm-lab-v1:account:'+data.student.id;
   try{cloud.queue=JSON.parse(localStorage.getItem(queueKey())||'[]');}catch{cloud.queue=[];}
   let local;try{local=JSON.parse(localStorage.getItem(KEY));}catch{}
-  const remote={answers:{},passed:{},student:data.student.student_no+' '+data.student.name,index:Number(data.student.current_problem.slice(1))-1,language:data.student.current_language};
+  const remote={answers:{},passed:{},student:data.student.student_no+' '+data.student.name,index:Math.max(0,problems.findIndex(p=>p.id===data.student.current_problem)),language:data.student.current_language};
   for(const d of data.drafts){const key=d.language==='python'?d.problem:d.language+':'+d.problem;remote.answers[key]=d.code;}
   for(const p of data.passed){const key=p.language==='python'?p.problem:p.language+':'+p.problem;if(!remote.passed[key])remote.passed[key]={code:p.code,passed:p.passed,total:p.total,at:p.created_at};}
   saved=local&&cloud.queue.length?{...local,student:remote.student}:remote;
@@ -64,7 +64,7 @@ async function cloudInit(){
     if(error.status!==401&&local){
       const drafts=Object.entries(local.answers||{}).map(([key,code])=>({problem:key.replace(/^(c|java):/,''),language:key.startsWith('java:')?'java':key.startsWith('c:')?'c':'python',code}));
       const passed=Object.entries(local.passed||{}).map(([key,p])=>({...p,problem:key.replace(/^(c|java):/,''),language:key.startsWith('java:')?'java':key.startsWith('c:')?'c':'python',created_at:p.at}));
-      cloudAccount({token:session.token,student:{...session.student,current_problem:'P'+String((local.index||0)+1).padStart(2,'0'),current_language:local.language||'python'},drafts,passed});
+      cloudAccount({token:session.token,student:{...session.student,current_problem:problems[local.index]?.id||'P01',current_language:local.language||'python'},drafts,passed});
       cloudStatus(T('연결 대기 · 이 PC에 저장된 답안으로 연습할 수 있습니다.'),true);
     }else cloudStatus(T('실습 시작 버튼을 눌러 반·학번·이름을 입력하세요.'),true);
   }

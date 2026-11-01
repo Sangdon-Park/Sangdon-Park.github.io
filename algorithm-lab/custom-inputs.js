@@ -50,8 +50,10 @@ function validateCustomType(value,type,name) {
 function validateCustomArgs(p,args) {
   const fields=customFields(p),f=p.function;
   if(!Array.isArray(args)||args.length!==fields.length)throw Error('함수 인자 개수를 확인하세요.');
-  if(JSON.stringify(args).length>80000)throw Error('직접 입력은 전체 80,000자 이하로 입력하세요.');
+  const inputLimit=p.finalExam?120000:80000;
+  if(JSON.stringify(args).length>inputLimit)throw Error('직접 입력은 전체 '+inputLimit.toLocaleString('en-US')+'자 이하로 입력하세요.');
   fields.forEach((field,i)=>validateCustomType(args[i],field.type,field.name));
+  if(p.finalExam)return validateFinalArgs(p,args);
   const need=(ok,message)=>{if(!ok)throw Error(message);};
   const range=(i,min,max)=>need(args[i]>=min&&args[i]<=max,fields[i].name+': '+min+' 이상 '+max+' 이하로 입력하세요.');
   const length=(i,min,max)=>need(args[i].length>=min&&args[i].length<=max,fields[i].name+': 길이는 '+min+'~'+max+'입니다.');

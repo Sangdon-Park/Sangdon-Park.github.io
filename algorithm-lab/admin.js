@@ -108,7 +108,7 @@ function renderProblems(){
   $('problem-overview-summary').textContent=summaries.length+T('개 문제')+' · '+matchingStudents().length+T('명');
   for(const summary of summaries){
     const p=summary.problem,card=node(container,'article','','problem-card');card.dataset.problem=p.id;
-    node(card,'p',p.chapter+T('강')+' · '+p.id+(p.exercise?' · '+T('연습문제 ')+p.exercise:T(' · 강의 실습')),'problem-card-meta');
+    node(card,'p',p.chapter+T('강')+' · '+(p.displayId||p.id)+(p.finalExam?' · '+T('기말 공개 문제'):p.exercise?' · '+T('연습문제 ')+p.exercise:T(' · 강의 실습')),'problem-card-meta');
     node(card,'h3',T(p.title));const counts=node(card,'div','','problem-counts');
     for(const [key,rows] of [['solved',summary.solved],['attempted',summary.attempted],['not-submitted',summary.notSubmitted]])node(counts,'span',stateLabel(key)+' '+rows.length+T('명'),key);
     const names=node(card,'div','','problem-solvers');

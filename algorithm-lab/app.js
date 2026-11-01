@@ -5,7 +5,7 @@ let saved={answers:{},passed:{},student:'',index:0};
 try { const item=JSON.parse(localStorage.getItem(KEY)); if(item) saved={...saved,...item}; } catch (_) {}
 let language=['python','c','java'].includes(saved.language)?saved.language:'python';
 let chapter=1;
-const orderedChapter = value => problems.filter(p=>(p.chapter||1)===value&&!LAB_DUPLICATES[p.id]&&!LAB_RETIRED[p.id]).sort((a,b)=>Number(!!b.exercise)-Number(!!a.exercise));
+const orderedChapter = value => problems.filter(p=>(p.chapter||1)===value&&!LAB_DUPLICATES[p.id]&&!LAB_RETIRED[p.id]).sort((a,b)=>value>=6?a.examOrder-b.examOrder:Number(!!b.exercise)-Number(!!a.exercise));
 const chapterProblems = () => orderedChapter(chapter);
 const firstInChapter = value => problems.indexOf(orderedChapter(value)[0]);
 const answerKey = id => language==='python'?id:language+':'+id;
@@ -17,7 +17,7 @@ function setResult(text,kind=''){ $('result').textContent=messageText(text); $('
 function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; aiHintControls(); $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='java'?'java-worker.js?v=20261011-ch4-scope':language==='c'?'c-worker.js?v=20261011-ch4-scope':'worker.js?v=20261011-ch4-scope');
+  worker=new Worker(language==='java'?'java-worker.js?v=20261101-final24':language==='c'?'c-worker.js?v=20261101-final24':'worker.js?v=20261101-final24');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -64,9 +64,9 @@ function show(i){
   $('chapter-caption').textContent=(UI_ES?'TEMA ':UI_EN?'CHAPTER ':'CHAPTER ')+String(chapter).padStart(2,'0');
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
-  $('chapter-note').textContent=chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
+  $('chapter-note').textContent=chapter>=6?(UI_EN?'Final practice: 4 per chapter / 24 total / 10 on the exam':'기말 공개 문제 · 장별 4개 / 총 24개 중 10개 출제'):chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
   const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',displayedProblemId(p));url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
-  $('title').textContent=p.title;$('meta').textContent=`${p.exercise?p.section:p.id+' · '+p.section} · ${p.exercise?'PPTX':p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
+  $('title').textContent=p.title;$('meta').textContent=p.finalExam?`${p.section} · PPTX ${p.slides} · ${UI_EN?'Code execution only':'코드 실행 결과로 평가'}`:`${p.exercise?p.section:p.id+' · '+p.section} · ${p.exercise?'PPTX':p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.level;
   const view=language==='java'?javaView(p):language==='c'?C_PROBLEMS[p.id]:p;
   $('statement').textContent=view.statement;$('hint').textContent=view.hint;editor.setOption('mode',language==='java'?'text/x-java':language==='c'?'text/x-csrc':'python');setCode(saved.answers[answerKey(p.id)]??starter(p),true);
   $('editor-label').textContent=language==='java'?'Solution.java':p.function+(language==='c'?'.c':'.py');$('editor-language').textContent=language==='java'?'Java 8':language==='c'?'C / C11':'Python 3';
@@ -160,7 +160,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261101-final24'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
@@ -178,7 +178,7 @@ Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-de
   const requestedChapter=Number(entryParams.get('chapter'));
   const requestedIndex=findLinkedProblem(problems,entryParams.get('problem'),requestedChapter);
   if(requestedIndex>=0)index=requestedIndex;
-  else if([1,2,3,4,5,6].includes(requestedChapter))index=firstInChapter(requestedChapter);
+  else if([1,2,3,4,5,6,7,8,9,10,11].includes(requestedChapter))index=firstInChapter(requestedChapter);
   if(index<0)index=0;
   show(index);boot();requirePracticeAccount();
 }).catch(()=>{setResult(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'),'error');});

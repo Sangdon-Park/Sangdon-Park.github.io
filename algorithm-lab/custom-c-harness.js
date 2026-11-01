@@ -1,6 +1,7 @@
 // Every embedded value has passed validateCustomArgs. No raw input is source code.
 function customCCase(p,args) {
   validateCustomArgs(p,args);
+  if(p.finalExam)return finalCCase(p,args);
   const id=Number(p.id.slice(1));
   if(id<47)return chapterTwoCase({...p,id:p.legacyHarnessId||p.id},args);
   const f=p.function;

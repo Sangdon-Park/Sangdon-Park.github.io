@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>알고리즘 기말 공개 코딩 24문제</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>main{max-width:1000px;margin:40px auto;padding:24px;line-height:1.8}section{margin:48px 0}article{border-top:1px solid #ccc;padding:20px 0}code{overflow-wrap:anywhere}a{color:#167c75}</style>
+  </head>
+  <body>
+    <main>
+      <a href="/courses/algorithms-2026-fall.html#materials">강의자료로</a>
+      <h1>기말 공개 코딩 24문제</h1>
+      <p>6~11장, 각 장 네 문제입니다. 이 24문제 중 10문제를 출제하고 코드 실행 결과로 평가합니다. 강의노트의 Python/C 예제와 아래 실습은 같은 문제와 함수 규격을 사용합니다.</p>
+      <nav>
+        <a href="#chapter-6">6장 동적 계획법</a> · <a href="#chapter-7">7장 백트래킹 기법</a> · <a href="#chapter-8">8장 분기한정 기법</a> · <a href="#chapter-9">9장 NP완전 문제</a> · <a href="#chapter-10">10장 근사 알고리즘</a> · <a href="#chapter-11">11장 휴리스틱 알고리즘</a>
+      </nav>
+      <section id="chapter-6">
+        <h2>6장 동적 계획법</h2>
+        <article>
+          <h3>6-1 피보나치 수 · 아주 쉬움</h3>
+          <p>정수 n(0≤n≤90)이 주어집니다. F(0)=0, F(1)=1이고 n≥2이면 F(n)=F(n−1)+F(n−2)입니다. n번째 피보나치 수를 반환하는 fib_bottomup을 작성하세요. C의 반환형은 long long입니다.</p>
+          <p>
+            <code>fib_bottomup(n)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>6-2 인접하지 않은 수의 최대 합 · 쉬움</h3>
+          <p>정수 배열 a에서 서로 인접한 두 원소를 함께 고르지 않으면서 고른 값의 합을 최대화하세요. 배열 길이는 0..10000, 각 값은 −1,000,000..1,000,000입니다. 아무것도 고르지 않아도 되며 그 합은 0입니다. 가능한 최대 합을 반환하세요.</p>
+          <p>
+            <code>nonadjacent(a)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>6-3 1로 만들기 · 기본</h3>
+          <p>정수 n(1..10000)을 1로 만듭니다. 한 번에 1을 빼거나, 나누어떨어질 때만 2·3·5 중 하나로 나눌 수 있습니다. 1에 도달하는 데 필요한 연산 횟수의 최솟값을 반환하세요. 처음부터 n=1이면 0입니다.</p>
+          <p>
+            <code>make_one(n)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>6-4 0/1 배낭 · 조금 도전</h3>
+          <p>물건 0..100개가 [무게, 가치] 쌍의 배열 items로 주어집니다. 무게는 1..1000, 가치는 0..1,000,000, 배낭 용량 W는 0..1000입니다. 물건마다 한 번만 고를 수 있고 쪼갤 수 없습니다. 총 무게가 W 이하인 선택 중 총 가치의 최댓값을 반환하세요. 아무것도 고르지 않는 선택도 허용합니다.</p>
+          <p>
+            <code>knapsack2(items, W)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+      <section id="chapter-7">
+        <h2>7장 백트래킹 기법</h2>
+        <article>
+          <h3>7-1 카드를 순서 있게 고르는 경우의 수 · 아주 쉬움</h3>
+          <p>1부터 n까지 적힌 서로 다른 카드 n장 중 r장을 중복 없이 골라 일렬로 놓습니다. 순서가 다르면 다른 경우입니다. 0≤r≤n≤8이며 r=0이면 아무것도 놓지 않는 1가지입니다. 가능한 경우의 수를 반환하세요.</p>
+          <p>
+            <code>permutation_count(n, r)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=7&amp;problem=7-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>7-2 합이 목표인 부분집합의 개수 · 쉬움</h3>
+          <p>양의 정수 배열 a에서 몇 개의 원소를 골라 합이 target이 되는 선택의 수를 구하세요. 각 인덱스는 한 번만 고르며, 값이 같아도 인덱스가 다르면 다른 원소입니다. 길이는 0..20, 각 값은 1..50, target은 0..1000입니다. 아무것도 고르지 않는 선택도 포함합니다.</p>
+          <p>
+            <code>subset_sum_count(a, target)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=7&amp;problem=7-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>7-3 이웃한 정점을 다른 색으로 칠하기 · 기본</h3>
+          <p>정점 1..8개의 무방향 그래프가 0/1 인접 행렬 graph로 주어집니다. graph[i][j]=1이면 두 정점이 이웃하며, 대칭이고 대각선은 0입니다. 1≤k≤3가지 색으로 모든 정점을 칠하되 이웃한 두 정점의 색이 달라야 합니다. 가능하면 1, 불가능하면 0을 반환하세요.</p>
+          <p>
+            <code>can_color(graph, k)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=7&amp;problem=7-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>7-4 N-Queen 배치의 수 · 조금 도전</h3>
+          <p>n×n 체스판에 퀸 n개를 놓되 같은 행, 같은 열, 같은 대각선에 두 퀸이 없어야 합니다. 1≤n≤8입니다. 회전하거나 뒤집은 배치도 놓인 칸이 다르면 다른 배치로 세며, 가능한 배치의 수를 반환하세요.</p>
+          <p>
+            <code>nqueen_count(n)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=7&amp;problem=7-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+      <section id="chapter-8">
+        <h2>8장 분기한정 기법</h2>
+        <article>
+          <h3>8-1 정해진 순회 경로의 비용 · 아주 쉬움</h3>
+          <p>1..9개 도시 사이의 이동 비용이 정수 행렬 dist로 주어집니다. 대각선은 0, 나머지 비용은 0..100이며 모든 도시 사이에 이동할 수 있습니다. route는 모든 도시 번호 0..n−1을 한 번씩 포함하고 0에서 시작합니다. route 순서로 이동한 뒤 마지막 도시에서 0으로 돌아오는 총 비용을 반환하세요. 도시가 하나이면 비용은 0입니다.</p>
+          <p>
+            <code>route_cost(dist, route)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=8&amp;problem=8-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>8-2 남은 작업 비용의 하한 · 쉬움</h3>
+          <p>사람 n명과 작업 n개의 비용 행렬 cost(n=1..8, 비용 0..100)가 있습니다. used[c]는 이미 맡긴 작업이면 1, 아니면 0입니다. 0번부터 next_row−1번 사람까지 배정했고 used의 1 개수는 next_row와 같습니다. 남은 각 사람의 행에서 아직 쓰지 않은 작업의 최소 비용을 구해 더하세요. 이 계산에서는 서로 다른 사람이 같은 작업을 고르는 중복을 잠시 허용합니다. next_row=n이면 0을 반환합니다.</p>
+          <p>
+            <code>assignment_bound(cost, used, next_row)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=8&amp;problem=8-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>8-3 작업을 하나씩 배정하는 최소 비용 · 기본</h3>
+          <p>사람 n명과 작업 n개의 비용이 n×n 행렬 cost로 주어집니다. n=1..8, 각 비용 0..100입니다. 각 사람에게 작업 하나를 배정하고 각 작업도 한 사람에게만 맡겨야 합니다. 사람 r이 작업 c를 맡을 때 cost[r][c]를 더합니다. 전체 비용의 최솟값을 반환하세요.</p>
+          <p>
+            <code>assignment_min(cost)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=8&amp;problem=8-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>8-4 모든 도시를 한 번씩 방문하는 최소 순회 비용 · 조금 도전</h3>
+          <p>도시 n개(n=1..9)의 이동 비용 행렬 dist가 있습니다. 대각선은 0, 각 비용은 0..100이며 모든 도시 사이에 이동할 수 있습니다. 0번에서 출발해 다른 도시를 각각 한 번 방문하고 0번으로 돌아옵니다. 가능한 순회 중 총 비용의 최솟값을 반환하세요. 방향에 따라 비용이 다를 수 있고, n=1의 답은 0입니다.</p>
+          <p>
+            <code>tsp_min(dist)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=8&amp;problem=8-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+      <section id="chapter-9">
+        <h2>9장 NP완전 문제</h2>
+        <article>
+          <h3>9-1 제시된 부분집합 합 확인 · 아주 쉬움</h3>
+          <p>정수 배열 a와 같은 길이의 0/1 배열 selected가 주어집니다. selected[i]=1인 원소만 고른 합이 target과 같은지 확인하세요. 길이는 0..20, a의 값은 0..100, target은 0..2000입니다. 같으면 1, 다르면 0을 반환합니다. 새 부분집합을 찾는 문제가 아니라 이미 제시된 선택을 검사합니다.</p>
+          <p>
+            <code>verify_subset_sum(a, selected, target)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=9&amp;problem=9-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>9-2 제시된 정점 커버 확인 · 쉬움</h3>
+          <p>정점 1..8개의 무방향 그래프가 대칭인 0/1 인접 행렬 graph로 주어지며 대각선은 0입니다. selected[i]는 정점 i를 골랐으면 1, 아니면 0입니다. 모든 간선의 양 끝 중 적어도 하나가 선택되었는지 검사하세요. 모두 덮었으면 1, 덮이지 않은 간선이 하나라도 있으면 0을 반환합니다. 선택 개수를 최소화할 필요는 없습니다.</p>
+          <p>
+            <code>verify_vertex_cover(graph, selected)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=9&amp;problem=9-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>9-3 제시된 해밀턴 순회 확인 · 기본</h3>
+          <p>정점 n개(n=3..8)의 대칭 0/1 인접 행렬 graph와 길이 n인 배열 path가 주어집니다. path가 0..n−1을 한 번씩 포함하고, 이 순서의 모든 이웃 정점 사이와 마지막에서 처음으로 가는 간선이 존재하면 1을 반환하세요. 중복·범위 밖 번호·빠진 연결이 있으면 0입니다. 경로를 새로 찾을 필요는 없습니다.</p>
+          <p>
+            <code>verify_hamiltonian(graph, path)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=9&amp;problem=9-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>9-4 작은 3-CNF 식의 만족 가능성 · 조금 도전</h3>
+          <p>불 변수 n개(1..12)와 절 0..30개가 주어집니다. 각 절은 리터럴 정수 3개입니다. 양수 k는 x_k, 음수 −k는 NOT x_k를 뜻하며 1≤|k|≤n입니다. 한 절 안의 세 리터럴은 OR, 모든 절은 AND로 묶습니다. 모든 절을 참으로 만드는 0/1 값 배정이 있으면 1, 없으면 0을 반환하세요. 절이 0개이면 1입니다.</p>
+          <p>
+            <code>satisfiable_3cnf(n, clauses)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=9&amp;problem=9-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+      <section id="chapter-10">
+        <h2>10장 근사 알고리즘</h2>
+        <article>
+          <h3>10-1 허용 배수 이내의 비용인지 확인 · 아주 쉬움</h3>
+          <p>최소화 문제에서 어떤 해의 비용 cost, 최적 비용 opt, 허용 배수 factor가 정수로 주어집니다. 1≤opt≤cost≤1,000,000이고 1≤factor≤100입니다. cost가 opt의 factor배 이하이면 1, 넘으면 0을 반환하세요. 경계와 같아도 1입니다.</p>
+          <p>
+            <code>within_factor(cost, opt, factor)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=10&amp;problem=10-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>10-2 가장 한가한 기계에 작업 배정 · 쉬움</h3>
+          <p>기계 m대(1..10)가 모두 시간 0에 준비되어 있습니다. jobs의 작업을 주어진 순서대로, 현재 누적 작업 시간이 가장 작은 기계에 하나씩 배정하세요. 동률이면 번호가 작은 기계에 배정합니다. 작업 수는 0..1000, 각 시간은 0..1,000,000입니다. 작업은 나누지 않으며 기계는 받은 순서대로 처리합니다. 모든 작업이 끝나는 시각, 즉 기계별 누적 시간의 최댓값을 반환하세요. 작업이 없으면 0입니다.</p>
+          <p>
+            <code>list_scheduling(jobs, m)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=10&amp;problem=10-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>10-3 간선의 양 끝을 고르는 정점 커버 · 기본</h3>
+          <p>정점 n개(1..100)의 무방향 그래프가 간선 배열 edges로 주어집니다. 각 간선은 서로 다른 정점 번호 두 개이며 번호는 0..n−1, 간선 수는 0..1000입니다. 간선을 입력 순서대로 보면서 양 끝이 모두 아직 선택되지 않았으면 두 정점을 모두 선택하세요. 한쪽이라도 이미 선택되어 있으면 그대로 넘어갑니다. 마지막에 선택한 정점 수를 반환하세요.</p>
+          <p>
+            <code>cover_size(n, edges)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=10&amp;problem=10-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>10-4 새 원소를 가장 많이 덮는 집합 선택 · 조금 도전</h3>
+          <p>전체 원소는 0..n−1(n=1..20)입니다. 집합 0..30개가 정수 비트마스크 배열 sets로 주어집니다. 집합에 원소 k가 있으면 비트 k가 1이며 각 마스크는 0..2ⁿ−1입니다. 아직 덮이지 않은 원소를 가장 많이 덮는 집합을 반복해서 고르세요. 동률이면 입력에서 먼저 나온 집합을 고릅니다. 전부 덮으면 선택 횟수, 더 덮을 수 없으면 −1을 반환하세요.</p>
+          <p>
+            <code>greedy_set_cover(n, sets)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=10&amp;problem=10-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+      <section id="chapter-11">
+        <h2>11장 휴리스틱 알고리즘</h2>
+        <article>
+          <h3>11-1 격자에서 맨해튼 거리 · 아주 쉬움</h3>
+          <p>격자의 두 점 (x1,y1), (x2,y2)가 주어집니다. 각 좌표는 −10,000..10,000의 정수입니다. 한 번에 상하좌우로 한 칸 이동할 수 있고 장애물은 없습니다. 두 점 사이의 최소 이동 횟수 |x1−x2|+|y1−y2|를 반환하세요.</p>
+          <p>
+            <code>manhattan(x1, y1, x2, y2)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=11&amp;problem=11-1">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>11-2 가장 가까운 도시부터 방문 · 쉬움</h3>
+          <p>도시 n개(n=1..9)의 이동 비용 행렬 dist가 주어집니다. 대각선은 0, 비용은 0..100이며 모든 도시 사이에 이동할 수 있고 방향에 따라 비용이 다를 수 있습니다. 0번에서 출발해 현재 도시에서 비용이 가장 작은 미방문 도시로 이동합니다. 동률이면 번호가 작은 도시를 고릅니다. 모든 도시를 방문한 뒤 0번으로 돌아오는 이 절차의 총 비용을 반환하세요. n=1의 답은 0입니다.</p>
+          <p>
+            <code>nearest_neighbor(dist)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=11&amp;problem=11-2">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>11-3 담금질 기법의 한 단계 수락 판단 · 기본</h3>
+          <p>비용을 최소화합니다. 현재 비용 current와 새 후보 비용 candidate는 0..10,000의 정수, 온도 temp는 0..1000의 실수, 주어진 난수 u는 0 이상 1 미만의 실수입니다. 후보 비용이 현재 이하이면 항상 1을 반환합니다. 후보가 더 나쁘고 temp=0이면 0입니다. 그 외에는 u &lt; exp((current−candidate)/temp)이면 1, 아니면 0을 반환하세요. 난수를 새로 만들지 말고 주어진 u를 사용합니다.</p>
+          <p>
+            <code>accept_move(current, candidate, temp, u)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=11&amp;problem=11-3">문제·공개 예제로 연습하기 →</a>
+        </article>
+        <article>
+          <h3>11-4 한 번의 도시 교환으로 순회 개선 · 조금 도전</h3>
+          <p>도시 n개(n=1..9)의 완전 이동 비용 행렬 dist가 주어집니다. 대각선은 0, 비용은 0..100이며 방향에 따라 비용이 다를 수 있습니다. route는 모든 도시 번호를 한 번씩 포함하고 첫 값은 0입니다. 첫 도시를 고정하고 나머지 위치 두 곳을 한 번 맞바꾸는 모든 후보를 비교하세요. 원래 경로도 후보에 포함합니다. 각 경로의 마지막에서 0으로 돌아오는 비용까지 더한 최솟값을 반환하세요. 여러 번 연속 교환하는 문제는 아닙니다.</p>
+          <p>
+            <code>best_swap_cost(dist, route)</code>
+          </p>
+          <a href="/algorithm-lab/?chapter=11&amp;problem=11-4">문제·공개 예제로 연습하기 →</a>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

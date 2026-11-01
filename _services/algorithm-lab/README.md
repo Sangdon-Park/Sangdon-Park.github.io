@@ -1,5 +1,39 @@
 # Algorithm Lab classroom service
 
+## Final coding practice: Chapters 6–11 (2026-11-01)
+
+`algorithm-lab/final-problems.json` defines exactly four public tasks per chapter,
+24 in total, ordered from very easy to a small challenge. The announced final exam
+selects 10 of these tasks and evaluates code execution results. The six revised
+PPTX/PDF lecture decks use the same function signatures, examples and Python/C
+reference implementations. Every slide has presenter notes. The course overview is
+`/courses/algorithms-2026-final.html`.
+
+New stable IDs are `F06-01` through `F11-04`. Apply `final-24-migration.sql`, then
+deploy the existing `algorithm-lab` function before publishing the static catalog.
+The migration only extends two problem-ID checks. P77–P86 and all their old drafts,
+submissions and scores remain stored and exportable; those old Chapter 6 tasks no
+longer appear in the active navigation or completion statistics. Chapters 1–5
+retain their existing materials and catalog. The old Chapter 6 100-question deck
+has been removed from the published learning flow.
+
+Checks (no production student writes):
+
+```powershell
+node _services/algorithm-lab/tests/final-24.mjs
+node _services/algorithm-lab/tests/final-24-c.mjs
+python _services/algorithm-lab/tests/final-24.py
+python _services/algorithm-lab/tests/pptx-coding-coverage.py
+node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
+node _services/algorithm-lab/tests/peer-review.mjs
+```
+
+These verify 150 reference cases per language, rejected unfinished solutions,
+direct C inputs, all 210 language-specific public examples, input constraints,
+160 independent enumeration comparisons, slide/code agreement and chapter totals.
+The practice service retains the classroom grading scope documented below; this
+change prepares public study material and does not create the final exam session.
+
 ## Anonymous pair code review (2026-10-21)
 
 `/algorithm-lab/peer-review.html` snapshots a voluntarily shared practice solution.
