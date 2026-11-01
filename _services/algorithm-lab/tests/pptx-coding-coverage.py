@@ -35,14 +35,24 @@ for chapter in range(6,12):
     with zipfile.ZipFile(ROOT/'data/알고리즘'/tasks[0]['sourceFile']) as z:
         rels={e.get('Id'):e.get('Target') for e in E.fromstring(z.read('ppt/_rels/presentation.xml.rels'))}
         ids=E.fromstring(z.read('ppt/presentation.xml')).find('p:sldIdLst',NS)
-        pages=[]
+        pages=[];code_pages=[]
         for sid in ids:
             target=rels[sid.get('{'+NS['r']+'}id')]
             part=target.lstrip('/') if target.startswith('/') else 'ppt/'+target
-            pages.append(''.join(t.text or '' for t in E.fromstring(z.read(part)).findall('.//a:t',NS)))
-        all_text=compact(''.join(pages))
+            xml=E.fromstring(z.read(part))
+            pages.append(''.join(t.text or '' for t in xml.findall('.//a:t',NS)))
+            code_pages.append(''.join(t.text or '' for shape in xml.findall('.//p:sp',NS)
+                if shape.find('p:nvSpPr/p:cNvPr',NS).get('name')=='code'
+                for t in shape.findall('.//a:t',NS)))
+        all_code=compact(''.join(code_pages))
         for p in tasks:
-            assert compact(p['solution']) in compact(pages[int(p['slides'])-1]),(p['id'],'Python slide mismatch')
-            assert compact(p['c']['solution']) in all_text,(p['id'],'C code missing')
+            first=int(p['slides'])-1
+            expected=compact(p['solution']);collected=''
+            assert code_pages[first],(p['id'],'source link does not point to code')
+            for code in code_pages[first:]:
+                collected+=compact(code)
+                if len(collected)>=len(expected):break
+            assert collected==expected,(p['id'],'Python slide parts mismatch')
+            assert compact(p['c']['solution']) in all_code,(p['id'],'C code parts missing')
             assert p['displayId'] in ''.join(pages),(p['id'],'question number missing')
     print(f'Chapter {chapter}: 4 public tasks, Python/C implementations and slide links match.')
