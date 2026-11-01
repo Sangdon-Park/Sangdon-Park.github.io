@@ -15,10 +15,12 @@ Their stable IDs are `F06-01-v3`, `F06-01-v2`, `F06-02-v2`, and `F06-03`.
 Display numbers are 6-1 through 6-4; stable IDs preserve the three retained tasks'
 existing work when display numbers change. `F06-04` (knapsack) is retired from
 active navigation, while its stored work remains exportable.
-Chapter 6 has 57 lecture slides with spoken notes, including five additional
+Chapter 6 has 63 lecture slides with spoken notes, including five additional
 Imagegen explanation diagrams for cumulative sums, repeated recursion, key/value
 lookup, subarray restart, and alternative paths to one. It covers Python dictionaries,
 memoization, and C integer types before the relevant code.
+Top-down and bottom-up include explicit definitions, request/return traces for
+n=4, table updates, memoization/tabulation, and time/space comparisons.
 
 Apply `final-24-migration.sql`, `chapter6-v2-migration.sql`, and then
 `chapter6-four-levels-migration.sql`, and deploy
