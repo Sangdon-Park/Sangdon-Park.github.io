@@ -9,13 +9,17 @@ PPTX/PDF lecture decks use the same function signatures, examples and Python/C
 reference implementations. Every slide has presenter notes. The course overview is
 `/courses/algorithms-2026-final.html`.
 
-The active Chapter 6 tasks are stair counting, maximum contiguous subarray,
-minimum operations to one, and 0/1 knapsack. The first two use new stable IDs
-`F06-01-v2` and `F06-02-v2`; the other tasks retain `F06-03` through `F11-04`.
-Chapter 6 has 58 lecture slides with spoken notes, including Python dictionaries,
+The active Chapter 6 tasks, in increasing difficulty, are sum from one to n,
+stair counting, maximum contiguous subarray, and minimum operations to one.
+Their stable IDs are `F06-01-v3`, `F06-01-v2`, `F06-02-v2`, and `F06-03`.
+Display numbers are 6-1 through 6-4; stable IDs preserve the three retained tasks'
+existing work when display numbers change. `F06-04` (knapsack) is retired from
+active navigation, while its stored work remains exportable.
+Chapter 6 has 52 lecture slides with spoken notes, including Python dictionaries,
 memoization, and C integer types before the relevant code.
 
-Apply `final-24-migration.sql` and then `chapter6-v2-migration.sql`, and deploy
+Apply `final-24-migration.sql`, `chapter6-v2-migration.sql`, and then
+`chapter6-four-levels-migration.sql`, and deploy
 the existing `algorithm-lab` function before publishing the static catalog.
 The migration only extends two problem-ID checks. P77–P86 and all their old drafts,
 submissions and scores remain stored and exportable; `F06-01` and `F06-02`
@@ -36,13 +40,14 @@ node _services/algorithm-lab/tests/chapter-02-dashboard.mjs
 node _services/algorithm-lab/tests/peer-review.mjs
 ```
 
-These verify 150 reference cases per language, rejected unfinished solutions,
-direct C inputs, all 210 language-specific public examples, input constraints,
+These verify 153 reference cases per language, rejected unfinished solutions,
+direct C inputs, all 216 language-specific public examples, input constraints,
 160 independent enumeration comparisons, slide/code agreement and chapter totals.
 The Chapter 6 checks separately enumerate small stairs, compare 300 random arrays
-against exhaustive contiguous intervals, and cover negative-only arrays and large
-integer results. New IDs keep earlier answers and completion markers separate
-from the replacement tasks. No student data migration or deletion is required.
+against exhaustive contiguous intervals, check 259 sum inputs and 200 independent
+shortest paths, and cover negative-only arrays and large integer results.
+Only the new sum task receives a new ID. No student data migration or deletion
+is required.
 The practice service retains the classroom grading scope documented below; this
 change prepares public study material and does not create the final exam session.
 

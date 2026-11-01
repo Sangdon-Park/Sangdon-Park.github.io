@@ -17,6 +17,7 @@
       <nav><a href="#chapter-6">6장 동적 계획법</a><a href="#chapter-7">7장 백트래킹 기법</a><a href="#chapter-8">8장 분기한정 기법</a><a href="#chapter-9">9장 NP완전 문제</a><a href="#chapter-10">10장 근사 알고리즘</a><a href="#chapter-11">11장 휴리스틱 알고리즘</a></nav>
       <section id="chapter-6">
         <h2>6장 동적 계획법</h2>
+        <p>아주 쉬운 합 쌓기에서 시작해 계단 오르기, 연속 부분합, 최소 연산 횟수 순서로 연습합니다. 네 문제의 정의·예제·풀이와 Python/C 코드는 강의 PPTX에도 포함되어 있습니다.</p>
         <details>
           <summary>메모이제이션에 쓰는 해시맵과 Python 사전</summary>
           <p>해시맵은 키와 값을 짝지어 저장합니다. 계단 높이를 키로, 그 높이까지 오르는 방법 수를 값으로 두면 높이 4에 답 5를 연결할 수 있습니다. Python에서는 <code>dict</code>, 즉 사전을 사용합니다.</p>
@@ -28,7 +29,26 @@ memo[2]                 # 2: 키 2의 값을 읽음
           <p><code>in</code>으로 키가 있는지 확인한 뒤 값을 읽습니다. 없는 키를 바로 읽으면 <code>KeyError</code>가 발생합니다. 배열의 <code>dp[4]</code>는 번호 4인 칸을 읽고, 사전의 <code>memo[4]</code>는 키 4에 연결한 값을 찾습니다. 아래 네 문제의 제출 코드는 배열과 변수로 구현할 수 있습니다.</p>
         </details>
         <article id="problem-6-1">
-          <h3>6-1 계단 오르기 · 아주 쉬움</h3>
+          <h3>6-1 1부터 n까지의 합 · 아주 쉬움</h3>
+          <p>정수 n이 주어진다. 1부터 n까지의 모든 정수를 한 번씩 더한다. n=0이면 더할 정수가 없다.</p>
+          <p><strong>1부터 n까지 더한 합을 정수 하나로 반환하시오.</strong></p>
+          <p><code>sum_to_n(n)</code></p>
+          <h4>입력</h4>
+          <dl><dt><code>n</code></dt><dd>0 이상 10,000 이하의 정수</dd></dl>
+          <h4>반환값과 조건</h4>
+          <p>1+2+…+n의 합을 정수 하나로 반환한다. n=0일 때는 0을 반환한다.</p>
+          <ul><li>1부터 n까지 양 끝의 수를 모두 포함한다.</li><li>n=0이면 더할 수가 없으므로 답은 0이다.</li><li>입력을 읽거나 화면에 출력하지 않고 sum_to_n(n)의 반환값으로 답한다.</li></ul>
+          <h4>예제</h4>
+          <div class="example"><strong>더할 수가 없음</strong><pre>n=0</pre><p>반환값: <code>0</code></p><p>더할 정수가 없으므로 0이다.</p></div>
+          <div class="example"><strong>정수 한 개</strong><pre>n=1</pre><p>반환값: <code>1</code></p><p>정수 1 하나를 더하므로 답은 1이다.</p></div>
+          <div class="example"><strong>다섯 수의 합</strong><pre>n=5</pre><p>반환값: <code>15</code></p><p>1+2+3+4+5=15이다.</p></div>
+          <div class="example"><strong>열 수의 합</strong><pre>n=10</pre><p>반환값: <code>55</code></p><p>1부터 10까지 모두 더하면 55이다.</p></div>
+          <details><summary>풀이 설명</summary><p>dp[i]를 1부터 i까지 더한 합으로 둔다. dp[0]=0에서 시작해 dp[i]=dp[i-1]+i로 채우면 된다. 예를 들어 dp[4]=10을 알고 있으면 dp[5]=10+5=15이다.</p></details>
+          <details><summary>C 함수와 자료형</summary><pre>int sum_to_n(int n)</pre><p>n은 0~10,000이다. 최대 합은 50,005,000이므로 32비트 int로 저장할 수 있다. 사이트가 main 함수와 인자를 준비하며 위 함수만 작성한다.</p></details>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-1">이 문제 연습하기</a>
+        </article>
+        <article id="problem-6-2">
+          <h3>6-2 계단 오르기 · 쉬움</h3>
           <p>높이가 n칸인 계단을 바닥에서 꼭대기까지 오른다. 한 번에 1칸 또는 2칸을 오를 수 있다. 오르는 순서가 다르면 서로 다른 방법으로 센다.</p>
           <p><strong>꼭대기까지 오르는 서로 다른 방법의 수를 반환하시오.</strong></p>
           <p><code>climb_stairs(n)</code></p>
@@ -45,10 +65,10 @@ memo[2]                 # 2: 키 2의 값을 읽음
           <div class="example"><strong>일곱 칸</strong><pre>n=7</pre><p>반환값: <code>21</code></p><p>5칸의 8가지와 6칸의 13가지를 더해 21가지다.</p></div>
           <details><summary>풀이 설명</summary><p>마지막 이동이 1칸이면 n-1칸까지 오르는 방법에 1칸을 붙이고, 마지막 이동이 2칸이면 n-2칸까지 오르는 방법에 2칸을 붙인다. 두 경우의 방법 수를 더한다. dp[0]=1, dp[1]=1에서 시작한다.</p></details>
           <details><summary>C 함수와 자료형</summary><pre>long long climb_stairs(int n)</pre><p>n은 계단 높이이므로 int로 받는다. 방법 수는 크게 늘어나므로 반환값과 dp 배열의 각 칸에 long long을 쓴다.</p></details>
-          <a href="/algorithm-lab/?chapter=6&amp;problem=6-1">이 문제 연습하기</a>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-2">이 문제 연습하기</a>
         </article>
-        <article id="problem-6-2">
-          <h3>6-2 연속 부분합 · 쉬움</h3>
+        <article id="problem-6-3">
+          <h3>6-3 연속 부분합 · 기본</h3>
           <p>정수 배열 a에서 하나 이상의 원소가 연속해서 이어진 구간 하나를 고른다. 구간 중간의 원소를 건너뛸 수 없다.</p>
           <p><strong>고른 구간의 원소 합 중 가장 큰 값을 반환하시오.</strong></p>
           <p><code>max_subarray(a)</code></p>
@@ -65,10 +85,10 @@ memo[2]                 # 2: 키 2의 값을 읽음
           <div class="example"><strong>0을 고르는 경우</strong><pre>a=[-2,0,-1]</pre><p>반환값: <code>0</code></p><p>원소 0 하나로 이루어진 구간을 고른다.</p></div>
           <details><summary>풀이 설명</summary><p>ending에는 현재 위치에서 반드시 끝나는 구간의 최대 합을 둔다. 이번 수만으로 새로 시작하거나, 이전 ending에 이번 수를 붙이는 두 후보를 비교한다. best에는 지금까지 본 모든 위치의 최대 합을 따로 남긴다. 두 값은 첫 원소로 시작한다.</p></details>
           <details><summary>C 함수와 자료형</summary><pre>long long max_subarray(const int a[], int n)</pre><p>a는 원소 배열, n은 원소 수이다. a는 읽기만 한다. n은 1 이상이므로 a[0]으로 시작할 수 있다. 원소의 합은 long long으로 저장한다.</p></details>
-          <a href="/algorithm-lab/?chapter=6&amp;problem=6-2">이 문제 연습하기</a>
+          <a href="/algorithm-lab/?chapter=6&amp;problem=6-3">이 문제 연습하기</a>
         </article>
-        <article id="problem-6-3">
-          <h3>6-3 1로 만드는 최소 연산 횟수 · 기본</h3>
+        <article id="problem-6-4">
+          <h3>6-4 1로 만드는 최소 연산 횟수 · 조금 도전</h3>
           <p>정수 n을 아래 연산으로 바꾸어 1을 만든다. 한 번의 연산에서는 1을 빼거나, 2·3·5 중 하나로 나눈다. 나눗셈은 나누어떨어질 때만 할 수 있다.</p>
           <p><strong>n을 1로 만드는 데 필요한 연산 횟수의 최솟값을 반환하시오.</strong></p>
           <p><code>make_one(n)</code></p>
@@ -85,26 +105,6 @@ memo[2]                 # 2: 키 2의 값을 읽음
           <div class="example"><strong>처음에 나눌 수 없음</strong><pre>n=7</pre><p>반환값: <code>3</code></p><p>7−1=6, 6÷3=2, 2÷2=1로 세 번이다.</p></div>
           <details><summary>나누어떨어지는 후보만 비교한다</summary><p>10에서는 9, 5, 2로 갈 수 있다. 9에서 1까지는 최소 두 번, 5와 2에서는 각각 한 번이 필요하다. 여기에 첫 이동 한 번을 더하면 후보는 3,2,2회이고 답은 2회이다. 3으로 나누는 경우는 10이 3의 배수가 아니므로 후보에 넣지 않는다.</p></details>
           <details><summary>C 함수의 인자</summary><pre>int make_one(int n, int dp[])</pre><p>dp는 길이가 n+1인 작업 배열이다. 함수가 dp[1]부터 채운다.</p></details>
-          <a href="/algorithm-lab/?chapter=6&amp;problem=6-3">이 문제 연습하기</a>
-        </article>
-        <article id="problem-6-4">
-          <h3>6-4 한 번씩만 담는 배낭 · 조금 도전</h3>
-          <p>무게 제한이 W인 배낭과 여러 물건이 있다. 각 물건에는 무게와 가치가 있다. 물건마다 한 개씩만 있으며, 물건을 쪼개서 담을 수 없다. 담은 물건의 총무게는 W 이하여야 한다.</p>
-          <p><strong>담을 수 있는 물건들의 가치 합 중 최댓값을 반환하시오.</strong></p>
-          <p><code>knapsack2(items, W)</code></p>
-          <h4>입력</h4>
-          <dl><dt><code>items</code></dt><dd>0~100개의 [무게, 가치] 쌍. 무게 1~1000, 가치 0~1,000,000</dd><dt><code>W</code></dt><dd>배낭의 무게 제한. 0~1000의 정수</dd></dl>
-          <h4>반환값과 조건</h4>
-          <p>가치 합의 최댓값을 정수로 반환한다. 물건의 수나 무게 합을 반환하지 않는다.</p>
-          <ul><li>각 물건은 한 번만 고를 수 있다. 같은 [무게,가치]가 두 번 주어지면 서로 다른 물건 두 개이다.</li><li>무게를 정확히 W에 맞출 필요는 없다. W보다 작아도 된다.</li><li>아무것도 담지 않는 선택도 허용하며 그 가치는 0이다.</li></ul>
-          <h4>남는 용량과 같은 물건의 중복 사용</h4>
-          <div class="example"><strong>두 물건을 함께 담음</strong><pre>items=[[2,3],[3,4],[4,5]], W=5</pre><p>반환값: <code>7</code></p><p>2kg·3점과 3kg·4점을 담으면 총 5kg·7점이다.</p></div>
-          <div class="example"><strong>같은 물건은 한 번만</strong><pre>items=[[2,3]], W=4</pre><p>반환값: <code>3</code></p><p>용량이 남아도 이 물건은 하나뿐이다. 두 번 담아 6점을 만들 수 없다.</p></div>
-          <div class="example"><strong>빈 배낭이 최선</strong><pre>items=[[6,10]], W=5</pre><p>반환값: <code>0</code></p><p>물건이 제한보다 무거워 담을 수 없다.</p></div>
-          <div class="example"><strong>정확히 채우지 않아도 됨</strong><pre>items=[[2,7]], W=3</pre><p>반환값: <code>7</code></p><p>2kg만 담고 1kg를 남겨도 된다.</p></div>
-          <div class="example"><strong>물건이 없음</strong><pre>items=[], W=5</pre><p>반환값: <code>0</code></p><p>담을 물건이 없으므로 가치 합은 0이다.</p></div>
-          <details><summary>물건을 넣는 경우와 넣지 않는 경우</summary><p>2kg·3점인 A와 3kg·4점인 B를 보고 있고 용량이 5kg라고 하자. B를 안 넣으면 A만 담아 3점이다. B를 넣으면 남은 용량은 2kg이고, 그 안에 A를 담아 3+4=7점이다. 이미 처리한 물건까지만 담을 수 있는 윗줄을 읽어야 B를 두 번 쓰지 않는다.</p></details>
-          <details><summary>C 함수의 인자</summary><pre>int knapsack2(const int w[], const int v[], int n, int W, int dp[][1001])</pre><p>items를 무게 배열 w와 가치 배열 v로 나누어 받는다. n은 물건 수이다. dp는 (n+1)행, 1001열의 작업 배열이다.</p></details>
           <a href="/algorithm-lab/?chapter=6&amp;problem=6-4">이 문제 연습하기</a>
         </article>
       </section>

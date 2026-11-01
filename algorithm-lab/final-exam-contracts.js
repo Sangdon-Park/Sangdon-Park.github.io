@@ -13,6 +13,7 @@ function validateFinalArgs(p,args) {
     case 'fib_bottomup': case 'climb_stairs': scalar(0,0,90); break;
     case 'max_subarray': vector(0,-1000000,1000000,1,10000); break;
     case 'nonadjacent': vector(0,-1000000,1000000,0,10000); break;
+    case 'sum_to_n': scalar(0,0,10000); break;
     case 'make_one': scalar(0,1,10000); break;
     case 'knapsack2':
       need(Array.isArray(args[0])&&args[0].length<=100&&args[0].every(r=>Array.isArray(r)&&r.length===2&&integer(r[0],1,1000)&&integer(r[1],0,1000000)),'items는 최대 100개의 [무게 1~1000, 가치 0~1000000]입니다.');scalar(1,0,1000);break;
@@ -44,7 +45,7 @@ function finalCCase(p,args) {
   const mat=(name,a,width)=>`int ${name}[${Math.max(1,a.length)}][${width}]={${a.map(r=>'{'+r.join(',')+'}').join(',')||'{0}'}};`;
   let setup='',inputs=[];
   switch(p.function) {
-    case 'fib_bottomup': case 'climb_stairs': case 'permutation_count': case 'nqueen_count': case 'within_factor': case 'manhattan': case 'accept_move': inputs=args;break;
+    case 'sum_to_n': case 'fib_bottomup': case 'climb_stairs': case 'permutation_count': case 'nqueen_count': case 'within_factor': case 'manhattan': case 'accept_move': inputs=args;break;
     case 'nonadjacent': case 'max_subarray': setup=arr('a',args[0]);inputs=['a',args[0].length];break;
     case 'make_one': setup=`int dp[${args[0]+1}]={0};`;inputs=[args[0],'dp'];break;
     case 'knapsack2': setup=arr('w',args[0].map(r=>r[0]))+arr('v',args[0].map(r=>r[1]))+'static int dp[101][1001];';inputs=['w','v',args[0].length,args[1],'dp'];break;

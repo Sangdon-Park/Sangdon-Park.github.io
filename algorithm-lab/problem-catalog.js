@@ -14,4 +14,4 @@ function findLinkedProblem(list,value,chapter){
   return match?list.indexOf(match):-1;
 }
 // Not covered by the lecture body. Preserve saved work under its original ID.
-const LAB_RETIRED=Object.freeze({P04:1,P49:3,P50:3,P52:3,P70:5,P72:5,P73:5,P74:5,P75:5,P77:6,P78:6,P79:6,P80:6,P81:6,P82:6,P83:6,P84:6,P85:6,P86:6,'F06-01':6,'F06-02':6});
+const LAB_RETIRED=Object.freeze({P04:1,P49:3,P50:3,P52:3,P70:5,P72:5,P73:5,P74:5,P75:5,P77:6,P78:6,P79:6,P80:6,P81:6,P82:6,P83:6,P84:6,P85:6,P86:6,'F06-01':6,'F06-02':6,'F06-04':6});
