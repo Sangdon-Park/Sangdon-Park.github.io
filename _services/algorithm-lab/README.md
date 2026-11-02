@@ -1,5 +1,12 @@
 # Algorithm Lab classroom service
 
+## Chapter 7 visual lecture (2026-11-02)
+
+The 51-slide lecture follows the phone-keypad choice/backtrack example, then applies
+it to the existing four exercises. Every slide has Korean speaker notes. Python
+reference code starts on slides 25, 32, 38, and 47; long functions continue on the
+next slide. Inputs, expected answers, and saved student work are unchanged.
+
 ## Final coding practice: Chapters 6–11 (2026-11-02)
 
 The student catalog has 23 active tasks: Chapter 6 retains 6-2 (stair counting),
