@@ -3,8 +3,9 @@
 ## Chapter 7 visual lecture (2026-11-02)
 
 The 76-slide lecture introduces backtracking before the phone-keypad example, then applies
-it to the existing four exercises. Each problem starts with its situation, inputs, rules
-and required answer. Worked value traces connect each decision to the code.
+it to the existing four exercises. Each exercise begins with a standalone, complete problem statement on slides
+4 (intro example), 29, 38, 51, and 65. Each states the task, full conditions,
+required function and expected output example before any solution. Worked value traces connect each decision to the code.
 Every slide has Korean speaker notes. Python
 reference code starts on slides 34, 48, 61, and 72; long functions continue on the
 next slide. Inputs, expected answers, and saved student work are unchanged.
