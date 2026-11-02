@@ -2,22 +2,24 @@
 
 ## Chapter 7 visual lecture (2026-11-02)
 
-The 81-slide lecture starts with a fully defined, hand-solved phone-keypad example,
-then teaches only 7-2 (subset sum count) and 7-3 (graph coloring). Concrete problem
-statements appear on slides 3, 12, and 49, before examples or code. General input
-contracts follow on slides 41 and 66 after the illustrated walk-throughs.
-There are 46 illustrated slides, including all eight subset choices and twelve
-graph-coloring states. Separate frames show failed choices and their reversal.
-Slides 31–40 introduce the purpose of the search function, count the one-number
-cases by hand, identify its two inputs, distinguish array positions from values,
-and only then introduce call notation and the returned counts.
-The read-aloud notes also introduce def/return, equality tests, nested functions,
-color storage, neighbor loops, and C declarations before using those concepts.
-Manual walkthroughs describe physical choices before introducing function calls.
-The recovery drawing keeps node 1 yellow when node 2 is recolored.
-Every slide has a Korean read-aloud script. Editable Python reference code starts
-on slides 44 and 72; C code starts on slides 77 and 79. The lecture excludes 7-1
-and 7-4 throughout. 7-4 remains a site-only challenge without a PPTX link.
+The 108-slide lecture teaches the phone-keypad introduction, 7-2 subset sum
+count, and 7-3 graph coloring. The 7-1 and 7-4 exercises remain excluded from the
+lecture; 7-4 is still a site-only challenge. Concrete problem statements start on
+slides 3, 12, and 61. Every slide includes a Korean read-aloud script.
+
+The function examples distinguish the chosen values, current sum, next array
+position, and returned count using arrow-linked drawings. Empty, chosen-2,
+chosen-1-and-2, and no-remaining-number states are compared explicitly.
+New diagrams show waiting recursive calls and the return counts flowing back.
+
+All solution lines are explained with code fragments, concrete runtime values,
+and matching images: Python subset count on slides 46–55, Python coloring on
+84–91, C subset count on 97–99, and C coloring on 102–105. The full editable
+Python solutions start on slides 56 and 92; C solutions start on 100 and 106.
+The coverage is 9/9 Python subset lines, 19/19 Python coloring lines, 10/10 C
+subset lines, and 15/15 C coloring lines, including block boundaries.
+The reference functions and practice tests are unchanged. Duplicate embedded
+images are shared without changing pixels, reducing the PPTX download size.
 
 ## Final coding practice: Chapters 6–11 (2026-11-02)
 
