@@ -2,9 +2,10 @@
 
 ## Chapter 7 visual lecture (2026-11-02)
 
-The 51-slide lecture follows the phone-keypad choice/backtrack example, then applies
-it to the existing four exercises. Every slide has Korean speaker notes. Python
-reference code starts on slides 25, 32, 38, and 47; long functions continue on the
+The 59-slide lecture introduces backtracking before the phone-keypad example, then applies
+it to the existing four exercises. Each problem starts with its situation, inputs, rules
+and required answer. Every slide has Korean speaker notes. Python
+reference code starts on slides 29, 37, 45, and 55; long functions continue on the
 next slide. Inputs, expected answers, and saved student work are unchanged.
 
 ## Final coding practice: Chapters 6–11 (2026-11-02)
