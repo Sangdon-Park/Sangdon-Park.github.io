@@ -74,6 +74,8 @@ function show(i){
   $('instructions').textContent=T(commonFunctionHelp(language,UI_EN));
   $('statement').textContent=view.statement.replaceAll('Python 또는 C 중 하나로',languageName()+'로').replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+(p.finalExam?'':'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions);
   $('method-note').hidden=p.requiredApproach!=='bottom-up';
+  if (CH7_STEPS[p.id]) $('statement').textContent=chapterSevenDescription(p,view);
+  renderChapterSeven(p);
   if(p.requiredApproach==='bottom-up'){
     $('method-title').textContent=UI_EN?'Required approach: bottom-up (iteration)':UI_ES?'Método requerido: de abajo hacia arriba (iteración)':'작성 방식: 바텀업(반복문)';
     $('method-detail').textContent=UI_EN?'Use 1 <= n <= 90. For n=1 return 1. Otherwise set dp[1]=1, dp[2]=2, then loop from 3 to n.':UI_ES?'Usa 1 <= n <= 90. Para n=1 devuelve 1. En otro caso, usa dp[1]=1, dp[2]=2 y un bucle desde 3 hasta n.':'n은 1~90입니다. 1칸은 1가지, 2칸은 2가지입니다. n=1이면 1을 반환하고, 그 외에는 dp[1]=1, dp[2]=2에서 시작해 3부터 반복하세요.';

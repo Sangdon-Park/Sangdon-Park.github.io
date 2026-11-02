@@ -655,6 +655,58 @@ const JAVA_HINT_HELPERS = {
   return best;
 }`
 };
+Object.assign(JAVA_HINT_BODIES, {
+  'F07-01': `int answer = 1;
+for (int i = 0; i < r; i++) answer *= n - i;
+return answer;`,
+  'F07-02': `return subsetSearch(a, target, 0, 0);`,
+  'F07-03': `return paint(graph, k, new int[graph.length], 0);`,
+  'F07-04': `return queens(n, new int[n], 0);`
+});
+Object.assign(JAVA_HINT_HELPERS, {
+  'F07-02': `private static int subsetSearch(int[] a, int target, int i, int total) {
+  if (total > target) return 0;
+  if (i == a.length) return total == target ? 1 : 0;
+  return subsetSearch(a, target, i + 1, total)
+       + subsetSearch(a, target, i + 1, total + a[i]);
+}`,
+  'F07-03': `private static int paint(int[][] graph, int k, int[] color, int v) {
+  if (v == graph.length) return 1;
+  for (int c = 1; c <= k; c++) {
+    boolean allowed = true;
+    for (int u = 0; u < v; u++) {
+      if (graph[v][u] == 1 && color[u] == c) {
+        allowed = false;
+        break;
+      }
+    }
+    if (allowed) {
+      color[v] = c;
+      if (paint(graph, k, color, v + 1) == 1) return 1;
+      color[v] = 0;
+    }
+  }
+  return 0;
+}`,
+  'F07-04': `private static int queens(int n, int[] columns, int row) {
+  if (row == n) return 1;
+  int answer = 0;
+  for (int col = 0; col < n; col++) {
+    boolean allowed = true;
+    for (int r = 0; r < row; r++) {
+      if (columns[r] == col || Math.abs(columns[r] - col) == row - r) {
+        allowed = false;
+        break;
+      }
+    }
+    if (allowed) {
+      columns[row] = col;
+      answer += queens(n, columns, row + 1);
+    }
+  }
+  return answer;
+}`
+});
 function javaHintReference(p) {
   const body = JAVA_HINT_BODIES[p.id];
   if (!body) return '';

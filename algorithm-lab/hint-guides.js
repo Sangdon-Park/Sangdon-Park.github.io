@@ -355,6 +355,7 @@ const HINT_GUIDES = {
 HINT_GUIDES.P47 = HINT_GUIDES.P01;
 HINT_GUIDES.P48 = HINT_GUIDES.P02;
 function problemHintGuide(p) {
+  if (typeof chapterSevenHint === 'function' && CH7_STEPS[p.id]) return chapterSevenHint(p);
   const id = typeof canonicalProblemId === 'function' ? canonicalProblemId(p.id) : p.id;
   const entry = HINT_GUIDES[id];
   if (!entry) return null;

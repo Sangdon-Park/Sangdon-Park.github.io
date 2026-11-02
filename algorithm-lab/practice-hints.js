@@ -60,7 +60,7 @@ function practiceHintData(p, lang){
   const check=guide?.check||T(p.study?.boundary||'');
   const view=lang==='java'?javaView(p):lang==='c'?C_PROBLEMS[p.id]:p;
   if(lang==='java'){
-    const contract=javaContract(p),tools=[],solution=javaHintReference(p);
+    const contract=javaContract(p),tools=typeof chapterSevenTools==='function'?chapterSevenTools(p,lang):[],solution=javaHintReference(p);
     if(contract.types.some(type=>type.endsWith('[]')))tools.push(hintText('A.length는 배열 길이, A[i]는 i번째 원소입니다. 배열의 마지막 인덱스는 A.length-1입니다.','A.length is the array size; A[i] is element i. The last index is A.length-1.','A.length es el tamaño; A[i] es el elemento i. El último índice es A.length-1.'));
     if(contract.types.includes('String'))tools.push(hintText('s.length()는 문자열 길이, s.charAt(i)는 한 문자입니다. 문자열의 내용은 s.equals(t)로 비교합니다.','s.length() gives string length; s.charAt(i) reads a character; s.equals(t) compares contents.','s.length() da la longitud; s.charAt(i) lee un carácter; s.equals(t) compara el contenido.'));
     tools.push(hintText('for·while로 반복하고 if로 조건을 검사합니다. 배열 비교 전에 인덱스가 범위 안인지 확인하세요.','Use for/while loops and if conditions; check index bounds before reading an array.','Usa for/while para repetir e if para condiciones; verifica los índices antes de leer.'));
@@ -82,7 +82,7 @@ function practiceHintData(p, lang){
     return {solution:'',tools,steps,method:steps.join('\n'),check,signature:view.signature,skeleton:view.starter.replace(/    \/\/[^\n]*\n/,comments+'\n'),blanks:[]};
   }
   const solution=HINT_REFERENCES[p.id]?.[lang]||(lang==='c'?p.c?.solution:p.solution)||'';
-  const tools=[];
+  const tools=typeof chapterSevenTools==='function'?chapterSevenTools(p,lang):[];
   for(const [name,description] of Object.entries(HINT_TOOLS)){
     if(new RegExp('\\b'+name+'\\s*\\(').test(solution||view.hint||''))tools.push(description);
   }
