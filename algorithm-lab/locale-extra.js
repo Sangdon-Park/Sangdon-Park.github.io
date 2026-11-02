@@ -1,5 +1,8 @@
 // Additional English and Spanish display translations. Never apply to student code.
 const LOCALE_EN={
+  "작성 방식: 바텀업(반복문)": "Required approach: bottom-up (iteration)",
+  "작은 높이부터 차례로 표를 채우는 바텀업 방식으로 작성한다. 반복문을 사용하고, dp[0]=1과 n≥1일 때 dp[1]=1에서 시작한다.": "Use a bottom-up loop to fill the table from smaller heights. Start with dp[0]=1 and, when n>=1, dp[1]=1.",
+  "이 문제는 바텀업 방식으로 작성합니다. 작은 높이부터 반복문으로 계산합니다.": "Solve this problem bottom-up, using a loop from smaller heights.",
   "문제별": "By problem",
   "문제별 진행 현황": "Progress by problem",
   "문제 검색": "Problem search",
@@ -919,6 +922,9 @@ const LOCALE_EN={
   "출력 없음": "No output"
 };
 const LOCALE_ES={
+  "작성 방식: 바텀업(반복문)": "Método requerido: de abajo hacia arriba (iteración)",
+  "작은 높이부터 차례로 표를 채우는 바텀업 방식으로 작성한다. 반복문을 사용하고, dp[0]=1과 n≥1일 때 dp[1]=1에서 시작한다.": "Usa un bucle para completar la tabla desde las alturas pequeñas. Empieza con dp[0]=1 y, si n>=1, dp[1]=1.",
+  "이 문제는 바텀업 방식으로 작성합니다. 작은 높이부터 반복문으로 계산합니다.": "Resuelve este problema de abajo hacia arriba, con un bucle desde las alturas pequeñas.",
   "문제별": "Por problema",
   "문제별 진행 현황": "Progreso por problema",
   "문제 검색": "Buscar problema",

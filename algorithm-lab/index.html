@@ -15,7 +15,7 @@
   <div class="cloud-strip"><span id="cloud-status" role="status">반·학번·이름을 입력하면 진행 상황이 자동 저장됩니다.</span><div><button id="cloud-login">실습 시작</button><button id="cloud-import" hidden>기존 답안 가져오기</button><button id="cloud-history" hidden>제출 이력</button><button id="cloud-section" hidden>분반 변경</button><button id="cloud-logout" hidden>로그아웃</button><a href="admin.html">교수자 관리 ↗</a></div></div>
   <main><aside><div class="sidebar-caption">WORKSPACE <span id="chapter-caption">CHAPTER 01</span></div><label class="chapter-label" for="chapter">강의 선택 / Chapter</label><select id="chapter"><option value="1">1강 · 알고리즘과 복잡도</option><option value="2">2강 · 완전 탐색</option><option value="3">3강 · 축소 정복</option><option value="4">4강 · 분할 정복</option><option value="5">5강 · 그리디 알고리즘</option><option value="6">6강 · 동적 계획법</option><option value="7">7강 · 백트래킹 기법</option><option value="8">8강 · 분기한정 기법</option><option value="9">9강 · NP완전 문제</option><option value="10">10강 · 근사 알고리즘</option><option value="11">11강 · 휴리스틱 알고리즘</option></select><h2>문제 목록 <span id="chapter-count">12</span></h2><div class="progress-track"><div id="progress-bar"></div></div><nav id="problems" aria-label="문제 선택"></nav><p class="aside-note">대전대학교 컴퓨터공학과 · 박상돈<br><span id="chapter-note">탐색 / 연산 횟수 / 복잡도</span><br><br>각자의 속도로 풀어보세요.<br>채점 후에도 현재 문제에 머뭅니다.</p><div id="chapter-resources" hidden><a href="chapter-02-guide.html">Python·C 강의 예제 / Examples</a><a href="/data/알고리즘/chapter-02-c.zip" download>C 예제 내려받기 / Download C</a><a href="/data/알고리즘/2장_완전탐색_브루트포스_Python_C.pptx">Python·C PPTX</a> <a href="/data/알고리즘/2장_완전탐색_브루트포스_Python_C.pdf" target="_blank" rel="noopener">Python·C PDF</a></div></aside>
   <section class="workspace"><div class="heading"><div><span id="meta" class="eyebrow"></span><h2 id="title">문제를 불러오는 중입니다</h2></div><span id="level"></span></div>
-    <div class="columns"><article><div class="panel-title"><span>문제 설명</span><small>DESCRIPTION</small></div><div class="problem-content"><h3>해결할 문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></div></article>
+    <div class="columns"><article><div class="panel-title"><span>문제 설명</span><small>DESCRIPTION</small></div><div class="problem-content"><p id="method-note" class="notice" hidden><strong id="method-title"></strong><br><span id="method-detail"></span></p><h3>해결할 문제</h3><p id="statement"></p><h3>입출력 예시</h3><div id="examples"></div><details><summary>힌트 보기</summary><p id="hint"></p></details><p id="instructions" class="notice">함수의 이름과 매개변수를 유지하세요. input() 없이 전달받은 값을 사용하고, 답은 return으로 반환합니다.</p></div></article>
     <div class="coding"><div class="editor-toolbar"><div class="file-tab"><span class="file-icon" aria-hidden="true">{ }</span><label id="editor-label" for="code">answer.py</label><span class="saved-dot" title="브라우저 자동 저장" aria-label="브라우저 자동 저장"></span></div><button id="reset">초기화</button></div>
       <div class="indent-toolbar" aria-label="들여쓰기 도구"><button id="indent-less" title="Shift+Tab">← 내어쓰기</button><button id="indent-more" title="Tab">들여쓰기 →</button><button id="indent-align" title="현재 줄 또는 선택한 줄을 앞 코드에 맞춰 정렬">현재 줄 맞춤</button><button id="editor-undo" title="Ctrl+Z">되돌리기</button></div>
       <div class="view-toolbar"><span id="editor-language">Python 3</span><div><label for="font-size" class="sr-only">코드 글자 크기</label><select id="font-size" title="코드 글자 크기"><option value="13">13px</option><option value="15" selected>15px</option><option value="17">17px</option><option value="20">20px</option></select><button id="line-wrap" aria-pressed="false" title="긴 줄을 화면 폭에 맞춰 표시">줄바꿈</button><button id="focus-editor" aria-pressed="false" title="편집기 크게 보기 · Esc로 종료">확대 ↗</button></div></div>
@@ -38,7 +38,7 @@
   <dialog id="history-dialog"><div class="dialog-heading"><h2>내 제출 이력</h2><button id="history-close">닫기</button></div><p>최근 100건 · 시각은 서버에 접수된 시각입니다.</p><div id="history-list"></div></dialog>
   <dialog id="judge-reminder" aria-labelledby="judge-reminder-title"><h2 id="judge-reminder-title">채점하기를 누르셨나요?</h2><p>현재 코드는 아직 채점하지 않았습니다. 예시 실행만으로는 문제 해결로 기록되지 않습니다.</p><div class="dialog-actions"><button id="reminder-stay" autofocus>계속 작성하기</button><button id="reminder-continue">채점 없이 이동</button><button id="reminder-judge" class="primary">지금 채점하기</button></div></dialog>
   <script src="locale-en.js?v=20260922-java"></script>
-<script src="locale-extra.js?v=20261012-progressive"></script>
+<script src="locale-extra.js?v=20261102-bottom-up"></script>
 <script src="i18n.js?v=20260922-java"></script>
 <script src="c-problems.js?v=20260914-c1"></script>
   <script src="java-problems.js?v=20261101-ch6-four-levels"></script>
@@ -66,7 +66,7 @@
 <script src="final-exam-contracts.js?v=20261101-ch6-four-levels"></script>
 <script src="custom-inputs.js?v=20261101-ch6-four-levels"></script>
 <script src="custom-ui.js?v=20261011-ch4-scope"></script>
-<script src="app.js?v=20261102-ch6-challenge"></script>
+<script src="app.js?v=20261102-bottom-up"></script>
 <script src="peer-review-link.js?v=20261021-2"></script>
 <script src="browser-reset.js?v=20260922-java"></script>
 <script defer src="/js/site-analytics.js?v=20260919-1"></script>

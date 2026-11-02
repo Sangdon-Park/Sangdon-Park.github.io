@@ -73,6 +73,11 @@ function show(i){
   const instructions=problemFunctionInstructions(p,language,view,UI_EN);
   $('instructions').textContent=T(commonFunctionHelp(language,UI_EN));
   $('statement').textContent=view.statement.replaceAll('Python 또는 C 중 하나로',languageName()+'로').replaceAll('Python 또는 C',languageName()).replaceAll('Python or C',languageName()).replaceAll('Python o C',languageName())+(p.finalExam?'':'\n\n'+(UI_EN?'Inputs and return value':T('함수 입출력'))+'\n'+instructions);
+  $('method-note').hidden=p.requiredApproach!=='bottom-up';
+  if(p.requiredApproach==='bottom-up'){
+    $('method-title').textContent=UI_EN?'Required approach: bottom-up (iteration)':UI_ES?'Método requerido: de abajo hacia arriba (iteración)':'작성 방식: 바텀업(반복문)';
+    $('method-detail').textContent=UI_EN?'Fill the table from smaller heights to n using a loop. Initialize dp[0]=1 and, when n>=1, dp[1]=1.':UI_ES?'Completa la tabla desde las alturas pequeñas hasta n con un bucle. Inicializa dp[0]=1 y, si n>=1, dp[1]=1.':'작은 높이부터 n까지 반복문으로 표를 채우세요. dp[0]=1, n≥1이면 dp[1]=1에서 시작합니다.';
+  }
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
     const pre=document.createElement('pre');
@@ -160,7 +165,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-ch6-challenge'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-bottom-up'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
