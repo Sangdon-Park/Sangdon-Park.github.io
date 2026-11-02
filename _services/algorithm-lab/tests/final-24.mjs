@@ -13,12 +13,12 @@ vm.runInContext(read('app.js').split('function persist()')[0],ctx);vm.runInConte
 assert.equal(finals.length,24);assert.equal(new Set(bank.map(p=>p.id)).size,bank.length);
 for(const chapter of [6,7,8,9,10,11]){
  ctx.chapterUnderTest=chapter;
- assert.deepEqual(Array.from(vm.runInContext('orderedChapter(chapterUnderTest)',ctx),p=>p.displayId),(chapter===6?[2,3,4]:[1,2,3,4]).map(i=>`${chapter}-${i}`));
+ assert.deepEqual(Array.from(vm.runInContext('orderedChapter(chapterUnderTest)',ctx),p=>p.displayId),([6,7].includes(chapter)?[2,3,4]:[1,2,3,4]).map(i=>`${chapter}-${i}`));
 }
 let publicExamples=0,cases=0;
 for(const p of finals){
  assert.equal(TOTALS[p.id],p.tests.length);
- assert.ok(!p.exercise);assert.ok(p.solution);assert.ok(p.c.solution);assert.ok(p.slides>0||p.challenge);
+ assert.ok(!p.exercise);assert.ok(p.solution);assert.ok(p.c.solution);ctx.p=p;assert.ok(p.slides>0||p.challenge||vm.runInContext('LAB_RETIRED[p.id]',ctx));
  for(const t of p.tests){
   ctx.p=p;ctx.t=t;
   vm.runInContext('validateCustomArgs(p,t.args); finalCCase(p,t.args)',ctx);cases++;
@@ -41,6 +41,9 @@ for(const chapter of [1,2,3,4,5]){
  const old=bank.filter(p=>(p.chapter||1)===chapter&&!vm.runInContext(`LAB_DUPLICATES[${JSON.stringify(p.id)}]||LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx));
  assert.equal(vm.runInContext('orderedChapter(chapterUnderTest).length',ctx),old.length);
 }
-assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,23);
+assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,22);
 assert.equal(finals.find(p=>p.id==='F06-03').challenge,true);
-console.log(JSON.stringify({activeProblems:23,archivedProblems:1,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10,11]}));
+assert.equal(finals.find(p=>p.id==='F07-04').challenge,true);
+assert.equal(finals.find(p=>p.id==='F07-04').slides,null);
+assert.equal(finals.find(p=>p.id==='F07-01').slides,null);
+console.log(JSON.stringify({activeProblems:22,archivedProblems:2,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10,11]}));

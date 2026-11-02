@@ -3731,8 +3731,8 @@
     "examOrder": 1,
     "section": "기말 공개 문제 7-1",
     "hint": "카드 세 장으로 두 자리를 채우면 첫 자리에 3가지 선택이 있다. 어떤 카드를 골랐든 둘째 자리에는 남은 2장 중 하나를 놓는다. 따라서 3×2=6이다. 자리가 r개이면 n부터 하나씩 줄어드는 수를 r번 곱한다.",
-    "sourceFile": "7장_백트래킹_기법.pptx",
-    "slides": 34,
+    "sourceFile": null,
+    "slides": null,
     "starter": "def permutation_count(n, r):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -3874,7 +3874,7 @@
     "section": "기말 공개 문제 7-2",
     "hint": "첫 원소 1을 보는 순간에는 고르거나 건너뛰는 두 선택이 있다. 1을 골랐다면 다음 원소 2를 볼 때 합은 1이고, 건너뛰었다면 합은 0이다. 이 과정을 마지막 원소까지 반복하고, 마지막 합이 target인 갈래에서만 1을 더한다.",
     "sourceFile": "7장_백트래킹_기법.pptx",
-    "slides": 48,
+    "slides": 23,
     "starter": "def subset_sum_count(a, target):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -4065,7 +4065,7 @@
     "section": "기말 공개 문제 7-3",
     "hint": "삼각형에서 0번을 빨강으로 칠했다면 1번은 빨강을 쓸 수 없다. 1번을 파랑으로 칠한 뒤에는 2번에서 빨강과 파랑이 모두 막힌다. 세 번째 색이 있으면 성공하고, 없으면 앞의 선택으로 돌아간다. 코드의 color[v]=0은 방금 칠한 색을 지우는 줄이다.",
     "sourceFile": "7장_백트래킹_기법.pptx",
-    "slides": 61,
+    "slides": 38,
     "starter": "def can_color(graph, k):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -4379,7 +4379,7 @@
     "chapter": 7,
     "displayId": "7-4",
     "title": "서로 공격하지 않는 퀸의 배치 수",
-    "level": "조금 도전",
+    "level": "도전문제",
     "function": "nqueen_count",
     "params": [
       "n"
@@ -4400,8 +4400,8 @@
     "examOrder": 4,
     "section": "기말 공개 문제 7-4",
     "hint": "(1행,2열)과 (2행,3열)은 행과 열이 모두 한 칸 차이이므로 같은 대각선이다. 코드는 퀸을 한 행에 하나씩 놓아 같은 행 검사를 생략한다. 앞 행의 퀸과 열이 같은지, 행 차이와 열 차이의 절댓값이 같은지를 검사한다.",
-    "sourceFile": "7장_백트래킹_기법.pptx",
-    "slides": 72,
+    "sourceFile": null,
+    "slides": null,
     "starter": "def nqueen_count(n):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -4508,7 +4508,8 @@
         "reason": "조건을 만족하는 서로 다른 열 선택이 열 가지이다."
       }
     ],
-    "returnDescription": "가능한 배치 수를 반환한다. 가능한 배치가 없으면 0이다."
+    "returnDescription": "가능한 배치 수를 반환한다. 가능한 배치가 없으면 0이다.",
+    "challenge": true
   },
   {
     "id": "F08-01",

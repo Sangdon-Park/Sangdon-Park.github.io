@@ -2,25 +2,25 @@
 
 ## Chapter 7 visual lecture (2026-11-02)
 
-The 76-slide lecture introduces backtracking before the phone-keypad example, then applies
-it to the existing four exercises. Each exercise begins with a standalone, complete problem statement on slides
-4 (intro example), 29, 38, 51, and 65. Each states the task, full conditions,
-required function and expected output example before any solution. Worked value traces connect each decision to the code.
-Every slide has Korean speaker notes. Python
-reference code starts on slides 34, 48, 61, and 72; long functions continue on the
-next slide. Inputs, expected answers, and saved student work are unchanged.
+The 43-slide lecture starts with a fully defined, hand-solved phone-keypad example,
+then teaches only 7-2 (subset sum count) and 7-3 (graph coloring). Complete problem
+statements appear on slides 3, 12, and 27, before examples or code. Illustrated
+choices, failed paths, returns, and concrete values explain the recursion.
+Every slide has Korean speaker notes. Editable Python reference code starts on
+slides 23 and 38; C code starts on slides 25 and 41. The lecture excludes 7-1 and
+7-4 throughout. 7-4 remains a site-only challenge without a PPTX link.
 
 ## Final coding practice: Chapters 6–11 (2026-11-02)
 
-The student catalog has 23 active tasks: Chapter 6 retains 6-2 (stair counting),
-6-3 (maximum contiguous subarray), and 6-4 (minimum operations to one, marked as
-a challenge). Chapters 7–11 keep four tasks each. The announced final exam selects
-10 tasks and evaluates code execution results.
+The student catalog has 22 active tasks. Chapters 6 and 7 each have two core tasks
+and one challenge; Chapters 8–11 retain four tasks each. The announced final exam
+selects 10 tasks and evaluates code execution results.
 
-`algorithm-lab/final-problems.json` retains the old 6-1 record for saved work and
-grading compatibility. `LAB_RETIRED` hides its stable ID `F06-01-v3` from student
-navigation and redirects saved links to 6-2. Existing answers and results remain
-exportable. No database migration or student-record change is needed.
+`algorithm-lab/final-problems.json` retains the old 6-1 and 7-1 records for saved
+work and grading compatibility. `LAB_RETIRED` hides their stable IDs
+`F06-01-v3` and `F07-01` from navigation and redirects saved links to the first
+active task in the chapter. Existing answers and results remain exportable.
+No database migration or student-record change is needed for this catalog update.
 
 The 39-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3 through illustrated paths,
 recursion, and contiguous intervals without tables. Their Python reference code
