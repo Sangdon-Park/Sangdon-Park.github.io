@@ -1,5 +1,5 @@
 // Actual Java 8 compiler/JVM in a terminable worker; no execution API or API key.
-importScripts('java-problems.js?v=20261101-ch6-four-levels','final-exam-contracts.js?v=20261101-ch6-four-levels','custom-inputs.js?v=20261101-ch6-four-levels','java-harness.js?v=20261011-ch4-scope');
+importScripts('java-problems.js?v=20261101-ch6-four-levels','final-exam-contracts.js?v=20261102-positive-stairs','custom-inputs.js?v=20261101-ch6-four-levels','java-harness.js?v=20261011-ch4-scope');
 let lib, compiler, support, sequence=0;
 async function errorText(error){try{return await error.toString();}catch{return 'Java runtime error';}}
 async function boot(){

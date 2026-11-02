@@ -1,6 +1,6 @@
 /* A separate worker keeps an accidental infinite loop out of the page UI. */
 const BASE = 'https://cdn.jsdelivr.net/pyodide/v0.29.2/full/';
-importScripts('final-exam-contracts.js?v=20261101-ch6-four-levels','custom-inputs.js?v=20261101-ch6-four-levels');
+importScripts('final-exam-contracts.js?v=20261102-positive-stairs','custom-inputs.js?v=20261101-ch6-four-levels');
 let py;
 async function boot() {
   try {

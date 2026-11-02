@@ -10,7 +10,8 @@ function validateFinalArgs(p,args) {
   const tour=(i,n)=>{vector(i,0,n-1,n,n);need(args[i][0]===0&&new Set(args[i]).size===n,'route는 0으로 시작하며 모든 도시를 한 번씩 포함해야 합니다.');};
   need(Array.isArray(args)&&args.length===p.params.length,'함수 인자 개수를 확인하세요.');
   switch(p.function) {
-    case 'fib_bottomup': case 'climb_stairs': scalar(0,0,90); break;
+    case 'fib_bottomup': scalar(0,0,90); break;
+    case 'climb_stairs': scalar(0,1,90); break;
     case 'max_subarray': vector(0,-1000000,1000000,1,10000); break;
     case 'nonadjacent': vector(0,-1000000,1000000,0,10000); break;
     case 'sum_to_n': scalar(0,0,10000); break;

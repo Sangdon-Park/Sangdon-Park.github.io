@@ -16,8 +16,10 @@ The 59-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3. Their Python reference code
 starts on slides 19 and 50. The challenge has no PPTX slide reference. It remains
 available on the practice site with the original function and tests. Top-down,
 bottom-up, memoization, Python dictionaries, and C integer types remain covered.
-The stair task explicitly requests bottom-up loops; top-down code is presented
-as a comparison. Every slide includes Korean speaker notes, and the calculation
+The stair task accepts heights 1–90 and explicitly requests bottom-up loops.
+Start with one way for height 1 and two ways for height 2, then iterate from 3.
+Height 0 is rejected by the input validator and is absent from the seven tests.
+Top-down code is presented as a comparison. Every slide includes Korean speaker notes, and the calculation
 frames show the changing stored answers before introducing code.
 
 Apply `final-24-migration.sql`, `chapter6-v2-migration.sql`, and then
@@ -45,7 +47,7 @@ node _services/algorithm-lab/tests/peer-review.mjs
 These verify 153 reference cases per language, rejected unfinished solutions,
 direct C inputs, all 216 language-specific public examples, input constraints,
 160 independent enumeration comparisons, slide/code agreement and chapter totals.
-The Chapter 6 checks separately enumerate small stairs, compare 300 random arrays
+The Chapter 6 checks separately enumerate positive-height stairs, compare 300 random arrays
 against exhaustive contiguous intervals, check 259 sum inputs and 200 independent
 shortest paths, and cover negative-only arrays and large integer results.
 Only the new sum task receives a new ID. No student data migration or deletion

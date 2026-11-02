@@ -17,7 +17,7 @@ function setResult(text,kind=''){ $('result').textContent=messageText(text); $('
 function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; aiHintControls(); $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='java'?'java-worker.js?v=20261101-ch6-four-levels':language==='c'?'c-worker.js?v=20261101-ch6-four-levels':'worker.js?v=20261101-ch6-four-levels');
+  worker=new Worker(language==='java'?'java-worker.js?v=20261102-positive-stairs':language==='c'?'c-worker.js?v=20261102-positive-stairs':'worker.js?v=20261102-positive-stairs');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -76,7 +76,7 @@ function show(i){
   $('method-note').hidden=p.requiredApproach!=='bottom-up';
   if(p.requiredApproach==='bottom-up'){
     $('method-title').textContent=UI_EN?'Required approach: bottom-up (iteration)':UI_ES?'Método requerido: de abajo hacia arriba (iteración)':'작성 방식: 바텀업(반복문)';
-    $('method-detail').textContent=UI_EN?'Fill the table from smaller heights to n using a loop. Initialize dp[0]=1 and, when n>=1, dp[1]=1.':UI_ES?'Completa la tabla desde las alturas pequeñas hasta n con un bucle. Inicializa dp[0]=1 y, si n>=1, dp[1]=1.':'작은 높이부터 n까지 반복문으로 표를 채우세요. dp[0]=1, n≥1이면 dp[1]=1에서 시작합니다.';
+    $('method-detail').textContent=UI_EN?'Use 1 <= n <= 90. For n=1 return 1. Otherwise set dp[1]=1, dp[2]=2, then loop from 3 to n.':UI_ES?'Usa 1 <= n <= 90. Para n=1 devuelve 1. En otro caso, usa dp[1]=1, dp[2]=2 y un bucle desde 3 hasta n.':'n은 1~90입니다. 1칸은 1가지, 2칸은 2가지입니다. n=1이면 1을 반환하고, 그 외에는 dp[1]=1, dp[2]=2에서 시작해 3부터 반복하세요.';
   }
   $('examples').replaceChildren();
   for(const [j,t] of p.tests.filter(t=>t.public).entries()){
@@ -165,7 +165,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-ch6-visual'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-positive-stairs'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};

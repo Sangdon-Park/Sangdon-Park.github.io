@@ -13,7 +13,7 @@ for p in chapter:
 def enumerate_steps(left):
     if left==0:return [()]
     return [(step,)+path for step in (1,2) if step<=left for path in enumerate_steps(left-step)]
-for n in range(13):assert functions['climb_stairs'](n)==len(enumerate_steps(n))
+for n in range(1,13):assert functions['climb_stairs'](n)==len(enumerate_steps(n))
 assert functions['climb_stairs'](46)==2971215073
 assert functions['climb_stairs'](90)==4660046610375530309
 rng=random.Random(6102)
@@ -34,4 +34,4 @@ for n in range(1,201):
         for nxt in [x-1]+[x//d for d in (2,3,5) if x%d==0]:
             if nxt not in seen:seen.add(nxt);queue.append((nxt,steps+1))
     assert functions['make_one'](n)==steps
-print('Chapter 6: 259 sum checks, 13 stair enumerations, 300 interval comparisons and 200 independent shortest-path checks passed.')
+print('Chapter 6: 259 sum checks, 12 positive stair enumerations, 300 interval comparisons and 200 independent shortest-path checks passed.')
