@@ -12,8 +12,9 @@ grading compatibility. `LAB_RETIRED` hides its stable ID `F06-01-v3` from studen
 navigation and redirects saved links to 6-2. Existing answers and results remain
 exportable. No database migration or student-record change is needed.
 
-The 59-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3. Their Python reference code
-starts on slides 19 and 50. The challenge has no PPTX slide reference. It remains
+The 39-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3 through illustrated paths,
+recursion, and contiguous intervals without tables. Their Python reference code
+starts on slides 17 and 35. The challenge has no PPTX slide reference. It remains
 available on the practice site with the original function and tests. Top-down,
 bottom-up, memoization, Python dictionaries, and C integer types remain covered.
 The stair task accepts heights 1–90 and explicitly requests bottom-up loops.

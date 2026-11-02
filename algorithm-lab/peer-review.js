@@ -4,7 +4,7 @@ const english=(params.get('lang')||localStorage.getItem('dju-algolab-locale'))==
 const L=(ko,en)=>english?en:ko;
 let account=null,token='',state=null,records=[],selected=null,dirty=false,loading=false,pollTimer=null,newId=crypto.randomUUID();
 let problemBank=[];
-const bankReady=Promise.all(['problems.json','chapter-02.json','exercise-problems.json','final-problems.json?v=20261102-positive-stairs'].map(async file=>{const r=await fetch(file);if(!r.ok)throw Error('Problem bank unavailable');return r.json();})).then(banks=>{problemBank=banks.flat();}).catch(()=>{});
+const bankReady=Promise.all(['problems.json','chapter-02.json','exercise-problems.json','final-problems.json?v=20261102-board-lecture'].map(async file=>{const r=await fetch(file);if(!r.ok)throw Error('Problem bank unavailable');return r.json();})).then(banks=>{problemBank=banks.flat();}).catch(()=>{});
 try{account=JSON.parse(localStorage.getItem('dju-algolab-session'));}catch{}
 token=teacher?sessionStorage.getItem('dju-algolab-admin')||'':account?.token||'';
 const el=(parent,tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;parent.append(node);return node;};
