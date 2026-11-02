@@ -1,26 +1,21 @@
 # Algorithm Lab classroom service
 
-## Final coding practice: Chapters 6–11 (2026-11-01)
+## Final coding practice: Chapters 6–11 (2026-11-02)
 
-`algorithm-lab/final-problems.json` defines exactly four public tasks per chapter,
-24 in total, ordered from very easy to a small challenge. The announced final exam
-selects 10 of these tasks and evaluates code execution results. The six revised
-PPTX/PDF lecture decks use the same function signatures, examples and Python/C
-reference implementations. Every slide has presenter notes. The course overview is
-`/courses/algorithms-2026-final.html`.
+The student catalog has 23 active tasks: Chapter 6 retains 6-2 (stair counting),
+6-3 (maximum contiguous subarray), and 6-4 (minimum operations to one, marked as
+a challenge). Chapters 7–11 keep four tasks each. The announced final exam selects
+10 tasks and evaluates code execution results.
 
-The active Chapter 6 tasks, in increasing difficulty, are sum from one to n,
-stair counting, maximum contiguous subarray, and minimum operations to one.
-Their stable IDs are `F06-01-v3`, `F06-01-v2`, `F06-02-v2`, and `F06-03`.
-Display numbers are 6-1 through 6-4; stable IDs preserve the three retained tasks'
-existing work when display numbers change. `F06-04` (knapsack) is retired from
-active navigation, while its stored work remains exportable.
-Chapter 6 has 63 lecture slides with spoken notes, including five additional
-Imagegen explanation diagrams for cumulative sums, repeated recursion, key/value
-lookup, subarray restart, and alternative paths to one. It covers Python dictionaries,
-memoization, and C integer types before the relevant code.
-Top-down and bottom-up include explicit definitions, request/return traces for
-n=4, table updates, memoization/tabulation, and time/space comparisons.
+`algorithm-lab/final-problems.json` retains the old 6-1 record for saved work and
+grading compatibility. `LAB_RETIRED` hides its stable ID `F06-01-v3` from student
+navigation and redirects saved links to 6-2. Existing answers and results remain
+exportable. No database migration or student-record change is needed.
+
+The 45-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3. Their Python reference code
+starts on slides 21 and 38. The challenge has no PPTX slide reference. It remains
+available on the practice site with the original function and tests. Top-down,
+bottom-up, memoization, Python dictionaries, and C integer types remain covered.
 
 Apply `final-24-migration.sql`, `chapter6-v2-migration.sql`, and then
 `chapter6-four-levels-migration.sql`, and deploy

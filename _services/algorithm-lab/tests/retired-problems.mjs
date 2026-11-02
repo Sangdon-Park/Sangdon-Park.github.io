@@ -45,3 +45,21 @@ for(const language of ['python','c','java'])for(const [id] of retired){
  assert.equal(vm.runInContext('saved.answers[answerKey(retiredId)]',ctx),'old code');
 }
 console.log('Chapter 5 scope: 5 active exercises, exam coding retained, five retired exercises archived in every language.');
+
+ctx.finalBank=JSON.parse(read('algorithm-lab/final-problems.json'));
+vm.runInContext('problems=finalBank',ctx);
+assert.deepEqual(Array.from(vm.runInContext('orderedChapter(6)',ctx),p=>p.displayId),['6-2','6-3','6-4']);
+assert.equal(vm.runInContext('findLinkedProblem(problems,"6-1",6)',ctx),-1);
+assert.equal(vm.runInContext('findLinkedProblem(problems,"F06-01-v3",6)',ctx),-1);
+ctx.retiredIndex=ctx.finalBank.findIndex(p=>p.id==='F06-01-v3');
+assert.equal(vm.runInContext('show(retiredIndex)',ctx),ctx.finalBank.findIndex(p=>p.id==='F06-01-v2'));
+for(const language of ['python','c','java']){
+ ctx.archiveLanguage=language;
+ vm.runInContext('language=archiveLanguage;chapter=6;saved.answers={[answerKey("F06-01-v3")]:"old sum code"};saved.passed={[answerKey("F06-01-v3")]:{solved:true}};this.archivedAnswers=[]',ctx);
+ vm.runInContext(exportLine,ctx);
+ assert.equal(ctx.archivedAnswers.length,1);
+ assert.equal(ctx.archivedAnswers[0].id,'F06-01-v3');
+ assert.equal(ctx.archivedAnswers[0].code,'old sum code');
+ assert.equal(vm.runInContext('saved.answers[answerKey("F06-01-v3")]',ctx),'old sum code');
+}
+console.log('Chapter 6: 6-2 and 6-3 retained, 6-4 challenge retained, 6-1 links redirected and saved work preserved.');
