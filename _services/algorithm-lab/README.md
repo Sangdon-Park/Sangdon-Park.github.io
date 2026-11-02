@@ -12,10 +12,13 @@ grading compatibility. `LAB_RETIRED` hides its stable ID `F06-01-v3` from studen
 navigation and redirects saved links to 6-2. Existing answers and results remain
 exportable. No database migration or student-record change is needed.
 
-The 45-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3. Their Python reference code
-starts on slides 21 and 38. The challenge has no PPTX slide reference. It remains
+The 59-slide Chapter 6 PPTX/PDF covers 6-2 and 6-3. Their Python reference code
+starts on slides 19 and 50. The challenge has no PPTX slide reference. It remains
 available on the practice site with the original function and tests. Top-down,
 bottom-up, memoization, Python dictionaries, and C integer types remain covered.
+The stair task explicitly requests bottom-up loops; top-down code is presented
+as a comparison. Every slide includes Korean speaker notes, and the calculation
+frames show the changing stored answers before introducing code.
 
 Apply `final-24-migration.sql`, `chapter6-v2-migration.sql`, and then
 `chapter6-four-levels-migration.sql`, and deploy

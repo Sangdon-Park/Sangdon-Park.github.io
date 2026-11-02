@@ -41,9 +41,16 @@ for chapter in range(6,12):
             part=target.lstrip('/') if target.startswith('/') else 'ppt/'+target
             xml=E.fromstring(z.read(part))
             pages.append(''.join(t.text or '' for t in xml.findall('.//a:t',NS)))
-            code_pages.append(''.join(t.text or '' for shape in xml.findall('.//p:sp',NS)
-                if shape.find('p:nvSpPr/p:cNvPr',NS).get('name')=='code'
-                for t in shape.findall('.//a:t',NS)))
+            shapes=xml.findall('.//p:sp',NS)
+            # The new Chapter 6 layout keeps each code line editable separately.
+            code_shapes=[shape for shape in shapes
+                if shape.find('p:nvSpPr/p:cNvPr',NS).get('name')=='code']
+            if not code_shapes:
+                code_shapes=sorted((shape for shape in shapes
+                    if re.fullmatch(r'code-line-\d+',shape.find('p:nvSpPr/p:cNvPr',NS).get('name',''))),
+                    key=lambda shape:int(shape.find('p:nvSpPr/p:cNvPr',NS).get('name').rsplit('-',1)[1]))
+            code_pages.append('\n'.join(''.join(t.text or '' for t in shape.findall('.//a:t',NS))
+                for shape in code_shapes))
         all_code=compact(''.join(code_pages))
         for p in tasks:
             first=int(p['slides'])-1

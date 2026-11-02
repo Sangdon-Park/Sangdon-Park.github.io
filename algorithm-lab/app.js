@@ -165,7 +165,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-bottom-up'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261102-ch6-visual'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
