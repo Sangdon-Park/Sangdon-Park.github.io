@@ -2,13 +2,16 @@
 
 ## Chapter 7 visual lecture (2026-11-02)
 
-The 43-slide lecture starts with a fully defined, hand-solved phone-keypad example,
-then teaches only 7-2 (subset sum count) and 7-3 (graph coloring). Complete problem
-statements appear on slides 3, 12, and 27, before examples or code. Illustrated
-choices, failed paths, returns, and concrete values explain the recursion.
-Every slide has Korean speaker notes. Editable Python reference code starts on
-slides 23 and 38; C code starts on slides 25 and 41. The lecture excludes 7-1 and
-7-4 throughout. 7-4 remains a site-only challenge without a PPTX link.
+The 72-slide lecture starts with a fully defined, hand-solved phone-keypad example,
+then teaches only 7-2 (subset sum count) and 7-3 (graph coloring). Concrete problem
+statements appear on slides 3, 12, and 43, before examples or code. General input
+contracts follow on slides 37 and 60 after the illustrated walk-throughs.
+There are 44 illustrated slides, including all eight subset choices and twelve
+graph-coloring states. Separate frames show the failed choices, which item or
+color is removed, where execution returns, and how the next attempt succeeds.
+Every slide has a Korean read-aloud script. Editable Python reference code starts
+on slides 38 and 64; C code starts on slides 68 and 70. The lecture excludes 7-1
+and 7-4 throughout. 7-4 remains a site-only challenge without a PPTX link.
 
 ## Final coding practice: Chapters 6–11 (2026-11-02)
 
