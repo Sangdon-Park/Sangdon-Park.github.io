@@ -22,6 +22,14 @@ function validateFinalArgs(p,args) {
     case 'subset_sum_count': vector(0,1,50,0,20); scalar(1,0,1000); break;
     case 'can_color': square(0,1,8,true); scalar(1,1,3); break;
     case 'nqueen_count': scalar(0,1,8); break;
+    case 'bracket_count':
+      need(typeof args[0]==='string'&&args[0].length>=2&&args[0].length<=16&&args[0].length%2===0&&/^[()?]+$/.test(args[0]),'pattern은 (, ), ?로만 이루어진 길이 2~16의 짝수 길이 문자열입니다.');break;
+    case 'maze_path_count': {
+      const grid=args[0];
+      need(Array.isArray(grid)&&integer(grid.length,1,4)&&Array.isArray(grid[0])&&integer(grid[0].length,1,4)&&grid.every(row=>Array.isArray(row)&&row.length===grid[0].length&&row.every(x=>integer(x,0,1))),'grid는 행과 열이 각각 1~4이며 0과 1만 있는 직사각형 배열입니다.');break;
+    }
+    case 'sudoku4_count':
+      need(Array.isArray(args[0])&&args[0].length===4&&args[0].every(row=>Array.isArray(row)&&row.length===4&&row.every(x=>integer(x,0,4))),'board는 0~4의 정수로 이루어진 정확히 4×4 배열입니다.');break;
     case 'route_cost': case 'best_swap_cost': tour(1,square(0,1,9)); break;
     case 'assignment_bound': {const n=costMatrix(0);vector(1,0,1,n,n);scalar(2,0,n);need(args[1].reduce((a,b)=>a+b,0)===args[2],'used의 1 개수는 next_row와 같아야 합니다.');break;}
     case 'assignment_min': costMatrix(0); break;
@@ -52,6 +60,10 @@ function finalCCase(p,args) {
     case 'knapsack2': setup=arr('w',args[0].map(r=>r[0]))+arr('v',args[0].map(r=>r[1]))+'static int dp[101][1001];';inputs=['w','v',args[0].length,args[1],'dp'];break;
     case 'subset_sum_count': setup=arr('a',args[0]);inputs=['a',args[0].length,args[1]];break;
     case 'can_color': setup=mat('g',args[0],8);inputs=['g',args[0].length,args[1]];break;
+    // Escape question marks so C11 trigraphs cannot change inputs such as "(??)".
+    case 'bracket_count': setup=`const char pattern[]=${JSON.stringify(args[0]).replaceAll('?', '\\?')};`;inputs=['pattern'];break;
+    case 'maze_path_count': setup=mat('grid',args[0],4);inputs=['grid',args[0].length,args[0][0].length];break;
+    case 'sudoku4_count': setup=mat('board',args[0],4);inputs=['board'];break;
     case 'route_cost': case 'best_swap_cost': setup=mat('d',args[0],9)+arr('r',args[1]);inputs=['d',args[0].length,'r'];break;
     case 'assignment_bound': setup=mat('c',args[0],8)+arr('used',args[1]);inputs=['c',args[0].length,'used',args[2]];break;
     case 'assignment_min': setup=mat('c',args[0],8);inputs=['c',args[0].length];break;

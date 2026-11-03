@@ -708,6 +708,7 @@ Object.assign(JAVA_HINT_HELPERS, {
 }`
 });
 function javaHintReference(p) {
+  if (p.java?.solution) return p.java.solution;
   const body = JAVA_HINT_BODIES[p.id];
   if (!body) return '';
   const indent = (text, spaces) => text.split('\n').map(line => ' '.repeat(spaces) + line).join('\n');

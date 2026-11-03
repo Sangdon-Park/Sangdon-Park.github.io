@@ -1,5 +1,23 @@
 # Algorithm Lab classroom service
 
+## Additional Chapter 7 challenges (2026-11-03)
+
+`algorithm-lab/challenge-problems.json` adds 7-5 bracket completion, 7-6 simple
+maze paths, and 7-7 4×4 Sudoku solution counts. These are extra practice tasks,
+separate from the existing 22 active final-exam tasks. Chapter 7 navigation now
+contains two core tasks and four challenges. The lecture PPTX is unchanged.
+
+Each task has a complete callable contract, four explained examples, staged
+hints, Python/C/Java references, direct-input validation, and classroom progress
+recording. Apply `chapter7-challenges-migration.sql` and deploy `algorithm-lab`
+before publishing the static files. The migration only expands two existing
+problem-ID constraints; it does not update or delete student records.
+
+Validation: `tests/chapter7-challenges.py`, `tests/chapter7-challenges.mjs`, and
+`tests/chapter7-challenges-browser.cjs`. They check 43 cases per language, 420
+independent comparisons, unfinished answers, direct inputs, hints, mobile layout,
+and the local save queue. The browser suite intercepts every classroom API call.
+
 ## Chapter 7 visual lecture (2026-11-03)
 
 The 108-slide lecture teaches the phone-keypad introduction, 7-2 subset sum

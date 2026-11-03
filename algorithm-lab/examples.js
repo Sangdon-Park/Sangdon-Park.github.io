@@ -6,6 +6,7 @@ function exampleLiteral(value, language) {
   }
   if (value === null) return language === 'c' ? '0' : 'None';
   if (typeof value === 'boolean') return language === 'c' ? String(Number(value)) : value ? 'True' : 'False';
+  if (typeof value === 'string' && language === 'c') return JSON.stringify(value).replaceAll('?', '\\?');
   return JSON.stringify(value);
 }
 
@@ -58,7 +59,7 @@ function cExampleModel(p, t, c) {
   let result = p.exactInteger ? t.expected : exampleLiteral(t.expected, 'c');
   // The C contracts add lengths, split record arrays, and provide workspace.
   if (Array.isArray(a[0])) values.n = a[0].length;
-  if (f === 'grid_sum' || f === 'grid_cost') {
+  if (f === 'grid_sum' || f === 'grid_cost' || f === 'maze_path_count') {
     values.rows = a[0].length; values.cols = a[0][0].length;
   }
   if (f === 'merge_arrays' || f === 'cross_inversions') values.m = a[1].length;
@@ -158,7 +159,7 @@ function formatProblemExample(p, t, language, c, number, english = false) {
 
 function problemFunctionInstructions(p, language, c, english = false) {
   const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
-  if (p.finalExam && p.returnDescription && language !== 'java') {
+  if ((p.finalExam || p.practiceChallenge) && p.returnDescription && language !== 'java') {
     const signature = language === 'c' ? c.signature : `${p.function}(${p.params.join(', ')})`;
     return [signature, language === 'c' ? c.argumentGuide : '', p.returnDescription].filter(Boolean).join('\n');
   }
