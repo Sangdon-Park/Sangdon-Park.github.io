@@ -1,11 +1,12 @@
 # Algorithm Lab classroom service
 
-## Chapter 7 visual lecture (2026-11-02)
+## Chapter 7 visual lecture (2026-11-03)
 
 The 108-slide lecture teaches the phone-keypad introduction, 7-2 subset sum
-count, and 7-3 graph coloring. The 7-1 and 7-4 exercises remain excluded from the
-lecture; 7-4 is still a site-only challenge. Concrete problem statements start on
-slides 3, 12, and 61. Every slide includes a Korean read-aloud script.
+count, and 7-3 graph coloring. Each problem keeps its Python walkthrough
+immediately before its C walkthrough. The 7-1 and 7-4 exercises remain excluded
+from the lecture; 7-4 is still a site-only challenge. Concrete problem statements start on
+slides 3, 12, and 67. Every slide includes a Korean read-aloud script.
 
 The function examples distinguish the chosen values, current sum, next array
 position, and returned count using arrow-linked drawings. Empty, chosen-2,
@@ -14,8 +15,8 @@ New diagrams show waiting recursive calls and the return counts flowing back.
 
 All solution lines are explained with code fragments, concrete runtime values,
 and matching images: Python subset count on slides 46–55, Python coloring on
-84–91, C subset count on 97–99, and C coloring on 102–105. The full editable
-Python solutions start on slides 56 and 92; C solutions start on 100 and 106.
+90–97, C subset count on 63–65, and C coloring on 102–105. The full editable
+Python solutions start on slides 56 and 98; C solutions start on 66 and 106.
 The coverage is 9/9 Python subset lines, 19/19 Python coloring lines, 10/10 C
 subset lines, and 15/15 C coloring lines, including block boundaries.
 The reference functions and practice tests are unchanged. Duplicate embedded
