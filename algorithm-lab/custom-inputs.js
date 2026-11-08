@@ -9,7 +9,7 @@ function customInputType(values) {
 }
 function customFields(p) {
   const names=p.params||p.starter.match(/def\s+\w+\(([^)]*)\)/)[1].split(',').map(v=>v.trim());
-  const example=p.tests.find(t=>t.public)||p.tests[0];
+  const example=p.practiceExamples?.[0]||p.tests.find(t=>t.public)||p.tests[0];
   return example.args.map((value,i)=>({name:names[i],type:customInputType(p.tests.map(t=>t.args[i])),value}));
 }
 function parseCustomValue(text,type,name) {

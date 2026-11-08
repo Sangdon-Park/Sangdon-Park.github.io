@@ -1,4 +1,8 @@
 // Language-specific examples: distinguish arguments, result buffers and returns.
+function practiceExamplesForProblem(problem) {
+  return problem.practiceExamples || problem.tests.filter(test => test.public);
+}
+
 function exampleLiteral(value, language) {
   if (Array.isArray(value)) {
     const brackets = language === 'c' ? ['{', '}'] : ['[', ']'];
@@ -145,7 +149,8 @@ function cExampleModel(p, t, c) {
 function formatProblemExample(p, t, language, c, number, english = false) {
   const label = (ko, en) => english ? en : (typeof T==='function'?T(ko):ko);
   const model = language === 'java' ? javaExampleModel(p,t) : language === 'c' ? cExampleModel(p, t, c) : pythonExampleModel(p, t);
-  const lines = [`${label('예시', 'Example')} ${number} · ${language === 'java' ? 'Java' : language === 'c' ? 'C' : 'Python'}`,
+  const title = t.title ? ` · ${label(t.title, t.title)}` : '';
+  const lines = [`${label('예시', 'Example')} ${number} · ${language === 'java' ? 'Java' : language === 'c' ? 'C' : 'Python'}${title}`,
     label('호출 전 입력:', 'Inputs before the call:'), ...model.inputs];
   if (model.storage?.length) lines.push('', label('실행 환경이 준비하는 결과·작업 공간:', 'Output / workspace allocated by the runtime:'), ...model.storage);
   lines.push('', label('함수 호출:', 'Function call:'), model.call);
@@ -154,6 +159,7 @@ function formatProblemExample(p, t, language, c, number, english = false) {
       ...model.after.map(line => line.endsWith(': 0') ? line + label('개 원소 (읽지 않음)', ' elements (not read)') : line));
   }
   lines.push('', label('반환값: ', 'Return value: ') + (model.result ?? (language === 'c' ? label('없음 (void)', 'none (void)') : label('사용하지 않음 — 수정된 입력 배열을 검사합니다.', 'unused; the modified input array is checked.'))));
+  if (t.explanation) lines.push('', label('계산 과정', 'Calculation'), label(t.explanation, t.explanation));
   return lines.join('\n');
 }
 

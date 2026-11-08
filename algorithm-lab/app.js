@@ -81,7 +81,7 @@ function show(i){
     $('method-detail').textContent=UI_EN?'Use 1 <= n <= 90. For n=1 return 1. Otherwise set dp[1]=1, dp[2]=2, then loop from 3 to n.':UI_ES?'Usa 1 <= n <= 90. Para n=1 devuelve 1. En otro caso, usa dp[1]=1, dp[2]=2 y un bucle desde 3 hasta n.':'n은 1~90입니다. 1칸은 1가지, 2칸은 2가지입니다. n=1이면 1을 반환하고, 그 외에는 dp[1]=1, dp[2]=2에서 시작해 3부터 반복하세요.';
   }
   $('examples').replaceChildren();
-  for(const [j,t] of p.tests.filter(t=>t.public).entries()){
+  for(const [j,t] of practiceExamplesForProblem(p).entries()){
     const pre=document.createElement('pre');
     pre.textContent=formatProblemExample(p,t,language,view,j+1,UI_EN);
     $('examples').append(pre);
@@ -108,7 +108,7 @@ function run(mode){
   job={token:++token,pid:p.id,index,mode,code,language,...(mode==='custom'?{args:customArgs}:{})};
   if(mode==='judge')rememberJudgedAnswer(job);
   armTimeout(language==='java'?180000:language==='c'?60000:6000);
-  worker.postMessage({token:job.token,mode,code,problem:p,cases:mode==='custom'?[{args:customArgs}]:mode==='sample'?p.tests.filter(t=>t.public):p.tests});
+  worker.postMessage({token:job.token,mode,code,problem:p,cases:mode==='custom'?[{args:customArgs}]:mode==='sample'?practiceExamplesForProblem(p):p.tests});
 }
 function finish(report){
   if(report.normalizedCount){
@@ -167,7 +167,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261108-ch8-visual','challenge-problems.json?v=20261103-ch7-challenges'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261108-ch8-problems','challenge-problems.json?v=20261103-ch7-challenges'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
