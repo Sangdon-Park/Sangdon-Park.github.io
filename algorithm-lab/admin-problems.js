@@ -15,7 +15,7 @@ function setAdminProblemCatalog(banks) {
 }
 function loadAdminProblemCatalog() {
   if (!adminCatalogRequest) adminCatalogRequest = Promise.all(['problems.json','chapter-02.json','exercise-problems.json','final-problems.json','challenge-problems.json'].map(async file => {
-    const response = await fetch(file + '?v=20261103-ch7-challenges', {signal:AbortSignal.timeout(20000)});
+    const response = await fetch(file + '?v=20261108-ch8-visual', {signal:AbortSignal.timeout(20000)});
     if (!response.ok) throw Error(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'));
     return response.json();
   })).then(setAdminProblemCatalog).catch(error => { adminCatalogRequest = null; throw error; });
