@@ -30,7 +30,7 @@ for chapter,name in files.items():
 finals=json.loads((ROOT/'algorithm-lab/final-problems.json').read_text(encoding='utf-8'))
 compact=lambda s:re.sub(r'\s+','',s)
 for chapter in range(6,12):
-    tasks=[p for p in finals if p['chapter']==chapter and p.get('slides') and p['id']!='F06-01-v3' and not p.get('challenge')]
+    tasks=[p for p in finals if p['chapter']==chapter and p.get('slides') and p['id']!='F06-01-v3' and (not p.get('challenge') or p.get('practiceChallenge'))]
     assert len(tasks)==(2 if chapter in [6,7] else 4)
     with zipfile.ZipFile(ROOT/'data/알고리즘'/tasks[0]['sourceFile']) as z:
         rels={e.get('Id'):e.get('Target') for e in E.fromstring(z.read('ppt/_rels/presentation.xml.rels'))}

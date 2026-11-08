@@ -7,16 +7,17 @@ const lab=path.resolve(import.meta.dirname,'../../../algorithm-lab');
 const read=f=>fs.readFileSync(path.join(lab,f),'utf8');
 const bank=['problems.json','chapter-02.json','exercise-problems.json','final-problems.json'].flatMap(f=>JSON.parse(read(f)));
 const finals=bank.filter(p=>p.finalExam);
+const practice=bank.filter(p=>p.finalExam||p.id==='F08-04');
 const ctx=vm.createContext({bank,localStorage:{getItem:()=>null}});
 for(const file of ['problem-catalog.js','final-exam-contracts.js','custom-inputs.js','custom-c-harness.js','java-problems.js','examples.js'])vm.runInContext(read(file),ctx);
 vm.runInContext(read('app.js').split('function persist()')[0],ctx);vm.runInContext('problems=bank',ctx);
-assert.equal(finals.length,24);assert.equal(new Set(bank.map(p=>p.id)).size,bank.length);
+assert.equal(finals.length,23);assert.equal(new Set(bank.map(p=>p.id)).size,bank.length);
 for(const chapter of [6,7,8,9,10,11]){
  ctx.chapterUnderTest=chapter;
  assert.deepEqual(Array.from(vm.runInContext('orderedChapter(chapterUnderTest)',ctx),p=>p.displayId),([6,7].includes(chapter)?[2,3,4]:[1,2,3,4]).map(i=>`${chapter}-${i}`));
 }
 let publicExamples=0,cases=0;
-for(const p of finals){
+for(const p of practice){
  assert.equal(TOTALS[p.id],p.tests.length);
  assert.ok(!p.exercise);assert.ok(p.solution);assert.ok(p.c.solution);ctx.p=p;assert.ok(p.slides>0||p.challenge||vm.runInContext('LAB_RETIRED[p.id]',ctx));
  for(const t of p.tests){
@@ -41,9 +42,12 @@ for(const chapter of [1,2,3,4,5]){
  const old=bank.filter(p=>(p.chapter||1)===chapter&&!vm.runInContext(`LAB_DUPLICATES[${JSON.stringify(p.id)}]||LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx));
  assert.equal(vm.runInContext('orderedChapter(chapterUnderTest).length',ctx),old.length);
 }
-assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,22);
+assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,21);
 assert.equal(finals.find(p=>p.id==='F06-03').challenge,true);
 assert.equal(finals.find(p=>p.id==='F07-04').challenge,true);
 assert.equal(finals.find(p=>p.id==='F07-04').slides,null);
 assert.equal(finals.find(p=>p.id==='F07-01').slides,null);
-console.log(JSON.stringify({activeProblems:22,archivedProblems:2,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10,11]}));
+assert.deepEqual(finals.filter(p=>p.chapter===8).map(p=>p.displayId),['8-1','8-2','8-3']);
+assert.equal(bank.find(p=>p.id==='F08-04').practiceChallenge,true);
+assert.equal(bank.find(p=>p.id==='F08-04').finalExam,false);
+console.log(JSON.stringify({activeProblems:21,archivedProblems:2,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10,11]}));

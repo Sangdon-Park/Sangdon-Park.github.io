@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>알고리즘 기말 공개 코딩 22문제</title>
+    <title>알고리즘 기말 공개 코딩 21문제</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/algorithm-lab/chapter-seven.css?v=20261102-ch7-practice">
     <style>
@@ -13,8 +13,8 @@
   <body>
     <main>
       <a href="/courses/algorithms-2026-fall.html#materials">강의자료로</a>
-      <h1>기말 공개 코딩 22문제</h1>
-      <p>6·7장은 각각 기본 2문제와 도전 1문제, 8~11장은 각각 4문제입니다. 공개된 22문제 중 10문제를 출제하고 코드 실행 결과로 평가합니다. 각 함수의 입력·반환값·조건과 예제를 아래에서 확인할 수 있습니다. Python과 C 중 익숙한 언어로 연습하세요.</p>
+      <h1>기말 공개 코딩 21문제</h1>
+      <p>6·7장은 각각 3문제, 8장은 8-1~8-3의 3문제, 9~11장은 각각 4문제입니다. 기말 범위 21문제 중 10문제를 출제하고 코드 실행 결과로 평가합니다. 8-4는 기말에 출제하지 않는 추가 연습입니다. 각 함수의 입력·반환값·조건과 예제를 아래에서 확인할 수 있습니다. Python과 C 중 익숙한 언어로 연습하세요.</p>
       <nav><a href="#chapter-6">6장 동적 계획법</a><a href="#chapter-7">7장 백트래킹 기법</a><a href="#chapter-8">8장 분기한정 기법</a><a href="#chapter-9">9장 NP완전 문제</a><a href="#chapter-10">10장 근사 알고리즘</a><a href="#chapter-11">11장 휴리스틱 알고리즘</a></nav>
       <section id="chapter-6">
         <h2>6장 동적 계획법</h2>
@@ -160,6 +160,7 @@ memo[3]                 # 3: 키 3의 값을 읽음
       </section>
       <section id="chapter-8">
         <h2>8장 분기한정 기법</h2>
+        <p><strong>기말 범위는 8-1, 8-2, 8-3입니다. 8-4는 추가 연습이며 출제하지 않습니다.</strong></p>
         <p>수업 PPTX와 같은 입력과 숫자로 연습합니다. 각 문제의 첫 번째 예제는 PPTX 예제입니다.</p>
         <article id="problem-8-1">
           <h3>8-1 주어진 방문 순서의 왕복 비용 · 아주 쉬움</h3>
@@ -277,7 +278,8 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
           <a href="/algorithm-lab/?chapter=8&amp;problem=8-3">이 문제 연습하기</a>
         </article>
         <article id="problem-8-4">
-          <h3>8-4 모든 도시를 방문하는 최소 왕복 비용 · 조금 도전</h3>
+          <h3>8-4 모든 도시를 방문하는 최소 왕복 비용 · 추가 연습</h3>
+          <p><strong>이 문제는 기말고사 출제 범위에서 제외합니다.</strong> 원할 때 추가로 연습할 수 있습니다.</p>
           <h4>구할 값</h4>
           <p><strong>0번 도시에서 출발해 모든 도시를 한 번씩 방문하고 0번으로 돌아오는 경로 중, 총비용이 가장 작은 경로의 비용을 구하세요.</strong></p>
           <p>도시는 0번부터 n−1번까지 있습니다. 다음에 방문할 도시의 순서도 직접 골라야 합니다. dist는 도시 사이의 이동 비용을 적은 표입니다.</p>

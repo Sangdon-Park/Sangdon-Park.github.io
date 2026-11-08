@@ -3,7 +3,7 @@ let adminProblemCatalog = Array.from({length:89}, (_, i) => {
   const id = 'P' + String(i + 1).padStart(2, '0');
   return {id, title:id, chapter:i < 12 ? 1 : i < 46 ? 2 : i < 56 ? 3 : i < 66 || i >= 86 ? 4 : i < 76 ? 5 : 6};
 }).filter(p => !LAB_DUPLICATES[p.id] && !LAB_RETIRED[p.id] && !['P61','P63','P64'].includes(p.id));
-adminProblemCatalog.push(...Array.from({length:24},(_,i)=>{const chapter=6+Math.floor(i/4),examOrder=i%4+1,id=chapter===6?['F06-01-v3','F06-01-v2','F06-02-v2','F06-03'][examOrder-1]:`F${String(chapter).padStart(2,'0')}-0${examOrder}`;return {id,title:id,chapter,examOrder,displayId:`${chapter}-${examOrder}`,finalExam:true};}).filter(p=>!LAB_RETIRED[p.id]));
+adminProblemCatalog.push(...Array.from({length:24},(_,i)=>{const chapter=6+Math.floor(i/4),examOrder=i%4+1,id=chapter===6?['F06-01-v3','F06-01-v2','F06-02-v2','F06-03'][examOrder-1]:`F${String(chapter).padStart(2,'0')}-0${examOrder}`;return {id,title:id,chapter,examOrder,displayId:`${chapter}-${examOrder}`,finalExam:id!=='F08-04',practiceChallenge:id==='F08-04'};}).filter(p=>!LAB_RETIRED[p.id]));
 adminProblemCatalog.push(...[5,6,7].map(n=>({id:`F07-0${n}`,title:`7-${n}`,chapter:7,examOrder:n,displayId:`7-${n}`,practiceChallenge:true})));
 let adminCatalogRequest = null;
 
@@ -15,7 +15,7 @@ function setAdminProblemCatalog(banks) {
 }
 function loadAdminProblemCatalog() {
   if (!adminCatalogRequest) adminCatalogRequest = Promise.all(['problems.json','chapter-02.json','exercise-problems.json','final-problems.json','challenge-problems.json'].map(async file => {
-    const response = await fetch(file + '?v=20261108-ch8-problems', {signal:AbortSignal.timeout(20000)});
+    const response = await fetch(file + '?v=20261108-ch8-exam-scope', {signal:AbortSignal.timeout(20000)});
     if (!response.ok) throw Error(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'));
     return response.json();
   })).then(setAdminProblemCatalog).catch(error => { adminCatalogRequest = null; throw error; });

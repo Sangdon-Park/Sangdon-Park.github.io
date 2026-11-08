@@ -12,7 +12,7 @@ const ctx=vm.createContext({localStorage:{getItem:()=>null},T:x=>x,UI_LOCALE:'ko
 for(const file of ['problem-catalog.js','final-exam-contracts.js','custom-inputs.js','custom-c-harness.js','java-problems.js','java-hint-references.js','c-problems.js','chapter-seven.js','hint-guides.js','hint-references.js','practice-hints.js','examples.js'])vm.runInContext(read(file),ctx);
 vm.runInContext(read('app.js').split('function persist()')[0],ctx);ctx.bank=all;vm.runInContext('problems=bank',ctx);
 assert.deepEqual(Array.from(vm.runInContext('orderedChapter(7)',ctx),p=>p.id),['F07-02','F07-03','F07-04','F07-05','F07-06','F07-07']);
-assert.equal(all.filter(p=>p.finalExam&&!vm.runInContext(`LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx)).length,22);
+assert.equal(all.filter(p=>p.finalExam&&!vm.runInContext(`LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx)).length,21);
 let examples=0;
 for(const p of bank){
   ctx.p=p;vm.runInContext('C_PROBLEMS[p.id]=p.c',ctx);
@@ -35,7 +35,7 @@ for(const p of bank){
 for(const [id,args] of [['F07-05',['?']],['F07-05',['a?']],['F07-05',[' '.repeat(4)]],['F07-05',['?'.repeat(18)]],['F07-06',[[]]],['F07-06',[[[1,1],[1]]]],['F07-06',[[[2]]]],['F07-06',[[[1,1,1,1,1]]]],['F07-07',[[[0]]]],['F07-07',[[[5,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]]]]){
   ctx.p=bank.find(p=>p.id===id);ctx.args=args;assert.throws(()=>vm.runInContext('validateCustomArgs(p,args)',ctx),id);
 }
-console.log(JSON.stringify({extraTasks:bank.length,languageExamples:examples,activeChapter7:6,examTasksUnchanged:22}));
+console.log(JSON.stringify({extraTasks:bank.length,languageExamples:examples,activeChapter7:6,examTasksUnchanged:21}));
 
 let receive;
 const next=()=>new Promise(resolve=>receive=resolve);
