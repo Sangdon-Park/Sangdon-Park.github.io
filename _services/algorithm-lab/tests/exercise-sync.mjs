@@ -21,14 +21,31 @@ assert.equal(bank.find(p=>p.id==='P53').function,'insertion_sort');
 assert.equal(bank.find(p=>p.id==='P86').function,'grid_cost');
 assert.equal(bank.find(p=>p.id==='P87').exercise,97);
 assert.equal(bank.find(p=>p.id==='P88').exercise,98);
-for(const filename of ['schema.sql','final-24-migration.sql']){
+const migrations=[
+  'schema.sql','chapter-02-migration.sql','exercise-lab-migration.sql',
+  'chapter-04-sorts-migration.sql','chapter-04-scope-migration.sql',
+  'final-24-migration.sql','chapter6-v2-migration.sql',
+  'chapter6-four-levels-migration.sql','chapter7-challenges-migration.sql'
+];
+const invalidIds=['P00','P90','P001','F06-01-v4','F07-08','F08-00','F12-01'];
+const accepts=(check,id)=>check.pattern.test(id)||check.extraIds.has(id);
+let currentChecks;
+for(const filename of migrations){
   const sql=fs.readFileSync(new URL('../'+filename,import.meta.url),'utf8');
-  const patterns=[...sql.matchAll(/check\s*\(\s*problem\s*~\s*'([^']+)'/gi)].map(m=>new RegExp(m[1]));
-  assert.equal(patterns.length,2,filename+' must validate both drafts and submissions');
-  for(const pattern of patterns){
-    for(const id of Object.keys(TOTALS))assert.ok(pattern.test(id),filename+' rejects '+id);
-    assert.ok(!pattern.test('P90'),filename+' accepts unknown P90');
+  currentChecks=[...sql.matchAll(/check\s*\(\s*problem\s*~\s*'([^']+)'(?:\s+or\s+problem\s+in\s*\(([^)]*)\))?\s*\)/gi)].map(match=>({
+    pattern:new RegExp(match[1]),
+    extraIds:new Set([...((match[2]||'').matchAll(/'([^']+)'/g))].map(item=>item[1]))
+  }));
+  assert.equal(currentChecks.length,2,filename+' must validate both drafts and submissions');
+  for(const id of [...Object.keys(TOTALS),...invalidIds]){
+    assert.equal(accepts(currentChecks[0],id),accepts(currentChecks[1],id),filename+' has inconsistent ID checks for '+id);
   }
+}
+// Each migration replaces the previous check. Validate the final applied state,
+// including the explicit versioned and challenge IDs added after final-24.
+for(const check of currentChecks){
+  for(const id of Object.keys(TOTALS))assert.ok(accepts(check,id),'Final schema rejects '+id);
+  for(const id of invalidIds)assert.ok(!accepts(check,id),'Final schema accepts unknown '+id);
 }
 const store=new Map(),sent=[],status={textContent:'',classList:{toggle(){}}};
 let upgraded=false;

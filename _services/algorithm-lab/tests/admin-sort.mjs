@@ -21,7 +21,12 @@ function fixture() {
     setInterval:()=>{}, setTimeout:()=>{}, T:x=>x, UI_EN:false, Blob,
     URL:{createObjectURL:blob=>{exported=blob;return 'blob:fixture';}, revokeObjectURL:()=>{}}
   });
-  for (const file of ['problem-catalog.js', 'admin.js']) vm.runInContext(fs.readFileSync(new URL(file,lab),'utf8'),ctx);
+  for (const file of ['problem-catalog.js', 'admin-problems.js', 'admin.js']) {
+    vm.runInContext(fs.readFileSync(new URL(file,lab),'utf8'),ctx);
+  }
+  ctx.banks = ['problems.json','chapter-02.json','exercise-problems.json','final-problems.json','challenge-problems.json']
+    .map(file => JSON.parse(fs.readFileSync(new URL(file,lab),'utf8')));
+  vm.runInContext('setAdminProblemCatalog(banks)',ctx);
   return {ctx, element};
 }
 const {ctx, element} = fixture();

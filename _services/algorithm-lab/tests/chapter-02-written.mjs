@@ -4,8 +4,10 @@ import path from 'node:path';
 import vm from 'node:vm';
 const root=path.resolve(import.meta.dirname,'../../..');
 const lab=path.join(root,'algorithm-lab');
-const questions=JSON.parse(fs.readFileSync(path.join(root,'.codex-pptx-work/chapter2-exercises/questions.json'),'utf8')).filter(p=>p.kind==='algorithm');
+const questions=JSON.parse(fs.readFileSync(path.join(lab,'exercise-problems.json'),'utf8'))
+  .filter(p=>p.chapter===2);
 assert.equal(questions.length,10);
+assert.deepEqual(questions.map(p=>p.exercise),[61,65,69,71,74,78,79,80,88,99]);
 let receive;
 const next=()=>new Promise(resolve=>{receive=resolve;});
 const ctx=vm.createContext({TextEncoder,TextDecoder,WebAssembly,Uint8Array,ArrayBuffer,DataView,console,setTimeout,clearTimeout,performance,
@@ -16,25 +18,17 @@ ctx.importScripts=(...files)=>files.forEach(file=>vm.runInContext(fs.readFileSyn
 const boot=next();
 vm.runInContext(fs.readFileSync(path.join(lab,'c-worker.js'),'utf8'),ctx);
 assert.equal((await boot).type,'ready');
-vm.runInContext(`const normalCase=chapterTwoCase;
-chapterTwoCase=(p,args)=>{
- if(!p.custom)return normalCase(p,args);
- let setup='',inputs=[];
- args.forEach((arg,i)=>{
-  if(Array.isArray(arg)){
-   setup+='int a'+i+'['+Math.max(1,arg.length)+']={'+(arg.join(',')||'0')+'};';
-   inputs.push('a'+i,arg.length);
-  }else inputs.push(JSON.stringify(arg));
- });
- return {setup,call:'printf("%d",'+p.function+'('+inputs.join(',')+'));'};
-};`,ctx);
 let total=0;
 for(const p of questions){
  const result=next();
- await ctx.self.onmessage({data:{token:p.q,problem:{...p,chapter:2},cases:p.tests,code:p.c.solution}});
+ await ctx.self.onmessage({data:{token:p.id,problem:p,cases:p.tests,code:p.c.solution}});
  const {report}=await result;
- assert.ok(!report.error,`${p.q}: ${report.error}`);
- assert.equal(report.passed,report.total,`${p.q}: ${JSON.stringify(report.rows.filter(r=>!r.ok))}`);
+ assert.ok(!report.error,`${p.id}: ${report.error}`);
+ assert.equal(report.passed,report.total,`${p.id}: ${JSON.stringify(report.rows.filter(r=>!r.ok))}`);
+ const unfinished=next();
+ await ctx.self.onmessage({data:{token:p.id+'-unfinished',problem:p,cases:p.tests,code:p.c.starter}});
+ const {report:rejected}=await unfinished;
+ assert.ok(rejected.error||rejected.passed<rejected.total,`${p.id}: unfinished answer accepted`);
  total+=report.total;
 }
-console.log(`${questions.length} written-exercise C reference solutions passed all ${total} tests.`);
+console.log(`${questions.length} published written-exercise C solutions passed ${total} tests; unfinished answers rejected.`);

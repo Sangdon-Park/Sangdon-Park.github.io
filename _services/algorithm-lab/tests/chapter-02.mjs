@@ -18,7 +18,8 @@ for (const p of [...original, ...problems]) {
     language: 'c', code: 'test', report: {passed: p.tests.length, total: p.tests.length}});
   assert.ok(result.solved);
 }
-assert.throws(() => draft({problem: 'P87', language: 'c', code: ''}));
+assert.doesNotThrow(() => draft({problem: 'P87', language: 'c', code: ''}));
+assert.throws(() => draft({problem: 'P90', language: 'c', code: ''}));
 
 let receive;
 const nextMessage = () => new Promise(resolve => { receive = resolve; });
