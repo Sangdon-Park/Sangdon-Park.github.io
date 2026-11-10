@@ -1,14 +1,14 @@
 # GitHub Traffic Summary
 
 - Repository: `Sangdon-Park/Sangdon-Park.github.io`
-- Last Synced (UTC): `2026-11-09T06:36:14Z`
+- Last Synced (UTC): `2026-11-10T07:22:36Z`
 
 ## Last 14 Days
 
 | Metric | Count | Unique |
 |---|---:|---:|
-| Views | 101 | 3 |
-| Clones | 413 | 123 |
+| Views | 0 | 0 |
+| Clones | 426 | 128 |
 
 ## Daily Views
 
@@ -280,6 +280,7 @@
 | 2026-11-06 | 0 | 0 |
 | 2026-11-07 | 0 | 0 |
 | 2026-11-08 | 0 | 0 |
+| 2026-11-09 | 0 | 0 |
 
 ## Daily Clones
 
@@ -551,25 +552,4 @@
 | 2026-11-06 | 14 | 10 |
 | 2026-11-07 | 4 | 4 |
 | 2026-11-08 | 43 | 16 |
-
-## Top Paths
-
-| Path | Title | Views | Unique |
-|---|---|---:|---:|
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main | /tree/main | 9 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab | /tree/main/algorithm-lab | 9 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io | Overview | 7 | 3 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin.html | /blob/main/algorithm-lab/admin.html | 6 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/_services | /tree/main/_services | 4 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab/vendor | /tree/main/algorithm-lab/vendor | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/data | /tree/main/data | 3 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/_services/algorithm-rehearsal/public/index.html | /blob/main/_services/algorithm-rehearsal/public/index.html | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin-problems.js | /blob/main/algorithm-lab/admin-problems.js | 2 | 1 |
-| /Sangdon-Park/Sangdon-Park.github.io/tree/main/_services/algorithm-lab | /tree/main/_services/algorithm-lab | 2 | 1 |
-
-## Top Referrers
-
-| Referrer | Views | Unique |
-|---|---:|---:|
-| github.com | 2 | 2 |
-| Bing | 1 | 1 |
+| 2026-11-09 | 16 | 10 |

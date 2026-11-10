@@ -1,7 +1,7 @@
 {
   "repo": "Sangdon-Park/Sangdon-Park.github.io",
   "created_at": "2026-03-02T00:00:00Z",
-  "updated_at": "2026-11-09T06:36:14Z",
+  "updated_at": "2026-11-10T07:22:36Z",
   "views_by_day": {
     "2026-02-16": {
       "count": 0,
@@ -1064,6 +1064,10 @@
       "uniques": 0
     },
     "2026-11-08": {
+      "count": 0,
+      "uniques": 0
+    },
+    "2026-11-09": {
       "count": 0,
       "uniques": 0
     }
@@ -2132,6 +2136,10 @@
     "2026-11-08": {
       "count": 43,
       "uniques": 16
+    },
+    "2026-11-09": {
+      "count": 16,
+      "uniques": 10
     }
   },
   "snapshots": [
@@ -4158,92 +4166,28 @@
       "views_uniques": 3,
       "clones_count": 413,
       "clones_uniques": 123
+    },
+    {
+      "date": "2026-11-10",
+      "synced_at": "2026-11-10T07:22:36Z",
+      "views_count": 0,
+      "views_uniques": 0,
+      "clones_count": 426,
+      "clones_uniques": 128
     }
   ],
   "latest": {
     "repo": "Sangdon-Park/Sangdon-Park.github.io",
-    "synced_at": "2026-11-09T06:36:14Z",
+    "synced_at": "2026-11-10T07:22:36Z",
     "views": {
-      "count": 101,
-      "uniques": 3
+      "count": 0,
+      "uniques": 0
     },
     "clones": {
-      "count": 413,
-      "uniques": 123
+      "count": 426,
+      "uniques": 128
     },
-    "top_paths": [
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main",
-        "title": "/tree/main",
-        "count": 9,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab",
-        "title": "/tree/main/algorithm-lab",
-        "count": 9,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io",
-        "title": "Overview",
-        "count": 7,
-        "uniques": 3
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin.html",
-        "title": "/blob/main/algorithm-lab/admin.html",
-        "count": 6,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/_services",
-        "title": "/tree/main/_services",
-        "count": 4,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/algorithm-lab/vendor",
-        "title": "/tree/main/algorithm-lab/vendor",
-        "count": 3,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/data",
-        "title": "/tree/main/data",
-        "count": 3,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/_services/algorithm-rehearsal/public/index.html",
-        "title": "/blob/main/_services/algorithm-rehearsal/public/index.html",
-        "count": 2,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/blob/main/algorithm-lab/admin-problems.js",
-        "title": "/blob/main/algorithm-lab/admin-problems.js",
-        "count": 2,
-        "uniques": 1
-      },
-      {
-        "path": "/Sangdon-Park/Sangdon-Park.github.io/tree/main/_services/algorithm-lab",
-        "title": "/tree/main/_services/algorithm-lab",
-        "count": 2,
-        "uniques": 1
-      }
-    ],
-    "top_referrers": [
-      {
-        "referrer": "github.com",
-        "count": 2,
-        "uniques": 2
-      },
-      {
-        "referrer": "Bing",
-        "count": 1,
-        "uniques": 1
-      }
-    ]
+    "top_paths": [],
+    "top_referrers": []
   }
 }
