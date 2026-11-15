@@ -53,4 +53,4 @@ assert.equal(finals.find(p=>p.id==='F07-01').slides,null);
 assert.deepEqual(finals.filter(p=>p.chapter===8).map(p=>p.displayId),['8-1','8-2','8-3']);
 assert.equal(bank.find(p=>p.id==='F08-04').practiceChallenge,true);
 assert.equal(bank.find(p=>p.id==='F08-04').finalExam,false);
-console.log(JSON.stringify({activeProblems:15,archivedProblems:6,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10]}));
+console.log(JSON.stringify({activeProblems:15,archivedProblems:7,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10]}));

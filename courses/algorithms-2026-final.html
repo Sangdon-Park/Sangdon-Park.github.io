@@ -316,37 +316,41 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
       <section id="chapter-9">
         <h2>9장 근사 알고리즘</h2>
         <article id="problem-9-1">
-          <h3>9-1 비용이 허용 범위 안인지 확인하기 · 아주 쉬움</h3>
-          <h4>9-1은 이미 계산한 결과를 검사하는 보조 연습입니다</h4>
-          <p>최적의 방법까지 알고 바로 쓸 수 있다면 그 방법을 쓰면 됩니다. 근사 알고리즘이 필요한 상황은 최적 방법을 찾는 계산이 부담스러울 때입니다. 빠른 규칙은 최적값 없이 실행하고, 작은 검증 문제에서는 최적값을 따로 구해 결과와 비교합니다.</p>
-          <p>예를 들어 빠른 방법의 결과가 18원이고, 같은 작은 문제를 정확히 풀어 확인한 최적 비용이 10원이었다고 하겠습니다. 9-1은 이미 나온 18원이 최적값 10원의 2배 이내인지 검사합니다.</p>
-          <div class="example"><p><strong>결과 만들기와 결과 검사하기</strong></p><pre>9-2: 작업 [3,2,4]와 기계 2대 → 배정 시간 6분
-작은 문제의 최적값을 따로 확인 → 5분
-9-1: within_factor(6, 5, 2) → 6 ≤ 10이므로 1</pre></div>
-          <p>9-2는 최적값 5를 입력받지 않고 배정을 만듭니다. 9-1에는 그 결과를 검사하려고 최적값을 함께 줍니다. <strong>9-1의 1은 이번 결과가 기준 이내라는 표시입니다. 모든 입력에서 지키는 근사 보장은 별도로 증명합니다.</strong></p>
-          <div class="example"><p><strong>비교 한도 20원일 때</strong></p><pre>검증용 최적 비용 10원 × 비교할 배수 2 = 한도 20원
-계산한 결과 18원 → 한도 이내 → 반환값 1
-계산한 결과 20원 → 한도와 같음 → 반환값 1
-계산한 결과 21원 → 한도 초과 → 반환값 0</pre></div>
-          <p>cost는 이미 계산한 결과 비용, opt는 검증을 위해 따로 준비한 최적 비용, factor는 비교할 배수입니다. 세 값을 받아 다음 검사를 수행하는 함수를 작성하세요.</p>
-          <p><strong>cost≤opt×factor이면 1, 아니면 0을 반환하시오.</strong></p>
-          <p><code>within_factor(cost, opt, factor)</code></p>
+          <h3>9-1 두 기계에 작업 나누기 · 쉬움</h3>
+          <h4>왜 근사 알고리즘을 쓰나요?</h4>
+          <p>작업마다 어느 기계에 맡길지 모든 경우를 비교하면, 작업 하나가 늘 때마다 경우의 수가 두 배가 됩니다. 이 문제에서는 매번 덜 바쁜 기계에 다음 작업을 맡겨 배정을 빠르게 만듭니다. 최적값을 미리 알 필요가 없습니다.</p>
+          <p><strong>같은 속도의 기계 두 대</strong>가 시간 0에 함께 시작합니다. 각 기계는 맡은 작업을 하나씩 이어서 처리합니다. 아래 규칙대로 작업을 모두 맡긴 뒤, <strong>모든 작업이 끝나는 시각</strong>을 구하세요.</p>
+          <p><code>two_machine_time(jobs)</code></p>
           <h4>입력</h4>
-          <dl><dt><code>cost</code></dt><dd>구한 해의 비용. 1~1,000,000의 정수</dd><dt><code>opt</code></dt><dd>알려진 최적 비용. 1≤opt≤cost</dd><dt><code>factor</code></dt><dd>허용하는 배수. 1~100의 정수</dd></dl>
-          <h4>반환값과 조건</h4>
-          <p>허용 비용 이하면 정수 1(통과), 초과하면 정수 0(초과)을 반환합니다.</p>
-          <ul><li>허용 비용과 정확히 같을 때도 1이다.</li><li>factor=1이면 최적 비용과 같아야 통과한다.</li></ul>
-          <h4>정확히 두 배인 비용도 허용한다</h4>
-          <div class="example"><strong>두 배보다 작음</strong><pre>cost=18, opt=10, factor=2</pre><p>반환값: <code>1</code></p><p>허용 비용은 20이고 18은 그 이하이다.</p></div>
-          <div class="example"><strong>경계와 같음</strong><pre>cost=20, opt=10, factor=2</pre><p>반환값: <code>1</code></p><p>20≤20이므로 통과한다.</p></div>
-          <div class="example"><strong>경계를 넘음</strong><pre>cost=21, opt=10, factor=2</pre><p>반환값: <code>0</code></p><p>21은 허용 비용 20을 초과한다.</p></div>
-          <div class="example"><strong>최적 비용과 같음</strong><pre>cost=10, opt=10, factor=1</pre><p>반환값: <code>1</code></p><p>최적 비용 자체이므로 통과한다.</p></div>
-          <div class="example"><strong>1배 조건에서 더 비쌈</strong><pre>cost=11, opt=10, factor=1</pre><p>반환값: <code>0</code></p><p>허용 비용 10보다 크다.</p></div>
-          <details><summary>나누지 않고 허용 비용과 비교한다</summary><p>최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.</p></details>
-          <details><summary>C 함수의 인자</summary><pre>int within_factor(int cost, int opt, int factor)</pre><p>세 인자는 Python과 같은 뜻이다.</p></details>
-          <h4>추가 연습 · 숫자가 커져도 같은 계산</h4>
-          <div class="example"><pre>within_factor(24000, 12000, 2)</pre><p>반환값 <code>1</code>. 허용 한도 12000×2=24000과 같습니다.</p></div>
-          <div class="example"><pre>within_factor(24001, 12000, 2)</pre><p>반환값 <code>0</code>. 허용 한도보다 1이 큽니다.</p></div>
+          <dl><dt><code>jobs</code></dt><dd>각 작업에 걸리는 시간을 적은 정수 배열. 길이는 0~1000, 각 시간은 0~1,000,000입니다. 기계 수는 항상 두 대입니다.</dd></dl>
+          <h4>배정 규칙</h4>
+          <ol>
+            <li>왼쪽과 오른쪽 기계의 시간 합을 각각 0으로 시작합니다.</li>
+            <li>jobs를 앞에서부터 읽어, 시간 합이 작은 기계에 이번 작업을 맡깁니다. 같으면 왼쪽에 맡깁니다.</li>
+            <li>맡긴 기계의 시간 합에 이번 작업 시간을 더합니다. 작업을 쪼개거나 입력 순서를 바꾸지 않습니다.</li>
+            <li>모든 작업을 맡긴 뒤 두 시간 합 중 큰 값을 정수 하나로 반환합니다. 작업이 없으면 0입니다.</li>
+          </ol>
+          <h4>그림처럼 한 작업씩 따라가기</h4>
+          <div class="example"><pre>jobs = [3, 2, 4]
+
+처음       왼쪽 [        ] 0분     오른쪽 [        ] 0분
+3분 배정   왼쪽 [  3분   ] 3분     오른쪽 [        ] 0분
+2분 배정   왼쪽 [  3분   ] 3분     오른쪽 [  2분   ] 2분
+4분 배정   왼쪽 [  3분   ] 3분     오른쪽 [2분|4분 ] 6분
+
+두 기계가 함께 출발하므로 늦게 끝나는 6분이 반환값입니다.</pre></div>
+          <p>이 규칙의 결과는 6분입니다. 세 작업을 3+2와 4로 나누면 5분에 끝낼 수 있지만, 이 문제는 <strong>정해진 빠른 규칙으로 계산한 6</strong>을 반환합니다. 이런 차이를 허용하면서 계산을 줄이는 것이 근사 알고리즘의 핵심입니다. 이 두 기계 규칙은 최적 시간의 2배 이내를 보장합니다.</p>
+          <h4>예제</h4>
+          <div class="example"><strong>기본 예제</strong><pre>jobs=[3,2,4]</pre><p>반환값 <code>6</code>. 왼쪽은 3, 오른쪽은 2+4=6입니다.</p></div>
+          <div class="example"><strong>입력 순서가 달라지면</strong><pre>jobs=[4,3,2]</pre><p>반환값 <code>5</code>. 왼쪽은 4, 오른쪽은 3+2=5입니다.</p></div>
+          <div class="example"><strong>동점은 왼쪽</strong><pre>jobs=[2,2,2]</pre><p>반환값 <code>4</code>. 처음 두 작업 뒤 2와 2가 되어 마지막 2는 왼쪽에 맡깁니다.</p></div>
+          <div class="example"><strong>작업이 없거나 한 개</strong><pre>jobs=[]       → 반환값 0
+jobs=[7]      → 반환값 7</pre></div>
+          <div class="example"><strong>작업 여섯 개</strong><pre>jobs=[8,7,6,5,4,3]
+배정 후 합: (8,0), (8,7), (8,13), (13,13), (17,13), (17,16)</pre><p>반환값 <code>17</code>. 왼쪽은 8+5+4, 오른쪽은 7+6+3입니다.</p></div>
+          <details><summary>Python 풀이의 흐름</summary><p>left와 right에 누적 시간을 저장합니다. for duration in jobs로 하나씩 읽고, left&lt;=right이면 left에 더하고 그 외에는 right에 더합니다. 마지막에 max(left,right)를 반환합니다.</p></details>
+          <details><summary>C 함수의 입력</summary><pre>int two_machine_time(const int jobs[], int n)</pre><p>jobs는 작업 시간 배열이고 n은 작업 개수입니다. 앞의 n개 원소만 읽습니다. 모든 시간의 합도 최대 1,000,000,000이므로 int로 저장할 수 있습니다.</p></details>
+          <p>9-2에서는 같은 방법을 기계 m대로 넓힙니다. 9-1은 두 숫자만 비교하고, 9-2는 배열에서 가장 작은 값을 찾습니다.</p>
           <a href="/algorithm-lab/?chapter=9&amp;problem=9-1">이 문제 연습하기</a>
         </article>
         <article id="problem-9-2">

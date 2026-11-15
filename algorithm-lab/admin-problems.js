@@ -5,7 +5,7 @@ let adminProblemCatalog = Array.from({length:89}, (_, i) => {
 }).filter(p => !LAB_DUPLICATES[p.id] && !LAB_RETIRED[p.id] && !['P61','P63','P64'].includes(p.id));
 adminProblemCatalog.push(...Array.from({length:24},(_,i)=>{
   const originalChapter=6+Math.floor(i/4),examOrder=i%4+1;
-  const id=originalChapter===6?['F06-01-v3','F06-01-v2','F06-02-v2','F06-03'][examOrder-1]:`F${String(originalChapter).padStart(2,'0')}-0${examOrder}`;
+  const id=originalChapter===6?['F06-01-v3','F06-01-v2','F06-02-v2','F06-03'][examOrder-1]:originalChapter===10&&examOrder===1?'F10-01-v2':`F${String(originalChapter).padStart(2,'0')}-0${examOrder}`;
   const chapter=originalChapter>=10?originalChapter-1:originalChapter;
   return {id,title:id,chapter,examOrder,displayId:`${chapter}-${examOrder}`,finalExam:!['F08-04','F10-04','F11-04'].includes(id),practiceChallenge:['F08-04','F10-04','F11-04'].includes(id)};
 }).filter(p=>!LAB_RETIRED[p.id]));
@@ -20,7 +20,7 @@ function setAdminProblemCatalog(banks) {
 }
 function loadAdminProblemCatalog() {
   if (!adminCatalogRequest) adminCatalogRequest = Promise.all(['problems.json','chapter-02.json','exercise-problems.json','final-problems.json','challenge-problems.json'].map(async file => {
-    const response = await fetch(file + '?v=20261115-ch9-purpose', {signal:AbortSignal.timeout(20000)});
+    const response = await fetch(file + '?v=20261115-ch9-two-machines', {signal:AbortSignal.timeout(20000)});
     if (!response.ok) throw Error(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'));
     return response.json();
   })).then(setAdminProblemCatalog).catch(error => { adminCatalogRequest = null; throw error; });

@@ -25,7 +25,8 @@ const migrations=[
   'schema.sql','chapter-02-migration.sql','exercise-lab-migration.sql',
   'chapter-04-sorts-migration.sql','chapter-04-scope-migration.sql',
   'final-24-migration.sql','chapter6-v2-migration.sql',
-  'chapter6-four-levels-migration.sql','chapter7-challenges-migration.sql'
+  'chapter6-four-levels-migration.sql','chapter7-challenges-migration.sql',
+  'supabase/migrations/20261115073535_chapter9_two_machines.sql'
 ];
 const invalidIds=['P00','P90','P001','F06-01-v4','F07-08','F08-00','F12-01'];
 const accepts=(check,id)=>check.pattern.test(id)||check.extraIds.has(id);
