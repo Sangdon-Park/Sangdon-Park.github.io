@@ -339,7 +339,7 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
           <div class="example"><strong>1배 조건에서 더 비쌈</strong><pre>cost=11, opt=10, factor=1</pre><p>반환값: <code>0</code></p><p>허용 비용 10보다 크다.</p></div>
           <details><summary>나누지 않고 허용 비용과 비교한다</summary><p>최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.</p></details>
           <details><summary>C 함수의 인자</summary><pre>int within_factor(int cost, int opt, int factor)</pre><p>세 인자는 Python과 같은 뜻이다.</p></details>
-          <h4>PPTX 큰 숫자 예제의 최종 답</h4>
+          <h4>추가 연습 · 숫자가 커져도 같은 계산</h4>
           <div class="example"><pre>within_factor(24000, 12000, 2)</pre><p>반환값 <code>1</code>. 허용 한도 12000×2=24000과 같습니다.</p></div>
           <div class="example"><pre>within_factor(24001, 12000, 2)</pre><p>반환값 <code>0</code>. 허용 한도보다 1이 큽니다.</p></div>
           <a href="/algorithm-lab/?chapter=9&amp;problem=9-1">이 문제 연습하기</a>
