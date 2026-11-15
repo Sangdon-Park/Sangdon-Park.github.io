@@ -421,6 +421,23 @@ m = 3</pre><p>반환값 <code>15</code>. 기계별 최종 기록은 <code>[11,11
           <p>무방향 그래프의 선들을 주어진 순서대로 확인한다. 이번 선의 양 끝 점을 모두 아직 고르지 않았다면 두 점을 함께 고른다. 한쪽이라도 이미 골랐다면 그 선에서는 아무 점도 추가하지 않는다.</p>
           <p><strong>이 절차가 끝난 뒤 선택한 점의 개수를 반환하시오.</strong></p>
           <p><code>cover_size(n, edges)</code></p>
+          <details id="vertex-cover-guarantee">
+            <summary>왜 최적 점 개수의 2배 이내인가요?</summary>
+            <p>두 끝점을 새로 골랐던 선만 노란색으로 표시합니다. 아래 작은 그래프에서는 0–1과 2–3입니다. 가운데 1–2는 이미 선택한 1번으로 덮여 있어 새 점을 추가하지 않습니다.</p>
+            <figure style="margin:24px 0">
+              <img src="/images/algorithms/ch9-vertex-disjoint.webp?v=20261115-ch9-vertex-bound" width="1920" height="1080" style="display:block;width:100%;height:auto" alt="네 점을 잇는 세 선 중 0–1과 2–3이 노란색이다. 이 두 선에서 양 끝을 선택해 네 점을 고른다.">
+            </figure>
+            <ol>
+              <li>한번 고른 점은 계속 선택된 상태입니다. 앞에서 고른 끝점에 닿는 선은 추가 없이 지나가므로, 노란 선끼리는 끝점을 공유하지 않습니다.</li>
+              <li>모든 선을 덮는 정답은 0 또는 1을 적어도 하나 골라야 합니다. 2–3을 위해서도 2 또는 3을 별도로 하나 골라야 합니다. 따라서 최적도 최소 두 점이 필요합니다.</li>
+              <li>우리 방법은 노란 선마다 두 끝을 골라서 네 점입니다. 최적의 두 배는 최소 네 점이므로, 우리 방법은 최적의 2배 이내입니다.</li>
+              <li>노란 선이 k개여도 같습니다. 최적은 최소 k점, 우리 방법은 정확히 2k점이므로 2k ≤ 2×최적 점 개수입니다.</li>
+            </ol>
+            <figure style="margin:24px 0">
+              <img src="/images/algorithms/ch9-vertex-two-times.webp?v=20261115-ch9-vertex-bound" width="1920" height="1080" style="display:block;width:100%;height:auto" alt="서로 끝점이 겹치지 않는 선 k개에서 최적은 최소 k점을 골라야 하고, 우리 방법은 선마다 두 점씩 2k점을 고르므로 최적의 두 배 이하이다.">
+            </figure>
+            <p>큰 예제에서는 0–1, 2–3, 4–5, 6–7 때문에 최소 네 점이 필요합니다. 실제로 {1,3,4,6}으로 모든 선을 덮을 수 있어 최적은 4이고, 우리 방법의 8은 그 두 배입니다. 최적해의 정확한 점 목록을 먼저 구하지 않아도 이 보장을 얻습니다.</p>
+          </details>
           <h4>입력</h4>
           <dl><dt><code>n</code></dt><dd>점 수. 1~100의 정수. 번호는 0~n−1</dd><dt><code>edges</code></dt><dd>0~1000개의 [끝점1,끝점2] 쌍. 두 끝점은 서로 다름</dd></dl>
           <h4>반환값과 조건</h4>
