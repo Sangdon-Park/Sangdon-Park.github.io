@@ -1,6 +1,5 @@
 (() => {
-  const demo = document.querySelector('[data-vertex-demo]');
-  if (!demo) return;
+  for (const demo of document.querySelectorAll('[data-vertex-demo]')) {
   const points = [...demo.querySelectorAll('[data-point]')];
   const lines = [...demo.querySelectorAll('[data-edge]')];
   const status = demo.querySelector('[data-vertex-status]');
@@ -20,7 +19,7 @@
       line.textContent = `${pair.join('–')} ${covered ? '통과' : '남음'}`;
       if (!covered) missing.push(pair.join('–'));
     });
-    status.textContent = `고른 점 ${picked.size}개. ${missing.length ? `아직 남은 선: ${missing.join(', ')}.` : '세 선 모두 조건을 만족합니다.'}`;
+    status.textContent = `고른 점 ${picked.size}개. ${missing.length ? `아직 남은 선: ${missing.join(', ')}.` : '모든 선의 조건을 만족합니다.'}`;
   }
 
   demo.addEventListener('click', (event) => {
@@ -37,4 +36,5 @@
   });
   demo.querySelector('[data-vertex-controls]').hidden = false;
   draw();
+  }
 })();
