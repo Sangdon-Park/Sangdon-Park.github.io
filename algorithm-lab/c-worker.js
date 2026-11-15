@@ -2,7 +2,7 @@
 importScripts('vendor/wasm-clang/shared.js');
 importScripts('diagnostics.js?v=20260921-errors');
 importScripts('chapter-02-harness.js?v=20260915-ch2');
-importScripts('final-exam-contracts.js?v=20261115-ch9-concept-first','custom-inputs.js?v=20261115-ch9-concept-first','custom-c-harness.js?v=20261115-ch9-concept-first');
+importScripts('final-exam-contracts.js?v=20261115-ch9-bound-visual','custom-inputs.js?v=20261115-ch9-bound-visual','custom-c-harness.js?v=20261115-ch9-bound-visual');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
 const clean = text => text.replace(/\x1b\[[0-9;]*m/g, '');
