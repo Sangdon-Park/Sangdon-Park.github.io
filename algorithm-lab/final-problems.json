@@ -7408,9 +7408,9 @@
       "factor"
     ],
     "statement": "비용이 작을수록 좋은 문제에서, 이미 구한 해의 비용 cost와 최적 비용 opt가 주어진다. cost가 opt의 factor배 이내인지 검사한다. 최적 비용을 새로 구할 필요는 없다.\n\ncost≤opt×factor이면 1, 아니면 0을 반환하시오.\n\n입력\ncost: 구한 해의 비용. 1~1,000,000의 정수\nopt: 알려진 최적 비용. 1≤opt≤cost\nfactor: 허용하는 배수. 1~100의 정수\n\n반환값\n허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다.\n\n조건\n1. 허용 비용과 정확히 같을 때도 1이다.\n2. factor=1이면 최적 비용과 같아야 통과한다.\n\n예제\n두 배보다 작음: cost=18, opt=10, factor=2\n반환값: 1\n허용 비용은 20이고 18은 그 이하이다.\n\n경계와 같음: cost=20, opt=10, factor=2\n반환값: 1\n20≤20이므로 통과한다.\n\n경계를 넘음: cost=21, opt=10, factor=2\n반환값: 0\n21은 허용 비용 20을 초과한다.\n\n최적 비용과 같음: cost=10, opt=10, factor=1\n반환값: 1\n최적 비용 자체이므로 통과한다.\n\n1배 조건에서 더 비쌈: cost=11, opt=10, factor=1\n반환값: 0\n허용 비용 10보다 크다.",
-    "solution": "def within_factor(cost, opt, factor):\n    return int(cost <= opt * factor)",
+    "solution": "def within_factor(cost, opt, factor):\n    limit = opt * factor\n    if cost <= limit:\n        return 1\n    return 0",
     "c": {
-      "solution": "int within_factor(int cost, int opt, int factor) {\n    return cost <= opt * factor;\n}",
+      "solution": "int within_factor(int cost, int opt, int factor) {\n    int limit = opt * factor;\n    if (cost <= limit) {\n        return 1;\n    }\n    return 0;\n}",
       "starter": "int within_factor(int cost, int opt, int factor) {\n    // 여기에 코드를 작성하세요.\n    return 0;\n}\n",
       "statement": "비용이 작을수록 좋은 문제에서, 이미 구한 해의 비용 cost와 최적 비용 opt가 주어진다. cost가 opt의 factor배 이내인지 검사한다. 최적 비용을 새로 구할 필요는 없다.\n\ncost≤opt×factor이면 1, 아니면 0을 반환하시오.\n\n입력\ncost: 구한 해의 비용. 1~1,000,000의 정수\nopt: 알려진 최적 비용. 1≤opt≤cost\nfactor: 허용하는 배수. 1~100의 정수\n\n반환값\n허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다.\n\n조건\n1. 허용 비용과 정확히 같을 때도 1이다.\n2. factor=1이면 최적 비용과 같아야 통과한다.\n\n예제\n두 배보다 작음: cost=18, opt=10, factor=2\n반환값: 1\n허용 비용은 20이고 18은 그 이하이다.\n\n경계와 같음: cost=20, opt=10, factor=2\n반환값: 1\n20≤20이므로 통과한다.\n\n경계를 넘음: cost=21, opt=10, factor=2\n반환값: 0\n21은 허용 비용 20을 초과한다.\n\n최적 비용과 같음: cost=10, opt=10, factor=1\n반환값: 1\n최적 비용 자체이므로 통과한다.\n\n1배 조건에서 더 비쌈: cost=11, opt=10, factor=1\n반환값: 0\n허용 비용 10보다 크다.\n\nC 함수\nint within_factor(int cost, int opt, int factor)\n세 인자는 Python과 같은 뜻이다.\n사이트에서 함수 인자와 작업 배열을 준비한다. 반환값을 출력하는 main 함수를 작성할 필요는 없다.",
       "hint": "최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.\n\n세 인자는 Python과 같은 뜻이다.",
@@ -7424,7 +7424,7 @@
     "section": "기말 공개 문제 9-1",
     "hint": "최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.",
     "sourceFile": "9장_근사_알고리즘.pptx",
-    "slides": 29,
+    "slides": 19,
     "starter": "def within_factor(cost, opt, factor):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -7539,7 +7539,54 @@
         "reason": "허용 비용 10보다 크다."
       }
     ],
-    "returnDescription": "허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다."
+    "returnDescription": "허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다.",
+    "practiceExamples": [
+      {
+        "args": [
+          18,
+          10,
+          2
+        ],
+        "expected": 1,
+        "public": true
+      },
+      {
+        "args": [
+          21,
+          10,
+          2
+        ],
+        "expected": 0,
+        "public": true
+      },
+      {
+        "args": [
+          20,
+          10,
+          2
+        ],
+        "expected": 1,
+        "public": true
+      },
+      {
+        "args": [
+          24000,
+          12000,
+          2
+        ],
+        "expected": 1,
+        "explanation": "PPTX 큰 수 예제. 한도 24,000과 같아 1입니다."
+      },
+      {
+        "args": [
+          24001,
+          12000,
+          2
+        ],
+        "expected": 0,
+        "explanation": "한도 24,000보다 1이 커서 0입니다."
+      }
+    ]
   },
   {
     "id": "F10-02",
@@ -7569,7 +7616,7 @@
     "section": "기말 공개 문제 9-2",
     "hint": "첫 작업 3은 기계0, 다음 작업 2는 기계1에 맡긴다. 이때 기계별 누적 시간은 [3,2]이다. 마지막 작업 4는 합이 더 작은 기계1에 맡겨 [3,6]이 된다. 기계0은 시각 3에, 기계1은 시각 6에 끝나므로 전체 완료 시각은 6이다.",
     "sourceFile": "9장_근사_알고리즘.pptx",
-    "slides": 41,
+    "slides": 25,
     "starter": "def list_scheduling(jobs, m):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -8705,7 +8752,60 @@
         "reason": "어느 기계에도 작업을 맡기지 않는다."
       }
     ],
-    "returnDescription": "기계별로 맡긴 시간의 합 중 최댓값을 반환한다. 기계들의 완료 시각을 모두 더하지 않는다."
+    "returnDescription": "기계별로 맡긴 시간의 합 중 최댓값을 반환한다. 기계들의 완료 시각을 모두 더하지 않는다.",
+    "practiceExamples": [
+      {
+        "args": [
+          [
+            3,
+            2,
+            4
+          ],
+          2
+        ],
+        "expected": 6,
+        "public": true
+      },
+      {
+        "args": [
+          [],
+          3
+        ],
+        "expected": 0,
+        "public": true
+      },
+      {
+        "args": [
+          [
+            2,
+            2,
+            2
+          ],
+          2
+        ],
+        "expected": 4,
+        "public": true
+      },
+      {
+        "args": [
+          [
+            4,
+            3,
+            2,
+            6,
+            5,
+            2,
+            4,
+            3,
+            7,
+            1
+          ],
+          3
+        ],
+        "expected": 15,
+        "explanation": "PPTX 큰 예제. 기계별 최종 기록은 [11, 11, 15], 반환값은 15입니다."
+      }
+    ]
   },
   {
     "id": "F10-03",
@@ -8935,7 +9035,100 @@
         "reason": "점이 네 개 있어도 고른 점은 없다."
       }
     ],
-    "returnDescription": "위 절차로 선택한 점의 수를 반환한다. 최솟값을 찾기 위해 절차를 바꾸지 않는다."
+    "returnDescription": "위 절차로 선택한 점의 수를 반환한다. 최솟값을 찾기 위해 절차를 바꾸지 않는다.",
+    "practiceExamples": [
+      {
+        "args": [
+          3,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ]
+        ],
+        "expected": 2,
+        "public": true
+      },
+      {
+        "args": [
+          4,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ]
+        ],
+        "expected": 4,
+        "public": true
+      },
+      {
+        "args": [
+          3,
+          []
+        ],
+        "expected": 0,
+        "public": true
+      },
+      {
+        "args": [
+          8,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        ],
+        "expected": 8,
+        "explanation": "PPTX 큰 예제. 1·3·6·9번째 선에서 두 점씩 골라 총 8개입니다."
+      }
+    ]
   },
   {
     "id": "F10-04",
@@ -8965,7 +9158,7 @@
     "section": "추가 연습 9-4 · 기말고사 제외",
     "hint": "A={0,1}, B={1,2}, C={2,3}이면 처음에는 세 집합 모두 두 원소를 덮는다. A를 고른 뒤 남은 원소는 2와 3이다. 이때 B는 원소2 한 개, C는 원소2와3 두 개를 새로 덮으므로 C를 고른다. 비트마스크는 이 포함 여부를 정수의 0/1 자리로 적은 표현이다.",
     "sourceFile": "9장_근사_알고리즘.pptx",
-    "slides": 79,
+    "slides": 98,
     "starter": "def greedy_set_cover(n, sets):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {

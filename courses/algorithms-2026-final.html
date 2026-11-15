@@ -333,6 +333,9 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
           <div class="example"><strong>1배 조건에서 더 비쌈</strong><pre>cost=11, opt=10, factor=1</pre><p>반환값: <code>0</code></p><p>허용 비용 10보다 크다.</p></div>
           <details><summary>나누지 않고 허용 비용과 비교한다</summary><p>최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.</p></details>
           <details><summary>C 함수의 인자</summary><pre>int within_factor(int cost, int opt, int factor)</pre><p>세 인자는 Python과 같은 뜻이다.</p></details>
+          <h4>PPTX 큰 숫자 예제의 최종 답</h4>
+          <div class="example"><pre>within_factor(24000, 12000, 2)</pre><p>반환값 <code>1</code>. 허용 한도 12000×2=24000과 같습니다.</p></div>
+          <div class="example"><pre>within_factor(24001, 12000, 2)</pre><p>반환값 <code>0</code>. 허용 한도보다 1이 큽니다.</p></div>
           <a href="/algorithm-lab/?chapter=9&amp;problem=9-1">이 문제 연습하기</a>
         </article>
         <article id="problem-9-2">
@@ -353,6 +356,20 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
           <div class="example"><strong>작업 없음</strong><pre>jobs=[], m=3</pre><p>반환값: <code>0</code></p><p>어느 기계에도 작업을 맡기지 않는다.</p></div>
           <details><summary>기계별 합 [3,2]에서 4를 어디에 맡길까</summary><p>첫 작업 3은 기계0, 다음 작업 2는 기계1에 맡긴다. 이때 기계별 누적 시간은 [3,2]이다. 마지막 작업 4는 합이 더 작은 기계1에 맡겨 [3,6]이 된다. 기계0은 시각 3에, 기계1은 시각 6에 끝나므로 전체 완료 시각은 6이다.</p></details>
           <details><summary>C 함수의 인자</summary><pre>int list_scheduling(const int jobs[], int n, int m)</pre><p>jobs는 작업 시간 배열, n은 작업 수, m은 기계 수이다.</p></details>
+          <h4>PPTX 큰 예제의 최종 답</h4>
+          <div class="example"><pre>jobs = [4,3,2,6,5,2,4,3,7,1]
+m = 3</pre><p>반환값 <code>15</code>. 기계별 최종 기록은 <code>[11,11,15]</code>입니다.</p></div>
+          <details><summary>10개 작업의 배정 기록 전체 보기</summary><pre>시간  고른 기계  배정 후 load
+ 4       0      [4,0,0]
+ 3       1      [4,3,0]
+ 2       2      [4,3,2]
+ 6       2      [4,3,8]
+ 5       1      [4,8,8]
+ 2       0      [6,8,8]
+ 4       0      [10,8,8]
+ 3       1      [10,11,8]
+ 7       2      [10,11,15]
+ 1       0      [11,11,15]</pre><p>마지막에 가장 큰 값 15를 반환합니다.</p></details>
           <a href="/algorithm-lab/?chapter=9&amp;problem=9-2">이 문제 연습하기</a>
         </article>
         <article id="problem-9-3">
@@ -373,6 +390,20 @@ next_row = 0</pre><p>반환값 <code>7</code></p><p>사람 0에게 남은 작업
           <div class="example"><strong>선 없음</strong><pre>n=4, edges=[]</pre><p>반환값: <code>0</code></p><p>점이 네 개 있어도 고른 점은 없다.</p></div>
           <details><summary>선 하나에서 고른 두 점이 다른 선도 덮는다</summary><p>삼각형의 첫 선 0–1에서 두 끝을 고르면 0–2와 1–2도 선택한 점과 닿는다. 그래서 뒤의 두 선에서는 추가하지 않는다. 이 절차는 실제로 두 끝을 추가한 선들끼리 끝점이 겹치지 않게 만든다. 그런 선이 k개이면 어떤 커버도 최소 k점이 필요하고, 이 절차는 2k점을 골라 두 배 이내를 보장한다.</p></details>
           <details><summary>C 함수의 인자</summary><pre>int cover_size(int n, const int edges[][2], int m)</pre><p>n은 정점 수, m은 간선 수이다. edges의 한 행이 두 끝점 번호이다.</p></details>
+          <h4>PPTX 큰 예제의 최종 답</h4>
+          <div class="example"><pre>n = 8
+edges = [[0,1],[1,2],[2,3],[0,3],[3,4],
+         [4,5],[1,5],[5,6],[6,7]]</pre><p>반환값 <code>8</code>. 이 순서에서 1·3·6·9번째 선을 확인할 때 두 점씩 추가합니다.</p></div>
+          <details><summary>9개 선의 선택 기록 전체 보기</summary><pre>선       새로 고른 점  누적 개수
+[0,1]       0,1          2
+[1,2]       없음         2
+[2,3]       2,3          4
+[0,3]       없음         4
+[3,4]       없음         4
+[4,5]       4,5          6
+[1,5]       없음         6
+[5,6]       없음         6
+[6,7]       6,7          8</pre><p>한 번 고른 점을 계속 유지하고, 두 끝이 모두 미선택일 때만 2를 더합니다.</p></details>
           <a href="/algorithm-lab/?chapter=9&amp;problem=9-3">이 문제 연습하기</a>
         </article>
         <article id="problem-9-4">
