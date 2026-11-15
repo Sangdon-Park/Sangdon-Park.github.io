@@ -40,7 +40,7 @@ for(const problem of bank.filter(p=>p.chapter===8)){
     count++;
   }
 }
-const legacy=bank.find(p=>p.chapter===9);
+const legacy=bank.find(p=>p.id==='F09-01');
 context.problem=legacy;
 assert.equal(JSON.stringify(vm.runInContext('practiceExamplesForProblem(problem)',context)),
   JSON.stringify(legacy.tests.filter(test=>test.public)));

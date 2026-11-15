@@ -2,7 +2,7 @@
 importScripts('vendor/wasm-clang/shared.js');
 importScripts('diagnostics.js?v=20260921-errors');
 importScripts('chapter-02-harness.js?v=20260915-ch2');
-importScripts('final-exam-contracts.js?v=20261103-ch7-challenges','custom-inputs.js?v=20261103-ch7-challenges','custom-c-harness.js?v=20261103-ch7-challenges');
+importScripts('final-exam-contracts.js?v=20261115-ch9-approx','custom-inputs.js?v=20261115-ch9-approx','custom-c-harness.js?v=20261115-ch9-approx');
 const ROOT = 'vendor/wasm-clang/';
 let api, log = '';
 const clean = text => text.replace(/\x1b\[[0-9;]*m/g, '');
@@ -36,8 +36,8 @@ function normalize(source) {
 function harness(problem, cases, custom=false) {
   const customBody=({setup,call,after=''})=>`{${setup}\nprintf("\\nDJU_CUSTOM_RESULT:");${call}printf("\\nDJU_CUSTOM_STDOUT:");lab_json_string(lab_custom_output);${after?'printf("\\nDJU_CUSTOM_AFTER:");'+after:''}printf("\\n");fflush(stdout);}`;
   const body = cases.map((test, index) => {
-    if(custom&&(problem.finalExam||problem.practiceChallenge||Number(problem.id.slice(1))>=13))return customBody(customCCase(problem,test.args));
-    if(problem.finalExam||problem.practiceChallenge){const {setup,call}=finalCCase(problem,test.args);return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;}
+    if(custom&&(problem.finalExam||problem.practiceChallenge||problem.retired||Number(problem.id.slice(1))>=13))return customBody(customCCase(problem,test.args));
+    if(problem.finalExam||problem.practiceChallenge||problem.retired){const {setup,call}=finalCCase(problem,test.args);return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;}
     if (problem.exercise) {
       const {setup, call} = test.cHarness || chapterTwoCase({...problem,id:problem.legacyHarnessId}, test.args);
       return `{${setup}\nprintf("\\nDJU_CASE_${index}:");${call}printf("\\n");fflush(stdout);}`;

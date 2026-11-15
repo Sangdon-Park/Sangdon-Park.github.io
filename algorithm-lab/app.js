@@ -17,7 +17,7 @@ function setResult(text,kind=''){ $('result').textContent=messageText(text); $('
 function controls(){ customControls(); $('reminder-judge').disabled=!ready||busy||!cloud.session||cloud.expired; aiHintControls(); $('judge').disabled=$('sample').disabled=!ready||busy||!cloud.session||cloud.expired; $('stop').hidden=!busy; $('code').readOnly=busy||!cloud.session||cloud.expired; if(editor)editor.setOption('readOnly',busy||!cloud.session||cloud.expired); $('language').disabled=busy;$('chapter').disabled=busy;$('ui-language').disabled=busy;$('clear-browser').disabled=busy;for(const id of ['indent-more','indent-less','indent-align','editor-undo'])$(id).disabled=busy;document.body.classList.toggle('busy',busy); }
 function boot(){
   if(worker) worker.terminate(); clearTimeout(timer); ready=false;busy=false;controls();$('engine').textContent=language==='java'?T('Java 준비 중… (첫 실행은 시간이 걸릴 수 있습니다.)'):language==='c'?T('C 준비 중… (첫 실행 약 60MB)'):T('Python 준비 중…');$('retry').hidden=true;
-  worker=new Worker(language==='java'?'java-worker.js?v=20261103-ch7-challenges':language==='c'?'c-worker.js?v=20261103-ch7-challenges':'worker.js?v=20261103-ch7-challenges');
+  worker=new Worker(language==='java'?'java-worker.js?v=20261103-ch7-challenges':language==='c'?'c-worker.js?v=20261115-ch9-approx':'worker.js?v=20261103-ch7-challenges');
   const mine=worker;
   timer=setTimeout(()=>{if(worker!==mine)return;mine.terminate();$('engine').textContent=T('연결 지연');$('retry').hidden=false;setResult(languageName()+T('을 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 연결을 눌러주세요.'),'error');},180000);
   worker.onmessage=({data})=>{
@@ -37,7 +37,7 @@ function renderNav(){
   for(const p of chapterProblems()){
     const i=problems.indexOf(p), b=document.createElement('button');
     const ok=saved.passed[answerKey(p.id)]&&saved.passed[answerKey(p.id)].code===saved.answers[answerKey(p.id)];
-    const badge=document.createElement('span');badge.className='problem-id';badge.textContent=displayedProblemId(p);const name=document.createElement('span');name.textContent=p.title+(p.challenge?(UI_EN?' · Challenge':UI_ES?' · Desafío':' · 도전문제'):'');b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
+    const badge=document.createElement('span');badge.className='problem-id';badge.textContent=displayedProblemId(p);const name=document.createElement('span');name.textContent=p.title+(p.practiceChallenge?(UI_EN?' · Extra practice':UI_ES?' · Práctica adicional':' · 추가 연습'):p.challenge?(UI_EN?' · Challenge':UI_ES?' · Desafío':' · 도전문제'):'');b.append(badge,name);b.className=(i===index?'active ':'')+(ok?'solved':'');
     b.onclick=()=>{if(!busy)moveToProblem(i);};$('problems').append(b);
   }
   const active=chapterProblems();
@@ -64,7 +64,7 @@ function show(i){
   $('chapter-caption').textContent=(UI_ES?'TEMA ':UI_EN?'CHAPTER ':'CHAPTER ')+String(chapter).padStart(2,'0');
   $('chapter-resources').hidden=chapter!==2;
   $('chapter-resources').querySelector('a').href='chapter-02-guide.html?lang='+UI_LOCALE;
-  $('chapter-note').textContent=chapter===6?(UI_EN?'Stair climbing and maximum subarray + 1 challenge':UI_ES?'Escaleras y subarreglo máximo + 1 desafío':'계단 오르기·연속 부분합 + 도전 1문제'):chapter===7?(UI_EN?'Subset sums and graph coloring + 4 challenges':UI_ES?'Sumas de subconjuntos y coloreado + 4 desafíos':'목표 합·그래프 색칠 + 도전 4문제'):chapter>=8?(UI_EN?'Final practice: 21 exam topics / 10 on the exam':UI_ES?'Práctica final: 21 temas / 10 en el examen':'기말 범위 총 21개 중 10개 출제 · 8-4 기말 제외'):chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
+  $('chapter-note').textContent=chapter===6?(UI_EN?'Stair climbing and maximum subarray + 1 challenge':UI_ES?'Escaleras y subarreglo máximo + 1 desafío':'계단 오르기·연속 부분합 + 도전 1문제'):chapter===7?(UI_EN?'Subset sums and graph coloring + 4 challenges':UI_ES?'Sumas de subconjuntos y coloreado + 4 desafíos':'목표 합·그래프 색칠 + 도전 4문제'):chapter>=8?(UI_EN?'Final exam: Chapters 6–10, 15 topics / 10 on the exam':UI_ES?'Examen final: capítulos 6–10, 15 temas / 10 en el examen':'기말 범위 6~10장 · 15문제 중 10개 출제 · 8-4·9-4·10-4 제외'):chapter>=3?(UI_EN?'PPTX coding exercises / Python / C / Java':T('연습문제 작성형 / Python·C·Java 구현')):chapter===2?(UI_EN?'Loops / permutations / combinations / subsets':T('반복문 / 순열·조합 / 부분집합')):(UI_EN?'Search / operation counts / complexity':T('탐색 / 연산 횟수 / 복잡도'));
   const url=new URL(location.href);url.searchParams.set('chapter',chapter);url.searchParams.set('problem',displayedProblemId(p));url.searchParams.set('code',language);url.searchParams.delete('scope');history.replaceState(null,'',url);
   $('title').textContent=p.title;$('meta').textContent=(p.finalExam||p.practiceChallenge)?`${p.section}${p.slides?' · PPTX '+p.slides:''} · ${UI_EN?'Code execution only':'코드 실행 결과로 평가'}`:`${p.exercise?p.section:p.id+' · '+p.section} · ${p.exercise?'PPTX':p.chapter===2?(UI_EN?"Detailed PPT":"상세해설 PPT"):"PPT"} ${p.slides}`;$('level').textContent=p.challenge?(UI_EN?'Challenge':UI_ES?'Desafío':'도전문제'):p.level;
   const view=language==='java'?javaView(p):language==='c'?C_PROBLEMS[p.id]:p;
@@ -167,7 +167,7 @@ $('chapter').onchange=()=>{
 const entryParams=new URLSearchParams(location.search);
 initEditor();
 initCloudUI();
-Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261108-ch8-exam-scope','challenge-problems.json?v=20261103-ch7-challenges'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
+Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-detailed-lecture','exercise-problems.json?v=20261012-progressive','final-problems.json?v=20261115-ch9-approx','challenge-problems.json?v=20261103-ch7-challenges'].map(file=>fetch(file).then(r=>{if(!r.ok)throw new Error();return r.json();}))).then(async chapters=>{
   const data=chapters.flat();
   for(const p of data){
     if(p.c)C_PROBLEMS[p.id]={...p.c};
@@ -182,10 +182,11 @@ Promise.all(['problems.json?v=20261011-ch4-scope','chapter-02.json?v=20260922-de
   problems=data;index=Math.min(Math.max(0,saved.index||0),data.length-1);show(index);
   editor.setOption('readOnly',true);await cloudInit();
   if(['c','python','java'].includes(entryParams.get('code'))){language=entryParams.get('code');saved.language=language;$('language').value=language;}
-  const requestedChapter=Number(entryParams.get('chapter'));
+  const linkedChapter=Number(entryParams.get('chapter'));
+  const requestedChapter=linkedChapter===11?10:linkedChapter;
   const requestedIndex=findLinkedProblem(problems,entryParams.get('problem'),requestedChapter);
   if(requestedIndex>=0)index=requestedIndex;
-  else if([1,2,3,4,5,6,7,8,9,10,11].includes(requestedChapter))index=firstInChapter(requestedChapter);
+  else if([1,2,3,4,5,6,7,8,9,10].includes(requestedChapter))index=firstInChapter(requestedChapter);
   if(index<0)index=0;
   show(index);boot();requirePracticeAccount();
 }).catch(()=>{setResult(T('문제 파일을 불러오지 못했습니다. 페이지를 새로고침하세요.'),'error');});

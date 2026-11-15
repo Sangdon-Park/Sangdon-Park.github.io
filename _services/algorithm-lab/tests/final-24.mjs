@@ -7,12 +7,12 @@ const lab=path.resolve(import.meta.dirname,'../../../algorithm-lab');
 const read=f=>fs.readFileSync(path.join(lab,f),'utf8');
 const bank=['problems.json','chapter-02.json','exercise-problems.json','final-problems.json'].flatMap(f=>JSON.parse(read(f)));
 const finals=bank.filter(p=>p.finalExam);
-const practice=bank.filter(p=>p.finalExam||p.id==='F08-04');
+const practice=bank.filter(p=>p.finalExam||p.practiceChallenge);
 const ctx=vm.createContext({bank,localStorage:{getItem:()=>null}});
 for(const file of ['problem-catalog.js','final-exam-contracts.js','custom-inputs.js','custom-c-harness.js','java-problems.js','examples.js'])vm.runInContext(read(file),ctx);
 vm.runInContext(read('app.js').split('function persist()')[0],ctx);vm.runInContext('problems=bank',ctx);
-assert.equal(finals.length,23);assert.equal(new Set(bank.map(p=>p.id)).size,bank.length);
-for(const chapter of [6,7,8,9,10,11]){
+assert.equal(finals.length,17);assert.equal(new Set(bank.map(p=>p.id)).size,bank.length);
+for(const chapter of [6,7,8,9,10]){
  ctx.chapterUnderTest=chapter;
  assert.deepEqual(Array.from(vm.runInContext('orderedChapter(chapterUnderTest)',ctx),p=>p.displayId),([6,7].includes(chapter)?[2,3,4]:[1,2,3,4]).map(i=>`${chapter}-${i}`));
 }
@@ -35,14 +35,17 @@ for(const p of practice){
  assert.equal(vm.runInContext('findLinkedProblem(problems,p.id,p.chapter)',ctx),retired?-1:bank.indexOf(p));
 }
 const invalids=[['F06-01-v3',[-1]],['F06-01-v3',[10001]],['F06-01-v2',[91]],['F06-01-v2',[-1]],['F06-01-v2',[0]],['F06-02-v2',[[]]],['F06-02-v2',[[1000001]]],['F07-02',[[1,0],1]],['F08-01',[[[0,1],[1,0]],[0,0]]],['F08-02',[[[1,2],[3,4]],[1,1],1]],['F09-04',[1,[[0,1,1]]]],['F10-04',[2,[4]]],['F11-03',[10,12,-1,0.2]],['F11-03',[10,12,1,1]]];
-for(const [id,args] of invalids){ctx.p=finals.find(p=>p.id===id);ctx.args=args;assert.throws(()=>vm.runInContext('validateCustomArgs(p,args)',ctx),id);}
+for(const [id,args] of invalids){ctx.p=bank.find(p=>p.id===id);ctx.args=args;assert.throws(()=>vm.runInContext('validateCustomArgs(p,args)',ctx),id);}
 assert.equal(finals.find(p=>p.chapter===6&&p.function==='max_subarray').javaResult,'long');
 for(const chapter of [1,2,3,4,5]){
  ctx.chapterUnderTest=chapter;
  const old=bank.filter(p=>(p.chapter||1)===chapter&&!vm.runInContext(`LAB_DUPLICATES[${JSON.stringify(p.id)}]||LAB_RETIRED[${JSON.stringify(p.id)}]`,ctx));
  assert.equal(vm.runInContext('orderedChapter(chapterUnderTest).length',ctx),old.length);
 }
-assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,21);
+assert.equal(finals.filter(p=>{ctx.p=p;return !vm.runInContext('LAB_RETIRED[p.id]',ctx);}).length,15);
+for(const chapter of [6,7,8,9,10]){
+  assert.equal(finals.filter(p=>p.chapter===chapter&&!p.retired&& !['F06-01-v3','F07-01'].includes(p.id)).length,3);
+}
 assert.equal(finals.find(p=>p.id==='F06-03').challenge,true);
 assert.equal(finals.find(p=>p.id==='F07-04').challenge,true);
 assert.equal(finals.find(p=>p.id==='F07-04').slides,null);
@@ -50,4 +53,4 @@ assert.equal(finals.find(p=>p.id==='F07-01').slides,null);
 assert.deepEqual(finals.filter(p=>p.chapter===8).map(p=>p.displayId),['8-1','8-2','8-3']);
 assert.equal(bank.find(p=>p.id==='F08-04').practiceChallenge,true);
 assert.equal(bank.find(p=>p.id==='F08-04').finalExam,false);
-console.log(JSON.stringify({activeProblems:21,archivedProblems:2,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10,11]}));
+console.log(JSON.stringify({activeProblems:15,archivedProblems:6,cases,languageExamples:publicExamples,invalidInputs:invalids.length,chapters:[6,7,8,9,10]}));

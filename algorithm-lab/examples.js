@@ -72,7 +72,7 @@ function cExampleModel(p, t, c) {
     values[names[0]] = a[0].map(row => row[0]); values[names[1]] = a[0].map(row => row[1]);
   }
   if (f === 'kruskal_cost') values.m = a[1].length;
-  if(p.finalExam&&['satisfiable_3cnf','cover_size','greedy_set_cover'].includes(f))values.m=a[1].length;
+  if((p.finalExam||p.practiceChallenge||p.retired)&&['satisfiable_3cnf','cover_size','greedy_set_cover'].includes(f))values.m=a[1].length;
   if (f === 'lcs_length' || f === 'lcs_restore') { values.m = a[0].length; values.n = a[1].length; }
   if (f === 'make_path') values.dp = exampleDP(a[0]);
   if (f === 'lcs_restore') values.dp = exampleLCS(...a);
@@ -196,7 +196,7 @@ function problemFunctionInstructions(p, language, c, english = false) {
   if (p.function === 'kruskal_cost') { descriptions.n = label('정점 수', 'vertices'); descriptions.m = label('간선 수', 'edges'); }
   if (['tsp_min', 'nearest_tour'].includes(p.function)) descriptions.n = label('도시 수', 'cities');
   if (p.function === 'dijkstra') descriptions.n = label('정점 수', 'vertices');
-  if(p.finalExam){
+  if(p.finalExam||p.practiceChallenge||p.retired){
     const f=p.function;
     if(['can_color','verify_vertex_cover','verify_hamiltonian','cover_size'].includes(f))descriptions.n=label('정점 수','vertices');
     if(['route_cost','tsp_min','nearest_neighbor','best_swap_cost'].includes(f))descriptions.n=label('도시 수','cities');

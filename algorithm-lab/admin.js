@@ -91,7 +91,7 @@ function renderCards(rows) {
 }
 function time(value){return new Date(value).toLocaleString(UI_DATE_LOCALE,{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}
 const stateLabel=state=>T(state==='solved'?'통과':state==='attempted'?'제출 · 미통과':'미제출');
-const problemLabel=p=>p.id+' · '+T(p.title)+(p.exercise?' · '+T('연습문제 ')+p.exercise:T(' · 강의 실습'));
+const problemLabel=p=>(p.displayId||p.id)+' · '+T(p.title)+(p.exercise?' · '+T('연습문제 ')+p.exercise:T(' · 강의 실습'));
 function sortedProblemStudents(){return matchingStudents().slice().sort((a,b)=>studentCollator.compare(a.section,b.section)||studentCollator.compare(a.student_no,b.student_no)||studentCollator.compare(a.name,b.name));}
 function visibleProblems(){
   const query=$('problem-search').value.trim().toLowerCase(),state=$('problem-filter').value,people=sortedProblemStudents();

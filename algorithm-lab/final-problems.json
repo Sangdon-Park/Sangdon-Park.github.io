@@ -6206,9 +6206,9 @@
       "argumentGuide": "a는 값 배열, selected는 선택 표시이다. 두 배열의 길이는 n이다."
     },
     "complexity": "시간 O(n), 추가 공간 O(1)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 1,
-    "section": "기말 공개 문제 9-1",
+    "section": "이전 교육과정 보관 문제",
     "hint": "선택 표시가 이미 주어졌으므로 가능한 선택들을 탐색할 필요가 없다. 배열을 한 번 읽으며 표시가 1인 값만 합에 더한다. 마지막에 이 합을 target과 비교한다. 7장의 부분집합 합 찾기와 달리, 여기서는 제시된 답 하나를 검사한다.",
     "sourceFile": "9장_NP완전_문제.pptx",
     "slides": 11,
@@ -6422,7 +6422,8 @@
         "reason": "선택한 값 0의 합도 0이다."
       }
     ],
-    "returnDescription": "검사 결과인 정수 1 또는 0을 반환한다. 원소의 합 자체를 반환하지 않는다."
+    "returnDescription": "검사 결과인 정수 1 또는 0을 반환한다. 원소의 합 자체를 반환하지 않는다.",
+    "retired": true
   },
   {
     "id": "F09-02",
@@ -6447,9 +6448,9 @@
       "argumentGuide": "graph는 연결 표, n은 정점 수, selected는 길이 n인 선택 표시이다."
     },
     "complexity": "인접 행렬 기준 시간 O(n²), 추가 공간 O(1)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 2,
-    "section": "기말 공개 문제 9-2",
+    "section": "이전 교육과정 보관 문제",
     "hint": "삼각형에서 점0만 고르면 0–1과 0–2는 덮는다. 하지만 1–2는 양 끝이 모두 미선택이므로 실패한다. 코드에서는 연결된 두 점을 읽고, 두 선택 표시가 모두 0이면 바로 0을 반환한다. 끝까지 이런 선이 없으면 1이다.",
     "sourceFile": "9장_NP완전_문제.pptx",
     "slides": 22,
@@ -6778,7 +6779,8 @@
         "reason": "검사해야 할 선이 없어 조건을 만족한다."
       }
     ],
-    "returnDescription": "주어진 선택이 정점 커버이면 1, 아니면 0이다. 선택한 점의 수를 반환하지 않는다."
+    "returnDescription": "주어진 선택이 정점 커버이면 1, 아니면 0이다. 선택한 점의 수를 반환하지 않는다.",
+    "retired": true
   },
   {
     "id": "F09-03",
@@ -6803,9 +6805,9 @@
       "argumentGuide": "graph는 연결 표, n은 정점 수, path는 길이 n인 방문 순서이다."
     },
     "complexity": "행렬이 주어졌을 때 검사 시간 O(n), seen 배열 O(n)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 3,
-    "section": "기말 공개 문제 9-3",
+    "section": "이전 교육과정 보관 문제",
     "hint": "먼저 path의 번호가 범위 안에 있는지와 중복 여부를 본다. 이 검사를 통과하면 점들은 빠짐없이 한 번씩 들어 있다. 이어서 실제 이동에 필요한 선들을 확인한다. 마지막 점에서 첫 점으로 돌아가는 선도 같은 방법으로 검사해야 한다.",
     "sourceFile": "9장_NP완전_문제.pptx",
     "slides": 34,
@@ -7192,7 +7194,8 @@
         "reason": "중간 이동은 가능하지만 마지막 3–0 선이 없다."
       }
     ],
-    "returnDescription": "올바른 순회이면 정수 1, 아니면 정수 0이다."
+    "returnDescription": "올바른 순회이면 정수 1, 아니면 정수 0이다.",
+    "retired": true
   },
   {
     "id": "F09-04",
@@ -7217,9 +7220,9 @@
       "argumentGuide": "n은 변수 수, m은 조건 묶음 수이다. clauses의 각 행에는 항 3개를 넣는다."
     },
     "complexity": "시간 O(2ⁿ·max(1,m)), 배정 비트마스크 외 추가 공간 O(1)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 4,
-    "section": "기말 공개 문제 9-4",
+    "section": "이전 교육과정 보관 문제",
     "hint": "변수가 두 개이면 (x₁,x₂)는 (0,0),(1,0),(0,1),(1,1)의 네 경우이다. 배정 하나를 정할 때마다 모든 조건을 검사한다. 조건 하나라도 실패하면 다음 배정을 보고, 모두 통과한 배정이 나오면 1을 반환한다. n이 12 이하이므로 최대 4096개 배정을 확인한다.",
     "sourceFile": "9장_NP완전_문제.pptx",
     "slides": 46,
@@ -7389,12 +7392,13 @@
         "reason": "위반할 조건이 없으므로 어떤 배정이나 가능하다."
       }
     ],
-    "returnDescription": "가능한 값 배정이 하나라도 있으면 1, 전혀 없으면 0이다. 배정 목록을 반환할 필요는 없다."
+    "returnDescription": "가능한 값 배정이 하나라도 있으면 1, 전혀 없으면 0이다. 배정 목록을 반환할 필요는 없다.",
+    "retired": true
   },
   {
     "id": "F10-01",
-    "chapter": 10,
-    "displayId": "10-1",
+    "chapter": 9,
+    "displayId": "9-1",
     "title": "최적 비용의 허용 배수 확인",
     "level": "아주 쉬움",
     "function": "within_factor",
@@ -7404,9 +7408,9 @@
       "factor"
     ],
     "statement": "비용이 작을수록 좋은 문제에서, 이미 구한 해의 비용 cost와 최적 비용 opt가 주어진다. cost가 opt의 factor배 이내인지 검사한다. 최적 비용을 새로 구할 필요는 없다.\n\ncost≤opt×factor이면 1, 아니면 0을 반환하시오.\n\n입력\ncost: 구한 해의 비용. 1~1,000,000의 정수\nopt: 알려진 최적 비용. 1≤opt≤cost\nfactor: 허용하는 배수. 1~100의 정수\n\n반환값\n허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다.\n\n조건\n1. 허용 비용과 정확히 같을 때도 1이다.\n2. factor=1이면 최적 비용과 같아야 통과한다.\n\n예제\n두 배보다 작음: cost=18, opt=10, factor=2\n반환값: 1\n허용 비용은 20이고 18은 그 이하이다.\n\n경계와 같음: cost=20, opt=10, factor=2\n반환값: 1\n20≤20이므로 통과한다.\n\n경계를 넘음: cost=21, opt=10, factor=2\n반환값: 0\n21은 허용 비용 20을 초과한다.\n\n최적 비용과 같음: cost=10, opt=10, factor=1\n반환값: 1\n최적 비용 자체이므로 통과한다.\n\n1배 조건에서 더 비쌈: cost=11, opt=10, factor=1\n반환값: 0\n허용 비용 10보다 크다.",
-    "solution": "def within_factor(cost, opt, factor):\n    return int(cost <= factor*opt)",
+    "solution": "def within_factor(cost, opt, factor):\n    return int(cost <= opt * factor)",
     "c": {
-      "solution": "int within_factor(int cost, int opt, int factor) {\n    return cost<=factor*opt;\n}",
+      "solution": "int within_factor(int cost, int opt, int factor) {\n    return cost <= opt * factor;\n}",
       "starter": "int within_factor(int cost, int opt, int factor) {\n    // 여기에 코드를 작성하세요.\n    return 0;\n}\n",
       "statement": "비용이 작을수록 좋은 문제에서, 이미 구한 해의 비용 cost와 최적 비용 opt가 주어진다. cost가 opt의 factor배 이내인지 검사한다. 최적 비용을 새로 구할 필요는 없다.\n\ncost≤opt×factor이면 1, 아니면 0을 반환하시오.\n\n입력\ncost: 구한 해의 비용. 1~1,000,000의 정수\nopt: 알려진 최적 비용. 1≤opt≤cost\nfactor: 허용하는 배수. 1~100의 정수\n\n반환값\n허용 범위 안이면 정수 1, 범위를 넘으면 정수 0이다.\n\n조건\n1. 허용 비용과 정확히 같을 때도 1이다.\n2. factor=1이면 최적 비용과 같아야 통과한다.\n\n예제\n두 배보다 작음: cost=18, opt=10, factor=2\n반환값: 1\n허용 비용은 20이고 18은 그 이하이다.\n\n경계와 같음: cost=20, opt=10, factor=2\n반환값: 1\n20≤20이므로 통과한다.\n\n경계를 넘음: cost=21, opt=10, factor=2\n반환값: 0\n21은 허용 비용 20을 초과한다.\n\n최적 비용과 같음: cost=10, opt=10, factor=1\n반환값: 1\n최적 비용 자체이므로 통과한다.\n\n1배 조건에서 더 비쌈: cost=11, opt=10, factor=1\n반환값: 0\n허용 비용 10보다 크다.\n\nC 함수\nint within_factor(int cost, int opt, int factor)\n세 인자는 Python과 같은 뜻이다.\n사이트에서 함수 인자와 작업 배열을 준비한다. 반환값을 출력하는 main 함수를 작성할 필요는 없다.",
       "hint": "최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.\n\n세 인자는 Python과 같은 뜻이다.",
@@ -7417,10 +7421,10 @@
     "complexity": "시간 O(1), 추가 공간 O(1)",
     "finalExam": true,
     "examOrder": 1,
-    "section": "기말 공개 문제 10-1",
+    "section": "기말 공개 문제 9-1",
     "hint": "최적 비용이 10이고 두 배를 허용하면 허용 비용은 20이다. cost를 20과 비교하면 된다. 정수 나눗셈으로 cost/opt를 먼저 구하면 소수 부분을 버려 경계를 잘못 판단할 수 있다. 곱셈과 이하 비교로 직접 계산한다.",
-    "sourceFile": "10장_근사_알고리즘.pptx",
-    "slides": 11,
+    "sourceFile": "9장_근사_알고리즘.pptx",
+    "slides": 29,
     "starter": "def within_factor(cost, opt, factor):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -7539,8 +7543,8 @@
   },
   {
     "id": "F10-02",
-    "chapter": 10,
-    "displayId": "10-2",
+    "chapter": 9,
+    "displayId": "9-2",
     "title": "가장 한가한 기계에 작업 맡기기",
     "level": "쉬움",
     "function": "list_scheduling",
@@ -7549,9 +7553,9 @@
       "m"
     ],
     "statement": "같은 성능의 기계 m대가 시간 0부터 준비되어 있다. 작업 시간 배열 jobs를 앞에서부터 읽으며, 누적 작업 시간이 가장 작은 기계에 그 작업을 맡긴다. 누적 시간이 같으면 번호가 작은 기계를 고른다.\n\n아래 배정 규칙대로 모든 작업을 맡긴 뒤, 전체 작업이 끝나는 시각을 반환하시오.\n\n입력\njobs: 길이 0~1000의 작업 시간 배열. 각 시간은 0~1,000,000\nm: 기계 수. 1~10의 정수. 번호는 0~m−1\n\n반환값\n기계별로 맡긴 시간의 합 중 최댓값을 반환한다. 기계들의 완료 시각을 모두 더하지 않는다.\n\n조건\n1. 작업의 입력 순서를 바꾸지 않는다. 한 작업을 여러 기계로 나눌 수 없다.\n2. 각 기계는 자신에게 배정된 작업을 받은 순서대로 계속 처리한다.\n3. 작업이 없으면 완료 시각은 0이다.\n\n예제\n3,2,4 순서: jobs=[3,2,4], m=2\n반환값: 6\n기계별 합은 [3,6]이다. 둘 다 끝나는 시각은 6이다.\n\n4,3,2 순서: jobs=[4,3,2], m=2\n반환값: 5\n기계별 합은 [4,5]이다. 같은 작업들이어도 입력 순서가 달라 답은 5이다.\n\n기계 한 대: jobs=[3,2,4], m=1\n반환값: 9\n한 기계가 세 작업을 모두 처리한다.\n\n동점 발생: jobs=[2,2,2], m=2\n반환값: 4\n마지막 작업 직전 합이 [2,2]라 번호가 작은 기계0에 맡긴다.\n\n작업 없음: jobs=[], m=3\n반환값: 0\n어느 기계에도 작업을 맡기지 않는다.",
-    "solution": "def list_scheduling(jobs, m):\n    load = [0]*m\n    for time in jobs:\n        machine = 0\n        for i in range(1, m):\n            if load[i] < load[machine]:\n                machine = i\n        load[machine] += time\n    return max(load)",
+    "solution": "def list_scheduling(jobs, m):\n    load = [0] * m\n    for duration in jobs:\n        machine = 0\n        for j in range(1, m):\n            if load[j] < load[machine]:\n                machine = j\n        load[machine] += duration\n    return max(load)",
     "c": {
-      "solution": "int list_scheduling(const int jobs[], int n, int m) {\n    int load[10]={0};\n    for (int i=0; i<n; ++i) {\n        int machine=0;\n        for (int j=1; j<m; ++j)\n            if (load[j]<load[machine]) machine=j;\n        load[machine]+=jobs[i];\n    }\n    int answer=0;\n    for (int j=0; j<m; ++j)\n        if (load[j]>answer) answer=load[j];\n    return answer;\n}",
+      "solution": "int list_scheduling(const int jobs[], int n, int m) {\n    int load[10] = {0};\n    for (int i = 0; i < n; ++i) {\n        int machine = 0;\n        for (int j = 1; j < m; ++j) {\n            if (load[j] < load[machine]) machine = j;\n        }\n        load[machine] += jobs[i];\n    }\n    int answer = 0;\n    for (int j = 0; j < m; ++j) {\n        if (load[j] > answer) answer = load[j];\n    }\n    return answer;\n}",
       "starter": "int list_scheduling(const int jobs[], int n, int m) {\n    // 여기에 코드를 작성하세요.\n    return 0;\n}\n",
       "statement": "같은 성능의 기계 m대가 시간 0부터 준비되어 있다. 작업 시간 배열 jobs를 앞에서부터 읽으며, 누적 작업 시간이 가장 작은 기계에 그 작업을 맡긴다. 누적 시간이 같으면 번호가 작은 기계를 고른다.\n\n아래 배정 규칙대로 모든 작업을 맡긴 뒤, 전체 작업이 끝나는 시각을 반환하시오.\n\n입력\njobs: 길이 0~1000의 작업 시간 배열. 각 시간은 0~1,000,000\nm: 기계 수. 1~10의 정수. 번호는 0~m−1\n\n반환값\n기계별로 맡긴 시간의 합 중 최댓값을 반환한다. 기계들의 완료 시각을 모두 더하지 않는다.\n\n조건\n1. 작업의 입력 순서를 바꾸지 않는다. 한 작업을 여러 기계로 나눌 수 없다.\n2. 각 기계는 자신에게 배정된 작업을 받은 순서대로 계속 처리한다.\n3. 작업이 없으면 완료 시각은 0이다.\n\n예제\n3,2,4 순서: jobs=[3,2,4], m=2\n반환값: 6\n기계별 합은 [3,6]이다. 둘 다 끝나는 시각은 6이다.\n\n4,3,2 순서: jobs=[4,3,2], m=2\n반환값: 5\n기계별 합은 [4,5]이다. 같은 작업들이어도 입력 순서가 달라 답은 5이다.\n\n기계 한 대: jobs=[3,2,4], m=1\n반환값: 9\n한 기계가 세 작업을 모두 처리한다.\n\n동점 발생: jobs=[2,2,2], m=2\n반환값: 4\n마지막 작업 직전 합이 [2,2]라 번호가 작은 기계0에 맡긴다.\n\n작업 없음: jobs=[], m=3\n반환값: 0\n어느 기계에도 작업을 맡기지 않는다.\n\nC 함수\nint list_scheduling(const int jobs[], int n, int m)\njobs는 작업 시간 배열, n은 작업 수, m은 기계 수이다.\n사이트에서 함수 인자와 작업 배열을 준비한다. 반환값을 출력하는 main 함수를 작성할 필요는 없다.",
       "hint": "첫 작업 3은 기계0, 다음 작업 2는 기계1에 맡긴다. 이때 기계별 누적 시간은 [3,2]이다. 마지막 작업 4는 합이 더 작은 기계1에 맡겨 [3,6]이 된다. 기계0은 시각 3에, 기계1은 시각 6에 끝나므로 전체 완료 시각은 6이다.\n\njobs는 작업 시간 배열, n은 작업 수, m은 기계 수이다.",
@@ -7562,10 +7566,10 @@
     "complexity": "작업 n개, 기계 m대일 때 시간 O(nm), 공간 O(m)",
     "finalExam": true,
     "examOrder": 2,
-    "section": "기말 공개 문제 10-2",
+    "section": "기말 공개 문제 9-2",
     "hint": "첫 작업 3은 기계0, 다음 작업 2는 기계1에 맡긴다. 이때 기계별 누적 시간은 [3,2]이다. 마지막 작업 4는 합이 더 작은 기계1에 맡겨 [3,6]이 된다. 기계0은 시각 3에, 기계1은 시각 6에 끝나므로 전체 완료 시각은 6이다.",
-    "sourceFile": "10장_근사_알고리즘.pptx",
-    "slides": 22,
+    "sourceFile": "9장_근사_알고리즘.pptx",
+    "slides": 41,
     "starter": "def list_scheduling(jobs, m):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -8705,8 +8709,8 @@
   },
   {
     "id": "F10-03",
-    "chapter": 10,
-    "displayId": "10-3",
+    "chapter": 9,
+    "displayId": "9-3",
     "title": "선의 양 끝을 고르는 정점 커버",
     "level": "기본",
     "function": "cover_size",
@@ -8715,9 +8719,9 @@
       "edges"
     ],
     "statement": "무방향 그래프의 선들을 주어진 순서대로 확인한다. 이번 선의 양 끝 점을 모두 아직 고르지 않았다면 두 점을 함께 고른다. 한쪽이라도 이미 골랐다면 그 선에서는 아무 점도 추가하지 않는다.\n\n이 절차가 끝난 뒤 선택한 점의 개수를 반환하시오.\n\n입력\nn: 점 수. 1~100의 정수. 번호는 0~n−1\nedges: 0~1000개의 [끝점1,끝점2] 쌍. 두 끝점은 서로 다름\n\n반환값\n위 절차로 선택한 점의 수를 반환한다. 최솟값을 찾기 위해 절차를 바꾸지 않는다.\n\n조건\n1. 선의 입력 순서를 유지한다. 순서가 바뀌면 고른 점의 수도 달라질 수 있다.\n2. 같은 선이 목록에 다시 나와도 이미 고른 점은 한 번만 센다.\n3. 선과 연결되지 않은 점은 선택할 필요가 없다. 선이 없으면 답은 0이다.\n\n예제\n삼각형: n=3, edges=[[0,1],[1,2],[0,2]]\n반환값: 2\n첫 선에서 0과 1을 고른 뒤 나머지 선은 모두 넘어간다.\n\n양 끝 선을 먼저 봄: n=4, edges=[[0,1],[1,2],[2,3]]\n반환값: 4\n0과 1을 고르고, 마지막 선에서 2와 3도 고른다.\n\n가운데 선을 먼저 봄: n=4, edges=[[1,2],[0,1],[2,3]]\n반환값: 2\n1과 2를 먼저 고르면 남은 두 선에서 추가할 점이 없다.\n\n같은 선 반복: n=2, edges=[[0,1],[0,1]]\n반환값: 2\n두 번째 선에서는 이미 고른 점들을 다시 세지 않는다.\n\n선 없음: n=4, edges=[]\n반환값: 0\n점이 네 개 있어도 고른 점은 없다.",
-    "solution": "def cover_size(n, edges):\n    chosen = [False]*n\n    answer = 0\n    for u, v in edges:\n        if not chosen[u] and not chosen[v]:\n            chosen[u] = True\n            chosen[v] = True\n            answer += 2\n    return answer",
+    "solution": "def cover_size(n, edges):\n    chosen = [False] * n\n    answer = 0\n    for u, v in edges:\n        if not chosen[u] and not chosen[v]:\n            chosen[u] = True\n            chosen[v] = True\n            answer += 2\n    return answer",
     "c": {
-      "solution": "int cover_size(int n, const int edges[][2], int m) {\n    int chosen[100]={0}, answer=0;\n    for (int i=0; i<m; ++i) {\n        int u=edges[i][0], v=edges[i][1];\n        if (!chosen[u] && !chosen[v]) {\n            chosen[u]=chosen[v]=1;\n            answer+=2;\n        }\n    }\n    return answer;\n}",
+      "solution": "int cover_size(int n, const int edges[][2], int m) {\n    int chosen[100] = {0};\n    int answer = 0;\n    for (int i = 0; i < m; ++i) {\n        int u = edges[i][0];\n        int v = edges[i][1];\n        if (!chosen[u] && !chosen[v]) {\n            chosen[u] = 1;\n            chosen[v] = 1;\n            answer += 2;\n        }\n    }\n    return answer;\n}",
       "starter": "int cover_size(int n, const int edges[][2], int m) {\n    // 여기에 코드를 작성하세요.\n    return 0;\n}\n",
       "statement": "무방향 그래프의 선들을 주어진 순서대로 확인한다. 이번 선의 양 끝 점을 모두 아직 고르지 않았다면 두 점을 함께 고른다. 한쪽이라도 이미 골랐다면 그 선에서는 아무 점도 추가하지 않는다.\n\n이 절차가 끝난 뒤 선택한 점의 개수를 반환하시오.\n\n입력\nn: 점 수. 1~100의 정수. 번호는 0~n−1\nedges: 0~1000개의 [끝점1,끝점2] 쌍. 두 끝점은 서로 다름\n\n반환값\n위 절차로 선택한 점의 수를 반환한다. 최솟값을 찾기 위해 절차를 바꾸지 않는다.\n\n조건\n1. 선의 입력 순서를 유지한다. 순서가 바뀌면 고른 점의 수도 달라질 수 있다.\n2. 같은 선이 목록에 다시 나와도 이미 고른 점은 한 번만 센다.\n3. 선과 연결되지 않은 점은 선택할 필요가 없다. 선이 없으면 답은 0이다.\n\n예제\n삼각형: n=3, edges=[[0,1],[1,2],[0,2]]\n반환값: 2\n첫 선에서 0과 1을 고른 뒤 나머지 선은 모두 넘어간다.\n\n양 끝 선을 먼저 봄: n=4, edges=[[0,1],[1,2],[2,3]]\n반환값: 4\n0과 1을 고르고, 마지막 선에서 2와 3도 고른다.\n\n가운데 선을 먼저 봄: n=4, edges=[[1,2],[0,1],[2,3]]\n반환값: 2\n1과 2를 먼저 고르면 남은 두 선에서 추가할 점이 없다.\n\n같은 선 반복: n=2, edges=[[0,1],[0,1]]\n반환값: 2\n두 번째 선에서는 이미 고른 점들을 다시 세지 않는다.\n\n선 없음: n=4, edges=[]\n반환값: 0\n점이 네 개 있어도 고른 점은 없다.\n\nC 함수\nint cover_size(int n, const int edges[][2], int m)\nn은 정점 수, m은 간선 수이다. edges의 한 행이 두 끝점 번호이다.\n사이트에서 함수 인자와 작업 배열을 준비한다. 반환값을 출력하는 main 함수를 작성할 필요는 없다.",
       "hint": "삼각형의 첫 선 0–1에서 두 끝을 고르면 0–2와 1–2도 선택한 점과 닿는다. 그래서 뒤의 두 선에서는 추가하지 않는다. 이 절차는 실제로 두 끝을 추가한 선들끼리 끝점이 겹치지 않게 만든다. 그런 선이 k개이면 어떤 커버도 최소 k점이 필요하고, 이 절차는 2k점을 골라 두 배 이내를 보장한다.\n\nn은 정점 수, m은 간선 수이다. edges의 한 행이 두 끝점 번호이다.",
@@ -8728,10 +8732,10 @@
     "complexity": "간선 m개일 때 시간 O(n+m), 공간 O(n)",
     "finalExam": true,
     "examOrder": 3,
-    "section": "기말 공개 문제 10-3",
+    "section": "기말 공개 문제 9-3",
     "hint": "삼각형의 첫 선 0–1에서 두 끝을 고르면 0–2와 1–2도 선택한 점과 닿는다. 그래서 뒤의 두 선에서는 추가하지 않는다. 이 절차는 실제로 두 끝을 추가한 선들끼리 끝점이 겹치지 않게 만든다. 그런 선이 k개이면 어떤 커버도 최소 k점이 필요하고, 이 절차는 2k점을 골라 두 배 이내를 보장한다.",
-    "sourceFile": "10장_근사_알고리즘.pptx",
-    "slides": 34,
+    "sourceFile": "9장_근사_알고리즘.pptx",
+    "slides": 56,
     "starter": "def cover_size(n, edges):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -8935,8 +8939,8 @@
   },
   {
     "id": "F10-04",
-    "chapter": 10,
-    "displayId": "10-4",
+    "chapter": 9,
+    "displayId": "9-4",
     "title": "새 원소를 가장 많이 덮는 집합 선택",
     "level": "조금 도전",
     "function": "greedy_set_cover",
@@ -8945,9 +8949,9 @@
       "sets"
     ],
     "statement": "전체 원소는 0부터 n−1까지이다. 여러 집합 중 아직 덮지 못한 원소를 가장 많이 포함하는 집합을 하나 고른다. 새로 덮는 수가 같으면 입력에서 먼저 나온 집합을 고른다. 고른 집합의 원소를 덮음으로 표시하고 이 과정을 반복한다.\n\n모든 원소를 덮으면 선택한 집합 수, 끝까지 덮을 수 없으면 −1을 반환하시오.\n\n입력\nn: 전체 원소 수. 1~20의 정수\nsets: 0~30개 집합을 나타내는 정수 배열. 각 값은 0~2ⁿ−1\n\n반환값\n정해진 선택 절차의 횟수를 반환한다. 가능한 모든 조합 중 최소 집합 수를 구하는 문제는 아니다.\n\n조건\n1. 집합은 원소 k가 들어 있으면 2ᵏ를 더한 정수로 나타낸다. {0,1}은 1+2=3이다.\n2. n=4일 때 3은 {0,1}, 6은 {1,2}, 12는 {2,3}을 나타낸다. 0은 빈 집합이다.\n3. 이미 덮은 원소는 새로 덮는 수에 포함하지 않는다.\n4. 남은 원소가 있는데 어느 집합도 새 원소를 덮지 못하면 −1이다.\n\n예제\n두 집합으로 완료: n=4, sets=[3,6,12]\n반환값: 2\n처음에는 동률이라 3={0,1}을 고른다. 남은 {2,3}은 12로 덮는다.\n\n동률에서 3을 먼저 고름: n=4, sets=[3,5,10]\n반환값: 3\n3={0,1} 다음에는 5={0,2}와 10={1,3}이 각각 하나씩 더 필요하다.\n\n같은 집합들의 순서 변경: n=4, sets=[5,10,3]\n반환값: 2\n5={0,2}를 먼저 고르면 10={1,3}으로 바로 끝난다.\n\n덮을 수 없는 원소: n=4, sets=[3]\n반환값: -1\n원소 2와 3은 어느 집합에도 없다.\n\n집합이 없음: n=4, sets=[]\n반환값: -1\n전체 원소는 있는데 사용할 집합이 없다.\n\n빈 집합은 도움 없음: n=1, sets=[0,1]\n반환값: 1\n0은 아무것도 덮지 못한다. {0}을 뜻하는 1을 한 번 고른다.",
-    "solution": "def greedy_set_cover(n, sets):\n    remaining = (1 << n)-1\n    count = 0\n    while remaining:\n        best, gain = 0, 0\n        for mask in sets:\n            added = (mask & remaining).bit_count()\n            if added > gain:\n                best, gain = mask, added\n        if gain == 0: return -1\n        remaining &= ~best\n        count += 1\n    return count",
+    "solution": "def greedy_set_cover(n, sets):\n    remaining = (1 << n) - 1\n    count = 0\n    while remaining:\n        best, gain = 0, 0\n        for mask in sets:\n            added = (mask & remaining).bit_count()\n            if added > gain:\n                best, gain = mask, added\n        if gain == 0:\n            return -1\n        remaining &= ~best\n        count += 1\n    return count",
     "c": {
-      "solution": "static int count_bits(int x) {\n    int n=0; while (x) {n+=x&1; x>>=1;} return n;\n}\nint greedy_set_cover(int n, const int sets[], int m) {\n    int remaining=(1<<n)-1, count=0;\n    while (remaining) {\n        int best=0, gain=0;\n        for (int i=0; i<m; ++i) {\n            int added=count_bits(sets[i]&remaining);\n            if (added>gain) {best=sets[i]; gain=added;}\n        }\n        if (!gain) return -1;\n        remaining&=~best; ++count;\n    } return count;\n}",
+      "solution": "static int count_bits(int x) {\n    int count = 0;\n    while (x) {\n        count += x & 1;\n        x >>= 1;\n    }\n    return count;\n}\n\nint greedy_set_cover(int n, const int sets[], int m) {\n    int remaining = (1 << n) - 1;\n    int count = 0;\n    while (remaining) {\n        int best = 0, gain = 0;\n        for (int i = 0; i < m; ++i) {\n            int added = count_bits(sets[i] & remaining);\n            if (added > gain) {\n                best = sets[i];\n                gain = added;\n            }\n        }\n        if (gain == 0) return -1;\n        remaining &= ~best;\n        ++count;\n    }\n    return count;\n}",
       "starter": "int greedy_set_cover(int n, const int sets[], int m) {\n    // 여기에 코드를 작성하세요.\n    return 0;\n}\n",
       "statement": "전체 원소는 0부터 n−1까지이다. 여러 집합 중 아직 덮지 못한 원소를 가장 많이 포함하는 집합을 하나 고른다. 새로 덮는 수가 같으면 입력에서 먼저 나온 집합을 고른다. 고른 집합의 원소를 덮음으로 표시하고 이 과정을 반복한다.\n\n모든 원소를 덮으면 선택한 집합 수, 끝까지 덮을 수 없으면 −1을 반환하시오.\n\n입력\nn: 전체 원소 수. 1~20의 정수\nsets: 0~30개 집합을 나타내는 정수 배열. 각 값은 0~2ⁿ−1\n\n반환값\n정해진 선택 절차의 횟수를 반환한다. 가능한 모든 조합 중 최소 집합 수를 구하는 문제는 아니다.\n\n조건\n1. 집합은 원소 k가 들어 있으면 2ᵏ를 더한 정수로 나타낸다. {0,1}은 1+2=3이다.\n2. n=4일 때 3은 {0,1}, 6은 {1,2}, 12는 {2,3}을 나타낸다. 0은 빈 집합이다.\n3. 이미 덮은 원소는 새로 덮는 수에 포함하지 않는다.\n4. 남은 원소가 있는데 어느 집합도 새 원소를 덮지 못하면 −1이다.\n\n예제\n두 집합으로 완료: n=4, sets=[3,6,12]\n반환값: 2\n처음에는 동률이라 3={0,1}을 고른다. 남은 {2,3}은 12로 덮는다.\n\n동률에서 3을 먼저 고름: n=4, sets=[3,5,10]\n반환값: 3\n3={0,1} 다음에는 5={0,2}와 10={1,3}이 각각 하나씩 더 필요하다.\n\n같은 집합들의 순서 변경: n=4, sets=[5,10,3]\n반환값: 2\n5={0,2}를 먼저 고르면 10={1,3}으로 바로 끝난다.\n\n덮을 수 없는 원소: n=4, sets=[3]\n반환값: -1\n원소 2와 3은 어느 집합에도 없다.\n\n집합이 없음: n=4, sets=[]\n반환값: -1\n전체 원소는 있는데 사용할 집합이 없다.\n\n빈 집합은 도움 없음: n=1, sets=[0,1]\n반환값: 1\n0은 아무것도 덮지 못한다. {0}을 뜻하는 1을 한 번 고른다.\n\nC 함수\nint greedy_set_cover(int n, const int sets[], int m)\nn은 전체 원소 수, m은 집합 수이다. sets의 길이는 m이다.\n사이트에서 함수 인자와 작업 배열을 준비한다. 반환값을 출력하는 main 함수를 작성할 필요는 없다.",
       "hint": "A={0,1}, B={1,2}, C={2,3}이면 처음에는 세 집합 모두 두 원소를 덮는다. A를 고른 뒤 남은 원소는 2와 3이다. 이때 B는 원소2 한 개, C는 원소2와3 두 개를 새로 덮으므로 C를 고른다. 비트마스크는 이 포함 여부를 정수의 0/1 자리로 적은 표현이다.\n\nn은 전체 원소 수, m은 집합 수이다. sets의 길이는 m이다.",
@@ -8956,12 +8960,12 @@
       "argumentGuide": "n은 전체 원소 수, m은 집합 수이다. sets의 길이는 m이다."
     },
     "complexity": "단순 비트 개수 계산 기준 시간 O(mn²), 공간 O(1)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 4,
-    "section": "기말 공개 문제 10-4",
+    "section": "추가 연습 9-4 · 기말고사 제외",
     "hint": "A={0,1}, B={1,2}, C={2,3}이면 처음에는 세 집합 모두 두 원소를 덮는다. A를 고른 뒤 남은 원소는 2와 3이다. 이때 B는 원소2 한 개, C는 원소2와3 두 개를 새로 덮으므로 C를 고른다. 비트마스크는 이 포함 여부를 정수의 0/1 자리로 적은 표현이다.",
-    "sourceFile": "10장_근사_알고리즘.pptx",
-    "slides": 47,
+    "sourceFile": "9장_근사_알고리즘.pptx",
+    "slides": 79,
     "starter": "def greedy_set_cover(n, sets):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
       {
@@ -9138,12 +9142,13 @@
         "reason": "0은 아무것도 덮지 못한다. {0}을 뜻하는 1을 한 번 고른다."
       }
     ],
-    "returnDescription": "정해진 선택 절차의 횟수를 반환한다. 가능한 모든 조합 중 최소 집합 수를 구하는 문제는 아니다."
+    "returnDescription": "정해진 선택 절차의 횟수를 반환한다. 가능한 모든 조합 중 최소 집합 수를 구하는 문제는 아니다.",
+    "practiceChallenge": true
   },
   {
     "id": "F11-01",
-    "chapter": 11,
-    "displayId": "11-1",
+    "chapter": 10,
+    "displayId": "10-1",
     "title": "상하좌우 이동 거리",
     "level": "아주 쉬움",
     "function": "manhattan",
@@ -9167,9 +9172,9 @@
     "complexity": "시간 O(1), 추가 공간 O(1)",
     "finalExam": true,
     "examOrder": 1,
-    "section": "기말 공개 문제 11-1",
+    "section": "기말 공개 문제 10-1",
     "hint": "x좌표 차이는 가로로 움직여야 하는 칸 수이고 y좌표 차이는 세로 칸 수이다. 왼쪽이나 아래로 가면 차이가 음수가 될 수 있지만 이동 횟수는 음수가 될 수 없다. 두 차이의 절댓값을 더한다. 이런 거리를 맨해튼 거리라고 부른다.",
-    "sourceFile": "11장_휴리스틱_알고리즘.pptx",
+    "sourceFile": "10장_휴리스틱_알고리즘.pptx",
     "slides": 10,
     "starter": "def manhattan(x1, y1, x2, y2):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
@@ -9288,8 +9293,8 @@
   },
   {
     "id": "F11-02",
-    "chapter": 11,
-    "displayId": "11-2",
+    "chapter": 10,
+    "displayId": "10-2",
     "title": "가까운 도시부터 방문하는 순회",
     "level": "쉬움",
     "function": "nearest_neighbor",
@@ -9310,9 +9315,9 @@
     "complexity": "시간 O(n²), 방문 배열 O(n)",
     "finalExam": true,
     "examOrder": 2,
-    "section": "기말 공개 문제 11-2",
+    "section": "기말 공개 문제 10-2",
     "hint": "네 도시 사례에서는 0에서 비용1인 1을 고르고, 1에서 비용1인 2를 고른다. 남은 3으로 가는 비용은 50이어서 전체 비용은 61이 된다. 0,2,1,3,0은 비용21이지만, 이 함수는 전체 최적 경로를 찾는 함수가 아니라 주어진 가까운 도시 선택 규칙을 구현한다.",
-    "sourceFile": "11장_휴리스틱_알고리즘.pptx",
+    "sourceFile": "10장_휴리스틱_알고리즘.pptx",
     "slides": 21,
     "starter": "def nearest_neighbor(dist):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
@@ -9641,8 +9646,8 @@
   },
   {
     "id": "F11-03",
-    "chapter": 11,
-    "displayId": "11-3",
+    "chapter": 10,
+    "displayId": "10-3",
     "title": "새 후보를 받아들일지 판단하기",
     "level": "기본",
     "function": "accept_move",
@@ -9666,9 +9671,9 @@
     "complexity": "기본 수학 연산을 상수 시간으로 볼 때 시간 O(1), 공간 O(1)",
     "finalExam": true,
     "examOrder": 3,
-    "section": "기말 공개 문제 11-3",
+    "section": "기말 공개 문제 10-3",
     "hint": "조건의 순서가 중요하다. 좋은 후보나 같은 비용의 후보는 먼저 수락하고, 남은 경우에서 온도가 0인지 확인한다. 그다음에만 확률식을 계산하므로 0으로 나누지 않는다. exp는 지수 함수이며 Python의 math.exp, C의 math.h에 있는 exp를 사용한다. 이 한 단계의 판단은 담금질 기법에서 쓰는 수락 규칙이다.",
-    "sourceFile": "11장_휴리스틱_알고리즘.pptx",
+    "sourceFile": "10장_휴리스틱_알고리즘.pptx",
     "slides": 35,
     "starter": "def accept_move(current, candidate, temp, u):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
@@ -9843,8 +9848,8 @@
   },
   {
     "id": "F11-04",
-    "chapter": 11,
-    "displayId": "11-4",
+    "chapter": 10,
+    "displayId": "10-4",
     "title": "도시 두 위치를 한 번 교환한 최소 비용",
     "level": "조금 도전",
     "function": "best_swap_cost",
@@ -9864,11 +9869,11 @@
       "argumentGuide": "dist는 비용 표, n은 도시 수, route는 길이 n인 방문 순서이다."
     },
     "complexity": "위치 쌍 O(n²) × 경로 비용 O(n), 시간 O(n³), 복사 배열 O(n)",
-    "finalExam": true,
+    "finalExam": false,
     "examOrder": 4,
-    "section": "기말 공개 문제 11-4",
+    "section": "추가 연습 10-4 · 기말고사 제외",
     "hint": "[0,1,2,3]에서 바꿀 수 있는 위치 쌍은 (1,2),(1,3),(2,3)이다. 각 쌍을 바꾼 비용을 계산한 다음 같은 두 위치를 다시 바꿔 복구한다. 복구하지 않으면 다음 후보가 원래 경로에서 두 번 바뀐 경로가 되어 문제의 조건과 달라진다.",
-    "sourceFile": "11장_휴리스틱_알고리즘.pptx",
+    "sourceFile": "10장_휴리스틱_알고리즘.pptx",
     "slides": 47,
     "starter": "def best_swap_cost(dist, route):\n    # 여기에 코드를 작성하세요.\n    return 0\n",
     "tests": [
@@ -10259,6 +10264,7 @@
         "reason": "바꿀 위치도 없고 왕복 비용도 0이다."
       }
     ],
-    "returnDescription": "원래 경로 또는 한 번 교환한 경로의 최소 비용을 반환한다. 바꾼 경로 자체는 반환하지 않는다."
+    "returnDescription": "원래 경로 또는 한 번 교환한 경로의 최소 비용을 반환한다. 바꾼 경로 자체는 반환하지 않는다.",
+    "practiceChallenge": true
   }
 ]
