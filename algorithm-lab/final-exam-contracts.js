@@ -40,6 +40,7 @@ function validateFinalArgs(p,args) {
     case 'satisfiable_3cnf': scalar(0,1,12);need(Array.isArray(args[1])&&args[1].length<=30&&args[1].every(r=>Array.isArray(r)&&r.length===3&&r.every(v=>integer(v,-args[0],args[0])&&v!==0)),'각 절은 0이 아닌 −n~n 리터럴 세 개이며 절은 최대 30개입니다.');break;
     case 'within_factor': scalar(0,1,1000000);scalar(1,1,args[0]);scalar(2,1,100);break;
     case 'two_machine_time': vector(0,0,1000000,0,1000);break;
+    case 'approx_weight': vector(0,1,1000000,0,1000);scalar(1,1,1000000);break;
     case 'list_scheduling': vector(0,0,1000000,0,1000);scalar(1,1,10);break;
     case 'cover_size': scalar(0,1,100);need(Array.isArray(args[1])&&args[1].length<=1000&&args[1].every(e=>Array.isArray(e)&&e.length===2&&e.every(v=>integer(v,0,args[0]-1))&&e[0]!==e[1]),'edges는 최대 1000개의 서로 다른 두 끝점 0~n-1입니다.');break;
     case 'greedy_set_cover': scalar(0,1,20);vector(1,0,2**args[0]-1,0,30);break;
@@ -72,6 +73,7 @@ function finalCCase(p,args) {
     case 'verify_subset_sum': setup=arr('a',args[0])+arr('s',args[1]);inputs=['a','s',args[0].length,args[2]];break;
     case 'verify_vertex_cover': case 'verify_hamiltonian': setup=mat('g',args[0],8)+arr('s',args[1]);inputs=['g',args[0].length,'s'];break;
     case 'satisfiable_3cnf': setup=mat('clauses',args[1],3);inputs=[args[0],'clauses',args[1].length];break;
+    case 'approx_weight': setup=arr('weights',args[0]);inputs=['weights',args[0].length,args[1]];break;
     case 'list_scheduling': setup=arr('a',args[0]);inputs=['a',args[0].length,args[1]];break;
     case 'two_machine_time': setup=arr('a',args[0]);inputs=['a',args[0].length];break;
     case 'cover_size': setup=mat('edges',args[1],2);inputs=[args[0],'edges',args[1].length];break;
