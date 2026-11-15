@@ -1,0 +1,12 @@
+.vertex-demo{padding:24px;border:1px solid #cbd7d2;border-radius:12px;background:#f7faf7;margin:20px 0}
+.vertex-demo [hidden]{display:none}
+.vertex-demo .vertex-lineup{display:grid;grid-template-columns:1fr .85fr 1fr .85fr 1fr .85fr 1fr;align-items:center;gap:8px;margin:24px 0}
+.vertex-demo button{cursor:pointer;font:inherit;line-height:1.4;border:2px solid #6b787a;border-radius:10px;padding:10px 8px;background:#fff;color:#172f36}
+.vertex-demo button[aria-pressed=true]{background:#b9f0d8;border-color:#17654c;font-weight:700}
+.vertex-demo button:focus-visible{outline:3px solid #196fc2;outline-offset:3px}
+.vertex-demo [data-edge]{border-top:4px solid #af2f2f;padding-top:8px;text-align:center;color:#9b2424;font-size:14px;font-weight:700}
+.vertex-demo [data-covered=true]{border-color:#17654c;color:#17654c}
+.vertex-demo .vertex-presets{display:flex;gap:10px;flex-wrap:wrap}
+.vertex-demo .vertex-presets button{font-size:15px;padding:8px 12px;border-width:1px}
+.vertex-demo [data-vertex-status]{font-weight:700;min-height:2em;margin-bottom:0}
+@media(max-width:600px){.vertex-demo{padding:15px}.vertex-demo .vertex-lineup{gap:3px}.vertex-demo .vertex-lineup button{font-size:12px;padding:9px 2px}.vertex-demo [data-edge]{font-size:11px}}
